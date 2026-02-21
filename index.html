@@ -97,6 +97,34 @@ nav{display:flex;gap:4px;padding:0 28px;background:var(--navy);border-top:1px so
 .funnel-label{font-size:12px;color:#555;white-space:nowrap;min-width:110px}
 .funnel-val{font-size:12px;font-weight:700;color:var(--navy);min-width:20px}
 @media(max-width:700px){.chart-grid{grid-template-columns:1fr}}
+/* DEAL STATUS TABS */
+.deal-tabs{display:flex;gap:0;margin-bottom:20px;border-bottom:2px solid #e0e6f0;flex-wrap:wrap}
+.deal-tab{padding:10px 22px;font-size:13px;font-weight:700;cursor:pointer;color:#888;border-bottom:3px solid transparent;margin-bottom:-2px;transition:.2s;user-select:none;white-space:nowrap;background:none;border-top:none;border-left:none;border-right:none}
+.deal-tab:hover{color:var(--navy)}.deal-tab.active{color:var(--navy);border-bottom-color:var(--gold);background:linear-gradient(to bottom,transparent,rgba(200,168,75,.06))}
+/* STAR SCORING */
+.star-row{display:flex;align-items:center;gap:6px;padding:8px 0 4px}
+.star-label{font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}
+.stars{display:flex;gap:1px}
+.star{font-size:15px;line-height:1}.star.full{color:#c8a84b}.star.empty{color:#ddd}
+.score-total-badge{font-size:11px;font-weight:800;color:var(--navy);background:#f0f4fa;border-radius:4px;padding:2px 7px;margin-left:4px}
+.score-breakdown{font-size:11px;color:#999;padding:2px 0 10px;display:flex;gap:8px;flex-wrap:wrap}
+.score-bd-item{display:flex;align-items:center;gap:3px}
+.score-bd-item .star{font-size:11px}
+/* CARD PRICE & SPREAD */
+.card-price{font-size:14px;font-weight:700;color:var(--navy2);margin:4px 0 2px}
+.card-spread-row{display:flex;align-items:center;gap:6px;padding:4px 0 8px;border-bottom:1px solid #f0f4fa}
+.spread-val{font-size:12px;font-weight:700;padding:2px 8px;border-radius:4px}
+.spread-pos{background:#e8f5e9;color:#2e7d32}.spread-neg{background:#fce4ec;color:#c62828}.spread-neutral{background:#f5f5f5;color:#888}
+/* EXPAND BUTTON */
+.expand-btn{width:100%;padding:9px;background:#f7f8fb;border:none;border-top:1px solid #f0f0f0;font-size:12px;font-weight:600;color:var(--navy2);cursor:pointer;transition:.15s;text-align:center;letter-spacing:.3px}
+.expand-btn:hover{background:#eef2fa;color:var(--navy)}
+/* CARD BODY ANIMATION */
+.card-body{padding:12px 18px 4px;display:none;border-top:1px solid #f0f4fa}
+.card-body.open{display:block;animation:slideDown .2s ease}
+@keyframes slideDown{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
+/* DEAL GRID RESPONSIVE */
+.deal-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:16px}
+@media(max-width:760px){.deal-grid{grid-template-columns:1fr}}
 </style>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"></script>
 </head>
@@ -173,14 +201,13 @@ nav{display:flex;gap:4px;padding:0 28px;background:var(--navy);border-top:1px so
 
   <!-- DEALS TAB -->
   <div id="tab-deals" class="container" style="display:none">
-    <div class="filters">
-      <div class="filter-chip active" onclick="filterDeals('all',this)">Todos (5)</div>
-      <div class="filter-chip pass" onclick="filterDeals('pass',this)">✅ PASS (0)</div>
-      <div class="filter-chip borderline" onclick="filterDeals('borderline',this)">⚠️ Borderline (0)</div>
-      <div class="filter-chip nogo" onclick="filterDeals('nogo',this)">❌ NO GO (5)</div>
-      <input class="search-box" type="text" placeholder="Buscar deal..." oninput="searchDeals(this.value)" id="deal-search">
+    <div class="deal-tabs">
+      <button class="deal-tab active" onclick="filterDeals('all',this)">TODOS (5)</button>
+      <button class="deal-tab" onclick="filterDeals('pass',this)">✅ PASS (0)</button>
+      <button class="deal-tab" onclick="filterDeals('borderline',this)">⚠️ BORDERLINE (0)</button>
+      <button class="deal-tab" onclick="filterDeals('nogo',this)">❌ DESCARTADOS (5)</button>
     </div>
-    <div class="grid" id="deals-grid"></div>
+    <div class="deal-grid" id="deals-grid"></div>
     <div class="empty" id="deals-empty" style="display:none">No hay deals que coincidan con el filtro</div>
   </div>
 
@@ -267,7 +294,47 @@ function renderDashboard() {
 }
 
 // DEALS
+// ── MAGG Star Scoring ─────────────────────────────────────────
+const DEAL_SCORES = {
+  'MAGG-2026-001': {retorno:0, ubicacion:2, tipologia:1, spread_bps:'-180/-250 bps'},
+  'MAGG-2026-002': {retorno:0, ubicacion:1, tipologia:0, spread_bps:'-120/-210 bps'},
+  'MAGG-2026-003': {retorno:1, ubicacion:2, tipologia:1, spread_bps:'+100/+150 bps'},
+  'MAGG-2026-004': {retorno:0, ubicacion:0, tipologia:0, spread_bps:'-200/-250 bps'},
+  'MAGG-2026-005': {retorno:0, ubicacion:2, tipologia:1, spread_bps:'-30/-130 bps'},
+};
+DEALS.forEach(d => {
+  const s = DEAL_SCORES[d.ref] || {retorno:0,ubicacion:0,tipologia:0,spread_bps:''};
+  d.magg_retorno  = s.retorno;
+  d.magg_ubicacion = s.ubicacion;
+  d.magg_tipologia = s.tipologia;
+  d.magg_total    = s.retorno + s.ubicacion + s.tipologia;
+  d.spread_bps    = s.spread_bps;
+});
+
+function stars(n, max) {
+  let s = '';
+  for (let i = 0; i < max; i++) s += `<span class="star ${i < n ? 'full' : 'empty'}">${i < n ? '★' : '☆'}</span>`;
+  return s;
+}
+function fmtPrice(p) {
+  if (!p) return '';
+  const n = parseFloat(p.replace(/\./g,'').replace(',','.'));
+  if (isNaN(n)) return p + '€';
+  if (n >= 1000000) {
+    const m = n / 1000000;
+    return (Number.isInteger(m) ? m : m.toFixed(2).replace('.',',')).toString().replace(/\.?0+$/, '') + 'M€';
+  }
+  return Math.round(n/1000) + 'K€';
+}
+
 function renderDeals(list) {
+  // Sort: score desc, then date desc
+  list = [...list].sort((a,b) => {
+    if ((b.magg_total||0) !== (a.magg_total||0)) return (b.magg_total||0) - (a.magg_total||0);
+    const da = (a.fecha||'').split('/').reverse().join('');
+    const db = (b.fecha||'').split('/').reverse().join('');
+    return db.localeCompare(da);
+  });
   const grid = document.getElementById('deals-grid');
   const empty = document.getElementById('deals-empty');
   if (!list.length) { grid.innerHTML=''; empty.style.display='block'; return; }
@@ -278,34 +345,56 @@ function renderDeals(list) {
 function dealCard(d) {
   const vcls  = d.verdict==='pass'?'t-pass':d.verdict==='borderline'?'t-bord':'t-nogo';
   const vtxt  = d.verdict==='pass'?'✅ PASS':d.verdict==='borderline'?'⚠️ Borderline':'❌ NO GO';
+  const total = d.magg_total || 0;
+  const ret   = d.magg_retorno || 0;
+  const ubi   = d.magg_ubicacion || 0;
+  const tip   = d.magg_tipologia || 0;
+  const bps   = d.spread_bps || '';
+  const bpsPos = bps.startsWith('+');
+  const bpsCls = bpsPos ? 'spread-pos' : (bps ? 'spread-neg' : 'spread-neutral');
   const isOpen = openCards['deal_'+d.ref];
+  const safeRef = d.ref.replace(/[^a-z0-9]/gi,'_');
   const details = [
-    ['Tipo', d.tipo], ['Fecha', d.fecha], ['Precio', d.precio?d.precio+'€':''],
-    ['Unidades', d.unidades], ['Fuente / Broker', d.fuente],
-    ['YoC entrada', d.yoc], ['Exit Yield', d.yield_exit], ['Spread', d.spread],
-    ['Motivo descarte', d.motivo], ['Próximo paso', d.prox_paso], ['Owner', d.owner],
+    ['Tipología', d.tipo], ['Broker / Fuente', d.fuente], ['Fecha entrada', d.fecha],
+    ['Unidades', d.unidades], ['YoC entrada', d.yoc], ['Exit Yield', d.yield_exit],
+    ['Owner', d.owner],
   ].filter(r=>r[1]);
-  return `<div class="card ${d.verdict}" onclick="toggleDeal('${d.ref}')">
+  return `<div class="card ${d.verdict}" style="cursor:default;overflow:visible">
     <div class="card-head">
-      <div class="card-ref">${d.ref}</div>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+        <div class="card-ref">${d.ref}</div>
+        <span class="tag ${vcls}" style="font-size:10px;padding:3px 10px">${vtxt}</span>
+      </div>
       <div class="card-name">${d.nombre}</div>
       <div class="card-loc">📍 ${d.ubicacion}</div>
+      <div class="card-price">${fmtPrice(d.precio)}</div>
     </div>
-    <div class="card-tags">
-      <span class="tag ${vcls}">${vtxt}</span>
-      ${d.estado?`<span class="tag t-neutral">${d.estado}</span>`:''}
-      ${d.tipo?`<span class="tag t-gray">${d.tipo}</span>`:''}
+    <div style="padding:8px 18px 6px;border-top:1px solid #f0f4fa">
+      <div class="star-row">
+        <span class="star-label">Scoring MAGG</span>
+        <div class="stars">${stars(total,5)}</div>
+        <span class="score-total-badge">${total}/5</span>
+      </div>
+      <div class="score-breakdown">
+        <span class="score-bd-item">Retorno&nbsp;${stars(ret,2)}</span>
+        <span style="color:#ccc;margin:0 2px">|</span>
+        <span class="score-bd-item">Ubicación&nbsp;${stars(ubi,2)}</span>
+        <span style="color:#ccc;margin:0 2px">|</span>
+        <span class="score-bd-item">Tipología&nbsp;${stars(tip,1)}</span>
+      </div>
+      ${bps ? `<div class="card-spread-row"><span style="font-size:11px;color:#aaa;margin-right:6px">Spread</span><span class="spread-val ${bpsCls}">${bps}</span></div>` : ''}
     </div>
-    <div class="card-body${isOpen?' open':''}" id="dd-${d.ref.replace(/[^a-z0-9]/gi,'_')}">
+    <button class="expand-btn" onclick="toggleDeal('${d.ref}')" id="btn-${safeRef}">
+      ${isOpen ? 'Ocultar detalles ▲' : 'Ver detalles ▼'}
+    </button>
+    <div class="card-body${isOpen?' open':''}" id="dd-${safeRef}">
       ${details.map(r=>`<div class="detail-row"><span class="dk">${r[0]}</span><span class="dv">${r[1]}</span></div>`).join('')}
+      ${d.motivo?`<div class="detail-row"><span class="dk">Motivo descarte</span><span class="dv" style="color:#c62828;max-width:65%">${d.motivo}</span></div>`:''}
+      <div style="display:flex;gap:8px;flex-wrap:wrap;padding:10px 0 6px">
+        ${d.ic_link?`<a href="${d.ic_link}" target="_blank" class="btn btn-primary">📄 IC Brief</a>`:''}
+        ${d.fuente?`<button class="btn btn-secondary" onclick="filterBrokersByDeal('${d.fuente}')">👤 Ver broker</button>`:''}
+      </div>
     </div>
-    ${isOpen?`<div class="card-actions">
-      ${d.ic_link?`<a href="${d.ic_link}" target="_blank" class="btn btn-primary">📄 IC Brief</a>`:''}
-      ${d.fuente?`<button class="btn btn-secondary" onclick="event.stopPropagation();filterBrokersByDeal('${d.fuente}')">👤 Ver broker</button>`:''}
-    </div>`:'<div id="ca-'+d.ref.replace(/[^a-z0-9]/gi,'_')+'" style="display:none"><div class="card-actions">'+
-      (d.ic_link?`<a href="${d.ic_link}" target="_blank" class="btn btn-primary">📄 IC Brief</a>`:'')+
-      (d.fuente?`<button class="btn btn-secondary" onclick="event.stopPropagation();filterBrokersByDeal('${d.fuente}')">👤 Ver broker</button>`:'')+
-    '</div></div>'}
   </div>`;
 }
 
@@ -313,20 +402,20 @@ function toggleDeal(ref) {
   const safeRef = ref.replace(/[^a-z0-9]/gi,'_');
   openCards['deal_'+ref] = !openCards['deal_'+ref];
   const body = document.getElementById('dd-'+safeRef);
-  const acts = document.getElementById('ca-'+safeRef);
+  const btn  = document.getElementById('btn-'+safeRef);
   if (body) body.classList.toggle('open', !!openCards['deal_'+ref]);
-  if (acts) acts.style.display = openCards['deal_'+ref] ? 'block' : 'none';
+  if (btn) btn.textContent = openCards['deal_'+ref] ? 'Ocultar detalles ▲' : 'Ver detalles ▼';
 }
 
 function filterDeals(type, el) {
-  document.querySelectorAll('#tab-deals .filter-chip').forEach(c=>c.classList.remove('active'));
+  document.querySelectorAll('.deal-tabs .deal-tab').forEach(c=>c.classList.remove('active'));
   el.classList.add('active');
   dealFilter = type;
   applyDealFilters();
 }
 function searchDeals(q) { applyDealFilters(q); }
 function applyDealFilters(q) {
-  q = q || document.getElementById('deal-search').value;
+  q = q || '';
   let list = DEALS;
   if (dealFilter !== 'all') list = list.filter(d=>d.verdict===dealFilter);
   if (q) list = list.filter(d=>
