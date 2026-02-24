@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>BookBadge — Retos de lectura que te cambiarán</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=EB+Garamond:wght@400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --cream: #F5F0E8; --warm: #FAFAF7; --ink: #1A1A1A;
+      --muted: #6B6560; --rule: #D9D3CA;
+      --bronze: #C4885A; --silver: #909090; --gold: #C8A96E; --legend: #3D6B4F;
+      --hot: #C4735A; --press: #4A5568; --trend: #2D4A35;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'EB Garamond', Georgia, serif; background: var(--warm); color: var(--ink); font-size: 17px; line-height: 1.7; }
+
+    /* NAV */
+    nav { position: sticky; top: 0; z-index: 300; background: var(--warm); border-bottom: 1px solid var(--rule); display: flex; align-items: center; justify-content: space-between; padding: 0.85rem 3rem; }
+    .logo { font-family: 'Playfair Display', serif; font-weight: 600; font-size: 1.25rem; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; color: var(--ink); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; font-size: 0.76rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+    .nav-links a { text-decoration: none; color: inherit; transition: color .2s; }
+    .nav-links a:hover { color: var(--ink); }
+    .nav-cta { font-size: 0.74rem; letter-spacing: 0.14em; text-transform: uppercase; border: 1px solid var(--ink); padding: 0.42rem 1.3rem; text-decoration: none; color: var(--ink); transition: all .2s; }
+    .nav-cta:hover { background: var(--ink); color: var(--warm); }
+
+    /* HERO */
+    .hero { display: grid; grid-template-columns: 1fr 1fr; min-height: 88vh; }
+    .hero-left { padding: 6rem 3rem 6rem 4rem; display: flex; flex-direction: column; justify-content: center; border-right: 1px solid var(--rule); }
+    .hero-kicker { font-size: 0.7rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--muted); margin-bottom: 1.5rem; }
+    .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.8rem, 4.5vw, 4.2rem); font-weight: 400; line-height: 1.08; margin-bottom: 1.8rem; }
+    .hero h1 em { font-style: italic; }
+    .hero-sub { font-size: 1.1rem; color: var(--muted); font-style: italic; max-width: 480px; margin-bottom: 2.5rem; line-height: 1.6; }
+    .hero-actions { display: flex; gap: 0.8rem; align-items: center; }
+    .btn { display: inline-block; padding: 0.85rem 2.2rem; font-size: 0.76rem; letter-spacing: 0.18em; text-transform: uppercase; text-decoration: none; transition: all .2s; font-family: 'EB Garamond', serif; }
+    .btn-dark { background: var(--ink); color: var(--warm); }
+    .btn-dark:hover { opacity: 0.75; }
+    .btn-outline { border: 1px solid var(--rule); color: var(--muted); }
+    .btn-outline:hover { border-color: var(--ink); color: var(--ink); }
+    .hero-stats { display: flex; gap: 2.5rem; margin-top: 3.5rem; padding-top: 2rem; border-top: 1px solid var(--rule); }
+    .h-stat-num { font-family: 'Playfair Display', serif; font-size: 1.9rem; font-weight: 600; display: block; }
+    .h-stat-label { font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); }
+
+    /* HERO RIGHT — APP SCREENSHOT */
+    .hero-right { background: var(--cream); display: flex; align-items: center; justify-content: center; padding: 3rem; overflow: hidden; }
+    .app-preview { width: 100%; max-width: 340px; background: var(--warm); border: 1px solid var(--rule); box-shadow: 0 20px 60px rgba(0,0,0,0.1); }
+    .app-topbar { border-bottom: 1px solid var(--rule); padding: 0.7rem 1rem; display: flex; align-items: center; gap: 0.8rem; }
+    .app-logo-sm { font-family: 'Playfair Display', serif; font-size: 0.85rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; }
+    .app-user-dot { width: 28px; height: 28px; border-radius: 50%; background: var(--cream); border: 1px solid var(--rule); display: flex; align-items: center; justify-content: center; font-size: 0.75rem; margin-left: auto; }
+    .app-section-label { font-size: 0.62rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted); padding: 0.8rem 1rem 0.4rem; }
+    .app-badge-row { display: flex; gap: 0.5rem; padding: 0 1rem 0.8rem; overflow: hidden; }
+    .app-badge { background: var(--cream); border: 1px solid var(--rule); padding: 0.4rem 0.7rem; font-size: 0.72rem; display: flex; align-items: center; gap: 0.3rem; white-space: nowrap; }
+    .app-book-item { padding: 0.6rem 1rem; border-top: 1px solid var(--rule); display: flex; gap: 0.8rem; align-items: center; }
+    .app-book-spine { width: 32px; height: 44px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; }
+    .app-book-info { flex: 1; }
+    .app-book-title { font-family: 'Playfair Display', serif; font-size: 0.8rem; font-weight: 600; line-height: 1.25; }
+    .app-book-author { font-size: 0.7rem; color: var(--muted); }
+    .app-book-rating { font-size: 0.7rem; color: var(--gold); }
+    .app-prog { padding: 0.8rem 1rem; border-top: 1px solid var(--rule); }
+    .app-prog-label { font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.5rem; }
+    .app-prog-row { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.4rem; }
+    .app-prog-name { font-size: 0.72rem; width: 90px; flex-shrink: 0; }
+    .app-bar-out { flex: 1; height: 3px; background: var(--cream); }
+    .app-bar-in { height: 100%; background: var(--ink); }
+    .app-bar-val { font-size: 0.65rem; color: var(--muted); }
+
+    /* MARQUEE */
+    .marquee-wrap { border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); background: var(--ink); color: var(--warm); padding: 0.8rem 0; overflow: hidden; white-space: nowrap; }
+    .marquee-inner { display: inline-flex; animation: marquee 30s linear infinite; }
+    .marquee-item { font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; padding: 0 2.5rem; opacity: 0.8; }
+    .marquee-sep { opacity: 0.3; padding: 0 0.5rem; }
+    @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+    /* SECTIONS */
+    .section { max-width: 1100px; margin: 0 auto; padding: 6rem 2rem; }
+    .sec-label { font-size: 0.7rem; letter-spacing: 0.26em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.5rem; }
+    .sec-h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 400; margin-bottom: 0.6rem; }
+    .sec-sub { color: var(--muted); font-style: italic; margin-bottom: 3rem; max-width: 600px; }
+
+    /* RETOS GRID */
+    .retos-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin-bottom: 2rem; }
+    .reto-card { background: var(--warm); padding: 2rem 1.8rem; cursor: pointer; transition: background .2s; position: relative; }
+    .reto-card:hover { background: var(--cream); }
+    .reto-icon { font-size: 1.8rem; margin-bottom: 0.8rem; display: block; }
+    .reto-title { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 600; margin-bottom: 0.4rem; }
+    .reto-desc { font-size: 0.88rem; color: var(--muted); line-height: 1.55; margin-bottom: 1rem; }
+    .reto-levels { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-bottom: 1rem; }
+    .reto-lvl { font-size: 0.65rem; padding: 0.2rem 0.5rem; border: 1px solid var(--rule); color: var(--muted); }
+    .reto-count { font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+    .reto-arrow { position: absolute; top: 1.5rem; right: 1.5rem; font-size: 1rem; color: var(--rule); transition: color .2s; }
+    .reto-card:hover .reto-arrow { color: var(--ink); }
+
+    /* SOCIAL — community in categories */
+    .reto-social { display: flex; align-items: center; gap: 0.6rem; margin-top: 0.8rem; padding-top: 0.8rem; border-top: 1px solid var(--rule); }
+    .reto-avatars { display: flex; }
+    .reto-avatar { width: 24px; height: 24px; border-radius: 50%; border: 2px solid var(--warm); background: var(--cream); display: flex; align-items: center; justify-content: center; font-size: 0.6rem; margin-left: -6px; flex-shrink: 0; overflow: hidden; }
+    .reto-avatar:first-child { margin-left: 0; }
+    .reto-avatar img { width: 100%; height: 100%; object-fit: cover; }
+    .reto-social-text { font-size: 0.75rem; color: var(--muted); }
+    .reto-social-text strong { color: var(--ink); }
+
+    .community-section { background: var(--cream); border-top: 1px solid var(--rule); padding: 1.8rem 2.5rem; margin-top: 2rem; }
+    .community-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.4rem; }
+    .community-title { font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted); }
+    .community-count { font-size: 0.72rem; color: var(--muted); font-style: italic; }
+    .community-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 0.8rem; }
+    .community-user { background: var(--warm); border: 1px solid var(--rule); padding: 0.9rem 1rem; display: flex; align-items: center; gap: 0.8rem; transition: background .15s; }
+    .community-user:hover { background: #F0EBE0; }
+    .cu-avatar { width: 36px; height: 36px; border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; border: 1px solid var(--rule); }
+    .cu-info { flex: 1; min-width: 0; }
+    .cu-name { font-family: 'Playfair Display', serif; font-size: 0.85rem; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .cu-milestone { font-size: 0.7rem; color: var(--muted); font-style: italic; }
+    .cu-badge { font-size: 0.75rem; flex-shrink: 0; }
+    .cu-follow { font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; border: 1px solid var(--rule); padding: 0.2rem 0.55rem; cursor: pointer; background: none; font-family: 'EB Garamond', serif; color: var(--muted); white-space: nowrap; transition: all .15s; }
+    .cu-follow:hover, .cu-follow.following { background: var(--ink); color: var(--warm); border-color: var(--ink); }
+    .level-stats { display: flex; gap: 0; margin-bottom: 1.5rem; border: 1px solid var(--rule); }
+    .level-stat { flex: 1; padding: 0.8rem 1rem; border-right: 1px solid var(--rule); text-align: center; }
+    .level-stat:last-child { border-right: none; }
+    .level-stat-num { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 600; display: block; }
+    .level-stat-label { font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+    .level-stat-icon { font-size: 0.9rem; }
+
+    /* BOOKS MODAL (expanded category) */
+    .cat-expanded { display: none; background: var(--cream); border: 1px solid var(--rule); padding: 2.5rem; margin-top: -1px; }
+    .cat-expanded.open { display: block; }
+    .cat-exp-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 2rem; }
+    .cat-exp-title { font-family: 'Playfair Display', serif; font-size: 1.4rem; }
+    .cat-exp-close { font-size: 0.8rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); cursor: pointer; border: 1px solid var(--rule); padding: 0.3rem 0.8rem; }
+    .cat-exp-close:hover { color: var(--ink); border-color: var(--ink); }
+    .cat-book-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 1.2rem; }
+    .cat-book { cursor: pointer; }
+    .cat-book-cover { aspect-ratio: 2/3; display: flex; flex-direction: column; justify-content: flex-end; padding: 0.9rem 0.8rem; position: relative; transition: transform .15s; }
+    .cat-book-cover:hover { transform: translateY(-3px); }
+    .cat-book-num { position: absolute; top: 0.6rem; left: 0.7rem; font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; opacity: 0.5; }
+    .cat-book-badge { position: absolute; top: 0.5rem; right: 0.6rem; font-size: 0.85rem; }
+    .cat-book-title { font-family: 'Playfair Display', serif; font-size: 0.82rem; font-weight: 600; line-height: 1.25; }
+    .cat-book-author { font-size: 0.7rem; opacity: 0.7; margin-top: 0.2rem; }
+    .cat-book-meta { margin-top: 0.5rem; font-size: 0.72rem; color: var(--muted); }
+    .mark-read-btn { display: block; width: 100%; margin-top: 0.4rem; font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; border: 1px solid var(--rule); background: none; padding: 0.3rem; cursor: pointer; color: var(--muted); transition: all .2s; font-family: 'EB Garamond', serif; }
+    .mark-read-btn:hover { background: var(--ink); color: var(--warm); border-color: var(--ink); }
+
+    /* TRENDING */
+    .trending-section { background: var(--ink); color: var(--warm); padding: 6rem 2rem; }
+    .trending-inner { max-width: 1100px; margin: 0 auto; }
+    .trending-section .sec-label { color: rgba(255,255,255,0.4); }
+    .trending-section .sec-h2 { color: var(--warm); }
+    .trending-section .sec-sub { color: rgba(255,255,255,0.55); }
+    .trending-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.1); }
+    .trend-card { background: var(--ink); padding: 1.8rem 1.5rem; transition: background .2s; }
+    .trend-card:hover { background: #2A2A2A; }
+    .trend-rank { font-family: 'Playfair Display', serif; font-size: 2.5rem; color: rgba(255,255,255,0.12); line-height: 1; margin-bottom: 0.6rem; }
+    .trend-cover-mini { width: 48px; height: 68px; margin-bottom: 0.8rem; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; }
+    .trend-title { font-family: 'Playfair Display', serif; font-size: 0.95rem; font-weight: 600; margin-bottom: 0.3rem; line-height: 1.3; }
+    .trend-author { font-size: 0.8rem; color: rgba(255,255,255,0.55); margin-bottom: 0.5rem; }
+    .trend-tag { font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.35); }
+    .trend-fire { font-size: 0.8rem; }
+
+    /* EN PRENSA */
+    .press-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1px; background: var(--rule); border: 1px solid var(--rule); }
+    .press-card { background: var(--warm); padding: 2rem; transition: background .2s; }
+    .press-card:hover { background: var(--cream); }
+    .press-source { font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.8rem; display: flex; align-items: center; gap: 0.5rem; }
+    .press-source-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--press); }
+    .press-title { font-family: 'Playfair Display', serif; font-size: 1.05rem; line-height: 1.4; margin-bottom: 0.5rem; font-weight: 600; }
+    .press-excerpt { font-size: 0.88rem; color: var(--muted); font-style: italic; line-height: 1.55; }
+
+    /* HOT PICKS */
+    .hot-section { background: var(--cream); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); padding: 6rem 2rem; }
+    .hot-inner { max-width: 1100px; margin: 0 auto; }
+    .hot-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 1px; background: var(--rule); border: 1px solid var(--rule); }
+    .hot-main { background: var(--warm); padding: 2.5rem; }
+    .hot-label { font-size: 0.65rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--hot); margin-bottom: 0.8rem; }
+    .hot-title { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 400; line-height: 1.25; margin-bottom: 0.6rem; }
+    .hot-author { font-size: 0.9rem; color: var(--muted); font-style: italic; margin-bottom: 1rem; }
+    .hot-desc { font-size: 0.92rem; color: var(--muted); line-height: 1.6; margin-bottom: 1.5rem; }
+    .hot-cover-lg { width: 80px; height: 112px; display: flex; align-items: center; justify-content: center; font-size: 2rem; flex-shrink: 0; }
+    .hot-main-inner { display: flex; gap: 1.5rem; }
+    .hot-side { background: var(--warm); padding: 1.8rem 1.5rem; display: flex; flex-direction: column; border-left: 1px solid var(--rule); }
+    .hot-side-cover { width: 50px; height: 70px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; margin-bottom: 0.8rem; }
+    .hot-side-label { font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--hot); margin-bottom: 0.4rem; }
+    .hot-side-title { font-family: 'Playfair Display', serif; font-size: 0.92rem; font-weight: 600; margin-bottom: 0.3rem; line-height: 1.3; }
+    .hot-side-author { font-size: 0.78rem; color: var(--muted); font-style: italic; }
+
+    /* APP SCREENSHOTS STRIP */
+    .screenshots { padding: 6rem 2rem; max-width: 1100px; margin: 0 auto; }
+    .screenshots-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 3rem; }
+    .screenshot-card { border: 1px solid var(--rule); overflow: hidden; }
+    .screenshot-label { border-bottom: 1px solid var(--rule); padding: 0.7rem 1rem; font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); background: var(--cream); }
+
+    /* SCREENSHOT: PROFILE MOCK */
+    .sm-profile { padding: 1.2rem; }
+    .sm-user-row { display: flex; gap: 0.8rem; align-items: center; margin-bottom: 1rem; padding-bottom: 0.8rem; border-bottom: 1px solid var(--rule); }
+    .sm-avatar { width: 36px; height: 36px; border-radius: 50%; background: var(--cream); border: 1px solid var(--rule); display: flex; align-items: center; justify-content: center; font-size: 0.9rem; flex-shrink: 0; }
+    .sm-name { font-family: 'Playfair Display', serif; font-size: 0.9rem; }
+    .sm-badges-row { display: flex; gap: 0.4rem; margin-bottom: 0.9rem; flex-wrap: wrap; }
+    .sm-badge { font-size: 0.65rem; padding: 0.22rem 0.6rem; background: var(--cream); border: 1px solid var(--rule); }
+    .sm-prog-item { margin-bottom: 0.5rem; }
+    .sm-prog-label { font-size: 0.7rem; color: var(--muted); margin-bottom: 0.2rem; display: flex; justify-content: space-between; }
+    .sm-bar { height: 3px; background: var(--cream); }
+    .sm-bar-fill { height: 100%; background: var(--ink); }
+
+    /* SCREENSHOT: RADAR (wishlist) */
+    .sm-radar { padding: 1.2rem; }
+    .sm-radar-item { display: flex; gap: 0.7rem; align-items: center; padding: 0.5rem 0; border-bottom: 1px solid var(--rule); }
+    .sm-radar-cover { width: 28px; height: 38px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; }
+    .sm-radar-title { font-family: 'Playfair Display', serif; font-size: 0.78rem; font-weight: 600; }
+    .sm-radar-author { font-size: 0.68rem; color: var(--muted); }
+    .sm-radar-chip { font-size: 0.6rem; padding: 0.15rem 0.45rem; border: 1px solid var(--rule); color: var(--muted); margin-left: auto; white-space: nowrap; }
+
+    /* SCREENSHOT: REVIEW */
+    .sm-review { padding: 1.2rem; }
+    .sm-review-book { display: flex; gap: 0.8rem; align-items: center; margin-bottom: 0.8rem; padding-bottom: 0.8rem; border-bottom: 1px solid var(--rule); }
+    .sm-review-cover { width: 36px; height: 50px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 1rem; }
+    .sm-review-title { font-family: 'Playfair Display', serif; font-size: 0.85rem; font-weight: 600; }
+    .sm-review-author { font-size: 0.72rem; color: var(--muted); }
+    .sm-stars { display: flex; gap: 0.2rem; margin-bottom: 0.6rem; }
+    .sm-star { width: 16px; height: 16px; border: 1px solid var(--rule); display: flex; align-items: center; justify-content: center; font-size: 0.6rem; cursor: pointer; }
+    .sm-star.on { background: var(--ink); color: var(--warm); border-color: var(--ink); }
+    .sm-review-text { font-size: 0.78rem; color: var(--muted); font-style: italic; line-height: 1.5; border: 1px solid var(--rule); padding: 0.6rem; background: var(--cream); }
+    .sm-char-count { font-size: 0.62rem; color: var(--muted); text-align: right; margin-top: 0.3rem; }
+    .sm-submit { display: block; width: 100%; margin-top: 0.6rem; background: var(--ink); color: var(--warm); border: none; padding: 0.5rem; font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; cursor: pointer; font-family: 'EB Garamond', serif; }
+
+    /* CTA FINAL */
+    .cta-block { background: var(--cream); border-top: 1px solid var(--rule); padding: 8rem 2rem; text-align: center; }
+    .cta-block .sec-h2 { max-width: 560px; margin: 0 auto 1rem; }
+    .cta-block p { color: var(--muted); font-style: italic; margin-bottom: 2.5rem; }
+    .email-form { display: flex; max-width: 420px; margin: 0 auto; border: 1px solid var(--ink); }
+    .email-form input { flex: 1; border: none; background: var(--warm); padding: 0.9rem 1.2rem; font-family: 'EB Garamond', serif; font-size: 0.95rem; outline: none; color: var(--ink); }
+    .email-form input::placeholder { color: var(--muted); font-style: italic; }
+    .email-form button { background: var(--ink); color: var(--warm); border: none; padding: 0.9rem 1.8rem; font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; cursor: pointer; font-family: 'EB Garamond', serif; transition: opacity .2s; }
+    .email-form button:hover { opacity: 0.75; }
+
+    /* FOOTER */
+    footer { border-top: 1px solid var(--rule); padding: 2rem 3rem; display: flex; justify-content: space-between; align-items: center; font-size: 0.78rem; color: var(--muted); }
+    .footer-logo { font-family: 'Playfair Display', serif; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: var(--ink); }
+
+    /* MODAL REVIEW */
+    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 500; align-items: center; justify-content: center; }
+    .modal-overlay.open { display: flex; }
+    .modal { background: var(--warm); border: 1px solid var(--rule); padding: 2.5rem; max-width: 440px; width: 90%; }
+    .modal-title { font-family: 'Playfair Display', serif; font-size: 1.3rem; margin-bottom: 0.3rem; }
+    .modal-author { font-size: 0.85rem; color: var(--muted); font-style: italic; margin-bottom: 1.5rem; }
+    .modal-label { font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.6rem; }
+    .rating-row { display: flex; gap: 0.4rem; margin-bottom: 1.5rem; }
+    .rating-num { width: 36px; height: 36px; border: 1px solid var(--rule); display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-size: 0.9rem; cursor: pointer; transition: all .15s; }
+    .rating-num:hover, .rating-num.selected { background: var(--ink); color: var(--warm); border-color: var(--ink); }
+    .review-textarea { width: 100%; border: 1px solid var(--rule); background: var(--cream); padding: 0.8rem; font-family: 'EB Garamond', serif; font-size: 0.92rem; resize: none; height: 90px; outline: none; color: var(--ink); margin-bottom: 0.3rem; }
+    .char-count { font-size: 0.68rem; color: var(--muted); text-align: right; margin-bottom: 1.2rem; }
+    .modal-actions { display: flex; gap: 0.6rem; }
+    .modal-submit { flex: 1; background: var(--ink); color: var(--warm); border: none; padding: 0.8rem; font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase; cursor: pointer; font-family: 'EB Garamond', serif; }
+    .modal-cancel { border: 1px solid var(--rule); background: none; padding: 0.8rem 1.2rem; font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase; cursor: pointer; color: var(--muted); font-family: 'EB Garamond', serif; }
+    .modal-cancel:hover { color: var(--ink); border-color: var(--ink); }
+
+    @media (max-width: 900px) {
+      nav { padding: 0.85rem 1.5rem; }
+      .nav-links { display: none; }
+      .hero { grid-template-columns: 1fr; }
+      .hero-right { display: none; }
+      .hero-left { padding: 4rem 1.5rem; }
+      .retos-grid { grid-template-columns: 1fr; }
+      .hot-grid { grid-template-columns: 1fr; }
+      .screenshots-grid { grid-template-columns: 1fr; }
+      .press-grid { grid-template-columns: 1fr; }
+      footer { flex-direction: column; gap: 0.8rem; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- MODAL REVIEW -->
+<div class="modal-overlay" id="reviewModal">
+  <div class="modal">
+    <div class="modal-title" id="modalBookTitle">Cien años de soledad</div>
+    <div class="modal-author" id="modalBookAuthor">Gabriel García Márquez</div>
+    <div class="modal-label">Puntuación (1–10)</div>
+    <div class="rating-row" id="ratingRow">
+      <div class="rating-num" onclick="selectRating(this,1)">1</div>
+      <div class="rating-num" onclick="selectRating(this,2)">2</div>
+      <div class="rating-num" onclick="selectRating(this,3)">3</div>
+      <div class="rating-num" onclick="selectRating(this,4)">4</div>
+      <div class="rating-num" onclick="selectRating(this,5)">5</div>
+      <div class="rating-num" onclick="selectRating(this,6)">6</div>
+      <div class="rating-num" onclick="selectRating(this,7)">7</div>
+      <div class="rating-num" onclick="selectRating(this,8)">8</div>
+      <div class="rating-num" onclick="selectRating(this,9)">9</div>
+      <div class="rating-num" onclick="selectRating(this,10)">10</div>
+    </div>
+    <div class="modal-label">Tu opinión (máx. 280 caracteres)</div>
+    <textarea class="review-textarea" id="reviewText" maxlength="280" placeholder="¿Qué te pareció? Una frase, una impresión, lo que quieras contar..." oninput="updateCharCount(this)"></textarea>
+    <div class="char-count"><span id="charCount">0</span>/280</div>
+    <div class="modal-actions">
+      <button class="modal-submit" onclick="submitReview()">Marcar como leído</button>
+      <button class="modal-cancel" onclick="closeModal()">Cancelar</button>
+    </div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="logo">BookBadge</a>
+  <ul class="nav-links">
+    <li><a href="#retos">Retos</a></li>
+    <li><a href="#trending">Trending</a></li>
+    <li><a href="#prensa">En prensa</a></li>
+    <li><a href="#hot">Hot picks</a></li>
+    <li><a href="app.html">Mi perfil</a></li>
+  </ul>
+  <a href="#beta" class="nav-cta">Únete gratis</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <p class="hero-kicker">La plataforma de lectura que te reta</p>
+    <h1>¿Cuántos mundos<br/>has <em>explorado</em><br/>este año?</h1>
+    <p class="hero-sub">Retos de lectura por premios, regiones, épocas y géneros. Descubre libros que no sabías que existían. Colecciona insignias que cuentan quién eres como lector.</p>
+    <div class="hero-actions">
+      <a href="#retos" class="btn btn-dark">Ver los retos</a>
+      <a href="#beta" class="btn btn-outline">Únete gratis</a>
+    </div>
+    <div class="hero-stats">
+      <div><span class="h-stat-num">8</span><span class="h-stat-label">Rutas activas</span></div>
+      <div><span class="h-stat-num">80+</span><span class="h-stat-label">Libros curados</span></div>
+      <div><span class="h-stat-num">4</span><span class="h-stat-label">Niveles de insignia</span></div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="app-preview">
+      <div class="app-topbar">
+        <span class="app-logo-sm">BookBadge</span>
+        <div class="app-user-dot">📖</div>
+      </div>
+      <div class="app-section-label">Tus insignias</div>
+      <div class="app-badge-row">
+        <div class="app-badge">🥉 Nobel Starter</div>
+        <div class="app-badge">🥈 Latino Explorer</div>
+        <div class="app-badge">🥇 Latino Master</div>
+      </div>
+      <div class="app-section-label">Leyendo ahora</div>
+      <div class="app-book-item">
+        <div class="app-book-spine" style="background:#5A7A62; color:#F0F5EF; border-radius:1px;">📚</div>
+        <div class="app-book-info">
+          <div class="app-book-title">Los años</div>
+          <div class="app-book-author">Annie Ernaux</div>
+          <div class="app-book-rating">★★★★★★★★★☆</div>
+        </div>
+      </div>
+      <div class="app-book-item">
+        <div class="app-book-spine" style="background:#C4735A; color:#FAF5EC; border-radius:1px;">📚</div>
+        <div class="app-book-info">
+          <div class="app-book-title">Pedro Páramo</div>
+          <div class="app-book-author">Juan Rulfo</div>
+          <div class="app-book-rating">★★★★★★★★★★</div>
+        </div>
+      </div>
+      <div class="app-prog">
+        <div class="app-prog-label">Tu progreso</div>
+        <div class="app-prog-row"><span class="app-prog-name">Premio Nobel</span><div class="app-bar-out"><div class="app-bar-in" style="width:30%"></div></div><span class="app-bar-val">3/10</span></div>
+        <div class="app-prog-row"><span class="app-prog-name">América Latina</span><div class="app-bar-out"><div class="app-bar-in" style="width:60%"></div></div><span class="app-bar-val">6/10</span></div>
+        <div class="app-prog-row"><span class="app-prog-name">Lecturas Indie</span><div class="app-bar-out"><div class="app-bar-in" style="width:40%"></div></div><span class="app-bar-val">4/10</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-inner">
+    <span class="marquee-item">Premio Nobel de Literatura</span><span class="marquee-sep">·</span>
+    <span class="marquee-item">Booker Prize</span><span class="marquee-sep">·</span>
+    <span class="marquee-item">América Latina</span><span class="marquee-sep">·</span>
+    <span class="marquee-item">Clásicos Universales</span><span class="marquee-sep">·</span>
+    <span class="marquee-item">Lecturas Indie</span><span class="marquee-sep">·</span>
+    <span class="marquee-item">Voces Femeninas</span><span class="marquee-sep">·</span>
+    <span class="marquee-item">NYT Best Books</span><span class="marquee-sep">·</span>
+    <span class="marquee-item">Siglo XX</span><span class="marquee-sep">·</span>
+    <span class="marquee-item">Voces de Europa</span><span class="marquee-sep">·</span>
+    <span class="marquee-item">Literatura Asiática</span><span class="marquee-sep">·</span>
+    <!-- duplicado para loop -->
+    <span class="marquee-item">Premio Nobel de Literatura</span><span class="marquee-sep">·</span>
+    <span class="marquee-item">Booker Prize</span><span class="marquee-sep">·</span>
+    <span class="marquee-item">América Latina</span><span class="marquee-sep">·</span>
+    <span class="marquee-item">Clásicos Universales</span><span class="marquee-sep">·</span>
+    <span class="marquee-item">Lecturas Indie</span><span class="marquee-sep">·</span>
+    <span class="marquee-item">Voces Femeninas</span><span class="marquee-sep">·</span>
+    <span class="marquee-item">NYT Best Books</span><span class="marquee-sep">·</span>
+    <span class="marquee-item">Siglo XX</span><span class="marquee-sep">·</span>
+  </div>
+</div>
+
+<!-- RETOS -->
+<section class="section" id="retos">
+  <p class="sec-label">Las rutas de lectura</p>
+  <h2 class="sec-h2">Elige tu próximo reto.<br/>Descubre un mundo nuevo.</h2>
+  <p class="sec-sub">Cada categoría es una ruta de 10 libros curados. Empieza por el que quieras. Acumula insignias. Cuéntanos qué te pareció cada libro.</p>
+
+  <div class="retos-grid">
+    <div class="reto-card" onclick="toggleCategory('cat-nobel')">
+      <span class="reto-arrow">↓</span>
+      <span class="reto-icon">🏅</span>
+      <div class="reto-title">Premio Nobel de Literatura</div>
+      <div class="reto-desc">Los mejores autores del planeta, reconocidos por la Academia Sueca. De García Márquez a Han Kang, pasando por Ernaux, Ishiguro y Saramago.</div>
+      <div class="reto-levels"><span class="reto-lvl">🥉 1 libro</span><span class="reto-lvl">🥈 3 libros</span><span class="reto-lvl">🥇 6 libros</span><span class="reto-lvl">✦ 10 libros</span></div>
+      <div class="reto-count">10 libros · 10 países distintos</div>
+      <div class="reto-social">
+        <div class="reto-avatars">
+          <div class="reto-avatar">👩</div><div class="reto-avatar">🧑</div><div class="reto-avatar">👨</div><div class="reto-avatar">👩</div><div class="reto-avatar">🧔</div>
+        </div>
+        <span class="reto-social-text"><strong>2.847 lectores</strong> en esta ruta</span>
+      </div>
+    </div>
+    <div class="reto-card" onclick="toggleCategory('cat-booker')">
+      <span class="reto-arrow">↓</span>
+      <span class="reto-icon">🎭</span>
+      <div class="reto-title">Booker Prize</div>
+      <div class="reto-desc">El premio más influyente de la ficción en inglés. Cinco continentes, historias que transforman la manera de mirar el mundo.</div>
+      <div class="reto-levels"><span class="reto-lvl">🥉 1 libro</span><span class="reto-lvl">🥈 3 libros</span><span class="reto-lvl">🥇 6 libros</span><span class="reto-lvl">✦ 10 libros</span></div>
+      <div class="reto-count">10 libros · desde 1981</div>
+      <div class="reto-social">
+        <div class="reto-avatars">
+          <div class="reto-avatar">👩</div><div class="reto-avatar">👨</div><div class="reto-avatar">🧑</div><div class="reto-avatar">👩</div>
+        </div>
+        <span class="reto-social-text"><strong>1.593 lectores</strong> en esta ruta</span>
+      </div>
+    </div>
+    <div class="reto-card" onclick="toggleCategory('cat-indie')">
+      <span class="reto-arrow">↓</span>
+      <span class="reto-icon">📖</span>
+      <div class="reto-title">Lecturas Indie</div>
+      <div class="reto-desc">Autores independientes que no necesitaron los grandes sellos. Voces únicas, raras, que no encontrarás en las listas habituales.</div>
+      <div class="reto-levels"><span class="reto-lvl">🥉 1 libro</span><span class="reto-lvl">🥈 3 libros</span><span class="reto-lvl">🥇 6 libros</span><span class="reto-lvl">✦ 10 libros</span></div>
+      <div class="reto-count">10 libros · curados por Kirkus</div>
+      <div class="reto-social">
+        <div class="reto-avatars">
+          <div class="reto-avatar">🧑</div><div class="reto-avatar">👩</div><div class="reto-avatar">👨</div>
+        </div>
+        <span class="reto-social-text"><strong>841 lectores</strong> en esta ruta</span>
+      </div>
+    </div>
+    <div class="reto-card" onclick="toggleCategory('cat-latam')">
+      <span class="reto-arrow">↓</span>
+      <span class="reto-icon">🌎</span>
+      <div class="reto-title">América Latina</div>
+      <div class="reto-desc">El boom latinoamericano y sus herederos. Realismo mágico, Borges, Bolaño y las nuevas voces que sacuden la literatura mundial.</div>
+      <div class="reto-levels"><span class="reto-lvl">🥉 1 libro</span><span class="reto-lvl">🥈 3 libros</span><span class="reto-lvl">🥇 6 libros</span><span class="reto-lvl">✦ 10 libros</span></div>
+      <div class="reto-count">10 libros · 6 países</div>
+      <div class="reto-social">
+        <div class="reto-avatars">
+          <div class="reto-avatar">👩</div><div class="reto-avatar">🧑</div><div class="reto-avatar">👩</div><div class="reto-avatar">👨</div><div class="reto-avatar">👩</div>
+        </div>
+        <span class="reto-social-text"><strong>3.214 lectores</strong> en esta ruta</span>
+      </div>
+    </div>
+    <div class="reto-card" onclick="toggleCategory('cat-clasicos')">
+      <span class="reto-arrow">↓</span>
+      <span class="reto-icon">🕰</span>
+      <div class="reto-title">Clásicos universales</div>
+      <div class="reto-desc">Desde Cervantes hasta Joyce. Los libros que llevan siglos diciéndole algo verdadero a quien los abre. Fundamentos de todo lo demás.</div>
+      <div class="reto-levels"><span class="reto-lvl">🥉 1 libro</span><span class="reto-lvl">🥈 3 libros</span><span class="reto-lvl">🥇 6 libros</span><span class="reto-lvl">✦ 10 libros</span></div>
+      <div class="reto-count">10 libros · del s. XVII al XX</div>
+      <div class="reto-social">
+        <div class="reto-avatars">
+          <div class="reto-avatar">👨</div><div class="reto-avatar">👩</div><div class="reto-avatar">🧔</div><div class="reto-avatar">👩</div>
+        </div>
+        <span class="reto-social-text"><strong>4.102 lectores</strong> en esta ruta</span>
+      </div>
+    </div>
+    <div class="reto-card" onclick="toggleCategory('cat-mujeres')">
+      <span class="reto-arrow">↓</span>
+      <span class="reto-icon">✍️</span>
+      <div class="reto-title">Voces femeninas</div>
+      <div class="reto-desc">De Woolf a Ernaux, de Atwood a Han Kang. Autoras que reescribieron las reglas y abrieron territorios que nadie había cartografiado.</div>
+      <div class="reto-levels"><span class="reto-lvl">🥉 1 libro</span><span class="reto-lvl">🥈 3 libros</span><span class="reto-lvl">🥇 6 libros</span><span class="reto-lvl">✦ 10 libros</span></div>
+      <div class="reto-count">10 libros · 8 países</div>
+      <div class="reto-social">
+        <div class="reto-avatars">
+          <div class="reto-avatar">👩</div><div class="reto-avatar">👩</div><div class="reto-avatar">🧑</div><div class="reto-avatar">👩</div><div class="reto-avatar">👩</div>
+        </div>
+        <span class="reto-social-text"><strong>2.671 lectores</strong> en esta ruta</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- CATEGORÍAS EXPANDIBLES -->
+  <div class="cat-expanded" id="cat-nobel">
+    <div class="cat-exp-header">
+      <span class="cat-exp-title">🏅 Premio Nobel de Literatura — 10 libros</span>
+      <span class="cat-exp-close" onclick="toggleCategory('cat-nobel')">Cerrar ✕</span>
+    </div>
+    <div class="cat-book-grid">
+      <div class="cat-book"><div class="cat-book-cover theme-ink" style="background:#1A1A1A; color:#F5F0E8;"><span class="cat-book-num">01</span><span class="cat-book-badge">🥉</span><div class="cat-book-title">Cien años de soledad</div><div class="cat-book-author">García Márquez</div></div><div class="cat-book-meta">🇨🇴 Nobel 1982</div><button class="mark-read-btn" onclick="openReview('Cien años de soledad','Gabriel García Márquez')">Marcar como leído</button></div>
+      <div class="cat-book"><div class="cat-book-cover" style="background:#E8E0D0; color:#1A1A1A; border:1px solid var(--rule); aspect-ratio:2/3; display:flex; flex-direction:column; justify-content:flex-end; padding:0.9rem 0.8rem; position:relative;"><span class="cat-book-num">02</span><div class="cat-book-title">La vegetariana</div><div class="cat-book-author">Han Kang</div></div><div class="cat-book-meta">🇰🇷 Nobel 2024</div><button class="mark-read-btn" onclick="openReview('La vegetariana','Han Kang')">Marcar como leído</button></div>
+      <div class="cat-book"><div class="cat-book-cover" style="background:#C4735A; color:#FAF5EC; aspect-ratio:2/3; display:flex; flex-direction:column; justify-content:flex-end; padding:0.9rem 0.8rem; position:relative;"><span class="cat-book-num">03</span><div class="cat-book-title">Los errantes</div><div class="cat-book-author">Olga Tokarczuk</div></div><div class="cat-book-meta">🇵🇱 Nobel 2018</div><button class="mark-read-btn" onclick="openReview('Los errantes','Olga Tokarczuk')">Marcar como leído</button></div>
+      <div class="cat-book"><div class="cat-book-cover" style="background:#5A7A62; color:#F0F5EF; aspect-ratio:2/3; display:flex; flex-direction:column; justify-content:flex-end; padding:0.9rem 0.8rem; position:relative;"><span class="cat-book-num">04</span><div class="cat-book-title">Los años</div><div class="cat-book-author">Annie Ernaux</div></div><div class="cat-book-meta">🇫🇷 Nobel 2022</div><button class="mark-read-btn" onclick="openReview('Los años','Annie Ernaux')">Marcar como leído</button></div>
+      <div class="cat-book"><div class="cat-book-cover" style="background:#4A5568; color:#F0EEE8; aspect-ratio:2/3; display:flex; flex-direction:column; justify-content:flex-end; padding:0.9rem 0.8rem; position:relative;"><span class="cat-book-num">05</span><div class="cat-book-title">Septología</div><div class="cat-book-author">Jon Fosse</div></div><div class="cat-book-meta">🇳🇴 Nobel 2023</div><button class="mark-read-btn" onclick="openReview('Septología','Jon Fosse')">Marcar como leído</button></div>
+      <div class="cat-book"><div class="cat-book-cover" style="background:#F0EAD8; color:#1A1A1A; border:1px solid var(--rule); aspect-ratio:2/3; display:flex; flex-direction:column; justify-content:flex-end; padding:0.9rem 0.8rem; position:relative;"><span class="cat-book-num">06</span><div class="cat-book-title">Ensayo sobre la ceguera</div><div class="cat-book-author">Saramago</div></div><div class="cat-book-meta">🇵🇹 Nobel 1998</div><button class="mark-read-btn" onclick="openReview('Ensayo sobre la ceguera','José Saramago')">Marcar como leído</button></div>
+      <div class="cat-book"><div class="cat-book-cover" style="background:#2D2D2D; color:#E8E0D0; aspect-ratio:2/3; display:flex; flex-direction:column; justify-content:flex-end; padding:0.9rem 0.8rem; position:relative;"><span class="cat-book-num">07</span><div class="cat-book-title">Todo lo que tengo lo llevo conmigo</div><div class="cat-book-author">Herta Müller</div></div><div class="cat-book-meta">🇷🇴 Nobel 2009</div><button class="mark-read-btn" onclick="openReview('Todo lo que tengo lo llevo conmigo','Herta Müller')">Marcar como leído</button></div>
+      <div class="cat-book"><div class="cat-book-cover" style="background:#2D4A35; color:#E8F0EA; aspect-ratio:2/3; display:flex; flex-direction:column; justify-content:flex-end; padding:0.9rem 0.8rem; position:relative;"><span class="cat-book-num">08</span><div class="cat-book-title">Lo que queda del día</div><div class="cat-book-author">Ishiguro</div></div><div class="cat-book-meta">🇬🇧 Nobel 2017</div><button class="mark-read-btn" onclick="openReview('Lo que queda del día','Kazuo Ishiguro')">Marcar como leído</button></div>
+      <div class="cat-book"><div class="cat-book-cover" style="background:#6B2D3A; color:#F5EAE8; aspect-ratio:2/3; display:flex; flex-direction:column; justify-content:flex-end; padding:0.9rem 0.8rem; position:relative;"><span class="cat-book-num">09</span><div class="cat-book-title">Beloved</div><div class="cat-book-author">Toni Morrison</div></div><div class="cat-book-meta">🇺🇸 Nobel 1993</div><button class="mark-read-btn" onclick="openReview('Beloved','Toni Morrison')">Marcar como leído</button></div>
+      <div class="cat-book"><div class="cat-book-cover" style="background:#C8A030; color:#1A1A1A; aspect-ratio:2/3; display:flex; flex-direction:column; justify-content:flex-end; padding:0.9rem 0.8rem; position:relative;"><span class="cat-book-num">10</span><span class="cat-book-badge">✦</span><div class="cat-book-title">El extranjero</div><div class="cat-book-author">Albert Camus</div></div><div class="cat-book-meta">🇫🇷 Nobel 1957</div><button class="mark-read-btn" onclick="openReview('El extranjero','Albert Camus')">Marcar como leído</button></div>
+    </div>
+  </div>
+
+  <!-- NOBEL COMMUNITY -->
+  <div class="community-section" id="community-nobel" style="display:none;">
+    <div class="community-header">
+      <span class="community-title">Lectores en esta ruta</span>
+      <span class="community-count">2.847 personas · 312 con insignia Legend</span>
+    </div>
+    <div class="level-stats">
+      <div class="level-stat"><span class="level-stat-num">1.204</span><span class="level-stat-label"><span class="level-stat-icon">🥉</span> Starter</span></div>
+      <div class="level-stat"><span class="level-stat-num">891</span><span class="level-stat-label"><span class="level-stat-icon">🥈</span> Explorer</span></div>
+      <div class="level-stat"><span class="level-stat-num">440</span><span class="level-stat-label"><span class="level-stat-icon">🥇</span> Master</span></div>
+      <div class="level-stat"><span class="level-stat-num">312</span><span class="level-stat-label"><span class="level-stat-icon">✦</span> Legend</span></div>
+    </div>
+    <div class="community-grid">
+      <div class="community-user"><div class="cu-avatar" style="background:#5A7A62; color:#fff;">👩</div><div class="cu-info"><div class="cu-name">María L.</div><div class="cu-milestone">Acaba de leer "Los años" · 9/10</div></div><span class="cu-badge">🥇</span><button class="cu-follow" onclick="toggleFollow(this)">Seguir</button></div>
+      <div class="community-user"><div class="cu-avatar" style="background:#C4735A; color:#fff;">🧑</div><div class="cu-info"><div class="cu-name">Carlos R.</div><div class="cu-milestone">Legend Nobel · 10 países leídos</div></div><span class="cu-badge">✦</span><button class="cu-follow" onclick="toggleFollow(this)">Seguir</button></div>
+      <div class="community-user"><div class="cu-avatar" style="background:#4A5568; color:#fff;">👩</div><div class="cu-info"><div class="cu-name">Sofia M.</div><div class="cu-milestone">"Septología" — la obra del año</div></div><span class="cu-badge">🥈</span><button class="cu-follow" onclick="toggleFollow(this)">Seguir</button></div>
+      <div class="community-user"><div class="cu-avatar" style="background:#6B2D3A; color:#fff;">👨</div><div class="cu-info"><div class="cu-name">Javier P.</div><div class="cu-milestone">Completa Saramago esta semana</div></div><span class="cu-badge">🥉</span><button class="cu-follow" onclick="toggleFollow(this)">Seguir</button></div>
+      <div class="community-user"><div class="cu-avatar" style="background:#2D4A35; color:#fff;">👩</div><div class="cu-info"><div class="cu-name">Laura G.</div><div class="cu-milestone">"Beloved" 10/10 — imprescindible</div></div><span class="cu-badge">🥇</span><button class="cu-follow" onclick="toggleFollow(this)">Seguir</button></div>
+      <div class="community-user"><div class="cu-avatar" style="background:#C8A030; color:#1A1A1A;">🧔</div><div class="cu-info"><div class="cu-name">Pedro A.</div><div class="cu-milestone">Legend Nobel desde enero 2026</div></div><span class="cu-badge">✦</span><button class="cu-follow" onclick="toggleFollow(this)">Seguir</button></div>
+    </div>
+  </div>
+
+  <div class="cat-expanded" id="cat-latam">
+    <div class="cat-exp-header">
+      <span class="cat-exp-title">🌎 América Latina — 10 libros</span>
+      <span class="cat-exp-close" onclick="toggleCategory('cat-latam')">Cerrar ✕</span>
+    </div>
+    <div class="cat-book-grid">
+      <div class="cat-book"><div class="cat-book-cover" style="background:#C8A030; color:#1A1A1A; aspect-ratio:2/3; display:flex; flex-direction:column; justify-content:flex-end; padding:0.9rem 0.8rem; position:relative;"><span class="cat-book-num">01</span><span class="cat-book-badge">🥉</span><div class="cat-book-title">Cien años de soledad</div><div class="cat-book-author">García Márquez</div></div><div class="cat-book-meta">🇨🇴 Colombia · 1967</div><button class="mark-read-btn" onclick="openReview('Cien años de soledad','Gabriel García Márquez')">Marcar como leído</button></div>
+      <div class="cat-book"><div class="cat-book-cover" style="background:#1A1A1A; color:#F5F0E8; aspect-ratio:2/3; display:flex; flex-direction:column; justify-content:flex-end; padding:0.9rem 0.8rem; position:relative;"><span class="cat-book-num">02</span><div class="cat-book-title">Rayuela</div><div class="cat-book-author">Julio Cortázar</div></div><div class="cat-book-meta">🇦🇷 Argentina · 1963</div><button class="mark-read-btn" onclick="openReview('Rayuela','Julio Cortázar')">Marcar como leído</button></div>
+      <div class="cat-book"><div class="cat-book-cover" style="background:#C4735A; color:#FAF5EC; aspect-ratio:2/3; display:flex; flex-direction:column; justify-content:flex-end; padding:0.9rem 0.8rem; position:relative;"><span class="cat-book-num">03</span><div class="cat-book-title">Pedro Páramo</div><div class="cat-book-author">Juan Rulfo</div></div><div class="cat-book-meta">🇲🇽 México · 1955</div><button class="mark-read-btn" onclick="openReview('Pedro Páramo','Juan Rulfo')">Marcar como leído</button></div>
+      <div class="cat-book"><div class="cat-book-cover" style="background:#6B2D3A; color:#F5EAE8; aspect-ratio:2/3; display:flex; flex-direction:column; justify-content:flex-end; padding:0.9rem 0.8rem; position:relative;"><span class="cat-book-num">04</span><div class="cat-book-title">La casa de los espíritus</div><div class="cat-book-author">Isabel Allende</div></div><div class="cat-book-meta">🇨🇱 Chile · 1982</div><button class="mark-read-btn" onclick="openReview('La casa de los espíritus','Isabel Allende')">Marcar como leído</button></div>
+      <div class="cat-book"><div class="cat-book-cover" style="background:#F0EAD8; color:#1A1A1A; border:1px solid var(--rule); aspect-ratio:2/3; display:flex; flex-direction:column; justify-content:flex-end; padding:0.9rem 0.8rem; position:relative;"><span class="cat-book-num">05</span><div class="cat-book-title">Ficciones</div><div class="cat-book-author">J.L. Borges</div></div><div class="cat-book-meta">🇦🇷 Argentina · 1944</div><button class="mark-read-btn" onclick="openReview('Ficciones','Jorge Luis Borges')">Marcar como leído</button></div>
+      <div class="cat-book"><div class="cat-book-cover" style="background:#2D4A35; color:#E8F0EA; aspect-ratio:2/3; display:flex; flex-direction:column; justify-content:flex-end; padding:0.9rem 0.8rem; position:relative;"><span class="cat-book-num">06</span><div class="cat-book-title">Los detectives salvajes</div><div class="cat-book-author">Roberto Bolaño</div></div><div class="cat-book-meta">🇨🇱 Chile · 1998</div><button class="mark-read-btn" onclick="openReview('Los detectives salvajes','Roberto Bolaño')">Marcar como leído</button></div>
+      <div class="cat-book"><div class="cat-book-cover" style="background:#5A7A62; color:#F0F5EF; aspect-ratio:2/3; display:flex; flex-direction:column; justify-content:flex-end; padding:0.9rem 0.8rem; position:relative;"><span class="cat-book-num">07</span><div class="cat-book-title">El túnel</div><div class="cat-book-author">Ernesto Sabato</div></div><div class="cat-book-meta">🇦🇷 Argentina · 1948</div><button class="mark-read-btn" onclick="openReview('El túnel','Ernesto Sabato')">Marcar como leído</button></div>
+      <div class="cat-book"><div class="cat-book-cover" style="background:#4A5568; color:#F0EEE8; aspect-ratio:2/3; display:flex; flex-direction:column; justify-content:flex-end; padding:0.9rem 0.8rem; position:relative;"><span class="cat-book-num">08</span><div class="cat-book-title">Distancia de rescate</div><div class="cat-book-author">Schweblin</div></div><div class="cat-book-meta">🇦🇷 Argentina · 2014</div><button class="mark-read-btn" onclick="openReview('Distancia de rescate','Samanta Schweblin')">Marcar como leído</button></div>
+      <div class="cat-book"><div class="cat-book-cover" style="background:#E8E0D0; color:#1A1A1A; border:1px solid var(--rule); aspect-ratio:2/3; display:flex; flex-direction:column; justify-content:flex-end; padding:0.9rem 0.8rem; position:relative;"><span class="cat-book-num">09</span><div class="cat-book-title">La vorágine</div><div class="cat-book-author">José E. Rivera</div></div><div class="cat-book-meta">🇨🇴 Colombia · 1924</div><button class="mark-read-btn" onclick="openReview('La vorágine','José E. Rivera')">Marcar como leído</button></div>
+      <div class="cat-book"><div class="cat-book-cover" style="background:#6B5B8A; color:#F0ECF8; aspect-ratio:2/3; display:flex; flex-direction:column; justify-content:flex-end; padding:0.9rem 0.8rem; position:relative;"><span class="cat-book-num">10</span><span class="cat-book-badge">✦</span><div class="cat-book-title">El coronel no tiene quien le escriba</div><div class="cat-book-author">García Márquez</div></div><div class="cat-book-meta">🇨🇴 Colombia · 1961</div><button class="mark-read-btn" onclick="openReview('El coronel no tiene quien le escriba','García Márquez')">Marcar como leído</button></div>
+    </div>
+  </div>
+
+  <div class="cat-expanded" id="cat-booker"><div class="cat-exp-header"><span class="cat-exp-title">🎭 Booker Prize — 10 libros</span><span class="cat-exp-close" onclick="toggleCategory('cat-booker')">Cerrar ✕</span></div><p style="color:var(--muted); font-style:italic; font-size:0.9rem;">Ver versión completa en la sección de rutas →</p></div>
+  <div class="cat-expanded" id="cat-indie"><div class="cat-exp-header"><span class="cat-exp-title">📖 Lecturas Indie — 10 libros</span><span class="cat-exp-close" onclick="toggleCategory('cat-indie')">Cerrar ✕</span></div><p style="color:var(--muted); font-style:italic; font-size:0.9rem;">Ver versión completa en la sección de rutas →</p></div>
+  <div class="cat-expanded" id="cat-clasicos"><div class="cat-exp-header"><span class="cat-exp-title">🕰 Clásicos universales — 10 libros</span><span class="cat-exp-close" onclick="toggleCategory('cat-clasicos')">Cerrar ✕</span></div><p style="color:var(--muted); font-style:italic; font-size:0.9rem;">Ver versión completa en la sección de rutas →</p></div>
+  <div class="cat-expanded" id="cat-mujeres"><div class="cat-exp-header"><span class="cat-exp-title">✍️ Voces femeninas — 10 libros</span><span class="cat-exp-close" onclick="toggleCategory('cat-mujeres')">Cerrar ✕</span></div><p style="color:var(--muted); font-style:italic; font-size:0.9rem;">Ver versión completa en la sección de rutas →</p></div>
+</section>
+
+<!-- TRENDING -->
+<section class="trending-section" id="trending">
+  <div class="trending-inner">
+    <p class="sec-label">Trending</p>
+    <h2 class="sec-h2" style="color:var(--warm);">Lo que todo el mundo<br/>está leyendo ahora.</h2>
+    <p class="sec-sub">Febrero 2026 — Los libros más hablados en prensa, redes y librerías.</p>
+    <div class="trending-grid">
+      <div class="trend-card">
+        <div class="trend-rank">01</div>
+        <div class="trend-cover-mini" style="background:#E8E0D0; border-radius:1px;">📚</div>
+        <div class="trend-title">Comerás flores</div>
+        <div class="trend-author">Lucía Solla Sobral</div>
+        <div class="trend-tag">🔥 #1 El Mundo · Ficción española</div>
+      </div>
+      <div class="trend-card">
+        <div class="trend-rank">02</div>
+        <div class="trend-cover-mini" style="background:#F0EAD8; border-radius:1px;">📚</div>
+        <div class="trend-title">Intermezzo</div>
+        <div class="trend-author">Sally Rooney</div>
+        <div class="trend-tag">📰 NYT · Booker longlist 2024</div>
+      </div>
+      <div class="trend-card">
+        <div class="trend-rank">03</div>
+        <div class="trend-cover-mini" style="background:#C8A030; border-radius:1px;">📚</div>
+        <div class="trend-title">James</div>
+        <div class="trend-author">Percival Everett</div>
+        <div class="trend-tag">🏆 Pulitzer 2025 · NYT #1</div>
+      </div>
+      <div class="trend-card">
+        <div class="trend-rank">04</div>
+        <div class="trend-cover-mini" style="background:#5A7A62; border-radius:1px;">📚</div>
+        <div class="trend-title">Sisters in Yellow</div>
+        <div class="trend-author">Mieko Kawakami</div>
+        <div class="trend-tag">🗓 Marzo 2026 · New Yorker pick</div>
+      </div>
+      <div class="trend-card">
+        <div class="trend-rank">05</div>
+        <div class="trend-cover-mini" style="background:#4A5568; border-radius:1px;">📚</div>
+        <div class="trend-title">Strange Houses</div>
+        <div class="trend-author">Toshikazu Kawaguchi</div>
+        <div class="trend-tag">📈 Misterio japonés · en alza</div>
+      </div>
+      <div class="trend-card">
+        <div class="trend-rank">06</div>
+        <div class="trend-cover-mini" style="background:#C4735A; border-radius:1px;">📚</div>
+        <div class="trend-title">Death Takes Me</div>
+        <div class="trend-author">Cristina Rivera Garza</div>
+        <div class="trend-tag">🏆 Pulitzer · NYT notable</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EN PRENSA -->
+<section class="section" id="prensa">
+  <p class="sec-label">En prensa esta semana</p>
+  <h2 class="sec-h2">Los libros que<br/>están en boca de todos.</h2>
+  <p class="sec-sub">Reseñas, entrevistas y debates de la semana en los principales medios literarios.</p>
+  <div class="press-grid">
+    <div class="press-card">
+      <div class="press-source"><span class="press-source-dot"></span>The New Yorker · Feb 2026</div>
+      <div class="press-title">"Sisters in Yellow: la nueva Kawakami llega en marzo y ya es el libro del año"</div>
+      <div class="press-excerpt">La autora de "Todos los hombres del mundo" vuelve con una historia sobre dos hermanas y el peso de las expectativas familiares en el Japón contemporáneo.</div>
+    </div>
+    <div class="press-card">
+      <div class="press-source"><span class="press-source-dot"></span>El Mundo · Ene 2026</div>
+      <div class="press-title">"Comerás flores lidera ventas durante 8 semanas seguidas"</div>
+      <div class="press-excerpt">El debut de Lucía Solla Sobral se convierte en el fenómeno editorial del arranque de año. Una historia de amor turbia que no deja a nadie indiferente.</div>
+    </div>
+    <div class="press-card">
+      <div class="press-source"><span class="press-source-dot"></span>ABC Cultural · Feb 2026</div>
+      <div class="press-title">"Los lectores españoles leen más: dos de cada tres en su tiempo libre"</div>
+      <div class="press-excerpt">Un nuevo récord histórico de hábito lector en España. Ficción emocional y bien escrita lidera la tendencia, según el último estudio del FGSR.</div>
+    </div>
+    <div class="press-card">
+      <div class="press-source"><span class="press-source-dot"></span>The Guardian · Feb 2026</div>
+      <div class="press-title">"Mieko Kawakami, la autora más esperada de 2026"</div>
+      <div class="press-excerpt">Tras el éxito global de "Pechos y huevos", la escritora japonesa regresa con una novela que ya es la más anticipada del primer trimestre.</div>
+    </div>
+    <div class="press-card">
+      <div class="press-source"><span class="press-source-dot"></span>Babelia · El País · Dic 2025</div>
+      <div class="press-title">"Los 50 mejores libros de 2025 según Babelia"</div>
+      <div class="press-excerpt">Una lista con sorpresas: varios autores latinoamericanos, tres premios Nobel recientes y el debut indie de Ethan Rutherford como la revelación del año.</div>
+    </div>
+    <div class="press-card">
+      <div class="press-source"><span class="press-source-dot"></span>IGN Books · Feb 2026</div>
+      <div class="press-title">"Los 10 mejores libros para leer en febrero 2026"</div>
+      <div class="press-excerpt">Misterio japonés, debuts literarios y cuatro autoras debutantes que llegan con fuerza al primer trimestre del año.</div>
+    </div>
+  </div>
+</section>
+
+<!-- HOT PICKS -->
+<section class="hot-section" id="hot">
+  <div class="hot-inner">
+    <p class="sec-label">Hot picks del mes</p>
+    <h2 class="sec-h2">Selección de febrero.</h2>
+    <p class="sec-sub">Los libros que más nos han impactado este mes. Curados a mano.</p>
+    <div class="hot-grid">
+      <div class="hot-main">
+        <div class="hot-label">🔥 El pick del mes</div>
+        <div class="hot-main-inner">
+          <div class="hot-cover-lg" style="background:#5A7A62; color:#F0F5EF;">📚</div>
+          <div>
+            <div class="hot-title">Los años</div>
+            <div class="hot-author">Annie Ernaux — Nobel 2022</div>
+            <div class="hot-desc">Una autobiografía colectiva. Ernaux no escribe sobre sí misma: escribe sobre el tiempo, la memoria y lo que compartimos aunque no nos conozcamos. Uno de los libros más originales del siglo XXI.</div>
+            <button class="mark-read-btn" onclick="openReview('Los años','Annie Ernaux')" style="display:inline-block; width:auto; padding:0.4rem 1.2rem;">Lo he leído →</button>
+          </div>
+        </div>
+      </div>
+      <div class="hot-side">
+        <div class="hot-side-label">📌 Staff pick</div>
+        <div class="hot-side-cover" style="background:#C8A030; color:#1A1A1A;">📚</div>
+        <div class="hot-side-title">James</div>
+        <div class="hot-side-author">Percival Everett</div>
+        <div style="font-size:0.82rem; color:var(--muted); margin-top:0.5rem; font-style:italic;">"Huckleberry Finn reescrito desde los ojos del esclavo Jim. Pulitzer 2025. Imposible soltarlo."</div>
+      </div>
+      <div class="hot-side">
+        <div class="hot-side-label">💡 Sorpresa del mes</div>
+        <div class="hot-side-cover" style="background:#E8E0D0; color:#1A1A1A; border:1px solid var(--rule);">📚</div>
+        <div class="hot-side-title">North Sun</div>
+        <div class="hot-side-author">Ethan Rutherford</div>
+        <div style="font-size:0.82rem; color:var(--muted); margin-top:0.5rem; font-style:italic;">"El Moby Dick indie que nadie esperaba. La revelación del año según Kirkus Reviews."</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SCREENSHOTS -->
+<section class="screenshots">
+  <p class="sec-label">La experiencia BookBadge</p>
+  <h2 class="sec-h2">Tu perfil lector,<br/>redefinido.</h2>
+  <p class="sec-sub">No solo registras libros. Construyes una historia. Tienes retos, una lista de deseos, sugerencias personalizadas y la opinión de otros lectores.</p>
+  <div class="screenshots-grid">
+    <div class="screenshot-card">
+      <div class="screenshot-label">Tu progreso e insignias</div>
+      <div class="sm-profile">
+        <div class="sm-user-row">
+          <div class="sm-avatar">📖</div>
+          <div><div class="sm-name">Ana García</div><div style="font-size:0.72rem; color:var(--muted);">34 libros · 7 insignias</div></div>
+        </div>
+        <div class="sm-badges-row">
+          <span class="sm-badge">🥉 Nobel Starter</span>
+          <span class="sm-badge">🥈 Latino Explorer</span>
+          <span class="sm-badge">🥇 Latino Master</span>
+          <span class="sm-badge">🥉 Indie Starter</span>
+        </div>
+        <div class="sm-prog-item"><div class="sm-prog-label"><span>Premio Nobel</span><span>3/10</span></div><div class="sm-bar"><div class="sm-bar-fill" style="width:30%"></div></div></div>
+        <div class="sm-prog-item"><div class="sm-prog-label"><span>América Latina</span><span>6/10</span></div><div class="sm-bar"><div class="sm-bar-fill" style="width:60%"></div></div></div>
+        <div class="sm-prog-item"><div class="sm-prog-label"><span>Lecturas Indie</span><span>4/10</span></div><div class="sm-bar"><div class="sm-bar-fill" style="width:40%"></div></div></div>
+        <div class="sm-prog-item"><div class="sm-prog-label"><span>Voces femeninas</span><span>5/10</span></div><div class="sm-bar"><div class="sm-bar-fill" style="width:50%"></div></div></div>
+        <div style="margin-top:0.8rem; padding-top:0.8rem; border-top:1px solid var(--rule);"><div style="font-size:0.65rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--muted); margin-bottom:0.4rem;">Reto anual 2026</div><div style="font-size:0.82rem;">📚 Meta: 30 libros &nbsp;·&nbsp; Progreso: 8/30</div></div>
+      </div>
+    </div>
+    <div class="screenshot-card">
+      <div class="screenshot-label">En mi radar 🎯 — próximas lecturas</div>
+      <div class="sm-radar">
+        <div class="sm-radar-item"><div class="sm-radar-cover" style="background:#5A7A62; color:#F0F5EF;">📚</div><div><div class="sm-radar-title">Septología</div><div class="sm-radar-author">Jon Fosse</div></div><span class="sm-radar-chip">Nobel 2023</span></div>
+        <div class="sm-radar-item"><div class="sm-radar-cover" style="background:#E8E0D0; border:1px solid var(--rule); color:#1A1A1A;">📚</div><div><div class="sm-radar-title">Intermezzo</div><div class="sm-radar-author">Sally Rooney</div></div><span class="sm-radar-chip">NYT 2024</span></div>
+        <div class="sm-radar-item"><div class="sm-radar-cover" style="background:#C4735A; color:#FAF5EC;">📚</div><div><div class="sm-radar-title">Sisters in Yellow</div><div class="sm-radar-author">Mieko Kawakami</div></div><span class="sm-radar-chip">🔥 Trending</span></div>
+        <div class="sm-radar-item"><div class="sm-radar-cover" style="background:#2D4A35; color:#E8F0EA;">📚</div><div><div class="sm-radar-title">Los detectives salvajes</div><div class="sm-radar-author">Roberto Bolaño</div></div><span class="sm-radar-chip">Latam</span></div>
+        <div class="sm-radar-item"><div class="sm-radar-cover" style="background:#4A5568; color:#F0EEE8;">📚</div><div><div class="sm-radar-title">Wolf Hall</div><div class="sm-radar-author">Hilary Mantel</div></div><span class="sm-radar-chip">Booker</span></div>
+      </div>
+    </div>
+    <div class="screenshot-card">
+      <div class="screenshot-label">Valora y opina</div>
+      <div class="sm-review">
+        <div class="sm-review-book">
+          <div class="sm-review-cover" style="background:#C8A030; color:#1A1A1A;">📚</div>
+          <div><div class="sm-review-title">El extranjero</div><div class="sm-review-author">Albert Camus · Nobel 1957</div></div>
+        </div>
+        <div style="font-size:0.68rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--muted); margin-bottom:0.5rem;">Puntuación</div>
+        <div class="sm-stars">
+          <div class="sm-star on">9</div>
+          <div class="sm-star" style="border-color:var(--rule); width:22px; height:22px; font-size:0.62rem; display:flex; align-items:center; justify-content:center;">/10</div>
+        </div>
+        <div class="sm-review-text">"Breve, frío, brutal. Camus dice en 100 páginas lo que otros no dicen en 500. Merseault me perturbó durante semanas."</div>
+        <div class="sm-char-count">121/280</div>
+        <div style="margin-top:0.8rem; padding-top:0.8rem; border-top:1px solid var(--rule); font-size:0.75rem; color:var(--muted);">💬 12 lectores opinaron sobre este libro</div>
+      </div>
+    </div>
+  </div>
+  <div style="text-align:center; margin-top:2.5rem;">
+    <a href="app.html" class="btn btn-dark">Abrir mi perfil completo →</a>
+  </div>
+</section>
+
+<!-- CTA BETA -->
+<section class="cta-block" id="beta">
+  <p class="sec-label">Lista de espera</p>
+  <h2 class="sec-h2">Empieza tu primera<br/>ruta de lectura.</h2>
+  <p>Gratis. Sin algoritmos que te distraigan. Solo tú y los libros.</p>
+  <div class="email-form">
+    <input type="email" placeholder="Tu email para la beta"/>
+    <button>Apúntame</button>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-logo">BookBadge</span>
+  <span>Una plataforma para lectores curiosos · 2026</span>
+  <span><a href="app.html" style="color:var(--muted); text-decoration:none;">Mi perfil →</a></span>
+</footer>
+
+<script>
+  const COMMUNITY_MAP = {
+    'cat-nobel':   { id: 'community-nobel',   users: 2847, legend: 312, data: [
+      { emoji: '👩', bg: '#5A7A62', name: 'María L.',   note: 'Acaba de leer "Los años" · 9/10',        badge: '🥇' },
+      { emoji: '🧑', bg: '#C4735A', name: 'Carlos R.',  note: 'Legend Nobel · 10 países leídos',        badge: '✦' },
+      { emoji: '👩', bg: '#4A5568', name: 'Sofia M.',   note: '"Septología" — la obra del año',          badge: '🥈' },
+      { emoji: '👨', bg: '#6B2D3A', name: 'Javier P.',  note: 'Completa Saramago esta semana',           badge: '🥉' },
+      { emoji: '👩', bg: '#2D4A35', name: 'Laura G.',   note: '"Beloved" 10/10 — imprescindible',        badge: '🥇' },
+      { emoji: '🧔', bg: '#C8A030', name: 'Pedro A.',   note: 'Legend Nobel desde enero 2026',           badge: '✦' },
+    ]},
+    'cat-latam':   { id: 'community-latam',   users: 3214, legend: 287, data: [
+      { emoji: '👩', bg: '#C8A030', name: 'Isabel R.',  note: '"Rayuela" cambió mi forma de leer',       badge: '🥈' },
+      { emoji: '🧑', bg: '#1A1A1A', name: 'Diego M.',   note: 'Legend Latam · 6 países completados',    badge: '✦' },
+      { emoji: '👩', bg: '#C4735A', name: 'Valentina S.',note: 'Pedro Páramo, 10/10 sin dudar',           badge: '🥉' },
+      { emoji: '👨', bg: '#2D4A35', name: 'Andrés F.',  note: 'Bolaño me voló la cabeza',                badge: '🥇' },
+      { emoji: '👩', bg: '#6B5B8A', name: 'Camila T.',  note: 'Schweblin es la mejor de su generación',  badge: '🥇' },
+      { emoji: '🧔', bg: '#F0EAD8', name: 'Marcos L.',  note: 'Releyendo Borges por cuarta vez',         badge: '✦' },
+    ]},
+    'cat-clasicos':{ id: 'community-clasicos', users: 4102, legend: 421, data: [
+      { emoji: '👩', bg: '#C8A030', name: 'Elena B.',   note: 'Don Quijote — lo mejor que he leído',      badge: '🥇' },
+      { emoji: '👨', bg: '#6B2D3A', name: 'Roberto K.', note: 'Tolstói es imbatible · Legend',            badge: '✦' },
+      { emoji: '👩', bg: '#4A5568', name: 'Nuria P.',   note: '"Anna Karénina" · lágrimas incluidas',     badge: '🥈' },
+      { emoji: '🧑', bg: '#2D2D2D', name: 'Sergio M.',  note: 'Ulises me llevó 6 meses. Valió la pena',   badge: '✦' },
+    ]},
+    'cat-booker':  { id: 'community-booker',  users: 1593, legend: 198, data: [
+      { emoji: '👩', bg: '#5A7A62', name: 'Hannah W.',  note: 'Shuggie Bain me destrozó (bien)',          badge: '🥉' },
+      { emoji: '🧑', bg: '#C4735A', name: 'Tom R.',     note: 'Wolf Hall · Legend Booker',                badge: '✦' },
+      { emoji: '👩', bg: '#1A1A1A', name: 'Amara D.',   note: 'Girl, Woman, Other 10/10',                 badge: '🥈' },
+      { emoji: '👨', bg: '#6B5B8A', name: 'James P.',   note: 'Life of Pi siendo adulto, otra cosa',      badge: '🥇' },
+    ]},
+    'cat-indie':   { id: 'community-indie',   users: 841,  legend: 63, data: [
+      { emoji: '👩', bg: '#E8E0D0', name: 'Claire S.',  note: 'North Sun me recordó a Melville',          badge: '🥉' },
+      { emoji: '🧑', bg: '#6B5B8A', name: 'Alex M.',   note: 'Petition: mejor fantasía indie del año',   badge: '🥈' },
+      { emoji: '👩', bg: '#2D4A35', name: 'Lena K.',   note: 'Barsukov es un genio',                     badge: '🥇' },
+    ]},
+    'cat-mujeres': { id: 'community-mujeres', users: 2671, legend: 241, data: [
+      { emoji: '👩', bg: '#E8E0D0', name: 'Marta C.',   note: 'Ernaux lo cambió todo para mí',            badge: '🥇' },
+      { emoji: '👩', bg: '#5A7A62', name: 'Paula V.',   note: 'Han Kang · Nobel merecidísimo',             badge: '🥈' },
+      { emoji: '🧑', bg: '#4A5568', name: 'Iñaki R.',   note: 'Atwood en el top de siempre',              badge: '🥉' },
+      { emoji: '👩', bg: '#6B2D3A', name: 'Bea T.',     note: 'Ferrante Legend desde 2025',               badge: '✦' },
+      { emoji: '👩', bg: '#C8A030', name: 'Rosa M.',    note: 'Woolf primero, luego todo lo demás',        badge: '✦' },
+    ]},
+  };
+
+  function buildCommunity(catId) {
+    const cfg = COMMUNITY_MAP[catId];
+    if (!cfg) return;
+    let el = document.getElementById(cfg.id);
+    if (el) { el.style.display = 'block'; return; }
+
+    // Build dynamically
+    const wrap = document.createElement('div');
+    wrap.className = 'community-section';
+    wrap.id = cfg.id;
+
+    const lvlStarters = Math.round(cfg.users * 0.42);
+    const lvlExplorer = Math.round(cfg.users * 0.31);
+    const lvlMaster   = Math.round(cfg.users * 0.15);
+
+    wrap.innerHTML = `
+      <div class="community-header">
+        <span class="community-title">Lectores en esta ruta</span>
+        <span class="community-count">${cfg.users.toLocaleString('es')} personas · ${cfg.legend} con insignia Legend</span>
+      </div>
+      <div class="level-stats">
+        <div class="level-stat"><span class="level-stat-num">${lvlStarters.toLocaleString('es')}</span><span class="level-stat-label"><span class="level-stat-icon">🥉</span> Starter</span></div>
+        <div class="level-stat"><span class="level-stat-num">${lvlExplorer.toLocaleString('es')}</span><span class="level-stat-label"><span class="level-stat-icon">🥈</span> Explorer</span></div>
+        <div class="level-stat"><span class="level-stat-num">${lvlMaster.toLocaleString('es')}</span><span class="level-stat-label"><span class="level-stat-icon">🥇</span> Master</span></div>
+        <div class="level-stat"><span class="level-stat-num">${cfg.legend.toLocaleString('es')}</span><span class="level-stat-label"><span class="level-stat-icon">✦</span> Legend</span></div>
+      </div>
+      <div class="community-grid">
+        ${cfg.data.map(u => `
+          <div class="community-user">
+            <div class="cu-avatar" style="background:${u.bg}; color:${u.bg === '#C8A030' || u.bg === '#F0EAD8' || u.bg === '#E8E0D0' ? '#1A1A1A' : '#fff'}">${u.emoji}</div>
+            <div class="cu-info"><div class="cu-name">${u.name}</div><div class="cu-milestone">${u.note}</div></div>
+            <span class="cu-badge">${u.badge}</span>
+            <button class="cu-follow" onclick="toggleFollow(this)">Seguir</button>
+          </div>`).join('')}
+      </div>`;
+
+    const catEl = document.getElementById(catId);
+    catEl.parentNode.insertBefore(wrap, catEl.nextSibling);
+  }
+
+  function hideCommunities() {
+    Object.values(COMMUNITY_MAP).forEach(cfg => {
+      const el = document.getElementById(cfg.id);
+      if (el) el.style.display = 'none';
+    });
+  }
+
+  function toggleCategory(id) {
+    const el = document.getElementById(id);
+    const isOpen = el.classList.contains('open');
+    document.querySelectorAll('.cat-expanded').forEach(e => e.classList.remove('open'));
+    hideCommunities();
+    if (!isOpen) {
+      el.classList.add('open');
+      buildCommunity(id);
+      setTimeout(() => el.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 50);
+    }
+  }
+
+  function toggleFollow(btn) {
+    btn.classList.toggle('following');
+    btn.textContent = btn.classList.contains('following') ? 'Siguiendo ✓' : 'Seguir';
+  }
+
+  function openReview(title, author) {
+    document.getElementById('modalBookTitle').textContent = title;
+    document.getElementById('modalBookAuthor').textContent = author;
+    document.getElementById('reviewText').value = '';
+    document.getElementById('charCount').textContent = '0';
+    document.querySelectorAll('.rating-num').forEach(n => n.classList.remove('selected'));
+    document.getElementById('reviewModal').classList.add('open');
+  }
+
+  function closeModal() {
+    document.getElementById('reviewModal').classList.remove('open');
+  }
+
+  function selectRating(el, num) {
+    document.querySelectorAll('.rating-num').forEach(n => n.classList.remove('selected'));
+    el.classList.add('selected');
+  }
+
+  function updateCharCount(el) {
+    document.getElementById('charCount').textContent = el.value.length;
+  }
+
+  function submitReview() {
+    const title = document.getElementById('modalBookTitle').textContent;
+    const rating = document.querySelector('.rating-num.selected');
+    const text = document.getElementById('reviewText').value;
+    if (!rating) { alert('Elige una puntuación del 1 al 10'); return; }
+    closeModal();
+    // Aquí iría el POST a la API
+    setTimeout(() => alert(`✅ "${title}" marcado como leído con ${rating.textContent}/10`), 100);
+  }
+
+  document.getElementById('reviewModal').addEventListener('click', function(e) {
+    if (e.target === this) closeModal();
+  });
+</script>
+  <script src="covers.js"></script>
+</body>
+</html>
