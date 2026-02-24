@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+  <title>BookBadge</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=EB+Garamond:wght@400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --cream: #F5F0E8;
+      --warm: #FAFAF7;
+      --ink: #1A1A1A;
+      --muted: #6B6560;
+      --rule: #D9D3CA;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'EB Garamond', Georgia, serif;
+      background: var(--warm);
+      color: var(--ink);
+      font-size: 16px;
+      line-height: 1.65;
+      padding-bottom: 80px; /* for bottom nav */
+    }
+
+    /* ── TOP BAR ── */
+    .topbar {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--warm);
+      border-bottom: 1px solid var(--rule);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0.85rem 1.2rem;
+    }
+    .logo { font-family: 'Playfair Display', serif; font-weight: 600; font-size: 1.1rem; letter-spacing: 0.1em; text-transform: uppercase; }
+    .topbar-right { font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; border: 1px solid var(--ink); padding: 0.38rem 0.9rem; text-decoration: none; color: var(--ink); }
+
+    /* ── HERO ── */
+    .hero {
+      padding: 3rem 1.4rem 2.5rem;
+      text-align: center;
+      border-bottom: 1px solid var(--rule);
+    }
+    .kicker { font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted); margin-bottom: 1rem; }
+    .hero h1 { font-family: 'Playfair Display', serif; font-size: 2.6rem; font-weight: 400; line-height: 1.1; margin-bottom: 1rem; }
+    .hero h1 em { font-style: italic; }
+    .hero-sub { font-size: 0.95rem; color: var(--muted); font-style: italic; margin-bottom: 1.8rem; }
+    .hero-btn {
+      display: block; background: var(--ink); color: var(--warm);
+      padding: 0.9rem; font-size: 0.76rem; letter-spacing: 0.18em;
+      text-transform: uppercase; text-decoration: none;
+      margin-bottom: 0.6rem;
+    }
+    .hero-btn-ghost {
+      display: block; border: 1px solid var(--rule); color: var(--muted);
+      padding: 0.85rem; font-size: 0.76rem; letter-spacing: 0.18em;
+      text-transform: uppercase; text-decoration: none;
+    }
+
+    /* ── QUOTE ── */
+    .quote { background: var(--cream); border-bottom: 1px solid var(--rule); padding: 2rem 1.4rem; text-align: center; }
+    .quote p { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-style: italic; color: var(--ink); line-height: 1.55; }
+
+    /* ── SECTION HEADER ── */
+    .sec { padding: 2.5rem 1.4rem 0; }
+    .sec-label { font-size: 0.68rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.4rem; }
+    .sec h2 { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 400; margin-bottom: 1.5rem; }
+
+    /* ── HORIZONTAL SCROLL CHIPS (categories) ── */
+    .cat-scroll {
+      display: flex; gap: 0.5rem; overflow-x: auto;
+      padding: 0 1.4rem 1.4rem;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .cat-scroll::-webkit-scrollbar { display: none; }
+    .cat-chip {
+      white-space: nowrap; font-size: 0.72rem; letter-spacing: 0.12em;
+      text-transform: uppercase; padding: 0.42rem 1rem;
+      border: 1px solid var(--rule); color: var(--muted);
+      text-decoration: none; flex-shrink: 0;
+    }
+    .cat-chip.active { background: var(--ink); color: var(--warm); border-color: var(--ink); }
+
+    /* ── BADGE PATH ── */
+    .path-block { padding: 2rem 1.4rem; border-bottom: 1px solid var(--rule); }
+    .path-title-row { display: flex; align-items: center; gap: 0.7rem; margin-bottom: 0.4rem; }
+    .path-icon { font-size: 1.4rem; }
+    .path-title { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 400; }
+    .path-desc { font-size: 0.88rem; color: var(--muted); font-style: italic; margin-bottom: 1.2rem; }
+
+    /* LEVELS */
+    .levels { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
+    .lvl { font-size: 0.7rem; padding: 0.28rem 0.7rem; border: 1px solid var(--rule); display: flex; align-items: center; gap: 0.35rem; }
+    .dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+    .d-bronze { background: #C4885A; }
+    .d-silver  { background: #909090; }
+    .d-gold    { background: #C8A96E; }
+    .d-legend  { background: #3D6B4F; }
+
+    /* BOOK LIST (vertical, mobile-first) */
+    .book-list { display: flex; flex-direction: column; gap: 0; }
+    .book-row {
+      display: flex; align-items: stretch; gap: 0;
+      border: 1px solid var(--rule); margin-bottom: 0.6rem;
+      overflow: hidden;
+    }
+    .book-spine {
+      width: 52px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem; padding: 0.9rem 0;
+    }
+    .book-info {
+      flex: 1; padding: 0.75rem 0.9rem;
+      display: flex; flex-direction: column; justify-content: center;
+      border-left: 1px solid var(--rule);
+    }
+    .book-num-small { font-size: 0.65rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.2rem; }
+    .book-title-m { font-family: 'Playfair Display', serif; font-size: 0.95rem; font-weight: 600; line-height: 1.25; }
+    .book-author-m { font-size: 0.8rem; color: var(--muted); margin-top: 0.15rem; }
+    .book-tag { font-size: 0.68rem; color: var(--muted); margin-top: 0.25rem; }
+    .book-right {
+      width: 36px; flex-shrink: 0; display: flex;
+      align-items: center; justify-content: center;
+      font-size: 0.85rem; border-left: 1px solid var(--rule);
+    }
+
+    /* PROFILE CARD */
+    .profile-sec { background: var(--cream); padding: 2.5rem 1.4rem; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+    .profile-card { background: var(--warm); border: 1px solid var(--rule); padding: 1.4rem; }
+    .p-top { display: flex; gap: 1rem; align-items: center; margin-bottom: 1.4rem; padding-bottom: 1.2rem; border-bottom: 1px solid var(--rule); }
+    .avatar { width: 48px; height: 48px; border-radius: 50%; background: var(--cream); border: 1px solid var(--rule); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0; }
+    .p-name { font-family: 'Playfair Display', serif; font-size: 1.05rem; }
+    .p-bio { font-size: 0.78rem; color: var(--muted); font-style: italic; }
+    .stats { display: flex; gap: 1.5rem; margin-top: 0.6rem; }
+    .stat-n { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 600; display: block; }
+    .stat-l { font-size: 0.62rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); }
+
+    .prog-list { display: flex; flex-direction: column; gap: 0.9rem; margin-bottom: 1.4rem; }
+    .prog { display: flex; align-items: center; gap: 0.8rem; }
+    .prog-name { font-size: 0.83rem; width: 130px; flex-shrink: 0; }
+    .bar-out { flex: 1; height: 3px; background: var(--cream); }
+    .bar-in { height: 100%; background: var(--ink); }
+    .prog-val { font-size: 0.74rem; color: var(--muted); width: 42px; text-align: right; }
+
+    .badges-earned { display: flex; flex-wrap: wrap; gap: 0.5rem; padding-top: 1.2rem; border-top: 1px solid var(--rule); }
+    .badge-chip { background: var(--cream); border: 1px solid var(--rule); padding: 0.3rem 0.7rem; font-size: 0.75rem; }
+
+    /* CTA */
+    .cta-sec { background: var(--ink); color: var(--warm); text-align: center; padding: 4rem 1.4rem; }
+    .cta-sec .sec-label { color: rgba(255,255,255,0.4); font-size: 0.68rem; letter-spacing: 0.24em; text-transform: uppercase; margin-bottom: 0.8rem; }
+    .cta-sec h2 { font-family: 'Playfair Display', serif; font-size: 1.9rem; font-weight: 400; margin-bottom: 0.7rem; }
+    .cta-sec p { font-style: italic; color: rgba(255,255,255,0.55); font-size: 0.9rem; margin-bottom: 2rem; }
+    .cta-btn { display: block; background: var(--warm); color: var(--ink); padding: 0.9rem; font-size: 0.76rem; letter-spacing: 0.18em; text-transform: uppercase; text-decoration: none; }
+
+    /* BOTTOM NAV */
+    .bottom-nav {
+      position: fixed; bottom: 0; left: 0; right: 0;
+      background: var(--warm); border-top: 1px solid var(--rule);
+      display: flex; z-index: 200;
+    }
+    .bnav-item {
+      flex: 1; display: flex; flex-direction: column;
+      align-items: center; padding: 0.6rem 0;
+      text-decoration: none; color: var(--muted);
+      font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase;
+      gap: 0.2rem;
+    }
+    .bnav-item.active { color: var(--ink); }
+    .bnav-icon { font-size: 1.1rem; }
+  </style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <span class="logo">BookBadge</span>
+  <a href="#beta" class="topbar-right">Beta</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <p class="kicker">Club de lectura con insignias</p>
+  <h1>Leer tiene<br/><em>recompensa.</em></h1>
+  <p class="hero-sub">Explora rutas literarias y colecciona insignias que cuentan tu historia como lector.</p>
+  <a href="#rutas" class="hero-btn">Explorar rutas</a>
+  <a href="#perfil" class="hero-btn-ghost">Ver mi perfil</a>
+</section>
+
+<!-- QUOTE -->
+<div class="quote">
+  <p>"Los libros son mundos.<br/>Las insignias, el mapa<br/>de todo lo que has explorado."</p>
+</div>
+
+<!-- CÓMO FUNCIONA -->
+<section class="sec">
+  <p class="sec-label">Cómo funciona</p>
+  <h2>Simple y adictivo.</h2>
+</section>
+<div style="padding: 0 1.4rem 2rem; display:flex; flex-direction:column; gap:1.2rem;">
+  <div style="display:flex; gap:1rem; align-items:flex-start;">
+    <div style="font-family:'Playfair Display',serif; font-size:2rem; color:var(--rule); line-height:1; flex-shrink:0; width:36px;">01</div>
+    <div>
+      <div style="font-family:'Playfair Display',serif; font-size:1rem; margin-bottom:0.2rem;">Registra tus lecturas</div>
+      <div style="font-size:0.85rem; color:var(--muted);">Añade libros leídos. Los clasificamos automáticamente por categoría.</div>
+    </div>
+  </div>
+  <div style="display:flex; gap:1rem; align-items:flex-start;">
+    <div style="font-family:'Playfair Display',serif; font-size:2rem; color:var(--rule); line-height:1; flex-shrink:0; width:36px;">02</div>
+    <div>
+      <div style="font-family:'Playfair Display',serif; font-size:1rem; margin-bottom:0.2rem;">Desbloquea insignias</div>
+      <div style="font-size:0.85rem; color:var(--muted);">Starter (1 libro), Explorer, Master y Legend. Fácil entrar, difícil parar.</div>
+    </div>
+  </div>
+  <div style="display:flex; gap:1rem; align-items:flex-start;">
+    <div style="font-family:'Playfair Display',serif; font-size:2rem; color:var(--rule); line-height:1; flex-shrink:0; width:36px;">03</div>
+    <div>
+      <div style="font-family:'Playfair Display',serif; font-size:1rem; margin-bottom:0.2rem;">Únete al club</div>
+      <div style="font-size:0.85rem; color:var(--muted);">Retos mensuales y grupos de lectura compartida.</div>
+    </div>
+  </div>
+</div>
+
+<!-- RUTAS -->
+<section class="sec" id="rutas">
+  <p class="sec-label">Rutas de insignias</p>
+  <h2>Elige tu camino.</h2>
+</section>
+<div class="cat-scroll">
+  <a href="#m-nobel" class="cat-chip active">🏅 Nobel</a>
+  <a href="#m-booker" class="cat-chip">🎭 Booker</a>
+  <a href="#m-indie" class="cat-chip">📖 Indie</a>
+  <a href="#m-latam" class="cat-chip">🌎 Latinoamérica</a>
+  <a href="#m-clasicos" class="cat-chip">🕰 Clásicos</a>
+  <a href="#m-sigloxx" class="cat-chip">⚡ Siglo XX</a>
+  <a href="#m-nyt" class="cat-chip">📰 NYT</a>
+  <a href="#m-mujeres" class="cat-chip">✍️ Voces femeninas</a>
+</div>
+
+<!-- NOBEL -->
+<div class="path-block" id="m-nobel">
+  <div class="path-title-row"><span class="path-icon">🏅</span><span class="path-title">Premio Nobel</span></div>
+  <p class="path-desc">Los mejores autores galardonados con el Nobel de Literatura.</p>
+  <div class="levels">
+    <div class="lvl"><div class="dot d-bronze"></div>Starter — 1</div>
+    <div class="lvl"><div class="dot d-silver"></div>Explorer — 3</div>
+    <div class="lvl"><div class="dot d-gold"></div>Master — 6</div>
+    <div class="lvl"><div class="dot d-legend"></div>Legend — 10</div>
+  </div>
+  <div class="book-list">
+    <div class="book-row"><div class="book-spine" style="background:#1A1A1A; color:#F5F0E8;">📚</div><div class="book-info"><div class="book-num-small">01 · 🥉 Starter</div><div class="book-title-m">Cien años de soledad</div><div class="book-author-m">Gabriel García Márquez</div><div class="book-tag">🇨🇴 Colombia · Nobel 1982</div></div><div class="book-right" style="background:#F5F0E8; color:#6B6560;">›</div></div>
+    <div class="book-row"><div class="book-spine" style="background:#E8E0D0; color:#1A1A1A; border-right: 1px solid var(--rule);">📚</div><div class="book-info"><div class="book-num-small">02</div><div class="book-title-m">La vegetariana</div><div class="book-author-m">Han Kang</div><div class="book-tag">🇰🇷 Corea del Sur · Nobel 2024</div></div><div class="book-right" style="background:var(--warm); color:var(--muted);">›</div></div>
+    <div class="book-row"><div class="book-spine" style="background:#C4735A; color:#FAF5EC;">📚</div><div class="book-info"><div class="book-num-small">03</div><div class="book-title-m">Los errantes</div><div class="book-author-m">Olga Tokarczuk</div><div class="book-tag">🇵🇱 Polonia · Nobel 2018</div></div><div class="book-right" style="background:#FAF5EC; color:var(--muted);">›</div></div>
+    <div class="book-row"><div class="book-spine" style="background:#5A7A62; color:#F0F5EF;">📚</div><div class="book-info"><div class="book-num-small">04</div><div class="book-title-m">Los años</div><div class="book-author-m">Annie Ernaux</div><div class="book-tag">🇫🇷 Francia · Nobel 2022</div></div><div class="book-right" style="background:#F0F5EF; color:var(--muted);">›</div></div>
+    <div class="book-row"><div class="book-spine" style="background:#4A5568; color:#F0EEE8;">📚</div><div class="book-info"><div class="book-num-small">05</div><div class="book-title-m">Septología</div><div class="book-author-m">Jon Fosse</div><div class="book-tag">🇳🇴 Noruega · Nobel 2023</div></div><div class="book-right" style="background:#F0EEE8; color:var(--muted);">›</div></div>
+    <div class="book-row"><div class="book-spine" style="background:#F0EAD8; color:#1A1A1A; border-right:1px solid var(--rule);">📚</div><div class="book-info"><div class="book-num-small">06 · 🥇 Master</div><div class="book-title-m">Ensayo sobre la ceguera</div><div class="book-author-m">José Saramago</div><div class="book-tag">🇵🇹 Portugal · Nobel 1998</div></div><div class="book-right" style="background:var(--warm); color:var(--muted);">›</div></div>
+    <div class="book-row"><div class="book-spine" style="background:#2D2D2D; color:#E8E0D0;">📚</div><div class="book-info"><div class="book-num-small">07</div><div class="book-title-m">Todo lo que tengo lo llevo conmigo</div><div class="book-author-m">Herta Müller</div><div class="book-tag">🇷🇴 Rumanía · Nobel 2009</div></div><div class="book-right" style="background:#E8E0D0; color:var(--muted);">›</div></div>
+    <div class="book-row"><div class="book-spine" style="background:#2D4A35; color:#E8F0EA;">📚</div><div class="book-info"><div class="book-num-small">08</div><div class="book-title-m">Lo que queda del día</div><div class="book-author-m">Kazuo Ishiguro</div><div class="book-tag">🇬🇧 Reino Unido · Nobel 2017</div></div><div class="book-right" style="background:#E8F0EA; color:var(--muted);">›</div></div>
+    <div class="book-row"><div class="book-spine" style="background:#6B2D3A; color:#F5EAE8;">📚</div><div class="book-info"><div class="book-num-small">09</div><div class="book-title-m">Beloved</div><div class="book-author-m">Toni Morrison</div><div class="book-tag">🇺🇸 EE.UU. · Nobel 1993</div></div><div class="book-right" style="background:#F5EAE8; color:var(--muted);">›</div></div>
+    <div class="book-row"><div class="book-spine" style="background:#C8A030; color:#1A1A1A;">📚</div><div class="book-info"><div class="book-num-small">10 · ✦ Legend</div><div class="book-title-m">El extranjero</div><div class="book-author-m">Albert Camus</div><div class="book-tag">🇫🇷 Francia · Nobel 1957</div></div><div class="book-right" style="background:#C8A030; color:#1A1A1A; font-size:0.85rem; font-weight:bold;">✦</div></div>
+  </div>
+</div>
+
+<!-- INDIE -->
+<div class="path-block" id="m-indie">
+  <div class="path-title-row"><span class="path-icon">📖</span><span class="path-title">Lecturas Indie</span></div>
+  <p class="path-desc">Voces independientes curadas por Kirkus Reviews e Independent Book Review 2024–25.</p>
+  <div class="levels">
+    <div class="lvl"><div class="dot d-bronze"></div>Starter — 1</div>
+    <div class="lvl"><div class="dot d-silver"></div>Explorer — 3</div>
+    <div class="lvl"><div class="dot d-gold"></div>Master — 6</div>
+    <div class="lvl"><div class="dot d-legend"></div>Legend — 10</div>
+  </div>
+  <div class="book-list">
+    <div class="book-row"><div class="book-spine" style="background:#E8E0D0; color:#1A1A1A; border-right:1px solid var(--rule);">📚</div><div class="book-info"><div class="book-num-small">01 · 🥉 Starter</div><div class="book-title-m">North Sun</div><div class="book-author-m">Ethan Rutherford</div><div class="book-tag">Ficción histórica · 2025</div></div><div class="book-right" style="background:var(--warm); color:var(--muted);">›</div></div>
+    <div class="book-row"><div class="book-spine" style="background:#6B5B8A; color:#F0ECF8;">📚</div><div class="book-info"><div class="book-num-small">02</div><div class="book-title-m">Petition</div><div class="book-author-m">Delilah Waan</div><div class="book-tag">Fantasía · 2025</div></div><div class="book-right" style="background:#F0ECF8; color:var(--muted);">›</div></div>
+    <div class="book-row"><div class="book-spine" style="background:#2D4A35; color:#E8F0EA;">📚</div><div class="book-info"><div class="book-num-small">03</div><div class="book-title-m">Sleeping Worlds Have No Memory</div><div class="book-author-m">Yaroslav Barsukov</div><div class="book-tag">Fantasía · ⭐ Kirkus Star 2025</div></div><div class="book-right" style="background:#E8F0EA; color:var(--muted);">›</div></div>
+    <div class="book-row"><div class="book-spine" style="background:#6B2D3A; color:#F5EAE8;">📚</div><div class="book-info"><div class="book-num-small">04</div><div class="book-title-m">Mercy: Tears of the Fallen</div><div class="book-author-m">Chance Dillon</div><div class="book-tag">Fantasy épico · 2025</div></div><div class="book-right" style="background:#F5EAE8; color:var(--muted);">›</div></div>
+    <div class="book-row"><div class="book-spine" style="background:#C8A030; color:#1A1A1A;">📚</div><div class="book-info"><div class="book-num-small">05</div><div class="book-title-m">Headstrong</div><div class="book-author-m">Christy Bailey</div><div class="book-tag">Memoria · ⭐ Kirkus Best Indie</div></div><div class="book-right" style="background:#C8A030; color:#1A1A1A;">›</div></div>
+    <div class="book-row"><div class="book-spine" style="background:#4A5568; color:#F0EEE8;">📚</div><div class="book-info"><div class="book-num-small">06 · 🥇 Master</div><div class="book-title-m">The Wedding</div><div class="book-author-m">Gurjinder Basran</div><div class="book-tag">Lit. ficción · ⭐ Kirkus Star</div></div><div class="book-right" style="background:#F0EEE8; color:var(--muted);">›</div></div>
+    <div class="book-row"><div class="book-spine" style="background:#F0EAD8; color:#1A1A1A; border-right:1px solid var(--rule);">📚</div><div class="book-info"><div class="book-num-small">07</div><div class="book-title-m">A World Without Trees</div><div class="book-author-m">Joseph Blackhurst</div><div class="book-tag">Ficción especulativa · 2024</div></div><div class="book-right" style="background:var(--warm); color:var(--muted);">›</div></div>
+    <div class="book-row"><div class="book-spine" style="background:#5A7A62; color:#F0F5EF;">📚</div><div class="book-info"><div class="book-num-small">08</div><div class="book-title-m">Isaac Unknown</div><div class="book-author-m">James McFadden</div><div class="book-tag">Urban fantasy · 2025</div></div><div class="book-right" style="background:#F0F5EF; color:var(--muted);">›</div></div>
+    <div class="book-row"><div class="book-spine" style="background:#C4735A; color:#FAF5EC;">📚</div><div class="book-info"><div class="book-num-small">09</div><div class="book-title-m">Colour Me Yours</div><div class="book-author-m">Hélène Clément</div><div class="book-tag">Romance · Top Goodreads</div></div><div class="book-right" style="background:#FAF5EC; color:var(--muted);">›</div></div>
+    <div class="book-row"><div class="book-spine" style="background:#2D2D2D; color:#E8E0D0;">📚</div><div class="book-info"><div class="book-num-small">10 · ✦ Legend</div><div class="book-title-m">Demonology & the Art of Pickling Demons</div><div class="book-author-m">Matt Moore</div><div class="book-tag">YA / coming of age · 2025</div></div><div class="book-right" style="background:#2D2D2D; color:#C8A030; font-weight:bold;">✦</div></div>
+  </div>
+</div>
+
+<!-- LATAM -->
+<div class="path-block" id="m-latam">
+  <div class="path-title-row"><span class="path-icon">🌎</span><span class="path-title">América Latina</span></div>
+  <p class="path-desc">El boom latinoamericano y sus herederos. Realismo mágico, cuentos imposibles, voces que sacudieron el mundo.</p>
+  <div class="levels">
+    <div class="lvl"><div class="dot d-bronze"></div>Starter — 1</div>
+    <div class="lvl"><div class="dot d-silver"></div>Explorer — 3</div>
+    <div class="lvl"><div class="dot d-gold"></div>Master — 6</div>
+    <div class="lvl"><div class="dot d-legend"></div>Legend — 10</div>
+  </div>
+  <div class="book-list">
+    <div class="book-row"><div class="book-spine" style="background:#C8A030; color:#1A1A1A;">📚</div><div class="book-info"><div class="book-num-small">01 · 🥉 Starter</div><div class="book-title-m">Cien años de soledad</div><div class="book-author-m">García Márquez</div><div class="book-tag">🇨🇴 Colombia · 1967</div></div><div class="book-right" style="background:#C8A030; color:#1A1A1A;">›</div></div>
+    <div class="book-row"><div class="book-spine" style="background:#1A1A1A; color:#F5F0E8;">📚</div><div class="book-info"><div class="book-num-small">02</div><div class="book-title-m">Rayuela</div><div class="book-author-m">Julio Cortázar</div><div class="book-tag">🇦🇷 Argentina · 1963</div></div><div class="book-right" style="background:#F5F0E8; color:var(--muted);">›</div></div>
+    <div class="book-row"><div class="book-spine" style="background:#C4735A; color:#FAF5EC;">📚</div><div class="book-info"><div class="book-num-small">03</div><div class="book-title-m">Pedro Páramo</div><div class="book-author-m">Juan Rulfo</div><div class="book-tag">🇲🇽 México · 1955</div></div><div class="book-right" style="background:#FAF5EC; color:var(--muted);">›</div></div>
+    <div class="book-row"><div class="book-spine" style="background:#6B2D3A; color:#F5EAE8;">📚</div><div class="book-info"><div class="book-num-small">04</div><div class="book-title-m">La casa de los espíritus</div><div class="book-author-m">Isabel Allende</div><div class="book-tag">🇨🇱 Chile · 1982</div></div><div class="book-right" style="background:#F5EAE8; color:var(--muted);">›</div></div>
+    <div class="book-row"><div class="book-spine" style="background:#F0EAD8; color:#1A1A1A; border-right:1px solid var(--rule);">📚</div><div class="book-info"><div class="book-num-small">05</div><div class="book-title-m">Ficciones</div><div class="book-author-m">Jorge Luis Borges</div><div class="book-tag">🇦🇷 Argentina · 1944</div></div><div class="book-right" style="background:var(--warm); color:var(--muted);">›</div></div>
+    <div class="book-row"><div class="book-spine" style="background:#2D4A35; color:#E8F0EA;">📚</div><div class="book-info"><div class="book-num-small">06 · 🥇 Master</div><div class="book-title-m">Los detectives salvajes</div><div class="book-author-m">Roberto Bolaño</div><div class="book-tag">🇨🇱 Chile · 1998</div></div><div class="book-right" style="background:#E8F0EA; color:var(--muted);">›</div></div>
+    <div class="book-row"><div class="book-spine" style="background:#5A7A62; color:#F0F5EF;">📚</div><div class="book-info"><div class="book-num-small">07</div><div class="book-title-m">El túnel</div><div class="book-author-m">Ernesto Sabato</div><div class="book-tag">🇦🇷 Argentina · 1948</div></div><div class="book-right" style="background:#F0F5EF; color:var(--muted);">›</div></div>
+    <div class="book-row"><div class="book-spine" style="background:#4A5568; color:#F0EEE8;">📚</div><div class="book-info"><div class="book-num-small">08</div><div class="book-title-m">Distancia de rescate</div><div class="book-author-m">Samanta Schweblin</div><div class="book-tag">🇦🇷 Argentina · 2014</div></div><div class="book-right" style="background:#F0EEE8; color:var(--muted);">›</div></div>
+    <div class="book-row"><div class="book-spine" style="background:#E8E0D0; color:#1A1A1A; border-right:1px solid var(--rule);">📚</div><div class="book-info"><div class="book-num-small">09</div><div class="book-title-m">La vorágine</div><div class="book-author-m">José E. Rivera</div><div class="book-tag">🇨🇴 Colombia · 1924</div></div><div class="book-right" style="background:var(--warm); color:var(--muted);">›</div></div>
+    <div class="book-row"><div class="book-spine" style="background:#6B5B8A; color:#F0ECF8;">📚</div><div class="book-info"><div class="book-num-small">10 · ✦ Legend</div><div class="book-title-m">El coronel no tiene quien le escriba</div><div class="book-author-m">García Márquez</div><div class="book-tag">🇨🇴 Colombia · 1961</div></div><div class="book-right" style="background:#6B5B8A; color:#F0ECF8; font-weight:bold;">✦</div></div>
+  </div>
+</div>
+
+<!-- CLÁSICOS -->
+<div class="path-block" id="m-clasicos">
+  <div class="path-title-row"><span class="path-icon">🕰</span><span class="path-title">Clásicos universales</span></div>
+  <p class="path-desc">Los pilares de la literatura occidental. Obras que contienen algo permanente sobre la condición humana.</p>
+  <div class="levels">
+    <div class="lvl"><div class="dot d-bronze"></div>Starter — 1</div>
+    <div class="lvl"><div class="dot d-silver"></div>Explorer — 3</div>
+    <div class="lvl"><div class="dot d-gold"></div>Master — 6</div>
+    <div class="lvl"><div class="dot d-legend"></div>Legend — 10</div>
+  </div>
+  <div class="book-list">
+    <div class="book-row"><div class="book-spine" style="background:#C8A030; color:#1A1A1A;">📚</div><div class="book-info"><div class="book-num-small">01 · 🥉 Starter</div><div class="book-title-m">Don Quijote de la Mancha</div><div class="book-author-m">Miguel de Cervantes</div><div class="book-tag">🇪🇸 España · 1605</div></div><div class="book-right" style="background:#C8A030; color:#1A1A1A;">›</div></div>
+    <div class="book-row"><div class="book-spine" style="background:#6B2D3A; color:#F5EAE8;">📚</div><div class="book-info"><div class="book-num-small">02</div><div class="book-title-m">Anna Karénina</div><div class="book-author-m">León Tolstói</div><div class="book-tag">🇷🇺 Rusia · 1877</div></div><div class="book-right" style="background:#F5EAE8; color:var(--muted);">›</div></div>
+    <div class="book-row"><div class="book-spine" style="background:#1A1A1A; color:#F5F0E8;">📚</div><div class="book-info"><div class="book-num-small">03</div><div class="book-title-m">Crimen y castigo</div><div class="book-author-m">Dostoievski</div><div class="book-tag">🇷🇺 Rusia · 1866</div></div><div class="book-right" style="background:#F5F0E8; color:var(--muted);">›</div></div>
+    <div class="book-row"><div class="book-spine" style="background:#E8E0D0; color:#1A1A1A; border-right:1px solid var(--rule);">📚</div><div class="book-info"><div class="book-num-small">04</div><div class="book-title-m">Madame Bovary</div><div class="book-author-m">Gustave Flaubert</div><div class="book-tag">🇫🇷 Francia · 1857</div></div><div class="book-right" style="background:var(--warm); color:var(--muted);">›</div></div>
+    <div class="book-row"><div class="book-spine" style="background:#5A7A62; color:#F0F5EF;">📚</div><div class="book-info"><div class="book-num-small">05</div><div class="book-title-m">Orgullo y prejuicio</div><div class="book-author-m">Jane Austen</div><div class="book-tag">🇬🇧 Reino Unido · 1813</div></div><div class="book-right" style="background:#F0F5EF; color:var(--muted);">›</div></div>
+    <div class="book-row"><div class="book-spine" style="background:#C4735A; color:#FAF5EC;">📚</div><div class="book-info"><div class="book-num-small">06 · 🥇 Master</div><div class="book-title-m">Moby Dick</div><div class="book-author-m">Herman Melville</div><div class="book-tag">🇺🇸 EE.UU. · 1851</div></div><div class="book-right" style="background:#FAF5EC; color:var(--muted);">›</div></div>
+    <div class="book-row"><div class="book-spine" style="background:#F0EAD8; color:#1A1A1A; border-right:1px solid var(--rule);">📚</div><div class="book-info"><div class="book-num-small">07</div><div class="book-title-m">En busca del tiempo perdido</div><div class="book-author-m">Marcel Proust</div><div class="book-tag">🇫🇷 Francia · 1913</div></div><div class="book-right" style="background:var(--warm); color:var(--muted);">›</div></div>
+    <div class="book-row"><div class="book-spine" style="background:#4A5568; color:#F0EEE8;">📚</div><div class="book-info"><div class="book-num-small">08</div><div class="book-title-m">La montaña mágica</div><div class="book-author-m">Thomas Mann</div><div class="book-tag">🇩🇪 Alemania · 1924</div></div><div class="book-right" style="background:#F0EEE8; color:var(--muted);">›</div></div>
+    <div class="book-row"><div class="book-spine" style="background:#2D4A35; color:#E8F0EA;">📚</div><div class="book-info"><div class="book-num-small">09</div><div class="book-title-m">Guerra y paz</div><div class="book-author-m">León Tolstói</div><div class="book-tag">🇷🇺 Rusia · 1869</div></div><div class="book-right" style="background:#E8F0EA; color:var(--muted);">›</div></div>
+    <div class="book-row"><div class="book-spine" style="background:#2D2D2D; color:#E8E0D0;">📚</div><div class="book-info"><div class="book-num-small">10 · ✦ Legend</div><div class="book-title-m">Ulises</div><div class="book-author-m">James Joyce</div><div class="book-tag">🇮🇪 Irlanda · 1922</div></div><div class="book-right" style="background:#2D2D2D; color:#C8A030; font-weight:bold;">✦</div></div>
+  </div>
+</div>
+
+<!-- NYT (resumen) -->
+<div class="path-block" id="m-nyt">
+  <div class="path-title-row"><span class="path-icon">📰</span><span class="path-title">New York Times Best Books</span></div>
+  <p class="path-desc">Lo mejor de la ficción y no ficción contemporánea según los editores del NYT, 2023–2025.</p>
+  <div class="levels">
+    <div class="lvl"><div class="dot d-bronze"></div>Starter — 1</div>
+    <div class="lvl"><div class="dot d-silver"></div>Explorer — 3</div>
+    <div class="lvl"><div class="dot d-gold"></div>Master — 6</div>
+    <div class="lvl"><div class="dot d-legend"></div>Legend — 10</div>
+  </div>
+  <div class="book-list">
+    <div class="book-row"><div class="book-spine" style="background:#F0EAD8; color:#1A1A1A; border-right:1px solid var(--rule);">📚</div><div class="book-info"><div class="book-num-small">01 · 🥉 Starter</div><div class="book-title-m">Intermezzo</div><div class="book-author-m">Sally Rooney</div><div class="book-tag">🇮🇪 Irlanda · NYT 2024</div></div><div class="book-right" style="background:var(--warm); color:var(--muted);">›</div></div>
+    <div class="book-row"><div class="book-spine" style="background:#C8A030; color:#1A1A1A;">📚</div><div class="book-info"><div class="book-num-small">02</div><div class="book-title-m">James</div><div class="book-author-m">Percival Everett</div><div class="book-tag">🇺🇸 EE.UU. · Pulitzer 2025</div></div><div class="book-right" style="background:#C8A030; color:#1A1A1A;">›</div></div>
+    <div class="book-row"><div class="book-spine" style="background:#4A5568; color:#F0EEE8;">📚</div><div class="book-info"><div class="book-num-small">03</div><div class="book-title-m">All Fours</div><div class="book-author-m">Miranda July</div><div class="book-tag">🇺🇸 EE.UU. · NYT 2024</div></div><div class="book-right" style="background:#F0EEE8; color:var(--muted);">›</div></div>
+    <div class="book-row"><div class="book-spine" style="background:#5A7A62; color:#F0F5EF;">📚</div><div class="book-info"><div class="book-num-small">04</div><div class="book-title-m">The Women</div><div class="book-author-m">Kristin Hannah</div><div class="book-tag">🇺🇸 EE.UU. · NYT #1</div></div><div class="book-right" style="background:#F0F5EF; color:var(--muted);">›</div></div>
+    <div class="book-row"><div class="book-spine" style="background:#E8E0D0; color:#1A1A1A; border-right:1px solid var(--rule);">📚</div><div class="book-info"><div class="book-num-small">05</div><div class="book-title-m">Small Things Like These</div><div class="book-author-m">Claire Keegan</div><div class="book-tag">🇮🇪 Irlanda · NYT notable</div></div><div class="book-right" style="background:var(--warm); color:var(--muted);">›</div></div>
+    <div class="book-row"><div class="book-spine" style="background:#C4735A; color:#FAF5EC;">📚</div><div class="book-info"><div class="book-num-small">06 · 🥇 Master</div><div class="book-title-m">The God of the Woods</div><div class="book-author-m">Liz Moore</div><div class="book-tag">🇺🇸 EE.UU. · NYT 2024</div></div><div class="book-right" style="background:#FAF5EC; color:var(--muted);">›</div></div>
+    <div class="book-row"><div class="book-spine" style="background:#2D4A35; color:#E8F0EA;">📚</div><div class="book-info"><div class="book-num-small">07</div><div class="book-title-m">Sunrise on the Reaping</div><div class="book-author-m">Suzanne Collins</div><div class="book-tag">🇺🇸 EE.UU. · NYT 2025</div></div><div class="book-right" style="background:#E8F0EA; color:var(--muted);">›</div></div>
+    <div class="book-row"><div class="book-spine" style="background:#1A1A1A; color:#F5F0E8;">📚</div><div class="book-info"><div class="book-num-small">08</div><div class="book-title-m">Death Takes Me</div><div class="book-author-m">Cristina Rivera Garza</div><div class="book-tag">🇲🇽 México · Pulitzer · NYT</div></div><div class="book-right" style="background:#F5F0E8; color:var(--muted);">›</div></div>
+    <div class="book-row"><div class="book-spine" style="background:#6B5B8A; color:#F0ECF8;">📚</div><div class="book-info"><div class="book-num-small">09</div><div class="book-title-m">Heartwood</div><div class="book-author-m">Various</div><div class="book-tag">🇺🇸 NYT Best 2025</div></div><div class="book-right" style="background:#F0ECF8; color:var(--muted);">›</div></div>
+    <div class="book-row"><div class="book-spine" style="background:#6B2D3A; color:#F5EAE8;">📚</div><div class="book-info"><div class="book-num-small">10 · ✦ Legend</div><div class="book-title-m">The Anxious Generation</div><div class="book-author-m">Jonathan Haidt</div><div class="book-tag">🇺🇸 No ficción · NYT #1</div></div><div class="book-right" style="background:#6B2D3A; color:#C8A030; font-weight:bold;">✦</div></div>
+  </div>
+</div>
+
+<!-- PROFILE -->
+<div class="profile-sec" id="perfil">
+  <p class="sec-label">Mi perfil lector</p>
+  <h2 style="font-family:'Playfair Display',serif; font-size:1.8rem; font-weight:400; margin-bottom:1.5rem;">Tu historia,<br/>en un vistazo.</h2>
+  <div class="profile-card">
+    <div class="p-top">
+      <div class="avatar">📖</div>
+      <div>
+        <div class="p-name">Ana García</div>
+        <div class="p-bio">Lectora desde 2018 · Madrid</div>
+        <div class="stats">
+          <div><span class="stat-n">34</span><span class="stat-l">Libros</span></div>
+          <div><span class="stat-n">7</span><span class="stat-l">Insignias</span></div>
+          <div><span class="stat-n">5</span><span class="stat-l">Rutas</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="prog-list">
+      <div class="prog"><span class="prog-name">Premio Nobel</span><div class="bar-out"><div class="bar-in" style="width:30%"></div></div><span class="prog-val">3 / 10</span></div>
+      <div class="prog"><span class="prog-name">América Latina</span><div class="bar-out"><div class="bar-in" style="width:60%"></div></div><span class="prog-val">6 / 10</span></div>
+      <div class="prog"><span class="prog-name">Clásicos</span><div class="bar-out"><div class="bar-in" style="width:20%"></div></div><span class="prog-val">2 / 10</span></div>
+      <div class="prog"><span class="prog-name">Indie</span><div class="bar-out"><div class="bar-in" style="width:40%"></div></div><span class="prog-val">4 / 10</span></div>
+      <div class="prog"><span class="prog-name">Voces femeninas</span><div class="bar-out"><div class="bar-in" style="width:50%"></div></div><span class="prog-val">5 / 10</span></div>
+    </div>
+    <div class="badges-earned">
+      <span class="badge-chip">🥉 Nobel Starter</span>
+      <span class="badge-chip">🥈 Latino Explorer</span>
+      <span class="badge-chip">🥇 Latino Master</span>
+      <span class="badge-chip">🥉 Indie Starter</span>
+      <span class="badge-chip">🥈 Indie Explorer</span>
+      <span class="badge-chip">🥉 Voces Starter</span>
+      <span class="badge-chip">🥈 Voces Explorer</span>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<section class="cta-sec" id="beta">
+  <p class="sec-label">Beta abierta pronto</p>
+  <h2>Empieza tu primera<br/>ruta hoy.</h2>
+  <p>Únete a la lista de espera.<br/>Tú y tus libros, con recompensa.</p>
+  <a href="#" class="cta-btn">Apúntame a la beta</a>
+</section>
+
+<!-- BOTTOM NAV -->
+<nav class="bottom-nav">
+  <a href="#rutas" class="bnav-item active"><span class="bnav-icon">🗺️</span>Rutas</a>
+  <a href="#m-nobel" class="bnav-item"><span class="bnav-icon">🏅</span>Premios</a>
+  <a href="#m-indie" class="bnav-item"><span class="bnav-icon">📖</span>Indie</a>
+  <a href="#perfil" class="bnav-item"><span class="bnav-icon">👤</span>Perfil</a>
+  <a href="#beta" class="bnav-item"><span class="bnav-icon">✉️</span>Beta</a>
+</nav>
+
+</body>
+</html>
