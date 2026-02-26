@@ -144,6 +144,7 @@
     <a href="#todos">To-dos</a>
     <a href="#skills">Skills</a>
     <a href="#deals">Deals</a>
+    <a href="#routing">🗺️ Mapa de modelos</a>
   </div>
 
   <!-- MISSION -->
@@ -276,21 +277,12 @@
             <td>Hoy 12:00</td>
           </tr>
           <tr>
-            <td><strong>AI Buildout stocks 13:00</strong> <span class="pill pill-orange" style="font-size:10px">DUPLICADO</span></td>
-            <td>Diario 13:00</td>
-            <td><span class="model-badge model-sonnet">Sonnet 4.6</span></td>
-            <td>Discord #public-markets</td>
-            <td>~10k</td>
-            <td><span class="pill pill-muted">Sin historial aún</span></td>
-            <td>Hoy 13:00</td>
-          </tr>
-          <tr>
-            <td><strong>AI Buildout stocks 13:00 (weekdays)</strong> <span class="pill pill-orange" style="font-size:10px">DUPLICADO</span></td>
+            <td><strong>AI Buildout stocks 13:00</strong></td>
             <td>L-V 13:00</td>
             <td><span class="model-badge model-sonnet">Sonnet 4.6 → gpt-4.1-mini</span></td>
             <td>Discord #public-markets</td>
             <td>~15k</td>
-            <td><span class="pill pill-muted">Sin historial aún</span></td>
+            <td><span class="pill pill-green">✅ Activo (deduplicado)</span></td>
             <td>Hoy 13:00</td>
           </tr>
           <tr>
@@ -341,10 +333,13 @@
         </tbody>
       </table>
     </div>
-    <div class="warn-box">
-      ⚠️ <strong>2 crons duplicados</strong> en AI Buildout stocks 13:00 — ambos disparan al mismo canal a la misma hora. Revisar cuál conservar y desactivar el otro.
-      &nbsp;·&nbsp; ⚠️ <strong>Backup 07:00</strong> con error de entrega (announce a WhatsApp fallido). Verificar grupo destino.
+    <div class="warn-box" style="background:rgba(52,211,153,.06);border-color:rgba(52,211,153,.2);color:var(--green)">
+      ✅ Duplicado stocks resuelto (26/02) · ✅ Backup WhatsApp redirigido a número directo y verificado OK
     </div>
+
+
+
+
   </div>
 
   <!-- MODELOS Y TOKENS -->
@@ -538,6 +533,145 @@
     </div>
     <div style="margin-top:10px;font-size:12px;color:var(--muted);padding:0 4px">
       Criterio GO: spread YoC vs Exit Yield ≥ +150 bps &nbsp;·&nbsp; BORDERLINE: +100/+149 bps &nbsp;·&nbsp; NO GO: &lt;+100 bps
+    </div>
+  </div>
+
+  <!-- MODEL ROUTING MAP -->
+  <div id="routing" style="margin-bottom:16px">
+    <div class="section-label">🗺️ Mapa de razonamiento por modelo — Para dummies</div>
+
+    <!-- BILLING TRUTH -->
+    <div class="card" style="margin-bottom:12px;border-color:rgba(240,180,41,.3)">
+      <div class="card-title" style="color:var(--gold)">💡 La verdad sobre el coste — tus suscripciones SÍ cubren el uso</div>
+      <div class="grid-3" style="gap:12px">
+        <div style="background:rgba(240,180,41,.07);border:1px solid rgba(240,180,41,.2);border-radius:10px;padding:14px">
+          <div style="font-size:13px;font-weight:700;color:var(--gold);margin-bottom:6px">🟡 Claude Max · $90/mes</div>
+          <div style="font-size:12px;color:var(--muted);line-height:1.6">Incluye un <strong style="color:var(--text)">setup-token</strong> (sk-ant…) que permite usar la API de Anthropic dentro de los límites del plan. Es exactamente el token configurado como <code>anthropic:manual</code>. <strong style="color:var(--text)">Coste extra API: $0.</strong></div>
+        </div>
+        <div style="background:rgba(52,211,153,.07);border:1px solid rgba(52,211,153,.2);border-radius:10px;padding:14px">
+          <div style="font-size:13px;font-weight:700;color:var(--green);margin-bottom:6px">🟢 OpenAI Plus · $20/mes</div>
+          <div style="font-size:12px;color:var(--muted);line-height:1.6">El proveedor <code>openai-codex</code> usa <strong style="color:var(--text)">OAuth con tu cuenta de ChatGPT</strong> (no API key). GPT 5.3-codex y GPT 5.1-codex-mini corren dentro de tu suscripción Plus. <strong style="color:var(--text)">Coste extra API: $0.</strong></div>
+        </div>
+        <div style="background:rgba(74,158,255,.07);border:1px solid rgba(74,158,255,.2);border-radius:10px;padding:14px">
+          <div style="font-size:13px;font-weight:700;color:var(--blue);margin-bottom:6px">🔵 Google OAuth · edmartin8n@gmail.com</div>
+          <div style="font-size:12px;color:var(--muted);line-height:1.6">El proveedor <code>google-antigravity</code> usa tu <strong style="color:var(--text)">cuenta de Google</strong> para acceder a Claude vía Google Cloud. Fallback gratuito. <strong style="color:var(--text)">Coste extra: $0.</strong></div>
+        </div>
+      </div>
+      <div style="margin-top:12px;padding:10px 14px;background:rgba(52,211,153,.05);border-radius:8px;font-size:12px;color:var(--green);border:1px solid rgba(52,211,153,.15)">
+        ✅ <strong>Coste real de API adicional: $0/mes.</strong> Todo corre dentro de tus suscripciones existentes ($90 Claude Max + $20 OpenAI Plus = $110/mes total, sin extras).
+      </div>
+    </div>
+
+    <!-- FLOW DIAGRAM -->
+    <div class="card" style="margin-bottom:12px">
+      <div class="card-title">🔄 Flujo de decisión — ¿qué modelo uso y cuándo?</div>
+      <div style="display:flex;flex-direction:column;gap:10px">
+
+        <!-- STEP 1 -->
+        <div style="display:flex;gap:12px;align-items:flex-start">
+          <div style="min-width:28px;height:28px;border-radius:50%;background:var(--gold);color:#000;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex-shrink:0">1</div>
+          <div style="flex:1;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:12px">
+            <div style="font-weight:600;margin-bottom:4px">Primero intento: <span class="model-badge model-sonnet">Sonnet 4.6 via Claude Max</span></div>
+            <div style="font-size:12px;color:var(--muted)">Modelo principal para TODO. Conversaciones contigo, análisis de deals, crons de FIT, follow-up Ana, seguimientos, stocks. Es el más capaz y rápido. Funciona con el setup-token de Claude Max.</div>
+            <div style="font-size:11px;color:var(--green);margin-top:6px">✅ Cubre: sesión principal WhatsApp/Discord + ~10 crons diarios</div>
+          </div>
+        </div>
+
+        <!-- ARROW -->
+        <div style="text-align:center;color:var(--muted);font-size:18px;line-height:1">↓ <span style="font-size:11px">si falla (rate limit / caída)</span></div>
+
+        <!-- STEP 2 -->
+        <div style="display:flex;gap:12px;align-items:flex-start">
+          <div style="min-width:28px;height:28px;border-radius:50%;background:var(--green);color:#000;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex-shrink:0">2</div>
+          <div style="flex:1;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:12px">
+            <div style="font-weight:600;margin-bottom:4px">Fallback #1: <span class="model-badge model-gpt">GPT 5.3-codex via OpenAI Plus</span></div>
+            <div style="font-size:12px;color:var(--muted)">Se activa automáticamente si Sonnet falla. También es el modelo elegido explícitamente para los 3 refreshes de MC Global (07:30 / 13:00 / 20:00) para no saturar el cupo de Claude Max con tareas mecánicas.</div>
+            <div style="font-size:11px;color:var(--green);margin-top:6px">✅ Cubre: failover automático + MC Global refresh ×3/día</div>
+          </div>
+        </div>
+
+        <!-- ARROW -->
+        <div style="text-align:center;color:var(--muted);font-size:18px;line-height:1">↓ <span style="font-size:11px">si también falla</span></div>
+
+        <!-- STEP 3 -->
+        <div style="display:flex;gap:12px;align-items:flex-start">
+          <div style="min-width:28px;height:28px;border-radius:50%;background:var(--blue);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex-shrink:0">3</div>
+          <div style="flex:1;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:12px">
+            <div style="font-weight:600;margin-bottom:4px">Fallback #2: <span class="model-badge model-default">Claude Sonnet 4.5 via Google OAuth</span></div>
+            <div style="font-size:12px;color:var(--muted)">Último recurso. Claude corriendo sobre Google Cloud usando tu cuenta de Gmail. Menos capaz que Sonnet 4.6 pero garantiza que el sistema no se caiga nunca.</div>
+            <div style="font-size:11px;color:var(--blue);margin-top:6px">🛡️ Red de seguridad — prácticamente nunca se activa</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- USE CASE TABLE -->
+    <div class="card">
+      <div class="card-title">📋 Qué modelo usa cada tarea — tabla completa</div>
+      <div class="tbl-wrap" style="border:none">
+        <table>
+          <thead><tr><th>Tarea</th><th>Modelo elegido</th><th>Por qué</th><th>Coste real</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>Conversación contigo (WhatsApp/Discord)</td>
+              <td><span class="model-badge model-sonnet">Sonnet 4.6</span></td>
+              <td>Máxima capacidad — análisis, decisiones, contexto largo</td>
+              <td style="color:var(--gold)">Claude Max ✓</td>
+            </tr>
+            <tr>
+              <td>Análisis de deals (IC Brief, Gamma, modelo financiero)</td>
+              <td><span class="model-badge model-sonnet">Sonnet 4.6</span></td>
+              <td>Decisiones críticas — siempre el mejor disponible</td>
+              <td style="color:var(--gold)">Claude Max ✓</td>
+            </tr>
+            <tr>
+              <td>AI Buildout stocks 13:00 (brief diario)</td>
+              <td><span class="model-badge model-sonnet">Sonnet 4.6 → gpt-4.1-mini</span></td>
+              <td>Stage 1 data sweep en mini, Stage 2 decisión en Sonnet</td>
+              <td style="color:var(--gold)">Claude Max + Plus ✓</td>
+            </tr>
+            <tr>
+              <td>MC Global refresh (07:30 / 13:00 / 20:00)</td>
+              <td><span class="model-badge model-gpt">GPT 5.3-codex</span></td>
+              <td>Tarea mecánica (leer MD → reescribir HTML). No necesita Sonnet.</td>
+              <td style="color:var(--green)">OpenAI Plus ✓</td>
+            </tr>
+            <tr>
+              <td>FIT research 04:00 + FIT idea 07:00</td>
+              <td><span class="model-badge model-sonnet">Sonnet 4.6</span></td>
+              <td>Investigación ligera + redacción de mensaje</td>
+              <td style="color:var(--gold)">Claude Max ✓</td>
+            </tr>
+            <tr>
+              <td>Seguimientos / recordatorios (09:30, 14:00, 20:15)</td>
+              <td><span class="model-badge model-system">System event</span></td>
+              <td>Solo inyecta un texto en sesión — no llama al modelo</td>
+              <td style="color:var(--green)">$0 — sin LLM</td>
+            </tr>
+            <tr>
+              <td>Backup workspace 07:00</td>
+              <td><span class="model-badge model-sonnet">Sonnet 4.6</span></td>
+              <td>Ejecuta script + confirma resultado</td>
+              <td style="color:var(--gold)">Claude Max ✓</td>
+            </tr>
+            <tr>
+              <td>Follow-up Ana 20:30</td>
+              <td><span class="model-badge model-sonnet">Sonnet 4.6</span></td>
+              <td>Redacción de mensaje contextual</td>
+              <td style="color:var(--gold)">Claude Max ✓</td>
+            </tr>
+            <tr>
+              <td>Deal Scanner (pausado)</td>
+              <td><span class="model-badge model-sonnet">Sonnet 4.6</span></td>
+              <td>Análisis de emails + extracción de PDFs</td>
+              <td style="color:var(--muted)">Claude Max ✓ (cuando activo)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div style="margin-top:12px;padding:10px 14px;background:rgba(240,180,41,.05);border-radius:8px;font-size:12px;color:var(--muted);border-left:3px solid var(--gold)">
+        <strong style="color:var(--gold)">Regla de oro:</strong> Sonnet 4.6 para todo lo que requiere razonar. GPT 5.3-codex para tareas mecánicas y repetitivas (ahorra cupo de Claude Max). System events para triggers sin LLM (coste cero).
+      </div>
     </div>
   </div>
 
