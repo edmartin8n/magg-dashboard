@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mission Control Global</title>
+  <style>
+    :root{--bg:#f3ede3;--card:#fffaf1;--line:#d8ccb6;--text:#2f2a22;--muted:#7a6d5a;--gold:#a57b2a;--head:#efe3cf}
+    *{box-sizing:border-box}
+    body{margin:0;background:radial-gradient(circle at top,#f8f2e8 0,#eee5d7 45%,#e6dac8 100%);color:var(--text);font:14px/1.45 Inter,system-ui,-apple-system,sans-serif}
+    .wrap{max-width:1280px;margin:0 auto;padding:16px}
+    .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;box-shadow:0 6px 22px rgba(80,60,20,.08)}
+    h1{margin:0;font-size:24px} h2{margin:0 0 8px;color:var(--gold);font-size:16px}
+    .muted{color:var(--muted)} .pill{border:1px solid var(--line);border-radius:999px;padding:3px 8px;font-size:12px;display:inline-block;color:var(--muted);background:#f7efdf}
+    #login{position:fixed;inset:0;background:rgba(235,224,207,.9);display:flex;align-items:center;justify-content:center}
+    .login{width:320px}
+    input,button{width:100%;padding:10px;border-radius:8px;border:1px solid #c7b89c;background:#fff8eb;color:var(--text)}
+    button{margin-top:8px;background:#c89e4a;color:#fff;font-weight:700;cursor:pointer}
+
+    .table-wrap{overflow:auto;border:1px solid var(--line);border-radius:12px;margin-top:12px;background:var(--card)}
+    table{width:100%;min-width:1180px;border-collapse:collapse}
+    th,td{border:1px solid var(--line);vertical-align:top;padding:10px}
+    thead th{background:var(--head);color:#5f4a20;font-weight:700;text-align:left}
+    tbody th{background:#f6eddf;color:#6f6048;font-weight:700;width:170px}
+    ul{margin:0;padding-left:18px} li{margin:4px 0}
+    a{color:#8b6421}
+  </style>
+</head>
+<body>
+<div id="login">
+  <div class="card login">
+    <h2>🦀 Mission Control Global</h2>
+    <div class="muted" style="margin-bottom:8px">Acceso restringido</div>
+    <input id="pwd" type="password" placeholder="contraseña" onkeydown="if(event.key==='Enter')auth()"/>
+    <button onclick="auth()">Entrar</button>
+    <div id="err" style="color:#b54a3f;font-size:12px;margin-top:6px"></div>
+  </div>
+</div>
+
+<div id="app" style="display:none">
+  <div class="wrap">
+    <div class="card">
+      <h1>Mission Control Global</h1>
+      <div class="muted">Formato por columnas. Verticales arriba; objetivos, to-dos y acciones recientes debajo.</div>
+      <div style="margin-top:8px;display:flex;gap:8px;flex-wrap:wrap">
+        <span class="pill">Actualizado: 24 feb 2026 (inputs FIT incorporados)</span>
+        <span class="pill">Tema: Crudo</span>
+      </div>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Bloque</th>
+            <th>MAGG + SPV</th>
+            <th>SR Financing</th>
+            <th>Growth / Projects</th>
+            <th>Public Markets</th>
+            <th>Personal Ops</th>
+            <th>Infra / Crons</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>Objetivos</th>
+            <td><ul><li>Pipeline cualificado + ejecución rápida</li><li>Estructura repetible con downside protegido</li></ul></td>
+            <td><ul><li>Optimizar estructura de deuda (coste + flexibilidad)</li><li>Mejorar relación y funnel con lenders</li></ul></td>
+            <td><ul><li>Elegir 1 frente de ejecución a 14 días</li><li>Definir entrada Dubai sin capital</li></ul></td>
+            <td><ul><li>Marco de riesgo y mandato</li><li>Tesis documentadas por valor</li></ul></td>
+            <td><ul><li>Estar en forma + ganar masa muscular</li><li>Plan de impacto al 1 de mayo</li></ul></td>
+            <td><ul><li>Automatizar sin saturar</li><li>Reducir errores rate_limit/auth</li></ul></td>
+          </tr>
+          <tr>
+            <th>To-dos (sistema)</th>
+            <td><ul><li>Mandato originación 2026 cerrado</li><li>Mini IC 1-pager estándar en <24h por deal</li><li>Checklist DD temprana (licencia/capex/cronograma)</li></ul></td>
+            <td><ul><li>Mapa bancos/fondos por tipo de activo</li><li>Checklist covenants + preguntas estándar</li></ul></td>
+            <td><ul><li>Mandato JV/management/franquicia</li><li>Shortlist 3-5 partners locales</li></ul></td>
+            <td><ul><li>Plantilla tesis (entrada/invalidación)</li><li>Cadencia semanal + mensual</li></ul></td>
+            <td><ul><li>Marcador FIT diario (entreno/comida/suplementos/pasos)</li><li>4 sesiones/semana (3 fuerza + 1 HIIT)</li><li>Proteína objetivo 120-140g/día + ajuste por comida</li></ul></td>
+            <td><ul><li>Fase 1: scanner + backup</li><li>Fase 2: Notion sync cada 8h</li></ul></td>
+          </tr>
+          <tr>
+            <th>Accionables corto plazo</th>
+            <td><ul><li>☐ Revisar 1 lead nuevo hoy</li><li>☐ Cerrar hard filters GO/BORDERLINE/NO GO</li><li>☐ KPI semanal: deals nuevos + %miniIC<24h</li></ul></td>
+            <td><ul><li>☐ Lista top-5 lenders por prioridad</li><li>☐ Mandar 1 email de contacto hoy</li></ul></td>
+            <td><ul><li>☐ Elegir frente único de 14 días</li><li>☐ 1 llamada con partner potencial esta semana</li></ul></td>
+            <td><ul><li>☐ Definir límites de riesgo (1 hoja)</li><li>☐ Actualizar 1 tesis clave hoy</li></ul></td>
+            <td><ul><li>☑ Gym/entreno hoy (objetivo semanal: 3 fuerza + 1 HIIT)</li><li>⚠️ Si proteína <120g: meter cena alta en proteína</li><li>☐ Reportar cada comida para ajuste nutricional diario</li><li>☐ Suplementos AM tomados (recordatorio 07:50)</li></ul></td>
+            <td><ul><li>☐ Reactivar backup diario</li><li>☐ Verificar 1 cron crítico sin error</li></ul></td>
+          </tr>
+          <tr>
+            <th>Acciones recientes</th>
+            <td><ul><li>Deal Granada procesado (mini IC + email + pipeline)</li><li>Hub global separado de MAGG dashboard</li></ul></td>
+            <td><ul><li>Nueva vertical creada en Mission Control</li></ul></td>
+            <td><ul><li>Topic incorporado al hub global</li></ul></td>
+            <td><ul><li>Vertical integrada en MC global</li></ul></td>
+            <td><ul><li>Peso base registrado: 70.5 kg</li><li>Recordatorio suplementos diario 07:50 activo</li><li>Seguimiento nutricional por comida activado</li><li>Cron 04:00 investigación FIT ligera + idea 07:00 ([Fit])</li></ul></td>
+            <td><ul><li>Reenganche Notion completado</li><li>IDs de bloques corregidos</li></ul></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card" style="margin-top:12px">
+      <h2>Links</h2>
+      <ul>
+        <li><a href="https://www.notion.so/Mission-Control-Tenacitas-30e4dab7dc4181c8aac7e510718c2f69" target="_blank">Notion Mission Control</a></li>
+        <li><a href="https://edmartin8n.github.io/magg-dashboard/" target="_blank">CRM MAGG</a></li>
+      </ul>
+    </div>
+
+    <div class="card" style="margin-top:12px">
+      <h2>Resumen crons (actual)</h2>
+      <ul>
+        <li>Activo: Follow-up Ana (20:30 diario)</li>
+        <li>Pausados: Deal Scanner, Morning Brief, IC Insight, Notion Sync, Dashboard Refresh, Backup y otros</li>
+        <li>Plan reactivación: Fase 1 (Deal Scanner + Backup), Fase 2 (Notion Sync)</li>
+      </ul>
+    </div>
+
+    <div class="card" style="margin-top:12px">
+      <h2>Heartbeat (qué está vigilando)</h2>
+      <ul>
+        <li>Gmail check 2-3x/día (08:00-22:00)</li>
+        <li>Mission Control check 1x/día (mediodía)</li>
+        <li>CRM/Pipeline check 1x/día (mediodía)</li>
+        <li>Tarea nocturna autónoma (22:00-07:00): ejecutar 1 tarea no bloqueante</li>
+      </ul>
+    </div>
+
+    <div class="card" style="margin-top:12px">
+      <h2>Skills instaladas (catálogo operativo)</h2>
+      <ul>
+        <li>coding-agent</li>
+        <li>healthcheck</li>
+        <li>himalaya</li>
+        <li>openai-image-gen</li>
+        <li>openai-whisper-api</li>
+        <li>skill-creator</li>
+        <li>summarize</li>
+        <li>weather</li>
+        <li>last30days</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<script>
+const PASS='ctrl2026';
+function auth(){
+  if(document.getElementById('pwd').value===PASS){
+    document.getElementById('login').style.display='none';
+    document.getElementById('app').style.display='block';
+  } else document.getElementById('err').textContent='Contraseña incorrecta';
+}
+</script>
+</body>
+</html>
