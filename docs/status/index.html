@@ -139,8 +139,8 @@
   <div class="section-nav">
     <a href="#mission">Misión</a>
     <a href="#stats">Stats</a>
-    <a href="#cupo">📊 Cupo</a>
     <a href="#crons">Crons</a>
+    <a href="#cupo">📊 Cupo</a>
     <a href="#models">Modelos</a>
     <a href="#jerarquia">⚡ Jerarquía</a>
     <a href="#todos">To-dos</a>
@@ -158,7 +158,7 @@
     <div class="grid-4" style="margin-top:12px">
       <div class="card" style="padding:14px">
         <div class="card-title">🏗️ Inversión inmobiliaria</div>
-        <div style="font-size:13px;color:var(--muted)">MAGG Capital — originar y cerrar oportunidades value-add. Estructurar deuda, SPV/club deal con SmartRental. Fundraising FO/HNW/fondos.</div>
+        <div style="font-size:13px;color:var(--muted)">MAGG Capital — originar y cerrar oportunidades value-add. Estructurar deuda, SPV/club deal con SmartRental. Fundraising FO/HNW/fondos. <strong style="color:var(--gold)">+ Mejorar governance del fondo</strong> (estructura, procesos, reporting).</div>
       </div>
       <div class="card" style="padding:14px">
         <div class="card-title">🚀 Desarrollo profesional</div>
@@ -178,102 +178,38 @@
   <!-- STATS -->
   <div id="stats" style="margin-bottom:16px">
     <div class="section-label">📊 Snapshot del sistema</div>
-    <div class="grid-4">
-      <div class="stat-box">
-        <div class="stat-val" style="color:var(--green)">12</div>
-        <div class="stat-label">Crons activos</div>
-        <div class="stat-sub">1 one-shot hoy · 1 con error</div>
-      </div>
-      <div class="stat-box">
-        <div class="stat-val" style="color:var(--gold)">6</div>
-        <div class="stat-label">Deals analizados 2026</div>
-        <div class="stat-sub">1 BORDERLINE · 5 NO GO</div>
-      </div>
-      <div class="stat-box">
-        <div class="stat-val" style="color:var(--blue)">~65k</div>
-        <div class="stat-label">Tokens/día estimado</div>
-        <div class="stat-sub">Sonnet 4.6 + GPT 5.3-codex</div>
-      </div>
-      <div class="stat-box">
-        <div class="stat-val" style="color:var(--purple)">99%</div>
-        <div class="stat-label">Cache hit rate</div>
-        <div class="stat-sub">523k tokens cacheados hoy</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- CUPO SEMANAL -->
-  <div id="cupo" style="margin-bottom:16px">
-    <div class="section-label">📊 Cupo semanal Claude Max — Estado actual</div>
-    <div class="card" style="border-color:rgba(248,113,113,.25)">
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:8px">
-        <div class="card-title" style="margin-bottom:0">Datos capturados: jue 26/02 · ~11:45 (desde restablecimiento de ayer)</div>
-        <span class="pill pill-orange">⚠️ Sonnet es el cuello de botella</span>
-      </div>
-
-      <!-- BARRAS -->
-      <div style="display:flex;flex-direction:column;gap:16px">
-
-        <!-- SESIÓN ACTUAL -->
-        <div>
-          <div style="display:flex;justify-content:space-between;margin-bottom:6px;font-size:13px">
-            <span><strong>Sesión actual</strong> <span style="color:var(--muted);font-size:11px">(se restablece cada ~5h)</span></span>
-            <span style="font-weight:700;color:var(--orange)">18% usado</span>
-          </div>
-          <div class="progress-bar" style="height:10px">
-            <div class="progress-fill" style="width:18%;background:var(--orange)"></div>
-          </div>
-          <div style="font-size:11px;color:var(--muted);margin-top:4px">Se restablecía en 2h 56min al capturar · No es bloqueante salvo en conversaciones muy largas</div>
+    <div class="card" style="padding:10px 16px">
+      <div style="display:flex;gap:0;flex-wrap:wrap;align-items:stretch">
+        <div style="flex:1;min-width:140px;padding:10px 16px;border-right:1px solid var(--border);text-align:center">
+          <div style="font-size:22px;font-weight:700;color:var(--green)">12</div>
+          <div style="font-size:11px;color:var(--muted);margin-top:2px">Crons activos</div>
+          <div style="font-size:10px;color:var(--muted);margin-top:2px">1 one-shot · todos OK</div>
         </div>
-
-        <!-- TODOS LOS MODELOS SEMANAL -->
-        <div>
-          <div style="display:flex;justify-content:space-between;margin-bottom:6px;font-size:13px">
-            <span><strong>Semanal — Todos los modelos</strong> <span style="color:var(--muted);font-size:11px">(reset mié 04/03 · 8:59)</span></span>
-            <span style="font-weight:700;color:var(--green)">7% usado · 93% libre</span>
-          </div>
-          <div class="progress-bar" style="height:10px">
-            <div class="progress-fill" style="width:7%;background:var(--green)"></div>
-          </div>
-          <div style="font-size:11px;color:var(--muted);margin-top:4px">~6.2%/día proyectado → 37% total en semana · Sin riesgo. GPT 5.3-codex + system events no computan aquí.</div>
+        <div style="flex:1;min-width:140px;padding:10px 16px;border-right:1px solid var(--border);text-align:center">
+          <div style="font-size:22px;font-weight:700;color:var(--gold)">6</div>
+          <div style="font-size:11px;color:var(--muted);margin-top:2px">Deals 2026</div>
+          <div style="font-size:10px;color:var(--muted);margin-top:2px">1 BORDERLINE · 5 NO GO</div>
         </div>
-
-        <!-- SOLO SONNET SEMANAL -->
-        <div>
-          <div style="display:flex;justify-content:space-between;margin-bottom:6px;font-size:13px">
-            <span><strong>Semanal — Solo Sonnet 4.6</strong> <span style="color:var(--muted);font-size:11px">(reset mié 04/03 · 19:00 · plazo: 5.3 días)</span></span>
-            <span style="font-weight:700;color:var(--orange)">11% usado · 89% libre</span>
-          </div>
-          <div class="progress-bar" style="height:10px">
-            <div class="progress-fill" style="width:11%;background:var(--orange)"></div>
-          </div>
-          <div style="font-size:11px;color:var(--muted);margin-top:4px">Consumido en ~16h (desde ayer 19:00). Incluye día muy intenso (Discord, memos Rossio, conversación larga). Proyección si ritmo se mantiene: ~98% → roza el límite.</div>
+        <div style="flex:1;min-width:140px;padding:10px 16px;border-right:1px solid var(--border);text-align:center">
+          <div style="font-size:22px;font-weight:700;color:var(--blue)">~41k</div>
+          <div style="font-size:11px;color:var(--muted);margin-top:2px">Tokens Sonnet/día</div>
+          <div style="font-size:10px;color:var(--muted);margin-top:2px">GPT cubre el resto</div>
         </div>
-      </div>
-
-      <!-- ANÁLISIS -->
-      <div style="margin-top:16px;display:grid;grid-template-columns:1fr 1fr;gap:10px">
-        <div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:12px">
-          <div style="font-size:12px;font-weight:700;color:var(--gold);margin-bottom:6px">📅 Proyección semana completa</div>
-          <div style="font-size:12px;color:var(--muted);line-height:1.7">
-            Día intenso (como ayer): <strong style="color:var(--red)">~16%/día → límite en 6 días</strong><br>
-            Día normal (solo crons): <strong style="color:var(--green)">~3-5%/día → 21-35% total, sin problema</strong><br>
-            La semana pasada se agotó en ~3 días → consumo medio ~33%/día → era uso muy pesado.
-          </div>
+        <div style="flex:1;min-width:140px;padding:10px 16px;border-right:1px solid var(--border);text-align:center">
+          <div style="font-size:22px;font-weight:700;color:var(--purple)">99%</div>
+          <div style="font-size:11px;color:var(--muted);margin-top:2px">Cache hit</div>
+          <div style="font-size:10px;color:var(--muted);margin-top:2px">523k tokens cacheados</div>
         </div>
-        <div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:12px">
-          <div style="font-size:12px;font-weight:700;color:var(--green);margin-bottom:6px">🛡️ Mitigaciones ya activas</div>
-          <div style="font-size:12px;color:var(--muted);line-height:1.7">
-            ✅ MC Global refresh → <strong style="color:var(--text)">GPT 5.3-codex</strong> (ahorra ~24k Sonnet/día)<br>
-            ✅ Stocks Stage 1 → <strong style="color:var(--text)">gpt-4.1-mini</strong><br>
-            ✅ Seguimientos → <strong style="color:var(--text)">system events</strong> (sin LLM)<br>
-            ⚠️ Pendiente: mover FIT research + Backup a GPT (ahorra ~10k Sonnet/día más)
-          </div>
+        <div style="flex:1;min-width:140px;padding:10px 16px;border-right:1px solid var(--border);text-align:center">
+          <div style="font-size:22px;font-weight:700;color:var(--orange)">11%</div>
+          <div style="font-size:11px;color:var(--muted);margin-top:2px">Cupo Sonnet usado</div>
+          <div style="font-size:10px;color:var(--muted);margin-top:2px">89% libre · reset mié</div>
         </div>
-      </div>
-
-      <div style="margin-top:10px;padding:10px 14px;background:rgba(248,113,113,.06);border:1px solid rgba(248,113,113,.2);border-radius:8px;font-size:12px;color:var(--red)">
-        ⚠️ <strong>Acción recomendada:</strong> Si hay un día de análisis intenso de deal (IC Brief, modelo financiero, mucha conversación), redirigir FIT research y Backup a GPT 5.3-codex para liberar cupo Sonnet. Lo puedo hacer con 1 comando.
+        <div style="flex:1;min-width:140px;padding:10px 16px;text-align:center">
+          <div style="font-size:22px;font-weight:700;color:var(--teal)">3</div>
+          <div style="font-size:11px;color:var(--muted);margin-top:2px">Modelos activos</div>
+          <div style="font-size:10px;color:var(--muted);margin-top:2px">Sonnet · Codex · Mini</div>
+        </div>
       </div>
     </div>
   </div>
@@ -424,6 +360,82 @@
 
   </div>
 
+  <!-- CUPO SEMANAL -->
+  <div id="cupo" style="margin-bottom:16px">
+    <div class="section-label">📊 Cupo semanal Claude Max — Estado actual</div>
+    <div class="card" style="border-color:rgba(248,113,113,.25)">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:8px">
+        <div class="card-title" style="margin-bottom:0">Datos capturados: jue 26/02 · ~11:45 (desde restablecimiento de ayer)</div>
+        <span class="pill pill-orange">⚠️ Sonnet es el cuello de botella</span>
+      </div>
+
+      <!-- BARRAS -->
+      <div style="display:flex;flex-direction:column;gap:16px">
+
+        <!-- SESIÓN ACTUAL -->
+        <div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:6px;font-size:13px">
+            <span><strong>Sesión actual</strong> <span style="color:var(--muted);font-size:11px">(se restablece cada ~5h)</span></span>
+            <span style="font-weight:700;color:var(--orange)">18% usado</span>
+          </div>
+          <div class="progress-bar" style="height:10px">
+            <div class="progress-fill" style="width:18%;background:var(--orange)"></div>
+          </div>
+          <div style="font-size:11px;color:var(--muted);margin-top:4px">Se restablecía en 2h 56min al capturar · No es bloqueante salvo en conversaciones muy largas</div>
+        </div>
+
+        <!-- TODOS LOS MODELOS SEMANAL -->
+        <div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:6px;font-size:13px">
+            <span><strong>Semanal — Todos los modelos</strong> <span style="color:var(--muted);font-size:11px">(reset mié 04/03 · 8:59)</span></span>
+            <span style="font-weight:700;color:var(--green)">7% usado · 93% libre</span>
+          </div>
+          <div class="progress-bar" style="height:10px">
+            <div class="progress-fill" style="width:7%;background:var(--green)"></div>
+          </div>
+          <div style="font-size:11px;color:var(--muted);margin-top:4px">~6.2%/día proyectado → 37% total en semana · Sin riesgo. GPT 5.3-codex + system events no computan aquí.</div>
+        </div>
+
+        <!-- SOLO SONNET SEMANAL -->
+        <div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:6px;font-size:13px">
+            <span><strong>Semanal — Solo Sonnet 4.6</strong> <span style="color:var(--muted);font-size:11px">(reset mié 04/03 · 19:00 · plazo: 5.3 días)</span></span>
+            <span style="font-weight:700;color:var(--orange)">11% usado · 89% libre</span>
+          </div>
+          <div class="progress-bar" style="height:10px">
+            <div class="progress-fill" style="width:11%;background:var(--orange)"></div>
+          </div>
+          <div style="font-size:11px;color:var(--muted);margin-top:4px">Consumido en ~16h (desde ayer 19:00). Incluye día muy intenso (Discord, memos Rossio, conversación larga). Proyección si ritmo se mantiene: ~98% → roza el límite.</div>
+        </div>
+      </div>
+
+      <!-- ANÁLISIS -->
+      <div style="margin-top:16px;display:grid;grid-template-columns:1fr 1fr;gap:10px">
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:12px">
+          <div style="font-size:12px;font-weight:700;color:var(--gold);margin-bottom:6px">📅 Proyección semana completa</div>
+          <div style="font-size:12px;color:var(--muted);line-height:1.7">
+            Día intenso (como ayer): <strong style="color:var(--red)">~16%/día → límite en 6 días</strong><br>
+            Día normal (solo crons): <strong style="color:var(--green)">~3-5%/día → 21-35% total, sin problema</strong><br>
+            La semana pasada se agotó en ~3 días → consumo medio ~33%/día → era uso muy pesado.
+          </div>
+        </div>
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:12px">
+          <div style="font-size:12px;font-weight:700;color:var(--green);margin-bottom:6px">🛡️ Mitigaciones ya activas</div>
+          <div style="font-size:12px;color:var(--muted);line-height:1.7">
+            ✅ MC Global refresh → <strong style="color:var(--text)">GPT 5.3-codex</strong> (ahorra ~24k Sonnet/día)<br>
+            ✅ Stocks Stage 1 → <strong style="color:var(--text)">gpt-4.1-mini</strong><br>
+            ✅ Seguimientos → <strong style="color:var(--text)">system events</strong> (sin LLM)<br>
+            ⚠️ Pendiente: mover FIT research + Backup a GPT (ahorra ~10k Sonnet/día más)
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:10px;padding:10px 14px;background:rgba(248,113,113,.06);border:1px solid rgba(248,113,113,.2);border-radius:8px;font-size:12px;color:var(--red)">
+        ⚠️ <strong>Acción recomendada:</strong> Si hay un día de análisis intenso de deal (IC Brief, modelo financiero, mucha conversación), redirigir FIT research y Backup a GPT 5.3-codex para liberar cupo Sonnet. Lo puedo hacer con 1 comando.
+      </div>
+    </div>
+  </div>
+
   <!-- MODELOS Y TOKENS -->
   <div id="models" style="margin-bottom:16px">
     <div class="section-label">🧠 Modelos en uso · Estimación de consumo</div>
@@ -559,10 +571,10 @@
       <div class="card">
         <div class="card-title">🟡 Media prioridad</div>
         <ul class="todo-list">
-          <li><div class="todo-dot dot-orange"></div><div><strong>Cerrar plan fitness</strong> — Métricas semanales + horario realista. Próxima medición cintura: lunes 02/03.</div></li>
-          <li><div class="todo-dot dot-orange"></div><div><strong>Resolver duplicado crons stocks 13:00</strong> — Dos crons disparan al mismo canal a la misma hora. Decidir cuál conservar.</div></li>
-          <li><div class="todo-dot dot-orange"></div><div><strong>Reparar backup 07:00</strong> — Error en announce delivery a WhatsApp. Verificar grupo destino correcto.</div></li>
+          <li><div class="todo-dot dot-orange"></div><div><strong>Pipeline MAGG</strong> — Reactivar Deal Scanner en modo seguro (cada 4h). KPI semanal: deals nuevos + % mini IC &lt;24h.</div></li>
+          <li><div class="todo-dot dot-orange"></div><div><strong>Governance MAGG Capital</strong> — Revisar estructura del fondo, procesos y reporting. <span class="pill pill-gold" style="margin-left:4px">⏰ Hoy 13:30</span></div></li>
           <li><div class="todo-dot dot-orange"></div><div><strong>Frente Dubai</strong> — Elegir 1 frente único de 14 días (JV / management / franquicia) con owner + fecha.</div></li>
+          <li><div class="todo-dot dot-orange"></div><div><strong>Cerrar plan fitness</strong> — Métricas semanales + horario realista. Próxima medición cintura: lunes 02/03.</div></li>
           <li><div class="todo-dot dot-gold"></div><div><strong>Revisar tesis Alibaba</strong> — Actualizar trigger de entrada e invalidación en plantilla.</div></li>
           <li><div class="todo-dot dot-muted"></div><div><strong>MAGG Dashboard revamp</strong> — Pendiente para cuando el pipeline esté actualizado y Rossio cerrado.</div></li>
         </ul>
