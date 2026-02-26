@@ -142,6 +142,7 @@
     <a href="#cupo">📊 Cupo</a>
     <a href="#crons">Crons</a>
     <a href="#models">Modelos</a>
+    <a href="#jerarquia">⚡ Jerarquía</a>
     <a href="#todos">To-dos</a>
     <a href="#skills">Skills</a>
     <a href="#deals">Deals</a>
@@ -485,6 +486,56 @@
             <div style="font-size:11px;color:var(--muted);margin-top:4px">Cache hit rate actual: <strong style="color:var(--green)">99%</strong> — solo 2.8k tokens "new" hoy en sesión principal (523k cacheados). Los crons aislados no comparten caché.</div>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JERARQUÍA DE MODELOS -->
+  <div id="jerarquia" style="margin-bottom:16px">
+    <div class="section-label">⚡ Jerarquía de modelos — Regla de eficiencia</div>
+    <div class="card">
+      <div class="card-title">Qué modelo usa cada tipo de tarea (actualizado 26/02)</div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+
+        <div style="display:flex;align-items:center;gap:12px;padding:12px;background:rgba(122,133,160,.07);border:1px solid var(--border);border-radius:8px">
+          <div style="font-size:22px">⚪</div>
+          <div style="flex:1">
+            <div style="font-size:13px;font-weight:700;color:var(--muted)">Sin modelo — System events <span style="font-weight:400;font-size:11px">(coste: $0)</span></div>
+            <div style="font-size:12px;color:var(--muted);margin-top:2px">Seguimiento 09:30 · Seguimiento 14:00 · Seguimiento 20:15 · Recordatorio suplementos</div>
+            <div style="font-size:11px;color:var(--muted);margin-top:4px;font-style:italic">Solo inyectan un texto en sesión. No llaman a ningún LLM.</div>
+          </div>
+        </div>
+
+        <div style="display:flex;align-items:center;gap:12px;padding:12px;background:rgba(74,158,255,.06);border:1px solid rgba(74,158,255,.2);border-radius:8px">
+          <div style="font-size:22px">🔵</div>
+          <div style="flex:1">
+            <div style="font-size:13px;font-weight:700;color:var(--blue)">openai-codex/gpt-5.1-codex-mini — Tareas ligeras <span style="font-weight:400;font-size:11px">(Plus OAuth · sin coste extra)</span></div>
+            <div style="font-size:12px;color:var(--muted);margin-top:2px">FIT idea 07:00 (WhatsApp) · Backup workspace 07:00 · Check-in JJ+Vaca L-V 12:00</div>
+            <div style="font-size:11px;color:var(--muted);margin-top:4px;font-style:italic">Mensajes cortos, entregas mecánicas, confirmaciones. No requiere razonamiento profundo.</div>
+          </div>
+        </div>
+
+        <div style="display:flex;align-items:center;gap:12px;padding:12px;background:rgba(52,211,153,.06);border:1px solid rgba(52,211,153,.2);border-radius:8px">
+          <div style="font-size:22px">🟢</div>
+          <div style="flex:1">
+            <div style="font-size:13px;font-weight:700;color:var(--green)">openai-codex/gpt-5.3-codex — Tareas medias <span style="font-weight:400;font-size:11px">(Plus OAuth · sin coste extra)</span></div>
+            <div style="font-size:12px;color:var(--muted);margin-top:2px">FIT research 04:00 · MC Global refresh 07:30 · MC Global refresh 13:00 · MC Global refresh 20:00</div>
+            <div style="font-size:11px;color:var(--muted);margin-top:4px;font-style:italic">Investigación ligera, reescritura de HTML, tareas que necesitan algo de criterio pero no decisión crítica.</div>
+          </div>
+        </div>
+
+        <div style="display:flex;align-items:center;gap:12px;padding:12px;background:rgba(240,180,41,.06);border:1px solid rgba(240,180,41,.25);border-radius:8px">
+          <div style="font-size:22px">🟡</div>
+          <div style="flex:1">
+            <div style="font-size:13px;font-weight:700;color:var(--gold)">anthropic/claude-sonnet-4-6 — Razonamiento y decisiones <span style="font-weight:400;font-size:11px">(Claude Max · cupo semanal)</span></div>
+            <div style="font-size:12px;color:var(--muted);margin-top:2px">Conversación con Eduardo · Análisis de deals (IC Brief, modelo financiero) · AI Buildout stocks Stage 2 · Cualquier tarea con riesgo real</div>
+            <div style="font-size:11px;color:var(--orange);margin-top:4px;font-style:italic">⚠️ Recurso limitado — reservar para donde el razonamiento importa. Cupo semanal compartido con claude.ai.</div>
+          </div>
+        </div>
+
+      </div>
+      <div style="margin-top:12px;padding:10px 14px;background:rgba(240,180,41,.05);border-radius:8px;font-size:12px;color:var(--muted);border-left:3px solid var(--gold)">
+        <strong style="color:var(--gold)">Regla de eficiencia:</strong> El modelo más caro (Sonnet) solo cuando hay decisión real o riesgo. Todo lo mecánico y recurrente → GPT dentro de la suscripción Plus, sin tocar el cupo de Claude Max.
       </div>
     </div>
   </div>
