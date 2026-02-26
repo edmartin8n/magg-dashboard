@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Tenacitas — Status</title>
+  <style>
+    :root{
+      --bg:#0f1117;--surface:#181c27;--border:#262d3d;--text:#e8eaf0;--muted:#7a85a0;
+      --gold:#f0b429;--blue:#4a9eff;--green:#34d399;--red:#f87171;--orange:#fb923c;
+      --purple:#a78bfa;--teal:#2dd4bf;--pink:#f472b6;
+      --card:#1e2334;--head:#232940
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{background:var(--bg);color:var(--text);font:14px/1.5 'Inter',system-ui,-apple-system,sans-serif;min-height:100vh}
+    a{color:var(--blue);text-decoration:none} a:hover{text-decoration:underline}
+
+    /* LOGIN */
+    #login{position:fixed;inset:0;background:rgba(15,17,23,.95);display:flex;align-items:center;justify-content:center;z-index:99}
+    .login-box{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:32px;width:320px;text-align:center}
+    .login-box h2{font-size:20px;margin-bottom:4px}
+    .login-box p{color:var(--muted);font-size:13px;margin-bottom:20px}
+    .login-box input{width:100%;padding:10px 14px;background:var(--surface);border:1px solid var(--border);border-radius:8px;color:var(--text);font-size:14px;outline:none;margin-bottom:10px}
+    .login-box input:focus{border-color:var(--blue)}
+    .login-box button{width:100%;padding:10px;background:var(--blue);color:#fff;border:none;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer}
+    .login-box button:hover{opacity:.9}
+    #login-err{color:var(--red);font-size:12px;margin-top:8px;min-height:18px}
+
+    /* LAYOUT */
+    .wrap{max-width:1400px;margin:0 auto;padding:24px 20px}
+    .page-header{margin-bottom:24px}
+    .page-header h1{font-size:26px;font-weight:700;display:flex;align-items:center;gap:10px}
+    .page-header .sub{color:var(--muted);font-size:13px;margin-top:6px;display:flex;gap:16px;flex-wrap:wrap;align-items:center}
+
+    /* CARDS */
+    .card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin-bottom:16px}
+    .card-title{font-size:13px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    .grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
+    .grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+    @media(max-width:900px){.grid-2,.grid-3,.grid-4{grid-template-columns:1fr}}
+
+    /* PILLS & BADGES */
+    .pill{display:inline-flex;align-items:center;gap:4px;border-radius:999px;padding:2px 10px;font-size:11px;font-weight:600;white-space:nowrap}
+    .pill-green{background:rgba(52,211,153,.15);color:var(--green);border:1px solid rgba(52,211,153,.3)}
+    .pill-red{background:rgba(248,113,113,.15);color:var(--red);border:1px solid rgba(248,113,113,.3)}
+    .pill-orange{background:rgba(251,146,60,.15);color:var(--orange);border:1px solid rgba(251,146,60,.3)}
+    .pill-blue{background:rgba(74,158,255,.15);color:var(--blue);border:1px solid rgba(74,158,255,.3)}
+    .pill-purple{background:rgba(167,139,250,.15);color:var(--purple);border:1px solid rgba(167,139,250,.3)}
+    .pill-gold{background:rgba(240,180,41,.15);color:var(--gold);border:1px solid rgba(240,180,41,.3)}
+    .pill-muted{background:rgba(122,133,160,.12);color:var(--muted);border:1px solid rgba(122,133,160,.2)}
+    .pill-teal{background:rgba(45,212,191,.15);color:var(--teal);border:1px solid rgba(45,212,191,.3)}
+
+    /* MODEL BADGE */
+    .model-badge{display:inline-flex;align-items:center;gap:5px;padding:3px 8px;border-radius:6px;font-size:11px;font-weight:600}
+    .model-sonnet{background:rgba(240,180,41,.12);color:var(--gold)}
+    .model-gpt{background:rgba(52,211,153,.12);color:var(--green)}
+    .model-system{background:rgba(122,133,160,.12);color:var(--muted)}
+    .model-default{background:rgba(74,158,255,.1);color:var(--blue)}
+
+    /* STAT BOX */
+    .stat-box{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px}
+    .stat-val{font-size:28px;font-weight:700;line-height:1.1}
+    .stat-label{color:var(--muted);font-size:12px;margin-top:4px}
+    .stat-sub{font-size:11px;color:var(--muted);margin-top:6px;padding-top:6px;border-top:1px solid var(--border)}
+
+    /* TABLE */
+    .tbl-wrap{overflow-x:auto;border-radius:10px;border:1px solid var(--border)}
+    table{width:100%;border-collapse:collapse;min-width:700px}
+    thead th{background:var(--head);padding:10px 14px;text-align:left;font-size:12px;color:var(--muted);font-weight:600;border-bottom:1px solid var(--border)}
+    tbody td{padding:10px 14px;border-bottom:1px solid rgba(38,45,61,.6);font-size:13px;vertical-align:middle}
+    tbody tr:last-child td{border-bottom:none}
+    tbody tr:hover td{background:rgba(255,255,255,.02)}
+
+    /* TODO LIST */
+    .todo-list{list-style:none}
+    .todo-list li{padding:7px 0;border-bottom:1px solid rgba(38,45,61,.5);display:flex;gap:10px;align-items:flex-start;font-size:13px}
+    .todo-list li:last-child{border-bottom:none}
+    .todo-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;margin-top:4px}
+    .dot-red{background:var(--red)}
+    .dot-orange{background:var(--orange)}
+    .dot-gold{background:var(--gold)}
+    .dot-muted{background:var(--muted)}
+
+    /* MISSION */
+    .mission-text{font-size:17px;font-weight:600;color:var(--text);line-height:1.5;padding:16px;background:rgba(240,180,41,.06);border:1px solid rgba(240,180,41,.2);border-radius:10px;border-left:3px solid var(--gold)}
+
+    /* PROGRESS BAR */
+    .progress-bar{height:6px;background:rgba(255,255,255,.08);border-radius:3px;overflow:hidden;margin-top:8px}
+    .progress-fill{height:100%;border-radius:3px}
+
+    /* SECTION NAV */
+    .section-nav{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
+    .section-nav a{padding:6px 14px;border-radius:8px;font-size:13px;font-weight:500;background:var(--surface);border:1px solid var(--border);color:var(--muted);text-decoration:none;transition:.15s}
+    .section-nav a:hover{border-color:var(--blue);color:var(--blue)}
+
+    /* DIVIDER */
+    .section-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);padding:0 0 10px;display:flex;align-items:center;gap:10px}
+    .section-label::after{content:'';flex:1;height:1px;background:var(--border)}
+
+    .dot-pulse{width:8px;height:8px;border-radius:50%;background:var(--green);display:inline-block;animation:pulse 2s infinite}
+    @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+
+    .warn-box{background:rgba(251,146,60,.08);border:1px solid rgba(251,146,60,.25);border-radius:8px;padding:10px 14px;font-size:12px;color:var(--orange);margin-top:8px}
+  </style>
+</head>
+<body>
+
+<div id="login">
+  <div class="login-box">
+    <div style="font-size:32px;margin-bottom:12px">🦀</div>
+    <h2>Tenacitas Status</h2>
+    <p>Panel de control · Acceso restringido</p>
+    <input id="pwd" type="password" placeholder="Contraseña" onkeydown="if(event.key==='Enter')auth()"/>
+    <button onclick="auth()">Acceder</button>
+    <div id="login-err"></div>
+  </div>
+</div>
+
+<div id="app" style="display:none">
+<div class="wrap">
+
+  <!-- HEADER -->
+  <div class="page-header">
+    <h1>🦀 Tenacitas — Status Dashboard</h1>
+    <div class="sub">
+      <span><span class="dot-pulse"></span> Sistema operativo</span>
+      <span style="color:var(--border)">|</span>
+      <span>Actualizado: <strong>26 feb 2026 · 11:40</strong></span>
+      <span style="color:var(--border)">|</span>
+      <span>Modelo principal: <span class="model-badge model-sonnet">✦ Sonnet 4.6</span></span>
+      <span style="color:var(--border)">|</span>
+      <a href="https://www.notion.so/Mission-Control-Tenacitas-30e4dab7dc4181c8aac7e510718c2f69" target="_blank">Notion MC</a>
+      <span>·</span>
+      <a href="../mission-control-global/index.html" target="_blank">MC Visual</a>
+    </div>
+  </div>
+
+  <div class="section-nav">
+    <a href="#mission">Misión</a>
+    <a href="#stats">Stats</a>
+    <a href="#crons">Crons</a>
+    <a href="#models">Modelos</a>
+    <a href="#todos">To-dos</a>
+    <a href="#skills">Skills</a>
+    <a href="#deals">Deals</a>
+  </div>
+
+  <!-- MISSION -->
+  <div id="mission" style="margin-bottom:16px">
+    <div class="section-label">🎯 Misión a largo plazo</div>
+    <div class="mission-text">
+      "Copiloto de inversión inmobiliaria de Eduardo: MAGG Capital, financiación, mercados y orden personal."
+    </div>
+    <div class="grid-3" style="margin-top:12px">
+      <div class="card" style="padding:14px">
+        <div class="card-title">🏗️ MAGG Capital</div>
+        <div style="font-size:13px;color:var(--muted)">Originar y cerrar oportunidades value-add (buy/develop/turnaround). Estructurar SPV/club deal con SmartRental. Fundraising FO/HNW/fondos.</div>
+      </div>
+      <div class="card" style="padding:14px">
+        <div class="card-title">📈 Mercados + Proyectos</div>
+        <div style="font-size:13px;color:var(--muted)">Seguimiento disciplinado de cartera (Alibaba, AI buildout). Expansión Dubai sin aporte de capital. Detectar narrativas antes que el precio.</div>
+      </div>
+      <div class="card" style="padding:14px">
+        <div class="card-title">⚙️ Orden personal</div>
+        <div style="font-size:13px;color:var(--muted)">Sistemas que se mantienen solos (fitness, agenda, memoria). Reducir fricción, aumentar velocidad de ejecución.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STATS -->
+  <div id="stats" style="margin-bottom:16px">
+    <div class="section-label">📊 Snapshot del sistema</div>
+    <div class="grid-4">
+      <div class="stat-box">
+        <div class="stat-val" style="color:var(--green)">12</div>
+        <div class="stat-label">Crons activos</div>
+        <div class="stat-sub">1 one-shot hoy · 1 con error</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-val" style="color:var(--gold)">6</div>
+        <div class="stat-label">Deals analizados 2026</div>
+        <div class="stat-sub">1 BORDERLINE · 5 NO GO</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-val" style="color:var(--blue)">~65k</div>
+        <div class="stat-label">Tokens/día estimado</div>
+        <div class="stat-sub">Sonnet 4.6 + GPT 5.3-codex</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-val" style="color:var(--purple)">99%</div>
+        <div class="stat-label">Cache hit rate</div>
+        <div class="stat-sub">523k tokens cacheados hoy</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CRONS -->
+  <div id="crons" style="margin-bottom:16px">
+    <div class="section-label">⏰ Crons — Estado completo</div>
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Horario</th>
+            <th>Modelo</th>
+            <th>Destino</th>
+            <th>Est. tokens/run</th>
+            <th>Último estado</th>
+            <th>Próxima ejecución</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>FIT research 04:00</strong></td>
+            <td>Diario 04:00</td>
+            <td><span class="model-badge model-sonnet">Sonnet 4.6</span></td>
+            <td>Archivo local <code>fit-idea-today.md</code></td>
+            <td>~5k</td>
+            <td><span class="pill pill-green">✅ OK · 17s</span></td>
+            <td>27/02 04:00</td>
+          </tr>
+          <tr>
+            <td><strong>FIT idea 07:00 WhatsApp</strong></td>
+            <td>Diario 07:00</td>
+            <td><span class="model-badge model-sonnet">Sonnet 4.6</span></td>
+            <td>WhatsApp +34667927208</td>
+            <td>~3k</td>
+            <td><span class="pill pill-green">✅ OK · 72s</span></td>
+            <td>27/02 07:00</td>
+          </tr>
+          <tr>
+            <td><strong>Backup workspace 07:00</strong> <span class="pill pill-orange" style="font-size:10px">⚠️ ERROR</span></td>
+            <td>Diario 07:00</td>
+            <td><span class="model-badge model-sonnet">Sonnet 4.6</span></td>
+            <td>WhatsApp (announce)</td>
+            <td>~5k</td>
+            <td><span class="pill pill-red">❌ Error entrega · 28s</span></td>
+            <td>27/02 07:00</td>
+          </tr>
+          <tr>
+            <td><strong>MC Global refresh 07:30</strong></td>
+            <td>Diario 07:30</td>
+            <td><span class="model-badge model-gpt">GPT 5.3-codex</span></td>
+            <td>GitHub Pages</td>
+            <td>~8k</td>
+            <td><span class="pill pill-muted">Pendiente (nuevo)</span></td>
+            <td>27/02 07:30</td>
+          </tr>
+          <tr>
+            <td><strong>Suplementos 07:50</strong></td>
+            <td>Diario 07:50</td>
+            <td><span class="model-badge model-system">System event</span></td>
+            <td>Sesión principal</td>
+            <td>~1k</td>
+            <td><span class="pill pill-green">✅ OK</span></td>
+            <td>27/02 07:50</td>
+          </tr>
+          <tr>
+            <td><strong>Seguimiento 09:30</strong></td>
+            <td>Diario 09:30</td>
+            <td><span class="model-badge model-system">System event</span></td>
+            <td>Sesión principal</td>
+            <td>~3k</td>
+            <td><span class="pill pill-green">✅ OK · 33m ago</span></td>
+            <td>27/02 09:30</td>
+          </tr>
+          <tr>
+            <td><strong>Input JJ y Vaca 12:00</strong> <span class="pill pill-teal" style="font-size:10px">ONE-SHOT</span></td>
+            <td>Hoy 12:00 (se autodestruye)</td>
+            <td><span class="model-badge model-default">Default</span></td>
+            <td>Discord #public-markets</td>
+            <td>~2k</td>
+            <td><span class="pill pill-gold">⏳ Hoy en ~30min</span></td>
+            <td>Hoy 12:00</td>
+          </tr>
+          <tr>
+            <td><strong>AI Buildout stocks 13:00</strong> <span class="pill pill-orange" style="font-size:10px">DUPLICADO</span></td>
+            <td>Diario 13:00</td>
+            <td><span class="model-badge model-sonnet">Sonnet 4.6</span></td>
+            <td>Discord #public-markets</td>
+            <td>~10k</td>
+            <td><span class="pill pill-muted">Sin historial aún</span></td>
+            <td>Hoy 13:00</td>
+          </tr>
+          <tr>
+            <td><strong>AI Buildout stocks 13:00 (weekdays)</strong> <span class="pill pill-orange" style="font-size:10px">DUPLICADO</span></td>
+            <td>L-V 13:00</td>
+            <td><span class="model-badge model-sonnet">Sonnet 4.6 → gpt-4.1-mini</span></td>
+            <td>Discord #public-markets</td>
+            <td>~15k</td>
+            <td><span class="pill pill-muted">Sin historial aún</span></td>
+            <td>Hoy 13:00</td>
+          </tr>
+          <tr>
+            <td><strong>MC Global refresh 13:00</strong></td>
+            <td>Diario 13:00</td>
+            <td><span class="model-badge model-gpt">GPT 5.3-codex</span></td>
+            <td>GitHub Pages</td>
+            <td>~8k</td>
+            <td><span class="pill pill-muted">Pendiente (nuevo)</span></td>
+            <td>Hoy 13:00</td>
+          </tr>
+          <tr>
+            <td><strong>Seguimiento 14:00</strong></td>
+            <td>Diario 14:00</td>
+            <td><span class="model-badge model-system">System event</span></td>
+            <td>Sesión principal</td>
+            <td>~2k</td>
+            <td><span class="pill pill-green">✅ OK · 20h ago</span></td>
+            <td>Hoy 14:00</td>
+          </tr>
+          <tr>
+            <td><strong>Seguimiento 20:15</strong></td>
+            <td>Diario 20:15</td>
+            <td><span class="model-badge model-system">System event</span></td>
+            <td>Sesión principal</td>
+            <td>~2k</td>
+            <td><span class="pill pill-green">✅ OK · 14h ago</span></td>
+            <td>Hoy 20:15</td>
+          </tr>
+          <tr>
+            <td><strong>MC Global refresh 20:00</strong></td>
+            <td>Diario 20:00</td>
+            <td><span class="model-badge model-gpt">GPT 5.3-codex</span></td>
+            <td>GitHub Pages</td>
+            <td>~8k</td>
+            <td><span class="pill pill-muted">Pendiente (nuevo)</span></td>
+            <td>Hoy 20:00</td>
+          </tr>
+          <tr>
+            <td><strong>Follow-up Ana 20:30</strong></td>
+            <td>Diario 20:30</td>
+            <td><span class="model-badge model-sonnet">Sonnet 4.6</span></td>
+            <td>WhatsApp grupo Ana</td>
+            <td>~3k</td>
+            <td><span class="pill pill-green">✅ OK</span></td>
+            <td>Hoy 20:30</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="warn-box">
+      ⚠️ <strong>2 crons duplicados</strong> en AI Buildout stocks 13:00 — ambos disparan al mismo canal a la misma hora. Revisar cuál conservar y desactivar el otro.
+      &nbsp;·&nbsp; ⚠️ <strong>Backup 07:00</strong> con error de entrega (announce a WhatsApp fallido). Verificar grupo destino.
+    </div>
+  </div>
+
+  <!-- MODELOS Y TOKENS -->
+  <div id="models" style="margin-bottom:16px">
+    <div class="section-label">🧠 Modelos en uso · Estimación de consumo</div>
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title">Modelos configurados</div>
+        <div class="tbl-wrap" style="border:none">
+          <table>
+            <thead><tr><th>Modelo</th><th>Rol</th><th>Tags</th></tr></thead>
+            <tbody>
+              <tr>
+                <td><span class="model-badge model-sonnet">anthropic/claude-sonnet-4-6</span></td>
+                <td>Modelo principal</td>
+                <td><span class="pill pill-green">default</span> <span class="pill pill-gold">configured</span></td>
+              </tr>
+              <tr>
+                <td><span class="model-badge model-gpt">openai-codex/gpt-5.3-codex</span></td>
+                <td>Fallback #1 · MC Global refresh</td>
+                <td><span class="pill pill-blue">fallback#1</span> <span class="pill pill-gold">configured</span></td>
+              </tr>
+              <tr>
+                <td><span class="model-badge model-default">google-antigravity/claude-sonnet-4-5</span></td>
+                <td>Fallback #2 (OAuth Google)</td>
+                <td><span class="pill pill-purple">fallback#2</span></td>
+              </tr>
+              <tr>
+                <td><span class="model-badge model-default">anthropic/claude-sonnet-4-5</span></td>
+                <td>Reserva (alias: Claude)</td>
+                <td><span class="pill pill-muted">alias:Claude</span></td>
+              </tr>
+              <tr>
+                <td><span class="model-badge model-gpt">openai-codex/gpt-5.1-codex-mini</span></td>
+                <td>Tareas ligeras</td>
+                <td><span class="pill pill-muted">configured</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">Estimación tokens/día por modelo</div>
+        <div style="display:flex;flex-direction:column;gap:14px;margin-top:4px">
+          <div>
+            <div style="display:flex;justify-content:space-between;margin-bottom:4px">
+              <span style="font-size:13px"><span class="model-badge model-sonnet">Sonnet 4.6</span> crons + conversación</span>
+              <span style="font-size:13px;color:var(--gold);font-weight:600">~41k tok/día</span>
+            </div>
+            <div class="progress-bar"><div class="progress-fill" style="width:63%;background:var(--gold)"></div></div>
+            <div style="font-size:11px;color:var(--muted);margin-top:4px">FIT research 5k + FIT idea 3k + Backup 5k + Stocks 10k + Seguimientos 8k + Ana 3k + conversación ~7k</div>
+          </div>
+          <div>
+            <div style="display:flex;justify-content:space-between;margin-bottom:4px">
+              <span style="font-size:13px"><span class="model-badge model-gpt">GPT 5.3-codex</span> MC Global × 3</span>
+              <span style="font-size:13px;color:var(--green);font-weight:600">~24k tok/día</span>
+            </div>
+            <div class="progress-bar"><div class="progress-fill" style="width:37%;background:var(--green)"></div></div>
+            <div style="font-size:11px;color:var(--muted);margin-top:4px">3 refreshes × ~8k tokens. Coste bajo (suscripción OpenAI).</div>
+          </div>
+          <div style="padding-top:10px;border-top:1px solid var(--border)">
+            <div style="display:flex;justify-content:space-between">
+              <span style="font-size:13px;color:var(--muted)">Total estimado</span>
+              <span style="font-size:15px;font-weight:700;color:var(--text)">~65k tok/día</span>
+            </div>
+            <div style="font-size:11px;color:var(--muted);margin-top:4px">Cache hit rate actual: <strong style="color:var(--green)">99%</strong> — solo 2.8k tokens "new" hoy en sesión principal (523k cacheados). Los crons aislados no comparten caché.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TO-DOS -->
+  <div id="todos" style="margin-bottom:16px">
+    <div class="section-label">✅ To-dos — Corto plazo</div>
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title">🔴 Urgente / Bloqueado por Eduardo</div>
+        <ul class="todo-list">
+          <li><div class="todo-dot dot-red"></div><div><strong>Rossio Lisboa</strong> — Cerrar supuestos modelo base/bear/bull (precio compra, €/m², plazo licencia). Borrador listo en <code>knowledge/rossio_modelo_escenarios_2026-02-26.md</code>.<br><span class="pill pill-orange" style="margin-top:4px">⏳ Waiting Eduardo</span></div></li>
+          <li><div class="todo-dot dot-red"></div><div><strong>Canal #stock-market-personal</strong> — Pendiente User IDs de Juanjo y Vaca para crear canal privado en Discord.<br><span class="pill pill-orange" style="margin-top:4px">⏳ Waiting Eduardo</span></div></li>
+          <li><div class="todo-dot dot-red"></div><div><strong>Deal Scanner</strong> — Reactivar en modo seguro (cada 4h, timeout 120s, sin solapes). Pausado por conservación de tokens.<br><span class="pill pill-muted" style="margin-top:4px">Listo para activar</span></div></li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">🟡 Media prioridad</div>
+        <ul class="todo-list">
+          <li><div class="todo-dot dot-orange"></div><div><strong>Cerrar plan fitness</strong> — Métricas semanales + horario realista. Próxima medición cintura: lunes 02/03.</div></li>
+          <li><div class="todo-dot dot-orange"></div><div><strong>Resolver duplicado crons stocks 13:00</strong> — Dos crons disparan al mismo canal a la misma hora. Decidir cuál conservar.</div></li>
+          <li><div class="todo-dot dot-orange"></div><div><strong>Reparar backup 07:00</strong> — Error en announce delivery a WhatsApp. Verificar grupo destino correcto.</div></li>
+          <li><div class="todo-dot dot-orange"></div><div><strong>Frente Dubai</strong> — Elegir 1 frente único de 14 días (JV / management / franquicia) con owner + fecha.</div></li>
+          <li><div class="todo-dot dot-gold"></div><div><strong>Revisar tesis Alibaba</strong> — Actualizar trigger de entrada e invalidación en plantilla.</div></li>
+          <li><div class="todo-dot dot-muted"></div><div><strong>MAGG Dashboard revamp</strong> — Pendiente para cuando el pipeline esté actualizado y Rossio cerrado.</div></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- SKILLS -->
+  <div id="skills" style="margin-bottom:16px">
+    <div class="section-label">🛠️ Skills instaladas</div>
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title">Workspace (custom)</div>
+        <div style="display:flex;flex-wrap:wrap;gap:8px">
+          <span class="pill pill-gold">deal_knowledge</span>
+          <span class="pill pill-gold">real_estate_news</span>
+          <span class="pill pill-gold">last30days</span>
+          <span class="pill pill-muted">basic_example</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">Sistema (OpenClaw)</div>
+        <div style="display:flex;flex-wrap:wrap;gap:6px">
+          <span class="pill pill-blue">coding-agent</span>
+          <span class="pill pill-blue">discord</span>
+          <span class="pill pill-blue">healthcheck</span>
+          <span class="pill pill-blue">himalaya</span>
+          <span class="pill pill-blue">openai-image-gen</span>
+          <span class="pill pill-blue">openai-whisper-api</span>
+          <span class="pill pill-blue">skill-creator</span>
+          <span class="pill pill-blue">summarize</span>
+          <span class="pill pill-blue">weather</span>
+          <span class="pill pill-muted">notion (disponible)</span>
+          <span class="pill pill-muted">github (disponible)</span>
+          <span class="pill pill-muted">sag / tts (disponible)</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DEALS -->
+  <div id="deals" style="margin-bottom:16px">
+    <div class="section-label">🏗️ Pipeline MAGG 2026</div>
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr><th>Ref</th><th>Deal</th><th>Precio</th><th>Veredicto</th><th>Spread</th><th>Estado</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="pill pill-muted">MAGG-2026-001</span></td>
+            <td>Solar AT Málaga</td>
+            <td>4.15M€</td>
+            <td><span class="pill pill-red">❌ NO GO</span></td>
+            <td style="color:var(--red)">-180 / -250 bps</td>
+            <td>Archivado</td>
+          </tr>
+          <tr>
+            <td><span class="pill pill-muted">MAGG-2026-002</span></td>
+            <td>Hotel Algarve</td>
+            <td>55M€</td>
+            <td><span class="pill pill-red">❌ NO GO</span></td>
+            <td style="color:var(--red)">-120 / -210 bps</td>
+            <td>Archivado</td>
+          </tr>
+          <tr>
+            <td><span class="pill pill-muted">MAGG-2026-003</span></td>
+            <td>Mediterráneo 1 Marbella</td>
+            <td>2.05M€</td>
+            <td><span class="pill pill-red">❌ DESCARTADO</span></td>
+            <td style="color:var(--muted)">+100 / +150 bps</td>
+            <td>Descartado por Eduardo (21/02)</td>
+          </tr>
+          <tr>
+            <td><span class="pill pill-muted">MAGG-2026-004</span></td>
+            <td>Colegio St Michael's Boadilla</td>
+            <td>8.5M€</td>
+            <td><span class="pill pill-red">❌ NO GO</span></td>
+            <td style="color:var(--red)">-200 / -250 bps</td>
+            <td>Archivado</td>
+          </tr>
+          <tr>
+            <td><span class="pill pill-muted">MAGG-2026-005</span></td>
+            <td>Hotel Boutique Lisboa (Figueira)</td>
+            <td>14M€</td>
+            <td><span class="pill pill-red">❌ NO GO</span></td>
+            <td style="color:var(--red)">-82 / -339 bps</td>
+            <td>Archivado</td>
+          </tr>
+          <tr style="background:rgba(240,180,41,.04)">
+            <td><span class="pill pill-gold">MAGG-2026-006</span></td>
+            <td><strong>Rossio Lisboa (Rua Primeiro de Dezembro)</strong></td>
+            <td>—</td>
+            <td><span class="pill pill-gold">⚠️ BORDERLINE → GO cond.</span></td>
+            <td style="color:var(--gold)">Pendiente modelo</td>
+            <td><strong>🔴 En revisión</strong> — modelo base/bear/bull en borrador. Waiting Eduardo.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div style="margin-top:10px;font-size:12px;color:var(--muted);padding:0 4px">
+      Criterio GO: spread YoC vs Exit Yield ≥ +150 bps &nbsp;·&nbsp; BORDERLINE: +100/+149 bps &nbsp;·&nbsp; NO GO: &lt;+100 bps
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div style="text-align:center;padding:20px 0;color:var(--muted);font-size:12px;border-top:1px solid var(--border)">
+    🦀 Tenacitas · OpenClaw 2026.2.21-2 · Sesión: agent:main:main · <a href="https://www.notion.so/Mission-Control-Tenacitas-30e4dab7dc4181c8aac7e510718c2f69" target="_blank">Notion MC</a>
+  </div>
+
+</div>
+</div>
+
+<script>
+const PASS='ctrl2026';
+function auth(){
+  const v=document.getElementById('pwd').value;
+  if(v===PASS){document.getElementById('login').style.display='none';document.getElementById('app').style.display='block';}
+  else document.getElementById('login-err').textContent='Contraseña incorrecta';
+}
+</script>
+</body>
+</html>
