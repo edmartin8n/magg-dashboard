@@ -47,7 +47,7 @@
       <h1>🦀 Mission Control Global</h1>
       <div class="muted">Formato por columnas · Actualización automática 3x/día (07:30 · 13:00 · 20:00)</div>
       <div style="margin-top:8px;display:flex;gap:8px;flex-wrap:wrap">
-        <span class="pill">Actualizado: 27 feb 2026 · 21:35</span>
+        <span class="pill">Actualizado: 28 feb 2026 · 07:30</span>
         <span class="pill">Tema: Crudo</span>
         <span class="pill">🟢 Sistema operativo</span>
       </div>
@@ -72,11 +72,11 @@
             <td><ul>
               <li>Pipeline cualificado + ejecución rápida con filtros hard</li>
               <li>Estructura repetible con downside protegido</li>
-              <li>Preparar base para SPV / club deal cuando Rossio pase a GO final</li>
+              <li>Preparar base para SPV / club deal tras cierre del modelo Rossio</li>
             </ul></td>
             <td><ul>
               <li>Optimizar estructura de deuda (coste + flexibilidad)</li>
-              <li>Aumentar cobertura de lenders activos por tipología</li>
+              <li>Aumentar cobertura de lenders activos por tipología y ticket</li>
             </ul></td>
             <td><ul>
               <li>Elegir 1 frente único de crecimiento para 14 días</li>
@@ -89,28 +89,29 @@
             </ul></td>
             <td><ul>
               <li>Mejorar cintura, energía y consistencia (MVP 30 días)</li>
-              <li>Sostener entrenamiento 4 días/semana</li>
+              <li>Sostener entrenamiento 4 días/semana (3 fuerza + 1 HIIT)</li>
             </ul></td>
             <td><ul>
               <li>Operación estable, bajo coste y sin solapes</li>
-              <li>Mantener disciplina de crons por prioridad real</li>
+              <li>Mantener gobernanza de crons y arquitectura multiagente</li>
             </ul></td>
           </tr>
           <tr>
             <th>Estado actual</th>
             <td><ul>
               <li>Pipeline activo: 1 deal en revisión (Granada, Álvaro de Bazán 9) <span class="tag-wait">BORDERLINE</span></li>
-              <li><span class="tag-wait">⏳ Waiting</span> Rossio Lisboa en hold hasta revisión de modelo (lun 02/03 · 10:00)</li>
+              <li><span class="tag-wait">⏳ Waiting</span> Rossio Lisboa pendiente revisión final (one-shot: lun 02/03 · 10:00)</li>
               <li>Flujo deal→IC→Gamma→Drive→Sheet→email operativo</li>
-              <li>Investor screening de 30 fondos completado y enviado</li>
+              <li>Investor screening de 30 fondos completado; tab MiPIM 2025 cargada</li>
             </ul></td>
             <td><ul>
-              <li>Sin cierre de financiación inmediato en curso</li>
-              <li>Marco LTV/DSCR/covenants definido; falta mapa vivo top lenders por ticket</li>
+              <li>Sin cierre de financiación urgente en curso</li>
+              <li>Marco LTV/DSCR/covenants definido; falta mapa vivo de top lenders</li>
             </ul></td>
             <td><ul>
               <li>Discord por verticales desplegado y estable</li>
-              <li>Arquitectura multiagente Fase 1 desplegada (Scout + Dev + Stocks)</li>
+              <li>Fase 1 multiagente desplegada (Scout + Dev + Stocks)</li>
+              <li>Canal #ana y job alerts L/M/V 10:00 activos</li>
             </ul></td>
             <td><ul>
               <li><code>#public-markets</code> activo con flujo diario 13:00 CET</li>
@@ -124,16 +125,16 @@
             </ul></td>
             <td><ul>
               <li>Crons críticos operativos (backup, MC refresh, seguimientos, stocks, deal scanner, noticias)</li>
-              <li>Google OAuth con scopes completos (<code>gmail.send</code>, <code>gmail.modify</code>, <code>drive.file</code>)</li>
+              <li>Google OAuth con scopes completos (gmail.readonly/send/modify, drive.file, sheets, calendar)</li>
               <li>Telegram desactivado permanentemente (plugin/canal/identityLink)</li>
             </ul></td>
           </tr>
           <tr>
             <th>Accionables próximos</th>
             <td><ul>
-              <li><span class="tag-wait">Top 1</span> Revisar supuestos Rossio (precio compra, €/m², licencia)</li>
-              <li>☐ KPI semanal MAGG: pipeline + financing + fundraising</li>
-              <li>☐ Mantener mini IC 1-pager para todo deal nuevo</li>
+              <li><span class="tag-wait">Top 1</span> Revisar y cerrar supuestos Rossio (precio compra, €/m², licencia)</li>
+              <li>☐ Activar revisión semanal KPI MAGG (pipeline + financing + fundraising)</li>
+              <li>☐ Reactivar Deal Scanner en modo seguro cada 4h sin solapes</li>
             </ul></td>
             <td><ul>
               <li>☐ Priorizar top-5 lenders por ticket/tipo activo</li>
@@ -141,7 +142,8 @@
             </ul></td>
             <td><ul>
               <li>☐ Decidir 1 frente de crecimiento con owner + fecha</li>
-              <li>☐ Resolver backlog (hacer / posponer / descartar)</li>
+              <li>☐ Cerrar backlog (hacer / posponer / descartar)</li>
+              <li>☐ Recibir nombres de CCs para poblar <code>cc_tracker.md</code></li>
             </ul></td>
             <td><ul>
               <li>☐ Mantener check-in diario y resumen accionable</li>
@@ -153,9 +155,9 @@
               <li>☐ Próxima cintura: lunes 02/03</li>
             </ul></td>
             <td><ul>
-              <li><span class="tag-wait">Top 1</span> Estabilizar reasignación de crons tras despliegue multiagente</li>
-              <li>☐ Mantener gobernanza de crons (Vaca/Juanjo → validar con Eduardo)</li>
               <li><span class="tag-ok">Activo</span> MC Global refresh 3x/día</li>
+              <li>☐ Mantener regla de gobernanza (crons Vaca/Juanjo requieren OK de Eduardo)</li>
+              <li>☐ Vigilar one-shots activos (screenshot Claude hasta 04/03 + Rossio 02/03)</li>
             </ul></td>
           </tr>
           <tr>
@@ -163,7 +165,7 @@
             <td><ul>
               <li>Mandato originación 2026 + red flags DD + plantilla KPI cerrados</li>
               <li>Borrador escenarios Rossio (base/bear/bull) completado 26/02</li>
-              <li>Screening inversores MAGG (30 fondos) terminado con Excel</li>
+              <li>Screening inversores MAGG (30 fondos) + tab MiPIM 2025 completados</li>
             </ul></td>
             <td><ul>
               <li>Vertical SR Financing integrado en seguimiento global semanal</li>
@@ -182,7 +184,7 @@
             </ul></td>
             <td><ul>
               <li>Limpieza de crons: 9 eliminados, 3 reactivados, sistema estabilizado</li>
-              <li>OAuth Google reautorizado con scopes completos (27/02)</li>
+              <li>OAuth Google reautorizado con 6 scopes completos (27/02)</li>
             </ul></td>
           </tr>
         </tbody>
