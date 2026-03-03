@@ -196,28 +196,13 @@ body{background:var(--bg);color:var(--text);font:14px/1.5 system-ui,-apple-syste
     </div>
   </div>
 
-  <!-- HIDRATACIÓN + SUEÑO -->
-  <div class="g2" style="margin-top:14px">
+  <!-- HIDRATACIÓN -->
+  <div style="margin-top:14px">
     <div class="card">
       <div class="card-title">💧 Hidratación</div>
-      <div style="font-size:12px;color:var(--muted);margin-bottom:10px">Objetivo: 2.5L / día · Toca para marcar</div>
+      <div style="font-size:12px;color:var(--muted);margin-bottom:10px">Objetivo: 2.5L / día · Dile a Tenacitas cuánta agua has bebido</div>
       <div class="hydro-drops" id="hydro-drops"></div>
       <div style="font-size:12px;color:var(--muted);margin-top:10px" id="hydro-status"></div>
-    </div>
-    <div class="card">
-      <div class="card-title">😴 Sueño</div>
-      <div id="sleep-card">
-        <div class="metric-row">
-          <div class="metric-label">Anoche</div>
-          <div class="metric-val" id="sleep-hours">— h</div>
-        </div>
-        <div class="sleep-bar" style="margin-top:12px">
-          <div style="font-size:11px;color:var(--muted);min-width:30px">0h</div>
-          <div class="sleep-track"><div class="sleep-fill" id="sleep-bar-fill" style="width:0%"></div></div>
-          <div style="font-size:11px;color:var(--muted);min-width:30px">9h</div>
-        </div>
-        <div style="font-size:11px;color:var(--muted);margin-top:8px">Objetivo: ≥7.5h. Calidad sueño = recuperación muscular.</div>
-      </div>
     </div>
   </div>
 
@@ -289,7 +274,7 @@ function doLogin(){
 
 // ======================== DATA ========================
 const DATA = {
-  today: { date: '2026-03-03', calories: 1950, protein: 178, carbs: 210, fat: 62, water: 1.5, sleep: 7, gym: 'Descanso' },
+  today: { date: '2026-03-03', calories: 1950, protein: 178, carbs: 210, fat: 62, water: 0, gym: 'Descanso' },
   weight: [
     { date: '2026-02-25', val: 71.0 },
     { date: '2026-03-03', val: null } // pendiente báscula mañana
@@ -313,6 +298,7 @@ const DATA = {
     proteina: 2,  // scoops
   },
   gym: [
+    { date: '2026-03-02', type: 'CrossFit', score: null, badge: 'CrossFit', color: 'orange' },
     { date: '2026-02-25', type: 'HIIT cañero + Pecho/Bíceps', score: 9, badge: 'Fuerza + Cardio', color: 'green' },
   ],
   food: [
@@ -359,7 +345,6 @@ function init(){
   renderMacros();
   renderSupplements();
   renderHydration();
-  renderSleep();
   renderWeightChart();
   renderWaistChart();
   renderBodyMetrics();
@@ -581,7 +566,7 @@ function renderGymLog(){
         <div class="gym-type">${g.type}</div>
         <span class="gym-badge badge-${g.color}" style="font-size:10px;padding:2px 7px;border-radius:999px;font-weight:700">${g.badge}</span>
       </div>
-      <div class="gym-score" style="color:var(--${g.color})">${g.score}/10</div>
+      <div class="gym-score" style="color:var(--${g.color})">${g.score!=null?g.score+'/10':'—'}</div>
     </div>
   `).join('');
 }
