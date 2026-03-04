@@ -274,20 +274,21 @@ function doLogin(){
 
 // ======================== DATA ========================
 const DATA = {
-  today: { date: '2026-03-03', calories: 1950, protein: 178, carbs: 210, fat: 62, water: 0, gym: 'Descanso' },
+  today: { date: '2026-03-04', calories: 0, protein: 0, carbs: 0, fat: 0, water: 0, gym: '—' },
   weight: [
     { date: '2026-02-25', val: 71.0 },
-    { date: '2026-03-03', val: null } // pendiente báscula mañana
+    { date: '2026-03-04', val: 71.2 },
   ],
   waist: [
     { date: '2026-02-25', val: 86.0 },
+    { date: '2026-03-04', val: 86.5 },
   ],
   bodyComp: {
-    date: '2026-02-25',
-    fat_pct: 18.4,
-    muscle_kg: 55.0,
+    date: '2026-03-04',
+    fat_pct: 18.5,
+    muscle_kg: 55.1,
     visceral: 4,
-    bmr: 1621,
+    bmr: 1623,
     metabolic_age: 35
   },
   supplements: {
@@ -303,7 +304,15 @@ const DATA = {
   ],
   food: [
     {
-      date: '2026-03-03', score: 7,
+      date: '2026-03-04', score: null,
+      meals: [
+        { label: 'Desayuno', text: 'Tostada centeno + pavo · café' },
+        { label: 'Comida',   text: '— pendiente' },
+        { label: 'Cena',     text: '— pendiente' },
+      ]
+    },
+    {
+      date: '2026-03-03', score: 7.5,
       meals: [
         { label: 'Desayuno', text: '2 tostadas centeno + pavo · café con leche' },
         { label: 'Media m.', text: 'Bagel queso crema · café con leche' },
@@ -576,7 +585,7 @@ function renderFoodLog(){
     <div class="food-day">
       <div class="food-day-hdr">
         <div class="food-day-date">${fmt(d.date)}</div>
-        <span class="food-day-score badge-${scoreColor(d.score)}" style="font-size:11px;padding:2px 9px;border-radius:999px;font-weight:700">${d.score}/10</span>
+        <span class="food-day-score badge-${d.score?scoreColor(d.score):'badge-muted'}" style="font-size:11px;padding:2px 9px;border-radius:999px;font-weight:700">${d.score?d.score+'/10':'en curso'}</span>
       </div>
       <div class="food-meals">
         ${d.meals.map(m=>`<div class="food-meal"><span class="food-meal-label">${m.label}</span><span class="food-meal-text">${m.text}</span></div>`).join('')}
