@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Casón del Tormes · MAGG Capital IC Brief</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+
+:root{
+  --navy:#1a2b45;
+  --navy-deep:#111d30;
+  --navy-mid:#243655;
+  --gold:#c4a24e;
+  --gold-light:#e8d5a3;
+  --white:#ffffff;
+  --gray-100:#f4f5f7;
+  --gray-200:#e2e5ea;
+  --gray-400:#8a9ab0;
+  --gray-600:#4a5568;
+  --green:#1a7a4a;
+  --green-bg:#e6f4ed;
+  --green-light:#22c55e;
+  --amber:#92400e;
+  --amber-bg:#fef3c7;
+  --red:#991b1b;
+  --red-bg:#fde8e8;
+}
+
+html,body{height:100%;overflow:hidden;font-family:'Inter',sans-serif;background:var(--navy-deep)}
+
+/* ── SLIDES ── */
+.deck{width:100vw;height:100vh;position:relative;overflow:hidden}
+.slide{
+  position:absolute;inset:0;
+  display:flex;flex-direction:column;
+  opacity:0;pointer-events:none;
+  transition:opacity .4s ease;
+}
+.slide.active{opacity:1;pointer-events:all}
+
+/* ── NAV ── */
+.nav{
+  position:fixed;bottom:24px;right:28px;z-index:100;
+  display:flex;gap:10px;align-items:center;
+}
+.nav button{
+  background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);
+  color:#fff;width:38px;height:38px;border-radius:50%;cursor:pointer;
+  font-size:16px;display:flex;align-items:center;justify-content:center;
+  transition:background .2s;
+}
+.nav button:hover{background:rgba(255,255,255,.25)}
+.slide-count{color:rgba(255,255,255,.5);font-size:11px;font-weight:500;letter-spacing:.05em}
+
+/* ── PROGRESS BAR ── */
+.progress{position:fixed;top:0;left:0;height:3px;background:var(--gold);transition:width .3s ease;z-index:200}
+
+/* ═══════════════════════════════════════════
+   SLIDE 1 — COVER
+═══════════════════════════════════════════ */
+#s1{background:var(--navy);justify-content:space-between}
+
+.s1-topbar{height:4px;background:var(--gold);flex-shrink:0}
+
+.s1-header{
+  display:flex;justify-content:space-between;align-items:flex-start;
+  padding:28px 48px 0;
+}
+.s1-broker{color:var(--gray-400);font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;padding-top:4px}
+.s1-logo{height:52px;object-fit:contain;opacity:.92}
+
+.s1-hero{padding:0 48px;flex:1;display:flex;flex-direction:column;justify-content:center}
+.s1-dealname{font-size:52px;font-weight:800;color:var(--white);letter-spacing:-.02em;line-height:1}
+.s1-subtitle{font-size:14px;color:var(--gray-400);margin-top:10px;font-weight:400;letter-spacing:.02em}
+
+.s1-badges{display:flex;gap:10px;margin-top:20px;align-items:center}
+.badge-go{background:var(--green);color:#fff;padding:6px 16px;border-radius:4px;font-size:12px;font-weight:700;letter-spacing:.04em}
+.badge-spread{background:var(--gold);color:var(--navy);padding:6px 16px;border-radius:4px;font-size:12px;font-weight:700;letter-spacing:.04em}
+
+.s1-divider{height:1px;background:rgba(255,255,255,.1);margin:24px 48px}
+
+.s1-kpis{
+  display:grid;grid-template-columns:repeat(6,1fr);
+  gap:0;padding:0 48px;
+}
+.kpi{border-left:1px solid rgba(255,255,255,.08);padding:0 20px}
+.kpi:first-child{border-left:none;padding-left:0}
+.kpi-val{font-size:18px;font-weight:700;color:var(--white)}
+.kpi-label{font-size:10px;color:var(--gray-400);margin-top:4px;font-weight:500;letter-spacing:.04em;text-transform:uppercase}
+
+.s1-divider2{height:1px;background:rgba(255,255,255,.1);margin:20px 48px}
+
+.s1-calendar{
+  padding:0 48px 28px;
+  font-size:11px;color:var(--gray-400);
+  display:flex;align-items:center;gap:6px;
+  flex-wrap:wrap;letter-spacing:.02em;
+}
+.cal-step{color:var(--gray-400)}
+.cal-sep{color:var(--gold);opacity:.6;margin:0 2px}
+.cal-highlight{color:var(--gold-light);font-weight:600}
+
+.s1-footer{
+  background:var(--navy-deep);padding:8px 48px;
+  font-size:10px;color:rgba(255,255,255,.3);
+  letter-spacing:.1em;text-transform:uppercase;text-align:center;flex-shrink:0;
+}
+
+/* ═══════════════════════════════════════════
+   SLIDES 2–4 SHARED HEADER
+═══════════════════════════════════════════ */
+.slide-header{
+  background:var(--navy);
+  padding:20px 48px 18px;
+  display:flex;justify-content:space-between;align-items:center;
+  flex-shrink:0;border-bottom:2px solid var(--gold);
+}
+.slide-title{font-size:18px;font-weight:700;color:var(--white);letter-spacing:-.01em}
+.slide-logo{height:36px;object-fit:contain;opacity:.85}
+.slide-body{flex:1;padding:28px 48px;overflow:auto;background:var(--gray-100)}
+.slide-footer{background:var(--navy);padding:7px 48px;font-size:10px;color:rgba(255,255,255,.3);letter-spacing:.08em;text-transform:uppercase;text-align:center;flex-shrink:0}
+
+/* ═══════════════════════════════════════════
+   SLIDE 2 — ESTRUCTURA
+═══════════════════════════════════════════ */
+#s2 .slide-body{background:#f0f2f5}
+
+.cols3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;height:100%}
+
+.col-card{background:#fff;border-radius:8px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+.col-card-header{background:var(--navy);padding:12px 18px;font-size:10px;font-weight:700;color:var(--gold);letter-spacing:.1em;text-transform:uppercase}
+.col-card-body{padding:0;flex:1}
+
+/* Tabla compra */
+.tbl{width:100%;border-collapse:collapse;font-size:12px}
+.tbl tr:nth-child(even) td{background:#f8f9fb}
+.tbl td{padding:9px 14px;color:var(--gray-600);border-bottom:1px solid #edf0f4}
+.tbl td:last-child{text-align:right;color:var(--navy);font-weight:500}
+.tbl tr.total td{background:var(--navy);color:#fff;font-weight:700;border-bottom:none}
+.tbl tr.total td:last-child{color:var(--gold)}
+
+/* KV rows (ops, exit) */
+.kv-row{display:flex;justify-content:space-between;align-items:center;padding:9px 14px;border-bottom:1px solid #edf0f4;font-size:12px}
+.kv-row:nth-child(even){background:#f8f9fb}
+.kv-key{color:var(--gray-600)}
+.kv-val{color:var(--navy);font-weight:600;text-align:right}
+.kv-row.highlight{background:var(--green-bg)}
+.kv-row.highlight .kv-key{color:var(--green);font-weight:600}
+.kv-row.highlight .kv-val{color:var(--green);font-weight:700}
+.kv-row.gold-row{background:#fffbf0}
+.kv-row.gold-row .kv-val{color:var(--gold);font-weight:700}
+
+/* Notes */
+.note-bar{background:var(--navy-mid);padding:10px 48px;font-size:10.5px;color:var(--gray-400);flex-shrink:0;letter-spacing:.01em}
+.note-bar span{color:var(--gold-light)}
+
+/* Temas clave */
+.topics-bar{background:#fff;padding:14px 48px;border-top:2px solid #edf0f4;flex-shrink:0}
+.topics-title{font-size:10px;font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px}
+.topics-list{display:flex;gap:24px;flex-wrap:wrap}
+.topic-item{font-size:11px;color:var(--gray-600);display:flex;gap:6px;align-items:flex-start}
+.topic-item::before{content:'⚠';font-size:11px;flex-shrink:0;margin-top:1px}
+
+/* ═══════════════════════════════════════════
+   SLIDE 3 — SENSIBILIDAD
+═══════════════════════════════════════════ */
+#s3 .slide-body{display:flex;flex-direction:column;gap:20px;padding:24px 48px}
+
+.sens-half{display:grid;grid-template-columns:1fr 1fr;gap:20px;flex:1}
+
+.sens-card{background:#fff;border-radius:8px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.08);display:flex;flex-direction:column}
+.sens-card-header{background:var(--navy);padding:10px 16px;font-size:9.5px;font-weight:700;color:var(--gold);letter-spacing:.08em;text-transform:uppercase}
+.sens-card-body{padding:0;flex:1}
+
+.sens-tbl{width:100%;border-collapse:collapse;font-size:11.5px}
+.sens-tbl th{background:var(--navy-mid);color:var(--white);padding:8px 10px;font-weight:600;font-size:10px;text-align:center;letter-spacing:.04em}
+.sens-tbl th:first-child{text-align:left;padding-left:12px}
+.sens-tbl td{padding:8px 10px;text-align:center;border-bottom:1px solid #edf0f4;color:var(--navy);font-weight:500}
+.sens-tbl td:first-child{text-align:left;padding-left:12px;font-weight:600;color:var(--gray-600);background:#f8f9fb}
+.sens-tbl tr:nth-child(even) td:not(:first-child){background:#f8f9fb}
+.sens-tbl td.base-cell{background:var(--gold)!important;color:var(--navy);font-weight:800}
+.sens-tbl tr.base-row td{background:#fffbf0!important}
+.sens-tbl tr.base-row td:first-child{background:#f5edda!important}
+
+.go-tag{color:var(--green);font-weight:700}
+
+.scenarios{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.scenario{background:#fff;border-radius:6px;padding:12px 14px;box-shadow:0 1px 3px rgba(0,0,0,.06);border-left:3px solid var(--gold)}
+.sc-name{font-size:10px;font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px}
+.sc-desc{font-size:11px;color:var(--gray-600);line-height:1.5}
+
+/* ═══════════════════════════════════════════
+   SLIDE 4 — RIESGOS
+═══════════════════════════════════════════ */
+#s4 .slide-body{display:grid;grid-template-columns:1fr 1fr;gap:20px;background:#f0f2f5}
+
+.risk-col,.steps-col{display:flex;flex-direction:column;gap:12px}
+
+.section-hdr{font-size:10px;font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:.1em;margin-bottom:4px;padding-bottom:8px;border-bottom:2px solid var(--gold)}
+
+.risk-card{background:#fff;border-radius:6px;padding:14px 16px;box-shadow:0 1px 3px rgba(0,0,0,.06);border-left:3px solid #e2e5ea}
+.risk-card.high{border-left-color:#dc2626}
+.risk-card.med{border-left-color:#f59e0b}
+.risk-card.low{border-left-color:#22c55e}
+.risk-title{font-size:12px;font-weight:700;color:var(--navy);margin-bottom:4px;display:flex;align-items:center;gap:6px}
+.risk-pill{font-size:9px;font-weight:700;padding:2px 7px;border-radius:20px;letter-spacing:.04em}
+.pill-high{background:#fee2e2;color:#dc2626}
+.pill-med{background:#fef3c7;color:#d97706}
+.pill-low{background:#d1fae5;color:#059669}
+.risk-desc{font-size:11px;color:var(--gray-600);line-height:1.5}
+
+.step-card{background:#fff;border-radius:6px;padding:14px 16px;box-shadow:0 1px 3px rgba(0,0,0,.06);display:flex;gap:14px;align-items:flex-start}
+.step-num{width:30px;height:30px;border-radius:50%;background:var(--gold);color:var(--navy);font-size:13px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.step-text{font-size:12px;color:var(--navy);font-weight:500;line-height:1.4;padding-top:4px}
+
+.verdict-banner{
+  background:var(--green-bg);border:1.5px solid var(--green);
+  border-radius:6px;padding:14px 20px;
+  text-align:center;font-size:13px;font-weight:700;color:var(--green);
+  display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;
+}
+.verdict-banner span{color:var(--gray-600);font-weight:400;font-size:11px}
+
+</style>
+</head>
+<body>
+
+<div class="progress" id="progress"></div>
+
+<div class="deck">
+
+<!-- ═══ SLIDE 1 — COVER ═══ -->
+<div class="slide active" id="s1">
+  <div class="s1-topbar"></div>
+  <div class="s1-header">
+    <div class="s1-broker">Eastdil Secured · Project Solea · Marzo 2026</div>
+    <img class="s1-logo" src="logo.png" alt="MAGG Capital">
+  </div>
+  <div class="s1-hero">
+    <div class="s1-dealname">CASÓN DEL TORMES</div>
+    <div class="s1-subtitle">Madrid · Gran Vía / Plaza España · 68 llaves · Share deal — TANOS S.A.</div>
+    <div class="s1-badges">
+      <div class="badge-go">✅ &nbsp;GO</div>
+      <div class="badge-spread">Spread +262 bps</div>
+    </div>
+  </div>
+  <div class="s1-divider"></div>
+  <div class="s1-kpis">
+    <div class="kpi"><div class="kpi-val">€23.0M</div><div class="kpi-label">Precio objetivo</div></div>
+    <div class="kpi"><div class="kpi-val">€3.0M</div><div class="kpi-label">CapEx reforma</div></div>
+    <div class="kpi"><div class="kpi-val">€393k / llave</div><div class="kpi-label">Total invertido</div></div>
+    <div class="kpi"><div class="kpi-val">7.87%</div><div class="kpi-label">YoC Year 3</div></div>
+    <div class="kpi"><div class="kpi-val">~25%</div><div class="kpi-label">IRR levered</div></div>
+    <div class="kpi"><div class="kpi-val">~2.2x</div><div class="kpi-label">Equity múltiple</div></div>
+  </div>
+  <div class="s1-divider2"></div>
+  <div class="s1-calendar">
+    <span class="cal-highlight">⚡ NBO &lt; 15 mar'26</span>
+    <span class="cal-sep">→</span>
+    <span class="cal-step">Cierre Q2'26</span>
+    <span class="cal-sep">→</span>
+    <span class="cal-step">Reforma 9m</span>
+    <span class="cal-sep">→</span>
+    <span class="cal-step">Apertura Q1'27</span>
+    <span class="cal-sep">→</span>
+    <span class="cal-step">Estabilización Q1'28</span>
+    <span class="cal-sep">→</span>
+    <span class="cal-step">Exit Q4'28 (~3.75a)</span>
+  </div>
+  <div class="s1-footer">MAGG CAPITAL &nbsp;·&nbsp; CONFIDENTIAL &nbsp;·&nbsp; INVESTMENT COMMITTEE</div>
+</div>
+
+<!-- ═══ SLIDE 2 — ESTRUCTURA ═══ -->
+<div class="slide" id="s2">
+  <div class="slide-header">
+    <div class="slide-title">Estructura de la Inversión</div>
+    <img class="slide-logo" src="logo.png" alt="MAGG Capital">
+  </div>
+  <div class="slide-body">
+    <div class="cols3">
+
+      <!-- A. COMPRA -->
+      <div class="col-card">
+        <div class="col-card-header">A &nbsp;·&nbsp; Compra</div>
+        <div class="col-card-body">
+          <table class="tbl">
+            <tr><td>Entry price</td><td>23.000k — Share deal TANOS S.A.</td></tr>
+            <tr><td>Hard costs</td><td>2.000k — ~835 €/m²</td></tr>
+            <tr><td>Soft (7% hard)</td><td>140k — Proyecto + DO</td></tr>
+            <tr><td>FF&amp;E</td><td>680k — €10k × 68 llaves</td></tr>
+            <tr><td>Contingencia</td><td>200k — Sin visita DT</td></tr>
+            <tr><td>Tx costs</td><td>690k — IAJD + legal</td></tr>
+            <tr class="total"><td>TOTAL</td><td>26.690k &nbsp;·&nbsp; €393k/llave</td></tr>
+          </table>
+        </div>
+      </div>
+
+      <!-- B. OPERACIONES -->
+      <div class="col-card">
+        <div class="col-card-header">B &nbsp;·&nbsp; Operaciones — Year 3 conservador</div>
+        <div class="col-card-body">
+          <div class="kv-row"><span class="kv-key">ADR conservador</span><span class="kv-val">€182 &nbsp;<small style="color:#8a9ab0;font-weight:400">(+22% vs hoy)</small></span></div>
+          <div class="kv-row"><span class="kv-key">Ocupación base</span><span class="kv-val">86%</span></div>
+          <div class="kv-row"><span class="kv-key">Revenue Year 3</span><span class="kv-val">€3.885M</span></div>
+          <div class="kv-row"><span class="kv-key">GOP margin</span><span class="kv-val">60%</span></div>
+          <div class="kv-row"><span class="kv-key">HMA all-in (8%)</span><span class="kv-val">€311k</span></div>
+          <div class="kv-row highlight"><span class="kv-key">NOI Year 3</span><span class="kv-val">€2.020M &nbsp;(52%)</span></div>
+          <div style="padding:10px 14px;font-size:10px;color:#8a9ab0;border-top:1px solid #edf0f4">
+            Ramp-up: Y1 ADR €162 → NOI €1.74M &nbsp;·&nbsp; Y2 ADR €172 → NOI €1.88M
+          </div>
+        </div>
+      </div>
+
+      <!-- C. EXIT -->
+      <div class="col-card">
+        <div class="col-card-header">C &nbsp;·&nbsp; Exit &amp; Retornos</div>
+        <div class="col-card-body">
+          <div class="kv-row"><span class="kv-key">Exit yield</span><span class="kv-val">5.25%</span></div>
+          <div class="kv-row"><span class="kv-key">Valoración salida</span><span class="kv-val">€38.5M</span></div>
+          <div class="kv-row"><span class="kv-key">YoC</span><span class="kv-val">7.87%</span></div>
+          <div class="kv-row gold-row"><span class="kv-key">Spread vs exit</span><span class="kv-val">+262 bps ✅</span></div>
+          <div class="kv-row gold-row"><span class="kv-key">IRR levered</span><span class="kv-val">~25% ✅</span></div>
+          <div class="kv-row gold-row"><span class="kv-key">Equity múltiple</span><span class="kv-val">~2.2x ✅</span></div>
+          <div style="padding:10px 14px;font-size:10px;color:#8a9ab0;border-top:1px solid #edf0f4">
+            €393k/llave vs comps Room Mate €406k · Radisson €448k → descuento 2–12%
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="topics-bar">
+    <div class="topics-title">⚠ Temas clave</div>
+    <div class="topics-list">
+      <div class="topic-item">ADR +22% vs hoy — confirmar con DT que €3M justifica reposicionamiento 3★→4★</div>
+      <div class="topic-item">TANOS S.A. — DD fiscal obligatoria + tax warranty &amp; indemnity en SPA</div>
+      <div class="topic-item">OTA 63% — plan distribución directa para defender GOP margin desde Year 1</div>
+    </div>
+  </div>
+  <div class="slide-footer">MAGG CAPITAL &nbsp;·&nbsp; CONFIDENTIAL</div>
+</div>
+
+<!-- ═══ SLIDE 3 — SENSIBILIDAD ═══ -->
+<div class="slide" id="s3">
+  <div class="slide-header">
+    <div class="slide-title">Análisis de Sensibilidad</div>
+    <img class="slide-logo" src="logo.png" alt="MAGG Capital">
+  </div>
+  <div class="slide-body">
+    <div class="sens-half">
+
+      <!-- Tabla 1 NOI -->
+      <div class="sens-card">
+        <div class="sens-card-header">NOI (€M) &nbsp;·&nbsp; ADR × Ocupación &nbsp;·&nbsp; GOP 60% / HMA 8% / 68 llaves</div>
+        <div class="sens-card-body">
+          <table class="sens-tbl">
+            <tr>
+              <th>ADR / Occ</th><th>76%</th><th>81%</th><th>86%</th><th>91%</th><th>96%</th>
+            </tr>
+            <tr><td>€162</td><td>1.59</td><td>1.69</td><td>1.80</td><td>1.90</td><td>2.01</td></tr>
+            <tr><td>€172</td><td>1.69</td><td>1.80</td><td>1.91</td><td>2.02</td><td>2.13</td></tr>
+            <tr class="base-row">
+              <td>€182 ★</td><td>1.79</td><td>1.90</td><td class="base-cell">2.02 ★</td><td>2.14</td><td>2.25</td>
+            </tr>
+            <tr><td>€192</td><td>1.88</td><td>2.01</td><td>2.13</td><td>2.25</td><td>2.38</td></tr>
+            <tr><td>€202</td><td>1.98</td><td>2.11</td><td>2.24</td><td>2.37</td><td>2.50</td></tr>
+          </table>
+        </div>
+      </div>
+
+      <!-- Tabla 2 Spread -->
+      <div class="sens-card">
+        <div class="sens-card-header">Spread YoC (bps) &nbsp;·&nbsp; Entry Price × CapEx &nbsp;·&nbsp; GO ≥ +150 bps</div>
+        <div class="sens-card-body">
+          <table class="sens-tbl">
+            <tr>
+              <th>Entry / CapEx</th><th>€2.0M</th><th>€2.5M</th><th>€3.0M ★</th><th>€3.5M</th><th>€4.0M</th>
+            </tr>
+            <tr><td>€19M</td><td class="go-tag">+411 ✅</td><td class="go-tag">+390 ✅</td><td class="go-tag">+369 ✅</td><td class="go-tag">+350 ✅</td><td class="go-tag">+332 ✅</td></tr>
+            <tr><td>€21M</td><td class="go-tag">+329 ✅</td><td class="go-tag">+312 ✅</td><td class="go-tag">+295 ✅</td><td class="go-tag">+278 ✅</td><td class="go-tag">+263 ✅</td></tr>
+            <tr class="base-row">
+              <td>€23M ★</td><td class="go-tag">+261 ✅</td><td class="go-tag">+246 ✅</td><td class="base-cell">+231 ✅ ★</td><td class="go-tag">+217 ✅</td><td class="go-tag">+204 ✅</td>
+            </tr>
+            <tr><td>€25M asking</td><td class="go-tag">+202 ✅</td><td class="go-tag">+190 ✅</td><td class="go-tag">+177 ✅</td><td class="go-tag">+165 ✅</td><td class="go-tag">+153 ✅</td></tr>
+          </table>
+          <div style="padding:10px 14px;font-size:10.5px;color:var(--green);font-weight:600;border-top:1px solid #edf0f4">
+            ✅ Toda la matriz en GO — incluso en asking €25M + CapEx €4M: +153 bps
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Escenarios -->
+    <div class="scenarios">
+      <div class="scenario">
+        <div class="sc-name">★ Base case</div>
+        <div class="sc-desc">ADR €182 · Occ 86% · NOI €2.02M · Exit 5.25% → €38.5M · IRR ~25%</div>
+      </div>
+      <div class="scenario" style="border-left-color:#22c55e">
+        <div class="sc-name">Yield compression</div>
+        <div class="sc-desc">Exit yield → 5.0%: salida €40.4M (+€1.9M sin cambios operativos)</div>
+      </div>
+      <div class="scenario" style="border-left-color:#64748b">
+        <div class="sc-name">Downside ADR −€20</div>
+        <div class="sc-desc">ADR €162 · Occ 86% → NOI €1.80M · Salida €34.3M · En GO</div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-footer">MAGG CAPITAL &nbsp;·&nbsp; CONFIDENTIAL</div>
+</div>
+
+<!-- ═══ SLIDE 4 — RIESGOS & PRÓXIMOS PASOS ═══ -->
+<div class="slide" id="s4">
+  <div class="slide-header">
+    <div class="slide-title">Riesgos &amp; Próximos Pasos</div>
+    <img class="slide-logo" src="logo.png" alt="MAGG Capital">
+  </div>
+  <div class="slide-body">
+
+    <div class="risk-col">
+      <div class="section-hdr">Riesgos principales</div>
+
+      <div class="risk-card high">
+        <div class="risk-title">ADR +22% vs hoy <span class="risk-pill pill-med">MEDIO</span></div>
+        <div class="risk-desc">Salto de €149.7 a €182 requiere reposicionamiento real 3★→4★. Visita DT debe confirmar que €3M CapEx lo justifica antes de firmar NBO.</div>
+      </div>
+      <div class="risk-card high">
+        <div class="risk-title">TANOS S.A. — Share deal <span class="risk-pill pill-high">ALTO</span></div>
+        <div class="risk-desc">Pasivos fiscales latentes en la sociedad. DD fiscal obligatoria + tax warranty &amp; indemnity en SPA. Sin esto, no cerrar.</div>
+      </div>
+      <div class="risk-card med">
+        <div class="risk-title">OTA 63% dependencia <span class="risk-pill pill-med">MEDIO</span></div>
+        <div class="risk-desc">Sin plan de distribución directa, el GOP margin se erosiona desde Year 1. Incluir plan en la propuesta al operador.</div>
+      </div>
+      <div class="risk-card low">
+        <div class="risk-title">Reforma &gt; 9 meses <span class="risk-pill pill-low">BAJO</span></div>
+        <div class="risk-desc">Permiso aprobado → riesgo bajo. Cada 3m de retraso impacta ~1pp en IRR levered.</div>
+      </div>
+    </div>
+
+    <div class="steps-col">
+      <div class="section-hdr">Próximos pasos</div>
+
+      <div class="step-card">
+        <div class="step-num">1</div>
+        <div class="step-text">⚡ <strong>NBO antes del 15 de marzo 2026</strong> — precio objetivo €23M</div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">2</div>
+        <div class="step-text">Visita con Director Técnico → confirmar CapEx €3M y alcance reforma</div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">3</div>
+        <div class="step-text">DD fiscal — TANOS S.A. · tax warranty &amp; indemnity en SPA</div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">4</div>
+        <div class="step-text">SPA si due diligence OK</div>
+      </div>
+
+      <div class="verdict-banner">
+        ✅ GO a €23M
+        <span>YoC 7.87% &nbsp;·&nbsp; Spread +262 bps &nbsp;·&nbsp; IRR ~25% &nbsp;·&nbsp; Equity ~2.2x</span>
+      </div>
+    </div>
+
+  </div>
+  <div class="slide-footer">MAGG CAPITAL &nbsp;·&nbsp; CONFIDENTIAL</div>
+</div>
+
+</div><!-- /deck -->
+
+<!-- NAV -->
+<div class="nav">
+  <button onclick="go(-1)">&#8592;</button>
+  <span class="slide-count" id="count">1 / 4</span>
+  <button onclick="go(1)">&#8594;</button>
+</div>
+
+<script>
+const slides = document.querySelectorAll('.slide');
+const progress = document.getElementById('progress');
+const count = document.getElementById('count');
+let cur = 0;
+
+function show(n){
+  slides[cur].classList.remove('active');
+  cur = Math.max(0, Math.min(n, slides.length - 1));
+  slides[cur].classList.add('active');
+  count.textContent = (cur+1) + ' / ' + slides.length;
+  progress.style.width = ((cur+1)/slides.length*100) + '%';
+}
+
+function go(d){ show(cur + d); }
+
+document.addEventListener('keydown', e => {
+  if(e.key==='ArrowRight'||e.key==='ArrowDown'||e.key===' ') go(1);
+  if(e.key==='ArrowLeft'||e.key==='ArrowUp') go(-1);
+});
+
+// Touch swipe
+let tx=0;
+document.addEventListener('touchstart',e=>tx=e.touches[0].clientX);
+document.addEventListener('touchend',e=>{
+  const dx=e.changedTouches[0].clientX-tx;
+  if(Math.abs(dx)>50) go(dx<0?1:-1);
+});
+
+show(0);
+</script>
+</body>
+</html>
