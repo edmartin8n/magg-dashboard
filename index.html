@@ -222,13 +222,13 @@ header h1{font-size:17px;font-weight:700;letter-spacing:-.2px}
 
 /* Table */
 .pl-table{background:white;border-radius:var(--radius);box-shadow:0 2px 8px rgba(0,0,0,.06);overflow:hidden}
-.pl-thead{display:grid;grid-template-columns:36px 100px 1fr 90px 70px 72px 72px 72px 160px;background:#f0f4fa;border-bottom:2px solid var(--border)}
+.pl-thead{display:grid;grid-template-columns:36px 90px 1.1fr 78px 64px 72px 78px 62px 96px 1fr;background:#f0f4fa;border-bottom:2px solid var(--border)}
 .pl-th{padding:8px 10px;font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;cursor:pointer;user-select:none;display:flex;align-items:center;gap:3px;white-space:nowrap}
 .pl-th:hover{color:var(--navy)}
 .pl-th .sort-arrow{opacity:.4;font-size:9px}
 .pl-th.sorted .sort-arrow{opacity:1;color:var(--navy2)}
 .pl-tbody{}
-.pl-tr{display:grid;grid-template-columns:36px 100px 1fr 90px 70px 72px 72px 72px 160px;border-bottom:1px solid #f4f6fa;cursor:pointer;transition:background .1s}
+.pl-tr{display:grid;grid-template-columns:36px 90px 1.1fr 78px 64px 72px 78px 62px 96px 1fr;border-bottom:1px solid #f4f6fa;cursor:pointer;transition:background .1s}
 .pl-tr:last-of-type{border-bottom:none}
 .pl-tr:hover{background:#f8faff}
 .pl-tr.expanded{background:#fffcf2;border-bottom:none}
@@ -334,7 +334,8 @@ header h1{font-size:17px;font-weight:700;letter-spacing:-.2px}
           <div class="pl-th" onclick="setSortCol('precio')">Precio <span class="sort-arrow">↕</span></div>
           <div class="pl-th" onclick="setSortCol('spread')">Spread <span class="sort-arrow">↕</span></div>
           <div class="pl-th" onclick="setSortCol('yoc')">YoC <span class="sort-arrow">↕</span></div>
-          <div class="pl-th">Motivo</div>
+          <div class="pl-th">Estado</div>
+          <div class="pl-th">Motivo / Razón</div>
         </div>
         <div id="pl-tbody"></div>
       </div>
@@ -584,7 +585,7 @@ function dealTableRow(d) {
   const isOpen    = open['d_'+d.ref];
   const isEditing = IS_LOCAL && editingRef===d.ref;
   const vkey      = (d.verdict==='pass')?'go':d.verdict;
-  const motivo    = d.motivo ? d.motivo.split(/\s+/).slice(0,6).join(' ')+(d.motivo.split(/\s+/).length>6?'…':'') : '';
+  const motivo    = d.motivo ? d.motivo.split(/\s+/).slice(0,8).join(' ')+(d.motivo.split(/\s+/).length>8?'…':'') : '';
   const precFmt   = d.precio ? '€'+(d.precio/1e6).toFixed(1)+'M' : '—';
   const sqmFmt    = d.sqm    ? Number(d.sqm).toLocaleString('es')+'m²' : '—';
   const spreadNum = parseInt(String(d.spread).replace(/[^-\d]/g,''))||0;
@@ -642,6 +643,7 @@ function dealTableRow(d) {
     <div class="pl-td num">${precFmt}</div>
     <div class="pl-td ${spreadCls}">${spreadTxt}</div>
     <div class="pl-td muted">${d.yoc||'—'}</div>
+    <div class="pl-td"><span style="font-size:10px;font-weight:700;padding:2px 7px;border-radius:4px;background:${ vkey==='go'?'#e8f5e9':vkey==='borderline'?'#fff8e1':vkey==='analisis'||vkey==='pend'?'#e8f0fe':'#fce4ec' };color:${ vkey==='go'?'#2e7d32':vkey==='borderline'?'#e65100':vkey==='analisis'||vkey==='pend'?'#1565c0':'#c62828' }">${d.estado||'—'}</span></div>
     <div class="pl-td motivo" title="${d.motivo||''}">${motivo||'—'}</div>
   </div>
   <div class="pl-detail${isOpen||isEditing?' open':''}" id="pld-${sr}" onclick="event.stopPropagation()">
