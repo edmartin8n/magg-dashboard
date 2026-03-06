@@ -180,6 +180,29 @@ header h1{font-size:17px;font-weight:700;letter-spacing:-.2px}
 
 @media(max-width:900px){.ctrl-top,.ctrl-mid{grid-template-columns:1fr}.pies-grid{grid-template-columns:1fr 1fr}}
 
+
+/* ===== EDIT PANEL & TOAST ===== */
+.edit-panel{background:#f8fafc;border-top:2px solid var(--gold);padding:18px 20px}
+.edit-title{font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.8px;margin-bottom:14px;display:flex;align-items:center;gap:6px}
+.edit-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:12px}
+.edit-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:10px}
+.edit-row-2{display:grid;grid-template-columns:2fr 1fr;gap:10px;margin-bottom:10px}
+.edit-field{display:flex;flex-direction:column;gap:4px}
+.edit-field label{font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}
+.edit-field input,.edit-field select,.edit-field textarea{padding:8px 10px;border:2px solid var(--border);border-radius:var(--radius-sm);font-size:13px;font-family:inherit;outline:none;transition:.15s;background:white}
+.edit-field input:focus,.edit-field select:focus,.edit-field textarea:focus{border-color:var(--navy2);box-shadow:0 0 0 3px rgba(45,74,122,.08)}
+.edit-field textarea{resize:vertical;min-height:60px}
+.edit-actions{display:flex;gap:8px;margin-top:4px}
+.btn-save{background:var(--green);color:white;padding:8px 20px;border:none;border-radius:var(--radius-sm);font-size:13px;font-weight:700;cursor:pointer;transition:.15s}
+.btn-save:hover{opacity:.9}
+.btn-cancel{background:#f0f4fa;color:var(--navy);padding:8px 16px;border:none;border-radius:var(--radius-sm);font-size:13px;font-weight:600;cursor:pointer}
+.btn-edit{background:var(--gold);color:white;padding:7px 14px;border:none;border-radius:var(--radius-sm);font-size:12px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:5px;transition:.15s}
+.btn-edit:hover{opacity:.9}
+/* Toast */
+.toast{position:fixed;bottom:28px;right:28px;padding:13px 22px;border-radius:var(--radius);font-size:13px;font-weight:600;color:white;z-index:9999;transform:translateY(20px);opacity:0;transition:all .25s;box-shadow:0 4px 20px rgba(0,0,0,.2)}
+.toast.show{transform:translateY(0);opacity:1}
+.toast-success{background:var(--green)}.toast-error{background:var(--red)}
+
 @media(max-width:768px){
   .deal-kpis{display:none}
   .finder-header{grid-template-columns:1fr 1fr}
@@ -328,6 +351,19 @@ let dFilter = 'all', fFilter = 'all';
 let filterByBroker = -1; // broker index for cross-filter
 let highlightDeal  = null; // deal ref to highlight
 
+// ── API Config ───────────────────────────────────────────────────
+const IS_LOCAL   = window.location.hostname==='localhost'||window.location.hostname==='127.0.0.1';
+const API_BASE   = 'http://localhost:8765';
+const ESTADO_MAP = [
+  {label:'🔍 En Análisis', value:'En Análisis',  scoring:'',             verdict:'analisis'},
+  {label:'✅ GO',          value:'GO ✅',          scoring:'GO ✅',        verdict:'go'},
+  {label:'⚠️ Borderline',  value:'Borderline',    scoring:'BORDERLINE ⚠️',verdict:'borderline'},
+  {label:'⏳ PEND',        value:'PEND',           scoring:'PEND ⏳',      verdict:'pend'},
+  {label:'❌ NO GO',       value:'No Go',          scoring:'NO GO ❌',     verdict:'nogo'},
+  {label:'🗑️ Descartado',  value:'Descartado',    scoring:'NO GO ❌',     verdict:'nogo'},
+];
+let editingRef = null;
+
 // ── Auth ──────────────────────────────────────────────────────────
 function auth() {
   if (document.getElementById('pwd').value === PWD) {
@@ -393,12 +429,15 @@ function renderDeals() {
   }
 }
 
+function safeR(ref){return ref.replace(/[^a-z0-9]/gi,'_');}
+
 function dealRow(d) {
-  const isOpen = open['d_'+d.ref];
+  const isOpen    = open['d_'+d.ref];
+  const isEditing = IS_LOCAL && editingRef===d.ref;
   const vcls = (d.verdict==='go'||d.verdict==='pass')?'v-pass':d.verdict==='borderline'?'v-bord':d.verdict==='nogo'?'v-nogo':d.verdict==='pend'?'v-pend':'v-neutral';
   const vtxt = (d.verdict==='go'||d.verdict==='pass')?'✅ GO':d.verdict==='borderline'?'⚠️ Borderline':d.verdict==='nogo'?'❌ NO GO':d.verdict==='pend'?'⏳ PEND':'🔍 En análisis';
   const rowcls = d.estado==='En Análisis'?'analisis':d.verdict;
-  const safeRef = d.ref.replace(/[^a-z0-9]/gi,'_');
+  const sr = safeR(d.ref);
 
   const kpis = [
     d.precio_m ? ['€'+d.precio_m+'M', 'Precio'] : null,
@@ -408,17 +447,77 @@ function dealRow(d) {
 
   const detailItems = [
     ['Ref', d.ref], ['Tipo', d.tipo], ['Fecha entrada', d.fecha],
-    ['Precio asking', d.precio ? d.precio+'€' : ''], ['Unidades', d.unidades],
+    ['Precio asking', d.precio ? '€'+(d.precio/1e6).toFixed(2)+'M' : ''], ['Unidades', d.unidades],
     ['Fuente / Broker', d.fuente], ['Estado', d.estado],
     ['YoC entrada', d.yoc], ['Exit Yield', d.yield_exit], ['Spread', d.spread],
     ['Motivo', d.motivo], ['Próximo paso', d.prox_paso],
     ['Owner', d.owner], ['Notas', d.notas],
   ].filter(r=>r[1]);
 
-  // Cross-link button to broker
   const brokerBtn = d.broker_idx >= 0
     ? `<button class="btn btn-gold" onclick="event.stopPropagation();goToBroker(${d.broker_idx})">👤 Ver broker →</button>`
     : '';
+
+  const editBtn = IS_LOCAL
+    ? `<button class="btn-edit" onclick="event.stopPropagation();toggleEdit('${d.ref}')">${isEditing?'✕ Cancelar':'✏️ Editar'}</button>`
+    : '';
+
+  // Edit form
+  const estadoOpts = ESTADO_MAP.map(o=>`<option value="${o.value}"${d.estado===o.value?' selected':''}>${o.label}</option>`).join('');
+  const editForm = isEditing ? `
+    <div class="edit-panel" onclick="event.stopPropagation()">
+      <div class="edit-title">✏️ Editar deal — ${d.ref}</div>
+      <div class="edit-grid">
+        <div class="edit-field">
+          <label>Estado</label>
+          <select id="ef-estado-${sr}">${estadoOpts}</select>
+        </div>
+        <div class="edit-field">
+          <label>Precio (M€)</label>
+          <input id="ef-precio-${sr}" type="number" step="0.1" value="${d.precio?(d.precio/1e6).toFixed(2):''}">
+        </div>
+        <div class="edit-field">
+          <label>YoC HMA</label>
+          <input id="ef-yoc-${sr}" type="text" value="${d.yoc||''}">
+        </div>
+        <div class="edit-field">
+          <label>Exit Yield</label>
+          <input id="ef-yield-${sr}" type="text" value="${d.yield_exit||''}">
+        </div>
+        <div class="edit-field">
+          <label>Spread</label>
+          <input id="ef-spread-${sr}" type="text" value="${d.spread||''}">
+        </div>
+        <div class="edit-field">
+          <label>Owner</label>
+          <input id="ef-owner-${sr}" type="text" value="${d.owner||''}">
+        </div>
+      </div>
+      <div class="edit-row">
+        <div class="edit-field" style="grid-column:span 2">
+          <label>Próximo paso</label>
+          <textarea id="ef-prox-${sr}" rows="2">${d.prox_paso||''}</textarea>
+        </div>
+        <div class="edit-field">
+          <label>Motivo</label>
+          <textarea id="ef-motivo-${sr}" rows="2">${d.motivo||''}</textarea>
+        </div>
+      </div>
+      <div class="edit-row-2">
+        <div class="edit-field">
+          <label>Notas</label>
+          <textarea id="ef-notas-${sr}" rows="2">${d.notas||''}</textarea>
+        </div>
+        <div class="edit-field">
+          <label>Fecha acción</label>
+          <input id="ef-fecha-${sr}" type="text" placeholder="dd/mm/yyyy" value="${d.fecha_accion||''}">
+        </div>
+      </div>
+      <div class="edit-actions">
+        <button class="btn-save" onclick="event.stopPropagation();saveDeal('${d.ref}')">💾 Guardar en Excel</button>
+        <button class="btn-cancel" onclick="event.stopPropagation();toggleEdit('${d.ref}')">Cancelar</button>
+      </div>
+    </div>` : '';
 
   return `<div class="deal-row ${rowcls}" onclick="toggleD('${d.ref}')">
     <div class="deal-summary">
@@ -432,7 +531,7 @@ function dealRow(d) {
       </div>
       <div class="deal-verdict"><span class="vtag ${vcls}">${vtxt}</span></div>
     </div>
-    <div class="deal-detail${isOpen?' open':''}" id="dd-${safeRef}" onclick="event.stopPropagation()">
+    <div class="deal-detail${isOpen||isEditing?' open':''}" id="dd-${sr}" onclick="event.stopPropagation()">
       <div class="detail-grid">
         ${detailItems.map(r=>`<div class="dg-item"><div class="dg-label">${r[0]}</div><div class="dg-value">${r[1]}</div></div>`).join('')}
       </div>
@@ -440,15 +539,89 @@ function dealRow(d) {
         ${d.ic_link?`<a href="${d.ic_link}" target="_blank" class="btn btn-nav">📄 IC Brief</a>`:''}
         ${d.gamma_link?`<a href="${d.gamma_link}" target="_blank" class="btn btn-nav">📊 Presentación</a>`:''}
         ${brokerBtn}
+        ${editBtn}
       </div>
+      ${editForm}
     </div>
   </div>`;
 }
-
 function toggleD(ref) {
   open['d_'+ref] = !open['d_'+ref];
   const el = document.getElementById('dd-'+ref.replace(/[^a-z0-9]/gi,'_'));
   if (el) el.classList.toggle('open', !!open['d_'+ref]);
+}
+
+function toggleEdit(ref) {
+  editingRef = editingRef===ref ? null : ref;
+  open['d_'+ref] = true; // keep detail open when editing
+  renderDeals();
+}
+
+function saveDeal(ref) {
+  const d = DEALS.find(x=>x.ref===ref);
+  if (!d) return;
+  const sr = safeR(ref);
+
+  const estadoVal = document.getElementById('ef-estado-'+sr)?.value || '';
+  const precioVal = document.getElementById('ef-precio-'+sr)?.value || '';
+  const yocVal    = document.getElementById('ef-yoc-'+sr)?.value    || '';
+  const yieldVal  = document.getElementById('ef-yield-'+sr)?.value  || '';
+  const spreadVal = document.getElementById('ef-spread-'+sr)?.value || '';
+  const ownerVal  = document.getElementById('ef-owner-'+sr)?.value  || '';
+  const proxVal   = document.getElementById('ef-prox-'+sr)?.value   || '';
+  const motivoVal = document.getElementById('ef-motivo-'+sr)?.value || '';
+  const notasVal  = document.getElementById('ef-notas-'+sr)?.value  || '';
+  const fechaVal  = document.getElementById('ef-fecha-'+sr)?.value  || '';
+
+  const opt = ESTADO_MAP.find(o=>o.value===estadoVal) || {};
+  const body = {};
+  if (estadoVal)        body.estado       = estadoVal;
+  if (opt.scoring)      body.scoring      = opt.scoring;
+  if (precioVal!=='')   body.precio       = parseFloat(precioVal)*1e6;
+  if (yocVal)           body.yoc_hma      = yocVal;
+  if (yieldVal)         body.exit_yield   = yieldVal;
+  if (spreadVal)        body.spread       = spreadVal;
+  if (ownerVal)         body.owner        = ownerVal;
+  if (proxVal)          body.prox_paso    = proxVal;
+  if (motivoVal)        body.motivo       = motivoVal;
+  if (notasVal)         body.notas        = notasVal;
+  if (fechaVal)         body.fecha_accion = fechaVal;
+
+  // Optimistic local update
+  if (estadoVal)           { d.estado = estadoVal; }
+  if (opt.verdict)         { d.verdict = opt.verdict; }
+  if (opt.scoring)         { d.scoring = opt.scoring; }
+  if (precioVal!=='')      { const p=parseFloat(precioVal)*1e6; d.precio=p; d.precio_m=parseFloat(precioVal).toFixed(2); }
+  if (yocVal)              { d.yoc = yocVal; }
+  if (yieldVal)            { d.yield_exit = yieldVal; }
+  if (spreadVal)           { d.spread = spreadVal; }
+  if (ownerVal)            { d.owner = ownerVal; }
+  if (proxVal)             { d.prox_paso = proxVal; }
+  if (motivoVal)           { d.motivo = motivoVal; }
+  if (notasVal)            { d.notas = notasVal; }
+  if (fechaVal)            { d.fecha_accion = fechaVal; }
+
+  editingRef = null;
+  renderDeals();
+  renderControl();
+
+  fetch(`${API_BASE}/api/deals/${encodeURIComponent(ref)}`, {
+    method: 'PATCH',
+    headers: {'Content-Type':'application/json'},
+    body: JSON.stringify(body),
+  })
+  .then(r => r.ok ? r.json() : Promise.reject(r.status))
+  .then(data => showToast(`✅ ${ref} guardado en Excel (${data.updated.length} campos)`, 'success'))
+  .catch(err => showToast(`❌ Error al guardar: ${err}`, 'error'));
+}
+
+function showToast(msg, type='success') {
+  const t = document.createElement('div');
+  t.className = 'toast toast-'+type;
+  t.textContent = msg;
+  document.body.appendChild(t);
+  setTimeout(()=>t.classList.add('show'), 10);
+  setTimeout(()=>{ t.classList.remove('show'); setTimeout(()=>t.remove(), 300); }, 3500);
 }
 
 // ── FINDERS ───────────────────────────────────────────────────────
