@@ -258,6 +258,7 @@ header h1{font-size:17px;font-weight:700;letter-spacing:-.2px}
 .pl-td.spread-pos{font-weight:700;color:var(--green)}
 .pl-td.spread-neg{font-weight:700;color:var(--red)}
 .pl-td.motivo{font-size:11px;color:var(--muted);font-style:italic;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block;padding-top:10px}
+.mob-ref{display:none}
 .pl-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
 .pl-dot.go{background:var(--green)}.pl-dot.nogo{background:var(--red)}.pl-dot.borderline{background:var(--orange)}.pl-dot.analisis,.pl-dot.pend{background:var(--blue)}
 
@@ -279,6 +280,26 @@ header h1{font-size:17px;font-weight:700;letter-spacing:-.2px}
   .ft-cell:nth-child(7),.finder-row .ft-cell:nth-child(7){display:flex}
   .expand-grid{grid-template-columns:1fr}
   #view-deals,#view-finders{padding:16px}
+  /* Pipeline table — mobile: dot | nombre+ref | fecha | precio | spread */
+  .pl-thead,
+  .pl-tr { grid-template-columns: 20px 1fr 50px 62px 62px; }
+  /* hide: col 2=ref, col 5=sqm, col 8=yoc, col 9=estado, col 10=motivo */
+  .pl-thead > .pl-th:nth-child(2),
+  .pl-tr   > .pl-td:nth-child(2)  { display:none; }
+  .pl-thead > .pl-th:nth-child(5),
+  .pl-tr   > .pl-td:nth-child(5)  { display:none; }
+  .pl-thead > .pl-th:nth-child(8),
+  .pl-tr   > .pl-td:nth-child(8)  { display:none; }
+  .pl-thead > .pl-th:nth-child(9),
+  .pl-tr   > .pl-td:nth-child(9)  { display:none; }
+  .pl-thead > .pl-th:nth-child(10),
+  .pl-tr   > .pl-td:nth-child(10) { display:none; }
+  /* show ref as sub-text in nombre cell */
+  .mob-ref { display:block; font-size:9px; color:var(--muted); font-weight:400; margin-top:1px; }
+  .pl-td.name { white-space:normal; }
+  /* compact padding */
+  .pl-td { padding:5px 6px; font-size:11px; }
+  .pl-th { padding:6px 6px; font-size:9px; }
 }
 </style>
 </head>
@@ -517,6 +538,14 @@ function fmtYoc(v) {
   if (isNaN(n)) return String(v);
   return (n < 1 ? (n*100).toFixed(1) : n.toFixed(1)) + '%';
 }
+function fmtFechaShort(s) {
+  if (!s) return '—';
+  const p = s.split('/');
+  if (p.length < 3) return s;
+  const mths = ['','Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
+  const m = parseInt(p[1], 10);
+  return `${p[0]}/${mths[m]||p[1]}`;
+}
 let plActiveVerdicts = new Set(['go','analisis','pend','borderline','nogo']);
 let plDateDays = 0; // 0 = all
 let plSortCol  = 'default';
@@ -628,12 +657,52 @@ function renderDeals() {
 
 function safeR(ref){return ref.replace(/[^a-z0-9]/gi,'_');}
 
+/* Motivo cualitativo: si el motivo es un label CRM genérico en inglés,
+   deriva un comentario útil de los números disponibles */
+function displayMotivo(d) {
+  const m = d.motivo || '';
+  const isGeneric = /^(Preliminary Analysis|Discarded After|Advanced Analysis|Incoming Opportunity|Negotiation)/i.test(m);
+  if (m && !isGeneric) return m; // ya cualitativo → usarlo tal cual
+
+  const parts = [];
+  const sp = d.spread !== '' && d.spread !== null && d.spread !== undefined ? parseInt(String(d.spread).replace(/[^-\d]/g,'')) : NaN;
+  const yoc = d.yoc !== '' && d.yoc !== null && d.yoc !== undefined ? parseFloat(String(d.yoc)) : NaN;
+  const yocPct = !isNaN(yoc) && yoc > 0 ? (yoc < 1 ? (yoc*100).toFixed(1) : yoc.toFixed(1)) : null;
+
+  if (!isNaN(sp)) parts.push(`Spread ${sp>0?'+':''}${sp}bps`);
+  if (yocPct)     parts.push(`YoC ${yocPct}%`);
+
+  // Extraer ADR/Occ de notas si existen
+  const notas = d.notas || '';
+  const adrM = notas.match(/ADR: €(\d+)/);
+  const occM = notas.match(/Occ: (\d+)%/);
+  if (adrM) parts.push(`ADR €${adrM[1]}`);
+  if (occM) parts.push(`Occ ${occM[1]}%`);
+
+  if (!parts.length) return '';
+
+  // Añadir conclusión según spread/YoC
+  let suffix = '';
+  if (!isNaN(sp)) {
+    if (sp < -100)      suffix = ' — spread muy negativo';
+    else if (sp < 0)    suffix = ' — spread negativo';
+    else if (sp < 100)  suffix = ' — spread insuficiente';
+    else if (sp < 150)  suffix = ' — borderline';
+  } else if (!isNaN(yoc) && yoc > 0) {
+    const y = yoc < 1 ? yoc*100 : yoc;
+    if (y < 5.0)  suffix = ' — YoC bajo mandato';
+    else if (y < 6.5) suffix = ' — retorno ajustado';
+  }
+  return parts.join(' · ') + suffix;
+}
+
 function dealTableRow(d) {
   const sr        = safeR(d.ref);
   const isOpen    = open['d_'+d.ref];
   const isEditing = IS_LOCAL && editingRef===d.ref;
   const vkey      = (d.verdict==='pass')?'go':d.verdict;
-  const motivo    = d.motivo ? d.motivo.split(/\s+/).slice(0,8).join(' ')+(d.motivo.split(/\s+/).length>8?'…':'') : '';
+  const motivoRaw = displayMotivo(d);
+  const motivo    = motivoRaw ? motivoRaw.split(/\s+/).slice(0,10).join(' ')+(motivoRaw.split(/\s+/).length>10?'…':'') : '';
   const precFmt   = d.precio ? '€'+(d.precio/1e6).toFixed(1)+'M' : '—';
   const sqmFmt    = d.sqm    ? Number(d.sqm).toLocaleString('es')+'m²' : '—';
   const spreadNum = parseInt(String(d.spread).replace(/[^-\d]/g,''))||0;
@@ -648,7 +717,7 @@ function dealTableRow(d) {
     ['Precio',d.precio?'€'+(d.precio/1e6).toFixed(2)+'M':''],['Unidades',d.unidades],['SQM',d.sqm?d.sqm+'m²':''],
     ['Broker/Fuente',d.fuente],['Estado',d.estado],
     ['YoC',d.yoc],['Exit Yield',d.yield_exit],['Spread',d.spread],
-    ['Motivo',d.motivo],['Próximo paso',d.prox_paso],['Owner',d.owner],['Notas',d.notas],
+    ['Motivo',displayMotivo(d)],['Próximo paso',d.prox_paso],['Owner',d.owner],['Notas',d.notas],
   ].filter(r=>r[1]);
 
   const brokerBtn = d.broker_idx>=0
@@ -686,14 +755,14 @@ function dealTableRow(d) {
   <div class="pl-tr${isOpen||isEditing?' expanded':''}" id="plr-${sr}" onclick="toggleD('${d.ref}')">
     <div class="pl-td"><div class="pl-dot ${vkey}"></div></div>
     <div class="pl-td ref">${d.ref}</div>
-    <div class="pl-td name">${d.nombre}<div style="font-size:10px;color:var(--muted);font-weight:400;margin-top:1px">📍 ${d.ubicacion}</div></div>
-    <div class="pl-td muted">${d.fecha||'—'}</div>
+    <div class="pl-td name">${d.nombre}<span class="mob-ref">${d.ref}</span><div style="font-size:10px;color:var(--muted);font-weight:400;margin-top:1px">📍 ${d.ubicacion}</div></div>
+    <div class="pl-td muted" title="${d.fecha||''}">${fmtFechaShort(d.fecha)}</div>
     <div class="pl-td muted">${sqmFmt}</div>
     <div class="pl-td num">${precFmt}</div>
     <div class="pl-td ${spreadCls}">${spreadTxt}</div>
     <div class="pl-td muted">${fmtYoc(d.yoc)}</div>
     <div class="pl-td"><span style="font-size:10px;font-weight:700;padding:2px 7px;border-radius:4px;background:${ vkey==='go'?'#e8f5e9':vkey==='borderline'?'#fff8e1':vkey==='analisis'||vkey==='pend'?'#e8f0fe':'#fce4ec' };color:${ vkey==='go'?'#2e7d32':vkey==='borderline'?'#e65100':vkey==='analisis'||vkey==='pend'?'#1565c0':'#c62828' }">${d.estado||'—'}</span></div>
-    <div class="pl-td motivo" title="${d.motivo||''}">${motivo||'—'}</div>
+    <div class="pl-td motivo" title="${motivoRaw||''}">${motivo||'—'}</div>
   </div>
   <div class="pl-detail${isOpen||isEditing?' open':''}" id="pld-${sr}" onclick="event.stopPropagation()">
     <div class="pl-detail-grid">
@@ -1059,11 +1128,11 @@ function renderMonthChart() {
   const bars = keys.map(k => {
     const [y,m] = k.split('-');
     const v   = counts[k]||0;
-    const pct = Math.max(Math.round((v/maxV)*100), 2);
+    const px  = Math.max(Math.round((v/maxV) * 90), 2);
     const lbl = months[parseInt(m,10)-1]+"'"+y.slice(2);
     return `<div class="b-col">
       <div class="b-val">${v}</div>
-      <div class="b-bar" style="height:${pct}%" title="${lbl}: ${v} deals"></div>
+      <div class="b-bar" style="height:${px}px" title="${lbl}: ${v} deals"></div>
       <div class="b-lbl">${lbl}</div>
     </div>`;
   });
