@@ -50,12 +50,13 @@ header h1{font-size:17px;font-weight:700;letter-spacing:-.2px}
 .sbt-pass{border-color:var(--green);color:var(--green);background:#e8f5e9}.sbt-pass.active{background:var(--green);color:white}
 .sbt-borderline{border-color:var(--orange);color:var(--orange);background:#fff8e1}.sbt-borderline.active{background:var(--orange);color:white}
 .sbt-nogo{border-color:var(--red);color:var(--red);background:#fce4ec}.sbt-nogo.active{background:var(--red);color:white}
+.sbt-magg{border-color:var(--gold);color:#7a5a00;background:#fdf8e1}.sbt-magg.active{background:var(--gold);color:white}
 .sbt-desc{border-color:#9e9e9e;color:#757575;background:#f5f5f5}.sbt-desc.active{background:#757575;color:white}
 
 .deals-list{display:flex;flex-direction:column;gap:12px}
 .deal-row{background:white;border-radius:var(--radius);box-shadow:0 2px 8px rgba(0,0,0,.06);overflow:hidden;border-left:5px solid #ddd;cursor:pointer;transition:transform .15s,box-shadow .15s}
 .deal-row:hover{transform:translateX(3px);box-shadow:0 4px 16px rgba(0,0,0,.1)}
-.deal-row.pass{border-left-color:var(--green)}.deal-row.nogo{border-left-color:var(--red)}
+.deal-row.go,.deal-row.pass{border-left-color:var(--green)}.deal-row.nogo{border-left-color:var(--red)}
 .deal-row.borderline{border-left-color:var(--orange)}.deal-row.analisis{border-left-color:var(--blue)}
 .deal-row.highlight-deal{animation:pulse-deal .8s ease-out}
 @keyframes pulse-deal{0%{box-shadow:0 0 0 4px rgba(200,168,75,.8)}100%{box-shadow:0 2px 8px rgba(0,0,0,.06)}}
@@ -259,9 +260,11 @@ function filterD(type, el) {
 function renderDeals() {
   let list = DEALS;
   if (dFilter==='analisis')   list = list.filter(d=>d.estado==='En Análisis');
-  else if (dFilter==='pass')       list = list.filter(d=>d.verdict==='pass');
+  else if (dFilter==='magg')       list = list.filter(d=>d.ref&&d.ref.startsWith('MAGG-2026'));
+  else if (dFilter==='go')         list = list.filter(d=>d.verdict==='go');
   else if (dFilter==='borderline') list = list.filter(d=>d.verdict==='borderline');
   else if (dFilter==='nogo')       list = list.filter(d=>d.verdict==='nogo');
+  else if (dFilter==='pend')       list = list.filter(d=>d.verdict==='pend');
   else if (dFilter==='desc')       list = list.filter(d=>d.estado&&d.estado.includes('Descart'));
   // Apply broker cross-filter if set
   if (filterByBroker >= 0) list = list.filter(d=>d.broker_idx===filterByBroker);
