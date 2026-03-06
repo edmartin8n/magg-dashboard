@@ -125,60 +125,78 @@ header h1{font-size:17px;font-weight:700;letter-spacing:-.2px}
 .empty{text-align:center;padding:60px;color:var(--muted)}
 
 
-/* ===== CONTROL TAB ===== */
-#view-control{padding:24px 32px}
-.ctrl-top{display:grid;grid-template-columns:1.4fr 1fr;gap:20px;margin-bottom:20px}
-.ctrl-box{background:white;border-radius:var(--radius);box-shadow:0 2px 8px rgba(0,0,0,.06);overflow:hidden}
-.ctrl-box-header{padding:13px 20px;background:var(--navy);color:white;font-size:13px;font-weight:700;letter-spacing:.3px;display:flex;justify-content:space-between;align-items:center}
-.ctrl-box-header .badge{background:rgba(255,255,255,.2);padding:2px 10px;border-radius:12px;font-size:11px}
 
-/* bar chart */
-.chart-wrap{padding:16px 20px 14px}
-.chart-bars{display:flex;align-items:flex-end;gap:5px;height:130px;border-bottom:2px solid var(--border);padding-bottom:4px;margin-bottom:6px}
-.bar-col{flex:1;display:flex;flex-direction:column;align-items:center}
-.bar{width:100%;border-radius:4px 4px 0 0;background:var(--navy2);min-height:2px;transition:.2s}
-.bar:hover{background:var(--gold)}
-.bar-label{font-size:9px;color:var(--muted);text-align:center;margin-top:5px;white-space:nowrap}
-.bar-val{font-size:10px;font-weight:700;color:var(--navy);text-align:center;margin-bottom:2px}
+/* ===== CONTROL TAB v2 ===== */
+#view-control{padding:22px 28px;background:var(--bg)}
 
-/* pie charts grid */
-.pies-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;padding:0}
-.pie-box{padding:16px 12px;display:flex;flex-direction:column;align-items:center;border-right:1px solid #f0f4fa}
-.pie-box:last-child{border-right:none}
-.pie-title{font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:12px;text-align:center}
-.pie-ring{width:90px;height:90px;border-radius:50%;position:relative;flex-shrink:0}
-.pie-legend{margin-top:12px;width:100%}
-.pie-leg-item{display:flex;align-items:center;gap:6px;font-size:10px;color:var(--text);margin-bottom:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.pie-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0}
+/* KPI row */
+.kpi-row{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-bottom:20px}
+.kpi-card{background:white;border-radius:var(--radius);padding:18px 20px;box-shadow:0 2px 10px rgba(0,0,0,.06);border-top:4px solid var(--navy);position:relative;overflow:hidden}
+.kpi-card::after{content:'';position:absolute;right:-10px;bottom:-10px;width:70px;height:70px;border-radius:50%;opacity:.06}
+.kpi-card.c-go{border-top-color:var(--green)}.kpi-card.c-go::after{background:var(--green)}
+.kpi-card.c-an{border-top-color:var(--blue)}.kpi-card.c-an::after{background:var(--blue)}
+.kpi-card.c-gold{border-top-color:var(--gold)}.kpi-card.c-gold::after{background:var(--gold)}
+.kpi-card.c-red{border-top-color:var(--red)}.kpi-card.c-red::after{background:var(--red)}
+.kpi-num{font-size:30px;font-weight:800;color:var(--navy);line-height:1;margin-bottom:4px}
+.kpi-lbl{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.6px;font-weight:600}
+.kpi-sub{font-size:11px;color:var(--muted);margin-top:3px}
+.kpi-icon{font-size:22px;margin-bottom:6px}
 
-/* middle row */
-.ctrl-mid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:20px}
-.ctrl-deal-item{padding:10px 18px;border-bottom:1px solid #f0f4fa;display:flex;align-items:center;gap:10px;cursor:pointer;transition:.15s}
-.ctrl-deal-item:last-of-type{border-bottom:none}.ctrl-deal-item:hover{background:#f8fafc}
-.ctrl-deal-item.selected{background:#fffbea;border-left:4px solid var(--gold);padding-left:14px}
-.ctrl-deal-ref{font-size:10px;font-weight:700;color:var(--muted);letter-spacing:.8px;min-width:76px;flex-shrink:0}
-.ctrl-deal-name{font-size:13px;font-weight:600;color:var(--navy);flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.ctrl-deal-spread{font-size:12px;font-weight:700;flex-shrink:0}
-.spread-pos{color:var(--green)}.spread-neg{color:var(--red)}.spread-neutral{color:var(--orange)}
-.ctrl-empty{padding:24px;text-align:center;color:var(--muted);font-size:13px}
+/* Chart + donut row */
+.ctrl-chart-row{display:grid;grid-template-columns:1.6fr 1fr;gap:16px;margin-bottom:16px}
+.ctrl-card{background:white;border-radius:var(--radius);box-shadow:0 2px 10px rgba(0,0,0,.06);overflow:hidden}
+.ctrl-card-hdr{padding:13px 20px;background:var(--navy);color:white;font-size:13px;font-weight:700;letter-spacing:.2px;display:flex;justify-content:space-between;align-items:center}
+.ctrl-card-hdr .sub{font-size:11px;opacity:.55;font-weight:400}
 
-/* shortlist */
-.ctrl-shortlist{margin-bottom:8px}
-.ctrl-shortlist-header{padding:13px 20px;background:linear-gradient(135deg,var(--navy),var(--navy2));color:white;border-radius:var(--radius) var(--radius) 0 0;display:flex;justify-content:space-between;align-items:center;font-size:13px;font-weight:700}
-.shortlist-body{background:white;border-radius:0 0 var(--radius) var(--radius);box-shadow:0 2px 8px rgba(0,0,0,.06)}
-.shortlist-empty{padding:28px;text-align:center;color:var(--muted);font-size:13px}
-.shortlist-item{padding:11px 20px;border-bottom:1px solid #f0f4fa;display:grid;grid-template-columns:90px 1fr 130px 80px 90px 80px 32px;align-items:center;gap:10px}
-.shortlist-item:last-of-type{border-bottom:none}
-.shortlist-hdr{background:#f8fafc;border-bottom:2px solid var(--border);font-size:10px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.5px}
-.sl-btn-rm{background:none;border:none;cursor:pointer;font-size:16px;color:var(--muted);padding:0 4px;transition:.15s}
-.sl-btn-rm:hover{color:var(--red)}
+/* Bar chart */
+.bar-wrap{padding:18px 20px 14px}
+.bars{display:flex;align-items:flex-end;gap:6px;height:120px;margin-bottom:6px}
+.b-col{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px}
+.b-bar{width:100%;border-radius:4px 4px 0 0;min-height:3px;background:linear-gradient(180deg,var(--navy3),var(--navy));cursor:default;transition:opacity .15s}
+.b-bar:hover{opacity:.75}
+.b-val{font-size:9px;font-weight:700;color:var(--navy);text-align:center}
+.b-lbl{font-size:8px;color:var(--muted);text-align:center;white-space:nowrap}
+.bars-baseline{border-top:2px solid var(--border)}
 
-.vtag{padding:4px 10px;border-radius:20px;font-size:11px;font-weight:700}
-.v-pass{background:#e8f5e9;color:var(--green)}.v-nogo{background:#fce4ec;color:var(--red)}
-.v-bord{background:#fff8e1;color:var(--orange)}.v-neutral{background:#f0f4fa;color:var(--navy2)}
-.v-pend{background:#e3f2fd;color:var(--blue)}
+/* Donut */
+.donut-wrap{padding:20px;display:flex;flex-direction:column;align-items:center;gap:14px}
+.donut{width:130px;height:130px;border-radius:50%;position:relative;flex-shrink:0}
+.donut-inner{position:absolute;inset:22px;background:white;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.donut-total{font-size:22px;font-weight:800;color:var(--navy);line-height:1}
+.donut-sub{font-size:10px;color:var(--muted);margin-top:2px}
+.donut-leg{width:100%;display:grid;grid-template-columns:1fr 1fr;gap:5px 12px}
+.dl-item{display:flex;align-items:center;gap:6px;font-size:11px}
+.dl-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.dl-lbl{color:var(--muted);flex:1}
+.dl-val{font-weight:700;color:var(--navy)}
 
-@media(max-width:900px){.ctrl-top,.ctrl-mid{grid-template-columns:1fr}.pies-grid{grid-template-columns:1fr 1fr}}
+/* Bottom row */
+.ctrl-bottom{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+
+/* Activos table */
+.act-table{width:100%}
+.act-row{display:grid;grid-template-columns:90px 1fr 90px 90px;padding:9px 16px;border-bottom:1px solid #f0f4fa;align-items:center;cursor:pointer;transition:.1s}
+.act-row:hover{background:#f8fafc}
+.act-row.hdr{background:#f0f4fa;font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;cursor:default;padding:7px 16px}
+.act-ref{font-size:10px;font-weight:700;color:var(--muted);letter-spacing:.5px}
+.act-name{font-size:12px;font-weight:600;color:var(--navy);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.act-loc{font-size:10px;color:var(--muted)}
+.act-spread{font-size:12px;font-weight:700;text-align:right}
+.sp-pos{color:var(--green)}.sp-neg{color:var(--red)}.sp-neu{color:var(--orange)}
+
+/* Shortlist */
+.sl-row{display:grid;grid-template-columns:90px 1fr 80px 36px;padding:9px 16px;border-bottom:1px solid #f0f4fa;align-items:center}
+.sl-row.hdr{background:#f0f4fa;font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;padding:7px 16px}
+.sl-star{background:none;border:none;font-size:18px;cursor:pointer;color:#ccc;padding:0;transition:.15s}
+.sl-star:hover{color:var(--gold)}
+.sl-star.active{color:var(--gold)}
+.sl-empty{padding:24px;text-align:center;color:var(--muted);font-size:12px}
+
+/* Recent deals */
+.ctrl-recent{margin-bottom:16px}
+
+@media(max-width:900px){.kpi-row{grid-template-columns:1fr 1fr}.ctrl-chart-row,.ctrl-bottom{grid-template-columns:1fr}}
+
 
 
 /* ===== EDIT PANEL & TOAST ===== */
@@ -377,42 +395,66 @@ header h1{font-size:17px;font-weight:700;letter-spacing:-.2px}
     <!-- CONTROL VIEW -->
     <div id="view-control" style="display:none">
 
-      <!-- Top: chart + pies -->
-      <div class="ctrl-top">
-        <div class="ctrl-box">
-          <div class="ctrl-box-header">📅 Deals por mes</div>
-          <div class="chart-wrap" id="ctrl-chart"></div>
+      <!-- KPI Row -->
+      <div class="kpi-row">
+        <div class="kpi-card">
+          <div class="kpi-icon">📋</div>
+          <div class="kpi-num" id="kpi-total">—</div>
+          <div class="kpi-lbl">Total deals</div>
+          <div class="kpi-sub" id="kpi-total-sub"></div>
         </div>
-        <div class="ctrl-box">
-          <div class="ctrl-box-header">📊 Distribución</div>
-          <div class="pies-grid" id="ctrl-pies"></div>
+        <div class="kpi-card c-go">
+          <div class="kpi-icon">✅</div>
+          <div class="kpi-num" id="kpi-go">—</div>
+          <div class="kpi-lbl">GO activos</div>
+          <div class="kpi-sub" id="kpi-go-sub"></div>
+        </div>
+        <div class="kpi-card c-an">
+          <div class="kpi-icon">🔍</div>
+          <div class="kpi-num" id="kpi-an">—</div>
+          <div class="kpi-lbl">En análisis</div>
+          <div class="kpi-sub" id="kpi-an-sub"></div>
+        </div>
+        <div class="kpi-card c-gold">
+          <div class="kpi-icon">💰</div>
+          <div class="kpi-num" id="kpi-vol">—</div>
+          <div class="kpi-lbl">Volumen pipeline</div>
+          <div class="kpi-sub" id="kpi-vol-sub"></div>
+        </div>
+        <div class="kpi-card c-red">
+          <div class="kpi-icon">📈</div>
+          <div class="kpi-num" id="kpi-spread">—</div>
+          <div class="kpi-lbl">Mejor spread activo</div>
+          <div class="kpi-sub" id="kpi-spread-sub"></div>
         </div>
       </div>
 
-      <!-- Middle: vivos + pendientes -->
-      <div class="ctrl-mid">
-        <div class="ctrl-box">
-          <div class="ctrl-box-header">✅ Deals vivos <span class="badge" id="ctrl-vivos-count">—</span></div>
-          <div id="ctrl-vivos-list"></div>
+      <!-- Chart + Donut -->
+      <div class="ctrl-chart-row">
+        <div class="ctrl-card">
+          <div class="ctrl-card-hdr">📅 Deals recibidos por mes <span class="sub">últimos 14 meses</span></div>
+          <div class="bar-wrap" id="ctrl-chart"></div>
         </div>
-        <div class="ctrl-box">
-          <div class="ctrl-box-header">⏳ Pendientes de decisión <span class="badge" id="ctrl-pend-count">—</span></div>
-          <div id="ctrl-pend-list"></div>
+        <div class="ctrl-card">
+          <div class="ctrl-card-hdr">📊 Distribución del pipeline</div>
+          <div class="donut-wrap" id="ctrl-donut"></div>
         </div>
       </div>
 
-      <!-- Shortlist -->
-      <div class="ctrl-shortlist">
-        <div class="ctrl-shortlist-header">
-          <span>⭐ Selección — <span id="sl-count">0</span> deals</span>
-          <button style="background:rgba(255,255,255,.15);border:none;color:white;padding:5px 12px;border-radius:var(--radius-sm);font-size:11px;font-weight:600;cursor:pointer" onclick="clearShortlist()">Limpiar</button>
+      <!-- Activos + Shortlist -->
+      <div class="ctrl-bottom">
+        <div class="ctrl-card">
+          <div class="ctrl-card-hdr">🏆 Deals activos <span class="sub" id="ctrl-activos-n"></span></div>
+          <div id="ctrl-activos-list">
+            <div class="act-row hdr"><div>Ref</div><div>Deal · Ubicación</div><div style="text-align:right">Spread</div><div style="text-align:right">YoC</div></div>
+          </div>
         </div>
-        <div class="shortlist-body">
-          <div class="shortlist-item shortlist-hdr">
-            <div>Ref</div><div>Deal</div><div>Ubicación</div><div>YoC</div><div>Spread</div><div>Estado</div><div></div>
+        <div class="ctrl-card">
+          <div class="ctrl-card-hdr">⭐ Watchlist <span class="sub" id="sl-count-hdr">0 deals</span>
+            <button onclick="clearShortlist()" style="background:rgba(255,255,255,.15);border:none;color:white;padding:3px 10px;border-radius:6px;font-size:11px;cursor:pointer;margin-left:8px">Limpiar</button>
           </div>
           <div id="shortlist-items">
-            <div class="shortlist-empty" id="shortlist-empty">Haz clic en cualquier deal de arriba para añadirlo</div>
+            <div class="sl-empty" id="shortlist-empty">Haz ★ en cualquier deal del pipeline para añadirlo aquí</div>
           </div>
         </div>
       </div>
@@ -932,45 +974,66 @@ const PIE_PALETTES = {
 };
 
 function renderControl() {
-  const vivos = DEALS.filter(d => d.verdict==='go' || d.verdict==='borderline');
-  const pend  = DEALS.filter(d => d.verdict==='pend');
+  const total = DEALS.length;
+  const go    = DEALS.filter(d=>d.verdict==='go'||d.verdict==='pass');
+  const an    = DEALS.filter(d=>d.verdict==='analisis'||d.verdict==='pend');
+  const bord  = DEALS.filter(d=>d.verdict==='borderline');
+  const nogo  = DEALS.filter(d=>d.verdict==='nogo');
+  const activos = [...go,...bord].sort((a,b)=>{
+    const sa=parseInt(String(a.spread).replace(/[^-\d]/g,''))||0;
+    const sb=parseInt(String(b.spread).replace(/[^-\d]/g,''))||0;
+    return sb-sa;
+  });
+  const totalVol = DEALS.reduce((s,d)=>s+(d.precio||0),0);
+  const bestSpread = go.concat(bord).reduce((best,d)=>{
+    const v=parseInt(String(d.spread).replace(/[^-\d]/g,''))||0;
+    return v>best?v:best;
+  },-9999);
+  const recent = DEALS.filter(d=>{
+    if(!d.fecha) return false;
+    const p=d.fecha.split('/');
+    if(p.length!==3) return false;
+    const ts = new Date(+p[2],+p[1]-1,+p[0]).getTime();
+    return Date.now()-ts < 30*86400000;
+  });
 
-  // ─ Deals vivos ─
-  document.getElementById('ctrl-vivos-count').textContent = vivos.length;
-  document.getElementById('ctrl-vivos-list').innerHTML = vivos.length
-    ? vivos.map(d => ctrlDealItem(d)).join('')
-    : '<div class="ctrl-empty">Sin deals vivos</div>';
+  // KPIs
+  document.getElementById('kpi-total').textContent  = total;
+  document.getElementById('kpi-total-sub').textContent = `${recent.length} en últimos 30d`;
+  document.getElementById('kpi-go').textContent     = go.length;
+  document.getElementById('kpi-go-sub').textContent = go.map(d=>d.ref.replace('MAGG-2026-','')).join(', ') || '—';
+  document.getElementById('kpi-an').textContent     = an.length;
+  document.getElementById('kpi-an-sub').textContent = `+${bord.length} Borderline`;
+  const volStr = totalVol >= 1e9 ? (totalVol/1e9).toFixed(1)+'B€' : (totalVol/1e6).toFixed(0)+'M€';
+  document.getElementById('kpi-vol').textContent    = volStr;
+  document.getElementById('kpi-vol-sub').textContent= `${DEALS.filter(d=>d.precio).length} con precio`;
+  document.getElementById('kpi-spread').textContent = bestSpread>-9999 ? '+'+bestSpread+' bps' : '—';
+  document.getElementById('kpi-spread-sub').textContent = bestSpread>-9999
+    ? (go.concat(bord).find(d=>parseInt(String(d.spread).replace(/[^-\d]/g,''))||0===bestSpread)||{ref:''}).ref : '';
 
-  // ─ Pendientes decisión (excluye los auto-nogoed) ─
-  document.getElementById('ctrl-pend-count').textContent = pend.length;
-  document.getElementById('ctrl-pend-list').innerHTML = pend.length
-    ? pend.map(d => ctrlDealItem(d)).join('')
-    : '<div class="ctrl-empty">Sin pendientes (&lt;6 meses)</div>';
+  // Activos list
+  const acEl = document.getElementById('ctrl-activos-list');
+  document.getElementById('ctrl-activos-n').textContent = activos.length + ' deals';
+  const hdr = `<div class="act-row hdr"><div>Ref</div><div>Deal · Ubicación</div><div style="text-align:right">Spread</div><div style="text-align:right">YoC</div></div>`;
+  if (!activos.length) {
+    acEl.innerHTML = hdr + '<div style="padding:20px;text-align:center;color:var(--muted);font-size:12px">Sin deals activos</div>';
+  } else {
+    acEl.innerHTML = hdr + activos.map(d=>{
+      const sp = parseInt(String(d.spread).replace(/[^-\d]/g,''))||0;
+      const cls = sp>0?'sp-pos':sp<0?'sp-neg':'sp-neu';
+      const inSL = shortlist.includes(d.ref);
+      return `<div class="act-row" onclick="toggleShortlist('${d.ref.replace(/'/g,"\'")}')">
+        <div><div class="act-ref">${d.ref}</div><span style="font-size:16px;color:${inSL?'var(--gold)':'#ddd'}">${inSL?'★':'☆'}</span></div>
+        <div><div class="act-name">${d.nombre}</div><div class="act-loc">📍 ${d.ubicacion}</div></div>
+        <div class="act-spread ${cls}" style="text-align:right">${d.spread||'—'}</div>
+        <div style="text-align:right;font-size:12px;font-weight:600;color:var(--navy)">${d.yoc||'—'}</div>
+      </div>`;
+    }).join('');
+  }
 
   renderMonthChart();
-  renderPies();
+  renderDonut(total, go.length, an.length, bord.length, nogo.length);
   renderShortlist();
-}
-
-function ctrlDealItem(d) {
-  const inSL = shortlist.includes(d.ref);
-  const spreadRaw = parseFloat((d.spread||'').replace(/[^0-9.\-]/g,''));
-  const spreadCls = isNaN(spreadRaw) ? 'spread-neutral' : spreadRaw>=0 ? 'spread-pos' : 'spread-neg';
-  const vcls = d.verdict==='go'?'v-pass':d.verdict==='borderline'?'v-bord':d.verdict==='pend'?'v-pend':'v-nogo';
-  const vtxt = d.verdict==='go'?'✅ GO':d.verdict==='borderline'?'⚠️ Bord.':d.verdict==='pend'?'⏳ PEND':'❌ NO GO';
-  const safeRef = d.ref.replace(/[^a-z0-9]/gi,'_');
-  return `<div class="ctrl-deal-item${inSL?' selected':''}" onclick="toggleShortlist('${d.ref.replace(/'/g,"\\'")}')" title="${d.nombre}">
-    <div class="ctrl-deal-ref">${d.ref}</div>
-    <div style="flex:1;min-width:0">
-      <div class="ctrl-deal-name">${d.nombre}</div>
-      <div style="font-size:11px;color:var(--muted)">${d.ubicacion}</div>
-    </div>
-    <div style="display:flex;align-items:center;gap:8px;flex-shrink:0">
-      ${d.spread?`<span class="ctrl-deal-spread ${spreadCls}">${d.spread}</span>`:''}
-      <span class="vtag ${vcls}">${vtxt}</span>
-      <span style="font-size:15px;color:${inSL?'var(--gold)':'#ccc'}">${inSL?'★':'☆'}</span>
-    </div>
-  </div>`;
 }
 
 function renderMonthChart() {
@@ -979,87 +1042,58 @@ function renderMonthChart() {
     if (!d.fecha) return;
     const p = d.fecha.split('/');
     if (p.length!==3) return;
-    const key = p[2]+'-'+p[1];
+    const key = p[2]+'-'+(p[1].padStart(2,'0'));
     counts[key] = (counts[key]||0)+1;
   });
   const allKeys = Object.keys(counts).sort();
-  const keys = allKeys.slice(-14);
-  const maxV = Math.max(...keys.map(k=>counts[k]||0), 1);
-  const months = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
+  const keys    = allKeys.slice(-14);
+  const maxV    = Math.max(...keys.map(k=>counts[k]||0), 1);
+  const months  = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
   const bars = keys.map(k => {
     const [y,m] = k.split('-');
-    const v = counts[k]||0;
+    const v   = counts[k]||0;
     const pct = Math.max(Math.round((v/maxV)*100), 2);
     const lbl = months[parseInt(m,10)-1]+"'"+y.slice(2);
-    return `<div class="bar-col">
-      <div class="bar-val">${v}</div>
-      <div class="bar" style="height:${pct}%" title="${lbl}: ${v}"></div>
-      <div class="bar-label">${lbl}</div>
+    return `<div class="b-col">
+      <div class="b-val">${v}</div>
+      <div class="b-bar" style="height:${pct}%" title="${lbl}: ${v} deals"></div>
+      <div class="b-lbl">${lbl}</div>
     </div>`;
   });
   document.getElementById('ctrl-chart').innerHTML =
-    `<div class="chart-bars">${bars.join('')}</div>`;
+    `<div class="bars">${bars.join('')}</div><div class="bars-baseline"></div>`;
 }
 
-function renderPies() {
-  // ─ 1. % por tipología ─
-  const tipoCounts = {};
-  DEALS.forEach(d => { const t = d.tipo||'Otro'; tipoCounts[t]=(tipoCounts[t]||0)+1; });
-
-  // ─ 2. % por ciudad (top 6 + Resto) ─
-  const cityCounts = {};
-  DEALS.forEach(d => {
-    const raw = (d.ubicacion||'').split(',')[0].trim() || 'Otro';
-    cityCounts[raw]=(cityCounts[raw]||0)+1;
-  });
-  const cityTop = Object.entries(cityCounts).sort((a,b)=>b[1]-a[1]).slice(0,6);
-  const cityResto = DEALS.length - cityTop.reduce((s,e)=>s+e[1],0);
-  if (cityResto>0) cityTop.push(['Resto', cityResto]);
-
-  // ─ 3. % volumen (precio) por tipología ─
-  const volByTipo = {};
-  let totalVol = 0;
-  DEALS.forEach(d => {
-    if (!d.precio) return;
-    const t = d.tipo||'Otro';
-    volByTipo[t]=(volByTipo[t]||0)+d.precio;
-    totalVol+=d.precio;
-  });
-  const volTop = Object.entries(volByTipo).sort((a,b)=>b[1]-a[1]).slice(0,6);
-
-  document.getElementById('ctrl-pies').innerHTML = [
-    buildPie('Deals por tipología', tipoCounts, PIE_PALETTES.tipo, DEALS.length, v=>v),
-    buildPie('Top ciudades', Object.fromEntries(cityTop), PIE_PALETTES.city, DEALS.length, v=>v),
-    buildPie('Volumen (€M) por tipo', Object.fromEntries(volTop), PIE_PALETTES.vol, totalVol, v=>(v/1e6).toFixed(0)+'M€'),
-  ].join('');
-}
-
-function buildPie(title, data, palette, total, fmt) {
-  const entries = Object.entries(data).sort((a,b)=>b[1]-a[1]);
-  // build conic-gradient stops
-  let angle = 0;
-  const stops = [];
-  const legend = [];
-  entries.forEach(([label, val], i) => {
-    const color = palette[i % palette.length];
-    const pct = total>0 ? (val/total)*100 : 0;
+function renderDonut(total, goN, anN, bordN, nogoN) {
+  const cats = [
+    {label:'GO',       n:goN,   color:'#2e7d32'},
+    {label:'Análisis', n:anN,   color:'#1565c0'},
+    {label:'Borderl.', n:bordN, color:'#e65100'},
+    {label:'NO GO',    n:nogoN, color:'#c62828'},
+  ];
+  let angle=0;
+  const stops = cats.map(c=>{
+    const pct = total>0?(c.n/total)*100:0;
     const end = angle+pct;
-    stops.push(`${color} ${angle.toFixed(1)}% ${end.toFixed(1)}%`);
-    legend.push({ label, color, pct: Math.round(pct), fmt: fmt(val) });
-    angle = end;
+    const s = `${c.color} ${angle.toFixed(1)}% ${end.toFixed(1)}%`;
+    angle=end;
+    return s;
   });
   const gradient = `conic-gradient(${stops.join(', ')})`;
-  const legendHtml = legend.slice(0,5).map(l =>
-    `<div class="pie-leg-item" title="${l.label}: ${l.pct}%">
-       <div class="pie-dot" style="background:${l.color}"></div>
-       <span style="color:var(--muted);flex:1;overflow:hidden;text-overflow:ellipsis">${l.label}</span>
-       <span style="font-weight:700;color:var(--navy);margin-left:4px">${l.pct}%</span>
-     </div>`).join('');
-  return `<div class="pie-box">
-    <div class="pie-title">${title}</div>
-    <div class="pie-ring" style="background:${gradient}"></div>
-    <div class="pie-legend">${legendHtml}</div>
-  </div>`;
+  const legHtml = cats.map(c=>`
+    <div class="dl-item">
+      <div class="dl-dot" style="background:${c.color}"></div>
+      <span class="dl-lbl">${c.label}</span>
+      <span class="dl-val">${c.n} <span style="color:var(--muted);font-weight:400">(${total>0?Math.round(c.n/total*100):0}%)</span></span>
+    </div>`).join('');
+  document.getElementById('ctrl-donut').innerHTML = `
+    <div class="donut" style="background:${gradient}">
+      <div class="donut-inner">
+        <div class="donut-total">${total}</div>
+        <div class="donut-sub">deals</div>
+      </div>
+    </div>
+    <div class="donut-leg">${legHtml}</div>`;
 }
 
 function toggleShortlist(ref) {
@@ -1074,29 +1108,29 @@ function clearShortlist() {
 }
 
 function renderShortlist() {
-  document.getElementById('sl-count').textContent = shortlist.length;
-  const el = document.getElementById('shortlist-items');
+  const el  = document.getElementById('shortlist-items');
+  const cnt = document.getElementById('sl-count-hdr');
+  if (cnt) cnt.textContent = shortlist.length + ' deals';
   if (!shortlist.length) {
-    el.innerHTML = '<div class="shortlist-empty" id="shortlist-empty">Haz clic en cualquier deal de arriba para añadirlo</div>';
+    el.innerHTML = '<div class="sl-empty" id="shortlist-empty">Haz ★ en cualquier deal del pipeline para añadirlo aquí</div>';
     return;
   }
+  const hdr = `<div class="sl-row hdr"><div>Ref</div><div>Deal · Ubicación</div><div>Spread</div><div></div></div>`;
   const rows = shortlist.map(ref => {
     const d = DEALS.find(x=>x.ref===ref);
     if (!d) return '';
-    const vcls = d.verdict==='go'?'v-pass':d.verdict==='borderline'?'v-bord':d.verdict==='pend'?'v-pend':'v-nogo';
-    const vtxt = d.verdict==='go'?'✅ GO':d.verdict==='borderline'?'⚠️ Borderline':d.verdict==='pend'?'⏳ PEND':'❌ NO GO';
-    return `<div class="shortlist-item">
-      <div style="font-size:10px;font-weight:700;color:var(--muted);letter-spacing:.8px">${d.ref}</div>
-      <div style="font-size:13px;font-weight:600;color:var(--navy);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${d.nombre}</div>
-      <div style="font-size:12px;color:var(--muted)">${d.ubicacion}</div>
-      <div style="font-size:12px;font-weight:700;color:var(--navy)">${d.yoc||'—'}</div>
-      <div style="font-size:12px;font-weight:700">${d.spread||'—'}</div>
-      <span class="vtag ${vcls}" style="font-size:11px;padding:3px 9px">${vtxt}</span>
-      <button class="sl-btn-rm" onclick="toggleShortlist('${ref.replace(/'/g,"\\'")}')" title="Quitar">✕</button>
+    const sp  = parseInt(String(d.spread||'').replace(/[^-\d]/g,''))||0;
+    const cls = sp>0?'sp-pos':sp<0?'sp-neg':'sp-neu';
+    return `<div class="sl-row">
+      <div class="act-ref">${d.ref}</div>
+      <div><div class="act-name">${d.nombre}</div><div class="act-loc">📍 ${d.ubicacion}</div></div>
+      <div class="act-spread ${cls}">${d.spread||'—'}</div>
+      <button class="sl-star active" onclick="event.stopPropagation();toggleShortlist('${ref.replace(/'/g, "\'")}')">★</button>
     </div>`;
   }).join('');
-  el.innerHTML = rows;
+  el.innerHTML = hdr + rows;
 }
+
 </script>
 </body>
 </html>
