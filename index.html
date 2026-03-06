@@ -511,6 +511,12 @@ function showView(id) {
 
 // ── DEALS ─────────────────────────────────────────────────────────
 const VERDICT_ORDER = {go:0,pass:0,analisis:1,pend:1,borderline:2,nogo:3};
+function fmtYoc(v) {
+  if (!v) return '—';
+  const n = parseFloat(String(v).replace('%',''));
+  if (isNaN(n)) return String(v);
+  return (n < 1 ? (n*100).toFixed(1) : n.toFixed(1)) + '%';
+}
 let plActiveVerdicts = new Set(['go','analisis','pend','borderline','nogo']);
 let plDateDays = 0; // 0 = all
 let plSortCol  = 'default';
@@ -633,7 +639,8 @@ function dealTableRow(d) {
   const spreadNum = parseInt(String(d.spread).replace(/[^-\d]/g,''))||0;
   const spreadCls = spreadNum>0?'spread-pos':spreadNum<0?'spread-neg':'muted';
   const spreadTxt = d.spread||'—';
-  const yocTxt    = d.yoc   ? String(d.yoc).replace('0.','') : '—';
+  const yocRaw    = parseFloat(String(d.yoc||'').replace('%',''));
+  const yocTxt    = d.yoc ? (isNaN(yocRaw)?String(d.yoc): (yocRaw<1 ? (yocRaw*100).toFixed(1)+'%' : yocRaw.toFixed(1)+'%')) : '—';
 
   // Detail items
   const detailItems = [
@@ -684,7 +691,7 @@ function dealTableRow(d) {
     <div class="pl-td muted">${sqmFmt}</div>
     <div class="pl-td num">${precFmt}</div>
     <div class="pl-td ${spreadCls}">${spreadTxt}</div>
-    <div class="pl-td muted">${d.yoc||'—'}</div>
+    <div class="pl-td muted">${fmtYoc(d.yoc)}</div>
     <div class="pl-td"><span style="font-size:10px;font-weight:700;padding:2px 7px;border-radius:4px;background:${ vkey==='go'?'#e8f5e9':vkey==='borderline'?'#fff8e1':vkey==='analisis'||vkey==='pend'?'#e8f0fe':'#fce4ec' };color:${ vkey==='go'?'#2e7d32':vkey==='borderline'?'#e65100':vkey==='analisis'||vkey==='pend'?'#1565c0':'#c62828' }">${d.estado||'—'}</span></div>
     <div class="pl-td motivo" title="${d.motivo||''}">${motivo||'—'}</div>
   </div>
@@ -1026,7 +1033,7 @@ function renderControl() {
         <div><div class="act-ref">${d.ref}</div><span style="font-size:16px;color:${inSL?'var(--gold)':'#ddd'}">${inSL?'★':'☆'}</span></div>
         <div><div class="act-name">${d.nombre}</div><div class="act-loc">📍 ${d.ubicacion}</div></div>
         <div class="act-spread ${cls}" style="text-align:right">${d.spread||'—'}</div>
-        <div style="text-align:right;font-size:12px;font-weight:600;color:var(--navy)">${d.yoc||'—'}</div>
+        <div style="text-align:right;font-size:12px;font-weight:600;color:var(--navy)">${fmtYoc(d.yoc)}</div>
       </div>`;
     }).join('');
   }
