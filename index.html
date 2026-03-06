@@ -203,6 +203,25 @@ header h1{font-size:17px;font-weight:700;letter-spacing:-.2px}
 .toast.show{transform:translateY(0);opacity:1}
 .toast-success{background:var(--green)}.toast-error{background:var(--red)}
 
+/* ===== PIPELINE CONTROLS ===== */
+.pipeline-top{margin-bottom:20px}
+.pipeline-controls{display:flex;gap:10px;margin-top:10px;flex-wrap:wrap;align-items:center}
+.pipeline-search{flex:1;min-width:220px;padding:9px 16px;border:2px solid var(--border);border-radius:24px;font-size:13px;outline:none;transition:.2s;background:white}
+.pipeline-search:focus{border-color:var(--navy2);box-shadow:0 0 0 3px rgba(45,74,122,.08)}
+.pipeline-sort{padding:9px 14px;border:2px solid var(--border);border-radius:24px;font-size:13px;outline:none;background:white;color:var(--navy);cursor:pointer}
+
+/* Deal summary — 2-line layout */
+.deal-summary{padding:14px 18px;display:flex;flex-direction:column;gap:5px}
+.deal-row1{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.deal-row2{display:flex;gap:16px;flex-wrap:wrap;align-items:center}
+.deal-left{flex:1;min-width:0}
+.deal-ref{font-size:10px;color:var(--muted);font-weight:700;letter-spacing:.8px}
+.deal-name{font-size:15px;font-weight:700;color:var(--navy);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin:2px 0}
+.deal-meta-pill{display:inline-flex;align-items:center;gap:4px;font-size:11px;color:var(--muted);background:#f0f4fa;padding:3px 9px;border-radius:10px;white-space:nowrap}
+.deal-meta-pill strong{color:var(--navy);font-size:12px}
+.deal-motivo{font-size:11px;color:var(--orange);font-style:italic;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:340px}
+.deal-verdict{flex-shrink:0}
+
 @media(max-width:768px){
   .deal-kpis{display:none}
   .finder-header{grid-template-columns:1fr 1fr}
@@ -249,14 +268,20 @@ header h1{font-size:17px;font-weight:700;letter-spacing:-.2px}
 
     <!-- DEALS VIEW -->
     <div id="view-deals">
-      <div class="status-bar">
-        <div class="sbt sbt-all active" onclick="filterD('all',this)">Todos <span class="sbt-count">271</span></div>
-        <div class="sbt sbt-magg" onclick="filterD('magg',this)">⭐ MAGG <span class="sbt-count">8</span></div>
-        <div class="sbt sbt-analisis" onclick="filterD('analisis',this)">🔍 En Análisis <span class="sbt-count">80</span></div>
-        <div class="sbt sbt-pass" onclick="filterD('go',this)">✅ GO <span class="sbt-count">2</span></div>
-        <div class="sbt sbt-borderline" onclick="filterD('borderline',this)">⚠️ Borderline <span class="sbt-count">43</span></div>
-        <div class="sbt sbt-nogo" onclick="filterD('nogo',this)">❌ NO GO <span class="sbt-count">191</span></div>
-        <div class="sbt sbt-desc" onclick="filterD('pend',this)">⏳ PEND <span class="sbt-count">35</span></div>
+      <div class="pipeline-top">
+        <div class="status-bar" id="status-bar"></div>
+        <div class="pipeline-controls">
+          <input class="pipeline-search" id="pipeline-search" type="text" placeholder="🔍 Buscar deal, ciudad, broker..." oninput="renderDeals()">
+          <select class="pipeline-sort" id="pipeline-sort" onchange="renderDeals()">
+            <option value="default">Ordenar: Estado (GO primero)</option>
+            <option value="fecha_desc">Fecha recepción ↓</option>
+            <option value="fecha_asc">Fecha recepción ↑</option>
+            <option value="precio_asc">Precio ↑</option>
+            <option value="precio_desc">Precio ↓</option>
+            <option value="spread_desc">Spread ↓ (mejor primero)</option>
+            <option value="yoc_desc">YoC ↓</option>
+          </select>
+        </div>
       </div>
       <div class="deals-list" id="deals-list"></div>
       <div class="empty" id="deals-empty" style="display:none">Sin deals en este filtro</div>
@@ -371,7 +396,7 @@ function auth() {
     const app = document.getElementById('app');
     app.style.display = 'flex';
     app.style.flexDirection = 'column';
-    renderDeals(); renderFinders(); renderControl(); showView('control');
+    initStatusBar(); renderDeals(); renderFinders(); renderControl(); showView('control');
   } else {
     document.getElementById('err').textContent = '❌ Contraseña incorrecta';
     document.getElementById('pwd').value = '';
@@ -388,25 +413,74 @@ function showView(id) {
 }
 
 // ── DEALS ─────────────────────────────────────────────────────────
+// Verdict sort order: go=0, analisis/pend=1, borderline=2, nogo=3
+const VERDICT_ORDER = {go:0,pass:0,analisis:1,pend:1,borderline:2,nogo:3};
+
+function verdictLabel(d) {
+  const v = d.verdict;
+  if(v==='go'||v==='pass') return '✅ GO';
+  if(v==='borderline')     return '⚠️ Borderline';
+  if(v==='nogo')           return '❌ NO GO';
+  if(v==='pend')           return '⏳ PEND';
+  return '🔍 En análisis';
+}
+
+function initStatusBar() {
+  const total     = DEALS.length;
+  const goN       = DEALS.filter(d=>d.verdict==='go'||d.verdict==='pass').length;
+  const analisisN = DEALS.filter(d=>d.verdict==='analisis'||d.verdict==='pend').length;
+  const bordN     = DEALS.filter(d=>d.verdict==='borderline').length;
+  const nogoN     = DEALS.filter(d=>d.verdict==='nogo').length;
+  document.getElementById('status-bar').innerHTML = `
+    <div class="sbt sbt-all active" onclick="filterD('all',this)">Todos <span class="sbt-count">${total}</span></div>
+    <div class="sbt sbt-pass" onclick="filterD('go',this)">✅ GO <span class="sbt-count">${goN}</span></div>
+    <div class="sbt sbt-analisis" onclick="filterD('analisis',this)">🔍 En Análisis / PEND <span class="sbt-count">${analisisN}</span></div>
+    <div class="sbt sbt-borderline" onclick="filterD('borderline',this)">⚠️ Borderline <span class="sbt-count">${bordN}</span></div>
+    <div class="sbt sbt-nogo" onclick="filterD('nogo',this)">❌ NO GO <span class="sbt-count">${nogoN}</span></div>
+  `;
+}
+
 function filterD(type, el) {
   document.querySelectorAll('.sbt').forEach(b=>b.classList.remove('active'));
   el.classList.add('active');
   dFilter = type;
-  filterByBroker = -1; // clear broker cross-filter when manually filtering
+  filterByBroker = -1;
   renderDeals();
 }
 
+function parseFecha(s) {
+  if (!s) return 0;
+  const p = s.split('/');
+  if (p.length===3) return new Date(p[2],p[1]-1,p[0]).getTime();
+  return new Date(s).getTime() || 0;
+}
+
 function renderDeals() {
-  let list = DEALS;
-  if (dFilter==='analisis')   list = list.filter(d=>d.estado==='En Análisis');
-  else if (dFilter==='magg')       list = list.filter(d=>d.ref&&d.ref.startsWith('MAGG-2026'));
-  else if (dFilter==='go')         list = list.filter(d=>d.verdict==='go');
+  let list = DEALS.slice();
+
+  // ── Status filter
+  if (dFilter==='analisis')   list = list.filter(d=>d.verdict==='analisis'||d.verdict==='pend');
+  else if (dFilter==='go')         list = list.filter(d=>d.verdict==='go'||d.verdict==='pass');
   else if (dFilter==='borderline') list = list.filter(d=>d.verdict==='borderline');
   else if (dFilter==='nogo')       list = list.filter(d=>d.verdict==='nogo');
-  else if (dFilter==='pend')       list = list.filter(d=>d.verdict==='pend');
-  else if (dFilter==='desc')       list = list.filter(d=>d.estado&&d.estado.includes('Descart'));
+
   // Apply broker cross-filter if set
   if (filterByBroker >= 0) list = list.filter(d=>d.broker_idx===filterByBroker);
+
+  // ── Search filter
+  const q = (document.getElementById('pipeline-search')?.value||'').toLowerCase().trim();
+  if (q) list = list.filter(d=>[d.nombre,d.ubicacion,d.fuente,d.ref,d.tipo].join(' ').toLowerCase().includes(q));
+
+  // ── Sort
+  const sortBy = document.getElementById('pipeline-sort')?.value || 'default';
+  if (sortBy==='default') {
+    list.sort((a,b)=> (VERDICT_ORDER[a.verdict]??3) - (VERDICT_ORDER[b.verdict]??3) || parseFecha(b.fecha)-parseFecha(a.fecha));
+  } else if (sortBy==='fecha_desc') list.sort((a,b)=>parseFecha(b.fecha)-parseFecha(a.fecha));
+  else if (sortBy==='fecha_asc')    list.sort((a,b)=>parseFecha(a.fecha)-parseFecha(b.fecha));
+  else if (sortBy==='precio_asc')   list.sort((a,b)=>(a.precio||0)-(b.precio||0));
+  else if (sortBy==='precio_desc')  list.sort((a,b)=>(b.precio||0)-(a.precio||0));
+  else if (sortBy==='spread_desc')  list.sort((a,b)=>{ const sa=parseInt(String(a.spread).replace(/[^-\d]/g,''))||0; const sb=parseInt(String(b.spread).replace(/[^-\d]/g,''))||0; return sb-sa; });
+  else if (sortBy==='yoc_desc')     list.sort((a,b)=>{ const ya=parseFloat(String(a.yoc).replace('%',''))||0; const yb=parseFloat(String(b.yoc).replace('%',''))||0; return yb-ya; });
   const el = document.getElementById('deals-list');
   const em = document.getElementById('deals-empty');
   if (!list.length) { el.innerHTML=''; em.style.display='block'; return; }
@@ -519,17 +593,30 @@ function dealRow(d) {
       </div>
     </div>` : '';
 
+  // Extra info for summary row
+  const motivoSnippet = d.motivo ? d.motivo.split(' ').slice(0,6).join(' ')+(d.motivo.split(' ').length>6?'…':'') : '';
+  const sqmFmt  = d.sqm   ? `${Number(d.sqm).toLocaleString('es')} m²` : '—';
+  const precFmt = d.precio ? `€${(d.precio/1e6).toFixed(2)}M` : '—';
+  const fechaFmt= d.fecha  ? d.fecha : '—';
+  const spreadFmt= d.spread ? (String(d.spread).startsWith('+')||parseInt(d.spread)>0?'<span style="color:var(--green)">'+d.spread+' bps</span>':'<span style="color:var(--red)">'+d.spread+' bps</span>') : '';
+
   return `<div class="deal-row ${rowcls}" onclick="toggleD('${d.ref}')">
     <div class="deal-summary">
-      <div class="deal-left">
-        <div class="deal-ref">${d.ref}</div>
-        <div class="deal-name">${d.nombre}</div>
-        <div class="deal-loc">📍 ${d.ubicacion} · <em style="color:var(--muted)">${d.fuente}</em></div>
+      <div class="deal-row1">
+        <div class="deal-left">
+          <div class="deal-ref">${d.ref}</div>
+          <div class="deal-name">${d.nombre}</div>
+        </div>
+        <div class="deal-verdict"><span class="vtag ${vcls}">${vtxt}</span></div>
       </div>
-      <div class="deal-kpis">
-        ${kpis.map(k=>`<div class="kpi-pill"><div class="kv">${k[0]}</div><div class="kl">${k[1]}</div></div>`).join('')}
+      <div class="deal-row2">
+        <span class="deal-meta-pill">📍 ${d.ubicacion}</span>
+        ${d.fecha?`<span class="deal-meta-pill">📅 <strong>${fechaFmt}</strong></span>`:''}
+        ${d.sqm?`<span class="deal-meta-pill">📐 <strong>${sqmFmt}</strong></span>`:''}
+        ${d.precio?`<span class="deal-meta-pill">💶 <strong>${precFmt}</strong></span>`:''}
+        ${spreadFmt?`<span class="deal-meta-pill">📊 ${spreadFmt}</span>`:''}
+        ${motivoSnippet&&(d.verdict==='nogo')?`<span class="deal-motivo" title="${d.motivo||''}">↳ ${motivoSnippet}</span>`:''}
       </div>
-      <div class="deal-verdict"><span class="vtag ${vcls}">${vtxt}</span></div>
     </div>
     <div class="deal-detail${isOpen||isEditing?' open':''}" id="dd-${sr}" onclick="event.stopPropagation()">
       <div class="detail-grid">
