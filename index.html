@@ -203,24 +203,53 @@ header h1{font-size:17px;font-weight:700;letter-spacing:-.2px}
 .toast.show{transform:translateY(0);opacity:1}
 .toast-success{background:var(--green)}.toast-error{background:var(--red)}
 
-/* ===== PIPELINE CONTROLS ===== */
-.pipeline-top{margin-bottom:20px}
-.pipeline-controls{display:flex;gap:10px;margin-top:10px;flex-wrap:wrap;align-items:center}
-.pipeline-search{flex:1;min-width:220px;padding:9px 16px;border:2px solid var(--border);border-radius:24px;font-size:13px;outline:none;transition:.2s;background:white}
-.pipeline-search:focus{border-color:var(--navy2);box-shadow:0 0 0 3px rgba(45,74,122,.08)}
-.pipeline-sort{padding:9px 14px;border:2px solid var(--border);border-radius:24px;font-size:13px;outline:none;background:white;color:var(--navy);cursor:pointer}
+/* ===== PIPELINE TABLE ===== */
+#view-deals{padding:20px 28px}
+.pl-filters{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-bottom:8px}
+.pl-chip{padding:5px 14px;border-radius:20px;font-size:12px;font-weight:700;cursor:pointer;border:2px solid;transition:all .15s;user-select:none}
+.pl-chip-go{border-color:var(--green);color:var(--green);background:#f0faf2}.pl-chip-go.on{background:var(--green);color:white}
+.pl-chip-an{border-color:var(--blue);color:var(--blue);background:#eef4fe}.pl-chip-an.on{background:var(--blue);color:white}
+.pl-chip-bo{border-color:var(--orange);color:var(--orange);background:#fff8ee}.pl-chip-bo.on{background:var(--orange);color:white}
+.pl-chip-no{border-color:var(--red);color:var(--red);background:#fdf0f0}.pl-chip-no.on{background:var(--red);color:white}
+.pl-sep{width:1px;height:24px;background:var(--border);margin:0 2px}
+.pl-date-chip{padding:5px 12px;border-radius:20px;font-size:11px;font-weight:600;cursor:pointer;border:2px solid var(--border);background:white;color:var(--muted);transition:all .15s;user-select:none}
+.pl-date-chip.on{background:var(--navy);color:white;border-color:var(--navy)}
+.pl-search-row{display:flex;gap:8px;margin-bottom:12px;align-items:center}
+.pl-search{flex:1;padding:8px 16px;border:2px solid var(--border);border-radius:20px;font-size:13px;outline:none;background:white;transition:.2s}
+.pl-search:focus{border-color:var(--navy2);box-shadow:0 0 0 3px rgba(45,74,122,.08)}
+.pl-sort{padding:8px 12px;border:2px solid var(--border);border-radius:20px;font-size:12px;background:white;color:var(--navy);cursor:pointer;outline:none}
+.pl-count{font-size:12px;color:var(--muted);white-space:nowrap}
 
-/* Deal summary — 2-line layout */
-.deal-summary{padding:14px 18px;display:flex;flex-direction:column;gap:5px}
-.deal-row1{display:flex;justify-content:space-between;align-items:center;gap:12px}
-.deal-row2{display:flex;gap:16px;flex-wrap:wrap;align-items:center}
-.deal-left{flex:1;min-width:0}
-.deal-ref{font-size:10px;color:var(--muted);font-weight:700;letter-spacing:.8px}
-.deal-name{font-size:15px;font-weight:700;color:var(--navy);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin:2px 0}
-.deal-meta-pill{display:inline-flex;align-items:center;gap:4px;font-size:11px;color:var(--muted);background:#f0f4fa;padding:3px 9px;border-radius:10px;white-space:nowrap}
-.deal-meta-pill strong{color:var(--navy);font-size:12px}
-.deal-motivo{font-size:11px;color:var(--orange);font-style:italic;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:340px}
-.deal-verdict{flex-shrink:0}
+/* Table */
+.pl-table{background:white;border-radius:var(--radius);box-shadow:0 2px 8px rgba(0,0,0,.06);overflow:hidden}
+.pl-thead{display:grid;grid-template-columns:36px 100px 1fr 90px 70px 72px 72px 72px 160px;background:#f0f4fa;border-bottom:2px solid var(--border)}
+.pl-th{padding:8px 10px;font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;cursor:pointer;user-select:none;display:flex;align-items:center;gap:3px;white-space:nowrap}
+.pl-th:hover{color:var(--navy)}
+.pl-th .sort-arrow{opacity:.4;font-size:9px}
+.pl-th.sorted .sort-arrow{opacity:1;color:var(--navy2)}
+.pl-tbody{}
+.pl-tr{display:grid;grid-template-columns:36px 100px 1fr 90px 70px 72px 72px 72px 160px;border-bottom:1px solid #f4f6fa;cursor:pointer;transition:background .1s}
+.pl-tr:last-of-type{border-bottom:none}
+.pl-tr:hover{background:#f8faff}
+.pl-tr.expanded{background:#fffcf2;border-bottom:none}
+.pl-td{padding:7px 10px;font-size:12px;color:var(--text);display:flex;align-items:center;overflow:hidden;min-width:0}
+.pl-td.name{font-weight:600;color:var(--navy);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block;padding-top:10px}
+.pl-td.ref{font-size:10px;font-weight:700;color:var(--muted);letter-spacing:.5px;white-space:nowrap}
+.pl-td.muted{color:var(--muted);font-size:11px}
+.pl-td.num{font-weight:600;color:var(--navy)}
+.pl-td.spread-pos{font-weight:700;color:var(--green)}
+.pl-td.spread-neg{font-weight:700;color:var(--red)}
+.pl-td.motivo{font-size:11px;color:var(--muted);font-style:italic;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block;padding-top:10px}
+.pl-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.pl-dot.go{background:var(--green)}.pl-dot.nogo{background:var(--red)}.pl-dot.borderline{background:var(--orange)}.pl-dot.analisis,.pl-dot.pend{background:var(--blue)}
+
+/* Expanded detail */
+.pl-detail{background:#fffcf0;border-bottom:2px solid var(--gold);padding:14px 20px;display:none}
+.pl-detail.open{display:block}
+.pl-detail-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:8px;margin-bottom:12px}
+.pl-dg{background:white;border-radius:6px;padding:8px 12px;border:1px solid var(--border)}
+.pl-dg-l{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.4px;margin-bottom:2px}
+.pl-dg-v{font-size:13px;font-weight:600;color:var(--navy)}
 
 @media(max-width:768px){
   .deal-kpis{display:none}
@@ -268,23 +297,48 @@ header h1{font-size:17px;font-weight:700;letter-spacing:-.2px}
 
     <!-- DEALS VIEW -->
     <div id="view-deals">
-      <div class="pipeline-top">
-        <div class="status-bar" id="status-bar"></div>
-        <div class="pipeline-controls">
-          <input class="pipeline-search" id="pipeline-search" type="text" placeholder="🔍 Buscar deal, ciudad, broker..." oninput="renderDeals()">
-          <select class="pipeline-sort" id="pipeline-sort" onchange="renderDeals()">
-            <option value="default">Ordenar: Estado (GO primero)</option>
-            <option value="fecha_desc">Fecha recepción ↓</option>
-            <option value="fecha_asc">Fecha recepción ↑</option>
-            <option value="precio_asc">Precio ↑</option>
-            <option value="precio_desc">Precio ↓</option>
-            <option value="spread_desc">Spread ↓ (mejor primero)</option>
-            <option value="yoc_desc">YoC ↓</option>
-          </select>
-        </div>
+      <!-- Status filter chips (multi-select) -->
+      <div class="pl-filters" id="pl-filters">
+        <div class="pl-chip pl-chip-go on" data-v="go" onclick="toggleChip(this)">✅ GO</div>
+        <div class="pl-chip pl-chip-an on" data-v="analisis" onclick="toggleChip(this)">🔍 En Análisis</div>
+        <div class="pl-chip pl-chip-bo on" data-v="borderline" onclick="toggleChip(this)">⚠️ Borderline</div>
+        <div class="pl-chip pl-chip-no on" data-v="nogo" onclick="toggleChip(this)">❌ NO GO</div>
+        <div class="pl-sep"></div>
+        <div class="pl-date-chip on" data-d="all"  onclick="setDate(this)">Todo</div>
+        <div class="pl-date-chip"    data-d="365"  onclick="setDate(this)">1A</div>
+        <div class="pl-date-chip"    data-d="180"  onclick="setDate(this)">6M</div>
+        <div class="pl-date-chip"    data-d="90"   onclick="setDate(this)">3M</div>
+        <div class="pl-date-chip"    data-d="30"   onclick="setDate(this)">30D</div>
       </div>
-      <div class="deals-list" id="deals-list"></div>
-      <div class="empty" id="deals-empty" style="display:none">Sin deals en este filtro</div>
+      <!-- Search + sort + count -->
+      <div class="pl-search-row">
+        <input class="pl-search" id="pl-search" type="text" placeholder="🔍 Nombre, ciudad, broker, ref..." oninput="renderDeals()">
+        <select class="pl-sort" id="pl-sort" onchange="renderDeals()">
+          <option value="default">Orden: Estado (GO arriba)</option>
+          <option value="fecha_desc">Fecha ↓ reciente</option>
+          <option value="fecha_asc">Fecha ↑ antiguo</option>
+          <option value="precio_asc">Precio ↑</option>
+          <option value="precio_desc">Precio ↓</option>
+          <option value="spread_desc">Spread ↓ mejor</option>
+        </select>
+        <span class="pl-count" id="pl-count"></span>
+      </div>
+      <!-- Table -->
+      <div class="pl-table">
+        <div class="pl-thead">
+          <div class="pl-th"></div>
+          <div class="pl-th" onclick="setSortCol('ref')">Ref <span class="sort-arrow">↕</span></div>
+          <div class="pl-th" onclick="setSortCol('nombre')">Nombre <span class="sort-arrow">↕</span></div>
+          <div class="pl-th" onclick="setSortCol('fecha')">Fecha <span class="sort-arrow">↕</span></div>
+          <div class="pl-th" onclick="setSortCol('sqm')">SQM <span class="sort-arrow">↕</span></div>
+          <div class="pl-th" onclick="setSortCol('precio')">Precio <span class="sort-arrow">↕</span></div>
+          <div class="pl-th" onclick="setSortCol('spread')">Spread <span class="sort-arrow">↕</span></div>
+          <div class="pl-th" onclick="setSortCol('yoc')">YoC <span class="sort-arrow">↕</span></div>
+          <div class="pl-th">Motivo</div>
+        </div>
+        <div id="pl-tbody"></div>
+      </div>
+      <div class="empty" id="deals-empty" style="display:none;padding:40px;text-align:center;color:var(--muted)">Sin deals con estos filtros</div>
     </div>
 
     <!-- FINDERS VIEW -->
@@ -413,179 +467,164 @@ function showView(id) {
 }
 
 // ── DEALS ─────────────────────────────────────────────────────────
-// Verdict sort order: go=0, analisis/pend=1, borderline=2, nogo=3
 const VERDICT_ORDER = {go:0,pass:0,analisis:1,pend:1,borderline:2,nogo:3};
+let plActiveVerdicts = new Set(['go','analisis','pend','borderline','nogo']);
+let plDateDays = 0; // 0 = all
+let plSortCol  = 'default';
+let plSortDir  = 1;
 
-function verdictLabel(d) {
-  const v = d.verdict;
-  if(v==='go'||v==='pass') return '✅ GO';
-  if(v==='borderline')     return '⚠️ Borderline';
-  if(v==='nogo')           return '❌ NO GO';
-  if(v==='pend')           return '⏳ PEND';
-  return '🔍 En análisis';
+function initStatusBar() {} // deprecated — chips are static HTML now
+
+function filterD(type, el) {} // deprecated — using toggleChip now
+
+function toggleChip(el) {
+  const v = el.dataset.v;
+  el.classList.toggle('on');
+  if (el.classList.contains('on')) {
+    if (v==='analisis') { plActiveVerdicts.add('analisis'); plActiveVerdicts.add('pend'); }
+    else plActiveVerdicts.add(v);
+  } else {
+    if (v==='analisis') { plActiveVerdicts.delete('analisis'); plActiveVerdicts.delete('pend'); }
+    else plActiveVerdicts.delete(v);
+  }
+  renderDeals();
 }
 
-function initStatusBar() {
-  const total     = DEALS.length;
-  const goN       = DEALS.filter(d=>d.verdict==='go'||d.verdict==='pass').length;
-  const analisisN = DEALS.filter(d=>d.verdict==='analisis'||d.verdict==='pend').length;
-  const bordN     = DEALS.filter(d=>d.verdict==='borderline').length;
-  const nogoN     = DEALS.filter(d=>d.verdict==='nogo').length;
-  document.getElementById('status-bar').innerHTML = `
-    <div class="sbt sbt-all active" onclick="filterD('all',this)">Todos <span class="sbt-count">${total}</span></div>
-    <div class="sbt sbt-pass" onclick="filterD('go',this)">✅ GO <span class="sbt-count">${goN}</span></div>
-    <div class="sbt sbt-analisis" onclick="filterD('analisis',this)">🔍 En Análisis / PEND <span class="sbt-count">${analisisN}</span></div>
-    <div class="sbt sbt-borderline" onclick="filterD('borderline',this)">⚠️ Borderline <span class="sbt-count">${bordN}</span></div>
-    <div class="sbt sbt-nogo" onclick="filterD('nogo',this)">❌ NO GO <span class="sbt-count">${nogoN}</span></div>
-  `;
+function setDate(el) {
+  document.querySelectorAll('.pl-date-chip').forEach(c=>c.classList.remove('on'));
+  el.classList.add('on');
+  plDateDays = el.dataset.d==='all' ? 0 : parseInt(el.dataset.d);
+  renderDeals();
 }
 
-function filterD(type, el) {
-  document.querySelectorAll('.sbt').forEach(b=>b.classList.remove('active'));
-  el.classList.add('active');
-  dFilter = type;
-  filterByBroker = -1;
+function setSortCol(col) {
+  if (plSortCol===col) plSortDir *= -1;
+  else { plSortCol=col; plSortDir=1; }
+  // Update arrow indicators
+  document.querySelectorAll('.pl-th').forEach(th=>th.classList.remove('sorted'));
+  document.querySelectorAll('.pl-th .sort-arrow').forEach(a=>a.textContent='↕');
+  const idx = {ref:1,nombre:2,fecha:3,sqm:4,precio:5,spread:6,yoc:7}[col];
+  if (idx!==undefined) {
+    const ths = document.querySelectorAll('.pl-th');
+    if (ths[idx]) { ths[idx].classList.add('sorted'); ths[idx].querySelector('.sort-arrow').textContent = plSortDir>0?'↑':'↓'; }
+  }
   renderDeals();
 }
 
 function parseFecha(s) {
   if (!s) return 0;
   const p = s.split('/');
-  if (p.length===3) return new Date(p[2],p[1]-1,p[0]).getTime();
+  if (p.length===3) return new Date(+p[2],+p[1]-1,+p[0]).getTime();
   return new Date(s).getTime() || 0;
 }
 
 function renderDeals() {
   let list = DEALS.slice();
 
-  // ── Status filter
-  if (dFilter==='analisis')   list = list.filter(d=>d.verdict==='analisis'||d.verdict==='pend');
-  else if (dFilter==='go')         list = list.filter(d=>d.verdict==='go'||d.verdict==='pass');
-  else if (dFilter==='borderline') list = list.filter(d=>d.verdict==='borderline');
-  else if (dFilter==='nogo')       list = list.filter(d=>d.verdict==='nogo');
+  // ── Verdict multi-filter
+  list = list.filter(d=>{
+    const v = d.verdict==='pass'?'go':d.verdict;
+    return plActiveVerdicts.has(v);
+  });
 
-  // Apply broker cross-filter if set
+  // ── Broker cross-filter
   if (filterByBroker >= 0) list = list.filter(d=>d.broker_idx===filterByBroker);
 
-  // ── Search filter
-  const q = (document.getElementById('pipeline-search')?.value||'').toLowerCase().trim();
+  // ── Date filter
+  if (plDateDays > 0) {
+    const cutoff = Date.now() - plDateDays * 86400000;
+    list = list.filter(d=>parseFecha(d.fecha) >= cutoff);
+  }
+
+  // ── Search
+  const q = (document.getElementById('pl-search')?.value||'').toLowerCase().trim();
   if (q) list = list.filter(d=>[d.nombre,d.ubicacion,d.fuente,d.ref,d.tipo].join(' ').toLowerCase().includes(q));
 
   // ── Sort
-  const sortBy = document.getElementById('pipeline-sort')?.value || 'default';
-  if (sortBy==='default') {
-    list.sort((a,b)=> (VERDICT_ORDER[a.verdict]??3) - (VERDICT_ORDER[b.verdict]??3) || parseFecha(b.fecha)-parseFecha(a.fecha));
-  } else if (sortBy==='fecha_desc') list.sort((a,b)=>parseFecha(b.fecha)-parseFecha(a.fecha));
-  else if (sortBy==='fecha_asc')    list.sort((a,b)=>parseFecha(a.fecha)-parseFecha(b.fecha));
-  else if (sortBy==='precio_asc')   list.sort((a,b)=>(a.precio||0)-(b.precio||0));
-  else if (sortBy==='precio_desc')  list.sort((a,b)=>(b.precio||0)-(a.precio||0));
-  else if (sortBy==='spread_desc')  list.sort((a,b)=>{ const sa=parseInt(String(a.spread).replace(/[^-\d]/g,''))||0; const sb=parseInt(String(b.spread).replace(/[^-\d]/g,''))||0; return sb-sa; });
-  else if (sortBy==='yoc_desc')     list.sort((a,b)=>{ const ya=parseFloat(String(a.yoc).replace('%',''))||0; const yb=parseFloat(String(b.yoc).replace('%',''))||0; return yb-ya; });
-  const el = document.getElementById('deals-list');
-  const em = document.getElementById('deals-empty');
-  if (!list.length) { el.innerHTML=''; em.style.display='block'; return; }
+  const col = plSortCol;
+  if (col==='default') {
+    list.sort((a,b)=>(VERDICT_ORDER[a.verdict]??3)-(VERDICT_ORDER[b.verdict]??3)||parseFecha(b.fecha)-parseFecha(a.fecha));
+  } else {
+    list.sort((a,b)=>{
+      let va=0,vb=0;
+      if (col==='fecha')  { va=parseFecha(a.fecha);  vb=parseFecha(b.fecha); }
+      else if (col==='precio')  { va=a.precio||0;    vb=b.precio||0; }
+      else if (col==='spread')  { va=parseInt(String(a.spread).replace(/[^-\d]/g,''))||0; vb=parseInt(String(b.spread).replace(/[^-\d]/g,''))||0; }
+      else if (col==='yoc')     { va=parseFloat(String(a.yoc).replace('%',''))||0; vb=parseFloat(String(b.yoc).replace('%',''))||0; }
+      else if (col==='sqm')     { va=a.sqm||0;       vb=b.sqm||0; }
+      else if (col==='nombre')  { return plSortDir*a.nombre.localeCompare(b.nombre,'es'); }
+      else if (col==='ref')     { return plSortDir*a.ref.localeCompare(b.ref,'es'); }
+      return plSortDir*(va-vb);
+    });
+  }
+  const tbody = document.getElementById('pl-tbody');
+  const em    = document.getElementById('deals-empty');
+  const cnt   = document.getElementById('pl-count');
+  if (!list.length) { tbody.innerHTML=''; em.style.display='block'; if(cnt)cnt.textContent=''; return; }
   em.style.display='none';
-  el.innerHTML = list.map(d=>dealRow(d)).join('');
-  // Auto-expand and highlight a specific deal if requested
+  if(cnt) cnt.textContent = list.length + ' deals';
+  tbody.innerHTML = list.map(d=>dealTableRow(d)).join('');
+  // Cross-nav highlight
   if (highlightDeal) {
     const ref = highlightDeal; highlightDeal = null;
     setTimeout(()=>{
-      const safeRef = ref.replace(/[^a-z0-9]/gi,'_');
-      const det = document.getElementById('dd-'+safeRef);
-      const row = det ? det.closest('.deal-row') : null;
+      const sr = ref.replace(/[^a-z0-9]/gi,'_');
+      const det = document.getElementById('pld-'+sr);
       if (det) { det.classList.add('open'); open['d_'+ref]=true; }
-      if (row) {
-        row.scrollIntoView({behavior:'smooth',block:'center'});
-        row.classList.add('highlight-deal');
-        setTimeout(()=>row.classList.remove('highlight-deal'), 900);
-      }
+      const row = document.getElementById('plr-'+sr);
+      if (row) { row.scrollIntoView({behavior:'smooth',block:'center'}); row.classList.add('expanded'); }
     }, 80);
   }
 }
 
 function safeR(ref){return ref.replace(/[^a-z0-9]/gi,'_');}
 
-function dealRow(d) {
+function dealTableRow(d) {
+  const sr        = safeR(d.ref);
   const isOpen    = open['d_'+d.ref];
   const isEditing = IS_LOCAL && editingRef===d.ref;
-  const vcls = (d.verdict==='go'||d.verdict==='pass')?'v-pass':d.verdict==='borderline'?'v-bord':d.verdict==='nogo'?'v-nogo':d.verdict==='pend'?'v-pend':'v-neutral';
-  const vtxt = (d.verdict==='go'||d.verdict==='pass')?'✅ GO':d.verdict==='borderline'?'⚠️ Borderline':d.verdict==='nogo'?'❌ NO GO':d.verdict==='pend'?'⏳ PEND':'🔍 En análisis';
-  const rowcls = d.estado==='En Análisis'?'analisis':d.verdict;
-  const sr = safeR(d.ref);
+  const vkey      = (d.verdict==='pass')?'go':d.verdict;
+  const motivo    = d.motivo ? d.motivo.split(/\s+/).slice(0,6).join(' ')+(d.motivo.split(/\s+/).length>6?'…':'') : '';
+  const precFmt   = d.precio ? '€'+(d.precio/1e6).toFixed(1)+'M' : '—';
+  const sqmFmt    = d.sqm    ? Number(d.sqm).toLocaleString('es')+'m²' : '—';
+  const spreadNum = parseInt(String(d.spread).replace(/[^-\d]/g,''))||0;
+  const spreadCls = spreadNum>0?'spread-pos':spreadNum<0?'spread-neg':'muted';
+  const spreadTxt = d.spread||'—';
+  const yocTxt    = d.yoc   ? String(d.yoc).replace('0.','') : '—';
 
-  const kpis = [
-    d.precio_m ? ['€'+d.precio_m+'M', 'Precio'] : null,
-    d.yoc      ? [d.yoc, 'YoC'] : null,
-    d.spread   ? [d.spread, 'Spread'] : null,
-  ].filter(Boolean);
-
+  // Detail items
   const detailItems = [
-    ['Ref', d.ref], ['Tipo', d.tipo], ['Fecha entrada', d.fecha],
-    ['Precio asking', d.precio ? '€'+(d.precio/1e6).toFixed(2)+'M' : ''], ['Unidades', d.unidades],
-    ['Fuente / Broker', d.fuente], ['Estado', d.estado],
-    ['YoC entrada', d.yoc], ['Exit Yield', d.yield_exit], ['Spread', d.spread],
-    ['Motivo', d.motivo], ['Próximo paso', d.prox_paso],
-    ['Owner', d.owner], ['Notas', d.notas],
+    ['Ref',d.ref],['Tipo',d.tipo],['Fecha',d.fecha],
+    ['Precio',d.precio?'€'+(d.precio/1e6).toFixed(2)+'M':''],['Unidades',d.unidades],['SQM',d.sqm?d.sqm+'m²':''],
+    ['Broker/Fuente',d.fuente],['Estado',d.estado],
+    ['YoC',d.yoc],['Exit Yield',d.yield_exit],['Spread',d.spread],
+    ['Motivo',d.motivo],['Próximo paso',d.prox_paso],['Owner',d.owner],['Notas',d.notas],
   ].filter(r=>r[1]);
 
-  const brokerBtn = d.broker_idx >= 0
-    ? `<button class="btn btn-gold" onclick="event.stopPropagation();goToBroker(${d.broker_idx})">👤 Ver broker →</button>`
-    : '';
-
+  const brokerBtn = d.broker_idx>=0
+    ? `<button class="btn btn-gold" onclick="event.stopPropagation();goToBroker(${d.broker_idx})">👤 Broker →</button>` : '';
   const editBtn = IS_LOCAL
-    ? `<button class="btn-edit" onclick="event.stopPropagation();toggleEdit('${d.ref}')">${isEditing?'✕ Cancelar':'✏️ Editar'}</button>`
-    : '';
+    ? `<button class="btn-edit" onclick="event.stopPropagation();toggleEdit('${d.ref}')">${isEditing?'✕':'✏️ Editar'}</button>` : '';
 
-  // Edit form
   const estadoOpts = ESTADO_MAP.map(o=>`<option value="${o.value}"${d.estado===o.value?' selected':''}>${o.label}</option>`).join('');
   const editForm = isEditing ? `
     <div class="edit-panel" onclick="event.stopPropagation()">
-      <div class="edit-title">✏️ Editar deal — ${d.ref}</div>
+      <div class="edit-title">✏️ Editar — ${d.ref}</div>
       <div class="edit-grid">
-        <div class="edit-field">
-          <label>Estado</label>
-          <select id="ef-estado-${sr}">${estadoOpts}</select>
-        </div>
-        <div class="edit-field">
-          <label>Precio (M€)</label>
-          <input id="ef-precio-${sr}" type="number" step="0.1" value="${d.precio?(d.precio/1e6).toFixed(2):''}">
-        </div>
-        <div class="edit-field">
-          <label>YoC HMA</label>
-          <input id="ef-yoc-${sr}" type="text" value="${d.yoc||''}">
-        </div>
-        <div class="edit-field">
-          <label>Exit Yield</label>
-          <input id="ef-yield-${sr}" type="text" value="${d.yield_exit||''}">
-        </div>
-        <div class="edit-field">
-          <label>Spread</label>
-          <input id="ef-spread-${sr}" type="text" value="${d.spread||''}">
-        </div>
-        <div class="edit-field">
-          <label>Owner</label>
-          <input id="ef-owner-${sr}" type="text" value="${d.owner||''}">
-        </div>
+        <div class="edit-field"><label>Estado</label><select id="ef-estado-${sr}">${estadoOpts}</select></div>
+        <div class="edit-field"><label>Precio (M€)</label><input id="ef-precio-${sr}" type="number" step="0.1" value="${d.precio?(d.precio/1e6).toFixed(2):''}"></div>
+        <div class="edit-field"><label>YoC HMA</label><input id="ef-yoc-${sr}" type="text" value="${d.yoc||''}"></div>
+        <div class="edit-field"><label>Exit Yield</label><input id="ef-yield-${sr}" type="text" value="${d.yield_exit||''}"></div>
+        <div class="edit-field"><label>Spread</label><input id="ef-spread-${sr}" type="text" value="${d.spread||''}"></div>
+        <div class="edit-field"><label>Owner</label><input id="ef-owner-${sr}" type="text" value="${d.owner||''}"></div>
       </div>
       <div class="edit-row">
-        <div class="edit-field" style="grid-column:span 2">
-          <label>Próximo paso</label>
-          <textarea id="ef-prox-${sr}" rows="2">${d.prox_paso||''}</textarea>
-        </div>
-        <div class="edit-field">
-          <label>Motivo</label>
-          <textarea id="ef-motivo-${sr}" rows="2">${d.motivo||''}</textarea>
-        </div>
+        <div class="edit-field" style="grid-column:span 2"><label>Próximo paso</label><textarea id="ef-prox-${sr}" rows="2">${d.prox_paso||''}</textarea></div>
+        <div class="edit-field"><label>Motivo</label><textarea id="ef-motivo-${sr}" rows="2">${d.motivo||''}</textarea></div>
       </div>
       <div class="edit-row-2">
-        <div class="edit-field">
-          <label>Notas</label>
-          <textarea id="ef-notas-${sr}" rows="2">${d.notas||''}</textarea>
-        </div>
-        <div class="edit-field">
-          <label>Fecha acción</label>
-          <input id="ef-fecha-${sr}" type="text" placeholder="dd/mm/yyyy" value="${d.fecha_accion||''}">
-        </div>
+        <div class="edit-field"><label>Notas</label><textarea id="ef-notas-${sr}" rows="2">${d.notas||''}</textarea></div>
+        <div class="edit-field"><label>Fecha acción</label><input id="ef-fecha-${sr}" type="text" placeholder="dd/mm/yyyy" value="${d.fecha_accion||''}"></div>
       </div>
       <div class="edit-actions">
         <button class="btn-save" onclick="event.stopPropagation();saveDeal('${d.ref}')">💾 Guardar en Excel</button>
@@ -593,49 +632,40 @@ function dealRow(d) {
       </div>
     </div>` : '';
 
-  // Extra info for summary row
-  const motivoSnippet = d.motivo ? d.motivo.split(' ').slice(0,6).join(' ')+(d.motivo.split(' ').length>6?'…':'') : '';
-  const sqmFmt  = d.sqm   ? `${Number(d.sqm).toLocaleString('es')} m²` : '—';
-  const precFmt = d.precio ? `€${(d.precio/1e6).toFixed(2)}M` : '—';
-  const fechaFmt= d.fecha  ? d.fecha : '—';
-  const spreadFmt= d.spread ? (String(d.spread).startsWith('+')||parseInt(d.spread)>0?'<span style="color:var(--green)">'+d.spread+' bps</span>':'<span style="color:var(--red)">'+d.spread+' bps</span>') : '';
-
-  return `<div class="deal-row ${rowcls}" onclick="toggleD('${d.ref}')">
-    <div class="deal-summary">
-      <div class="deal-row1">
-        <div class="deal-left">
-          <div class="deal-ref">${d.ref}</div>
-          <div class="deal-name">${d.nombre}</div>
-        </div>
-        <div class="deal-verdict"><span class="vtag ${vcls}">${vtxt}</span></div>
-      </div>
-      <div class="deal-row2">
-        <span class="deal-meta-pill">📍 ${d.ubicacion}</span>
-        ${d.fecha?`<span class="deal-meta-pill">📅 <strong>${fechaFmt}</strong></span>`:''}
-        ${d.sqm?`<span class="deal-meta-pill">📐 <strong>${sqmFmt}</strong></span>`:''}
-        ${d.precio?`<span class="deal-meta-pill">💶 <strong>${precFmt}</strong></span>`:''}
-        ${spreadFmt?`<span class="deal-meta-pill">📊 ${spreadFmt}</span>`:''}
-        ${motivoSnippet&&(d.verdict==='nogo')?`<span class="deal-motivo" title="${d.motivo||''}">↳ ${motivoSnippet}</span>`:''}
-      </div>
+  return `
+  <div class="pl-tr${isOpen||isEditing?' expanded':''}" id="plr-${sr}" onclick="toggleD('${d.ref}')">
+    <div class="pl-td"><div class="pl-dot ${vkey}"></div></div>
+    <div class="pl-td ref">${d.ref}</div>
+    <div class="pl-td name">${d.nombre}<div style="font-size:10px;color:var(--muted);font-weight:400;margin-top:1px">📍 ${d.ubicacion}</div></div>
+    <div class="pl-td muted">${d.fecha||'—'}</div>
+    <div class="pl-td muted">${sqmFmt}</div>
+    <div class="pl-td num">${precFmt}</div>
+    <div class="pl-td ${spreadCls}">${spreadTxt}</div>
+    <div class="pl-td muted">${d.yoc||'—'}</div>
+    <div class="pl-td motivo" title="${d.motivo||''}">${motivo||'—'}</div>
+  </div>
+  <div class="pl-detail${isOpen||isEditing?' open':''}" id="pld-${sr}" onclick="event.stopPropagation()">
+    <div class="pl-detail-grid">
+      ${detailItems.map(r=>`<div class="pl-dg"><div class="pl-dg-l">${r[0]}</div><div class="pl-dg-v">${r[1]}</div></div>`).join('')}
     </div>
-    <div class="deal-detail${isOpen||isEditing?' open':''}" id="dd-${sr}" onclick="event.stopPropagation()">
-      <div class="detail-grid">
-        ${detailItems.map(r=>`<div class="dg-item"><div class="dg-label">${r[0]}</div><div class="dg-value">${r[1]}</div></div>`).join('')}
-      </div>
-      <div class="deal-actions">
-        ${d.ic_link?`<a href="${d.ic_link}" target="_blank" class="btn btn-nav">📄 IC Brief</a>`:''}
-        ${d.gamma_link?`<a href="${d.gamma_link}" target="_blank" class="btn btn-nav">📊 Presentación</a>`:''}
-        ${brokerBtn}
-        ${editBtn}
-      </div>
-      ${editForm}
+    <div class="deal-actions" style="margin-top:6px">
+      ${d.ic_link?`<a href="${d.ic_link}" target="_blank" class="btn btn-nav">📄 IC Brief</a>`:''}
+      ${d.gamma_link?`<a href="${d.gamma_link}" target="_blank" class="btn btn-nav">📊 Presentación</a>`:''}
+      ${brokerBtn}${editBtn}
     </div>
+    ${editForm}
   </div>`;
 }
+
+function dealRow(d){ return dealTableRow(d); } // legacy alias
+
 function toggleD(ref) {
   open['d_'+ref] = !open['d_'+ref];
-  const el = document.getElementById('dd-'+ref.replace(/[^a-z0-9]/gi,'_'));
-  if (el) el.classList.toggle('open', !!open['d_'+ref]);
+  const sr  = ref.replace(/[^a-z0-9]/gi,'_');
+  const det = document.getElementById('pld-'+sr);
+  const row = document.getElementById('plr-'+sr);
+  if (det) det.classList.toggle('open', !!open['d_'+ref]);
+  if (row) row.classList.toggle('expanded', !!open['d_'+ref]);
 }
 
 function toggleEdit(ref) {
