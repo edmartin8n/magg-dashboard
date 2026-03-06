@@ -611,8 +611,16 @@ function saveDeal(ref) {
     body: JSON.stringify(body),
   })
   .then(r => r.ok ? r.json() : Promise.reject(r.status))
-  .then(data => showToast(`✅ ${ref} guardado en Excel (${data.updated.length} campos)`, 'success'))
-  .catch(err => showToast(`❌ Error al guardar: ${err}`, 'error'));
+  .then(data => {
+    showToast(`✅ ${ref} guardado · actualizando web pública…`, 'success');
+    return fetch(`${API_BASE}/api/regenerate`, {method:'POST'});
+  })
+  .then(r => r.ok ? r.json() : Promise.reject('regenerate failed'))
+  .then(data => {
+    if (data.ok) showToast('🌐 GitHub Pages actualizado (1-2 min)', 'success');
+    else showToast(`⚠️ Excel OK · error web: ${data.error}`, 'error');
+  })
+  .catch(err => showToast(`❌ Error: ${err}`, 'error'));
 }
 
 function showToast(msg, type='success') {
