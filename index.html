@@ -304,6 +304,98 @@ header h1{font-size:17px;font-weight:700;letter-spacing:-.2px}
   .pl-td { padding:5px 6px; font-size:11px; }
   .pl-th { padding:6px 6px; font-size:9px; }
 }
+
+/* ===== TRANSACTION COPILOT ===== */
+#view-tx{padding:0;height:calc(100vh - 130px);overflow:hidden}
+.tx-layout{display:grid;grid-template-columns:264px 1fr;height:100%;overflow:hidden}
+.tx-sidebar{background:var(--navy);overflow-y:auto;padding:16px 0;border-right:1px solid rgba(255,255,255,.06)}
+.tx-sidebar-title{padding:8px 20px 14px;font-size:10px;font-weight:700;color:rgba(255,255,255,.35);text-transform:uppercase;letter-spacing:.8px}
+.tx-deal-item{padding:11px 18px;cursor:pointer;border-left:3px solid transparent;transition:.15s}
+.tx-deal-item:hover{background:rgba(255,255,255,.06)}
+.tx-deal-item.active{background:rgba(255,255,255,.1);border-left-color:var(--gold)}
+.tx-deal-name{font-size:12.5px;font-weight:600;color:white;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.tx-deal-meta{font-size:10px;color:rgba(255,255,255,.4);margin-top:2px}
+.tx-deal-pgwrap{margin-top:7px;background:rgba(255,255,255,.1);border-radius:3px;height:3px}
+.tx-deal-pgbar{height:3px;border-radius:3px;background:var(--gold);transition:width .4s}
+.tx-main-area{overflow-y:auto;padding:24px 28px;background:var(--bg)}
+
+/* Header */
+.tx-hdr{margin-bottom:18px}
+.tx-hdr-name{font-size:19px;font-weight:800;color:var(--navy);line-height:1.2}
+.tx-hdr-sub{font-size:12px;color:var(--muted);margin-top:4px}
+.tx-progress-pill{display:inline-flex;align-items:center;gap:6px;background:white;border:1px solid #dde4f0;border-radius:20px;padding:4px 12px;font-size:11px;font-weight:600;color:var(--navy);margin-top:8px;box-shadow:0 1px 4px rgba(0,0,0,.06)}
+.tx-progress-bar-outer{width:80px;height:6px;background:#e8ecf5;border-radius:3px;overflow:hidden}
+.tx-progress-bar-inner{height:6px;background:var(--green);border-radius:3px;transition:width .4s}
+
+/* Timeline */
+.tx-timeline-wrap{background:white;border-radius:var(--radius);box-shadow:0 2px 10px rgba(0,0,0,.07);border:1px solid #dde4f0;padding:18px 20px;margin-bottom:18px;overflow-x:auto}
+.tx-timeline{display:flex;align-items:flex-start;gap:0}
+.tx-tl-col{display:flex;flex-direction:column;align-items:center;gap:5px;flex-shrink:0;cursor:pointer;min-width:52px}
+.tx-tl-col:hover .tx-tl-circle{opacity:.8}
+.tx-tl-row{display:flex;align-items:center;width:100%}
+.tx-tl-circle{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;border:2px solid #dde4f0;background:white;color:var(--muted);transition:.2s;flex-shrink:0}
+.tx-tl-circle.done{background:var(--green);border-color:var(--green);color:white}
+.tx-tl-circle.active{background:var(--blue);border-color:var(--blue);color:white;box-shadow:0 0 0 3px rgba(21,101,192,.2)}
+.tx-tl-circle.blocked{background:var(--red);border-color:var(--red);color:white}
+.tx-tl-label{font-size:8.5px;color:var(--muted);text-align:center;max-width:52px;line-height:1.2;padding:0 2px}
+.tx-tl-label.active{color:var(--blue);font-weight:700}
+.tx-tl-label.done{color:var(--green)}
+.tx-tl-connector{flex:1;height:2px;background:#e8ecf5;margin:0 2px;margin-bottom:17px;min-width:8px}
+.tx-tl-connector.done{background:var(--green)}
+.tx-tl-connector.active{background:linear-gradient(90deg,var(--green),var(--blue))}
+
+/* Legend */
+.tx-legend{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:14px;font-size:11px;color:var(--muted)}
+.tx-legend-item{display:flex;align-items:center;gap:5px}
+.tx-legend-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0}
+
+/* Phase cards */
+.tx-phase-card{background:white;border-radius:var(--radius);box-shadow:0 2px 8px rgba(0,0,0,.06);margin-bottom:10px;border:1px solid #dde4f0;overflow:hidden;transition:box-shadow .15s}
+.tx-phase-card:hover{box-shadow:0 3px 12px rgba(0,0,0,.09)}
+.tx-phase-hdr{display:flex;align-items:center;gap:10px;padding:13px 18px;cursor:pointer;user-select:none;transition:background .1s}
+.tx-phase-hdr:hover{background:#f8faff}
+.tx-phase-badge{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;flex-shrink:0}
+.tx-phase-icon{font-size:15px;flex-shrink:0}
+.tx-phase-title{font-size:13.5px;font-weight:700;color:var(--navy);flex:1}
+.tx-phase-prog{font-size:11px;color:var(--muted);white-space:nowrap}
+.tx-phase-prog b{color:var(--navy)}
+.tx-phase-pgbar{width:64px;height:4px;background:#e8ecf5;border-radius:2px;overflow:hidden;margin-right:8px;flex-shrink:0}
+.tx-phase-pgbar-fill{height:4px;border-radius:2px;transition:width .3s}
+.tx-phase-chevron{font-size:11px;color:var(--muted);transition:transform .2s;margin-left:4px}
+.tx-phase-chevron.open{transform:rotate(180deg)}
+.tx-phase-body{padding:0 18px 12px;display:none}
+.tx-phase-body.open{display:block}
+
+/* Checkpoints */
+.tx-ck{display:grid;grid-template-columns:22px 1fr auto;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid #f0f4fa}
+.tx-ck:last-child{border-bottom:none}
+.tx-ck-btn{width:20px;height:20px;border-radius:50%;border:2px solid #ccd5e8;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;transition:.15s;flex-shrink:0;background:white}
+.tx-ck-btn.active{border-color:var(--blue);background:#e8f0fe;color:var(--blue)}
+.tx-ck-btn.done{border-color:var(--green);background:var(--green);color:white}
+.tx-ck-btn.blocked{border-color:var(--red);background:#fce4ec;color:var(--red)}
+.tx-ck-text{font-size:12px;color:var(--text);line-height:1.4}
+.tx-ck-text.done{text-decoration:line-through;color:#aab5c8}
+.tx-ck-right{display:flex;align-items:center;gap:6px;flex-shrink:0}
+.tx-ck-owner{font-size:10px;padding:2px 8px;border:1px solid var(--border);border-radius:10px;background:#f4f6fb;color:var(--muted);cursor:pointer;outline:none;font-family:inherit;appearance:none;-webkit-appearance:none}
+.tx-ck-owner:hover{border-color:var(--navy2)}
+
+/* Owner color badges per phase card left border */
+.tx-phase-card.p-done{border-left:3px solid var(--green)}
+.tx-phase-card.p-active{border-left:3px solid var(--blue)}
+.tx-phase-card.p-blocked{border-left:3px solid var(--red)}
+.tx-phase-card.p-pending{border-left:3px solid transparent}
+
+/* Empty state */
+.tx-empty{text-align:center;padding:80px 40px;color:var(--muted)}
+.tx-empty-icon{font-size:52px;margin-bottom:18px}
+.tx-empty-title{font-size:16px;font-weight:700;color:var(--navy);margin-bottom:8px}
+
+@media(max-width:768px){
+  .tx-layout{grid-template-columns:1fr}
+  .tx-sidebar{height:auto;max-height:140px}
+  #view-tx{height:auto}
+  .tx-main-area{padding:16px}
+}
 </style>
 </head>
 <body>
@@ -333,6 +425,7 @@ header h1{font-size:17px;font-weight:700;letter-spacing:-.2px}
     <div class="tab active" id="tab-control" onclick="showView('control')">📊 Control</div>
     <div class="tab" id="tab-deals" onclick="showView('deals')">📋 Pipeline</div>
     <div class="tab" id="tab-finders" onclick="showView('finders')">👥 Intermediarios</div>
+    <div class="tab" id="tab-tx" onclick="showView('tx')">⚡ Transacción</div>
   </div>
 
   <div class="main">
@@ -417,6 +510,17 @@ header h1{font-size:17px;font-weight:700;letter-spacing:-.2px}
 
 
     <!-- CONTROL VIEW -->
+
+    <!-- TRANSACTION COPILOT VIEW -->
+    <div id="view-tx" style="display:none">
+      <div class="tx-layout">
+        <div class="tx-sidebar" id="tx-sidebar">
+          <div class="tx-sidebar-title">Deals activos</div>
+        </div>
+        <div class="tx-main-area" id="tx-main"></div>
+      </div>
+    </div>
+
     <div id="view-control" style="display:none">
 
       <!-- KPI Row -->
@@ -527,10 +631,13 @@ document.getElementById('pwd').addEventListener('keydown', e => { if(e.key==='En
 
 // ── View switching ────────────────────────────────────────────────
 function showView(id) {
-  ['deals','finders','control'].forEach(v => {
-    document.getElementById('view-'+v).style.display = v===id ? 'block' : 'none';
-    document.getElementById('tab-'+v).classList.toggle('active', v===id);
+  ['deals','finders','control','tx'].forEach(v => {
+    const el = document.getElementById('view-'+v);
+    if (el) el.style.display = v===id ? (v==='tx'?'block':'block') : 'none';
+    const tb = document.getElementById('tab-'+v);
+    if (tb) tb.classList.toggle('active', v===id);
   });
+  if (id==='tx') renderTx();
 }
 
 // ── DEALS ─────────────────────────────────────────────────────────
@@ -1208,6 +1315,281 @@ function renderShortlist() {
     </div>`;
   }).join('');
   el.innerHTML = hdr + rows;
+}
+
+
+// ═══════════════════════════════════════════════════════════════════
+// TRANSACTION COPILOT
+// ═══════════════════════════════════════════════════════════════════
+
+const TX_PHASES = [
+  { id:0, name:'Pre-NBO', icon:'🔍', items:[
+    { id:'p0c1', text:'Validar asunciones IC Brief con fuentes externas (CoStar/JLL)', owner:'Inversión' },
+    { id:'p0c2', text:'Solicitar OM / acceso Data Room completo', owner:'Inversión' },
+    { id:'p0c3', text:'Primera visita al activo (presencial o virtual)', owner:'Técnico' },
+    { id:'p0c4', text:'Confirmar precio realista vs. comparables de mercado', owner:'Inversión' },
+  ]},
+  { id:1, name:'NBO / LOI', icon:'📋', items:[
+    { id:'p1c1', text:'Redactar y enviar NBO con condiciones precedentes', owner:'Inversión' },
+    { id:'p1c2', text:'Confirmar aceptación NBO por vendedor', owner:'Inversión' },
+    { id:'p1c3', text:'Firmar NDA / NDNC (si no existe)', owner:'Legal' },
+    { id:'p1c4', text:'Acordar periodo exclusividad DD + calendario', owner:'Inversión' },
+  ]},
+  { id:2, name:'DD Técnica', icon:'🔧', items:[
+    { id:'p2c1', text:'Visita técnica DT / quantity surveyor', owner:'Técnico' },
+    { id:'p2c2', text:'Confirmar sqm reales y distribución del activo', owner:'Técnico' },
+    { id:'p2c3', text:'Validar CapEx definitivo con presupuesto indicativo', owner:'Técnico' },
+    { id:'p2c4', text:'Estado licencias: uso actual, turística, obras', owner:'Legal' },
+    { id:'p2c5', text:'Análisis urbanístico (PGM, zoning, limitaciones)', owner:'Legal' },
+    { id:'p2c6', text:'Informe técnico final → ajustar CapEx si diverge del modelo', owner:'Técnico' },
+  ]},
+  { id:3, name:'DD Legal', icon:'⚖️', items:[
+    { id:'p3c1', text:'Registro Propiedad: cargas, servidumbres, hipotecas', owner:'Legal' },
+    { id:'p3c2', text:'Share deal: DD societaria (estatutos, actas, socios)', owner:'Legal' },
+    { id:'p3c3', text:'Contratos de arrendamiento / ocupantes actuales', owner:'Legal' },
+    { id:'p3c4', text:'Licencias administrativas (actividad, turística)', owner:'Legal' },
+    { id:'p3c5', text:'DD fiscal (ITP/IVA, impuestos diferidos, contingencias)', owner:'Legal' },
+    { id:'p3c6', text:'Informe legal final + red flags documentados', owner:'Legal' },
+  ]},
+  { id:4, name:'Financiación', icon:'🏦', items:[
+    { id:'p4c1', text:'Preparar teaser bancario (modelo financiero + IC Brief)', owner:'Inversión' },
+    { id:'p4c2', text:'Enviar a 3–5 bancos / debt advisors', owner:'Inversión' },
+    { id:'p4c3', text:'Recibir y comparar term sheets', owner:'Inversión' },
+    { id:'p4c4', text:'Negociar condiciones: LTV, covenants, coste deuda', owner:'Inversión' },
+    { id:'p4c5', text:'Tasación bancaria (RICS appraisal)', owner:'Técnico' },
+    { id:'p4c6', text:'Aprobación comité de crédito del banco', owner:'Otros' },
+    { id:'p4c7', text:'Firma contrato de préstamo', owner:'Legal' },
+  ]},
+  { id:5, name:'IC + Equity', icon:'💼', items:[
+    { id:'p5c1', text:'IC Presentation final (DD findings + modelo actualizado)', owner:'Inversión' },
+    { id:'p5c2', text:'Aprobación Investment Committee', owner:'Accionistas' },
+    { id:'p5c3', text:'Estructura vehículo: SPV / club deal / JV', owner:'Legal' },
+    { id:'p5c4', text:'Equity commitments de inversores', owner:'Accionistas' },
+    { id:'p5c5', text:'Constitución SPV si aplica', owner:'Legal' },
+  ]},
+  { id:6, name:'SPA / Contrato', icon:'📝', items:[
+    { id:'p6c1', text:'Negociar ajuste de precio por hallazgos de DD', owner:'Inversión' },
+    { id:'p6c2', text:'Borrador SPA / escritura de compraventa', owner:'Legal' },
+    { id:'p6c3', text:'Revisión de condiciones precedentes', owner:'Legal' },
+    { id:'p6c4', text:'W&I (warranty & indemnity) si aplica', owner:'Legal' },
+    { id:'p6c5', text:'Firma contrato de arras', owner:'Inversión' },
+    { id:'p6c6', text:'Sign-off legal definitivo en SPA', owner:'Legal' },
+  ]},
+  { id:7, name:'Pre-Cierre', icon:'⏳', items:[
+    { id:'p7c1', text:'Cumplimiento de condiciones precedentes', owner:'Legal' },
+    { id:'p7c2', text:'Preparación fondos: equity call + draw bancario', owner:'Inversión' },
+    { id:'p7c3', text:'Flow of funds reconciliation', owner:'Inversión' },
+    { id:'p7c4', text:'Preparación escritura notarial', owner:'Legal' },
+  ]},
+  { id:8, name:'Cierre', icon:'🔑', items:[
+    { id:'p8c1', text:'Firma notarial', owner:'Legal' },
+    { id:'p8c2', text:'Transferencia de fondos', owner:'Inversión' },
+    { id:'p8c3', text:'Entrega llaves / acceso al activo', owner:'Otros' },
+    { id:'p8c4', text:'Inscripción Registro de la Propiedad', owner:'Legal' },
+  ]},
+  { id:9, name:'Post-Cierre', icon:'🚀', items:[
+    { id:'p9c1', text:'Kick-off CapEx / coordinación de obra', owner:'Técnico' },
+    { id:'p9c2', text:'Onboarding operador (SmartRental / HMA / lease)', owner:'Inversión' },
+    { id:'p9c3', text:'Solicitud de licencias definitivas', owner:'Legal' },
+    { id:'p9c4', text:'Primera revisión financiera vs. modelo UW', owner:'Inversión' },
+  ]},
+];
+
+let txRef = null;
+const txOpen = new Set([0]); // phases open by default
+
+function _txState() {
+  try { return JSON.parse(localStorage.getItem('magg_tx')||'{}'); } catch { return {}; }
+}
+function _txSave(s) { localStorage.setItem('magg_tx', JSON.stringify(s)); }
+
+function _txGet(ref, cid) {
+  const s = _txState();
+  return (s[ref] && s[ref][cid]) || { status:'pending', owner:null };
+}
+function _txSet(ref, cid, k, v) {
+  const s = _txState();
+  if (!s[ref]) s[ref]={};
+  if (!s[ref][cid]) s[ref][cid]={status:'pending',owner:null};
+  s[ref][cid][k]=v;
+  _txSave(s);
+}
+
+function txCycleStatus(ref, cid) {
+  const cur = _txGet(ref,cid).status;
+  const cycle = ['pending','active','done','blocked'];
+  _txSet(ref,cid,'status', cycle[(cycle.indexOf(cur)+1)%cycle.length]);
+  renderTx();
+}
+function txSetOwner(ref, cid, v) { _txSet(ref,cid,'owner',v); }
+
+function txProgress(ref) {
+  const s = _txState()[ref]||{};
+  let tot=0, done=0;
+  TX_PHASES.forEach(p=>p.items.forEach(ck=>{tot++;if(s[ck.id]?.status==='done')done++;}));
+  return {tot, done, pct: tot?Math.round(done/tot*100):0};
+}
+
+function txPhaseStatus(ref, phId) {
+  const p = TX_PHASES.find(x=>x.id===phId); if(!p) return 'pending';
+  const s = _txState()[ref]||{};
+  const ss = p.items.map(ck=>s[ck.id]?.status||'pending');
+  if (ss.every(x=>x==='done')) return 'done';
+  if (ss.some(x=>x==='blocked')) return 'blocked';
+  if (ss.some(x=>x==='active'||x==='done')) return 'active';
+  return 'pending';
+}
+
+function txCurrentPhase(ref) {
+  for(const p of TX_PHASES){ if(txPhaseStatus(ref,p.id)!=='done') return p.id; }
+  return TX_PHASES.length-1;
+}
+
+function txTogglePhase(id) {
+  txOpen.has(id) ? txOpen.delete(id) : txOpen.add(id);
+  renderTx();
+}
+
+function txSelectDeal(ref) {
+  txRef = ref;
+  txOpen.clear();
+  const cur = txCurrentPhase(ref);
+  txOpen.add(cur);
+  renderTx();
+}
+
+function renderTxSidebar() {
+  const goDeals = DEALS.filter(d=>d.verdict==='go'||d.verdict==='pass');
+  if (!goDeals.length) return '<div style="padding:20px;font-size:12px;color:rgba(255,255,255,.35)">Sin deals GO activos</div>';
+  return goDeals.map(d=>{
+    const pg = txProgress(d.ref);
+    const isActive = txRef===d.ref;
+    const cur = txCurrentPhase(d.ref);
+    const curName = TX_PHASES.find(p=>p.id===cur)?.name||'—';
+    return `<div class="tx-deal-item${isActive?' active':''}" onclick="txSelectDeal('${d.ref}')">
+      <div class="tx-deal-name" title="${d.nombre}">${d.nombre.length>34?d.nombre.slice(0,34)+'…':d.nombre}</div>
+      <div class="tx-deal-meta">${curName} · ${pg.done}/${pg.tot} ✓</div>
+      <div class="tx-deal-pgwrap"><div class="tx-deal-pgbar" style="width:${pg.pct}%"></div></div>
+    </div>`;
+  }).join('');
+}
+
+function renderTxTimeline(ref) {
+  const nodes = TX_PHASES.map((p,i)=>{
+    const st = txPhaseStatus(ref, p.id);
+    const icon = st==='done'?'✓':st==='blocked'?'!':p.id;
+    const connector = i<TX_PHASES.length-1
+      ? `<div class="tx-tl-connector ${st==='done'?'done':(st==='active'?'active':'')}"></div>` : '';
+    return `<div class="tx-tl-row">
+      <div class="tx-tl-col" onclick="txTogglePhase(${p.id})" title="${p.name}">
+        <div class="tx-tl-circle ${st}">${icon}</div>
+        <div class="tx-tl-label ${st}">${p.name}</div>
+      </div>${connector}</div>`;
+  });
+  // interleave cols and connectors
+  const cols = TX_PHASES.map((p,i)=>{
+    const st = txPhaseStatus(ref, p.id);
+    const icon = st==='done'?'✓':st==='blocked'?'!':p.id;
+    const conn = i<TX_PHASES.length-1
+      ? `<div class="tx-tl-connector ${st==='done'?'done':(st==='active'?'active':'')}"></div>` : '';
+    return `<div style="display:flex;align-items:flex-start;">
+      <div class="tx-tl-col" onclick="txTogglePhase(${p.id})" title="${p.name}" style="min-width:52px">
+        <div class="tx-tl-circle ${st}">${icon}</div>
+        <div class="tx-tl-label ${st}">${p.name}</div>
+      </div>${conn}</div>`;
+  }).join('');
+  return `<div class="tx-timeline-wrap"><div class="tx-timeline" style="display:flex;align-items:flex-start;gap:0">${cols}</div></div>`;
+}
+
+function renderTxPhaseCard(ref, phase) {
+  const s = _txState()[ref]||{};
+  const tot = phase.items.length;
+  const done = phase.items.filter(ck=>s[ck.id]?.status==='done').length;
+  const blocked = phase.items.some(ck=>s[ck.id]?.status==='blocked');
+  const phSt = txPhaseStatus(ref, phase.id);
+  const isOpen = txOpen.has(phase.id);
+  const pct = tot?Math.round(done/tot*100):0;
+
+  const numClr = phSt==='done'?'var(--green)':phSt==='active'?'var(--blue)':phSt==='blocked'?'var(--red)':'#9aabb5';
+  const numBg  = phSt==='done'?'#e8f5e9':phSt==='active'?'#e8f0fe':phSt==='blocked'?'#fce4ec':'#edf0f8';
+  const barClr = phSt==='done'?'var(--green)':phSt==='active'?'var(--blue)':phSt==='blocked'?'var(--red)':'#ccd5e8';
+
+  const owners = ['Inversión','Técnico','Legal','Accionistas','Otros'];
+  const rows = phase.items.map(ck=>{
+    const ckSt = s[ck.id]||{status:'pending',owner:ck.owner};
+    const st = ckSt.status, ow = ckSt.owner||ck.owner;
+    const icon = {pending:'',active:'◉',done:'✓',blocked:'✕'}[st];
+    const owOpts = owners.map(o=>`<option value="${o}"${o===ow?' selected':''}>${o}</option>`).join('');
+    return `<div class="tx-ck">
+      <div class="tx-ck-btn ${st}" onclick="txCycleStatus('${ref}','${ck.id}')" title="Cambiar estado">${icon}</div>
+      <div class="tx-ck-text ${st==='done'?'done':''}">${ck.text}</div>
+      <div class="tx-ck-right">
+        <select class="tx-ck-owner" onchange="txSetOwner('${ref}','${ck.id}',this.value)" onclick="event.stopPropagation()">
+          ${owOpts}
+        </select>
+      </div>
+    </div>`;
+  }).join('');
+
+  return `<div class="tx-phase-card p-${phSt}">
+    <div class="tx-phase-hdr" onclick="txTogglePhase(${phase.id})">
+      <div class="tx-phase-badge" style="background:${numBg};color:${numClr}">${phase.id}</div>
+      <div class="tx-phase-icon">${phase.icon}</div>
+      <div class="tx-phase-title">${phase.name}</div>
+      <div class="tx-phase-pgbar"><div class="tx-phase-pgbar-fill" style="width:${pct}%;background:${barClr}"></div></div>
+      <div class="tx-phase-prog"><b>${done}</b>/${tot}</div>
+      <div class="tx-phase-chevron${isOpen?' open':''}">▾</div>
+    </div>
+    <div class="tx-phase-body${isOpen?' open':''}">${rows}</div>
+  </div>`;
+}
+
+function renderTx() {
+  const sideEl = document.getElementById('tx-sidebar');
+  const mainEl = document.getElementById('tx-main');
+  if (!sideEl || !mainEl) return;
+
+  // Sidebar
+  const goDeals = DEALS.filter(d=>d.verdict==='go'||d.verdict==='pass');
+  sideEl.innerHTML = '<div class="tx-sidebar-title">Deals activos</div>' + renderTxSidebar();
+
+  // Auto-select first deal if none
+  if (!txRef && goDeals.length) { txRef=goDeals[0].ref; txOpen.clear(); txOpen.add(txCurrentPhase(txRef)); }
+
+  if (!goDeals.length) {
+    mainEl.innerHTML = `<div class="tx-empty">
+      <div class="tx-empty-icon">⚡</div>
+      <div class="tx-empty-title">Sin deals GO activos</div>
+      <div>Marca deals como GO en el Pipeline para iniciar su seguimiento de transacción</div>
+    </div>`;
+    return;
+  }
+
+  const deal = DEALS.find(d=>d.ref===txRef);
+  if (!deal) return;
+  const pg = txProgress(txRef);
+
+  const legend = `<div class="tx-legend">
+    <div class="tx-legend-item"><div class="tx-legend-dot" style="background:white;border:2px solid #ccd5e8"></div>Pendiente</div>
+    <div class="tx-legend-item"><div class="tx-legend-dot" style="background:#e8f0fe;border:2px solid var(--blue)"></div>En curso</div>
+    <div class="tx-legend-item"><div class="tx-legend-dot" style="background:var(--green)"></div>Completado</div>
+    <div class="tx-legend-item"><div class="tx-legend-dot" style="background:#fce4ec;border:2px solid var(--red)"></div>Bloqueado</div>
+  </div>`;
+
+  const phases = TX_PHASES.map(p=>renderTxPhaseCard(txRef,p)).join('');
+
+  mainEl.innerHTML = `
+    <div class="tx-hdr">
+      <div class="tx-hdr-name">${deal.nombre}</div>
+      <div class="tx-hdr-sub">📍 ${deal.ubicacion} &nbsp;·&nbsp; ${deal.tipo||''}</div>
+      <div class="tx-progress-pill">
+        <div class="tx-progress-bar-outer"><div class="tx-progress-bar-inner" style="width:${pg.pct}%"></div></div>
+        <span>${pg.done}/${pg.tot} checkpoints &nbsp; ${pg.pct}%</span>
+      </div>
+    </div>
+    ${renderTxTimeline(txRef)}
+    ${legend}
+    ${phases}`;
 }
 
 </script>
