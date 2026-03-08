@@ -329,6 +329,98 @@ tbody tr:hover td{background:rgba(160,112,32,.03)}
       </div>
     </div>
 
+    <!-- ÁRBOL DE DECISIÓN DE MODELOS -->
+    <div class="section-title">🗺️ Árbol de decisión — ¿qué modelo uso y cuándo?</div>
+    <div class="card" style="margin-bottom:8px">
+
+      <!-- PASO A PASO -->
+      <div style="display:flex;flex-direction:column;gap:0;margin-bottom:16px">
+
+        <div style="display:flex;gap:0;align-items:stretch">
+          <div style="display:flex;flex-direction:column;align-items:center;width:40px;flex-shrink:0">
+            <div style="width:28px;height:28px;border-radius:50%;background:var(--gold);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px">1</div>
+            <div style="flex:1;width:2px;background:var(--border);margin:4px 0"></div>
+          </div>
+          <div style="flex:1;background:var(--yellow-bg);border:1px solid #e0c080;border-radius:10px;padding:12px 14px;margin-bottom:0;margin-left:4px">
+            <div style="font-weight:700;color:var(--yellow);font-size:14px">¿Requiere razonamiento, análisis o decisión real?</div>
+            <div style="font-size:12px;color:var(--muted);margin-top:4px">Conversación con Eduardo · IC Brief / modelo financiero · Análisis de deal · Stocks · Skill Scout · YouTube Scout · Cualquier output que Eduardo vaya a leer</div>
+            <div style="margin-top:8px;display:inline-flex;align-items:center;gap:6px;background:var(--yellow-bg);border:1px solid var(--gold);border-radius:6px;padding:4px 10px;font-size:12px;font-weight:700;color:var(--yellow)">→ Usa <span style="background:#fff;padding:2px 6px;border-radius:4px;color:var(--text)">Sonnet 4.6</span> (Claude Max)</div>
+          </div>
+        </div>
+
+        <div style="display:flex;gap:0;align-items:stretch">
+          <div style="display:flex;flex-direction:column;align-items:center;width:40px;flex-shrink:0">
+            <div style="width:28px;height:28px;border-radius:50%;background:var(--blue);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px">2</div>
+            <div style="flex:1;width:2px;background:var(--border);margin:4px 0"></div>
+          </div>
+          <div style="flex:1;background:var(--blue-bg);border:1px solid #b0c8e8;border-radius:10px;padding:12px 14px;margin-bottom:0;margin-left:4px">
+            <div style="font-weight:700;color:var(--blue);font-size:14px">¿Es una tarea mecánica o de investigación ligera?</div>
+            <div style="font-size:12px;color:var(--muted);margin-top:4px">Noticias · Discord sync · Job alerts Ana · Video Scout · MC Global refresh · Reescritura HTML · Briefings automáticos sin decisión crítica</div>
+            <div style="margin-top:8px;display:inline-flex;align-items:center;gap:6px;background:var(--blue-bg);border:1px solid var(--blue);border-radius:6px;padding:4px 10px;font-size:12px;font-weight:700;color:var(--blue)">→ Usa <span style="background:#fff;padding:2px 6px;border-radius:4px;color:var(--text)">GPT 5.3-codex</span> (OpenAI Plus)</div>
+          </div>
+        </div>
+
+        <div style="display:flex;gap:0;align-items:stretch">
+          <div style="display:flex;flex-direction:column;align-items:center;width:40px;flex-shrink:0">
+            <div style="width:28px;height:28px;border-radius:50%;background:var(--green);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px">3</div>
+            <div style="flex:1;width:2px;background:var(--border);margin:4px 0"></div>
+          </div>
+          <div style="flex:1;background:var(--green-bg);border:1px solid #b0d8b8;border-radius:10px;padding:12px 14px;margin-bottom:0;margin-left:4px">
+            <div style="font-weight:700;color:var(--green);font-size:14px">¿Es un mensaje corto, confirmación o entrega mecánica?</div>
+            <div style="font-size:12px;color:var(--muted);margin-top:4px">Backup workspace · Check-in JJ+Vaca · Mensajes de 1-3 líneas sin análisis</div>
+            <div style="margin-top:8px;display:inline-flex;align-items:center;gap:6px;background:var(--green-bg);border:1px solid var(--green);border-radius:6px;padding:4px 10px;font-size:12px;font-weight:700;color:var(--green)">→ Usa <span style="background:#fff;padding:2px 6px;border-radius:4px;color:var(--text)">gpt-5.1-codex-mini</span> (OpenAI Plus)</div>
+          </div>
+        </div>
+
+        <div style="display:flex;gap:0;align-items:stretch">
+          <div style="display:flex;flex-direction:column;align-items:center;width:40px;flex-shrink:0">
+            <div style="width:28px;height:28px;border-radius:50%;background:var(--muted);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px">4</div>
+          </div>
+          <div style="flex:1;background:var(--gray-bg);border:1px solid var(--border);border-radius:10px;padding:12px 14px;margin-left:4px">
+            <div style="font-weight:700;color:var(--muted);font-size:14px">¿Solo necesita inyectar un recordatorio?</div>
+            <div style="font-size:12px;color:var(--muted);margin-top:4px">Seguimientos 09:30/14:00/20:15 · Báscula L+V · Vitaminas · Comidas</div>
+            <div style="margin-top:8px;display:inline-flex;align-items:center;gap:6px;background:var(--gray-bg);border:1px solid var(--border);border-radius:6px;padding:4px 10px;font-size:12px;font-weight:700;color:var(--muted)">→ Usa <span style="background:#fff;padding:2px 6px;border-radius:4px;color:var(--text)">System event</span> ($0 — sin LLM)</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TABLA DETALLADA -->
+      <div style="font-weight:700;font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);margin-bottom:8px">Tabla completa de routing</div>
+      <div class="tbl-wrap" style="margin:0">
+        <table>
+          <thead><tr><th>Cron / Tarea</th><th>Modelo</th><th>Motivo</th><th>Coste</th></tr></thead>
+          <tbody>
+            <tr><td>Conversación Eduardo</td><td><span class="spill spill-yellow">Sonnet 4.6</span></td><td>Razonamiento complejo, decisions</td><td>Claude Max</td></tr>
+            <tr><td>IC Brief + modelo financiero</td><td><span class="spill spill-yellow">Sonnet 4.6</span></td><td>Análisis crítico, output para Eduardo</td><td>Claude Max</td></tr>
+            <tr><td>AI Buildout Stocks L-V 13:00</td><td><span class="spill spill-yellow">Sonnet 4.6</span></td><td>Análisis tesis, reasoning</td><td>Claude Max</td></tr>
+            <tr><td>Macro Briefing lunes 08:00</td><td><span class="spill spill-yellow">Sonnet 4.6</span></td><td>Síntesis estratégica semanal</td><td>Claude Max</td></tr>
+            <tr><td>Skill Scout 10:00</td><td><span class="spill spill-yellow">Sonnet 4.6</span></td><td>Evaluación crítica, evitar alucinaciones</td><td>Claude Max</td></tr>
+            <tr><td>YouTube OpenClaw Scout 20:30</td><td><span class="spill spill-yellow">Sonnet 4.6</span></td><td>Síntesis de vídeos, reasoning</td><td>Claude Max</td></tr>
+            <tr><td>Deal Scanner L-V 12:00</td><td><span class="spill spill-yellow">Sonnet 4.6</span></td><td>IC Brief completo si hay deal</td><td>Claude Max</td></tr>
+            <tr><td>Noticias inmobiliarias 08:00</td><td><span class="spill spill-blue">GPT 5.3-codex</span></td><td>Resumen noticias blogwatcher, mecánico</td><td>OpenAI Plus</td></tr>
+            <tr><td>Discord sync AM/PM</td><td><span class="spill spill-blue">GPT 5.3-codex</span></td><td>Lectura + resumen Discord, ligero</td><td>OpenAI Plus</td></tr>
+            <tr><td>MC Global refresh 07:30/13/20:00</td><td><span class="spill spill-blue">GPT 5.3-codex</span></td><td>Regeneración HTML, mecánico</td><td>OpenAI Plus</td></tr>
+            <tr><td>Job Alerts Ana L/X/V 10:00</td><td><span class="spill spill-blue">GPT 5.3-codex</span></td><td>Búsqueda y formateo, mecánico</td><td>OpenAI Plus</td></tr>
+            <tr><td>Video Scout L/X/V 20:00</td><td><span class="spill spill-blue">GPT 5.3-codex</span></td><td>Scraping y resumen, ligero</td><td>OpenAI Plus</td></tr>
+            <tr><td>Insider Buying Radar viernes 13:00</td><td><span class="spill spill-yellow">Sonnet 4.6</span></td><td>Análisis señales insider, reasoning</td><td>Claude Max</td></tr>
+            <tr><td>Backup workspace 07:00</td><td><span class="spill spill-green">gpt-5.1-mini</span></td><td>Git commit, confirmación simple</td><td>OpenAI Plus</td></tr>
+            <tr><td>Check-in JJ+Vaca L-V 12:00</td><td><span class="spill spill-green">gpt-5.1-mini</span></td><td>Mensaje corto, sin análisis</td><td>OpenAI Plus</td></tr>
+            <tr><td>Seguimientos 09:30/14:00/20:15</td><td><span class="spill spill-gray">system event</span></td><td>Solo trigger, sin LLM</td><td style="color:var(--green);font-weight:700">$0</td></tr>
+            <tr><td>Báscula reminder L+V 07:00</td><td><span class="spill spill-gray">system event</span></td><td>Solo trigger, sin LLM</td><td style="color:var(--green);font-weight:700">$0</td></tr>
+            <tr><td>Vitaminas 07:15</td><td><span class="spill spill-gray">system event</span></td><td>Solo trigger, sin LLM</td><td style="color:var(--green);font-weight:700">$0</td></tr>
+            <tr><td>Comidas 20:30</td><td><span class="spill spill-gray">system event</span></td><td>Solo trigger, sin LLM</td><td style="color:var(--green);font-weight:700">$0</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- TRUTH BOX -->
+      <div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap">
+        <div style="flex:1;min-width:200px;background:var(--yellow-bg);border:1px solid #e0c080;border-radius:8px;padding:10px 12px;font-size:12px"><strong style="color:var(--yellow)">🟡 Claude Max $90</strong><br><span style="color:var(--muted)">sk-ant token. Sonnet 4.6. Conversación + razonamiento. Sin coste API extra.</span></div>
+        <div style="flex:1;min-width:200px;background:var(--green-bg);border:1px solid #b0d8b8;border-radius:8px;padding:10px 12px;font-size:12px"><strong style="color:var(--green)">🟢 OpenAI Plus $20</strong><br><span style="color:var(--muted)">OAuth ChatGPT (no API key). GPT 5.3-codex + mini. Crons mecánicos. Sin coste API extra.</span></div>
+        <div style="flex:1;min-width:200px;background:var(--blue-bg);border:1px solid #b0c8e8;border-radius:8px;padding:10px 12px;font-size:12px"><strong style="color:var(--blue)">🔵 Google OAuth $0</strong><br><span style="color:var(--muted)">edmartin8n@gmail.com → Google Antigravity. Fallback Claude vía GCloud. Sin coste.</span></div>
+      </div>
+    </div>
+
     <div class="section-title">⏰ Crons activos (27)</div>
     <div class="tbl-wrap">
       <table>
