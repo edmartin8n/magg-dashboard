@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tenacitas — Mission Control</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&display=swap');
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0d0d0d;--bg2:#141414;--bg3:#1a1a1a;--bg4:#222;
+  --border:#2a2a2a;--border2:#333;
+  --text:#d4d4d4;--muted:#666;--dim:#444;
+  --green:#50fa7b;--amber:#ffb86c;--gold:#c8a84b;
+  --red:#ff5555;--blue:#8be9fd;--purple:#bd93f9;--cyan:#8be9fd;
+  --font:'JetBrains Mono',monospace;
+}
+body{font-family:var(--font);background:var(--bg);color:var(--text);font-size:13px;line-height:1.6;min-height:100vh}
+
+/* LOGIN */
+#login{position:fixed;inset:0;background:var(--bg);display:flex;align-items:center;justify-content:center;z-index:999}
+.lbox{width:380px;border:1px solid var(--border2);padding:40px;background:var(--bg2)}
+.lbox-header{margin-bottom:28px}
+.lbox-header .prompt{color:var(--green);font-size:11px;margin-bottom:8px}
+.lbox-header h1{font-size:16px;color:var(--text);font-weight:700;letter-spacing:1px}
+.lbox-header p{color:var(--muted);font-size:11px;margin-top:4px}
+.lbox input{width:100%;background:var(--bg3);border:1px solid var(--border2);color:var(--text);font-family:var(--font);font-size:13px;padding:10px 14px;outline:none;margin-bottom:10px}
+.lbox input:focus{border-color:var(--gold)}
+.lbox button{width:100%;background:transparent;border:1px solid var(--gold);color:var(--gold);font-family:var(--font);font-size:12px;font-weight:700;padding:10px;cursor:pointer;letter-spacing:1px;text-transform:uppercase;transition:.2s}
+.lbox button:hover{background:var(--gold);color:#000}
+.lbox .err{color:var(--red);font-size:11px;margin-top:8px;min-height:16px}
+
+/* LAYOUT */
+#app{display:none;flex-direction:column;min-height:100vh}
+header{background:var(--bg2);border-bottom:1px solid var(--border);padding:14px 24px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+.header-left{display:flex;align-items:center;gap:16px}
+.logo{font-size:14px;font-weight:700;color:var(--gold);letter-spacing:1px}
+.logo span{color:var(--muted);font-weight:400;font-size:11px;margin-left:8px}
+.status-dot{width:7px;height:7px;border-radius:50%;background:var(--green);display:inline-block;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.header-time{color:var(--muted);font-size:11px}
+
+/* NAV */
+nav{background:var(--bg2);border-bottom:1px solid var(--border);display:flex;gap:0;overflow-x:auto}
+.ntab{padding:10px 20px;color:var(--muted);font-size:11px;font-weight:600;cursor:pointer;border-bottom:2px solid transparent;letter-spacing:.5px;text-transform:uppercase;white-space:nowrap;transition:.15s}
+.ntab:hover{color:var(--text)}
+.ntab.active{color:var(--gold);border-bottom-color:var(--gold)}
+
+.container{max-width:1100px;margin:0 auto;padding:24px 20px}
+.section{margin-bottom:32px}
+.sec-header{display:flex;align-items:center;gap:8px;margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.sec-label{color:var(--muted);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px}
+.sec-title{color:var(--gold);font-size:12px;font-weight:700;letter-spacing:.5px}
+.sec-count{color:var(--dim);font-size:10px;margin-left:auto}
+
+/* STATUS GRID */
+.status-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px}
+.status-item{background:var(--bg2);border:1px solid var(--border);padding:14px 16px}
+.status-item .si-label{color:var(--muted);font-size:10px;text-transform:uppercase;letter-spacing:.8px;margin-bottom:6px}
+.status-item .si-val{font-size:12px;font-weight:700}
+.status-item .si-sub{color:var(--muted);font-size:10px;margin-top:2px}
+.ok{color:var(--green)}.warn{color:var(--amber)}.err{color:var(--red)}.info{color:var(--blue)}
+
+/* CRONS TABLE */
+.cron-table{width:100%;border-collapse:collapse}
+.cron-table th{text-align:left;color:var(--muted);font-size:10px;text-transform:uppercase;letter-spacing:.8px;padding:6px 10px;border-bottom:1px solid var(--border);font-weight:600}
+.cron-table td{padding:8px 10px;border-bottom:1px solid var(--border);font-size:11px;vertical-align:top}
+.cron-table tr:last-child td{border-bottom:none}
+.cron-table tr:hover td{background:var(--bg3)}
+.cron-name{color:var(--text);font-weight:600}
+.cron-schedule{color:var(--blue);font-size:10px}
+.cron-status{display:inline-block;padding:2px 8px;font-size:10px;font-weight:700;letter-spacing:.5px}
+.s-ok{background:rgba(80,250,123,.1);color:var(--green);border:1px solid rgba(80,250,123,.3)}
+.s-err{background:rgba(255,85,85,.1);color:var(--red);border:1px solid rgba(255,85,85,.3)}
+.s-off{background:rgba(100,100,100,.1);color:var(--muted);border:1px solid var(--border)}
+.cron-last{color:var(--muted);font-size:10px}
+
+/* SKILLS GRID */
+.skills-grid{display:flex;flex-wrap:wrap;gap:6px}
+.skill-tag{padding:4px 10px;font-size:10px;font-weight:600;border:1px solid var(--border2);color:var(--muted);letter-spacing:.3px;cursor:default;transition:.1s}
+.skill-tag:hover{border-color:var(--gold);color:var(--gold)}
+.skill-tag.active-skill{border-color:var(--green);color:var(--green)}
+.skill-tag.local-skill{border-color:var(--purple);color:var(--purple)}
+
+/* BACKLOG */
+.backlog-list{display:flex;flex-direction:column;gap:8px}
+.bl-item{background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--border2);padding:12px 16px;cursor:pointer;transition:.1s}
+.bl-item:hover{border-color:var(--border2)}
+.bl-item.done{border-left-color:var(--green);opacity:.6}
+.bl-item.high{border-left-color:var(--red)}
+.bl-item.med{border-left-color:var(--amber)}
+.bl-item.low{border-left-color:var(--muted)}
+.bl-item.blocker{border-left-color:var(--red);background:rgba(255,85,85,.04)}
+.bl-top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+.bl-name{font-size:12px;font-weight:700;color:var(--text)}
+.bl-item.done .bl-name{text-decoration:line-through;color:var(--muted)}
+.bl-meta{display:flex;gap:6px;align-items:center;flex-wrap:wrap;margin-top:4px}
+.bl-tag{padding:1px 6px;font-size:9px;font-weight:700;letter-spacing:.5px;border:1px solid currentColor;text-transform:uppercase}
+.bl-owner{color:var(--muted);font-size:10px}
+.bl-body{display:none;margin-top:8px;color:var(--muted);font-size:11px;border-top:1px solid var(--border);padding-top:8px;line-height:1.7}
+.bl-body.open{display:block}
+.bl-deadline{color:var(--muted);font-size:10px;white-space:nowrap}
+
+/* TERMINAL LOG */
+.term-log{background:var(--bg2);border:1px solid var(--border);padding:16px;font-size:11px;line-height:1.8;max-height:320px;overflow-y:auto}
+.term-log .tl-ts{color:var(--muted)}
+.term-log .tl-ok{color:var(--green)}
+.term-log .tl-warn{color:var(--amber)}
+.term-log .tl-err{color:var(--red)}
+.term-log .tl-info{color:var(--blue)}
+
+/* MODEL CARD */
+.model-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px}
+.model-card{background:var(--bg2);border:1px solid var(--border);padding:14px 16px}
+.model-card.active-model{border-color:var(--gold)}
+.mc-label{color:var(--muted);font-size:10px;text-transform:uppercase;letter-spacing:.8px;margin-bottom:4px}
+.mc-name{font-size:12px;font-weight:700;color:var(--text)}
+.mc-role{color:var(--muted);font-size:10px;margin-top:3px}
+.mc-badge{display:inline-block;padding:1px 7px;font-size:9px;font-weight:700;margin-top:6px}
+.badge-active{background:rgba(200,168,75,.15);color:var(--gold);border:1px solid rgba(200,168,75,.4)}
+.badge-fallback{background:rgba(100,100,100,.15);color:var(--muted);border:1px solid var(--border2)}
+
+@media(max-width:600px){
+  .cron-table{font-size:10px}
+  .cron-table th:nth-child(3),.cron-table td:nth-child(3){display:none}
+  nav{gap:0}.ntab{padding:8px 12px;font-size:10px}
+  header{padding:10px 16px}
+}
+</style>
+</head>
+<body>
+
+<div id="login">
+  <div class="lbox">
+    <div class="lbox-header">
+      <div class="prompt">$ tenacitas --access mission-control</div>
+      <h1>🦀 MISSION CONTROL</h1>
+      <p>Acceso restringido · Eduardo only</p>
+    </div>
+    <input type="password" id="pwd" placeholder="contraseña" onkeydown="if(event.key==='Enter')auth()">
+    <button onclick="auth()">→ ACCEDER</button>
+    <div class="err" id="err"></div>
+  </div>
+</div>
+
+<div id="app">
+  <header>
+    <div class="header-left">
+      <div class="logo">🦀 TENACITAS <span>Mission Control</span></div>
+      <span class="status-dot"></span>
+    </div>
+    <div class="header-time" id="clock"></div>
+  </header>
+  <nav>
+    <div class="ntab active" onclick="showTab('status',this)">STATUS</div>
+    <div class="ntab" onclick="showTab('crons',this)">CRONS</div>
+    <div class="ntab" onclick="showTab('skills',this)">SKILLS</div>
+    <div class="ntab" onclick="showTab('backlog',this)">BACKLOG</div>
+    <div class="ntab" onclick="showTab('activity',this)">ACTIVIDAD</div>
+  </nav>
+
+  <!-- STATUS -->
+  <div id="tab-status" class="container">
+    <div class="section">
+      <div class="sec-header"><span class="sec-title">// SISTEMA</span></div>
+      <div class="status-grid">
+        <div class="status-item"><div class="si-label">Modelo</div><div class="si-val info">Sonnet 4.6</div><div class="si-sub">anthropic · activo</div></div>
+        <div class="status-item"><div class="si-label">Gmail OAuth</div><div class="si-val ok">✓ ACTIVO</div><div class="si-sub">8 scopes · 20 feb</div></div>
+        <div class="status-item"><div class="si-label">Google Drive</div><div class="si-val ok">✓ ACTIVO</div><div class="si-sub">MAGG Drive conectado</div></div>
+        <div class="status-item"><div class="si-label">Google Sheets</div><div class="si-val ok">✓ ACTIVO</div><div class="si-sub">Pipeline + Intermediarios</div></div>
+        <div class="status-item"><div class="si-label">GitHub Pages</div><div class="si-val ok">✓ DESPLEGADO</div><div class="si-sub">magg-dashboard · main</div></div>
+        <div class="status-item"><div class="si-label">Antigravity</div><div class="si-val ok">✓ FALLBACK</div><div class="si-sub">google-antigravity · activo</div></div>
+        <div class="status-item"><div class="si-label">Gamma API</div><div class="si-val err">✗ EXPIRADO</div><div class="si-sub">401 · pendiente Greg</div></div>
+        <div class="status-item"><div class="si-label">WhatsApp</div><div class="si-val ok">✓ ACTIVO</div><div class="si-sub">grupo Tenacitas</div></div>
+        <div class="status-item"><div class="si-label">Backup diario</div><div class="si-val ok">✓ OK</div><div class="si-sub">07:00 · edmartin8n/tenacitas-workspace</div></div>
+        <div class="status-item"><div class="si-label">Pipeline MAGG</div><div class="si-val info">5 deals</div><div class="si-sub">4 NO GO · 1 BORDERLINE</div></div>
+        <div class="status-item"><div class="si-label">Intermediarios</div><div class="si-val info">579 contactos</div><div class="si-sub">578+ únicos deduped</div></div>
+        <div class="status-item"><div class="si-label">Crons activos</div><div class="si-val ok">10/11</div><div class="si-sub">1 deshabilitado</div></div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="sec-header"><span class="sec-title">// MODELOS</span></div>
+      <div class="model-grid">
+        <div class="model-card active-model">
+          <div class="mc-label">Principal</div>
+          <div class="mc-name">Claude Sonnet 4.6</div>
+          <div class="mc-role">anthropic · análisis estándar · 1/5 coste Opus</div>
+          <div><span class="mc-badge badge-active">ACTIVO</span></div>
+        </div>
+        <div class="model-card">
+          <div class="mc-label">Fallback #1</div>
+          <div class="mc-name">Sonnet 4.6 (Antigravity)</div>
+          <div class="mc-role">google-antigravity · OAuth edmartin8n@gmail.com</div>
+          <div><span class="mc-badge badge-fallback">FALLBACK</span></div>
+        </div>
+        <div class="model-card">
+          <div class="mc-label">Fallback #2</div>
+          <div class="mc-name">GPT-4.1 mini</div>
+          <div class="mc-role">openai · tareas ligeras</div>
+          <div><span class="mc-badge badge-fallback">FALLBACK</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="sec-header"><span class="sec-title">// BLOCKERS</span></div>
+      <div class="backlog-list">
+        <div class="bl-item blocker">
+          <div class="bl-top">
+            <div class="bl-name">🔴 Gamma API key expirada</div>
+            <span class="bl-tag" style="color:var(--red)">BLOCKER</span>
+          </div>
+          <div class="bl-meta"><span class="bl-owner">Owner: Greg → gamma.app → Settings → API Key</span></div>
+          <div class="bl-body open">Sin esto: no hay presentaciones automáticas para deals. Bloquea el pipeline end-to-end (magg_deal_analysis.py). Greg debe ir a gamma.app → Settings → API y enviar la key activa.</div>
+        </div>
+        <div class="bl-item med">
+          <div class="bl-top">
+            <div class="bl-name">⚠️ Mission Statement — pendiente decisión Eduardo</div>
+            <span class="bl-tag" style="color:var(--amber)">PENDIENTE</span>
+          </div>
+          <div class="bl-meta"><span class="bl-owner">Owner: Eduardo (5 min)</span></div>
+          <div class="bl-body open">Draft: "Copiloto de inversión inmobiliaria de Eduardo: MAGG Capital, financiación, mercados y orden personal." ¿Aprobado o ajustar?</div>
+        </div>
+        <div class="bl-item med">
+          <div class="bl-top">
+            <div class="bl-name">⚠️ Mediterráneo 1 — decisión GO/NO GO pendiente</div>
+            <span class="bl-tag" style="color:var(--amber)">PENDIENTE</span>
+          </div>
+          <div class="bl-meta"><span class="bl-owner">Owner: Eduardo · deadline 28 feb</span></div>
+          <div class="bl-body open">Obtener estatutos comunidad + consultar urbanismo VUT. Negociar precio a 1.85-1.90M€. Es el único BORDERLINE vivo del pipeline.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CRONS -->
+  <div id="tab-crons" class="container" style="display:none">
+    <div class="section">
+      <div class="sec-header"><span class="sec-title">// CRONS ACTIVOS</span><span class="sec-count">11 jobs · 10 activos</span></div>
+      <table class="cron-table">
+        <thead>
+          <tr><th>Nombre</th><th>Horario</th><th>Destino</th><th>Estado</th><th>Último run</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><div class="cron-name">MAGG Deal Scanner</div><div style="color:var(--muted);font-size:10px">Busca emails "MAGG deal" en Gmail</div></td>
+            <td><div class="cron-schedule">0 * * * *</div><div style="color:var(--muted);font-size:10px">Cada hora</div></td>
+            <td style="color:var(--muted);font-size:10px">isolated agent</td>
+            <td><span class="cron-status s-ok">OK</span></td>
+            <td class="cron-last">hace ~30min</td>
+          </tr>
+          <tr>
+            <td><div class="cron-name">MAGG RE IC Insight Scanner</div><div style="color:var(--muted);font-size:10px">Noticias hospitality/RE para underwriting</div></td>
+            <td><div class="cron-schedule">0 */6 * * *</div><div style="color:var(--muted);font-size:10px">Cada 6h (06/12/18/00h)</div></td>
+            <td style="color:var(--muted);font-size:10px">isolated agent</td>
+            <td><span class="cron-status s-ok">OK</span></td>
+            <td class="cron-last">12:02h hoy</td>
+          </tr>
+          <tr>
+            <td><div class="cron-name">Morning Brief Tenacitas</div><div style="color:var(--muted);font-size:10px">Tiempo + noticias + pipeline + acciones del día</div></td>
+            <td><div class="cron-schedule">30 7 * * *</div><div style="color:var(--muted);font-size:10px">07:30 diario</div></td>
+            <td style="color:var(--muted);font-size:10px">isolated agent</td>
+            <td><span class="cron-status s-ok">OK</span></td>
+            <td class="cron-last">07:31h hoy</td>
+          </tr>
+          <tr>
+            <td><div class="cron-name">Real Estate News Briefing</div><div style="color:var(--muted);font-size:10px">Noticias RE matutinas</div></td>
+            <td><div class="cron-schedule">0 8 * * *</div><div style="color:var(--muted);font-size:10px">08:00 diario</div></td>
+            <td style="color:var(--muted);font-size:10px">main session</td>
+            <td><span class="cron-status s-ok">OK</span></td>
+            <td class="cron-last">08:00h hoy</td>
+          </tr>
+          <tr>
+            <td><div class="cron-name">Noticias Inmobiliarias</div><div style="color:var(--muted);font-size:10px">Top 8-10 noticias hospitality/living/deals</div></td>
+            <td><div class="cron-schedule">0 9 * * 1-5</div><div style="color:var(--muted);font-size:10px">09:00 L-V</div></td>
+            <td style="color:var(--muted);font-size:10px">isolated agent</td>
+            <td><span class="cron-status s-ok">OK</span></td>
+            <td class="cron-last">ayer (vie)</td>
+          </tr>
+          <tr>
+            <td><div class="cron-name">MAGG Dashboard Refresh</div><div style="color:var(--muted);font-size:10px">Regenera CRM web desde Google Sheets</div></td>
+            <td><div class="cron-schedule">0 9,18 * * *</div><div style="color:var(--muted);font-size:10px">09:00 y 18:00 diario</div></td>
+            <td style="color:var(--muted);font-size:10px">isolated agent</td>
+            <td><span class="cron-status s-ok">OK</span></td>
+            <td class="cron-last">09:00h hoy</td>
+          </tr>
+          <tr>
+            <td><div class="cron-name">Daily Workspace Backup</div><div style="color:var(--muted);font-size:10px">Git push a edmartin8n/tenacitas-workspace</div></td>
+            <td><div class="cron-schedule">0 7 * * *</div><div style="color:var(--muted);font-size:10px">07:00 diario</div></td>
+            <td style="color:var(--muted);font-size:10px">isolated agent</td>
+            <td><span class="cron-status s-ok">OK</span></td>
+            <td class="cron-last">07:00h hoy</td>
+          </tr>
+          <tr>
+            <td><div class="cron-name">last30 Skill Scout</div><div style="color:var(--muted);font-size:10px">Busca nuevos use cases de OpenClaw en Reddit/X</div></td>
+            <td><div class="cron-schedule">0 2 * * 1,4,6</div><div style="color:var(--muted);font-size:10px">02:00 L/J/S</div></td>
+            <td style="color:var(--muted);font-size:10px">isolated agent</td>
+            <td><span class="cron-status s-ok">OK</span></td>
+            <td class="cron-last">02:01h hoy</td>
+          </tr>
+          <tr>
+            <td><div class="cron-name">Alex Finn YouTube Scout</div><div style="color:var(--muted);font-size:10px">Detecta vídeos nuevos de Alex Finn sobre OpenClaw</div></td>
+            <td><div class="cron-schedule">0 20 * * *</div><div style="color:var(--muted);font-size:10px">20:00 diario</div></td>
+            <td style="color:var(--muted);font-size:10px">isolated agent</td>
+            <td><span class="cron-status s-err">⚠ TIMEOUT</span></td>
+            <td class="cron-last">3 errores consecutivos</td>
+          </tr>
+          <tr>
+            <td><div class="cron-name">Follow-up Ana diario</div><div style="color:var(--muted);font-size:10px">Check-in en grupo "Ana y Tenacitas"</div></td>
+            <td><div class="cron-schedule">30 20 * * *</div><div style="color:var(--muted);font-size:10px">20:30 diario</div></td>
+            <td style="color:var(--muted);font-size:10px">main session</td>
+            <td><span class="cron-status s-ok">OK</span></td>
+            <td class="cron-last">ayer 20:30h</td>
+          </tr>
+          <tr>
+            <td><div class="cron-name">Build Interactive CRM</div><div style="color:var(--muted);font-size:10px">One-shot job (completado)</div></td>
+            <td><div class="cron-schedule">one-shot</div><div style="color:var(--muted);font-size:10px">19 feb 2026</div></td>
+            <td style="color:var(--muted);font-size:10px">isolated agent</td>
+            <td><span class="cron-status s-off">DISABLED</span></td>
+            <td class="cron-last">completado</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- SKILLS -->
+  <div id="tab-skills" class="container" style="display:none">
+    <div class="section">
+      <div class="sec-header"><span class="sec-title">// SKILLS ACTIVOS (en uso)</span></div>
+      <div class="skills-grid">
+        <span class="skill-tag active-skill">weather</span>
+        <span class="skill-tag active-skill">coding-agent</span>
+        <span class="skill-tag active-skill">github</span>
+        <span class="skill-tag active-skill">skill-creator</span>
+        <span class="skill-tag active-skill">healthcheck</span>
+        <span class="skill-tag active-skill">notion</span>
+        <span class="skill-tag active-skill">things-mac</span>
+        <span class="skill-tag active-skill">summarize</span>
+        <span class="skill-tag active-skill">nano-pdf</span>
+      </div>
+    </div>
+    <div class="section">
+      <div class="sec-header"><span class="sec-title">// SKILLS LOCALES (MAGG Custom)</span></div>
+      <div class="skills-grid">
+        <span class="skill-tag local-skill">real_estate_news</span>
+        <span class="skill-tag local-skill">deal_knowledge</span>
+        <span class="skill-tag local-skill">last30days</span>
+        <span class="skill-tag local-skill">basic_example</span>
+      </div>
+    </div>
+    <div class="section">
+      <div class="sec-header"><span class="sec-title">// SKILLS DISPONIBLES (no activos)</span><span class="sec-count">44 skills instalados</span></div>
+      <div class="skills-grid">
+        <span class="skill-tag">1password</span><span class="skill-tag">apple-notes</span>
+        <span class="skill-tag">apple-reminders</span><span class="skill-tag">bear-notes</span>
+        <span class="skill-tag">blogwatcher</span><span class="skill-tag">blucli</span>
+        <span class="skill-tag">bluebubbles</span><span class="skill-tag">camsnap</span>
+        <span class="skill-tag">canvas</span><span class="skill-tag">clawhub</span>
+        <span class="skill-tag">discord</span><span class="skill-tag">eightctl</span>
+        <span class="skill-tag">food-order</span><span class="skill-tag">gemini</span>
+        <span class="skill-tag">gh-issues</span><span class="skill-tag">gifgrep</span>
+        <span class="skill-tag">gog</span><span class="skill-tag">goplaces</span>
+        <span class="skill-tag">himalaya</span><span class="skill-tag">imsg</span>
+        <span class="skill-tag">mcporter</span><span class="skill-tag">model-usage</span>
+        <span class="skill-tag">nano-banana-pro</span><span class="skill-tag">obsidian</span>
+        <span class="skill-tag">openai-image-gen</span><span class="skill-tag">openai-whisper</span>
+        <span class="skill-tag">openai-whisper-api</span><span class="skill-tag">openhue</span>
+        <span class="skill-tag">oracle</span><span class="skill-tag">ordercli</span>
+        <span class="skill-tag">peekaboo</span><span class="skill-tag">sag</span>
+        <span class="skill-tag">session-logs</span><span class="skill-tag">sherpa-onnx-tts</span>
+        <span class="skill-tag">slack</span><span class="skill-tag">songsee</span>
+        <span class="skill-tag">sonoscli</span><span class="skill-tag">spotify-player</span>
+        <span class="skill-tag">tmux</span><span class="skill-tag">trello</span>
+        <span class="skill-tag">video-frames</span><span class="skill-tag">voice-call</span>
+        <span class="skill-tag">wacli</span>
+      </div>
+    </div>
+    <div class="section">
+      <div class="sec-header"><span class="sec-title">// PRÓXIMOS SKILLS A IMPLEMENTAR</span></div>
+      <div class="backlog-list">
+        <div class="bl-item med">
+          <div class="bl-top"><div class="bl-name">last30 (Matt Van Horn) — X/Reddit use case scout</div><span class="bl-tag" style="color:var(--amber)">24 FEB</span></div>
+          <div class="bl-meta"><span class="bl-owner">Tenacitas autónomo · github.com/mvanhorn/last30days-skill</span></div>
+        </div>
+        <div class="bl-item low">
+          <div class="bl-top"><div class="bl-name">Sync automático Sheet → Dashboard (cron nocturno)</div><span class="bl-tag" style="color:var(--muted)">28 FEB</span></div>
+          <div class="bl-meta"><span class="bl-owner">~3h · 80% código existente</span></div>
+        </div>
+        <div class="bl-item low">
+          <div class="bl-top"><div class="bl-name">Mapa geográfico interactivo (Leaflet.js)</div><span class="bl-tag" style="color:var(--muted)">7 MAR</span></div>
+          <div class="bl-meta"><span class="bl-owner">~5h · pins deals + brokers en España/Portugal</span></div>
+        </div>
+        <div class="bl-item low">
+          <div class="bl-top"><div class="bl-name">Alertas WhatsApp/email proactivas (deals + brokers inactivos)</div><span class="bl-tag" style="color:var(--muted)">7 MAR</span></div>
+          <div class="bl-meta"><span class="bl-owner">~5h · cron + gmail_send.py existente</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BACKLOG -->
+  <div id="tab-backlog" class="container" style="display:none">
+    <div class="section">
+      <div class="sec-header"><span class="sec-title">// BACKLOG — Alex Finn + MAGG Improvements</span></div>
+      <div class="backlog-list">
+
+        <div class="bl-item done" onclick="toggleBL(this)">
+          <div class="bl-top"><div class="bl-name">✅ Dashboard v2.1 — Chart.js (donut, barras, funnel)</div><span class="bl-tag" style="color:var(--green)">DONE</span></div>
+          <div class="bl-meta"><span class="bl-owner">Publicado 21 feb 09:30h · commit 9dcb208</span></div>
+          <div class="bl-body">Script generate_dashboard.py actualizado con gráficos permanentes. El cron de refresh ya no los borra.</div>
+        </div>
+
+        <div class="bl-item done" onclick="toggleBL(this)">
+          <div class="bl-top"><div class="bl-name">✅ Anti-duplicación MAGG Deal Scanner</div><span class="bl-tag" style="color:var(--green)">DONE</span></div>
+          <div class="bl-meta"><span class="bl-owner">20 feb · tarea nocturna autónoma</span></div>
+          <div class="bl-body">Tracking por Gmail msg_id en .magg_processed_ids.json. Deals duplicados → skip silencioso.</div>
+        </div>
+
+        <div class="bl-item done" onclick="toggleBL(this)">
+          <div class="bl-top"><div class="bl-name">✅ CRM Cross-linking bidireccional Deal↔Broker</div><span class="bl-tag" style="color:var(--green)">DONE</span></div>
+          <div class="bl-meta"><span class="bl-owner">21 feb 04:53h · nocturna</span></div>
+          <div class="bl-body">goToBroker, goToDeal, showDealsForBroker. Gold pulse animation. commit 38429ab.</div>
+        </div>
+
+        <div class="bl-item done" onclick="toggleBL(this)">
+          <div class="bl-top"><div class="bl-name">✅ Proactividad nocturna en HEARTBEAT.md</div><span class="bl-tag" style="color:var(--green)">DONE</span></div>
+          <div class="bl-meta"><span class="bl-owner">20 feb</span></div>
+          <div class="bl-body">Sección "Tarea Nocturna Autónoma" — 22:00-07:00, elige 1 tarea del backlog y la ejecuta en silencio.</div>
+        </div>
+
+        <div class="bl-item high" onclick="toggleBL(this)">
+          <div class="bl-top"><div class="bl-name">Mission Statement — frase guía oficial</div><span class="bl-tag" style="color:var(--red)">🔴 PENDIENTE</span></div>
+          <div class="bl-meta"><span class="bl-owner">Eduardo decide · deadline hoy</span><span class="bl-deadline">21 feb</span></div>
+          <div class="bl-body">Draft: "Copiloto de inversión inmobiliaria de Eduardo: MAGG Capital, financiación, mercados y orden personal." → va a SOUL.md + USER.md.</div>
+        </div>
+
+        <div class="bl-item high" onclick="toggleBL(this)">
+          <div class="bl-top"><div class="bl-name">Brain dump ampliado — USER.md 2026</div><span class="bl-tag" style="color:var(--red)">🔴 PENDIENTE</span></div>
+          <div class="bl-meta"><span class="bl-owner">Eduardo 10min · Tenacitas transcribe</span><span class="bl-deadline">22 feb</span></div>
+          <div class="bl-body">Objetivos MAGG 2026, herramientas (Things 3, Notion...), métricas de éxito personales. Mejora la calidad de todas las respuestas.</div>
+        </div>
+
+        <div class="bl-item med" onclick="toggleBL(this)">
+          <div class="bl-top"><div class="bl-name">last30 skill — buscar en X/Reddit use cases MAGG</div><span class="bl-tag" style="color:var(--amber)">🟡 ESTA SEMANA</span></div>
+          <div class="bl-meta"><span class="bl-owner">Tenacitas autónomo</span><span class="bl-deadline">24 feb</span></div>
+          <div class="bl-body">Instalar skill Matt Van Horn. Cron 2am L/J/S. Output: 3 propuestas skills/semana → Eduardo elige 1 → Tenacitas implementa.</div>
+        </div>
+
+        <div class="bl-item med" onclick="toggleBL(this)">
+          <div class="bl-top"><div class="bl-name">Conectar herramientas — Things 3, LinkedIn, Idealista</div><span class="bl-tag" style="color:var(--amber)">🟡 PRÓXIMA SEMANA</span></div>
+          <div class="bl-meta"><span class="bl-owner">Tenacitas propone · Eduardo aprueba</span><span class="bl-deadline">28 feb</span></div>
+          <div class="bl-body">Things 3 API, LinkedIn deal alerts, scraping portales inmobiliarios (Idealista, CBRE listings).</div>
+        </div>
+
+        <div class="bl-item blocker" onclick="toggleBL(this)">
+          <div class="bl-top"><div class="bl-name">Script end-to-end magg_deal_analysis.py</div><span class="bl-tag" style="color:var(--red)">BLOQUEADO</span></div>
+          <div class="bl-meta"><span class="bl-owner">Tenacitas autónomo · bloqueado por Gamma key</span><span class="bl-deadline">3 mar</span></div>
+          <div class="bl-body">Gmail → PDF → Underwrite → Google Doc → Gamma (pública) → Sheet → Email. Pipeline completo end-to-end. Necesita Gamma key activa.</div>
+        </div>
+
+        <div class="bl-item low" onclick="toggleBL(this)">
+          <div class="bl-top"><div class="bl-name">Mission Control panel Next.js local</div><span class="bl-tag" style="color:var(--muted)">🟢 BACKLOG</span></div>
+          <div class="bl-meta"><span class="bl-owner">Tenacitas autónomo</span><span class="bl-deadline">7 mar</span></div>
+          <div class="bl-body">Panel local: docs generados, calendario crons, tracker pipeline. Requiere estar en red local del Mac mini.</div>
+        </div>
+
+        <div class="bl-item low" onclick="toggleBL(this)">
+          <div class="bl-top"><div class="bl-name">Brains & Muscles architecture</div><span class="bl-tag" style="color:var(--muted)">🟢 BACKLOG</span></div>
+          <div class="bl-meta"><span class="bl-owner">Tenacitas propone</span><span class="bl-deadline">7 mar</span></div>
+          <div class="bl-body">Opus → IC complejo/comité. Sonnet → análisis estándar (actual). Modelo barato → búsquedas/news/scraping.</div>
+        </div>
+
+        <div class="bl-item low" onclick="toggleBL(this)">
+          <div class="bl-top"><div class="bl-name">Mediterráneo 1 — decisión GO/NO GO</div><span class="bl-tag" style="color:var(--muted)">🟢 PENDIENTE EDUARDO</span></div>
+          <div class="bl-meta"><span class="bl-owner">Eduardo</span><span class="bl-deadline">28 feb</span></div>
+          <div class="bl-body">Estatutos comunidad + consulta urbanismo VUT. Negociar precio a 1.85-1.90M€. Único BORDERLINE vivo.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ACTIVITY -->
+  <div id="tab-activity" class="container" style="display:none">
+    <div class="section">
+      <div class="sec-header"><span class="sec-title">// ACTIVIDAD RECIENTE</span><span class="sec-count">última semana</span></div>
+      <div class="term-log">
+        <div><span class="tl-ts">[2026-02-21 09:30]</span> <span class="tl-ok">✓</span> Dashboard v2.1 publicado — Chart.js: donut, barras YoC, funnel, tier. generate_dashboard.py actualizado.</div>
+        <div><span class="tl-ts">[2026-02-21 07:31]</span> <span class="tl-info">→</span> Morning Brief enviado. Tiempo Madrid, noticias RE, pipeline, acciones del día.</div>
+        <div><span class="tl-ts">[2026-02-21 07:00]</span> <span class="tl-ok">✓</span> Backup diario completado. commit 44273e2 → edmartin8n/tenacitas-workspace.</div>
+        <div><span class="tl-ts">[2026-02-21 06:02]</span> <span class="tl-info">→</span> IC Insight scan mañana: Radisson+Bestprice, conversiones heritage, JLL Hotel Outlook 2026.</div>
+        <div><span class="tl-ts">[2026-02-21 04:53]</span> <span class="tl-ok">✓</span> CRM cross-linking bidireccional Deal↔Broker. Gold pulse animation. commit 38429ab.</div>
+        <div><span class="tl-ts">[2026-02-21 02:01]</span> <span class="tl-info">→</span> last30 skill scout: 3 casos de uso IA para RE (Deal pre-analysis, Morning Brief, Document Intelligence).</div>
+        <div><span class="tl-ts">[2026-02-21 00:25]</span> <span class="tl-ok">✓</span> Dashboard v2.0 — 16 mejoras: navy/gold, Chart.js, funnel, filtros, tabla dual intermediarios.</div>
+        <div><span class="tl-ts">[2026-02-21 00:04]</span> <span class="tl-info">→</span> IC Insight scan nocturno: Balkany CCs 1.600M€, España crece ciclo, PE hotels back on offense.</div>
+        <div><span class="tl-ts">[2026-02-20 23:22]</span> <span class="tl-info">→</span> Mission Control creado. Backlog priorizado. HEARTBEAT.md actualizado con tarea nocturna autónoma.</div>
+        <div><span class="tl-ts">[2026-02-20 20:04]</span> <span class="tl-info">→</span> Resumen 3 vídeos Alex Finn: Brains&Muscles, Sonnet 4.6, Mission Control/Statement/Proactividad.</div>
+        <div><span class="tl-ts">[2026-02-20 15:20]</span> <span class="tl-ok">✓</span> CRM data export: 5 deals + 579 brokers → /tmp/crm_data.json.</div>
+        <div><span class="tl-ts">[2026-02-20 00:00]</span> <span class="tl-ok">✓</span> Dashboard KPI tab reformateado. Tab RESUMEN creado en Sheet.</div>
+        <div><span class="tl-ts">[2026-02-19 23:00]</span> <span class="tl-ok">✓</span> MAGG-2026-005 Lisboa analizado. IC Brief Google Doc. Pipeline actualizado. Drive folder creado.</div>
+        <div><span class="tl-ts">[2026-02-19 20:11]</span> <span class="tl-ok">✓</span> Intermediarios: 578+ contactos importados, deduplicados, Score formula, conditional formatting.</div>
+        <div><span class="tl-ts">[2026-02-19 18:00]</span> <span class="tl-ok">✓</span> Google Antigravity OAuth configurado como fallback #1.</div>
+        <div><span class="tl-ts">[2026-02-19 12:00]</span> <span class="tl-ok">✓</span> Gmail OAuth re-autorizado — 8 scopes incluyendo drive y documents.</div>
+        <div><span class="tl-ts">[2026-02-19 10:00]</span> <span class="tl-ok">✓</span> GitHub Pages CRM desplegado — edmartin8n/magg-dashboard.</div>
+        <div><span class="tl-ts">[2026-02-18 20:01]</span> <span class="tl-info">→</span> Alex Finn scout: Sonnet 4.6 mejor modelo agéntico a 1/5 coste Opus. Activado como principal.</div>
+        <div><span class="tl-ts">[2026-02-18 00:00]</span> <span class="tl-ok">✓</span> MAGG Deal Scanner cron activo. Anti-duplicación implementada.</div>
+        <div><span class="tl-ts">[2026-02-17 00:00]</span> <span class="tl-ok">✓</span> IC Brief template v2 reescrita. Formato 6 bloques. Scoring spread ±150bps.</div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="sec-header"><span class="sec-title">// DEALS ANALIZADOS</span><span class="sec-count">5 total</span></div>
+      <div class="backlog-list">
+        <div class="bl-item done"><div class="bl-top"><div class="bl-name">MAGG-2026-001 · Solar AT Málaga · 4.15M€</div><span class="bl-tag" style="color:var(--red)">❌ NO GO</span></div><div class="bl-meta"><span class="bl-owner">Spread -180/-250 bps</span></div></div>
+        <div class="bl-item done"><div class="bl-top"><div class="bl-name">MAGG-2026-002 · Hotel Monte Gordo Algarve · 55M€</div><span class="bl-tag" style="color:var(--red)">❌ NO GO</span></div><div class="bl-meta"><span class="bl-owner">Spread -120/-210 bps</span></div></div>
+        <div class="bl-item med"><div class="bl-top"><div class="bl-name">MAGG-2026-003 · Mediterráneo 1 Marbella · 2.05M€</div><span class="bl-tag" style="color:var(--amber)">⚠ BORDERLINE</span></div><div class="bl-meta"><span class="bl-owner">Spread +100/+150 bps · decisión pendiente Eduardo</span></div></div>
+        <div class="bl-item done"><div class="bl-top"><div class="bl-name">MAGG-2026-004 · Colegio St. Michael's Boadilla · 8.5M€</div><span class="bl-tag" style="color:var(--red)">❌ NO GO</span></div><div class="bl-meta"><span class="bl-owner">Spread -200/-250 bps</span></div></div>
+        <div class="bl-item done"><div class="bl-top"><div class="bl-name">MAGG-2026-005 · Hotel Boutique Praça Figueira Lisboa · 14M€</div><span class="bl-tag" style="color:var(--red)">❌ NO GO</span></div><div class="bl-meta"><span class="bl-owner">Spread -82/-339 bps · 477k€/room</span></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const PWD = 'ctrl2026';
+function auth(){
+  if(document.getElementById('pwd').value===PWD){
+    document.getElementById('login').style.display='none';
+    document.getElementById('app').style.display='flex';
+    document.getElementById('app').style.flexDirection='column';
+    startClock();
+  } else {
+    document.getElementById('err').textContent='Acceso denegado';
+    document.getElementById('pwd').value='';
+  }
+}
+function showTab(id,el){
+  document.querySelectorAll('.ntab').forEach(t=>t.classList.remove('active'));
+  el.classList.add('active');
+  ['status','crons','skills','backlog','activity'].forEach(t=>{
+    document.getElementById('tab-'+t).style.display=t===id?'block':'none';
+  });
+}
+function toggleBL(el){
+  const body = el.querySelector('.bl-body');
+  if(body) body.classList.toggle('open');
+}
+function startClock(){
+  const tick=()=>{
+    document.getElementById('clock').textContent=new Date().toLocaleString('es-ES',{
+      weekday:'short',day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit',second:'2-digit'
+    });
+  };
+  tick(); setInterval(tick,1000);
+}
+</script>
+</body>
+</html>
