@@ -32,14 +32,14 @@ body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
 
 /* ===== LAYOUT ===== */
 #app{display:none;min-height:100vh;flex-direction:column}
-header{background:linear-gradient(135deg,var(--navy) 0%,#1a3a6a 100%);color:white;padding:14px 32px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 3px 16px rgba(0,0,0,.25)}
-header h1{font-size:17px;font-weight:700;letter-spacing:-.2px}
-.header-sub{font-size:11px;opacity:.6;margin-top:2px}
-.upd{font-size:11px;opacity:.5}
-.tabs{background:rgba(0,0,0,.25);display:flex;padding:0 32px}
-.tab{padding:11px 24px;color:rgba(255,255,255,.5);font-size:13px;font-weight:600;cursor:pointer;border-bottom:3px solid transparent;transition:.2s;user-select:none;letter-spacing:.2px}
-.tab.active{color:white;border-bottom-color:var(--gold)}
-.tab:hover:not(.active){color:rgba(255,255,255,.8)}
+header{background:white;color:var(--navy);padding:10px 24px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 1px 0 #dde4f0;border-bottom:3px solid var(--navy)}
+header h1{font-size:16px;font-weight:800;letter-spacing:-.3px;color:var(--navy)}
+.header-sub{font-size:10px;color:var(--muted);margin-top:1px}
+.upd{font-size:10px;color:var(--muted)}
+.tabs{background:#f4f7fc;border-bottom:1px solid #dde4f0;display:flex;padding:0 24px}
+.tab{padding:9px 18px;color:var(--muted);font-size:12px;font-weight:600;cursor:pointer;border-bottom:2.5px solid transparent;transition:.2s;user-select:none;letter-spacing:.1px}
+.tab.active{color:var(--navy);border-bottom-color:var(--gold)}
+.tab:hover:not(.active){color:var(--navy)}
 .main{flex:1;overflow:auto}
 
 /* ===== DEALS ===== */
@@ -242,11 +242,11 @@ header h1{font-size:17px;font-weight:700;letter-spacing:-.2px}
 
 /* Table */
 .pl-table{background:white;border-radius:var(--radius);box-shadow:0 2px 16px rgba(0,0,0,.09);overflow:hidden;border:1px solid #dde4f0}
-.pl-thead{display:grid;grid-template-columns:36px 90px 1.1fr 78px 64px 72px 78px 62px 96px 1fr;background:var(--navy);border-bottom:none;border-radius:var(--radius) var(--radius) 0 0}
-.pl-th{padding:9px 10px;font-size:9.5px;font-weight:600;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.7px;cursor:pointer;user-select:none;display:flex;align-items:center;gap:3px;white-space:nowrap}
-.pl-th:hover{color:rgba(255,255,255,.9)}
+.pl-thead{display:grid;grid-template-columns:36px 90px 1.1fr 78px 64px 72px 78px 62px 96px 1fr;background:#f0f4fa;border-bottom:2px solid #dde4f0;border-radius:var(--radius) var(--radius) 0 0}
+.pl-th{padding:8px 10px;font-size:9px;font-weight:700;color:#6b7a99;text-transform:uppercase;letter-spacing:.6px;cursor:pointer;user-select:none;display:flex;align-items:center;gap:3px;white-space:nowrap}
+.pl-th:hover{color:var(--navy)}
 .pl-th .sort-arrow{opacity:.4;font-size:9px}
-.pl-th.sorted .sort-arrow{opacity:1;color:white}
+.pl-th.sorted .sort-arrow{opacity:1;color:var(--navy)}
 .pl-tbody{}
 .pl-tr{display:grid;grid-template-columns:36px 90px 1.1fr 78px 64px 72px 78px 62px 96px 1fr;border-bottom:1px solid #edf0f8;border-left:3px solid transparent;cursor:pointer;transition:background .1s,box-shadow .1s}
 .pl-tr:last-of-type{border-bottom:none}
@@ -282,10 +282,10 @@ header h1{font-size:17px;font-weight:700;letter-spacing:-.2px}
   .ft-cell:nth-child(4),.finder-row .ft-cell:nth-child(4),
   .ft-cell:nth-child(7),.finder-row .ft-cell:nth-child(7){display:flex}
   .expand-grid{grid-template-columns:1fr}
-  #view-deals,#view-finders{padding:16px}
+  #view-deals,#view-finders{padding:12px 14px}
   /* Pipeline table — mobile: dot | nombre+ref | fecha | precio | spread */
   .pl-thead,
-  .pl-tr { grid-template-columns: 20px 1fr 50px 62px 62px; }
+  .pl-tr { grid-template-columns: 18px 1fr 48px 58px 58px; }
   /* hide: col 2=ref, col 5=sqm, col 8=yoc, col 9=estado, col 10=motivo */
   .pl-thead > .pl-th:nth-child(2),
   .pl-tr   > .pl-td:nth-child(2)  { display:none; }
@@ -303,6 +303,10 @@ header h1{font-size:17px;font-weight:700;letter-spacing:-.2px}
   /* compact padding */
   .pl-td { padding:5px 6px; font-size:11px; }
   .pl-th { padding:6px 6px; font-size:9px; }
+  header{padding:8px 14px}
+  header h1{font-size:14px}
+  .tabs{padding:0 10px}
+  .tab{padding:8px 12px;font-size:11px}
 }
 
 /* ===== TRANSACTION COPILOT ===== */
