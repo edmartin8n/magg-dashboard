@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>HIST-092 | Don Cristian Málaga | IC Brief</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:Arial,Helvetica,sans-serif;font-size:13px;color:#1a1a2e;background:#f4f6fa;padding:24px}
+  .wrap{max-width:860px;margin:auto;background:white;border-radius:8px;overflow:hidden;box-shadow:0 2px 20px rgba(0,0,0,.1)}
+  .hdr{background:linear-gradient(135deg,#0d1f3c,#1a3a6a);color:white;padding:22px 28px}
+  .hdr-ref{font-size:11px;font-weight:700;letter-spacing:1px;opacity:.65;text-transform:uppercase;margin-bottom:4px}
+  .hdr-name{font-size:20px;font-weight:800;line-height:1.2;margin-bottom:3px}
+  .hdr-addr{font-size:12px;opacity:.75;margin-bottom:10px}
+  .hdr-meta{display:flex;gap:16px;flex-wrap:wrap;font-size:11px;opacity:.8}
+  .hdr-meta span{background:rgba(255,255,255,.12);padding:3px 10px;border-radius:12px}
+  .verdict{padding:14px 28px;background:#e8f5e9;border-left:5px solid #2e7d32;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+  .v-badge{font-size:18px;font-weight:900;white-space:nowrap}
+  .v-details{font-size:12px;color:#333;line-height:1.6}
+  .ficha{display:table;width:100%;background:#f0f4fa;border-bottom:1px solid #dde4f0}
+  .ficha-row{display:table-row}
+  .ficha-cell{display:table-cell;padding:12px 20px;border-right:1px solid #dde4f0;vertical-align:middle}
+  .ficha-cell:last-child{border-right:none}
+  .ficha-lbl{font-size:9.5px;text-transform:uppercase;letter-spacing:.6px;color:#7a8399;margin-bottom:3px}
+  .ficha-val{font-size:14px;font-weight:800;color:#0d1f3c}
+  .sec{padding:16px 28px;border-bottom:1px solid #edf0f8}
+  .sec-title{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:#c8a84b;margin-bottom:10px}
+  table.cols3{width:100%;border-collapse:collapse}
+  table.cols3 td{width:33.3%;vertical-align:top;padding:0 12px 0 0;font-size:12px}
+  table.cols3 td:last-child{padding-right:0}
+  .col-hdr{background:#0d1f3c;color:white;font-size:10px;font-weight:700;padding:6px 10px;border-radius:4px 4px 0 0;text-align:center}
+  .col-body{background:#f8fafc;border:1px solid #e2e8f0;border-top:none;border-radius:0 0 4px 4px;padding:10px}
+  .col-body .kv{display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid #eef1f8}
+  .col-body .kv:last-child{border-bottom:none}
+  .col-body .kk{color:#7a8399;font-size:11px}
+  .col-body .vv{font-weight:700;color:#0d1f3c;font-size:12px}
+  table.tl{width:100%;border-collapse:collapse;margin-top:8px}
+  table.tl td{text-align:center;padding:8px 6px;font-size:11px;border:1px solid #e2e8f0;background:#f8fafc}
+  table.tl td:first-child{background:#0d1f3c;color:white;font-weight:700;font-size:10px;width:80px}
+  table.tl .tl-date{font-size:10px;color:#7a8399;display:block;margin-top:2px}
+  table.cols2{width:100%;border-collapse:collapse}
+  table.cols2 td{vertical-align:top;padding:0 12px 0 0;font-size:12px}
+  table.cols2 td:last-child{padding-right:0}
+  .card{background:#f8fafc;border:1px solid #e2e8f0;border-radius:6px;padding:12px 14px}
+  .card-title{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#c8a84b;margin-bottom:8px}
+  .kv{display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid #eef1f8}
+  .kv:last-child{border-bottom:none}
+  .kk{color:#7a8399;font-size:11px}
+  .vv{font-weight:700;color:#0d1f3c;font-size:12px}
+  ul.risk-list{padding-left:16px;margin:0}
+  ul.risk-list li{margin-bottom:6px;line-height:1.5;font-size:12px;color:#333}
+  table.sens{border-collapse:collapse;font-size:11px;width:100%}
+  table.sens th{background:#0d1f3c;color:white;padding:6px 10px;text-align:center;font-weight:700}
+  table.sens td{padding:6px 10px;border:1px solid #e2e8f0;text-align:center;color:#333}
+  table.sens tr:nth-child(even) td{background:#f8fafc}
+  .go-cell{background:#e8f5e9!important;color:#2e7d32;font-weight:700}
+  .footer{padding:14px 28px;background:#f8fafc;font-size:11px;color:#7a8399;border-top:1px solid #edf0f8}
+  .footer a{color:#1a3a6a}
+  @media(max-width:600px){
+    table.cols3 td,table.cols2 td{display:block;width:100%;padding:0 0 12px 0}
+    .ficha-cell{display:block;border-right:none;border-bottom:1px solid #dde4f0}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- 1. HEADER -->
+<div class="hdr">
+  <div class="hdr-ref">HIST-092 · IC Brief · 17/06/2025</div>
+  <div class="hdr-name">Hotel Don Cristian</div>
+  <div class="hdr-addr">📍 Málaga, España</div>
+  <div class="hdr-meta">
+    <span>Hotel</span>
+    <span>84 habitaciones</span>
+    <span>2.640 sqm</span>
+    <span>Reforma Integral</span>
+    <span>En negociación</span>
+  </div>
+</div>
+
+<!-- 2. VERDICT -->
+<div class="verdict">
+  <div class="v-badge">✅ STRONG GO</div>
+  <div class="v-details">
+    <strong>Precio negociación: €5.48M</strong> &nbsp;|&nbsp; NOI estabilizado: <strong>€1.785M</strong> &nbsp;|&nbsp; YoC: <strong>14.27%</strong><br>
+    Exit 5.75% → <strong>€31.1M</strong> &nbsp;|&nbsp; Spread: <strong>+852 bps</strong> &nbsp;|&nbsp; IRR lev. est.: <strong>~55%</strong> &nbsp;|&nbsp; Múltiple: <strong>~4.0x</strong>
+  </div>
+</div>
+
+<!-- 3. FICHA -->
+<div class="ficha">
+  <div class="ficha-row">
+    <div class="ficha-cell"><div class="ficha-lbl">Tipo</div><div class="ficha-val">Hotel</div></div>
+    <div class="ficha-cell"><div class="ficha-lbl">Habitaciones</div><div class="ficha-val">84 keys</div></div>
+    <div class="ficha-cell"><div class="ficha-lbl">SQM</div><div class="ficha-val">2.640 m²</div></div>
+    <div class="ficha-cell"><div class="ficha-lbl">Estado obras</div><div class="ficha-val">Reforma Integral</div></div>
+    <div class="ficha-cell"><div class="ficha-lbl">Ubicación</div><div class="ficha-val">Málaga Centro</div></div>
+    <div class="ficha-cell"><div class="ficha-lbl">Precio negoc.</div><div class="ficha-val" style="color:#2e7d32">€5.48M</div></div>
+  </div>
+</div>
+
+<!-- 4. 3 COLUMNAS -->
+<div class="sec">
+  <div class="sec-title">A. CapEx &nbsp;·&nbsp; B. Ops Año 3 &nbsp;·&nbsp; C. Exit & Retornos</div>
+  <table class="cols3">
+    <tr>
+      <td>
+        <div class="col-hdr">A · CAPEX TOTAL</div>
+        <div class="col-body">
+          <div class="kv"><span class="kk">Precio adquisición</span><span class="vv">€5.480.000</span></div>
+          <div class="kv"><span class="kk">CapEx total (broker)</span><span class="vv">€7.037.000</span></div>
+          <div class="kv"><span class="kk">— del cual: hard est.</span><span class="vv">€5.760.000</span></div>
+          <div class="kv"><span class="kk">— soft (10%)</span><span class="vv">€576.000</span></div>
+          <div class="kv"><span class="kk">— FF&amp;E (€10k × 84)</span><span class="vv">€840.000</span></div>
+          <div class="kv" style="border-top:2px solid #c8a84b;margin-top:4px;padding-top:6px"><span class="kk">Inversión total</span><span class="vv" style="color:#2e7d32">€12.517.000</span></div>
+          <div class="kv"><span class="kk">€/llave entrada</span><span class="vv" style="color:#2e7d32">€65.200</span></div>
+          <div class="kv"><span class="kk">€/llave total</span><span class="vv">€149.000</span></div>
+          <p style="margin-top:8px;font-size:10.5px;color:#7a8399">⚠️ Validar CapEx con DT antes de firma. Visita técnica obligatoria.</p>
+        </div>
+      </td>
+      <td>
+        <div class="col-hdr">B · OPS AÑO 3 (ESTABILIZADO)</div>
+        <div class="col-body">
+          <div class="kv"><span class="kk">ADR (comp set)</span><span class="vv">€140</span></div>
+          <div class="kv"><span class="kk">Ocupación base</span><span class="vv">80%</span></div>
+          <div class="kv"><span class="kk">RevPAR</span><span class="vv">€112</span></div>
+          <div class="kv"><span class="kk">Revenue anual</span><span class="vv">€3.434.000</span></div>
+          <div class="kv"><span class="kk">GOP (60%)</span><span class="vv">€2.060.000</span></div>
+          <div class="kv"><span class="kk">HMA (8% Rev)</span><span class="vv">−€275.000</span></div>
+          <div class="kv" style="border-top:2px solid #c8a84b;margin-top:4px;padding-top:6px"><span class="kk">NOI neto</span><span class="vv" style="color:#2e7d32">€1.785.000</span></div>
+          <div class="kv"><span class="kk">YoC sobre inv. total</span><span class="vv" style="color:#2e7d32">14.27%</span></div>
+          <div class="kv"><span class="kk">NOI margin</span><span class="vv">52%</span></div>
+        </div>
+      </td>
+      <td>
+        <div class="col-hdr">C · EXIT &amp; RETORNOS</div>
+        <div class="col-body">
+          <div class="kv"><span class="kk">Exit yield (Málaga)</span><span class="vv">5.75%</span></div>
+          <div class="kv"><span class="kk">Valor exit</span><span class="vv" style="color:#2e7d32">€31.040.000</span></div>
+          <div class="kv"><span class="kk">LTC 50% — Deuda</span><span class="vv">€6.258.000</span></div>
+          <div class="kv"><span class="kk">Equity aportado</span><span class="vv">€6.258.000</span></div>
+          <div class="kv"><span class="kk">Servicio deuda (5%)</span><span class="vv">−€313.000/año</span></div>
+          <div class="kv" style="border-top:2px solid #2e7d32;margin-top:4px;padding-top:6px"><span class="kk">Spread vs exit</span><span class="vv" style="color:#2e7d32;font-size:14px">+852 bps ✅</span></div>
+          <div class="kv"><span class="kk">IRR levered (est.)</span><span class="vv" style="color:#2e7d32">~55%</span></div>
+          <div class="kv"><span class="kk">Equity múltiple</span><span class="vv" style="color:#2e7d32">~4.0x</span></div>
+        </div>
+      </td>
+    </tr>
+  </table>
+</div>
+
+<!-- 5. CRONOGRAMA -->
+<div class="sec">
+  <div class="sec-title">Cronograma</div>
+  <table class="tl">
+    <tr>
+      <td>Hito</td>
+      <td>Cierre<br><span class="tl-date">Q2 2026</span></td>
+      <td>Inicio obra<br><span class="tl-date">Q2 2026</span></td>
+      <td>Fin obra<br><span class="tl-date">Q4 2027 (+18m)</span></td>
+      <td>Apertura<br><span class="tl-date">Q1 2028</span></td>
+      <td>Estabiliz.<br><span class="tl-date">Q1 2029 (Y2)</span></td>
+      <td>Exit<br><span class="tl-date">Q1 2030 (4a)</span></td>
+    </tr>
+  </table>
+  <p style="font-size:11px;color:#7a8399;margin-top:8px">Reforma integral estimada 18 meses · Licencia urbanística: asumir 12 meses si no está aprobada (pendiente confirmar) · Apertura objetivo Q1 2028</p>
+</div>
+
+<!-- 6. UBICACIÓN + SENSIBILIDAD -->
+<div class="sec">
+  <table class="cols2">
+    <tr>
+      <td style="width:38%">
+        <div class="card">
+          <div class="card-title">📍 Ubicación</div>
+          <p style="margin-bottom:8px"><strong style="background:#2e7d32;color:white;padding:2px 8px;border-radius:10px;font-size:10px">CITY CENTER</strong></p>
+          <p style="margin-bottom:8px;font-size:12px">Málaga Centro. Mercado hotelero en expansión continua — ADR +12% YoY (CoStar Feb 2026).</p>
+          <div class="kv"><span class="kk">Aeropuerto AGP</span><span class="vv">8 km</span></div>
+          <div class="kv"><span class="kk">Calle Larios / Centro</span><span class="vv">~5 min walk</span></div>
+          <div class="kv"><span class="kk">Puerto cruceros</span><span class="vv">1.5 km</span></div>
+          <div class="kv"><span class="kk">Comp ADR (CoStar 2025)</span><span class="vv">€159</span></div>
+          <div class="kv"><span class="kk">Comp Occ (CoStar 2025)</span><span class="vv">82.5%</span></div>
+          <div class="kv"><span class="kk">Valoración MAGG</span><span class="vv" style="color:#2e7d32">A− (prime)</span></div>
+          <p style="margin-top:8px;font-size:11px;color:#7a8399">Precio €5.48M para 84 llaves = <strong>€65k/llave entrada</strong> — excepcionalmente bajo vs comp set mercado (&gt;€150k/llave). Tesis de valor clarísima.</p>
+        </div>
+      </td>
+      <td style="width:62%">
+        <div class="card">
+          <div class="card-title">📊 Sensibilidad YoC × Spread (bps) · Exit yield 5.75%</div>
+          <table class="sens">
+            <tr>
+              <th>ADR \ Occ</th><th>75% (−5%)</th><th>80% (base)</th><th>85% (+5%)</th>
+            </tr>
+            <tr>
+              <td><strong>€130 (−10)</strong></td>
+              <td class="go-cell">+666 bps</td>
+              <td class="go-cell">+749 bps</td>
+              <td class="go-cell">+831 bps</td>
+            </tr>
+            <tr>
+              <td><strong>€140 (base)</strong></td>
+              <td class="go-cell">+763 bps</td>
+              <td class="go-cell" style="border:2px solid #2e7d32">+852 bps ★</td>
+              <td class="go-cell">+941 bps</td>
+            </tr>
+            <tr>
+              <td><strong>€150 (+10)</strong></td>
+              <td class="go-cell">+862 bps</td>
+              <td class="go-cell">+953 bps</td>
+              <td class="go-cell">+1049 bps</td>
+            </tr>
+          </table>
+          <p style="margin-top:8px;font-size:11px;color:#7a8399">★ Caso base. <strong>Todas las celdas son GO sólido.</strong> Bear case extremo (ADR −10, Occ −5%): +666bps — sigue siendo STRONG GO. Margen de seguridad excepcional para el portfolio.</p>
+        </div>
+      </td>
+    </tr>
+  </table>
+</div>
+
+<!-- 7. RIESGOS + PRÓXIMOS PASOS -->
+<div class="sec">
+  <table class="cols2">
+    <tr>
+      <td>
+        <div class="card">
+          <div class="card-title">⚠️ Riesgos clave</div>
+          <ul class="risk-list">
+            <li><strong>CapEx real vs estimado:</strong> €7.037M declarado por broker — puede no incluir todos los conceptos. Visita técnica DT antes de firma para validar estructura, instalaciones y accesibilidad.</li>
+            <li><strong>Licencia urbanística:</strong> Estado de tramitación desconocido. Si no está aprobada: +12 meses al timeline base. Confirmar en DD.</li>
+            <li><strong>Operador:</strong> Deal solo funciona con gestión eficiente. SmartRental o HMA externo necesario. Confirmar estructura antes de cierre.</li>
+            <li><strong>Mercado Málaga estacional:</strong> Occ puede caer a 60-65% en invierno. Modelo base usa Occ anual 80% — conservador pero dependiente de mix nacional/internacional.</li>
+            <li><strong>Competencia pipeline:</strong> Málaga atrae inversión activamente. Riesgo de pérdida del deal si negociación se alarga.</li>
+          </ul>
+        </div>
+      </td>
+      <td>
+        <div class="card">
+          <div class="card-title">✅ Próximos pasos</div>
+          <ul class="risk-list">
+            <li>📐 <strong>Visita técnica DT</strong> — confirmar CapEx, estado estructura, instalaciones. Máxima prioridad dada la magnitud del upside.</li>
+            <li>⚖️ <strong>Verificar licencia</strong> — solicitar certificado urbanístico al ayuntamiento de Málaga. Si RTB → pull forward apertura 12m.</li>
+            <li>🏨 <strong>Definir operador</strong> — SmartRental como candidato natural (know-how, sistema). Negociar HMA o variable management fee antes de IC comité.</li>
+            <li>📋 <strong>Avanzar NBO / LOI</strong> — vendor parece receptivo (ya en negociación). Proponer estructura (asset deal vs share deal) y timeline cierre.</li>
+            <li>💰 <strong>Pre-marketing equity</strong> — con spread +852bps y múltiple ~4x, este es el deal ancla para el fundraising MAGG. Preparar one-pager inversor.</li>
+          </ul>
+        </div>
+      </td>
+    </tr>
+  </table>
+</div>
+
+<!-- 8. LINKS -->
+<div class="sec" style="border-bottom:none">
+  <div class="sec-title">Deal links</div>
+  <p style="font-size:12px;color:#555">
+    <strong>Ref CRM:</strong> HIST-092 &nbsp;|&nbsp;
+    <strong>Estado:</strong> En negociación (desde 17/06/2025) &nbsp;|&nbsp;
+    <strong>Owner:</strong> Eduardo / MAGG Capital &nbsp;|&nbsp;
+    <strong>Nota:</strong> Confirmar broker / vendedor y estructura del deal antes de formalizar NBO
+  </p>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  MAGG Capital · IC Brief HIST-092 Don Cristian · Generado por Tenacitas · 08/03/2026 &nbsp;|&nbsp;
+  Metodología UW v2 · NOI = GOP(60%) − HMA(8%) · Exit yield 5.75% (Málaga urbano) · LTC 50% · Deuda 5% · CapEx: broker estimate €7.037M &nbsp;|&nbsp;
+  Documento confidencial MAGG Capital
+</div>
+
+</div>
+</body>
+</html>

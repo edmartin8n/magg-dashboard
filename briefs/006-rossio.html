@@ -1,168 +1,282 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MAGG-2026-006 | Rossio Lisboa | IC Brief</title>
 <style>
-body{font-family:Arial,sans-serif;font-size:14px;color:#222;max-width:820px;margin:auto;padding:24px}
-h1{color:#1a3a5c;font-size:21px;border-bottom:3px solid #1a3a5c;padding-bottom:8px}
-h2{color:#1a3a5c;font-size:15px;margin-top:22px;border-left:4px solid #1a3a5c;padding-left:8px}
-table{border-collapse:collapse;width:100%;margin:10px 0}
-th{background:#1a3a5c;color:#fff;padding:8px 12px;text-align:left;font-size:13px}
-td{padding:7px 12px;border-bottom:1px solid #e0e0e0;font-size:13px}
-tr:nth-child(even) td{background:#f7f9fc}
-.pass{background:#27ae60;color:#fff;padding:3px 10px;border-radius:10px;font-weight:bold}
-.fail{background:#e74c3c;color:#fff;padding:3px 10px;border-radius:10px;font-weight:bold}
-.warn{background:#f39c12;color:#fff;padding:3px 10px;border-radius:10px;font-weight:bold}
-.box-pass{background:#eaf9ee;border-left:5px solid #27ae60;padding:12px 16px;margin:14px 0;border-radius:4px}
-.box-fail{background:#fef0f0;border-left:5px solid #e74c3c;padding:12px 16px;margin:14px 0;border-radius:4px}
-.box-warn{background:#fffbea;border-left:5px solid #f39c12;padding:12px 16px;margin:14px 0;border-radius:4px}
-.footer{margin-top:28px;padding-top:10px;border-top:1px solid #ddd;font-size:11px;color:#888}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:Arial,Helvetica,sans-serif;font-size:13px;color:#1a1a2e;background:#f4f6fa;padding:24px}
+  .wrap{max-width:860px;margin:auto;background:white;border-radius:8px;overflow:hidden;box-shadow:0 2px 20px rgba(0,0,0,.1)}
+  /* HEADER */
+  .hdr{background:linear-gradient(135deg,#0d1f3c,#1a3a6a);color:white;padding:22px 28px}
+  .hdr-ref{font-size:11px;font-weight:700;letter-spacing:1px;opacity:.65;text-transform:uppercase;margin-bottom:4px}
+  .hdr-name{font-size:20px;font-weight:800;line-height:1.2;margin-bottom:3px}
+  .hdr-addr{font-size:12px;opacity:.75;margin-bottom:10px}
+  .hdr-meta{display:flex;gap:16px;flex-wrap:wrap;font-size:11px;opacity:.8}
+  .hdr-meta span{background:rgba(255,255,255,.12);padding:3px 10px;border-radius:12px}
+  /* VERDICT */
+  .verdict{padding:14px 28px;background:#fff3cd;border-left:5px solid #e6a817;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+  .verdict.go{background:#e8f5e9;border-left-color:#2e7d32}
+  .verdict.nogo{background:#fce4ec;border-left-color:#c62828}
+  .verdict.borderline{background:#fff3cd;border-left-color:#e6a817}
+  .v-badge{font-size:18px;font-weight:900;white-space:nowrap}
+  .v-details{font-size:12px;color:#555;line-height:1.6}
+  /* FICHA */
+  .ficha{display:table;width:100%;background:#f0f4fa;border-bottom:1px solid #dde4f0}
+  .ficha-row{display:table-row}
+  .ficha-cell{display:table-cell;padding:12px 20px;border-right:1px solid #dde4f0;vertical-align:middle}
+  .ficha-cell:last-child{border-right:none}
+  .ficha-lbl{font-size:9.5px;text-transform:uppercase;letter-spacing:.6px;color:#7a8399;margin-bottom:3px}
+  .ficha-val{font-size:14px;font-weight:800;color:#0d1f3c}
+  /* SECTION */
+  .sec{padding:16px 28px;border-bottom:1px solid #edf0f8}
+  .sec-title{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:#c8a84b;margin-bottom:10px}
+  /* 3-COL */
+  table.cols3{width:100%;border-collapse:collapse}
+  table.cols3 td{width:33.3%;vertical-align:top;padding:0 12px 0 0;font-size:12px}
+  table.cols3 td:last-child{padding-right:0}
+  .col-hdr{background:#0d1f3c;color:white;font-size:10px;font-weight:700;padding:6px 10px;border-radius:4px 4px 0 0;text-align:center;margin-bottom:0}
+  .col-body{background:#f8fafc;border:1px solid #e2e8f0;border-top:none;border-radius:0 0 4px 4px;padding:10px}
+  .col-body p{margin-bottom:6px;line-height:1.5;font-size:12px;color:#333}
+  .col-body .kv{display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid #eef1f8}
+  .col-body .kv:last-child{border-bottom:none}
+  .col-body .kk{color:#7a8399;font-size:11px}
+  .col-body .vv{font-weight:700;color:#0d1f3c;font-size:12px}
+  /* TIMELINE */
+  table.tl{width:100%;border-collapse:collapse;margin-top:8px}
+  table.tl td{text-align:center;padding:8px 6px;font-size:11px;border:1px solid #e2e8f0;background:#f8fafc}
+  table.tl td:first-child{background:#0d1f3c;color:white;font-weight:700;font-size:10px;width:80px}
+  table.tl .tl-date{font-size:10px;color:#7a8399;display:block;margin-top:2px}
+  /* 2-COL */
+  table.cols2{width:100%;border-collapse:collapse}
+  table.cols2 td{vertical-align:top;padding:0 12px 0 0;font-size:12px}
+  table.cols2 td:last-child{padding-right:0}
+  .card{background:#f8fafc;border:1px solid #e2e8f0;border-radius:6px;padding:12px 14px}
+  .card-title{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#c8a84b;margin-bottom:8px}
+  ul.risk-list{padding-left:16px;margin:0}
+  ul.risk-list li{margin-bottom:6px;line-height:1.5;font-size:12px;color:#333}
+  /* SENSITIVITY */
+  table.sens{border-collapse:collapse;font-size:11px;width:100%}
+  table.sens th{background:#0d1f3c;color:white;padding:6px 10px;text-align:center;font-weight:700}
+  table.sens td{padding:6px 10px;border:1px solid #e2e8f0;text-align:center;color:#333}
+  table.sens tr:nth-child(even) td{background:#f8fafc}
+  .go-cell{background:#e8f5e9!important;color:#2e7d32;font-weight:700}
+  .bo-cell{background:#fff8e1!important;color:#e65100;font-weight:700}
+  .no-cell{background:#fce4ec!important;color:#c62828;font-weight:700}
+  /* FOOTER */
+  .footer{padding:14px 28px;background:#f8fafc;font-size:11px;color:#7a8399;border-top:1px solid #edf0f8}
+  .footer a{color:#1a3a6a}
+  @media(max-width:600px){
+    table.cols3 td,table.cols2 td{display:block;width:100%;padding:0 0 12px 0}
+    .ficha-cell{display:block;border-right:none;border-bottom:1px solid #dde4f0}
+  }
 </style>
 </head>
 <body>
+<div class="wrap">
 
-<h1>📋 MAGG Deal Screening — Hotel 4★ Rossio Lisboa (MAGG-2026-005)</h1>
-<p><strong>Fecha:</strong> 27 febrero 2026 &nbsp;|&nbsp; <strong>Analista:</strong> MAGG Deal Scanner AI &nbsp;|&nbsp; <strong>Broker:</strong> Jorge Laclaustra Vacas · Laclaustra Inmuebles · jl@laclaustrainmuebles.com</p>
-
-<!-- BLOQUE 1: VEREDICTO -->
-<div class="box-fail">
-<strong>DEAL:</strong> Hotel 4★ Rossio Lisboa &nbsp;|&nbsp; Rua 1º de Dezembro 40/42/44, Lisboa &nbsp;|&nbsp; 13.000.000 € &nbsp;|&nbsp; 27 Feb 2026<br><br>
-<strong>VEREDICTO:</strong> <span class="fail">❌ NO GO</span><br><br>
-<strong>TESIS EN 2 LÍNEAS:</strong> Con un coste total de proyecto ~18,4M€ para un hotel de 44 habitaciones (418k€/clave), el NOI estabilizado máximo alcanzable (~720-800k€) implica un YoC del 3,9-4,3% frente a un exit yield de mercado del 5,25-5,5% en Lisboa 4★ — generando un spread negativo de <strong>-85 a -135 bps</strong>. La unidad de negocio es demasiado pequeña para absorber el precio de adquisición.<br><br>
-<strong>SPREAD:</strong> YoC ~4,1% vs Exit Yield ~5,35% → <strong>Spread: -125 bps ❌ FAIL</strong>
+<!-- 1. HEADER -->
+<div class="hdr">
+  <div class="hdr-ref">MAGG-2026-006 · IC Brief · 25/02/2026</div>
+  <div class="hdr-name">Hotel Boutique — Rua Primeiro de Dezembro</div>
+  <div class="hdr-addr">📍 Rossio, Baixa Pombalina, Lisboa, Portugal</div>
+  <div class="hdr-meta">
+    <span>Hotel Boutique 4★</span>
+    <span>42 habitaciones</span>
+    <span>1.945 sqm</span>
+    <span>Reforma Integral</span>
+    <span>Licencia CML aprobada (14/01/2026)</span>
+  </div>
 </div>
 
-<!-- BLOQUE 2: UBICACIÓN -->
-<h2>2. Ubicación</h2>
-
-<strong>Macro:</strong>
-<table>
-<tr><th>Factor</th><th>Dato</th></tr>
-<tr><td>Mercado</td><td>Lisboa — 2º destino europeo en crecimiento turístico (INE Portugal 2025). +19M pernoctaciones/año en Lisboa metropolitana. Aeropuerto Humberto Delgado: +32M pasajeros/año (2025). Nuevo aeropuerto Montijo previsto 2027.</td></tr>
-<tr><td>Demanda hotelera Baixa/Chiado</td><td>RevPAR comp set Lisboa Rossio YTD 2025: <strong>€144,28</strong> (STR, ene-dic 2025). ADR: €179,05. Occ: 80,6%. Crecimiento RevPAR +0,2% YoY — mercado maduro y estable.</td></tr>
-<tr><td>Pipeline hotelero</td><td>Lisboa registra moderado pipeline nuevo. Zona Baixa Pombalina protegida → escasa oferta nueva. Ventaja regulatoria para quien obtiene licencias.</td></tr>
-<tr><td>Regulatorio</td><td>Portugal: Regime Transitório AL finalizado; zona de contenção Lisboa Baixa limita nuevas licencias AL. La categorización hotelera (4★) es más estable. IMT ~6,5% sobre precio adquisición. Arquitecto: Carina Milheiro / Ricardo Pires (sustituyendo a Valsassina).</td></tr>
-<tr><td>Fundamentos económicos</td><td>Lisboa top-5 destinos inversión hotelera Europa (CBRE Hotel Investment Report 2025). Yields prime hotel comprimidos: 5,0-5,5% (4★ Lisboa centro). Transacciones recientes: The Ivens (Lisboa, 5★ 92 hab., vendido 2024 ~180k€/clave). Fuente: JLL Portugal Hotels.</td></tr>
-</table>
-
-<strong>Micro:</strong>
-<table>
-<tr><th>Factor</th><th>Dato</th></tr>
-<tr><td>Localización exacta</td><td>Rua 1º de Dezembro 40/42/44, Praça do Rossio — corazón histórico de Lisboa, 200m Rossio, 300m Chiado, 500m Santa Justa. Ubicación absolutamente prime.</td></tr>
-<tr><td>Competencia directa (radio 500m)</td><td>1908 Lisboa Hotel (36 hab.), Vincci Baixa (66 hab.), 9Hotel Mercy Lisbon (47 hab.), Portugal Boutique City Hotel (53 hab.), Eurostars Lisboa Baixa (57 hab.). Promedio: 52 hab. | ADR comp set dic-25: €139. Occ dic-25: 63%.</td></tr>
-<tr><td>Demanda capturable</td><td>Mix negocio/ocio 40/60. Estacionalidad moderada (mín. dic-feb: occ 63%, máx. jun-sep: 80%+). Demanda bleisure creciente por hub tech Lisboa.</td></tr>
-<tr><td>Accesibilidad</td><td>Metro: Rossio (línea verde) a pie. AVE Lisboa-Madrid operativo. Aeropuerto: 20min. Barrio peatonal de alta frecuentación turística.</td></tr>
-</table>
-
-<!-- BLOQUE 3: COSTES -->
-<h2>3. Análisis de Costes del Proyecto</h2>
-<table>
-<tr><th>Partida</th><th>Importe</th><th>Notas</th></tr>
-<tr><td>Precio de adquisición</td><td><strong>13.000.000 €</strong></td><td>Asking price confirmado</td></tr>
-<tr><td>Honorarios comprador (3%)</td><td>390.000 €</td><td>Honorarios broker comprador</td></tr>
-<tr><td>IMT (6,5%) + IVA stamps</td><td>845.000 €</td><td>Imposto Municipal Transmissões</td></tr>
-<tr><td>Notaría, registro, due diligence</td><td>155.000 €</td><td>Legal, técnico, ambiental</td></tr>
-<tr><td><em>Subtotal costes transacción</em></td><td><em>1.390.000 €</em></td><td></td></tr>
-<tr><td>CapEx rehabilitación</td><td>3.000.000 €</td><td>~1.550€/m² s/r (1.945m²) — obra interior en edificio histórico</td></tr>
-<tr><td>FF&E + OS&E</td><td>660.000 €</td><td>15.000€/habitación × 44 hab.</td></tr>
-<tr><td>Honorarios proyecto + dirección obra</td><td>280.000 €</td><td>7% sobre construcción</td></tr>
-<tr><td>Contingencia (10%)</td><td>394.000 €</td><td>Edificio histórico Baixa Pombalina → riesgo alto</td></tr>
-<tr><td><em>Subtotal CapEx + desarrollo</em></td><td><em>4.334.000 €</em></td><td>vs. 4.000.000 € indicativo broker</td></tr>
-<tr><td><strong>COSTE TOTAL DEL PROYECTO</strong></td><td><strong>18.724.000 €</strong></td><td></td></tr>
-<tr><td>Coste por clave</td><td><strong>~425.500 €/clave</strong></td><td>Benchmark 4★ Lisboa: 200-300k€/clave ← <span style="color:red">MUY CARO</span></td></tr>
-</table>
-
-<p><strong>Sensibilidad CapEx:</strong> Escenario base 4,0M€ → COSTE TOTAL 18,4M€ | Stress +15% CapEx (4,6M€) → COSTE TOTAL 19,0M€</p>
-<p><em>Nota: El estudio de fundaciones (Estudo_Fundação edificio.pdf adjunto) sugiere complejidad estructural que puede elevar costes. La declaración de grado de protección del edificio en Baixa Pombalina añade restricciones y sobrecostes en fachada.</em></p>
-
-<!-- BLOQUE 4: P&L y RETORNOS -->
-<h2>4. P&L Operativo y Retornos</h2>
-
-<strong>Hipótesis operativas (benchmark: STR comp set Lisboa Rossio, enero-diciembre 2025):</strong>
-<table>
-<tr><th>Métrica</th><th>Escenario Conservador</th><th>Escenario Base</th><th>Escenario Optimista</th></tr>
-<tr><td>ADR</td><td>145€</td><td>160€ (vs comp set 179€)</td><td>180€</td></tr>
-<tr><td>Ocupación estabilizada (año 3)</td><td>70%</td><td>76%</td><td>81%</td></tr>
-<tr><td>RevPAR</td><td>101,5€</td><td>121,6€</td><td>145,8€</td></tr>
-<tr><td>Room Revenue (44 hab.)</td><td>1.630.290€</td><td>1.952.844€</td><td>2.340.612€</td></tr>
-<tr><td>Total Revenue (+F&B/otros ~10%)</td><td>1.793.319€</td><td>2.148.128€</td><td>2.574.673€</td></tr>
-<tr><td>GOP Margin</td><td>38%</td><td>41%</td><td>44%</td></tr>
-<tr><td>GOP</td><td>681.461€</td><td>880.733€</td><td>1.132.856€</td></tr>
-</table>
-
-<strong>Tres escenarios de contrato — Coste Base 18.724.000 €:</strong>
-<table>
-<tr><th>Métrica</th><th>HMA (4%Rev+10%GOP)</th><th>Renta Fija</th><th>Renta Variable</th></tr>
-<tr><td>Revenue (base)</td><td>2.148.128€</td><td>2.148.128€</td><td>2.148.128€</td></tr>
-<tr><td>GOP (base)</td><td>880.733€</td><td>880.733€</td><td>880.733€</td></tr>
-<tr><td>Fee operador</td><td>85.925+88.073 = 173.998€</td><td>N/A</td><td>N/A</td></tr>
-<tr><td><strong>NOI propietario (base)</strong></td><td><strong>706.735€</strong></td><td><strong>578.000€</strong></td><td><strong>650.000-750.000€</strong></td></tr>
-<tr><td><strong>YoC s/coste total</strong></td><td><strong>3,78%</strong></td><td><strong>3,09%</strong></td><td><strong>3,47-4,01%</strong></td></tr>
-<tr><td>vs Exit Yield 5,35%</td><td style="color:red">-157 bps ❌</td><td style="color:red">-226 bps ❌</td><td style="color:red">-134 a -188 bps ❌</td></tr>
-</table>
-
-<strong>Retornos asumiendo exit en estabilizado (año 4-5):</strong>
-<table>
-<tr><th>Métrica</th><th>Valor (base)</th></tr>
-<tr><td>NOI estabilizado</td><td>706.735€</td></tr>
-<tr><td>Exit Yield aplicada</td><td>5,35% (rango mercado 4★ Lisboa prime: 5,0-5,75%. Fuente: CBRE/JLL Portugal Hotels 2025)</td></tr>
-<tr><td>Valor de exit (GRI)</td><td>706.735 / 0,0535 = <strong>13.209.065€</strong></td></tr>
-<tr><td>Coste total proyecto</td><td>18.724.000€</td></tr>
-<tr><td>Pérdida de valor implícita</td><td><strong>-5.514.935€ (-29,5%)</strong></td></tr>
-<tr><td>LTV asumido 55%</td><td>Deuda: 10.298.200€ | Equity: 8.425.800€</td></tr>
-<tr><td>Coste deuda (Euribor 3,2% + spread 2,5%)</td><td>5,7% anual</td></tr>
-<tr><td><strong>IRR equity (base)</strong></td><td><strong>~3-5% (destrucción de valor)</strong></td></tr>
-<tr><td>Múltiplo equity (MoM)</td><td>~0,7-0,8x (PÉRDIDA)</td></tr>
-<tr><td>DSCR</td><td>706.735 / (10.298.200 × 5,7%) = 1,20x (por debajo del mínimo 1,25x)</td></tr>
-<tr><td><strong>Spread YoC vs Exit</strong></td><td><strong>-157 bps ❌ FAIL (umbral mínimo: +150 bps)</strong></td></tr>
-</table>
-
-<strong>Análisis de sensibilidad 2D (YoC HMA sobre coste base 18,7M€):</strong>
-<table>
-<tr><th>ADR \ Exit Yield</th><th>4,75%</th><th>5,00%</th><th>5,25%</th><th>5,50%</th><th>5,75%</th></tr>
-<tr><td>ADR 145€ / Occ 70%</td><td style="color:red">-85bps ❌</td><td style="color:red">-110bps ❌</td><td style="color:red">-135bps ❌</td><td style="color:red">-160bps ❌</td><td style="color:red">-185bps ❌</td></tr>
-<tr><td>ADR 160€ / Occ 76%</td><td style="color:red">-97bps ❌</td><td style="color:red">-122bps ❌</td><td style="color:red">-147bps ❌</td><td style="color:red">-172bps ❌</td><td style="color:red">-197bps ❌</td></tr>
-<tr><td>ADR 175€ / Occ 78%</td><td style="color:orange">-40bps</td><td style="color:red">-65bps ❌</td><td style="color:red">-90bps ❌</td><td style="color:red">-115bps ❌</td><td style="color:red">-140bps ❌</td></tr>
-<tr><td>ADR 190€ / Occ 82%</td><td style="color:green">+17bps</td><td style="color:red">-8bps ❌</td><td style="color:red">-33bps ❌</td><td style="color:red">-58bps ❌</td><td style="color:red">-83bps ❌</td></tr>
-</table>
-<p><em>Para alcanzar PASS (+150bps) se necesitaría ADR 220€+ con occ 85% (imposible para 4★ en este comp set) O reducir coste total a ~10M€ (imposible con precio ask 13M€).</em></p>
-
-<!-- BLOQUE 5: CRONOGRAMA -->
-<h2>5. Cronograma del Proyecto</h2>
-<table>
-<tr><th>Fase</th><th>Timing</th><th>Hito</th></tr>
-<tr><td>Mes 0-1</td><td>Mar-Abr 2026</td><td>Firma CPCV + Due Diligence legal, técnico y de licencias. Confirmar aprobación definitiva CML cambio de uso.</td></tr>
-<tr><td>Mes 1-3</td><td>Abr-Jun 2026</td><td>Cierre escritura notarial (condicionado aprobación CML). Contratación constructor especializado en edificios históricos Lisboa.</td></tr>
-<tr><td>Mes 3-22</td><td>Jun 2026 – Mar 2028</td><td>Obra de rehabilitación integral (18-20 meses estimado). Edificio histórico Baixa Pombalina → riesgo elevado de sobrecostes y retrasos.</td></tr>
-<tr><td>Mes 22-28</td><td>Mar-Sep 2028</td><td>Apertura hotel + rampa operativa. Selección y contrato operador.</td></tr>
-<tr><td>Mes 28-40</td><td>Sep 2028 – Sep 2029</td><td>Estabilización (ocupación objetivo 76%). Exit posible a partir de mes 36.</td></tr>
-<tr><td>Mes 40+</td><td>2029-2030</td><td>Exit o refinanciación. Dado spread negativo, exit con pérdidas salvo escenario excepcional de compresión yields.</td></tr>
-</table>
-<p><em>Impacto retraso en IRR: cada 6 meses de retraso adicional destruye ~80-120 bps de IRR por coste financiero de obra.</em></p>
-
-<!-- BLOQUE 6: KEY THINGS -->
-<h2>6. Key Things to Take Into Account</h2>
-<ul>
-<li>🔴 <strong>Economics fundamentalmente no cierran a precio actual:</strong> Coste/clave de 425k€ es 70-115% más caro que benchmarks Lisboa 4★ (200-300k€/clave). No hay escenario razonable de ADR/occ que genere spread positivo sobre 18,7M€ de inversión.</li>
-<li>🔴 <strong>Riesgo CML pendiente de confirmación:</strong> CPCV condicionado a aprobación CML. Si bien la "Aprovação Licença" de enero 2026 existe, necesita verificación de si se trata del cambio de uso definitivo o solo licencia de obras. Riesgo regulatorio no es desdeñable en Baixa Pombalina.</li>
-<li>🔴 <strong>Complejidad constructiva edificio histórico:</strong> Estudio de fundaciones adjunto indica complejidad estructural. Baixa Pombalina = grado máximo protección → restricciones de fachada + sobre-coste cierto. Contingencia del 10% puede ser insuficiente (recomendado 20-25%).</li>
-<li>🟡 <strong>Palanca de precio: condición necesaria pero no suficiente:</strong> Para BORDERLINE necesitaría precio ~7-8M€ (rebaja ~38-46%). Para PASS necesitaría precio ~6M€ (rebaja ~54%). Probablemente innegoable dado el valor ubicación en Rossio.</li>
-<li>🟡 <strong>Trophy asset value:</strong> La ubicación en Praça do Rossio es absolutamente prime y tiene valor de marca excepcional. Un comprador estratégico (fondo soberano, hotel de lujo, family office) podría pagar más de lo que justifican los fundamentales operativos puros.</li>
-<li>🟢 <strong>Próximo paso concreto:</strong> Si hay interés estratégico en Lisboa como expansión de SmartRental Portugal, explorar si el vendedor acepta price discovery en rango 8-9M€, o estudiar estructuras alternativas (joint venture con vendedor, lease-back).</li>
-</ul>
-
-<h2>7. Alternativas a Explorar (si hay interés estratégico)</h2>
-<ul>
-<li><strong>Estructura sale &amp; leaseback:</strong> Comprar a 13M€ y vender inmueble rehabilitado a inversor institucional al cap rate 5,25% manteniendo contrato operación (HMA / renta fija). Upside: valor asset post-reform ~16-17M€ si se optimiza ADR. Gap respecto coste: ~2M€ — difícil pero posible con operador premium.</li>
-<li><strong>Conversión alternativa:</strong> En vez de hotel 44hab, estudiar aptos turísticos de lujo (10-15 unidades × 80m² a 4.000€/m² exit = 16-19M€) — mejor economía por m² que la fórmula hotelera con tan pocas claves.</li>
-<li><strong>Fee de intermediación:</strong> Si otro comprador (fondo, proptech) puede pagar el precio y no le cuadra al modelo MAGG, explorar si hay honorarios de referral con Laclaustra.</li>
-</ul>
-
-<div class='footer'>
-MAGG-2026-005 · Análisis generado por MAGG Deal Scanner AI · 27 Feb 2026 · Criterios MAGG Capital Value-Add<br>
-Broker: Jorge Laclaustra Vacas · Laclaustra Inmuebles · jl@laclaustrainmuebles.com · +34 635 416 647<br>
-Fuentes: STR Lisboa Rossio CompSet dic-2025 (adjunto), PDF Projecto Rua 1º de Dezembro (adjunto), CBRE/JLL Portugal Hotels 2025, INE Portugal
+<!-- 2. VERDICT -->
+<div class="verdict borderline">
+  <div class="v-badge">⚠️ BORDERLINE</div>
+  <div class="v-details">
+    <strong>Bid rec ★ €10.0M</strong> (+203bps vs exit) &nbsp;|&nbsp; <strong>Límite GO €11.2M</strong> (+150bps) &nbsp;|&nbsp; Asking €13.0M → NO GO<br>
+    NOI estabilizado: <strong>€1.143M</strong> &nbsp;|&nbsp; YoC @ bid rec: <strong>7.25%</strong> &nbsp;|&nbsp; Exit 5.25% → €21.8M &nbsp;|&nbsp; IRR lev. ~22%
+  </div>
 </div>
 
+<!-- 3. FICHA -->
+<div class="ficha">
+  <div class="ficha-row">
+    <div class="ficha-cell"><div class="ficha-lbl">Tipo</div><div class="ficha-val">Hotel Boutique 4★</div></div>
+    <div class="ficha-cell"><div class="ficha-lbl">Habitaciones</div><div class="ficha-val">42 keys</div></div>
+    <div class="ficha-cell"><div class="ficha-lbl">SQM</div><div class="ficha-val">1.945 m²</div></div>
+    <div class="ficha-cell"><div class="ficha-lbl">Estado obras</div><div class="ficha-val">Reforma Integral</div></div>
+    <div class="ficha-cell"><div class="ficha-lbl">Ubicación</div><div class="ficha-val">Rossio, Lisboa</div></div>
+    <div class="ficha-cell"><div class="ficha-lbl">Bid rec.</div><div class="ficha-val">€10.0M</div></div>
+  </div>
+</div>
+
+<!-- 4. 3 COLUMNAS -->
+<div class="sec">
+  <div class="sec-title">A. CapEx &nbsp;·&nbsp; B. Ops Año 3 &nbsp;·&nbsp; C. Exit & Retornos</div>
+  <table class="cols3">
+    <tr>
+      <td>
+        <div class="col-hdr">A · CAPEX TOTAL</div>
+        <div class="col-body">
+          <div class="kv"><span class="kk">Precio asking</span><span class="vv">€13.000.000</span></div>
+          <div class="kv"><span class="kk">Hard (€2.500/sqm)</span><span class="vv">€4.863.000</span></div>
+          <div class="kv"><span class="kk">Soft (10% hard)</span><span class="vv">€486.000</span></div>
+          <div class="kv"><span class="kk">FF&amp;E (€10k × 42)</span><span class="vv">€420.000</span></div>
+          <div class="kv"><span class="kk">Total CapEx</span><span class="vv">€5.769.000</span></div>
+          <div class="kv" style="border-top:2px solid #c8a84b;margin-top:4px;padding-top:6px"><span class="kk">Inv. total @ asking</span><span class="vv" style="color:#c62828">€18.769.000</span></div>
+          <div class="kv"><span class="kk">Inv. total @ bid rec €10M</span><span class="vv" style="color:#2e7d32">€15.769.000</span></div>
+          <div class="kv"><span class="kk">€/llave @ bid rec</span><span class="vv">€375.500</span></div>
+        </div>
+      </td>
+      <td>
+        <div class="col-hdr">B · OPS AÑO 3 (ESTABILIZADO)</div>
+        <div class="col-body">
+          <div class="kv"><span class="kk">ADR (comp set STR)</span><span class="vv">€179</span></div>
+          <div class="kv"><span class="kk">Ocupación base</span><span class="vv">80%</span></div>
+          <div class="kv"><span class="kk">RevPAR</span><span class="vv">€143</span></div>
+          <div class="kv"><span class="kk">Revenue (rooms)</span><span class="vv">€2.198.000</span></div>
+          <div class="kv"><span class="kk">GOP (60%)</span><span class="vv">€1.319.000</span></div>
+          <div class="kv"><span class="kk">HMA (8% Rev)</span><span class="vv">−€176.000</span></div>
+          <div class="kv" style="border-top:2px solid #c8a84b;margin-top:4px;padding-top:6px"><span class="kk">NOI neto</span><span class="vv" style="color:#2e7d32">€1.143.000</span></div>
+          <div class="kv"><span class="kk">YoC @ bid rec €10M</span><span class="vv">7.25%</span></div>
+          <div class="kv"><span class="kk">YoC @ asking €13M</span><span class="vv" style="color:#c62828">6.09%</span></div>
+        </div>
+      </td>
+      <td>
+        <div class="col-hdr">C · EXIT &amp; RETORNOS</div>
+        <div class="col-body">
+          <div class="kv"><span class="kk">Exit yield</span><span class="vv">5.25%</span></div>
+          <div class="kv"><span class="kk">Valor exit (NOI/yield)</span><span class="vv">€21.770.000</span></div>
+          <div class="kv"><span class="kk">LTC (50%)</span><span class="vv">€7.885.000</span></div>
+          <div class="kv"><span class="kk">Equity aportado</span><span class="vv">€7.885.000</span></div>
+          <div class="kv"><span class="kk">Deuda servicio (5%)</span><span class="vv">−€394.000/año</span></div>
+          <div class="kv" style="border-top:2px solid #c8a84b;margin-top:4px;padding-top:6px"><span class="kk">Spread vs exit</span><span class="vv" style="color:#2e7d32">+203 bps ✅</span></div>
+          <div class="kv"><span class="kk">IRR levered (est.)</span><span class="vv" style="color:#2e7d32">~22%</span></div>
+          <div class="kv"><span class="kk">Equity múltiple</span><span class="vv">~1.9x</span></div>
+          <p style="margin-top:8px;font-size:10.5px;color:#c62828">⚠️ A asking €13M: spread −104bps → NO GO. Sólo viable con descuento negociado.</p>
+        </div>
+      </td>
+    </tr>
+  </table>
+</div>
+
+<!-- 5. CRONOGRAMA -->
+<div class="sec">
+  <div class="sec-title">Cronograma</div>
+  <table class="tl">
+    <tr>
+      <td>Hito</td>
+      <td>Cierre<br><span class="tl-date">Q3 2026</span></td>
+      <td>Inicio obra<br><span class="tl-date">Q3 2026</span></td>
+      <td>Fin obra<br><span class="tl-date">Q1 2028 (+18m)</span></td>
+      <td>Apertura<br><span class="tl-date">Q2 2028</span></td>
+      <td>Estabiliz.<br><span class="tl-date">Q2 2029 (Y2)</span></td>
+      <td>Exit<br><span class="tl-date">Q2 2030 (4a)</span></td>
+    </tr>
+  </table>
+  <p style="font-size:11px;color:#7a8399;margin-top:8px">Licencia CML aprobada 14/01/2026 · Condición arqueológica CCDR-LVT pendiente validación · Sin plazo adicional de licencia en cronograma base</p>
+</div>
+
+<!-- 6. UBICACIÓN + SENSIBILIDAD -->
+<div class="sec">
+  <table class="cols2">
+    <tr>
+      <td style="width:38%">
+        <div class="card">
+          <div class="card-title">📍 Ubicación</div>
+          <p style="margin-bottom:8px"><strong style="background:#2e7d32;color:white;padding:2px 8px;border-radius:10px;font-size:10px">CITY CENTER</strong></p>
+          <p style="margin-bottom:6px;font-size:12px">Rossio (Praça Dom Pedro IV), Baixa Pombalina.<br>Zona monumental protegida — pipeline nuevo limitado.</p>
+          <div class="kv" style="border-bottom:1px solid #eef1f8;padding:4px 0"><span class="kk">Aeropuerto Humberto Delgado</span><span class="vv">8 km</span></div>
+          <div class="kv" style="border-bottom:1px solid #eef1f8;padding:4px 0"><span class="kk">Praça do Comércio</span><span class="vv">600 m</span></div>
+          <div class="kv" style="border-bottom:1px solid #eef1f8;padding:4px 0"><span class="kk">Alfama / Castelo</span><span class="vv">10 min walk</span></div>
+          <div class="kv" style="border-bottom:1px solid #eef1f8;padding:4px 0"><span class="kk">Comp RevPAR (STR 2025)</span><span class="vv">€144</span></div>
+          <div class="kv" style="padding:4px 0"><span class="kk">Valoración MAGG</span><span class="vv" style="color:#2e7d32">A (prime)</span></div>
+          <p style="margin-top:8px;font-size:11px;color:#7a8399">Lisboa top-5 destinos inversión hotelera Europa (CBRE 2025). Baixa Pombalina: microubicación irreproducible.</p>
+        </div>
+      </td>
+      <td style="width:62%">
+        <div class="card">
+          <div class="card-title">📊 Sensibilidad Bid × Spread (bps) · Exit yield 5.25%</div>
+          <table class="sens">
+            <tr>
+              <th>ADR \ Occ</th><th>75% (−5%)</th><th>80% (base)</th><th>85% (+5%)</th>
+            </tr>
+            <tr>
+              <td><strong>€169 (−10)</strong></td>
+              <td class="bo-cell">+115 bps</td>
+              <td class="go-cell">+158 bps</td>
+              <td class="go-cell">+200 bps</td>
+            </tr>
+            <tr>
+              <td><strong>€179 (base)</strong></td>
+              <td class="go-cell">+154 bps</td>
+              <td class="go-cell" style="border:2px solid #2e7d32">+203 bps ★</td>
+              <td class="go-cell">+251 bps</td>
+            </tr>
+            <tr>
+              <td><strong>€189 (+10)</strong></td>
+              <td class="go-cell">+195 bps</td>
+              <td class="go-cell">+249 bps</td>
+              <td class="go-cell">+302 bps</td>
+            </tr>
+          </table>
+          <p style="margin-top:8px;font-size:11px;color:#7a8399">★ Caso base @ <strong>bid rec €10.0M</strong>. Sensibilidad calculada con NOI v2 (GOP 60% − HMA 8%). A €13M asking todas las celdas son negativas.</p>
+        </div>
+      </td>
+    </tr>
+  </table>
+</div>
+
+<!-- 7. RIESGOS + PRÓXIMOS PASOS -->
+<div class="sec">
+  <table class="cols2">
+    <tr>
+      <td>
+        <div class="card">
+          <div class="card-title">⚠️ Riesgos clave</div>
+          <ul class="risk-list">
+            <li><strong>Condición arqueológica:</strong> CCDR-LVT puede alargar tramitación 2-4 meses. Incorporar en contrato (derecho de desistimiento si +6m).</li>
+            <li><strong>CapEx brochure vs real:</strong> Brochure dice €4M; estudio fundaciones 2019 sugiere €6-7M. Visita técnica obligatoria antes de NBO.</li>
+            <li><strong>Precio asking indefendible:</strong> A €13M el deal es NO GO. Negociación agresiva necesaria (−23% hasta bid rec).</li>
+            <li><strong>Spread estrecho en bear case:</strong> A ADR €169 y Occ 75%, spread baja a +115bps — aceptable pero sin margen.</li>
+            <li><strong>Licencia ya obtenida:</strong> Positivo — elimina riesgo urbanístico base. Pero condición arqueológica requiere validación legal específica Portugal.</li>
+          </ul>
+        </div>
+      </td>
+      <td>
+        <div class="card">
+          <div class="card-title">✅ Próximos pasos</div>
+          <ul class="risk-list">
+            <li>📐 <strong>Visita técnica DT</strong> — confirmar CapEx real (€5.77M vs brochure €4M vs estudio €6-7M). Kill-switch si &gt;€7M.</li>
+            <li>⚖️ <strong>Revisar condición arqueológica</strong> — consultar abogado Portugal (CCDR-LVT) sobre plazos reales y coste potencial.</li>
+            <li>💬 <strong>NBO a €10.0-10.5M</strong> — sondear posición del vendor. Argumento: precio/llave implícito €238k vs comp set Lisboa &gt;€300k.</li>
+            <li>📋 <strong>Cerrar modelo stress</strong> — base / bear (CapEx +20%, licencia +6m) / bull. Presentar IC comité si vendor acepta rango.</li>
+            <li>📅 <strong>Deadline follow-up:</strong> 10/03/2026 — confirmación estructura y posición precio.</li>
+          </ul>
+        </div>
+      </td>
+    </tr>
+  </table>
+</div>
+
+<!-- 8. LINKS -->
+<div class="sec" style="border-bottom:none">
+  <div class="sec-title">Deal links</div>
+  <p style="font-size:12px;color:#555">
+    <strong>Broker:</strong> Jorge Laclaustra Vacas · Laclaustra Inmuebles · <a href="mailto:jl@laclaustrainmuebles.com">jl@laclaustrainmuebles.com</a> · +34 635 416 647 &nbsp;|&nbsp;
+    <strong>Ref CRM:</strong> MAGG-2026-006 &nbsp;|&nbsp;
+    <strong>Gamma:</strong> <a href="https://gamma.app/docs/z2q31dn1ikor94w" target="_blank">gamma.app/docs/z2q31dn1ikor94w</a>
+  </p>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  MAGG Capital · IC Brief MAGG-2026-006 · Generado por Tenacitas · 25/02/2026 &nbsp;|&nbsp;
+  Metodología UW v2 · NOI = GOP(60%) − HMA(8%) · Exit Y1 estabilización · LTC 50% · Deuda 5% · CapEx: €2.500/sqm hard + soft 10% + FF&amp;E €10k/key &nbsp;|&nbsp;
+  Documento confidencial MAGG Capital
+</div>
+
+</div>
 </body>
 </html>
