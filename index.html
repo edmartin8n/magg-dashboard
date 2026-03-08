@@ -224,7 +224,7 @@ header h1{font-size:16px;font-weight:800;letter-spacing:-.3px;color:var(--navy)}
 .toast-success{background:var(--green)}.toast-error{background:var(--red)}
 
 /* ===== PIPELINE TABLE ===== */
-#view-deals{padding:20px 28px}
+#view-deals{padding:14px 20px}
 .pl-filters{display:flex;gap:7px;flex-wrap:wrap;align-items:center;margin-bottom:10px}
 .pl-chip{padding:5px 14px;border-radius:20px;font-size:12px;font-weight:600;cursor:pointer;border:1.5px solid;transition:all .18s;user-select:none;letter-spacing:.1px}
 .pl-chip-go{border-color:var(--green);color:var(--green);background:#f0faf2}.pl-chip-go.on{background:var(--green);color:white}
@@ -274,6 +274,12 @@ header h1{font-size:16px;font-weight:800;letter-spacing:-.3px;color:var(--navy)}
 .pl-dg-v{font-size:13px;font-weight:600;color:var(--navy)}
 
 @media(max-width:768px){
+  header{padding:8px 14px}
+  header h1{font-size:13px}
+  .header-sub,.upd{display:none}
+  .tabs{padding:0 8px}
+  .tab{padding:8px 12px;font-size:11.5px}
+  #view-deals,#view-finders{padding:10px 12px}
   .deal-kpis{display:none}
   .finder-header{grid-template-columns:1fr 1fr}
   .ft-header,.finder-row{grid-template-columns:2fr 1fr 1fr 40px}
