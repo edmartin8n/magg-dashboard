@@ -1,0 +1,306 @@
+<!DOCTYPE html><html lang="es"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MAGG-2026-010 — Gran Vía 48 · Madrid · Aparthotel</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;padding:16px;background:#eef1f7;font-family:Arial,Helvetica,sans-serif;font-size:14px}
+.wrap{max-width:660px;margin:0 auto}
+.hdr{background:#0d1f3c;padding:20px 24px;border-radius:10px 10px 0 0}
+.hdr-ref{font-size:10px;color:rgba(255,255,255,.5);letter-spacing:1px;text-transform:uppercase}
+.hdr-title{font-size:20px;font-weight:800;color:#fff;margin:4px 0 2px}
+.hdr-sub{font-size:12px;color:rgba(255,255,255,.55)}
+.verdict{padding:14px 24px;font-weight:700;font-size:14px;border-bottom:2px solid rgba(0,0,0,.08)}
+.verdict-go{background:#e8f5e9;color:#1b5e20}
+.verdict-bo{background:#fff8e1;color:#e65100}
+.sec{background:#fff;padding:16px 24px;border-bottom:1px solid #e8ecf2}
+.sec-title{font-size:10px;font-weight:700;color:#7a8399;text-transform:uppercase;letter-spacing:.7px;margin-bottom:12px}
+.strat-banner{background:#f0f4fa;border-left:4px solid #0d1f3c;padding:8px 14px;border-radius:4px;margin-bottom:14px;font-size:12px;font-weight:600;color:#0d1f3c}
+.strat-go{border-left-color:#2e7d32;background:#f1f8f2}
+.strat-bo{border-left-color:#e65100;background:#fff8f0}
+.kpi-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.kpi{background:#f4f6fb;border-radius:8px;padding:10px 12px;flex:1;min-width:90px;text-align:center}
+.kpi .v{font-size:17px;font-weight:800;color:#0d1f3c;line-height:1}
+.kpi .l{font-size:10px;color:#7a8399;margin-top:3px}
+.kpi-go .v{color:#1b5e20}
+.kpi-bo .v{color:#e65100}
+table{width:100%;border-collapse:collapse;font-size:12px}
+th{background:#0d1f3c;color:rgba(255,255,255,.75);padding:7px 10px;text-align:left;font-weight:600}
+td{padding:7px 10px;border-bottom:1px solid #f0f4fa;color:#1a1a2e}
+tr:last-child td{border-bottom:none}
+.tag-go{display:inline-block;padding:2px 8px;border-radius:10px;background:#e8f5e9;color:#1b5e20;font-size:11px;font-weight:700}
+.tag-no{display:inline-block;padding:2px 8px;border-radius:10px;background:#fce4ec;color:#b71c1c;font-size:11px;font-weight:700}
+.tag-bo{display:inline-block;padding:2px 8px;border-radius:10px;background:#fff8e1;color:#e65100;font-size:11px;font-weight:700}
+.spread-pos{color:#1b5e20;font-weight:700}
+.spread-neg{color:#b71c1c;font-weight:700}
+.spread-bo{color:#e65100;font-weight:700}
+.risk-row td:first-child{color:#c62828;font-weight:600}
+.footer{background:#0d1f3c;padding:12px 24px;border-radius:0 0 10px 10px;font-size:10px;color:rgba(255,255,255,.4);text-align:center}
+.timeline{display:flex;gap:0;overflow-x:auto;padding:8px 0 2px}
+.tl-step{flex:1;min-width:70px;text-align:center;position:relative}
+.tl-step::after{content:'';position:absolute;top:9px;left:50%;right:-50%;height:2px;background:#e0e0e0;z-index:0}
+.tl-step:last-child::after{display:none}
+.tl-dot{width:20px;height:20px;border-radius:50%;background:#0d1f3c;color:#fff;font-size:9px;font-weight:700;display:flex;align-items:center;justify-content:center;margin:0 auto 5px;position:relative;z-index:1}
+.tl-lbl{font-size:9px;color:#7a8399}
+.tl-sub{font-size:8px;color:#aab5c8}
+.tl-a .tl-dot{background:#e65100}
+.tl-b .tl-dot{background:#1b5e20}
+.divider{height:1px;background:#e8ecf2;margin:14px 0}
+.sens-tbl th{font-size:11px;padding:6px 8px}
+.sens-tbl td{font-size:11px;padding:6px 8px;text-align:center}
+.sens-tbl td:first-child{text-align:left;font-weight:600}
+.sens-base{background:#fff9c4;font-weight:700}
+.note{font-size:11px;color:#7a8399;font-style:italic;margin-top:8px}
+</style>
+</head><body><div class="wrap">
+
+<!-- HEADER -->
+<div class="hdr">
+  <div class="hdr-ref">MAGG Capital · MAGG-2026-010 · IC Brief · Mar 2026</div>
+  <div class="hdr-title">Gran Vía 48 — Madrid</div>
+  <div class="hdr-sub">Aparthotel (BENNET / SmartRental Collection) · 97 o 124 uds · Gran Vía, 48, Centro 28004 Madrid</div>
+</div>
+
+<!-- VERDICT BANNER -->
+<div class="verdict verdict-go">
+  🅰️ Estrategia A (97 uds): <span class="tag-bo">BORDERLINE</span> — YoC 6.48% · Spread +123bps · IRR ~28% · 1.63x ❌ &nbsp;|&nbsp;
+  🅱️ Estrategia B (124 uds): <span class="tag-go">GO ✅</span> — YoC 7.10% · Spread +185bps · IRR ~23% · 1.87x ✅
+</div>
+
+<!-- FICHA -->
+<div class="sec">
+<div class="sec-title">Ficha del activo</div>
+<table>
+<tr><th>Campo</th><th>Estrategia A</th><th>Estrategia B</th></tr>
+<tr><td>Tipología</td><td colspan="2">Aparthotel short-stay · Marca BENNET (SmartRental Collection)</td></tr>
+<tr><td>Unidades</td><td>97 uds (configuración actual)</td><td>124 uds (25 studios + 80 1-bed + 19 2-bed)</td></tr>
+<tr><td>SQM</td><td colspan="2">TBC (OM pendiente · Gran Vía 48)</td></tr>
+<tr><td>Estado obras</td><td>En operación · Reforma ligera</td><td>Reforma integral + cambio room mix</td></tr>
+<tr><td>Ubicación</td><td colspan="2">Gran Vía 48, Centro, 28004 Madrid · <span class="tag-go">A+ prime</span></td></tr>
+<tr><td>Precio asking</td><td colspan="2">€90.0M (asking)</td></tr>
+<tr><td>Fuente</td><td colspan="2">SmartRental / BP GV48 (Business Plan operativa)</td></tr>
+</table>
+</div>
+
+<!-- A. CAPEX -->
+<div class="sec">
+<div class="sec-title">A. Inversión & CapEx</div>
+
+<div class="strat-banner strat-bo">🅰️ Estrategia A — 97 uds · Reforma Ligera (€10k/unidad)</div>
+<div class="kpi-row">
+  <div class="kpi"><div class="v">€90.0M</div><div class="l">Precio compra</div></div>
+  <div class="kpi"><div class="v">€1.16M</div><div class="l">CapEx total</div></div>
+  <div class="kpi"><div class="v">€91.2M</div><div class="l">Total inversión</div></div>
+  <div class="kpi"><div class="v">€939k</div><div class="l">€/unidad entry</div></div>
+</div>
+<table>
+<tr><th>Partida</th><th>Importe</th><th>Detalle</th></tr>
+<tr><td>Hard costs (€10k/ud × 97)</td><td>€970k</td><td>Lavado de cara: pintura, FF&E básico, pequeñas mejoras</td></tr>
+<tr><td>Soft costs (10% hard)</td><td>€97k</td><td>PM, coordinación</td></tr>
+<tr><td>Contingencia (10%)</td><td>€97k</td><td>Sin visita DT confirmada</td></tr>
+<tr><td><b>Total CapEx</b></td><td><b>€1.164M</b></td><td>€12k/unidad all-in</td></tr>
+<tr><td><b>Total Inversión</b></td><td><b>€91.16M</b></td><td>LTC 50% → Deuda €45.6M · Equity €45.6M</td></tr>
+</table>
+
+<div class="divider"></div>
+
+<div class="strat-banner strat-go">🅱️ Estrategia B — 124 uds · Reforma Integral + Cambio Room Mix</div>
+<div class="kpi-row">
+  <div class="kpi"><div class="v">€90.0M</div><div class="l">Precio compra</div></div>
+  <div class="kpi"><div class="v">€7.26M</div><div class="l">CapEx total</div></div>
+  <div class="kpi"><div class="v">€97.3M</div><div class="l">Total inversión</div></div>
+  <div class="kpi"><div class="v">€785k</div><div class="l">€/unidad entry</div></div>
+</div>
+<table>
+<tr><th>Partida</th><th>Importe</th><th>Detalle</th></tr>
+<tr><td>Hard costs (reforma integral)</td><td>€6.000M</td><td>Redistribución planta, nuevas unidades, acabados premium</td></tr>
+<tr><td>Soft costs (10% hard)</td><td>€600k</td><td>Arquitectura, licencias, PM, ingeniería</td></tr>
+<tr><td>Contingencia (10%)</td><td>€660k</td><td>Riesgo de desviación en reforma integral con cambio de uso</td></tr>
+<tr><td><b>Total CapEx</b></td><td><b>€7.260M</b></td><td>€58.5k/unidad · Reforma intensiva Gran Vía</td></tr>
+<tr><td><b>Total Inversión</b></td><td><b>€97.26M</b></td><td>LTC 50% → Deuda €48.6M · Equity €48.6M</td></tr>
+</table>
+</div>
+
+<!-- B. OPERACIONES -->
+<div class="sec">
+<div class="sec-title">B. Operaciones — Año 1 Estabilizado (BP SmartRental / MAGG v2)</div>
+
+<div class="strat-banner strat-bo">🅰️ Estrategia A — 97 uds · ADR €326 · Occ 85.6%</div>
+<div class="kpi-row">
+  <div class="kpi"><div class="v">€326</div><div class="l">ADR (estab.)</div></div>
+  <div class="kpi"><div class="v">85.6%</div><div class="l">Ocupación</div></div>
+  <div class="kpi"><div class="v">€5.91M</div><div class="l">NOI MAGG v2</div></div>
+  <div class="kpi kpi-bo"><div class="v">6.48%</div><div class="l">YoC</div></div>
+</div>
+<table>
+<tr><th>Métrica</th><th>MAGG v2 (conservador)</th><th>BP SmartRental</th></tr>
+<tr><td>ADR</td><td>€326</td><td>€326 (comparable SR Collection GV)</td></tr>
+<tr><td>Ocupación estab.</td><td>85.6%</td><td>85.6%</td></tr>
+<tr><td>Revenue total (97 uds)</td><td>€9.88M</td><td>—</td></tr>
+<tr><td>GOP (67.8% margin)</td><td>€6.70M</td><td>€6.7M (Y2 estab.)</td></tr>
+<tr><td>HMA all-in 8% revenue</td><td>(€790k)</td><td>Base 3% + Incentive 6% GOP</td></tr>
+<tr><td><b>NOI propietario</b></td><td><b>€5.91M</b></td><td>€6.0M (BP)</td></tr>
+</table>
+
+<div class="divider"></div>
+
+<div class="strat-banner strat-go">🅱️ Estrategia B — 124 uds · ADR €308 · Occ 85.6% (Año natural 2029)</div>
+<div class="kpi-row">
+  <div class="kpi"><div class="v">€308</div><div class="l">ADR estab. Y1</div></div>
+  <div class="kpi"><div class="v">85.6%</div><div class="l">Ocupación</div></div>
+  <div class="kpi kpi-go"><div class="v">€6.91M</div><div class="l">NOI MAGG v2</div></div>
+  <div class="kpi kpi-go"><div class="v">7.10%</div><div class="l">YoC</div></div>
+</div>
+<table>
+<tr><th>Métrica</th><th>MAGG v2 (conservador)</th><th>BP SmartRental</th></tr>
+<tr><td>ADR (2029, natural year stab.)</td><td>€307.8</td><td>€294 (Y1 operativo) → €308 (Y1 natural)</td></tr>
+<tr><td>Ocupación estab.</td><td>85.6%</td><td>85.6%</td></tr>
+<tr><td>Revenue total (124 uds, 2029)</td><td>€12.05M</td><td>€12.05M (BP USALI)</td></tr>
+<tr><td>GOP inc. F&B</td><td>€7.87M</td><td>€7.87M (65.3% margin)</td></tr>
+<tr><td>HMA all-in 8% revenue</td><td>(€964k)</td><td>Base 3% + Incentive 6% GOP = €841k</td></tr>
+<tr><td><b>NOI propietario</b></td><td><b>€6.91M</b></td><td>€7.03M (BP 2029)</td></tr>
+</table>
+<p class="note">💡 MAGG v2 usa HMA 8% flat sobre revenue (conservador vs estructura real SmartRental). BP da NOI €7.03M a mismas ocupación/ADR → spread positivo en ambas metodologías.</p>
+</div>
+
+<!-- C. EXIT & RETORNOS -->
+<div class="sec">
+<div class="sec-title">C. Exit & Retornos</div>
+
+<div class="strat-banner strat-bo">🅰️ Estrategia A — Exit yield 5.25% · Hold ~2 años</div>
+<div class="kpi-row">
+  <div class="kpi"><div class="v">€112.6M</div><div class="l">Exit value</div></div>
+  <div class="kpi kpi-bo"><div class="v">+123bps</div><div class="l">Spread</div></div>
+  <div class="kpi"><div class="v">~28%</div><div class="l">IRR levered</div></div>
+  <div class="kpi kpi-bo"><div class="v">1.63x</div><div class="l">Eq. múltiple ❌</div></div>
+</div>
+<table>
+<tr><th>Métrica</th><th>Valor A</th><th>Umbral MAGG</th><th>✓</th></tr>
+<tr><td>YoC vs exit yield</td><td><span class="spread-bo">+123 bps</span></td><td>≥150 bps GO</td><td>⚠️</td></tr>
+<tr><td>IRR levered (2yr hold)</td><td>~28%</td><td>≥15%</td><td>✅</td></tr>
+<tr><td>Equity múltiple</td><td>1.63x</td><td>≥1.8x</td><td>❌</td></tr>
+<tr><td>Exit value (@5.25%)</td><td>€112.6M</td><td>—</td><td>—</td></tr>
+<tr><td>Deuda repago</td><td>€45.6M</td><td>DSCR 2.6x ✅</td><td>✅</td></tr>
+<tr><td>Equity neto exit</td><td>€67.0M</td><td>—</td><td>—</td></tr>
+</table>
+<p class="note">❌ Múltiple 1.63x por debajo del umbral 1.8x MAGG. El deal solo justifica si se ejecuta en <24 meses y se captura yield compression al 5.0% → exit €118.2M → múltiple ~1.72x (aún bajo). Veredicto: BORDERLINE.</p>
+
+<div class="divider"></div>
+
+<div class="strat-banner strat-go">🅱️ Estrategia B — Exit yield 5.25% · Hold ~3 años</div>
+<div class="kpi-row">
+  <div class="kpi kpi-go"><div class="v">€131.6M</div><div class="l">Exit value</div></div>
+  <div class="kpi kpi-go"><div class="v">+185bps</div><div class="l">Spread</div></div>
+  <div class="kpi kpi-go"><div class="v">~23%</div><div class="l">IRR levered</div></div>
+  <div class="kpi kpi-go"><div class="v">1.87x</div><div class="l">Eq. múltiple ✅</div></div>
+</div>
+<table>
+<tr><th>Métrica</th><th>Valor B</th><th>Umbral MAGG</th><th>✓</th></tr>
+<tr><td>YoC vs exit yield</td><td><span class="spread-pos">+185 bps</span></td><td>≥150 bps GO</td><td>✅</td></tr>
+<tr><td>IRR levered (~3yr hold)</td><td>~23%</td><td>≥15%</td><td>✅</td></tr>
+<tr><td>Equity múltiple</td><td>~1.87x</td><td>≥1.8x</td><td>✅</td></tr>
+<tr><td>Exit value (@5.25%)</td><td>€131.6M</td><td>—</td><td>—</td></tr>
+<tr><td>Deuda repago</td><td>€48.6M</td><td>DSCR 2.84x ✅</td><td>✅</td></tr>
+<tr><td>Equity neto exit</td><td>€83.0M</td><td>—</td><td>—</td></tr>
+</table>
+<p class="note">✅ Estrategia B pasa todos los umbrales MAGG. Condicionado a: (1) licencia cambio room mix aprobada, (2) no desviación CapEx material, (3) timeline 18-30m ejecutable. Si exit yield comprime a 5.0% → exit €138.2M → múltiple ~1.95x.</p>
+</div>
+
+<!-- CRONOGRAMA -->
+<div class="sec">
+<div class="sec-title">Cronograma</div>
+
+<p style="font-size:11px;font-weight:700;color:#e65100;margin:0 0 6px">🅰️ Estrategia A — Reforma ligera (~3 meses)</p>
+<div class="timeline">
+  <div class="tl-step tl-a"><div class="tl-dot">1</div><div class="tl-lbl">Compra</div><div class="tl-sub">Q2 2026</div></div>
+  <div class="tl-step tl-a"><div class="tl-dot">2</div><div class="tl-lbl">Reform. ligera</div><div class="tl-sub">Q3 2026</div></div>
+  <div class="tl-step tl-a"><div class="tl-dot">3</div><div class="tl-lbl">Op. full</div><div class="tl-sub">Jul 2026</div></div>
+  <div class="tl-step tl-a"><div class="tl-dot">4</div><div class="tl-lbl">Estab. Y1</div><div class="tl-sub">2027</div></div>
+  <div class="tl-step tl-a"><div class="tl-dot">5</div><div class="tl-lbl">Exit</div><div class="tl-sub">2028</div></div>
+</div>
+
+<div class="divider"></div>
+
+<p style="font-size:11px;font-weight:700;color:#1b5e20;margin:0 0 6px">🅱️ Estrategia B — Reforma integral + licencia (18-30 meses)</p>
+<div class="timeline">
+  <div class="tl-step tl-b"><div class="tl-dot">1</div><div class="tl-lbl">Compra</div><div class="tl-sub">Q2 2026</div></div>
+  <div class="tl-step tl-b"><div class="tl-dot">2</div><div class="tl-lbl">Licencia</div><div class="tl-sub">Q2 2026–Q2 2027 (12m)</div></div>
+  <div class="tl-step tl-b"><div class="tl-dot">3</div><div class="tl-lbl">Reforma</div><div class="tl-sub">Q2 2026–Ago 2027 (18m OM)</div></div>
+  <div class="tl-step tl-b"><div class="tl-dot">4</div><div class="tl-lbl">Apertura</div><div class="tl-sub">Ago 2027 (BP) / Q4 2028 (conserv.)</div></div>
+  <div class="tl-step tl-b"><div class="tl-dot">5</div><div class="tl-lbl">Estab. Y1</div><div class="tl-sub">2029</div></div>
+  <div class="tl-step tl-b"><div class="tl-dot">6</div><div class="tl-lbl">Exit</div><div class="tl-sub">2029–2030</div></div>
+</div>
+<p class="note">⚠️ BP SmartRental estima 18m hasta apertura. Eduardo señaló que podría ser 12m licencia + 18m reforma = 30m total. En modelo MAGG se usa timeline BP (más optimista) como base; +12m como escenario stress. Si 30m: apertura Q4 2028 → estab. 2030 → hold 4 años → IRR ~18% (sigue GO).</p>
+</div>
+
+<!-- SENSIBILIDADES -->
+<div class="sec">
+<div class="sec-title">Sensibilidad Spread (bps) vs Exit Yield 5.25%</div>
+
+<p style="font-size:11px;font-weight:700;color:#e65100;margin:0 0 8px">🅰️ Estrategia A — 97 uds · Base: ADR €326 · Occ 85.6% · Total inv €91.2M</p>
+<table class="sens-tbl">
+<tr><th>ADR \ Occ</th><th>80.6% (−5%)</th><th>85.6% (base)</th><th>90.6% (+5%)</th></tr>
+<tr><td>€336 (+10)</td><td>+105 bps</td><td>+143 bps</td><td class="spread-pos">+180 bps</td></tr>
+<tr><td>€326 (base)</td><td>+85 bps</td><td class="sens-base">+123 bps</td><td>+161 bps</td></tr>
+<tr><td>€316 (−10)</td><td>+64 bps</td><td>+104 bps</td><td>+141 bps</td></tr>
+</table>
+<p class="note">Estrategia A: Solo el escenario bull puro (ADR+10, Occ+5%) supera el umbral GO de 150bps. Todos los demás escenarios son BORDERLINE o NO GO. Muy dependiente de ejecución perfecta.</p>
+
+<div class="divider"></div>
+
+<p style="font-size:11px;font-weight:700;color:#1b5e20;margin:0 0 8px">🅱️ Estrategia B — 124 uds · Base: ADR €308 · Occ 85.6% · Total inv €97.3M</p>
+<table class="sens-tbl">
+<tr><th>ADR \ Occ</th><th>80.6% (−5%)</th><th>85.6% (base)</th><th>90.6% (+5%)</th></tr>
+<tr><td>€318 (+10)</td><td>+167 bps ✅</td><td class="spread-pos">+208 bps ✅</td><td class="spread-pos">+249 bps ✅</td></tr>
+<tr><td>€308 (base)</td><td>+144 bps</td><td class="sens-base spread-pos">+185 bps ✅</td><td class="spread-pos">+226 bps ✅</td></tr>
+<tr><td>€298 (−10)</td><td>+121 bps</td><td>+163 bps ✅</td><td class="spread-pos">+204 bps ✅</td></tr>
+</table>
+<p class="note">Estrategia B: 5 de 9 escenarios superan los 150bps GO. Solo los escenarios más bajistas (ADR−10 con Occ−5%, y ADR base con Occ−5%) quedan en BORDERLINE. Mucho más robusto que A.</p>
+</div>
+
+<!-- UBICACIÓN -->
+<div class="sec">
+<div class="sec-title">Ubicación & Mercado</div>
+<p><b>Gran Vía 48:</b> Arteria principal de Madrid · City center A+ · 100m Metro Gran Vía (L1/L5) + Callao (L3/L5) · 5 min Puerta del Sol · 3 min Plaza España</p>
+<p><b>Comparable directo:</b> SmartRental Collection Gran Vía Capital (mismo operador en misma calle) → ADR comparables validados por el propio operador. Ventaja competitiva: SmartRental conoce la plaza a la perfección.</p>
+<p><b>Demand drivers:</b> Turismo internacional premium, corporate, bleisure. Gran Vía = top 3 zonas hoteleras de Madrid por RevPAR.</p>
+<table>
+<tr><th>Comp</th><th>Zona</th><th>ADR est.</th><th>Occ est.</th><th>Obs.</th></tr>
+<tr><td>SR Collection GV Capital</td><td>Gran Vía</td><td>€300–360</td><td>~85%</td><td>Comparable directo (mismo op.)</td></tr>
+<tr><td>NH Collection Gran Vía</td><td>Gran Vía</td><td>€280–340</td><td>~82%</td><td>4★ referencia</td></tr>
+<tr><td>Only YOU Hotel</td><td>Barquillo</td><td>€250–320</td><td>~84%</td><td>Boutique premium</td></tr>
+<tr><td>GV48 (MAGG asunción B)</td><td>Gran Vía</td><td>€308</td><td>85.6%</td><td>BP SmartRental (conservador A2)</td></tr>
+</table>
+</div>
+
+<!-- RIESGOS -->
+<div class="sec">
+<div class="sec-title">Riesgos clave & Mitigaciones</div>
+<table class="risk-row">
+<tr><th>Riesgo</th><th>Estrategia</th><th>Mitigación</th></tr>
+<tr><td>Precio elevado €90M — múltiple equity A solo 1.63x</td><td>A</td><td>Solo viable si exit yield comprime a ≤5.0% o se negocia precio. Considerar NBO a €85M.</td></tr>
+<tr><td>Licencia cambio room mix (97→124 uds) — puede denegarse</td><td>B</td><td>DD jurídica previa: confirmar viabilidad técnica y normativa. Kill-switch si licencia no viable.</td></tr>
+<tr><td>30 meses sin ingresos (carry cost) si timeline conservador</td><td>B</td><td>Modelizar escenario 30m: IRR ~18%, múltiple ~1.72x — sigue siendo GO mínimo.</td></tr>
+<tr><td>CapEx desviación reforma integral Gran Vía (edificio histórico)</td><td>B</td><td>10% contingencia incluida. Confirmar con DT antes de firma. Actualizar modelo si >€7.5M CapEx total.</td></tr>
+<tr><td>ADR €308 (B) = recorte vs estado actual €326 (A) durante obras</td><td>B</td><td>ADR más bajo al ampliar unidades compensado por mayor NOI total. BP SmartRental lo justifica con mix.</td></tr>
+<tr><td>Mercado gran vía saturado / ciclo bajista</td><td>A+B</td><td>ADR €308-326 ya conservador vs comps. Riesgo sistémico; mitigación = calidad activo + timing exit.</td></tr>
+</table>
+</div>
+
+<!-- PRÓXIMOS PASOS -->
+<div class="sec">
+<div class="sec-title">Próximos pasos</div>
+<table>
+<tr><th>Acción</th><th>Owner</th><th>Fecha</th></tr>
+<tr><td>Confirmar SQM real del edificio (ficha catastral)</td><td>Eduardo</td><td>Inmediato</td></tr>
+<tr><td>DD jurídica: viabilidad licencia 97→124 uds (Estrategia B)</td><td>Legal / Eduardo</td><td>Antes de NBO</td></tr>
+<tr><td>Negociar precio: tantear €85M (mejora múltiple A a 1.75x; B a 1.97x)</td><td>Eduardo</td><td>Esta semana</td></tr>
+<tr><td>Visita DT: confirmar CapEx B y estado real del activo</td><td>Técnico</td><td>Tras NBO aceptado</td></tr>
+<tr><td>Solicitar título de propiedad + cargas / contrato gestión actual</td><td>Legal</td><td>Antes de firma arras</td></tr>
+<tr><td>Definir estrategia definitiva A vs B con inversor</td><td>Eduardo / IC</td><td>Semana del 16/03</td></tr>
+</table>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">MAGG Capital · IC Brief MAGG-2026-010 · Uso interno · Confidencial · Generado por Tenacitas · Mar 2026</div>
+
+</div></body></html>
