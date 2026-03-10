@@ -3,280 +3,356 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>MAGG-2026-006 | Rossio Lisboa | IC Brief</title>
-<style>
-  *{box-sizing:border-box;margin:0;padding:0}
-  body{font-family:Arial,Helvetica,sans-serif;font-size:13px;color:#1a1a2e;background:#f4f6fa;padding:24px}
-  .wrap{max-width:860px;margin:auto;background:white;border-radius:8px;overflow:hidden;box-shadow:0 2px 20px rgba(0,0,0,.1)}
-  /* HEADER */
-  .hdr{background:linear-gradient(135deg,#0d1f3c,#1a3a6a);color:white;padding:22px 28px}
-  .hdr-ref{font-size:11px;font-weight:700;letter-spacing:1px;opacity:.65;text-transform:uppercase;margin-bottom:4px}
-  .hdr-name{font-size:20px;font-weight:800;line-height:1.2;margin-bottom:3px}
-  .hdr-addr{font-size:12px;opacity:.75;margin-bottom:10px}
-  .hdr-meta{display:flex;gap:16px;flex-wrap:wrap;font-size:11px;opacity:.8}
-  .hdr-meta span{background:rgba(255,255,255,.12);padding:3px 10px;border-radius:12px}
-  /* VERDICT */
-  .verdict{padding:14px 28px;background:#fff3cd;border-left:5px solid #e6a817;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
-  .verdict.go{background:#e8f5e9;border-left-color:#2e7d32}
-  .verdict.nogo{background:#fce4ec;border-left-color:#c62828}
-  .verdict.borderline{background:#fff3cd;border-left-color:#e6a817}
-  .v-badge{font-size:18px;font-weight:900;white-space:nowrap}
-  .v-details{font-size:12px;color:#555;line-height:1.6}
-  /* FICHA */
-  .ficha{display:table;width:100%;background:#f0f4fa;border-bottom:1px solid #dde4f0}
-  .ficha-row{display:table-row}
-  .ficha-cell{display:table-cell;padding:12px 20px;border-right:1px solid #dde4f0;vertical-align:middle}
-  .ficha-cell:last-child{border-right:none}
-  .ficha-lbl{font-size:9.5px;text-transform:uppercase;letter-spacing:.6px;color:#7a8399;margin-bottom:3px}
-  .ficha-val{font-size:14px;font-weight:800;color:#0d1f3c}
-  /* SECTION */
-  .sec{padding:16px 28px;border-bottom:1px solid #edf0f8}
-  .sec-title{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:#c8a84b;margin-bottom:10px}
-  /* 3-COL */
-  table.cols3{width:100%;border-collapse:collapse}
-  table.cols3 td{width:33.3%;vertical-align:top;padding:0 12px 0 0;font-size:12px}
-  table.cols3 td:last-child{padding-right:0}
-  .col-hdr{background:#0d1f3c;color:white;font-size:10px;font-weight:700;padding:6px 10px;border-radius:4px 4px 0 0;text-align:center;margin-bottom:0}
-  .col-body{background:#f8fafc;border:1px solid #e2e8f0;border-top:none;border-radius:0 0 4px 4px;padding:10px}
-  .col-body p{margin-bottom:6px;line-height:1.5;font-size:12px;color:#333}
-  .col-body .kv{display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid #eef1f8}
-  .col-body .kv:last-child{border-bottom:none}
-  .col-body .kk{color:#7a8399;font-size:11px}
-  .col-body .vv{font-weight:700;color:#0d1f3c;font-size:12px}
-  /* TIMELINE */
-  table.tl{width:100%;border-collapse:collapse;margin-top:8px}
-  table.tl td{text-align:center;padding:8px 6px;font-size:11px;border:1px solid #e2e8f0;background:#f8fafc}
-  table.tl td:first-child{background:#0d1f3c;color:white;font-weight:700;font-size:10px;width:80px}
-  table.tl .tl-date{font-size:10px;color:#7a8399;display:block;margin-top:2px}
-  /* 2-COL */
-  table.cols2{width:100%;border-collapse:collapse}
-  table.cols2 td{vertical-align:top;padding:0 12px 0 0;font-size:12px}
-  table.cols2 td:last-child{padding-right:0}
-  .card{background:#f8fafc;border:1px solid #e2e8f0;border-radius:6px;padding:12px 14px}
-  .card-title{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#c8a84b;margin-bottom:8px}
-  ul.risk-list{padding-left:16px;margin:0}
-  ul.risk-list li{margin-bottom:6px;line-height:1.5;font-size:12px;color:#333}
-  /* SENSITIVITY */
-  table.sens{border-collapse:collapse;font-size:11px;width:100%}
-  table.sens th{background:#0d1f3c;color:white;padding:6px 10px;text-align:center;font-weight:700}
-  table.sens td{padding:6px 10px;border:1px solid #e2e8f0;text-align:center;color:#333}
-  table.sens tr:nth-child(even) td{background:#f8fafc}
-  .go-cell{background:#e8f5e9!important;color:#2e7d32;font-weight:700}
-  .bo-cell{background:#fff8e1!important;color:#e65100;font-weight:700}
-  .no-cell{background:#fce4ec!important;color:#c62828;font-weight:700}
-  /* FOOTER */
-  .footer{padding:14px 28px;background:#f8fafc;font-size:11px;color:#7a8399;border-top:1px solid #edf0f8}
-  .footer a{color:#1a3a6a}
-  @media(max-width:600px){
-    table.cols3 td,table.cols2 td{display:block;width:100%;padding:0 0 12px 0}
-    .ficha-cell{display:block;border-right:none;border-bottom:1px solid #dde4f0}
-  }
-</style>
+<title>MAGG-2026-006 | Hotel Boutique Rossio Lisboa | IC Brief</title>
 </head>
-<body>
-<div class="wrap">
+<body style="margin:0;padding:16px;background:#eef1f7;font-family:Arial,Helvetica,sans-serif;font-size:13px;color:#1a1a2e">
 
-<!-- 1. HEADER -->
-<div class="hdr">
-  <div class="hdr-ref">MAGG-2026-006 · IC Brief · 25/02/2026</div>
-  <div class="hdr-name">Hotel Boutique — Rua Primeiro de Dezembro</div>
-  <div class="hdr-addr">📍 Rossio, Baixa Pombalina, Lisboa, Portugal</div>
-  <div class="hdr-meta">
-    <span>Hotel Boutique 4★</span>
-    <span>42 habitaciones</span>
-    <span>1.945 sqm</span>
-    <span>Reforma Integral</span>
-    <span>Licencia CML aprobada (14/01/2026)</span>
-  </div>
-</div>
+<table width="640" cellpadding="0" cellspacing="0" border="0" align="center" style="max-width:640px;margin:0 auto;border-radius:10px;overflow:hidden;box-shadow:0 2px 20px rgba(0,0,0,.12)">
 
-<!-- 2. VERDICT -->
-<div class="verdict borderline">
-  <div class="v-badge">⚠️ BORDERLINE</div>
-  <div class="v-details">
-    <strong>Bid rec ★ €10.0M</strong> (+203bps vs exit) &nbsp;|&nbsp; <strong>Límite GO €11.2M</strong> (+150bps) &nbsp;|&nbsp; Asking €13.0M → NO GO<br>
-    NOI estabilizado: <strong>€1.143M</strong> &nbsp;|&nbsp; YoC @ bid rec: <strong>7.25%</strong> &nbsp;|&nbsp; Exit 5.25% → €21.8M &nbsp;|&nbsp; IRR lev. ~22%
-  </div>
-</div>
+  <!-- ①  HEADER -->
+  <tr>
+    <td style="background:#0d1f3c;padding:22px 24px;border-radius:10px 10px 0 0">
+      <div style="font-size:10px;color:rgba(255,255,255,.5);letter-spacing:1px;text-transform:uppercase;margin-bottom:4px">MAGG Capital · MAGG-2026-006 · IC Brief · Mar 2026</div>
+      <div style="font-size:20px;font-weight:800;color:#fff;margin-bottom:3px">Hotel Boutique — Rua Primeiro de Dezembro</div>
+      <div style="font-size:12px;color:rgba(255,255,255,.55);margin-bottom:10px">📍 Rossio / Baixa Pombalina, Lisboa, Portugal</div>
+      <table cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td style="padding-right:8px"><span style="background:rgba(255,255,255,.12);color:rgba(255,255,255,.85);font-size:10px;padding:3px 10px;border-radius:12px;white-space:nowrap">Hotel Boutique 4★</span></td>
+          <td style="padding-right:8px"><span style="background:rgba(255,255,255,.12);color:rgba(255,255,255,.85);font-size:10px;padding:3px 10px;border-radius:12px;white-space:nowrap">~42 hab (pend. confirmar)</span></td>
+          <td style="padding-right:8px"><span style="background:rgba(255,255,255,.12);color:rgba(255,255,255,.85);font-size:10px;padding:3px 10px;border-radius:12px;white-space:nowrap">~1.945 sqm</span></td>
+          <td style="padding-right:8px"><span style="background:rgba(255,255,255,.12);color:rgba(255,255,255,.85);font-size:10px;padding:3px 10px;border-radius:12px;white-space:nowrap">Reforma Integral</span></td>
+          <td><span style="background:rgba(255,255,255,.12);color:rgba(255,255,255,.85);font-size:10px;padding:3px 10px;border-radius:12px;white-space:nowrap">Asking ~€13M</span></td>
+        </tr>
+      </table>
+    </td>
+  </tr>
 
-<!-- 3. FICHA -->
-<div class="ficha">
-  <div class="ficha-row">
-    <div class="ficha-cell"><div class="ficha-lbl">Tipo</div><div class="ficha-val">Hotel Boutique 4★</div></div>
-    <div class="ficha-cell"><div class="ficha-lbl">Habitaciones</div><div class="ficha-val">42 keys</div></div>
-    <div class="ficha-cell"><div class="ficha-lbl">SQM</div><div class="ficha-val">1.945 m²</div></div>
-    <div class="ficha-cell"><div class="ficha-lbl">Estado obras</div><div class="ficha-val">Reforma Integral</div></div>
-    <div class="ficha-cell"><div class="ficha-lbl">Ubicación</div><div class="ficha-val">Rossio, Lisboa</div></div>
-    <div class="ficha-cell"><div class="ficha-lbl">Bid rec.</div><div class="ficha-val">€10.0M</div></div>
-  </div>
-</div>
+  <!-- ②  VERDICT BANNER -->
+  <tr>
+    <td style="background:#FFF3CD;border-left:5px solid #e6a817;padding:14px 24px">
+      <table cellpadding="0" cellspacing="0" border="0" width="100%">
+        <tr>
+          <td style="vertical-align:middle;padding-right:16px;white-space:nowrap">
+            <span style="font-size:17px;font-weight:900;color:#856404">⚠️ BORDERLINE</span>
+          </td>
+          <td style="vertical-align:middle">
+            <span style="font-size:12px;color:#555;line-height:1.7">
+              <strong>Bid rec ★ €9.1M</strong> (+200bps vs exit) &nbsp;|&nbsp;
+              <strong>Límite GO €10.2M</strong> (+150bps) &nbsp;|&nbsp;
+              Asking €13M → Spread +43bps (⚠️ BORDERLINE)<br>
+              NOI estab.: <strong>€1.22M</strong> &nbsp;|&nbsp;
+              YoC @ asking: <strong>6.18%</strong> &nbsp;|&nbsp;
+              Exit 5.75% → <strong>€21.2M</strong> &nbsp;|&nbsp;
+              IRR lev. @ bid rec: ~14% &nbsp;|&nbsp;
+              <span style="color:#b71c1c">A asking €13M: NO GO · Viable solo con descuento</span>
+            </span>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
 
-<!-- 4. 3 COLUMNAS -->
-<div class="sec">
-  <div class="sec-title">A. CapEx &nbsp;·&nbsp; B. Ops Año 3 &nbsp;·&nbsp; C. Exit & Retornos</div>
-  <table class="cols3">
-    <tr>
-      <td>
-        <div class="col-hdr">A · CAPEX TOTAL</div>
-        <div class="col-body">
-          <div class="kv"><span class="kk">Precio asking</span><span class="vv">€13.000.000</span></div>
-          <div class="kv"><span class="kk">Hard (€2.500/sqm)</span><span class="vv">€4.863.000</span></div>
-          <div class="kv"><span class="kk">Soft (10% hard)</span><span class="vv">€486.000</span></div>
-          <div class="kv"><span class="kk">FF&amp;E (€10k × 42)</span><span class="vv">€420.000</span></div>
-          <div class="kv"><span class="kk">Total CapEx</span><span class="vv">€5.769.000</span></div>
-          <div class="kv" style="border-top:2px solid #c8a84b;margin-top:4px;padding-top:6px"><span class="kk">Inv. total @ asking</span><span class="vv" style="color:#c62828">€18.769.000</span></div>
-          <div class="kv"><span class="kk">Inv. total @ bid rec €10M</span><span class="vv" style="color:#2e7d32">€15.769.000</span></div>
-          <div class="kv"><span class="kk">€/llave @ bid rec</span><span class="vv">€375.500</span></div>
-        </div>
-      </td>
-      <td>
-        <div class="col-hdr">B · OPS AÑO 3 (ESTABILIZADO)</div>
-        <div class="col-body">
-          <div class="kv"><span class="kk">ADR (comp set STR)</span><span class="vv">€179</span></div>
-          <div class="kv"><span class="kk">Ocupación base</span><span class="vv">80%</span></div>
-          <div class="kv"><span class="kk">RevPAR</span><span class="vv">€143</span></div>
-          <div class="kv"><span class="kk">Revenue (rooms)</span><span class="vv">€2.198.000</span></div>
-          <div class="kv"><span class="kk">GOP (60%)</span><span class="vv">€1.319.000</span></div>
-          <div class="kv"><span class="kk">HMA (8% Rev)</span><span class="vv">−€176.000</span></div>
-          <div class="kv" style="border-top:2px solid #c8a84b;margin-top:4px;padding-top:6px"><span class="kk">NOI neto</span><span class="vv" style="color:#2e7d32">€1.143.000</span></div>
-          <div class="kv"><span class="kk">YoC @ bid rec €10M</span><span class="vv">7.25%</span></div>
-          <div class="kv"><span class="kk">YoC @ asking €13M</span><span class="vv" style="color:#c62828">6.09%</span></div>
-        </div>
-      </td>
-      <td>
-        <div class="col-hdr">C · EXIT &amp; RETORNOS</div>
-        <div class="col-body">
-          <div class="kv"><span class="kk">Exit yield</span><span class="vv">5.25%</span></div>
-          <div class="kv"><span class="kk">Valor exit (NOI/yield)</span><span class="vv">€21.770.000</span></div>
-          <div class="kv"><span class="kk">LTC (50%)</span><span class="vv">€7.885.000</span></div>
-          <div class="kv"><span class="kk">Equity aportado</span><span class="vv">€7.885.000</span></div>
-          <div class="kv"><span class="kk">Deuda servicio (5%)</span><span class="vv">−€394.000/año</span></div>
-          <div class="kv" style="border-top:2px solid #c8a84b;margin-top:4px;padding-top:6px"><span class="kk">Spread vs exit</span><span class="vv" style="color:#2e7d32">+203 bps ✅</span></div>
-          <div class="kv"><span class="kk">IRR levered (est.)</span><span class="vv" style="color:#2e7d32">~22%</span></div>
-          <div class="kv"><span class="kk">Equity múltiple</span><span class="vv">~1.9x</span></div>
-          <p style="margin-top:8px;font-size:10.5px;color:#c62828">⚠️ A asking €13M: spread −104bps → NO GO. Sólo viable con descuento negociado.</p>
-        </div>
-      </td>
-    </tr>
-  </table>
-</div>
+  <!-- ③  FICHA -->
+  <tr>
+    <td style="background:#f0f4fa;border-bottom:1px solid #dde4f0;padding:0">
+      <table cellpadding="0" cellspacing="0" border="0" width="100%">
+        <tr>
+          <td style="padding:12px 14px;border-right:1px solid #dde4f0;vertical-align:middle">
+            <div style="font-size:9px;text-transform:uppercase;letter-spacing:.6px;color:#7a8399;margin-bottom:3px">Tipo</div>
+            <div style="font-size:13px;font-weight:800;color:#0d1f3c">Hotel Boutique 4★</div>
+          </td>
+          <td style="padding:12px 14px;border-right:1px solid #dde4f0;vertical-align:middle">
+            <div style="font-size:9px;text-transform:uppercase;letter-spacing:.6px;color:#7a8399;margin-bottom:3px">Habitaciones</div>
+            <div style="font-size:13px;font-weight:800;color:#0d1f3c">~42 keys*</div>
+          </td>
+          <td style="padding:12px 14px;border-right:1px solid #dde4f0;vertical-align:middle">
+            <div style="font-size:9px;text-transform:uppercase;letter-spacing:.6px;color:#7a8399;margin-bottom:3px">SQM</div>
+            <div style="font-size:13px;font-weight:800;color:#0d1f3c">~1.945 m²*</div>
+          </td>
+          <td style="padding:12px 14px;border-right:1px solid #dde4f0;vertical-align:middle">
+            <div style="font-size:9px;text-transform:uppercase;letter-spacing:.6px;color:#7a8399;margin-bottom:3px">Estado obras</div>
+            <div style="font-size:13px;font-weight:800;color:#0d1f3c">Reforma Integral</div>
+          </td>
+          <td style="padding:12px 14px;border-right:1px solid #dde4f0;vertical-align:middle">
+            <div style="font-size:9px;text-transform:uppercase;letter-spacing:.6px;color:#7a8399;margin-bottom:3px">Ubicación</div>
+            <div style="font-size:13px;font-weight:800;color:#0d1f3c">Rossio, Lisboa</div>
+          </td>
+          <td style="padding:12px 14px;vertical-align:middle">
+            <div style="font-size:9px;text-transform:uppercase;letter-spacing:.6px;color:#7a8399;margin-bottom:3px">Bid rec.</div>
+            <div style="font-size:13px;font-weight:800;color:#856404">€9.1M ★</div>
+          </td>
+        </tr>
+      </table>
+      <div style="padding:4px 14px 6px;font-size:9px;color:#7a8399">* Datos OM pendientes confirmar con Eduardo · DD prevista mar–abr 2026 · Cierre estimado jun 2026</div>
+    </td>
+  </tr>
 
-<!-- 5. CRONOGRAMA -->
-<div class="sec">
-  <div class="sec-title">Cronograma</div>
-  <table class="tl">
-    <tr>
-      <td>Hito</td>
-      <td>Cierre<br><span class="tl-date">Q3 2026</span></td>
-      <td>Inicio obra<br><span class="tl-date">Q3 2026</span></td>
-      <td>Fin obra<br><span class="tl-date">Q1 2028 (+18m)</span></td>
-      <td>Apertura<br><span class="tl-date">Q2 2028</span></td>
-      <td>Estabiliz.<br><span class="tl-date">Q2 2029 (Y2)</span></td>
-      <td>Exit<br><span class="tl-date">Q2 2030 (4a)</span></td>
-    </tr>
-  </table>
-  <p style="font-size:11px;color:#7a8399;margin-top:8px">Licencia CML aprobada 14/01/2026 · Condición arqueológica CCDR-LVT pendiente validación · Sin plazo adicional de licencia en cronograma base</p>
-</div>
+  <!-- ④  3 COLUMNAS: A·CapEx / B·Ops Year 3 / C·Exit & Retornos -->
+  <tr>
+    <td style="background:#fff;padding:16px 24px;border-bottom:1px solid #edf0f8">
+      <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:#c8a84b;margin-bottom:12px">A · CapEx &nbsp;·&nbsp; B · Ops Año 3 &nbsp;·&nbsp; C · Exit &amp; Retornos</div>
+      <table cellpadding="0" cellspacing="6" border="0" width="100%">
+        <tr valign="top">
 
-<!-- 6. UBICACIÓN + SENSIBILIDAD -->
-<div class="sec">
-  <table class="cols2">
-    <tr>
-      <td style="width:38%">
-        <div class="card">
-          <div class="card-title">📍 Ubicación</div>
-          <p style="margin-bottom:8px"><strong style="background:#2e7d32;color:white;padding:2px 8px;border-radius:10px;font-size:10px">CITY CENTER</strong></p>
-          <p style="margin-bottom:6px;font-size:12px">Rossio (Praça Dom Pedro IV), Baixa Pombalina.<br>Zona monumental protegida — pipeline nuevo limitado.</p>
-          <div class="kv" style="border-bottom:1px solid #eef1f8;padding:4px 0"><span class="kk">Aeropuerto Humberto Delgado</span><span class="vv">8 km</span></div>
-          <div class="kv" style="border-bottom:1px solid #eef1f8;padding:4px 0"><span class="kk">Praça do Comércio</span><span class="vv">600 m</span></div>
-          <div class="kv" style="border-bottom:1px solid #eef1f8;padding:4px 0"><span class="kk">Alfama / Castelo</span><span class="vv">10 min walk</span></div>
-          <div class="kv" style="border-bottom:1px solid #eef1f8;padding:4px 0"><span class="kk">Comp RevPAR (STR 2025)</span><span class="vv">€144</span></div>
-          <div class="kv" style="padding:4px 0"><span class="kk">Valoración MAGG</span><span class="vv" style="color:#2e7d32">A (prime)</span></div>
-          <p style="margin-top:8px;font-size:11px;color:#7a8399">Lisboa top-5 destinos inversión hotelera Europa (CBRE 2025). Baixa Pombalina: microubicación irreproducible.</p>
-        </div>
-      </td>
-      <td style="width:62%">
-        <div class="card">
-          <div class="card-title">📊 Sensibilidad Bid × Spread (bps) · Exit yield 5.25%</div>
-          <table class="sens">
-            <tr>
-              <th>ADR \ Occ</th><th>75% (−5%)</th><th>80% (base)</th><th>85% (+5%)</th>
-            </tr>
-            <tr>
-              <td><strong>€169 (−10)</strong></td>
-              <td class="bo-cell">+115 bps</td>
-              <td class="go-cell">+158 bps</td>
-              <td class="go-cell">+200 bps</td>
-            </tr>
-            <tr>
-              <td><strong>€179 (base)</strong></td>
-              <td class="go-cell">+154 bps</td>
-              <td class="go-cell" style="border:2px solid #2e7d32">+203 bps ★</td>
-              <td class="go-cell">+251 bps</td>
-            </tr>
-            <tr>
-              <td><strong>€189 (+10)</strong></td>
-              <td class="go-cell">+195 bps</td>
-              <td class="go-cell">+249 bps</td>
-              <td class="go-cell">+302 bps</td>
-            </tr>
-          </table>
-          <p style="margin-top:8px;font-size:11px;color:#7a8399">★ Caso base @ <strong>bid rec €10.0M</strong>. Sensibilidad calculada con NOI v2 (GOP 60% − HMA 8%). A €13M asking todas las celdas son negativas.</p>
-        </div>
-      </td>
-    </tr>
-  </table>
-</div>
+          <!-- COL A: CapEx -->
+          <td width="33%" style="vertical-align:top;padding-right:8px">
+            <table cellpadding="0" cellspacing="0" border="0" width="100%">
+              <tr><td style="background:#0d1f3c;color:#fff;font-size:10px;font-weight:700;padding:7px 10px;border-radius:4px 4px 0 0;text-align:center">A · CAPEX TOTAL</td></tr>
+              <tr><td style="background:#f8fafc;border:1px solid #e2e8f0;border-top:none;border-radius:0 0 4px 4px;padding:10px">
+                <table cellpadding="0" cellspacing="0" border="0" width="100%">
+                  <tr><td style="font-size:11px;color:#7a8399;padding:4px 0;border-bottom:1px solid #eef1f8">Precio asking</td><td style="font-size:11px;font-weight:700;color:#0d1f3c;text-align:right;padding:4px 0;border-bottom:1px solid #eef1f8">~€13.000k</td></tr>
+                  <tr><td style="font-size:11px;color:#7a8399;padding:4px 0;border-bottom:1px solid #eef1f8">Hard (€2.500/sqm)</td><td style="font-size:11px;font-weight:700;color:#0d1f3c;text-align:right;padding:4px 0;border-bottom:1px solid #eef1f8">€4.863k</td></tr>
+                  <tr><td style="font-size:11px;color:#7a8399;padding:4px 0;border-bottom:1px solid #eef1f8">Soft (10% hard)</td><td style="font-size:11px;font-weight:700;color:#0d1f3c;text-align:right;padding:4px 0;border-bottom:1px solid #eef1f8">€486k</td></tr>
+                  <tr><td style="font-size:11px;color:#7a8399;padding:4px 0;border-bottom:1px solid #eef1f8">FF&amp;E (€10k × 42 hab)</td><td style="font-size:11px;font-weight:700;color:#0d1f3c;text-align:right;padding:4px 0;border-bottom:1px solid #eef1f8">€420k</td></tr>
+                  <tr><td style="font-size:11px;color:#7a8399;padding:4px 0;border-bottom:1px solid #eef1f8">Contingencia 10%</td><td style="font-size:11px;font-weight:700;color:#0d1f3c;text-align:right;padding:4px 0;border-bottom:1px solid #eef1f8">€577k</td></tr>
+                  <tr><td style="font-size:11px;font-weight:700;color:#0d1f3c;padding:6px 0 4px;border-top:2px solid #c8a84b">Total CapEx</td><td style="font-size:12px;font-weight:800;color:#c8a84b;text-align:right;padding:6px 0 4px;border-top:2px solid #c8a84b">€6.346k</td></tr>
+                  <tr><td style="font-size:11px;color:#7a8399;padding:4px 0;border-bottom:1px solid #eef1f8">Inv. total @ asking</td><td style="font-size:11px;font-weight:700;color:#c62828;text-align:right;padding:4px 0;border-bottom:1px solid #eef1f8">€19.736k</td></tr>
+                  <tr><td style="font-size:11px;color:#7a8399;padding:4px 0">Inv. total @ bid rec €9.1M</td><td style="font-size:11px;font-weight:700;color:#2e7d32;text-align:right;padding:4px 0">€15.723k</td></tr>
+                  <tr><td style="font-size:11px;color:#7a8399;padding:4px 0">€/llave @ bid rec</td><td style="font-size:11px;font-weight:700;color:#0d1f3c;text-align:right;padding:4px 0">€374k</td></tr>
+                </table>
+              </td></tr>
+            </table>
+          </td>
 
-<!-- 7. RIESGOS + PRÓXIMOS PASOS -->
-<div class="sec">
-  <table class="cols2">
-    <tr>
-      <td>
-        <div class="card">
-          <div class="card-title">⚠️ Riesgos clave</div>
-          <ul class="risk-list">
-            <li><strong>Condición arqueológica:</strong> CCDR-LVT puede alargar tramitación 2-4 meses. Incorporar en contrato (derecho de desistimiento si +6m).</li>
-            <li><strong>CapEx brochure vs real:</strong> Brochure dice €4M; estudio fundaciones 2019 sugiere €6-7M. Visita técnica obligatoria antes de NBO.</li>
-            <li><strong>Precio asking indefendible:</strong> A €13M el deal es NO GO. Negociación agresiva necesaria (−23% hasta bid rec).</li>
-            <li><strong>Spread estrecho en bear case:</strong> A ADR €169 y Occ 75%, spread baja a +115bps — aceptable pero sin margen.</li>
-            <li><strong>Licencia ya obtenida:</strong> Positivo — elimina riesgo urbanístico base. Pero condición arqueológica requiere validación legal específica Portugal.</li>
-          </ul>
-        </div>
-      </td>
-      <td>
-        <div class="card">
-          <div class="card-title">✅ Próximos pasos</div>
-          <ul class="risk-list">
-            <li>📐 <strong>Visita técnica DT</strong> — confirmar CapEx real (€5.77M vs brochure €4M vs estudio €6-7M). Kill-switch si &gt;€7M.</li>
-            <li>⚖️ <strong>Revisar condición arqueológica</strong> — consultar abogado Portugal (CCDR-LVT) sobre plazos reales y coste potencial.</li>
-            <li>💬 <strong>NBO a €10.0-10.5M</strong> — sondear posición del vendor. Argumento: precio/llave implícito €238k vs comp set Lisboa &gt;€300k.</li>
-            <li>📋 <strong>Cerrar modelo stress</strong> — base / bear (CapEx +20%, licencia +6m) / bull. Presentar IC comité si vendor acepta rango.</li>
-            <li>📅 <strong>Deadline follow-up:</strong> 10/03/2026 — confirmación estructura y posición precio.</li>
-          </ul>
-        </div>
-      </td>
-    </tr>
-  </table>
-</div>
+          <!-- COL B: Ops Year 3 -->
+          <td width="33%" style="vertical-align:top;padding-right:8px">
+            <table cellpadding="0" cellspacing="0" border="0" width="100%">
+              <tr><td style="background:#0d1f3c;color:#fff;font-size:10px;font-weight:700;padding:7px 10px;border-radius:4px 4px 0 0;text-align:center">B · OPS AÑO 3 (ESTAB.)</td></tr>
+              <tr><td style="background:#f8fafc;border:1px solid #e2e8f0;border-top:none;border-radius:0 0 4px 4px;padding:10px">
+                <table cellpadding="0" cellspacing="0" border="0" width="100%">
+                  <tr><td style="font-size:11px;color:#7a8399;padding:4px 0;border-bottom:1px solid #eef1f8">ADR base (Lisboa prime)</td><td style="font-size:11px;font-weight:700;color:#0d1f3c;text-align:right;padding:4px 0;border-bottom:1px solid #eef1f8">€180</td></tr>
+                  <tr><td style="font-size:11px;color:#7a8399;padding:4px 0;border-bottom:1px solid #eef1f8">Ocupación base</td><td style="font-size:11px;font-weight:700;color:#0d1f3c;text-align:right;padding:4px 0;border-bottom:1px solid #eef1f8">85%</td></tr>
+                  <tr><td style="font-size:11px;color:#7a8399;padding:4px 0;border-bottom:1px solid #eef1f8">RevPAR</td><td style="font-size:11px;font-weight:700;color:#0d1f3c;text-align:right;padding:4px 0;border-bottom:1px solid #eef1f8">€153</td></tr>
+                  <tr><td style="font-size:11px;color:#7a8399;padding:4px 0;border-bottom:1px solid #eef1f8">Revenue rooms</td><td style="font-size:11px;font-weight:700;color:#0d1f3c;text-align:right;padding:4px 0;border-bottom:1px solid #eef1f8">€2.345k</td></tr>
+                  <tr><td style="font-size:11px;color:#7a8399;padding:4px 0;border-bottom:1px solid #eef1f8">GOP (60%)</td><td style="font-size:11px;font-weight:700;color:#0d1f3c;text-align:right;padding:4px 0;border-bottom:1px solid #eef1f8">€1.407k</td></tr>
+                  <tr><td style="font-size:11px;color:#7a8399;padding:4px 0;border-bottom:1px solid #eef1f8">HMA all-in (8% Rev)</td><td style="font-size:11px;font-weight:700;color:#0d1f3c;text-align:right;padding:4px 0;border-bottom:1px solid #eef1f8">−€188k</td></tr>
+                  <tr><td style="font-size:11px;font-weight:700;color:#0d1f3c;padding:6px 0 4px;border-top:2px solid #c8a84b">NOI propietario</td><td style="font-size:12px;font-weight:800;color:#2e7d32;text-align:right;padding:6px 0 4px;border-top:2px solid #c8a84b">€1.220k</td></tr>
+                  <tr><td style="font-size:11px;color:#7a8399;padding:4px 0;border-bottom:1px solid #eef1f8">YoC @ bid rec €9.1M</td><td style="font-size:11px;font-weight:700;color:#2e7d32;text-align:right;padding:4px 0;border-bottom:1px solid #eef1f8">7.76%</td></tr>
+                  <tr><td style="font-size:11px;color:#7a8399;padding:4px 0">YoC @ asking €13M</td><td style="font-size:11px;font-weight:700;color:#c62828;text-align:right;padding:4px 0">6.18%</td></tr>
+                </table>
+              </td></tr>
+            </table>
+          </td>
 
-<!-- 8. LINKS -->
-<div class="sec" style="border-bottom:none">
-  <div class="sec-title">Deal links</div>
-  <p style="font-size:12px;color:#555">
-    <strong>Broker:</strong> Jorge Laclaustra Vacas · Laclaustra Inmuebles · <a href="mailto:jl@laclaustrainmuebles.com">jl@laclaustrainmuebles.com</a> · +34 635 416 647 &nbsp;|&nbsp;
-    <strong>Ref CRM:</strong> MAGG-2026-006 &nbsp;|&nbsp;
-    <strong>Gamma:</strong> <a href="https://gamma.app/docs/z2q31dn1ikor94w" target="_blank">gamma.app/docs/z2q31dn1ikor94w</a>
-  </p>
-</div>
+          <!-- COL C: Exit & Retornos -->
+          <td width="33%" style="vertical-align:top">
+            <table cellpadding="0" cellspacing="0" border="0" width="100%">
+              <tr><td style="background:#0d1f3c;color:#fff;font-size:10px;font-weight:700;padding:7px 10px;border-radius:4px 4px 0 0;text-align:center">C · EXIT &amp; RETORNOS</td></tr>
+              <tr><td style="background:#f8fafc;border:1px solid #e2e8f0;border-top:none;border-radius:0 0 4px 4px;padding:10px">
+                <table cellpadding="0" cellspacing="0" border="0" width="100%">
+                  <tr><td style="font-size:11px;color:#7a8399;padding:4px 0;border-bottom:1px solid #eef1f8">Exit yield (Lisboa boutique)</td><td style="font-size:11px;font-weight:700;color:#0d1f3c;text-align:right;padding:4px 0;border-bottom:1px solid #eef1f8">5.75%</td></tr>
+                  <tr><td style="font-size:11px;color:#7a8399;padding:4px 0;border-bottom:1px solid #eef1f8">Valor exit (NOI/yield)</td><td style="font-size:11px;font-weight:700;color:#0d1f3c;text-align:right;padding:4px 0;border-bottom:1px solid #eef1f8">€21.2M</td></tr>
+                  <tr><td style="font-size:11px;color:#7a8399;padding:4px 0;border-bottom:1px solid #eef1f8">LTC 50% / Deuda</td><td style="font-size:11px;font-weight:700;color:#0d1f3c;text-align:right;padding:4px 0;border-bottom:1px solid #eef1f8">€7.86M</td></tr>
+                  <tr><td style="font-size:11px;color:#7a8399;padding:4px 0;border-bottom:1px solid #eef1f8">Equity aportado</td><td style="font-size:11px;font-weight:700;color:#0d1f3c;text-align:right;padding:4px 0;border-bottom:1px solid #eef1f8">€7.86M</td></tr>
+                  <tr><td style="font-size:11px;color:#7a8399;padding:4px 0;border-bottom:1px solid #eef1f8">Servicio deuda/año (5%)</td><td style="font-size:11px;font-weight:700;color:#0d1f3c;text-align:right;padding:4px 0;border-bottom:1px solid #eef1f8">−€393k</td></tr>
+                  <tr><td style="font-size:11px;font-weight:700;color:#0d1f3c;padding:6px 0 4px;border-top:2px solid #c8a84b">Spread @ bid rec</td><td style="font-size:12px;font-weight:800;color:#2e7d32;text-align:right;padding:6px 0 4px;border-top:2px solid #c8a84b">+200 bps ✅</td></tr>
+                  <tr><td style="font-size:11px;color:#7a8399;padding:4px 0;border-bottom:1px solid #eef1f8">Spread @ asking €13M</td><td style="font-size:11px;font-weight:700;color:#856404;text-align:right;padding:4px 0;border-bottom:1px solid #eef1f8">+43 bps ⚠️</td></tr>
+                  <tr><td style="font-size:11px;color:#7a8399;padding:4px 0;border-bottom:1px solid #eef1f8">IRR lev. @ bid rec</td><td style="font-size:11px;font-weight:700;color:#856404;text-align:right;padding:4px 0;border-bottom:1px solid #eef1f8">~14% ⚠️</td></tr>
+                  <tr><td style="font-size:11px;color:#7a8399;padding:4px 0">Equity múltiple @ bid rec</td><td style="font-size:11px;font-weight:700;color:#856404;text-align:right;padding:4px 0">~1.7x ⚠️</td></tr>
+                </table>
+                <div style="margin-top:8px;font-size:10px;color:#c62828;background:#fce4ec;padding:6px 8px;border-radius:4px">⚠️ A asking €13M: spread +43bps, IRR ~5% → NO GO. Viable solo con negociación agresiva hasta ≤€10.2M.</div>
+              </td></tr>
+            </table>
+          </td>
 
-<!-- FOOTER -->
-<div class="footer">
-  MAGG Capital · IC Brief MAGG-2026-006 · Generado por Tenacitas · 25/02/2026 &nbsp;|&nbsp;
-  Metodología UW v2 · NOI = GOP(60%) − HMA(8%) · Exit Y1 estabilización · LTC 50% · Deuda 5% · CapEx: €2.500/sqm hard + soft 10% + FF&amp;E €10k/key &nbsp;|&nbsp;
-  Documento confidencial MAGG Capital
-</div>
+        </tr>
+      </table>
+    </td>
+  </tr>
 
-</div>
+  <!-- ⑤  CRONOGRAMA -->
+  <tr>
+    <td style="background:#fff;padding:16px 24px;border-bottom:1px solid #edf0f8">
+      <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:#c8a84b;margin-bottom:10px">Cronograma</div>
+      <table cellpadding="0" cellspacing="0" border="0" width="100%">
+        <tr>
+          <td style="background:#0d1f3c;color:#fff;font-size:10px;font-weight:700;padding:8px 6px;text-align:center;width:14%;border:1px solid #0d1f3c">Hito</td>
+          <td style="background:#f8fafc;border:1px solid #e2e8f0;font-size:11px;text-align:center;padding:8px 6px;width:14.3%"><strong>DD / Cierre</strong><br><span style="font-size:10px;color:#7a8399">Mar–Jun 2026</span></td>
+          <td style="background:#f8fafc;border:1px solid #e2e8f0;font-size:11px;text-align:center;padding:8px 6px;width:14.3%"><strong>Licencia</strong><br><span style="font-size:10px;color:#7a8399">Jun–Jul 2026*</span></td>
+          <td style="background:#f8fafc;border:1px solid #e2e8f0;font-size:11px;text-align:center;padding:8px 6px;width:14.3%"><strong>Inicio Obra</strong><br><span style="font-size:10px;color:#7a8399">Q3 2026</span></td>
+          <td style="background:#f8fafc;border:1px solid #e2e8f0;font-size:11px;text-align:center;padding:8px 6px;width:14.3%"><strong>Fin Obra</strong><br><span style="font-size:10px;color:#7a8399">Q1 2028 (+15m)</span></td>
+          <td style="background:#f8fafc;border:1px solid #e2e8f0;font-size:11px;text-align:center;padding:8px 6px;width:14.3%"><strong>Estabiliz.</strong><br><span style="font-size:10px;color:#7a8399">Q1 2030 (Y3)</span></td>
+          <td style="background:#FFF3CD;border:1px solid #e6a817;font-size:11px;text-align:center;padding:8px 6px;width:14.3%"><strong style="color:#856404">Exit</strong><br><span style="font-size:10px;color:#856404">Q1 2031 (~4.5a)</span></td>
+        </tr>
+      </table>
+      <div style="font-size:10px;color:#7a8399;margin-top:8px">* Licencia CML aprobada 14/01/2026 (aprobada) · Condición arqueológica CCDR-LVT pendiente validación → riesgo +2-4m · Hold total estimado: ~4.5 años · Pago: 10% arras + 90% contra licencia (12m estimados)</div>
+    </td>
+  </tr>
+
+  <!-- ⑥  2 COLUMNAS: Ubicación | Sensibilidad -->
+  <tr>
+    <td style="background:#fff;padding:16px 24px;border-bottom:1px solid #edf0f8">
+      <table cellpadding="0" cellspacing="0" border="0" width="100%">
+        <tr valign="top">
+
+          <!-- Ubicación -->
+          <td width="38%" style="padding-right:12px">
+            <table cellpadding="0" cellspacing="0" border="0" width="100%" style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:6px">
+              <tr><td style="padding:12px 14px">
+                <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#c8a84b;margin-bottom:10px">📍 Ubicación</div>
+                <div style="margin-bottom:10px">
+                  <span style="background:#2e7d32;color:#fff;font-size:10px;font-weight:700;padding:3px 10px;border-radius:10px">PRIME LISBOA · CITY CENTER</span>
+                </div>
+                <p style="font-size:12px;color:#333;margin-bottom:10px;line-height:1.5">Rossio (Praça Dom Pedro IV), Baixa Pombalina. Zona monumental protegida — pipeline nuevo limitado por regulación urbanística CML.</p>
+                <table cellpadding="0" cellspacing="0" border="0" width="100%">
+                  <tr><td style="font-size:11px;color:#7a8399;padding:4px 0;border-bottom:1px solid #eef1f8">Aeropuerto Humberto Delgado</td><td style="font-size:11px;font-weight:700;color:#0d1f3c;text-align:right;padding:4px 0;border-bottom:1px solid #eef1f8">8 km</td></tr>
+                  <tr><td style="font-size:11px;color:#7a8399;padding:4px 0;border-bottom:1px solid #eef1f8">Praça do Comércio (waterfront)</td><td style="font-size:11px;font-weight:700;color:#0d1f3c;text-align:right;padding:4px 0;border-bottom:1px solid #eef1f8">600 m</td></tr>
+                  <tr><td style="font-size:11px;color:#7a8399;padding:4px 0;border-bottom:1px solid #eef1f8">Chiado / Bairro Alto</td><td style="font-size:11px;font-weight:700;color:#0d1f3c;text-align:right;padding:4px 0;border-bottom:1px solid #eef1f8">5 min walk</td></tr>
+                  <tr><td style="font-size:11px;color:#7a8399;padding:4px 0;border-bottom:1px solid #eef1f8">Alfama / Castelo São Jorge</td><td style="font-size:11px;font-weight:700;color:#0d1f3c;text-align:right;padding:4px 0;border-bottom:1px solid #eef1f8">10 min walk</td></tr>
+                  <tr><td style="font-size:11px;color:#7a8399;padding:4px 0;border-bottom:1px solid #eef1f8">Comp RevPAR Lisboa boutique</td><td style="font-size:11px;font-weight:700;color:#0d1f3c;text-align:right;padding:4px 0;border-bottom:1px solid #eef1f8">€144–€160</td></tr>
+                  <tr><td style="font-size:11px;color:#7a8399;padding:4px 0">Valoración MAGG</td><td style="font-size:11px;font-weight:700;color:#2e7d32;text-align:right;padding:4px 0">A (prime)</td></tr>
+                </table>
+                <p style="font-size:10px;color:#7a8399;margin-top:8px;line-height:1.5">Lisboa top-5 destinos inversión hotelera Europa (CBRE 2025). Baixa Pombalina: microubicación irreproducible. Regulación CML limita nuevas licencias hoteleras.</p>
+              </td></tr>
+            </table>
+          </td>
+
+          <!-- Sensibilidad -->
+          <td width="62%" style="vertical-align:top">
+            <table cellpadding="0" cellspacing="0" border="0" width="100%" style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:6px">
+              <tr><td style="padding:12px 14px">
+                <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#c8a84b;margin-bottom:8px">📊 Sensibilidad @ asking €13M — Spread bps / IRR lev. (exit yield 5.75%)</div>
+                <table cellpadding="0" cellspacing="0" border="1" width="100%" style="border-collapse:collapse;font-size:11px;border-color:#e2e8f0">
+                  <tr>
+                    <th style="background:#0d1f3c;color:rgba(255,255,255,.8);padding:7px 8px;text-align:center;font-size:10px">ADR \ Occ</th>
+                    <th style="background:#0d1f3c;color:rgba(255,255,255,.8);padding:7px 8px;text-align:center;font-size:10px">80% (−5%)</th>
+                    <th style="background:#0d1f3c;color:rgba(255,255,255,.8);padding:7px 8px;text-align:center;font-size:10px">85% (base)</th>
+                    <th style="background:#0d1f3c;color:rgba(255,255,255,.8);padding:7px 8px;text-align:center;font-size:10px">90% (+5%)</th>
+                  </tr>
+                  <tr>
+                    <td style="padding:7px 8px;border:1px solid #e2e8f0;font-weight:700;background:#f0f4fa">€170 (−€10)</td>
+                    <td style="padding:7px 8px;border:1px solid #e2e8f0;text-align:center;background:#fce4ec;color:#b71c1c;font-weight:700">−26 bps / ~1%</td>
+                    <td style="padding:7px 8px;border:1px solid #e2e8f0;text-align:center;background:#fff8e1;color:#e65100;font-weight:700">+8 bps / ~3%</td>
+                    <td style="padding:7px 8px;border:1px solid #e2e8f0;text-align:center;background:#fff8e1;color:#e65100;font-weight:700">+43 bps / ~6%</td>
+                  </tr>
+                  <tr>
+                    <td style="padding:7px 8px;border:1px solid #e2e8f0;font-weight:700;background:#f0f4fa">€180 (base)</td>
+                    <td style="padding:7px 8px;border:1px solid #e2e8f0;text-align:center;background:#fff8e1;color:#e65100;font-weight:700">+6 bps / ~3%</td>
+                    <td style="padding:7px 8px;border:2px solid #c8a84b;text-align:center;background:#FFF3CD;color:#856404;font-weight:800">+43 bps / ~6% ★</td>
+                    <td style="padding:7px 8px;border:1px solid #e2e8f0;text-align:center;background:#fff8e1;color:#e65100;font-weight:700">+79 bps / ~8%</td>
+                  </tr>
+                  <tr>
+                    <td style="padding:7px 8px;border:1px solid #e2e8f0;font-weight:700;background:#f0f4fa">€190 (+€10)</td>
+                    <td style="padding:7px 8px;border:1px solid #e2e8f0;text-align:center;background:#fff8e1;color:#e65100;font-weight:700">+39 bps / ~6%</td>
+                    <td style="padding:7px 8px;border:1px solid #e2e8f0;text-align:center;background:#fff8e1;color:#e65100;font-weight:700">+77 bps / ~8%</td>
+                    <td style="padding:7px 8px;border:1px solid #e2e8f0;text-align:center;background:#fff8e1;color:#e65100;font-weight:700">+116 bps / ~11%</td>
+                  </tr>
+                </table>
+                <div style="margin-top:8px;font-size:10px;color:#555;line-height:1.5">
+                  ★ Caso base @ <strong>asking €13M</strong>. Ningún escenario alcanza ≥+150bps a precio asking — deal requiere negociación.<br>
+                  <span style="color:#2e7d32">✅ A bid rec €9.1M: spread +200bps, IRR ~14%. A límite GO €10.2M: spread +150bps, IRR ~12%.</span><br>
+                  <span style="color:#7a8399">Metodología NOI v2: GOP 60% − HMA 8% Revenue. Exit Y1 estabilización (Q1 2031).</span>
+                </div>
+              </td></tr>
+            </table>
+          </td>
+
+        </tr>
+      </table>
+    </td>
+  </tr>
+
+  <!-- ⑦  2 COLUMNAS: Riesgos | Próximos pasos -->
+  <tr>
+    <td style="background:#fff;padding:16px 24px;border-bottom:1px solid #edf0f8">
+      <table cellpadding="0" cellspacing="0" border="0" width="100%">
+        <tr valign="top">
+
+          <!-- Riesgos -->
+          <td width="50%" style="padding-right:12px">
+            <table cellpadding="0" cellspacing="0" border="0" width="100%" style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:6px">
+              <tr><td style="padding:12px 14px">
+                <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#c8a84b;margin-bottom:10px">⚠️ Riesgos clave</div>
+                <table cellpadding="0" cellspacing="0" border="0" width="100%">
+                  <tr valign="top">
+                    <td style="color:#c62828;font-size:13px;padding-right:6px;padding-bottom:8px">●</td>
+                    <td style="font-size:11px;color:#333;line-height:1.5;padding-bottom:8px"><strong>Precio asking indefendible a €13M:</strong> spread +43bps — solo viable con negociación hasta ≤€10.2M. Kill-switch si vendor no acepta rango.</td>
+                  </tr>
+                  <tr valign="top">
+                    <td style="color:#c62828;font-size:13px;padding-right:6px;padding-bottom:8px">●</td>
+                    <td style="font-size:11px;color:#333;line-height:1.5;padding-bottom:8px"><strong>Condición arqueológica CCDR-LVT:</strong> puede alargar tramitación 2-4 meses. Necesita validación legal Portugal antes de firmar arras.</td>
+                  </tr>
+                  <tr valign="top">
+                    <td style="color:#e65100;font-size:13px;padding-right:6px;padding-bottom:8px">●</td>
+                    <td style="font-size:11px;color:#333;line-height:1.5;padding-bottom:8px"><strong>CapEx real vs brochure:</strong> brochure indica ~€4M; estudio fundaciones 2019 sugiere €6-7M. Visita DT obligatoria antes NBO. Kill-switch si CapEx &gt;€7.5M.</td>
+                  </tr>
+                  <tr valign="top">
+                    <td style="color:#e65100;font-size:13px;padding-right:6px;padding-bottom:8px">●</td>
+                    <td style="font-size:11px;color:#333;line-height:1.5;padding-bottom:8px"><strong>Contrato sin protección arras/licencia:</strong> verificar cláusula de desistimiento si licencia +6m vs previsto. Kill-switch si sin protección.</td>
+                  </tr>
+                  <tr valign="top">
+                    <td style="color:#2e7d32;font-size:13px;padding-right:6px">●</td>
+                    <td style="font-size:11px;color:#333;line-height:1.5"><strong>Licencia CML ya aprobada (14/01/2026):</strong> elimina riesgo urbanístico base. Solo queda condición arqueológica. Positivo vs comp set sin licencia.</td>
+                  </tr>
+                </table>
+              </td></tr>
+            </table>
+          </td>
+
+          <!-- Próximos pasos -->
+          <td width="50%">
+            <table cellpadding="0" cellspacing="0" border="0" width="100%" style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:6px">
+              <tr><td style="padding:12px 14px">
+                <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#c8a84b;margin-bottom:10px">✅ Próximos pasos</div>
+                <table cellpadding="0" cellspacing="0" border="0" width="100%">
+                  <tr valign="top">
+                    <td style="padding-right:8px;padding-bottom:8px"><span style="background:#c8a84b;color:#fff;font-size:10px;font-weight:800;border-radius:50%;width:18px;height:18px;display:inline-block;text-align:center;line-height:18px">1</span></td>
+                    <td style="font-size:11px;color:#333;line-height:1.5;padding-bottom:8px"><strong>Confirmar datos OM</strong> con Eduardo: SQM exacto, nº hab, precio compra definitivo — antes de cualquier NBO.</td>
+                  </tr>
+                  <tr valign="top">
+                    <td style="padding-right:8px;padding-bottom:8px"><span style="background:#c8a84b;color:#fff;font-size:10px;font-weight:800;border-radius:50%;width:18px;height:18px;display:inline-block;text-align:center;line-height:18px">2</span></td>
+                    <td style="font-size:11px;color:#333;line-height:1.5;padding-bottom:8px"><strong>Visita técnica DT</strong> — confirmar CapEx real (€6.35M MAGG vs brochure €4M vs estudio €6-7M). Kill-switch si &gt;€7.5M.</td>
+                  </tr>
+                  <tr valign="top">
+                    <td style="padding-right:8px;padding-bottom:8px"><span style="background:#c8a84b;color:#fff;font-size:10px;font-weight:800;border-radius:50%;width:18px;height:18px;display:inline-block;text-align:center;line-height:18px">3</span></td>
+                    <td style="font-size:11px;color:#333;line-height:1.5;padding-bottom:8px"><strong>Legal Portugal CCDR-LVT</strong> — consultar plazos reales condición arqueológica y coste. Cláusula desistimiento en SPA.</td>
+                  </tr>
+                  <tr valign="top">
+                    <td style="padding-right:8px;padding-bottom:8px"><span style="background:#c8a84b;color:#fff;font-size:10px;font-weight:800;border-radius:50%;width:18px;height:18px;display:inline-block;text-align:center;line-height:18px">4</span></td>
+                    <td style="font-size:11px;color:#333;line-height:1.5;padding-bottom:8px"><strong>NBO condicionado €9-10M</strong> — sondear vendor. Argumento: €/llave implícito €374k vs comp set Lisboa €350-420k. Máximo absoluto: €10.2M.</td>
+                  </tr>
+                  <tr valign="top">
+                    <td style="padding-right:8px"><span style="background:#c8a84b;color:#fff;font-size:10px;font-weight:800;border-radius:50%;width:18px;height:18px;display:inline-block;text-align:center;line-height:18px">5</span></td>
+                    <td style="font-size:11px;color:#333;line-height:1.5"><strong>Modelo stress completo</strong> con Eduardo — base / bear (CapEx +20%, licencia +4m) / bull. DD abogado + tasación si vendor acepta rango.</td>
+                  </tr>
+                </table>
+              </td></tr>
+            </table>
+          </td>
+
+        </tr>
+      </table>
+    </td>
+  </tr>
+
+  <!-- ⑧  LINKS -->
+  <tr>
+    <td style="background:#fff;padding:14px 24px;border-bottom:1px solid #edf0f8">
+      <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:#c8a84b;margin-bottom:8px">Deal links</div>
+      <table cellpadding="0" cellspacing="0" border="0" width="100%">
+        <tr>
+          <td style="font-size:12px;color:#555;line-height:1.8">
+            <strong>Drive Deal Folder:</strong> <a href="https://drive.google.com/drive/folders/10XRvsa_l4zvAcSAUAnm6MQorvP1zBZs5" style="color:#1a3a6a" target="_blank">006 Lisboa Rossio — Drive</a> &nbsp;|&nbsp;
+            <strong>Broker:</strong> Jorge Laclaustra Vacas · Laclaustra Inmuebles · <a href="mailto:jl@laclaustrainmuebles.com" style="color:#1a3a6a">jl@laclaustrainmuebles.com</a> &nbsp;|&nbsp;
+            <strong>Ref CRM:</strong> MAGG-2026-006 &nbsp;|&nbsp;
+            <strong>Estado:</strong> <span style="background:#FFF3CD;color:#856404;font-weight:700;padding:1px 8px;border-radius:8px;font-size:11px">BORDERLINE → GO CONDICIONADO</span>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+
+  <!-- ⑨  FOOTER -->
+  <tr>
+    <td style="background:#0d1f3c;padding:12px 24px;border-radius:0 0 10px 10px;text-align:center">
+      <div style="font-size:10px;color:rgba(255,255,255,.4)">
+        MAGG Capital · IC Brief MAGG-2026-006 · Generado por Tenacitas · 10/03/2026 &nbsp;|&nbsp;
+        UW v2: NOI = GOP(60%) − HMA(8%) · Exit yield 5.75% · LTC 50% · Deuda 5% · CapEx: €2.500/sqm hard + soft 10% + FF&amp;E €10k/key + contingencia 10% &nbsp;|&nbsp;
+        Documento confidencial MAGG Capital
+      </div>
+    </td>
+  </tr>
+
+</table>
 </body>
 </html>
