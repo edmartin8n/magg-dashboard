@@ -428,6 +428,31 @@ header h1{font-size:16px;font-weight:800;letter-spacing:-.3px;color:var(--navy)}
   #view-tx{height:auto}
   .tx-main-area{padding:16px}
 }
+
+/* ===== FLOATING CHAT WIDGET ===== */
+#chat-fab{display:none;position:fixed;bottom:24px;right:24px;width:52px;height:52px;background:var(--navy);border-radius:50%;align-items:center;justify-content:center;font-size:22px;cursor:pointer;box-shadow:0 4px 16px rgba(0,0,0,.25);z-index:9000;transition:.2s;user-select:none}
+#chat-fab:hover{background:#2a3a8a;transform:scale(1.07)}
+#chat-panel{position:fixed;bottom:88px;right:24px;width:340px;background:#fff;border-radius:12px;box-shadow:0 8px 32px rgba(0,0,0,.18);z-index:9001;display:none;flex-direction:column;overflow:hidden;border:1px solid #dde4f0;max-height:520px}
+#chat-panel.open{display:flex}
+.cp-hdr{background:var(--navy);color:#fff;padding:11px 15px;display:flex;align-items:center;gap:8px;flex-shrink:0}
+.cp-hdr-info{flex:1}.cp-hdr-title{font-weight:700;font-size:13px}.cp-hdr-sub{font-size:11px;opacity:.65;margin-top:1px}
+.cp-close{cursor:pointer;opacity:.7;font-size:15px;padding:2px 6px;line-height:1}.cp-close:hover{opacity:1}
+.cp-setup{padding:16px;font-size:13px;color:#555;flex-direction:column;gap:10px}
+.cp-setup input{border:1px solid #dde4f0;border-radius:6px;padding:8px 10px;font-size:12px;width:100%;box-sizing:border-box;outline:none}
+.cp-setup button{background:var(--navy);color:#fff;border:none;border-radius:6px;padding:8px 16px;font-size:12px;font-weight:700;cursor:pointer;align-self:flex-start}
+.cp-pills{padding:8px 12px 2px;display:flex;flex-wrap:wrap;gap:5px;flex-shrink:0}
+.cp-pill{background:#e8f0fe;color:var(--navy);border-radius:16px;padding:4px 11px;font-size:11px;cursor:pointer;font-weight:600;transition:.12s}
+.cp-pill:hover{background:var(--navy);color:#fff}
+.cp-msgs{flex:1;overflow-y:auto;padding:12px;display:flex;flex-direction:column;gap:8px;min-height:180px;max-height:300px}
+.cp-msg{padding:8px 12px;border-radius:8px;font-size:12.5px;line-height:1.5;max-width:92%;white-space:pre-wrap;word-break:break-word}
+.cp-msg-sys{background:#f0f4fa;color:#555;align-self:flex-start;border:1px solid #dde4f0;border-radius:6px}
+.cp-msg-user{background:var(--navy);color:#fff;align-self:flex-end;border-radius:8px 8px 2px 8px}
+.cp-msg-ai{background:#fff;color:#222;align-self:flex-start;border:1px solid #dde4f0;border-radius:2px 8px 8px 8px}
+.cp-msg-loading{background:#f0f4fa;color:#888;align-self:flex-start;font-style:italic;font-size:12px}
+.cp-input-row{display:flex;gap:8px;padding:10px 12px;border-top:1px solid #eef0f7;align-items:flex-end;flex-shrink:0}
+.cp-input{flex:1;border:1px solid #dde4f0;border-radius:6px;padding:8px 10px;font-size:12.5px;resize:none;font-family:inherit;outline:none;transition:.12s;max-height:80px}
+.cp-input:focus{border-color:var(--navy)}
+.cp-send{background:var(--navy);color:#fff;border:none;border-radius:6px;padding:0 14px;font-size:16px;font-weight:700;cursor:pointer;height:36px;transition:.12s}.cp-send:disabled{background:#aab2c8}
 </style>
 </head>
 <body>
@@ -679,6 +704,7 @@ function auth() {
     app.style.display = 'flex';
     app.style.flexDirection = 'column';
     initStatusBar(); renderDeals(); renderFinders(); renderControl(); showView('control');
+    document.getElementById('chat-fab').style.display='flex';
   } else {
     document.getElementById('err').textContent = '❌ Contraseña incorrecta';
     document.getElementById('pwd').value = '';
@@ -1735,6 +1761,94 @@ function renderTx() {
     ${phases}`;
 }
 
+
+/* ===== FLOATING CHAT LOGIC ===== */
+function getWorkerUrl(){ return localStorage.getItem('magg_worker_url')||''; }
+
+function toggleChat(){
+  const panel=document.getElementById('chat-panel');
+  const isOpen=panel.classList.toggle('open');
+  if(isOpen){
+    const hasUrl=!!getWorkerUrl();
+    const setup=document.getElementById('cp-setup');
+    const area=document.getElementById('cp-chat-area');
+    setup.style.display=hasUrl?'none':'flex';
+    area.style.display=hasUrl?'flex':'none';
+    if(hasUrl) setTimeout(()=>{ const i=document.getElementById('cp-input'); if(i)i.focus(); },80);
+  }
+}
+
+function saveWorkerUrl(){
+  const url=(document.getElementById('cp-worker-url').value||'').trim();
+  if(!url) return;
+  localStorage.setItem('magg_worker_url',url);
+  document.getElementById('cp-setup').style.display='none';
+  document.getElementById('cp-chat-area').style.display='flex';
+  setTimeout(()=>{ const i=document.getElementById('cp-input'); if(i)i.focus(); },80);
+}
+
+function chatQuick(q){ document.getElementById('cp-input').value=q; sendChat(); }
+
+async function sendChat(){
+  const inp=document.getElementById('cp-input');
+  const btn=document.getElementById('cp-send');
+  const msgs=document.getElementById('cp-msgs');
+  const q=(inp.value||'').trim(); if(!q) return;
+  const wUrl=getWorkerUrl();
+  if(!wUrl){ document.getElementById('cp-setup').style.display='flex'; document.getElementById('cp-chat-area').style.display='none'; return; }
+  inp.value=''; btn.disabled=true;
+  const uDiv=document.createElement('div'); uDiv.className='cp-msg cp-msg-user'; uDiv.textContent=q; msgs.appendChild(uDiv);
+  const lDiv=document.createElement('div'); lDiv.className='cp-msg cp-msg-loading'; lDiv.textContent='Consultando pipeline…'; msgs.appendChild(lDiv);
+  msgs.scrollTop=msgs.scrollHeight;
+  try{
+    const ctx=buildDealsContext();
+    const res=await fetch(wUrl,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({query:q,deals_context:ctx})});
+    lDiv.remove();
+    const data=await res.json();
+    const aDiv=document.createElement('div'); aDiv.className='cp-msg cp-msg-ai';
+    aDiv.innerHTML=(data.answer||'Sin respuesta').replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>');
+    msgs.appendChild(aDiv);
+  } catch(e){
+    lDiv.remove();
+    const eDiv=document.createElement('div'); eDiv.className='cp-msg cp-msg-sys'; eDiv.textContent='Error conectando con el asistente.'; msgs.appendChild(eDiv);
+  }
+  btn.disabled=false; msgs.scrollTop=msgs.scrollHeight;
+}
 </script>
+
+<!-- FLOATING CHAT WIDGET (visible tras login) -->
+<div id="chat-fab" onclick="toggleChat()" title="Asistente MAGG · Q&amp;A sobre el pipeline">💬</div>
+<div id="chat-panel">
+  <div class="cp-hdr">
+    <div class="cp-hdr-info">
+      <div class="cp-hdr-title">💬 Asistente MAGG</div>
+      <div class="cp-hdr-sub">Pregunta sobre el pipeline de deals</div>
+    </div>
+    <span class="cp-close" onclick="toggleChat()">✕</span>
+  </div>
+  <!-- Setup: only shown if Worker URL not configured -->
+  <div id="cp-setup" class="cp-setup" style="display:none">
+    <div style="font-size:12px;color:#666;">Introduce la URL del Worker (configuración única — se guarda en tu navegador):</div>
+    <input type="text" id="cp-worker-url" placeholder="https://magg-deal-assistant.xxx.workers.dev">
+    <button onclick="saveWorkerUrl()">Guardar y activar →</button>
+  </div>
+  <!-- Chat area -->
+  <div id="cp-chat-area" style="display:flex;flex-direction:column;flex:1;overflow:hidden">
+    <div class="cp-pills">
+      <span class="cp-pill" onclick="chatQuick('¿Qué deals GO tenemos activos en MAGG?')">Deals GO</span>
+      <span class="cp-pill" onclick="chatQuick('Dame spread y YoC del Casón del Tormes')">Casón</span>
+      <span class="cp-pill" onclick="chatQuick('¿Qué deal tiene la acción más urgente esta semana?')">Urgentes</span>
+      <span class="cp-pill" onclick="chatQuick('Resumen ejecutivo del pipeline MAGG')">Resumen</span>
+    </div>
+    <div class="cp-msgs" id="cp-msgs">
+      <div class="cp-msg cp-msg-sys">Hola. Pregúntame sobre los deals del pipeline — veredictos, spreads, próximos pasos o cualquier ref MAGG.</div>
+    </div>
+    <div class="cp-input-row">
+      <textarea id="cp-input" class="cp-input" rows="1" placeholder="Ej: ¿Cuál es el spread del GV48?" onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendChat();}"></textarea>
+      <button id="cp-send" class="cp-send" onclick="sendChat()">↑</button>
+    </div>
+  </div>
+</div>
+
 </body>
 </html>
