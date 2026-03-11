@@ -1,53 +1,183 @@
 <!DOCTYPE html><html lang="es"><head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>MAGG-2026-008 — Malacuna Hostel · Cabestreros, Lavapiés — Madrid</title>
+<title>MAGG-2026-008 — Malacuna Hostel · Lavapiés, Madrid</title>
 <style>
-*{box-sizing:border-box}
-body{margin:0;padding:16px;background:#eef1f7;font-family:Arial,Helvetica,sans-serif;font-size:14px}
-.wrap{max-width:640px;margin:0 auto}
-.hdr{background:#0d1f3c;padding:20px 24px;border-radius:10px 10px 0 0}
-.hdr-ref{font-size:10px;color:rgba(255,255,255,.5);letter-spacing:1px;text-transform:uppercase}
-.hdr-title{font-size:20px;font-weight:800;color:#fff;margin:4px 0 2px}
-.hdr-sub{font-size:12px;color:rgba(255,255,255,.55)}
-.verdict{padding:14px 24px;font-weight:700;font-size:15px;border-bottom:2px solid rgba(0,0,0,.08)}
-.verdict-go{background:#e8f5e9;color:#1b5e20}
-.verdict-no{background:#fce4ec;color:#b71c1c}
-.verdict-bo{background:#fff8e1;color:#e65100}
-.verdict-pe{background:#e3f2fd;color:#0d47a1}
-.sec{background:#fff;padding:16px 24px;border-bottom:1px solid #e8ecf2}
-.sec-title{font-size:10px;font-weight:700;color:#7a8399;text-transform:uppercase;letter-spacing:.7px;margin-bottom:12px}
-.kpi-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:12px}
-.kpi{background:#f4f6fb;border-radius:8px;padding:10px 14px;flex:1;min-width:100px;text-align:center}
-.kpi .v{font-size:18px;font-weight:800;color:#0d1f3c;line-height:1}
-.kpi .l{font-size:10px;color:#7a8399;margin-top:3px}
-table{width:100%;border-collapse:collapse;font-size:12px}
-th{background:#0d1f3c;color:rgba(255,255,255,.75);padding:7px 10px;text-align:left;font-weight:600}
-td{padding:7px 10px;border-bottom:1px solid #f0f4fa;color:#1a1a2e}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f4f7fc;color:#0d1f3c;font-size:13px}
+.wrap{max-width:680px;margin:0 auto;background:#fff;border:1px solid #dde4f0}
+.hdr{background:#0d1f3c;color:#fff;padding:18px 24px}
+.hdr-ref{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;opacity:.7;margin-bottom:4px}
+.hdr-title{font-size:20px;font-weight:800;line-height:1.2}
+.hdr-sub{font-size:11px;opacity:.75;margin-top:6px}
+.verdict-banner{background:#e8f5e9;color:#1b5e20;border-left:6px solid #1b5e20;padding:12px 20px;font-weight:700;font-size:13px;display:flex;align-items:center;gap:8px}
+.ficha{display:grid;grid-template-columns:repeat(3,1fr);border-bottom:1px solid #eef1f8}
+.fc{padding:12px 16px;border-right:1px solid #eef1f8}
+.fc:last-child{border-right:none}
+.fc-l{font-size:10px;color:#7a8399;letter-spacing:.5px;text-transform:uppercase;margin-bottom:3px}
+.fc-v{font-size:13px;font-weight:800;color:#0d1f3c}
+.sec{padding:16px 20px;border-bottom:1px solid #eef1f8}
+.sec-title{font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#7a8399;margin-bottom:10px}
+table{width:100%;border-collapse:collapse;font-size:11.5px}
+th{background:#0d1f3c;color:#fff;padding:6px 10px;text-align:left;font-size:10px;letter-spacing:.5px}
+td{padding:6px 10px;border-bottom:1px solid #eef1f8}
 tr:last-child td{border-bottom:none}
-.tag-go{display:inline-block;padding:2px 8px;border-radius:10px;background:#e8f5e9;color:#1b5e20;font-size:11px;font-weight:700}
-.tag-no{display:inline-block;padding:2px 8px;border-radius:10px;background:#fce4ec;color:#b71c1c;font-size:11px;font-weight:700}
-.tag-bo{display:inline-block;padding:2px 8px;border-radius:10px;background:#fff8e1;color:#e65100;font-size:11px;font-weight:700}
-.tag-pe{display:inline-block;padding:2px 8px;border-radius:10px;background:#e3f2fd;color:#0d47a1;font-size:11px;font-weight:700}
-.risk-row td:first-child{color:#c62828;font-weight:600}
-.footer{background:#0d1f3c;padding:12px 24px;border-radius:0 0 10px 10px;font-size:10px;color:rgba(255,255,255,.4);text-align:center}
-.timeline{display:flex;gap:0;overflow-x:auto;padding:8px 0 2px}
-.tl-step{flex:1;min-width:80px;text-align:center;position:relative}
-.tl-step::after{content:'';position:absolute;top:9px;left:50%;right:-50%;height:2px;background:#e0e0e0;z-index:0}
-.tl-step:last-child::after{display:none}
-.tl-dot{width:20px;height:20px;border-radius:50%;background:#0d1f3c;color:#fff;font-size:9px;font-weight:700;display:flex;align-items:center;justify-content:center;margin:0 auto 5px;position:relative;z-index:1}
-.tl-lbl{font-size:9px;color:#7a8399}
-.tl-sub{font-size:8px;color:#aab5c8}
-.spread-pos{color:#1b5e20;font-weight:700}
-.spread-neg{color:#b71c1c;font-weight:700}
-</style>
+.kpi-row{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+.kpi{background:#f4f7fc;border-radius:6px;padding:8px 12px;min-width:90px}
+.kpi .v{font-size:16px;font-weight:800;color:#0d1f3c}
+.kpi .l{font-size:10px;color:#7a8399;margin-top:2px}
+.timeline{display:flex;gap:0;border:1px solid #dde4f0;border-radius:6px;overflow:hidden}
+.tl-step{flex:1;padding:8px 4px;text-align:center;border-right:1px solid #dde4f0;background:#f4f7fc}
+.tl-step:last-child{border-right:none}
+.tl-dot{width:22px;height:22px;background:#0d1f3c;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;margin:0 auto 4px}
+.tl-lbl{font-size:10px;font-weight:700;color:#0d1f3c}
+.tl-sub{font-size:9px;color:#7a8399;margin-top:2px}
+.spread-pos{color:#1a7a4a;font-weight:800}
+.risk-row tr td:first-child{font-weight:600;color:#b71c1c;width:45%}
+.footer{background:#f4f7fc;padding:14px 20px;font-size:10px;color:#7a8399;border-top:2px solid #0d1f3c}
+.badge-go{background:#1b5e20;color:#fff;padding:2px 8px;border-radius:10px;font-size:10px;font-weight:700}
+.badge-pend{background:#e65100;color:#fff;padding:2px 8px;border-radius:10px;font-size:10px;font-weight:700}
+</style></head><body>
+<div class="wrap">
 
-</head><body><div class="wrap">
+<!-- ① HEADER -->
 <div class="hdr">
-  <div class="hdr-ref">MAGG Capital · MAGG-2026-008 · IC Brief</div>
-  <div class="hdr-title">Malacuna Hostel · Cabestreros, Lavapiés — Madrid</div>
-  <div class="hdr-sub">RTB (Lic. feb 2025) · Obra nueva · 296 camas / 31 habs · 2.338 sqm · Mar 2026</div>
+  <div class="hdr-ref">MAGG-2026-008 · Madrid · Hostel Premium</div>
+  <div class="hdr-title">Malacuna Hostel — Cabestreros 1-3-5, Lavapiés</div>
+  <div class="hdr-sub">Hostel Premium · 296 camas / 31 habs · 2.338 sqm · Obra nueva RTB (lic. feb 2025) · Sin precio confirmado</div>
 </div>
-<div class="verdict verdict-pe">⏳ PEND precio — Bid rec €10.8M (+196bps) · Límite GO €11.9M (+153bps) · NOI €1.50M</div>
-<div class="sec"><div class="sec-title">A. Inversión & CapEx estimado</div><div class="kpi-row"><div class="kpi"><div class="v">€10.8M</div><div class="l">Bid rec (★)</div></div><div class="kpi"><div class="v">€11.9M</div><div class="l">Límite GO</div></div><div class="kpi"><div class="v">€7.10M</div><div class="l">CapEx total</div></div><div class="kpi"><div class="v">€36k</div><div class="l">€/cama entry bid</div></div><div class="kpi"><div class="v">€81k</div><div class="l">€/cama exit</div></div></div><table class=""><tr><th>Partida CapEx</th><th>Importe</th><th>Detalle</th></tr><tr><td>Hard costs (€2.300/sqm × 2.338m²)</td><td>€5.377k</td><td>Obra nueva urbana Madrid calidad alta</td></tr><tr><td>Soft costs (10% hard)</td><td>€538k</td><td>Arquitectura, PM, ingeniería</td></tr><tr><td>FF&E (€2.000/cama × 296)</td><td>€592k</td><td>Hostel: literas, taquillas, comunes</td></tr><tr><td>Contingencia (10%)</td><td>€651k</td><td>Sin visita DT confirmada</td></tr><tr><td>Total CapEx</td><td>€7.158k</td><td>€3.060/sqm · €24.2k/cama</td></tr></table></div><div class="sec"><div class="sec-title">B. Operaciones — Año 1 estabilizado (conservador)</div><div class="kpi-row"><div class="kpi"><div class="v">€36</div><div class="l">ADR/cama</div></div><div class="kpi"><div class="v">73%</div><div class="l">Occ</div></div><div class="kpi"><div class="v">€1.50M</div><div class="l">NOI Year 1 estab.</div></div><div class="kpi"><div class="v">8.2%+</div><div class="l">YoC s/bid €10.8M</div></div></div><table class=""><tr><th>Métrica</th><th>Conservador</th><th>OM Stab</th></tr><tr><td>ADR/cama</td><td>€36</td><td>€40 (percentil 75 comp set)</td></tr><tr><td>Ocupación</td><td>73%</td><td>77%</td></tr><tr><td>Revenue hab</td><td>€2.840M</td><td>€3.333M</td></tr><tr><td>F&B (20% rooms)</td><td>€568k</td><td>—</td></tr><tr><td>Revenue total</td><td>€3.408M</td><td>~€3.6M</td></tr><tr><td>GOP (52%)</td><td>€1.772M</td><td>—</td></tr><tr><td>HMA all-in 8%</td><td>(€273k)</td><td>—</td></tr><tr><td>NOI propietario</td><td>€1.499M</td><td>—</td></tr></table></div><div class="sec"><div class="sec-title">C. Exit & Retornos (factibilidad)</div><div class="kpi-row"><div class="kpi"><div class="v">6.25%</div><div class="l">Exit yield (hostel)</div></div><div class="kpi"><div class="v">€24.0M</div><div class="l">Exit @ 6.25%</div></div><div class="kpi"><div class="v">+196bps</div><div class="l">Spread bid rec</div></div><div class="kpi"><div class="v">~4.5 años</div><div class="l">Horizonte</div></div></div><table class=""><tr><th>Escenario entry</th><th>YoC</th><th>Spread vs 6.25%</th><th>Veredicto</th></tr><tr><td>€10.8M (bid rec ★)</td><td>8.2%</td><td><span class="spread-pos">+196bps ✅</span></td><td>GO</td></tr><tr><td>€11.9M (límite GO)</td><td>7.5%</td><td><span class="spread-pos">+153bps ✅</span></td><td>GO mínimo</td></tr><tr><td>€13.0M</td><td>7.0%</td><td>+103bps</td><td>BORDERLINE</td></tr><tr><td>€15.0M</td><td>6.5%</td><td>+38bps</td><td>NO GO</td></tr></table></div><div class="sec"><div class="sec-title">Cronograma</div><div class="timeline"><div class="tl-step"><div class="tl-dot">1</div><div class="tl-lbl">RTB</div><div class="tl-sub">Feb 2025</div></div><div class="tl-step"><div class="tl-dot">2</div><div class="tl-lbl">Inicio obra</div><div class="tl-sub">Q2 2026</div></div><div class="tl-step"><div class="tl-dot">3</div><div class="tl-lbl">Estructura</div><div class="tl-sub">Q4 2026</div></div><div class="tl-step"><div class="tl-dot">4</div><div class="tl-lbl">Apertura</div><div class="tl-sub">Q4 2027–Q2 2028</div></div><div class="tl-step"><div class="tl-dot">5</div><div class="tl-lbl">Estab.</div><div class="tl-sub">Q4 2028</div></div><div class="tl-step"><div class="tl-dot">6</div><div class="tl-lbl">Exit</div><div class="tl-sub">2030</div></div></div></div><div class="sec"><div class="sec-title">Ubicación & Mercado</div><p><b>Madrid:</b> Occ media hostels 73% · ADR mercado €28–45/cama · Supply 7.880 camas</p><p><b>Micro:</b> Calle Cabestreros 1-3-5 · Lavapiés/La Latina · Metro La Latina (L5) &lt;5 min · 10 min Plaza Mayor + Reina Sofía</p><p><b>Ventaja:</b> RTB (lic. aprobada feb 2025) · BREEAM Excellent target · Rooftop + pool + F&B = defensibilidad ADR</p><table class=""><tr><th>Comp</th><th>Zona</th><th>Camas est.</th><th>ADR/cama</th></tr><tr><td>Generator Madrid</td><td>Gran Vía</td><td>~500</td><td>€30–45</td></tr><tr><td>The Central House Lavapiés</td><td>Lavapiés</td><td>~100</td><td>€28–40</td></tr><tr><td>Multi Hostel Lavapiés</td><td>Lavapiés</td><td>~80</td><td>€22–32</td></tr><tr><td>Malacuna (asunción MAGG)</td><td>Lavapiés</td><td>296</td><td>€36 (conserv.)</td></tr></table></div><div class="sec"><div class="sec-title">Riesgos clave</div><table class="risk-row"><tr><th>Riesgo</th><th>Mitigación</th></tr><tr><td>Precio sin confirmar — decisión GO pendiente</td><td>Solicitar precio estructura a broker antes de avanzar</td></tr><tr><td>Desarrollo desde cero: 18-24m obra</td><td>Deal solo funciona con IRR ≥15% para compensar riesgo timing</td></tr><tr><td>Marca Malacuna sin track record</td><td>Evaluar HMA con operador externo vs marca propia</td></tr><tr><td>Hostel: exit yield más alta (6.25%) que hotel</td><td>Asumido en modelo — premium vs hotel 4★ que sale a 5.25%</td></tr><tr><td>ADR estacional — invierno más débil</td><td>GOP 52% ya descuenta estacionalidad vs hotel (60%)</td></tr></table></div><div class="sec"><div class="sec-title">Próximos pasos</div><table class=""><tr><th>Acción</th><th>Owner</th><th>Fecha</th></tr><tr><td>Confirmar precio/estructura con vendedor o broker</td><td>Inversión / Eduardo</td><td>ASAP</td></tr><tr><td>Con precio → scoring definitivo GO/NO GO</td><td>MAGG</td><td>Inmediato tras precio</td></tr><tr><td>Evaluar operador (HMA vs Malacuna propia)</td><td>Inversión</td><td>En paralelo</td></tr><tr><td>DD constructiva: revisar CapEx con DT</td><td>Técnico</td><td>Tras NBO aceptado</td></tr></table></div>
-<div class="footer">MAGG Capital · Uso interno · Confidencial · Generado por Tenacitas</div>
+
+<!-- ② VERDICT BANNER -->
+<div class="verdict-banner">
+  <span class="badge-go">GO ✅</span>
+  <span>Bid rec <strong>€10.8M</strong> (<span class="spread-pos">+196 bps</span>) · Límite GO €11.9M (+153 bps) · NOI €1.50M · Exit €24.0M @ 6.25%</span>
+  &nbsp;<span class="badge-pend">⏳ PEND precio</span>
+</div>
+
+<!-- ③ FICHA -->
+<div class="ficha">
+  <div class="fc"><div class="fc-l">Tipo</div><div class="fc-v">Hostel Premium</div></div>
+  <div class="fc"><div class="fc-l">Camas / Habs</div><div class="fc-v">296 / 31</div></div>
+  <div class="fc"><div class="fc-l">SQM</div><div class="fc-v">2.338 m²</div></div>
+  <div class="fc"><div class="fc-l">Estado obra</div><div class="fc-v">Obra nueva RTB</div></div>
+  <div class="fc"><div class="fc-l">Bid rec ★</div><div class="fc-v">€10.8M</div></div>
+  <div class="fc"><div class="fc-l">Límite GO</div><div class="fc-v">€11.9M</div></div>
+</div>
+
+<!-- ④ 3 COLUMNAS -->
+<table><tr>
+<td style="width:33%;vertical-align:top;padding:16px 14px;border-right:1px solid #eef1f8">
+  <div class="sec-title">A. CapEx</div>
+  <table><tr><th>Partida</th><th>Importe</th></tr>
+  <tr><td>Hard (€2.300/sqm × 2.338m²)</td><td>€5.377k</td></tr>
+  <tr><td>Soft (10% hard)</td><td>€538k</td></tr>
+  <tr><td>FF&amp;E (€2k × 296 camas)</td><td>€592k</td></tr>
+  <tr><td>Contingencia (10%)</td><td>€651k</td></tr>
+  <tr><td><strong>Total CapEx</strong></td><td><strong>€7.158k</strong></td></tr>
+  <tr><td>€/cama CapEx</td><td>€24.2k</td></tr>
+  <tr><td>Total inv. @ bid rec</td><td>€17.958k</td></tr>
+  </table>
+</td>
+<td style="width:33%;vertical-align:top;padding:16px 14px;border-right:1px solid #eef1f8">
+  <div class="sec-title">B. Ops Año 1 estab.</div>
+  <table><tr><th>Métrica</th><th>Conservador</th></tr>
+  <tr><td>ADR/cama</td><td>€36</td></tr>
+  <tr><td>Ocupación</td><td>73%</td></tr>
+  <tr><td>Revenue hab</td><td>€2.840M</td></tr>
+  <tr><td>F&amp;B (20% rooms)</td><td>€568k</td></tr>
+  <tr><td>Revenue total</td><td>€3.408M</td></tr>
+  <tr><td>GOP (52%)</td><td>€1.772M</td></tr>
+  <tr><td>HMA all-in (8% Rev)</td><td>(€273k)</td></tr>
+  <tr><td><strong>NOI propietario</strong></td><td><strong style="color:#1a7a4a">€1.499M</strong></td></tr>
+  </table>
+</td>
+<td style="width:34%;vertical-align:top;padding:16px 14px">
+  <div class="sec-title">C. Exit &amp; Retornos</div>
+  <table><tr><th>Escenario entry</th><th>YoC</th><th>Spread</th></tr>
+  <tr style="background:#e8f5e9"><td><strong>€10.8M ★</strong></td><td><strong>8.21%</strong></td><td><span class="spread-pos">+196 bps ✅</span></td></tr>
+  <tr><td>€11.9M (límite GO)</td><td>7.49%</td><td><span class="spread-pos">+124 bps ✅</span></td></tr>
+  <tr><td>€13.0M</td><td>7.04%</td><td>+79 bps ⚠️</td></tr>
+  </table>
+  <p style="margin-top:8px;font-size:10px;color:#7a8399">Exit yield hostel 6.25% (hotel Madrid 4★ 5.25% +100bps). Exit valor: <strong>€24.0M</strong> (NOI/6.25%). LTC 50% @ 5% → IRR ~18-20%.</p>
+</td>
+</tr></table>
+
+<!-- ⑤ CRONOGRAMA -->
+<div class="sec">
+  <div class="sec-title">Cronograma (RTB — sin riesgo licencia)</div>
+  <div class="timeline">
+    <div class="tl-step"><div class="tl-dot">1</div><div class="tl-lbl">NBO</div><div class="tl-sub">ASAP</div></div>
+    <div class="tl-step"><div class="tl-dot">2</div><div class="tl-lbl">Cierre</div><div class="tl-sub">Mes 0</div></div>
+    <div class="tl-step"><div class="tl-dot">3</div><div class="tl-lbl">Inicio obra</div><div class="tl-sub">Q2 2026</div></div>
+    <div class="tl-step"><div class="tl-dot">4</div><div class="tl-lbl">Apertura</div><div class="tl-sub">Q4 2027</div></div>
+    <div class="tl-step"><div class="tl-dot">5</div><div class="tl-lbl">Estab.</div><div class="tl-sub">Q4 2028</div></div>
+    <div class="tl-step"><div class="tl-dot">6</div><div class="tl-lbl">Exit</div><div class="tl-sub">2030</div></div>
+  </div>
+</div>
+
+<!-- ⑥ UBICACIÓN + SENSIBILIDAD -->
+<table><tr>
+<td style="width:38%;vertical-align:top;padding:16px 14px;border-right:1px solid #eef1f8">
+  <div class="sec-title">Ubicación</div>
+  <p style="margin-bottom:8px"><span style="background:#e65100;color:#fff;padding:2px 7px;border-radius:10px;font-size:10px;font-weight:700">📍 LAVAPIÉS — NO PRIME</span></p>
+  <table><tr><th>Referencia</th><th>Distancia</th></tr>
+  <tr><td>Metro La Latina L5</td><td>&lt;5 min</td></tr>
+  <tr><td>Plaza Mayor</td><td>10 min</td></tr>
+  <tr><td>Reina Sofía</td><td>8 min</td></tr>
+  <tr><td>Sol / Gran Vía</td><td>15 min</td></tr>
+  </table>
+  <p style="margin-top:8px;font-size:10px;color:#7a8399">Valoración MAGG: <strong>B+</strong> · Lavapiés = barrio emergente con fuerte demanda mochilero/lifestyle. RTB es activo diferencial clave.</p>
+</td>
+<td style="width:62%;vertical-align:top;padding:16px 14px">
+  <div class="sec-title">Sensibilidad ADR × Ocupación — Exit yield 6.25%</div>
+  <table><tr>
+    <th>ADR/cama \ Occ</th><th>68%</th><th>70%</th><th>73% base</th><th>77%</th>
+  </tr>
+  <tr><td>€32 (−€4)</td><td>+67 / ~12%</td><td>+81 / ~13%</td><td>+108 / ~15%</td><td>+138 / ~17%</td></tr>
+  <tr><td>€34 (−€2)</td><td>+91 / ~14%</td><td>+107 / ~15%</td><td>+143 / ~17%</td><td>+174 / ~19%</td></tr>
+  <tr style="background:#e8f5e9"><td><strong>€36 base</strong></td><td>+116 / ~16%</td><td>+135 / ~17%</td><td><strong>+196 / ~20%</strong></td><td>+228 / ~22%</td></tr>
+  <tr><td>€40 (+€4)</td><td>+163 / ~19%</td><td>+185 / ~21%</td><td>+243 / ~25%</td><td>+278 / ~27%</td></tr>
+  </table>
+  <p style="margin-top:6px;font-size:9px;color:#7a8399">Spread bps / IRR lev. estimado. @ bid rec €10.8M + CapEx €7.1M = €17.9M total. LTC 50% @ 5%.</p>
+</td>
+</tr></table>
+
+<!-- ⑦ RIESGOS + PRÓXIMOS PASOS -->
+<table><tr>
+<td style="width:50%;vertical-align:top;padding:16px 14px;border-right:1px solid #eef1f8">
+  <div class="sec-title">Riesgos clave</div>
+  <table class="risk-row"><tr><th>Riesgo</th><th>Mitigación</th></tr>
+  <tr><td>🚨 Sin precio — kill switch</td><td>Si precio &gt;€11.9M → NO GO automático</td></tr>
+  <tr><td>Obra 18-24m desde cero</td><td>RTB aprobado elimina riesgo licencia</td></tr>
+  <tr><td>ADR hostel estacional</td><td>GOP 52% (vs 60% hotel) ya descuenta</td></tr>
+  <tr><td>Exit yield hostel vs hotel</td><td>+100bps sobre hotel asumido en modelo</td></tr>
+  <tr><td>Operador Malacuna sin track</td><td>Evaluar HMA con operador externo alternativo</td></tr>
+  </table>
+</td>
+<td style="width:50%;vertical-align:top;padding:16px 14px">
+  <div class="sec-title">Próximos pasos</div>
+  <table><tr><th>Acción</th><th>Owner</th><th>Fecha</th></tr>
+  <tr><td><strong>🚨 Confirmar precio/estructura</strong></td><td>Inversión / Eduardo</td><td>ASAP</td></tr>
+  <tr><td>Con precio → scoring definitivo</td><td>MAGG</td><td>Inmediato</td></tr>
+  <tr><td>Evaluar operador (HMA)</td><td>Inversión</td><td>En paralelo</td></tr>
+  <tr><td>Visita DT + CapEx definitivo</td><td>Técnico</td><td>Tras NBO</td></tr>
+  </table>
+</td>
+</tr></table>
+
+<!-- ⑧ COMPS -->
+<div class="sec">
+  <div class="sec-title">Comparables hostels Madrid (CoStar / MAGG DB)</div>
+  <table><tr><th>Hostel</th><th>Zona</th><th>Camas</th><th>ADR/cama</th><th>Occ</th></tr>
+  <tr><td>Generator Madrid</td><td>Gran Vía</td><td>~500</td><td>€30–45</td><td>~75%</td></tr>
+  <tr><td>The Central House Lavapiés</td><td>Lavapiés</td><td>~100</td><td>€28–40</td><td>~70%</td></tr>
+  <tr><td>Multi Hostel Lavapiés</td><td>Lavapiés</td><td>~80</td><td>€22–32</td><td>~68%</td></tr>
+  <tr style="background:#e8f5e9"><td><strong>Malacuna MAGG base</strong></td><td>Lavapiés</td><td>296</td><td><strong>€36 (conserv.)</strong></td><td><strong>73%</strong></td></tr>
+  </table>
+</div>
+
+<!-- ⑨ FOOTER -->
+<div class="footer">
+  MAGG Capital · IC Brief MAGG-2026-008 · Generado 11/03/2026 · Fuente: MAGG UW v2 / CoStar Feb 2026 · ⚠️ Sin precio confirmado — modelo condicional
+  &nbsp;|&nbsp; <a href="https://edmartin8n.github.io/magg-dashboard/" style="color:#0d1f3c">CRM Pipeline</a>
+</div>
 </div></body></html>
