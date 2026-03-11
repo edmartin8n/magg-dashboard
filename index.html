@@ -481,8 +481,8 @@ header h1{font-size:16px;font-weight:800;letter-spacing:-.3px;color:var(--navy)}
   <div class="tabs">
     <div class="tab active" id="tab-control" onclick="showView('control')">📊 Control</div>
     <div class="tab" id="tab-deals" onclick="showView('deals')">📋 Pipeline</div>
-    <div class="tab" id="tab-finders" onclick="showView('finders')">👥 Intermediarios</div>
     <div class="tab" id="tab-tx" onclick="showView('tx')">⚡ Transacción</div>
+    <div class="tab" id="tab-finders" onclick="showView('finders')">👥 Intermediarios</div>
     <div class="tab" id="tab-ask" onclick="showView('ask')">💬 Asistente</div>
   </div>
 
@@ -1240,7 +1240,7 @@ function renderControl() {
   const an    = DEALS.filter(d=>d.verdict==='analisis'||d.verdict==='pend');
   const bord  = DEALS.filter(d=>d.verdict==='borderline');
   const nogo  = DEALS.filter(d=>d.verdict==='nogo');
-  const activos = [...go,...bord].sort((a,b)=>{
+  const activos = [...go,...bord,...an].sort((a,b)=>{
     const sa=parseInt(String(a.spread).replace(/[^-\d]/g,''))||0;
     const sb=parseInt(String(b.spread).replace(/[^-\d]/g,''))||0;
     return sb-sa;
@@ -1252,9 +1252,10 @@ function renderControl() {
   },-9999);
   const recent = DEALS.filter(d=>{
     if(!d.fecha) return false;
-    const p=d.fecha.split('/');
-    if(p.length!==3) return false;
-    const ts = new Date(+p[2],+p[1]-1,+p[0]).getTime();
+    let ts;
+    const ps=d.fecha.split('/');
+    if(ps.length===3){ ts=new Date(+ps[2],+ps[1]-1,+ps[0]).getTime(); }
+    else{ const pd=d.fecha.split('-'); if(pd.length===3){ts=new Date(+pd[0],+pd[1]-1,+pd[2]).getTime();}else return false; }
     return Date.now()-ts < 30*86400000;
   });
 
@@ -1301,9 +1302,11 @@ function renderMonthChart() {
   const counts = {};
   DEALS.forEach(d => {
     if (!d.fecha) return;
-    const p = d.fecha.split('/');
-    if (p.length!==3) return;
-    const key = p[2]+'-'+(p[1].padStart(2,'0'));
+    let yr,mo;
+    const ps = d.fecha.split('/');
+    if (ps.length===3) { yr=ps[2]; mo=ps[1].padStart(2,'0'); }
+    else { const pd=d.fecha.split('-'); if(pd.length===3){yr=pd[0];mo=pd[1].padStart(2,'0');}else return; }
+    const key = yr+'-'+mo;
     counts[key] = (counts[key]||0)+1;
   });
   const allKeys = Object.keys(counts).sort();
@@ -1542,7 +1545,7 @@ function txSelectDeal(ref) {
 }
 
 function renderTxSidebar() {
-  const goDeals = DEALS.filter(d=>d.is_magg && (d.verdict==='go'||d.verdict==='pass'||d.verdict==='borderline'));
+  const goDeals = DEALS.filter(d=>(d.verdict==='go'||d.verdict==='pass') || (d.is_magg && d.verdict==='borderline'));
   if (!goDeals.length) return '<div style="padding:20px;font-size:12px;color:rgba(255,255,255,.35)">Sin deals GO activos</div>';
   return goDeals.map(d=>{
     const pg = txProgress(d.ref);
@@ -1719,7 +1722,7 @@ function renderTx() {
   if (!sideEl || !mainEl) return;
 
   // Sidebar
-  const goDeals = DEALS.filter(d=>d.is_magg && (d.verdict==='go'||d.verdict==='pass'||d.verdict==='borderline'));
+  const goDeals = DEALS.filter(d=>(d.verdict==='go'||d.verdict==='pass') || (d.is_magg && d.verdict==='borderline'));
   sideEl.innerHTML = '<div class="tx-sidebar-title">Deals activos</div>' + renderTxSidebar();
 
   // Auto-select first deal if none
