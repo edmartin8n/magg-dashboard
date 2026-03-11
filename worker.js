@@ -15,31 +15,23 @@ export default {
       const query = body.query || '';
       const deals_context = body.deals_context || '';
 
-      const resp = await fetch('https://api.openai.com/v1/chat/completions', {
-        method: 'POST',
-        headers: {
-          'Authorization': 'Bearer ' + env.OPENAI_API_KEY,
-          'Content-Type': 'application/json'
+      const messages = [
+        {
+          role: 'system',
+          content: 'Eres el asistente de inversion de MAGG Capital. Solo respondes sobre los deals del pipeline. Responde en espanol, de forma concisa, citando la referencia del deal (MAGG-XXXX o HIST-XXX). Pipeline de deals:\n\n' + deals_context
         },
-        body: JSON.stringify({
-          model: 'gpt-4o-mini',
-          max_tokens: 600,
-          temperature: 0.2,
-          messages: [
-            {
-              role: 'system',
-              content: 'Eres el asistente de inversion de MAGG Capital. Solo respondes sobre los deals del pipeline. Responde en espanol, de forma concisa con referencias a los deals (ref MAGG-XXXX o HIST-XXX). Pipeline:\n\n' + deals_context
-            },
-            {
-              role: 'user',
-              content: query
-            }
-          ]
-        })
+        {
+          role: 'user',
+          content: query
+        }
+      ];
+
+      const result = await env.AI.run('@cf/meta/llama-3.1-8b-instruct', {
+        messages: messages,
+        max_tokens: 500
       });
 
-      const data = await resp.json();
-      const answer = (data.choices && data.choices[0] && data.choices[0].message && data.choices[0].message.content) || 'Sin respuesta';
+      const answer = result.response || 'Sin respuesta';
 
       return new Response(JSON.stringify({ answer: answer }), {
         headers: {
