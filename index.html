@@ -1630,7 +1630,7 @@ function renderTxPhaseCard(ref, phase) {
 /* =============================================
    ASISTENTE DE DEALS
    ============================================= */
-const WORKER_URL = localStorage.getItem('magg_worker_url') || '';
+const WORKER_URL = localStorage.getItem('magg_worker_url') || 'https://magg-deal-assistant.edmartin8n.workers.dev/';
 
 function buildDealsContext() {
   // Solo deals MAGG + borderline + go + en análisis (los relevantes)
@@ -1763,7 +1763,8 @@ function renderTx() {
 
 
 /* ===== FLOATING CHAT LOGIC ===== */
-function getWorkerUrl(){ return localStorage.getItem('magg_worker_url')||''; }
+const MAGG_WORKER='https://magg-deal-assistant.edmartin8n.workers.dev/';
+function getWorkerUrl(){ return localStorage.getItem('magg_worker_url')||MAGG_WORKER; }
 
 function toggleChat(){
   const panel=document.getElementById('chat-panel');
