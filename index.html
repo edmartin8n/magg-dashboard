@@ -938,7 +938,14 @@ function dealTableRow(d) {
 
   return `
   <div class="pl-tr v-${vkey}${isOpen||isEditing?' expanded':''}" id="plr-${sr}" onclick="toggleD('${d.ref}')">
-    <div class="pl-td"><div class="pl-dot ${vkey}"></div></div>
+    <div class="pl-td" style="padding:0;justify-content:center;align-items:center">
+      ${d.link_ic
+        ? `<a href="${d.link_ic}" target="_blank" onclick="event.stopPropagation()" title="📄 IC Brief — ${d.nombre}" style="display:flex;align-items:center;justify-content:center;width:100%;height:100%;text-decoration:none">
+            <div class="pl-dot ${vkey}" style="cursor:pointer;box-shadow:0 0 0 2px rgba(255,255,255,.5),0 0 0 3px var(--vcolor,#aaa);transition:.15s" onmouseenter="this.style.transform='scale(1.25)'" onmouseleave="this.style.transform=''"></div>
+           </a>`
+        : `<div class="pl-dot ${vkey}"></div>`
+      }
+    </div>
     <div class="pl-td ref">${d.ref}</div>
     <div class="pl-td name">${d.nombre}<span class="mob-ref">${d.ref}</span><div style="font-size:10px;color:#8a9bb5;font-weight:400;margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">📍 ${d.ubicacion}</div></div>
     <div class="pl-td muted" title="${d.fecha||''}">${fmtFechaShort(d.fecha)}</div>
@@ -954,7 +961,7 @@ function dealTableRow(d) {
       ${detailItems.map(r=>`<div class="pl-dg"><div class="pl-dg-l">${r[0]}</div><div class="pl-dg-v">${r[1]}</div></div>`).join('')}
     </div>
     <div class="deal-actions" style="margin-top:6px">
-      ${d.ic_link?`<a href="${d.ic_link}" target="_blank" class="btn btn-nav">📄 Brief</a>`:''}
+      ${d.link_ic?`<a href="${d.link_ic}" target="_blank" class="btn btn-nav">📄 Brief</a>`:''}
       ${d.gamma_link?`<a href="${d.gamma_link}" target="_blank" class="btn btn-nav">📊 Presentación</a>`:''}
       ${brokerBtn}${editBtn}
     </div>
