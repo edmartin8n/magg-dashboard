@@ -1375,6 +1375,7 @@ function renderShortlist() {
   const el  = document.getElementById('shortlist-items');
   const cnt = document.getElementById('sl-count-hdr');
   if (cnt) cnt.textContent = shortlist.length + ' deals';
+  if (!el) return;
   if (!shortlist.length) {
     el.innerHTML = '<div class="sl-empty" id="shortlist-empty">Haz ★ en cualquier deal del pipeline para añadirlo aquí</div>';
     return;
