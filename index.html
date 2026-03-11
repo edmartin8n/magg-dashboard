@@ -1399,24 +1399,37 @@ function renderShortlist() {
 
 const TX_PHASES = [
   { id:0, name:'Pre-NBO', icon:'🔍', items:[
-    { id:'p0c1', text:'Validar asunciones IC Brief con fuentes externas (CoStar/JLL)', owner:'Inversión' },
-    { id:'p0c2', text:'Solicitar OM / acceso Data Room completo', owner:'Inversión' },
-    { id:'p0c3', text:'Primera visita al activo (presencial o virtual)', owner:'Técnico' },
-    { id:'p0c4', text:'Confirmar precio realista vs. comparables de mercado', owner:'Inversión' },
+    { id:'p0c01', text:'Primer análisis agente', owner:'Inversión' },
+    { id:'p0c02', text:'Revisión Pipe / Edu racional', owner:'Inversión' },
+    { id:'p0c03', text:'Revisión Nacho - Técnico (encaje, planos, licencias, etc.)', owner:'Técnico' },
+    { id:'p0c04', text:'Si OK. Visión de equipo Expansión', owner:'SR - Expansión' },
+    { id:'p0c05', text:'Si OK. Visión de equipo Técnico SR', owner:'SR - Técnico' },
+    { id:'p0c06', text:'Firmar NDA', owner:'Legal' },
+    { id:'p0c07', text:'Solicitar OM / acceso Data Room completo', owner:'Inversión' },
+    { id:'p0c08', text:'Business Plan de Inversión', owner:'Inversión' },
+    { id:'p0c09', text:'Confirmar precio realista vs. comparables de mercado', owner:'Inversión' },
+    { id:'p0c10', text:'Primera visita al activo (presencial o virtual)', owner:'Inversión' },
+    { id:'p0c11', text:'Comité #1 - Fran / Oli', owner:'Accionistas' },
   ]},
   { id:1, name:'NBO / LOI', icon:'📋', items:[
-    { id:'p1c1', text:'Redactar y enviar NBO con condiciones precedentes', owner:'Inversión' },
-    { id:'p1c2', text:'Confirmar aceptación NBO por vendedor', owner:'Inversión' },
-    { id:'p1c3', text:'Firmar NDA / NDNC (si no existe)', owner:'Legal' },
-    { id:'p1c4', text:'Acordar periodo exclusividad DD + calendario', owner:'Inversión' },
+    { id:'p1c1', text:'Estudio de esquema de pagos', owner:'Legal' },
+    { id:'p1c2', text:'LOI SmartRental', owner:'Legal' },
+    { id:'p1c3', text:'Redactar LOI con condiciones precedentes', owner:'Inversión' },
+    { id:'p1c4', text:'Envío LOI con condiciones precedentes', owner:'Inversión' },
+    { id:'p1c5', text:'Confirmación de LOI', owner:'Inversión' },
+    { id:'p1c6', text:'Acordar periodo exclusividad DD + calendario', owner:'Inversión' },
+    { id:'p1c7', text:'Comité #2 - Fran / Oli', owner:'Accionistas' },
+    { id:'p1c8', text:'Equity fundraising - Roadmap', owner:'Accionistas' },
   ]},
   { id:2, name:'DD Técnica', icon:'🔧', items:[
     { id:'p2c1', text:'Visita técnica DT / quantity surveyor', owner:'Técnico' },
     { id:'p2c2', text:'Confirmar sqm reales y distribución del activo', owner:'Técnico' },
     { id:'p2c3', text:'Validar CapEx definitivo con presupuesto indicativo', owner:'Técnico' },
-    { id:'p2c4', text:'Estado licencias: uso actual, turística, obras', owner:'Legal' },
-    { id:'p2c5', text:'Análisis urbanístico (PGM, zoning, limitaciones)', owner:'Legal' },
+    { id:'p2c4', text:'Estado licencias: uso actual, turístico, obras', owner:'Técnico' },
+    { id:'p2c5', text:'Análisis urbanístico (PGM, zoning, limitaciones)', owner:'Técnico' },
     { id:'p2c6', text:'Informe técnico final → ajustar CapEx si diverge del modelo', owner:'Técnico' },
+    { id:'p2c7', text:'DD Técnica tercero', owner:'Técnico' },
+    { id:'p2c8', text:'Presupuestos obra', owner:'Técnico' },
   ]},
   { id:3, name:'DD Legal', icon:'⚖️', items:[
     { id:'p3c1', text:'Registro Propiedad: cargas, servidumbres, hipotecas', owner:'Legal' },
@@ -1425,50 +1438,45 @@ const TX_PHASES = [
     { id:'p3c4', text:'Licencias administrativas (actividad, turística)', owner:'Legal' },
     { id:'p3c5', text:'DD fiscal (ITP/IVA, impuestos diferidos, contingencias)', owner:'Legal' },
     { id:'p3c6', text:'Informe legal final + red flags documentados', owner:'Legal' },
+    { id:'p3c7', text:'DD Legal tercero', owner:'Legal' },
+    { id:'p3c8', text:'Oliver approvals', owner:'Legal' },
   ]},
   { id:4, name:'Financiación', icon:'🏦', items:[
     { id:'p4c1', text:'Preparar teaser bancario (modelo financiero + IC Brief)', owner:'Inversión' },
     { id:'p4c2', text:'Enviar a 3–5 bancos / debt advisors', owner:'Inversión' },
     { id:'p4c3', text:'Recibir y comparar term sheets', owner:'Inversión' },
     { id:'p4c4', text:'Negociar condiciones: LTV, covenants, coste deuda', owner:'Inversión' },
-    { id:'p4c5', text:'Tasación bancaria (RICS appraisal)', owner:'Técnico' },
-    { id:'p4c6', text:'Aprobación comité de crédito del banco', owner:'Otros' },
-    { id:'p4c7', text:'Firma contrato de préstamo', owner:'Legal' },
+    { id:'p4c5', text:'Tasación bancaria (RICS appraisal)', owner:'Inversión' },
+    { id:'p4c6', text:'Aprobación comité de crédito del banco', owner:'Inversión' },
   ]},
   { id:5, name:'IC + Equity', icon:'💼', items:[
-    { id:'p5c1', text:'IC Presentation final (DD findings + modelo actualizado)', owner:'Inversión' },
-    { id:'p5c2', text:'Aprobación Investment Committee', owner:'Accionistas' },
-    { id:'p5c3', text:'Estructura vehículo: SPV / club deal / JV', owner:'Legal' },
-    { id:'p5c4', text:'Equity commitments de inversores', owner:'Accionistas' },
-    { id:'p5c5', text:'Constitución SPV si aplica', owner:'Legal' },
+    { id:'p5c1', text:'Propuesta en firme operador', owner:'Inversión' },
+    { id:'p5c2', text:'Revisión costes de obra', owner:'Técnico' },
+    { id:'p5c3', text:'Comité #3 - IC Presentation final (DD findings + modelo actualizado)', owner:'Accionistas' },
+    { id:'p5c4', text:'Aprobación Investment Committee', owner:'Accionistas' },
+    { id:'p5c5', text:'Estructura vehículo: SPV / club deal / JV', owner:'Legal' },
+    { id:'p5c6', text:'Equity commitments de inversores', owner:'Accionistas' },
+    { id:'p5c7', text:'Constitución SPV si aplica', owner:'Legal' },
   ]},
   { id:6, name:'SPA / Contrato', icon:'📝', items:[
     { id:'p6c1', text:'Negociar ajuste de precio por hallazgos de DD', owner:'Inversión' },
     { id:'p6c2', text:'Borrador SPA / escritura de compraventa', owner:'Legal' },
     { id:'p6c3', text:'Revisión de condiciones precedentes', owner:'Legal' },
-    { id:'p6c4', text:'W&I (warranty & indemnity) si aplica', owner:'Legal' },
-    { id:'p6c5', text:'Firma contrato de arras', owner:'Inversión' },
-    { id:'p6c6', text:'Sign-off legal definitivo en SPA', owner:'Legal' },
+    { id:'p6c4', text:'Firma contrato de arras', owner:'Accionistas' },
+    { id:'p6c5', text:'Sign-off legal definitivo en SPA', owner:'Legal' },
   ]},
-  { id:7, name:'Pre-Cierre', icon:'⏳', items:[
-    { id:'p7c1', text:'Cumplimiento de condiciones precedentes', owner:'Legal' },
-    { id:'p7c2', text:'Preparación fondos: equity call + draw bancario', owner:'Inversión' },
-    { id:'p7c3', text:'Flow of funds reconciliation', owner:'Inversión' },
-    { id:'p7c4', text:'Preparación escritura notarial', owner:'Legal' },
+  { id:7, name:'Cierre', icon:'🔑', items:[
+    { id:'p7c1', text:'Firma notarial', owner:'Accionistas' },
+    { id:'p7c2', text:'Transferencia de fondos', owner:'Gestión' },
+    { id:'p7c3', text:'Inscripción Registro de la Propiedad', owner:'Legal' },
   ]},
-  { id:8, name:'Cierre', icon:'🔑', items:[
-    { id:'p8c1', text:'Firma notarial', owner:'Legal' },
-    { id:'p8c2', text:'Transferencia de fondos', owner:'Inversión' },
-    { id:'p8c3', text:'Entrega llaves / acceso al activo', owner:'Otros' },
-    { id:'p8c4', text:'Inscripción Registro de la Propiedad', owner:'Legal' },
+  { id:8, name:'Post-Cierre', icon:'🚀', items:[
+    { id:'p8c1', text:'Kick-off CapEx / coordinación de obra', owner:'Técnico' },
+    { id:'p8c2', text:'Onboarding operador (SmartRental / HMA / lease)', owner:'Inversión' },
+    { id:'p8c3', text:'Solicitud de licencias definitivas', owner:'Legal' },
+    { id:'p8c4', text:'Primera revisión financiera vs. modelo UW', owner:'Inversión' },
   ]},
-  { id:9, name:'Post-Cierre', icon:'🚀', items:[
-    { id:'p9c1', text:'Kick-off CapEx / coordinación de obra', owner:'Técnico' },
-    { id:'p9c2', text:'Onboarding operador (SmartRental / HMA / lease)', owner:'Inversión' },
-    { id:'p9c3', text:'Solicitud de licencias definitivas', owner:'Legal' },
-    { id:'p9c4', text:'Primera revisión financiera vs. modelo UW', owner:'Inversión' },
-  ]},
-];
+]
 
 let txRef = null;
 const txOpen = new Set([0]); // phases open by default
@@ -1589,7 +1597,7 @@ function renderTxPhaseCard(ref, phase) {
   const numBg  = phSt==='done'?'#e8f5e9':phSt==='active'?'#e8f0fe':phSt==='blocked'?'#fce4ec':'#edf0f8';
   const barClr = phSt==='done'?'var(--green)':phSt==='active'?'var(--blue)':phSt==='blocked'?'var(--red)':'#ccd5e8';
 
-  const owners = ['Inversión','Técnico','Legal','Accionistas','Otros'];
+  const owners = ['Inversión','Técnico','Legal','Accionistas','SR - Expansión','SR - Técnico','Gestión','Otros'];
   const rows = phase.items.map(ck=>{
     const ckSt = s[ck.id]||{status:'pending',owner:ck.owner};
     const st = ckSt.status, ow = ckSt.owner||ck.owner;
