@@ -177,13 +177,28 @@ header h1{font-size:16px;font-weight:800;letter-spacing:-.3px;color:var(--navy)}
 
 /* Activos table */
 .act-table{width:100%}
-.act-row{display:grid;grid-template-columns:90px 1fr 90px 90px;padding:9px 16px;border-bottom:1px solid #f0f4fa;align-items:center;cursor:pointer;transition:.1s}
+.act-row{display:grid;grid-template-columns:44px 90px 1.3fr 82px 72px 68px 88px 1fr;min-width:700px;padding:8px 14px;border-bottom:1px solid #f0f4fa;align-items:center;gap:0;transition:.1s}
 .act-row:hover{background:#f8fafc}
-.act-row.hdr{background:#f0f4fa;font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;cursor:default;padding:7px 16px}
+.act-row.hdr{background:#f0f4fa;font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;cursor:default;padding:6px 14px}
 .act-ref{font-size:10px;font-weight:700;color:var(--muted);letter-spacing:.5px}
 .act-name{font-size:12px;font-weight:600;color:var(--navy);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.act-loc{font-size:10px;color:var(--muted)}
+.act-loc{font-size:10px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.act-tipo{font-size:10px;color:var(--muted);font-style:italic}
 .act-spread{font-size:12px;font-weight:700;text-align:right}
+.act-prox{font-size:11px;color:#444;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding-left:6px}
+.act-precio{font-size:11px;font-weight:600;color:var(--navy);text-align:right}
+.act-yoc{font-size:12px;font-weight:600;color:var(--navy);text-align:right}
+.act-scoring{font-size:10px;font-weight:700;padding:2px 6px;border-radius:4px;display:inline-block;white-space:nowrap;text-align:center}
+.act-scoring.go{background:#dcfce7;color:#166534}
+.act-scoring.borderline{background:#fef9c3;color:#854d0e}
+.act-scoring.analisis{background:#dbeafe;color:#1e3a8a}
+.act-scoring.nogo{background:#fee2e2;color:#991b1b}
+.act-ic{display:flex;align-items:center;gap:4px}
+.act-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.act-dot.go{background:var(--green)}
+.act-dot.borderline{background:var(--orange)}
+.act-dot.analisis{background:#3b82f6}
+.act-dot.nogo{background:var(--red)}
 .sp-pos{color:var(--green)}.sp-neg{color:var(--red)}.sp-neu{color:var(--orange)}
 
 /* Shortlist */
@@ -655,8 +670,8 @@ header h1{font-size:16px;font-weight:800;letter-spacing:-.3px;color:var(--navy)}
       <div class="ctrl-bottom">
         <div class="ctrl-card">
           <div class="ctrl-card-hdr">🏆 Deals activos <span class="sub" id="ctrl-activos-n"></span></div>
-          <div id="ctrl-activos-list">
-            <div class="act-row hdr"><div>Ref</div><div>Deal · Ubicación</div><div style="text-align:right">Spread</div><div style="text-align:right">YoC</div></div>
+          <div id="ctrl-activos-list" style="overflow-x:auto;min-width:0">
+            <div class="act-row hdr" style="min-width:700px"><div>IC</div><div>Ref</div><div>Nombre · Tipo</div><div style="text-align:right">Precio</div><div style="text-align:right">Spread</div><div style="text-align:right">YoC</div><div style="text-align:center">Estado</div><div>Próx. Paso</div></div>
           </div>
         </div>
       </div>
@@ -1314,19 +1329,35 @@ function renderControl() {
   // Activos list
   const acEl = document.getElementById('ctrl-activos-list');
   document.getElementById('ctrl-activos-n').textContent = activos.length + ' deals';
-  const hdr = `<div class="act-row hdr"><div>Ref</div><div>Deal · Ubicación</div><div style="text-align:right">Spread</div><div style="text-align:right">YoC</div></div>`;
+  const hdr = `<div class="act-row hdr"><div>IC</div><div>Ref</div><div>Nombre · Tipo</div><div style="text-align:right">Precio</div><div style="text-align:right">Spread</div><div style="text-align:right">YoC</div><div style="text-align:center">Estado</div><div>Próx. Paso</div></div>`;
   if (!activos.length) {
     acEl.innerHTML = hdr + '<div style="padding:20px;text-align:center;color:var(--muted);font-size:12px">Sin deals activos</div>';
   } else {
     acEl.innerHTML = hdr + activos.map(d=>{
       const sp = parseInt(String(d.spread).replace(/[^-\d]/g,''))||0;
-      const cls = sp>0?'sp-pos':sp<0?'sp-neg':'sp-neu';
-      const inSL = shortlist.includes(d.ref);
+      const spCls = sp>0?'sp-pos':sp<0?'sp-neg':'sp-neu';
+      // IC cell
+      const vCls = d.verdict==='go'||d.verdict==='pass'?'go':d.verdict==='borderline'?'borderline':d.verdict==='analisis'||d.verdict==='pend'?'analisis':'nogo';
+      const icUrl = d.link_ic || d.ic_link || '';
+      const icCell = icUrl
+        ? `<div class="act-ic"><div class="act-dot ${vCls}"></div><a href="${icUrl}" target="_blank" onclick="event.stopPropagation()" style="font-size:13px;text-decoration:none">📄</a></div>`
+        : `<div class="act-ic"><div class="act-dot ${vCls}"></div></div>`;
+      // Precio
+      const precioStr = d.precio ? '€'+(d.precio/1e6).toFixed(2)+'M' : '—';
+      // Scoring badge
+      const scLabels = {go:'GO ✅',borderline:'BORDERLINE',analisis:'EN ANÁLISIS',nogo:'NO GO'};
+      const scLabel = scLabels[vCls] || vCls.toUpperCase();
+      // Próx. paso — truncate
+      const prox = d.prox_paso ? d.prox_paso.slice(0,60)+(d.prox_paso.length>60?'…':'') : '—';
       return `<div class="act-row" onclick="toggleShortlist('${d.ref.replace(/'/g,"\'")}')">
-        <div><div class="act-ref">${d.ref}</div><span style="font-size:16px;color:${inSL?'var(--gold)':'#ddd'}">${inSL?'★':'☆'}</span></div>
-        <div><div class="act-name">${d.nombre}</div><div class="act-loc">📍 ${d.ubicacion}</div></div>
-        <div class="act-spread ${cls}" style="text-align:right">${d.spread||'—'}</div>
-        <div style="text-align:right;font-size:12px;font-weight:600;color:var(--navy)">${fmtYoc(d.yoc)}</div>
+        ${icCell}
+        <div><div class="act-ref">${d.ref}</div></div>
+        <div><div class="act-name" title="${(d.nombre||'').replace(/"/g,'&quot;')}">${d.nombre}</div><div class="act-loc" title="${(d.ubicacion||'').replace(/"/g,'&quot;')}">📍 ${d.ubicacion}</div><div class="act-tipo">${d.tipo||''}</div></div>
+        <div class="act-precio" style="text-align:right">${precioStr}</div>
+        <div class="act-spread ${spCls}" style="text-align:right">${d.spread?String(d.spread).startsWith('-')||String(d.spread).startsWith('+') ? d.spread : (sp>0?'+':'')+d.spread : '—'} bps</div>
+        <div class="act-yoc" style="text-align:right">${fmtYoc(d.yoc)}</div>
+        <div style="text-align:center"><span class="act-scoring ${vCls}">${scLabel}</span></div>
+        <div class="act-prox" title="${prox}">${prox}</div>
       </div>`;
     }).join('');
   }
