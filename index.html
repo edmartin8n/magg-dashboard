@@ -670,9 +670,7 @@ header h1{font-size:16px;font-weight:800;letter-spacing:-.3px;color:var(--navy)}
       <div class="ctrl-bottom">
         <div class="ctrl-card">
           <div class="ctrl-card-hdr">🏆 Deals activos <span class="sub" id="ctrl-activos-n"></span></div>
-          <div id="ctrl-activos-list" style="overflow-x:auto;min-width:0">
-            <div class="act-row hdr" style="min-width:700px"><div>IC</div><div>Ref</div><div>Nombre · Tipo</div><div style="text-align:right">Precio</div><div style="text-align:right">Spread</div><div style="text-align:right">YoC</div><div style="text-align:center">Estado</div><div>Próx. Paso</div></div>
-          </div>
+          <div id="ctrl-activos-list"></div>
         </div>
       </div>
 
@@ -1326,40 +1324,28 @@ function renderControl() {
   document.getElementById('kpi-spread-sub').textContent = bestSpread>-9999
     ? (go.concat(bord).find(d=>parseInt(String(d.spread).replace(/[^-\d]/g,''))||0===bestSpread)||{ref:''}).ref : '';
 
-  // Activos list
+  // Activos list — misma estructura visual que Pipeline
   const acEl = document.getElementById('ctrl-activos-list');
   document.getElementById('ctrl-activos-n').textContent = activos.length + ' deals';
-  const hdr = `<div class="act-row hdr"><div>IC</div><div>Ref</div><div>Nombre · Tipo</div><div style="text-align:right">Precio</div><div style="text-align:right">Spread</div><div style="text-align:right">YoC</div><div style="text-align:center">Estado</div><div>Próx. Paso</div></div>`;
   if (!activos.length) {
-    acEl.innerHTML = hdr + '<div style="padding:20px;text-align:center;color:var(--muted);font-size:12px">Sin deals activos</div>';
+    acEl.innerHTML = '<div style="padding:20px;text-align:center;color:var(--muted);font-size:12px">Sin deals activos</div>';
   } else {
-    acEl.innerHTML = hdr + activos.map(d=>{
-      const sp = parseInt(String(d.spread).replace(/[^-\d]/g,''))||0;
-      const spCls = sp>0?'sp-pos':sp<0?'sp-neg':'sp-neu';
-      // IC cell
-      const vCls = d.verdict==='go'||d.verdict==='pass'?'go':d.verdict==='borderline'?'borderline':d.verdict==='analisis'||d.verdict==='pend'?'analisis':'nogo';
-      const icUrl = d.link_ic || d.ic_link || '';
-      const icCell = icUrl
-        ? `<div class="act-ic"><div class="act-dot ${vCls}"></div><a href="${icUrl}" target="_blank" onclick="event.stopPropagation()" style="font-size:13px;text-decoration:none">📄</a></div>`
-        : `<div class="act-ic"><div class="act-dot ${vCls}"></div></div>`;
-      // Precio
-      const precioStr = d.precio ? '€'+(d.precio/1e6).toFixed(2)+'M' : '—';
-      // Scoring badge
-      const scLabels = {go:'GO ✅',borderline:'BORDERLINE',analisis:'EN ANÁLISIS',nogo:'NO GO'};
-      const scLabel = scLabels[vCls] || vCls.toUpperCase();
-      // Próx. paso — truncate
-      const prox = d.prox_paso ? d.prox_paso.slice(0,60)+(d.prox_paso.length>60?'…':'') : '—';
-      return `<div class="act-row" onclick="toggleShortlist('${d.ref.replace(/'/g,"\'")}')">
-        ${icCell}
-        <div><div class="act-ref">${d.ref}</div></div>
-        <div><div class="act-name" title="${(d.nombre||'').replace(/"/g,'&quot;')}">${d.nombre}</div><div class="act-loc" title="${(d.ubicacion||'').replace(/"/g,'&quot;')}">📍 ${d.ubicacion}</div><div class="act-tipo">${d.tipo||''}</div></div>
-        <div class="act-precio" style="text-align:right">${precioStr}</div>
-        <div class="act-spread ${spCls}" style="text-align:right">${d.spread?String(d.spread).startsWith('-')||String(d.spread).startsWith('+') ? d.spread : (sp>0?'+':'')+d.spread : '—'} bps</div>
-        <div class="act-yoc" style="text-align:right">${fmtYoc(d.yoc)}</div>
-        <div style="text-align:center"><span class="act-scoring ${vCls}">${scLabel}</span></div>
-        <div class="act-prox" title="${prox}">${prox}</div>
+    acEl.innerHTML = `
+      <div class="pl-table">
+        <div class="pl-thead">
+          <div class="pl-th" style="justify-content:center">IC</div>
+          <div class="pl-th">Ref</div>
+          <div class="pl-th">Nombre</div>
+          <div class="pl-th">Fecha</div>
+          <div class="pl-th">SQM</div>
+          <div class="pl-th">Precio</div>
+          <div class="pl-th">Spread</div>
+          <div class="pl-th">YoC</div>
+          <div class="pl-th">Estado</div>
+          <div class="pl-th">Próx. Paso</div>
+        </div>
+        <div>${activos.map(d=>dealTableRow(d)).join('')}</div>
       </div>`;
-    }).join('');
   }
 
   renderMonthChart();
