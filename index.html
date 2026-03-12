@@ -285,7 +285,8 @@ header h1{font-size:16px;font-weight:800;letter-spacing:-.3px;color:var(--navy)}
   #view-deals,#view-finders{padding:10px 12px}
   .deal-kpis{display:none}
   .finder-header{grid-template-columns:1fr 1fr}
-  .ft-header,.finder-row{grid-template-columns:2fr 1fr 1fr 40px}
+  .ft-header{display:grid;grid-template-columns:44px 1.8fr 1fr 120px 1fr;background:#f0f4fa;border-bottom:2px solid #dde4f0;border-radius:var(--radius) var(--radius) 0 0}
+.finder-row{display:grid;grid-template-columns:44px 1.8fr 1fr 120px 1fr;border-bottom:1px solid #f0f4fa;cursor:pointer;transition:.15s}
   .ft-cell:nth-child(n+3),.finder-row .ft-cell:nth-child(n+3){display:none}
   .ft-cell:nth-child(3),.finder-row .ft-cell:nth-child(3),
   .ft-cell:nth-child(4),.finder-row .ft-cell:nth-child(4),
@@ -541,28 +542,24 @@ header h1{font-size:16px;font-weight:800;letter-spacing:-.3px;color:var(--navy)}
     <!-- FINDERS VIEW -->
     <div id="view-finders" style="display:none">
       <div class="finder-header">
-        <div class="fh-stat"><div class="v">199</div><div class="l">Intermediarios totales</div></div>
-        <div class="fh-stat" style="border-color:var(--navy)"><div class="v">60</div><div class="l">Tier 1</div></div>
-        <div class="fh-stat" style="border-color:#f57c00"><div class="v">0</div><div class="l">Con deals enviados</div></div>
-        <div class="fh-stat" style="border-color:var(--green)"><div class="v">136.7M€</div><div class="l">€ Total pipeline recibido</div></div>
+        <div class="fh-stat"><div class="v" id="fstat-firmas">—</div><div class="l">Firmas</div></div>
+        <div class="fh-stat" style="border-color:var(--green)"><div class="v" id="fstat-con-deals">—</div><div class="l">Con deals enviados</div></div>
+        <div class="fh-stat" style="border-color:#f57c00"><div class="v" id="fstat-sin-contacto">—</div><div class="l">Sin contacto</div></div>
+        <div class="fh-stat" style="border-color:var(--navy)"><div class="v" id="fstat-total-deals">—</div><div class="l">Deals totales recibidos</div></div>
       </div>
       <div class="finder-filters">
         <div class="ff-chip active" onclick="filterF('all',this)">Todos</div>
-        <div class="ff-chip" onclick="filterF('t1',this)">Tier 1</div>
-        <div class="ff-chip" onclick="filterF('hot',this)">🔥 Hot</div>
-        <div class="ff-chip" onclick="filterF('deals',this)">Con deals</div>
-        <div class="ff-chip" onclick="filterF('nocontact',this)">Sin contacto</div>
-        <input class="finder-search" id="fsearch" type="text" placeholder="Buscar nombre, empresa o región..." oninput="renderFinders()">
+        <div class="ff-chip" onclick="filterF('deals',this)">📋 Con deals</div>
+        <div class="ff-chip" onclick="filterF('nocontact',this)">⚠️ Sin contacto</div>
+        <input class="finder-search" id="fsearch" type="text" placeholder="Buscar firma, contacto o región..." oninput="renderFinders()">
       </div>
       <div class="finder-table">
-        <div class="ft-header">
-          <div class="ft-cell">Broker / Firma</div>
-          <div class="ft-cell">Región · Perfil</div>
-          <div class="ft-cell">Deals env.</div>
-          <div class="ft-cell">Último deal</div>
-          <div class="ft-cell">Contactado</div>
-          <div class="ft-cell">Estado / Notas</div>
-          <div class="ft-cell"></div>
+        <div class="ft-header" style="grid-template-columns:44px 1.8fr 1fr 120px 1fr">
+          <div class="ft-cell" style="justify-content:center">#</div>
+          <div class="ft-cell">Firma · Contactos</div>
+          <div class="ft-cell">Región</div>
+          <div class="ft-cell">Último contacto</div>
+          <div class="ft-cell">Estado / Nota</div>
         </div>
         <div id="finders-list"></div>
       </div>
@@ -1073,103 +1070,135 @@ function filterF(type, el) {
 
 let highlightBroker = -1;
 
-function renderFinders() {
-  const q = document.getElementById('fsearch').value || '';
-  let list = BROKERS.map((b,i)=>{return {...b, _idx:i}});
-  if (fFilter==='t1')          list = list.filter(b=>b.tier==='1');
-  else if (fFilter==='hot')    list = list.filter(b=>b.seg==='🔥');
-  else if (fFilter==='deals')  list = list.filter(b=>b.deals>0);
-  else if (fFilter==='nocontact') list = list.filter(b=>!b.ultima_interaccion&&!b.contactado);
-  if (q) list = list.filter(b=>
-    (b.contacto||'').toLowerCase().includes(q.toLowerCase()) ||
-    (b.firma||'').toLowerCase().includes(q.toLowerCase()) ||
-    (b.region||'').toLowerCase().includes(q.toLowerCase())
-  );
-  const el = document.getElementById('finders-list');
-  const em = document.getElementById('finders-empty');
-  if (!list.length) { el.innerHTML=''; em.style.display='block'; return; }
-  em.style.display='none';
-  el.innerHTML = list.map(b=>finderRow(b, b._idx)).join('');
-  // Auto-expand + highlight a specific broker if requested
-  if (highlightBroker >= 0) {
-    const idx = highlightBroker; highlightBroker = -1;
-    setTimeout(()=>{
-      const exp = document.getElementById('fe_'+idx);
-      const row = exp ? exp.previousElementSibling : null;
-      if (exp) { exp.classList.add('open'); open['f_'+idx]=true; }
-      if (row) {
-        row.scrollIntoView({behavior:'smooth',block:'center'});
-        row.classList.add('highlight-broker');
-        setTimeout(()=>row.classList.remove('highlight-broker'), 900);
-      }
-    }, 80);
-  }
+/* Build firma-level groups from flat BROKERS list, counting actual deals */
+function buildFirmaGroups() {
+  const groups = {};
+  BROKERS.forEach((b,i) => {
+    const firma = (b.firma||'Sin firma').trim();
+    if (!groups[firma]) groups[firma] = {firma, contacts:[], region:'', perfil:'', dealCount:0, ultimaInteraccion:'', estado:'', notas:''};
+    const g = groups[firma];
+    g.contacts.push({...b, _idx:i});
+    if (b.region && !g.region)  g.region = b.region;
+    if (b.perfil && !g.perfil)  g.perfil = b.perfil;
+    if (b.estado && !g.estado)  g.estado = b.estado;
+    if (b.notas  && !g.notas)   g.notas  = b.notas;
+    // pick latest ultima_interaccion
+    const d = b.ultima_interaccion||b.contactado||'';
+    if (d && d!=='NA' && d!=='ACCION') {
+      if (!g.ultimaInteraccion || d > g.ultimaInteraccion) g.ultimaInteraccion = d;
+    }
+  });
+  // Count real deals from DEALS array matching fuente (firma name or any contact name/email)
+  Object.values(groups).forEach(g => {
+    const keys = [g.firma.toLowerCase(), ...g.contacts.flatMap(c=>[
+      (c.contacto||'').toLowerCase(), (c.email||'').toLowerCase()
+    ])].filter(Boolean);
+    g.deals = DEALS.filter(d => {
+      const fuente = (d.fuente||'').toLowerCase();
+      return keys.some(k => k.length>3 && fuente.includes(k));
+    });
+    g.dealCount = g.deals.length;
+  });
+  return Object.values(groups);
 }
 
-function finderRow(b, realIdx) {
-  const isOpen = open['f_'+realIdx];
-  const tierCls = ['','','t2','t3','t4'][parseInt(b.tier)||4] || 't4';
+function renderFinders() {
+  const q = (document.getElementById('fsearch').value||'').toLowerCase();
+  let groups = buildFirmaGroups();
 
-  const dealChips = (b.deals_detalle||[]).length
-    ? (b.deals_detalle||[]).map(d=>
-        `<span class="deal-chip dc-${d.verdict}" onclick="event.stopPropagation();goToDeal('${d.ref}')" title="Ir al deal">${d.ref} ↗</span>`
-      ).join('')
-    : '<span style="color:#aaa;font-size:12px">Sin deals registrados</span>';
+  // Filters
+  if (fFilter==='deals')     groups = groups.filter(g=>g.dealCount>0);
+  if (fFilter==='nocontact') groups = groups.filter(g=>!g.ultimaInteraccion);
+  if (q) groups = groups.filter(g=>
+    g.firma.toLowerCase().includes(q) ||
+    g.contacts.some(c=>(c.contacto||'').toLowerCase().includes(q)||(c.region||'').toLowerCase().includes(q))
+  );
 
-  const hasDealBtn = (b.deals_detalle||[]).length > 0
-    ? `<button class="btn btn-nav" style="font-size:12px" onclick="event.stopPropagation();showDealsForBroker(${realIdx})">📋 Ver ${b.deals_detalle.length} deal(s) →</button>`
-    : '';
+  // Sort by deal count DESC, then by ultimaInteraccion DESC
+  groups.sort((a,b)=> b.dealCount-a.dealCount || (b.ultimaInteraccion>a.ultimaInteraccion?1:-1));
+
+  // Update stats
+  const allGroups = buildFirmaGroups();
+  const el_f  = document.getElementById('fstat-firmas');
+  const el_cd = document.getElementById('fstat-con-deals');
+  const el_sc = document.getElementById('fstat-sin-contacto');
+  const el_td = document.getElementById('fstat-total-deals');
+  if (el_f)  el_f.textContent  = allGroups.length;
+  if (el_cd) el_cd.textContent = allGroups.filter(g=>g.dealCount>0).length;
+  if (el_sc) el_sc.textContent = allGroups.filter(g=>!g.ultimaInteraccion).length;
+  if (el_td) el_td.textContent = allGroups.reduce((s,g)=>s+g.dealCount,0);
+
+  const el = document.getElementById('finders-list');
+  const em = document.getElementById('finders-empty');
+  if (!groups.length) { el.innerHTML=''; em.style.display='block'; return; }
+  em.style.display='none';
+  el.innerHTML = groups.map((g,i)=>firmaRow(g,i)).join('');
+}
+
+function firmaRow(g, gIdx) {
+  const isOpen = open['fg_'+gIdx];
+  const uid = 'fg'+gIdx;
+
+  // Deal count badge
+  const dealBadge = g.dealCount > 0
+    ? `<div style="width:36px;height:36px;border-radius:50%;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;flex-shrink:0">${g.dealCount}</div>`
+    : `<div style="width:36px;height:36px;border-radius:50%;background:#eef1f8;color:#aaa;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;flex-shrink:0">—</div>`;
+
+  // Contact names (max 2 visible)
+  const contactNames = g.contacts.slice(0,2).map(c=>c.contacto||'(sin nombre)').join(', ')
+    + (g.contacts.length>2 ? ` +${g.contacts.length-2}` : '');
+
+  // Last contact chip
+  const lastContact = g.ultimaInteraccion
+    ? `<span style="font-size:11px;font-weight:600;color:var(--navy)">${g.ultimaInteraccion}</span>`
+    : `<span style="font-size:11px;color:#e53935;font-weight:600">⚠️ Sin contacto</span>`;
+
+  // Deals list for expand
+  const dealsHtml = g.deals.length
+    ? g.deals.map(d => {
+        const sp = parseInt(String(d.spread||'').replace(/[^-\d]/g,''))||0;
+        const spCls = sp>0?'spread-pos':sp<0?'spread-neg':'muted';
+        const vkey = (d.verdict==='pass')?'go':d.verdict;
+        return `<div style="display:flex;align-items:center;gap:10px;padding:6px 0;border-bottom:1px solid #f0f4fa;cursor:pointer" onclick="goToDeal('${d.ref}')">
+          <div class="pl-dot ${vkey}" style="flex-shrink:0"></div>
+          <div style="font-size:11px;color:#8a9bb5;font-weight:600;min-width:100px">${d.ref}</div>
+          <div style="font-size:12px;font-weight:600;flex:1">${d.nombre}</div>
+          <div style="font-size:11px;color:#7a8399">📍 ${d.ubicacion||'—'}</div>
+          <div class="${spCls}" style="font-size:11px;font-weight:700;min-width:70px;text-align:right">${d.spread||'—'}</div>
+          <div style="font-size:10px;color:var(--muted);min-width:60px;text-align:right">${d.fecha||'—'}</div>
+        </div>`;
+      }).join('')
+    : '<div style="color:#aaa;font-size:12px;padding:8px 0">Sin deals registrados en pipeline</div>';
+
+  // Contacts detail
+  const contactsHtml = g.contacts.map(c => `
+    <div style="display:flex;align-items:center;gap:12px;padding:5px 0;border-bottom:1px solid #f7f9fc;font-size:12px">
+      <div style="font-weight:600;min-width:150px">${c.contacto||'—'}</div>
+      ${c.email?`<a href="mailto:${c.email}" style="color:var(--blue);text-decoration:none;flex:1">📧 ${c.email}</a>`:'<span style="color:#bbb;flex:1">Sin email</span>'}
+      ${c.tel?`<span style="color:#555">📱 ${c.tel}</span>`:''}
+    </div>`).join('');
 
   return `<div>
-    <div class="finder-row" id="fr-${realIdx}" onclick="toggleF(${realIdx})">
-      <div class="ft-cell">
-        <span class="tier-b ${tierCls}">T${b.tier}</span>
-        <div>
-          <div style="font-weight:700">${b.contacto||'(sin nombre)'}</div>
-          <div style="font-size:11px;color:var(--muted)">${b.firma}</div>
-        </div>
+    <div class="finder-row" onclick="open['fg_${gIdx}']=!open['fg_${gIdx}'];const e=document.getElementById('${uid}-exp');if(e)e.classList.toggle('open',!!open['fg_${gIdx}'])">
+      <div class="ft-cell" style="justify-content:center">${dealBadge}</div>
+      <div class="ft-cell" style="flex-direction:column;align-items:flex-start;gap:2px">
+        <div style="font-weight:700;font-size:13px">${g.firma}</div>
+        <div style="font-size:11px;color:var(--muted)">${contactNames}</div>
       </div>
-      <div class="ft-cell">
-        <div>
-          <div style="font-size:12px">${b.region||'—'}</div>
-          <div style="font-size:11px;color:var(--muted)">${b.perfil||''}</div>
-        </div>
-      </div>
-      <div class="ft-cell">
-        ${b.deals>0 ? `<strong style="color:var(--navy);font-size:15px">${b.deals}</strong>` : '<span style="color:#bbb">—</span>'}
-      </div>
-      <div class="ft-cell" style="font-size:12px">${b.ultimo_deal||'—'}</div>
-      <div class="ft-cell" style="font-size:12px">${b.contactado||'⚠️ Pendiente'}</div>
-      <div class="ft-cell" style="font-size:12px;color:var(--muted)">${b.estado||b.notas||'—'}</div>
-      <div class="ft-cell"><span class="seg-icon">${b.seg||''}</span></div>
+      <div class="ft-cell" style="font-size:11px;color:var(--muted)">${g.region||'—'}</div>
+      <div class="ft-cell">${lastContact}</div>
+      <div class="ft-cell" style="font-size:11px;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${g.estado||g.notas||'—'}</div>
     </div>
-    <div class="finder-expand${isOpen?' open':''}" id="fe-${realIdx}" onclick="event.stopPropagation()">
-      <div class="expand-grid">
-        <div class="eg-item">
-          <div class="eg-label">Contacto</div>
-          ${b.email?`<div style="margin-bottom:4px">📧 <a href="mailto:${b.email}" style="color:var(--blue);font-size:13px">${b.email}</a></div>`:''}
-          ${b.tel?`<div style="font-size:13px">📱 ${b.tel}</div>`:''}
-          ${!b.email&&!b.tel?'<span style="color:#aaa">Sin datos de contacto</span>':''}
-        </div>
-        <div class="eg-item">
-          <div class="eg-label">Deals enviados</div>
-          ${dealChips}
-        </div>
-        <div class="eg-item">
-          <div class="eg-label">Calidad · Score</div>
-          <div style="margin-bottom:4px">Calidad deals: <strong>${b.calidad||'—'}/5</strong></div>
-          <div style="margin-bottom:4px">Score MAGG: <strong>${b.score||'—'}</strong></div>
-          <div>Pres. MAGG: <strong>${b.pres_magg||'No'}</strong></div>
-        </div>
-      </div>
-      ${b.notas?`<div style="background:#fffbf0;border-left:3px solid var(--gold);padding:10px 14px;border-radius:0 6px 6px 0;font-size:12px;color:#555;margin-bottom:12px">📝 ${b.notas}</div>`:''}
-      <div style="display:flex;gap:8px;flex-wrap:wrap">
-        ${b.email?`<a href="mailto:${b.email}" class="contact-btn">✉️ Contactar</a>`:''}
-        ${hasDealBtn}
-      </div>
+    <div class="finder-expand${isOpen?' open':''}" id="${uid}-exp" onclick="event.stopPropagation()" style="padding:0 16px 16px">
+      ${g.deals.length?`<div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#7a8399;margin:12px 0 6px">📋 Deals en pipeline (${g.dealCount})</div>${dealsHtml}`:''}
+      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#7a8399;margin:12px 0 6px">👤 Contactos (${g.contacts.length})</div>
+      ${contactsHtml}
     </div>
   </div>`;
 }
+
+function finderRow(b, realIdx) { return ''; } // legacy alias — not used
+
 
 function toggleF(idx) {
   open['f_'+idx] = !open['f_'+idx];
