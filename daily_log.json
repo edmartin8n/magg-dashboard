@@ -1,7 +1,28 @@
 {
-  "generated": "2026-03-24T13:57:35.496635",
-  "total": 34,
+  "generated": "2026-03-24T20:08:12.307008",
+  "total": 35,
   "entries": [
+    {
+      "date": "2026-03-24",
+      "weekday": "Tuesday",
+      "weekday_es": "Martes",
+      "summary": "Eduardo pidió sistema de registro diario — Daily Log Dashboard creado y publicado en GitHub Pages.",
+      "topics": [
+        "11:00 — Daily Log Dashboard creado",
+        "Gmail",
+        "Pendientes arrastrados (sin movimiento)"
+      ],
+      "tags": [
+        "MAGG",
+        "CRM",
+        "Gmail",
+        "Discord",
+        "Infra",
+        "Notion"
+      ],
+      "activity": 31,
+      "content": "# Memory — 24 marzo 2026 (martes)\n\n## Resumen del día\n\nEduardo pidió sistema de registro diario — Daily Log Dashboard creado y publicado en GitHub Pages.\n\n## 11:00 — Daily Log Dashboard creado\n\n### Qué se construyó\n- **Script**: `scripts/sync_daily_log.py` — convierte todos los `memory/YYYY-MM-DD.md` a `daily_log.json`\n  - Extrae temas, resumen, tags automáticos (MAGG, CRM, Gmail, Discord, Personal, Infra, etc.)\n  - Redacta secretos antes de publicar (tokens GitHub, Gamma, Notion, OAuth)\n  - 34 días indexados desde 10/02/2026\n\n- **Dashboard**: `/tmp/magg-dashboard/daily-log.html` — dark UI responsive\n  - Sidebar con lista de días agrupados por mes\n  - Búsqueda full-text en contenido\n  - Filtros por tag (MAGG, CRM, Gmail, Discord, etc.)\n  - Panel derecho con contenido Markdown renderizado\n  - Dot de actividad (verde/amarillo/gris según densidad del día)\n\n- **URL**: https://edmartin8n.github.io/magg-dashboard/daily-log.html\n\n### Problema resuelto\n- GitHub Secret Scanning bloqueó primer push (token ghp_ en daily_log.json)\n- Fix: redacción automática de secretos en sync_daily_log.py antes de serializar\n- Reset de historial git para eliminar commit con secreto — push limpio ✅\n\n### Integración heartbeat\n- `sync_daily_log.py` → ejecutar en cierre de día (20:15) y morning brief\n- HEARTBEAT.md actualizado con instrucciones de sync\n\n## Gmail\n- 07:00 — Alerta seguridad Google: nuevo login Windows en edmartin8n@gmail.com (09:24 UTC)\n  - Notificado a Eduardo. Pendiente confirmación si es reconocido.\n\n## Pendientes arrastrados (sin movimiento)\n- 🔴 Casón NBO — post-deadline 15/03 (9 días). Sin respuesta Eduardo.\n- 🏗️ GV48 — >12 días sin respuesta Eastdil\n- 📄 009 Sevilla — IC Brief pendiente\n- 📄 HIST-092 Don Cristian — IC Brief pendiente\n"
+    },
     {
       "date": "2026-03-23",
       "weekday": "Monday",
