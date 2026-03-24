@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Daily Log — Tenacitas</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  
+  :root {
+    --bg: #0f1117;
+    --bg2: #161b27;
+    --bg3: #1e2535;
+    --border: #2a3245;
+    --text: #e2e8f0;
+    --text2: #94a3b8;
+    --text3: #64748b;
+    --accent: #3b82f6;
+    --accent2: #1d4ed8;
+    --green: #22c55e;
+    --yellow: #eab308;
+    --red: #ef4444;
+    --purple: #a855f7;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    min-height: 100vh;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    background: var(--bg2);
+    border-bottom: 1px solid var(--border);
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .header-logo { font-size: 22px; }
+  .header-title { font-size: 18px; font-weight: 700; }
+  .header-sub { color: var(--text3); font-size: 12px; }
+  .header-right { margin-left: auto; display: flex; align-items: center; gap: 12px; }
+  .header-count { 
+    background: var(--bg3); 
+    border: 1px solid var(--border);
+    padding: 4px 12px; 
+    border-radius: 20px; 
+    font-size: 12px; 
+    color: var(--text2);
+  }
+
+  /* ── LAYOUT ── */
+  .main {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    height: calc(100vh - 61px);
+  }
+
+  /* ── SIDEBAR ── */
+  .sidebar {
+    background: var(--bg2);
+    border-right: 1px solid var(--border);
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .search-box {
+    padding: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+  .search-input {
+    width: 100%;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 8px 12px;
+    color: var(--text);
+    font-size: 13px;
+    outline: none;
+    transition: border-color .15s;
+  }
+  .search-input:focus { border-color: var(--accent); }
+  .search-input::placeholder { color: var(--text3); }
+
+  .filters {
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .filter-btn {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 3px 10px;
+    font-size: 11px;
+    color: var(--text2);
+    cursor: pointer;
+    transition: all .15s;
+    user-select: none;
+  }
+  .filter-btn:hover { border-color: var(--accent); color: var(--text); }
+  .filter-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+  .day-list { flex: 1; overflow-y: auto; }
+  
+  .month-group {}
+  .month-label {
+    padding: 8px 14px 4px;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    color: var(--text3);
+    background: var(--bg2);
+    position: sticky;
+    top: 0;
+    z-index: 5;
+  }
+
+  .day-item {
+    padding: 10px 14px;
+    cursor: pointer;
+    border-left: 3px solid transparent;
+    transition: all .1s;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .day-item:hover { background: var(--bg3); }
+  .day-item.active { 
+    background: rgba(59,130,246,.1); 
+    border-left-color: var(--accent); 
+  }
+
+  .day-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--text3);
+    margin-top: 5px;
+    flex-shrink: 0;
+  }
+  .day-dot.high { background: var(--green); }
+  .day-dot.med { background: var(--yellow); }
+  .day-dot.low { background: var(--text3); }
+
+  .day-info { flex: 1; min-width: 0; }
+  .day-date { font-size: 13px; font-weight: 600; }
+  .day-weekday { color: var(--text3); font-size: 11px; }
+  .day-preview { 
+    font-size: 11px; 
+    color: var(--text2); 
+    white-space: nowrap; 
+    overflow: hidden; 
+    text-overflow: ellipsis;
+    margin-top: 2px;
+  }
+  .day-tags { 
+    display: flex; 
+    flex-wrap: wrap; 
+    gap: 3px; 
+    margin-top: 4px; 
+  }
+  .tag {
+    padding: 1px 6px;
+    border-radius: 4px;
+    font-size: 10px;
+    font-weight: 500;
+  }
+
+  .tag-MAGG       { background: rgba(59,130,246,.2); color: #93c5fd; }
+  .tag-CRM        { background: rgba(168,85,247,.2); color: #d8b4fe; }
+  .tag-Gmail      { background: rgba(239,68,68,.2);  color: #fca5a5; }
+  .tag-Discord    { background: rgba(99,102,241,.2); color: #a5b4fc; }
+  .tag-Personal   { background: rgba(34,197,94,.2);  color: #86efac; }
+  .tag-Infra      { background: rgba(234,179,8,.2);  color: #fde047; }
+  .tag-Notion     { background: rgba(15,118,110,.2); color: #5eead4; }
+  .tag-Fundraising{ background: rgba(245,158,11,.2); color: #fcd34d; }
+  .tag-Dubai      { background: rgba(249,115,22,.2); color: #fdba74; }
+  .tag-Bolsa      { background: rgba(20,184,166,.2); color: #2dd4bf; }
+
+  /* ── DETAIL PANEL ── */
+  .detail {
+    overflow-y: auto;
+    padding: 28px 32px;
+    max-width: 860px;
+  }
+
+  .detail-header {
+    margin-bottom: 20px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border);
+  }
+  .detail-date {
+    font-size: 26px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .detail-weekday { color: var(--text2); font-size: 14px; }
+  .detail-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+  .detail-tag {
+    padding: 3px 10px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 500;
+  }
+
+  .detail-body {
+    line-height: 1.75;
+  }
+  .detail-body h1 { font-size: 20px; margin: 20px 0 8px; }
+  .detail-body h2 { font-size: 16px; margin: 18px 0 6px; color: var(--text); border-bottom: 1px solid var(--border); padding-bottom: 4px; }
+  .detail-body h3 { font-size: 14px; margin: 14px 0 4px; color: var(--text2); }
+  .detail-body p  { margin: 6px 0; color: var(--text2); }
+  .detail-body ul, .detail-body ol { margin: 6px 0 6px 20px; color: var(--text2); }
+  .detail-body li { margin: 3px 0; }
+  .detail-body strong { color: var(--text); }
+  .detail-body em { color: var(--text2); }
+  .detail-body code { 
+    background: var(--bg3); 
+    padding: 2px 6px; 
+    border-radius: 4px; 
+    font-family: 'SF Mono', monospace;
+    font-size: 12px;
+  }
+  .detail-body pre {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px 16px;
+    overflow-x: auto;
+    margin: 8px 0;
+  }
+  .detail-body pre code { background: none; padding: 0; }
+  .detail-body table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 10px 0;
+    font-size: 13px;
+  }
+  .detail-body th {
+    background: var(--bg3);
+    padding: 8px 12px;
+    text-align: left;
+    font-weight: 600;
+    border: 1px solid var(--border);
+  }
+  .detail-body td {
+    padding: 7px 12px;
+    border: 1px solid var(--border);
+    color: var(--text2);
+  }
+  .detail-body hr {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 16px 0;
+  }
+  .detail-body blockquote {
+    border-left: 3px solid var(--accent);
+    padding-left: 14px;
+    color: var(--text2);
+    margin: 8px 0;
+  }
+  .detail-body a { color: var(--accent); text-decoration: none; }
+  .detail-body a:hover { text-decoration: underline; }
+
+  .empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 60%;
+    color: var(--text3);
+    gap: 12px;
+    text-align: center;
+  }
+  .empty-state .emoji { font-size: 48px; }
+  .empty-state h2 { font-size: 18px; color: var(--text2); }
+
+  /* ── SCROLLBAR ── */
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--text3); }
+
+  /* no-results */
+  .no-results {
+    padding: 24px;
+    text-align: center;
+    color: var(--text3);
+    font-size: 13px;
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <span class="header-logo">🦀</span>
+  <div>
+    <div class="header-title">Daily Log</div>
+    <div class="header-sub">Registro diario — Tenacitas × Eduardo</div>
+  </div>
+  <div class="header-right">
+    <span class="header-count" id="dayCount">Cargando…</span>
+    <span style="color:var(--text3);font-size:11px;" id="lastUpdated"></span>
+  </div>
+</div>
+
+<div class="main">
+  <div class="sidebar">
+    <div class="search-box">
+      <input 
+        class="search-input" 
+        id="searchInput"
+        type="text" 
+        placeholder="Buscar en el log… (deal, email, CRM…)" 
+        oninput="applyFilters()"
+      />
+    </div>
+    <div class="filters" id="tagFilters">
+      <!-- Tags se generan en JS -->
+    </div>
+    <div class="day-list" id="dayList"></div>
+  </div>
+
+  <div class="detail" id="detail">
+    <div class="empty-state">
+      <span class="emoji">📅</span>
+      <h2>Selecciona un día</h2>
+      <p>O usa la búsqueda para encontrar conversaciones específicas</p>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── marked.js minimal inline renderer ──
+function renderMarkdown(md) {
+  if (!md) return '';
+  let html = md
+    // headers
+    .replace(/^### (.+)$/gm, '<h3>$1</h3>')
+    .replace(/^## (.+)$/gm, '<h2>$1</h2>')
+    .replace(/^# (.+)$/gm, '<h1>$1</h1>')
+    // code blocks
+    .replace(/```[\w]*\n?([\s\S]*?)```/g, '<pre><code>$1</code></pre>')
+    // inline code
+    .replace(/`([^`]+)`/g, '<code>$1</code>')
+    // bold
+    .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+    // italic
+    .replace(/\*([^*]+)\*/g, '<em>$1</em>')
+    // hr
+    .replace(/^---$/gm, '<hr>')
+    // blockquotes
+    .replace(/^> (.+)$/gm, '<blockquote>$1</blockquote>')
+    // links
+    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank">$1</a>')
+    // tables
+    .replace(/^\|(.+)\|$/gm, (match, cells) => {
+      const cols = cells.split('|').map(c => c.trim());
+      const isHeader = match; // placeholder for header detection
+      return '<table-row>' + cols.map(c => c).join('|') + '</table-row>';
+    })
+    // unordered list items
+    .replace(/^[-*] (.+)$/gm, '<li>$1</li>')
+    // ordered list items
+    .replace(/^\d+\. (.+)$/gm, '<li>$1</li>')
+    // paragraphs (double newlines)
+    .replace(/\n\n+/g, '</p><p>')
+    .replace(/\n/g, '<br>');
+
+  // wrap loose <li>s in <ul>
+  html = html.replace(/(<li>.*?<\/li>(\s*<br>)*)+/gs, m => '<ul>' + m.replace(/<br>/g, '') + '</ul>');
+  
+  return '<p>' + html + '</p>';
+}
+
+// Better markdown renderer
+function md2html(text) {
+  const lines = text.split('\n');
+  let html = '';
+  let inTable = false;
+  let tableHeader = false;
+  let inUl = false;
+  let inOl = false;
+  let inPre = false;
+  let preContent = '';
+
+  const flushLists = () => {
+    if (inUl) { html += '</ul>'; inUl = false; }
+    if (inOl) { html += '</ol>'; inOl = false; }
+  };
+
+  for (let i = 0; i < lines.length; i++) {
+    let line = lines[i];
+
+    // Code fence
+    if (line.startsWith('```')) {
+      if (!inPre) {
+        flushLists();
+        inPre = true;
+        preContent = '';
+      } else {
+        html += '<pre><code>' + escHtml(preContent) + '</code></pre>';
+        inPre = false;
+      }
+      continue;
+    }
+    if (inPre) { preContent += line + '\n'; continue; }
+
+    // Table rows
+    if (line.match(/^\|.+\|$/)) {
+      if (!inTable) { html += '<table>'; inTable = true; tableHeader = true; }
+      if (line.match(/^\|[-| :]+\|$/)) { tableHeader = false; continue; }
+      const cells = line.slice(1,-1).split('|').map(c => c.trim());
+      if (tableHeader) {
+        html += '<tr>' + cells.map(c => `<th>${inline(c)}</th>`).join('') + '</tr>';
+        tableHeader = false;
+      } else {
+        html += '<tr>' + cells.map(c => `<td>${inline(c)}</td>`).join('') + '</tr>';
+      }
+      continue;
+    } else if (inTable) {
+      html += '</table>';
+      inTable = false;
+    }
+
+    // Headers
+    if (line.match(/^### /)) { flushLists(); html += `<h3>${inline(line.slice(4))}</h3>`; continue; }
+    if (line.match(/^## /))  { flushLists(); html += `<h2>${inline(line.slice(3))}</h2>`; continue; }
+    if (line.match(/^# /))   { flushLists(); html += `<h1>${inline(line.slice(2))}</h1>`; continue; }
+
+    // HR
+    if (line.match(/^---+$/)) { flushLists(); html += '<hr>'; continue; }
+
+    // Blockquote
+    if (line.match(/^> /)) { flushLists(); html += `<blockquote>${inline(line.slice(2))}</blockquote>`; continue; }
+
+    // Unordered list
+    if (line.match(/^[-*] /)) {
+      if (inOl) { html += '</ol>'; inOl = false; }
+      if (!inUl) { html += '<ul>'; inUl = true; }
+      html += `<li>${inline(line.slice(2))}</li>`;
+      continue;
+    }
+
+    // Ordered list
+    if (line.match(/^\d+\. /)) {
+      if (inUl) { html += '</ul>'; inUl = false; }
+      if (!inOl) { html += '<ol>'; inOl = true; }
+      html += `<li>${inline(line.replace(/^\d+\. /, ''))}</li>`;
+      continue;
+    }
+
+    flushLists();
+
+    // Empty line
+    if (!line.trim()) { html += '<br>'; continue; }
+
+    html += `<p>${inline(line)}</p>`;
+  }
+
+  if (inTable) html += '</table>';
+  if (inUl) html += '</ul>';
+  if (inOl) html += '</ol>';
+  if (inPre) html += '<pre><code>' + escHtml(preContent) + '</code></pre>';
+
+  return html;
+}
+
+function escHtml(s) {
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+function inline(text) {
+  return text
+    .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+    .replace(/\*([^*]+)\*/g, '<em>$1</em>')
+    .replace(/`([^`]+)`/g, '<code>$1</code>')
+    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
+}
+
+// ── State ──
+let ALL_ENTRIES = [];
+let activeDate = null;
+let activeTag = null;
+let searchQuery = '';
+
+const ALL_TAGS = ['MAGG','CRM','Gmail','Discord','Personal','Infra','Notion','Fundraising','Dubai','Bolsa'];
+
+// ── Init ──
+async function init() {
+  try {
+    const res = await fetch('daily_log.json?t=' + Date.now());
+    const data = await res.json();
+    ALL_ENTRIES = data.entries || [];
+
+    document.getElementById('dayCount').textContent = `${data.total} días`;
+    const d = new Date(data.generated);
+    document.getElementById('lastUpdated').textContent = 
+      'Actualizado ' + d.toLocaleDateString('es-ES', {day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'});
+
+    buildTagFilters();
+    renderList(ALL_ENTRIES);
+
+    // Open today or most recent
+    if (ALL_ENTRIES.length > 0) openEntry(ALL_ENTRIES[0]);
+  } catch(e) {
+    document.getElementById('detail').innerHTML = 
+      '<div class="empty-state"><span class="emoji">⚠️</span><h2>Error cargando el log</h2><p>' + e.message + '</p></div>';
+  }
+}
+
+function buildTagFilters() {
+  const container = document.getElementById('tagFilters');
+  // Count tag usage
+  const counts = {};
+  ALL_TAGS.forEach(t => { counts[t] = ALL_ENTRIES.filter(e => e.tags.includes(t)).length; });
+  
+  const sorted = ALL_TAGS.filter(t => counts[t] > 0).sort((a,b) => counts[b]-counts[a]);
+  container.innerHTML = sorted.map(t => 
+    `<span class="filter-btn tag-${t}" data-tag="${t}" onclick="toggleTag('${t}')">${t} <span style="opacity:.6">${counts[t]}</span></span>`
+  ).join('');
+}
+
+function toggleTag(tag) {
+  activeTag = (activeTag === tag) ? null : tag;
+  document.querySelectorAll('.filter-btn').forEach(b => {
+    b.classList.toggle('active', b.dataset.tag === activeTag);
+  });
+  applyFilters();
+}
+
+function applyFilters() {
+  searchQuery = document.getElementById('searchInput').value.toLowerCase().trim();
+  let filtered = ALL_ENTRIES;
+
+  if (activeTag) {
+    filtered = filtered.filter(e => e.tags.includes(activeTag));
+  }
+
+  if (searchQuery) {
+    filtered = filtered.filter(e => 
+      e.content.toLowerCase().includes(searchQuery) ||
+      e.date.includes(searchQuery) ||
+      e.summary.toLowerCase().includes(searchQuery) ||
+      e.topics.some(t => t.toLowerCase().includes(searchQuery))
+    );
+  }
+
+  renderList(filtered);
+}
+
+function renderList(entries) {
+  const container = document.getElementById('dayList');
+  
+  if (entries.length === 0) {
+    container.innerHTML = '<div class="no-results">Sin resultados</div>';
+    return;
+  }
+
+  // Group by month
+  const months = {};
+  entries.forEach(e => {
+    const m = e.date.slice(0, 7); // YYYY-MM
+    if (!months[m]) months[m] = [];
+    months[m].push(e);
+  });
+
+  let html = '';
+  Object.keys(months).sort().reverse().forEach(m => {
+    const [y, mo] = m.split('-');
+    const mLabel = new Date(y, parseInt(mo)-1, 1).toLocaleDateString('es-ES', {month:'long', year:'numeric'});
+    html += `<div class="month-group">`;
+    html += `<div class="month-label">${mLabel}</div>`;
+    months[m].forEach(e => {
+      const dotClass = e.activity > 50 ? 'high' : e.activity > 20 ? 'med' : 'low';
+      const tagsHtml = e.tags.slice(0,3).map(t => 
+        `<span class="tag tag-${t}">${t}</span>`
+      ).join('');
+      const isActive = e.date === activeDate ? ' active' : '';
+      html += `
+        <div class="day-item${isActive}" id="item-${e.date}" onclick="openEntry(getEntry('${e.date}'))">
+          <div class="day-dot ${dotClass}"></div>
+          <div class="day-info">
+            <div style="display:flex;align-items:center;gap:6px">
+              <span class="day-date">${formatDate(e.date)}</span>
+              <span class="day-weekday">${e.weekday_es}</span>
+            </div>
+            <div class="day-preview">${escHtml(e.summary || e.topics[0] || '')}</div>
+            <div class="day-tags">${tagsHtml}</div>
+          </div>
+        </div>`;
+    });
+    html += `</div>`;
+  });
+
+  container.innerHTML = html;
+}
+
+function getEntry(date) {
+  return ALL_ENTRIES.find(e => e.date === date);
+}
+
+function formatDate(dateStr) {
+  const [y, m, d] = dateStr.split('-');
+  return `${parseInt(d)} ${['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'][parseInt(m)-1]}`;
+}
+
+function openEntry(entry) {
+  if (!entry) return;
+  activeDate = entry.date;
+
+  // Update sidebar active state
+  document.querySelectorAll('.day-item').forEach(el => {
+    el.classList.toggle('active', el.id === `item-${entry.date}`);
+  });
+
+  // Render detail
+  const tagsHtml = entry.tags.map(t => 
+    `<span class="detail-tag tag-${t}">${t}</span>`
+  ).join('');
+
+  const topicsHtml = entry.topics.length > 0 
+    ? `<div style="margin:12px 0;display:flex;flex-wrap:wrap;gap:6px">
+        ${entry.topics.map(t => `<span style="background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:3px 10px;font-size:12px;color:var(--text2)">${escHtml(t)}</span>`).join('')}
+      </div>` 
+    : '';
+
+  document.getElementById('detail').innerHTML = `
+    <div class="detail-header">
+      <div class="detail-date">${formatDate(entry.date)} ${entry.date.slice(0,4)}</div>
+      <div class="detail-weekday">${entry.weekday_es} · ${entry.date}</div>
+      <div class="detail-tags">${tagsHtml}</div>
+      ${topicsHtml}
+    </div>
+    <div class="detail-body">${md2html(entry.content)}</div>
+  `;
+}
+
+init();
+</script>
+</body>
+</html>

@@ -1,0 +1,721 @@
+{
+  "generated": "2026-03-24T13:57:35.496635",
+  "total": 34,
+  "entries": [
+    {
+      "date": "2026-03-23",
+      "weekday": "Monday",
+      "weekday_es": "Lunes",
+      "summary": "Lunes tranquilo — sin emails relevantes, sin respuesta de Eduardo al morning brief ni a la báscula.",
+      "topics": [
+        "Acciones ejecutadas",
+        "Pendientes arrastrados (sin movimiento hoy)",
+        "Gmail",
+        "Discord"
+      ],
+      "tags": [
+        "MAGG",
+        "Gmail",
+        "Discord",
+        "Personal"
+      ],
+      "activity": 21,
+      "content": "# Memory — 23 marzo 2026 (lunes)\n\n## Resumen del día\nLunes tranquilo — sin emails relevantes, sin respuesta de Eduardo al morning brief ni a la báscula.\n\n## Acciones ejecutadas\n- 07:00 — Recordatorio báscula enviado (peso + cintura semana)\n- 07:15 — Recordatorio vitaminas enviado (D3, B12, Zinc, creatina)\n- 09:07 — Morning brief enviado: Casón, GV48, Rossio, Sevilla + Gmail ok\n- 09:30 — Recordatorio Amex baja enviado\n- 20:15 — Cierre día: MISSION_CONTROL.md actualizado con Top 3 martes\n\n## Pendientes arrastrados (sin movimiento hoy)\n- 🔴 Casón NBO — 9 días post-deadline 15/03. Borrador v1 listo desde 13/03. Sin respuesta Eduardo.\n- 🏗️ GV48 — >12 días sin respuesta Eastdil. OM + LOI/NBO pendiente.\n- 📄 009 Sevilla — IC Brief pendiente (OM recibido 11/03, 12 días sin analizar)\n- 📄 HIST-092 Don Cristian — IC Brief pendiente\n\n## Gmail\n- Sin emails relevantes (checkeado 2x: mañana + tarde)\n\n## Discord\n- Sin actividad nueva desde 20/03 en ningún canal\n\n## Notas\n- Eduardo no respondió al peso/cintura → sigue pendiente seguimiento fitness\n- Casón: si mañana tampoco hay respuesta, ejecutar borrador NBO directamente sin esperar\n"
+    },
+    {
+      "date": "2026-03-21",
+      "weekday": "Saturday",
+      "weekday_es": "Sábado",
+      "summary": "- 🔴 **MAGG / Casón**: 6 días post-deadline 15/03. Sin respuesta Eduardo. Acción Next lunes.",
+      "topics": [
+        "09:30 — Mission Control sync",
+        "20:15 — Cierre del día (sábado 21/03)",
+        "🎯 Top 3 lunes 23/03"
+      ],
+      "tags": [
+        "MAGG",
+        "CRM",
+        "Discord",
+        "Personal",
+        "Infra",
+        "Notion"
+      ],
+      "activity": 33,
+      "content": "# Daily Notes — 2026-03-21 (Sábado)\n\n## 09:30 — Mission Control sync\n\n### Estado por vertical\n- 🔴 **MAGG / Casón**: 6 días post-deadline 15/03. Sin respuesta Eduardo. Acción Next lunes.\n- 🟡 **MAGG / GV48**: Sin respuesta Eastdil post-llamada 11/03. Waiting.\n- 🟡 **MAGG / 009 Sevilla**: OM recibido de Tatyana Moyal (11/03). IC Brief completo pendiente.\n- 🟡 **MAGG / HIST-092 Don Cristian**: IC Brief pendiente confirmar ref.\n- ✅ **006 Rossio**: Brief 9 secciones reescrito (20/03). GO €11M confirmado por Eduardo.\n- 🟡 **Personal Ops**: Sin datos báscula esta semana. Próxima medición lunes 23/03.\n- 🟢 **CRM**: Actualizado, 12 deals, TX Copilot activo.\n- 🟢 **Infra**: GitHub Pages live, crons OK.\n\n### Accionables lunes 23/03\n1. 🔴 Casón — ¿sigue activo o archivamos?\n2. 🟡 GV48 — presionar Eastdil + siguiente paso\n3. 🟡 009 Sevilla IC Brief con datos OM\n\n### MC actualizado\n- MISSION_CONTROL.md: tabla estado + tabla accionables Next/Waiting/Done\n- Notion MC: log actividad registrado ✅\n\n---\n\n## 20:15 — Cierre del día (sábado 21/03)\n\n### Completado hoy\n- ✅ Skills Scout 03:18 — 5 skills enviadas\n- ✅ Discord sync AM (09:00) + PM (18:00) — silencio completo ambas ventanas\n- ✅ MC sync 09:30 ejecutado y MISSION_CONTROL.md actualizado\n\n### Pendientes arrastrados\n- ⏳ **Casón NBO** — 7 días post-deadline 15/03. Sin respuesta Eduardo. Preguntar lunes: ¿archivamos o hay prórroga?\n- ⏳ **GV48** — sin respuesta Eastdil >10 días desde llamada 11/03. Presionar lunes.\n- ⏳ **009 Sevilla IC Brief** — OM recibido 11/03, 10 días sin analizar. Ejecutar mañana en silencio.\n- ⏳ **HIST-092 Don Cristian** — IC Brief pendiente confirmar ref.\n\n## 🎯 Top 3 lunes 23/03\n1. 🔴 **Casón** — 8 días post-deadline. ¿Archivamos o hay prórroga? Confirmar con Eduardo.\n2. 📄 **009 Sevilla IC Brief** — ejecutar análisis completo con OM de Tatyana (recibido 11/03).\n3. 🏗️ **GV48** — presionar Eastdil o buscar alternativa de contacto.\n"
+    },
+    {
+      "date": "2026-03-20",
+      "weekday": "Friday",
+      "weekday_es": "Viernes",
+      "summary": "- Brief 006 Rossio reescrito (9 secciones canónicas) — GO a €11M ✅",
+      "topics": [
+        "Completado hoy ✅",
+        "Pendientes arrastrados al lunes 23/03 🔴",
+        "Bloqueos",
+        "Top 3 lunes 23/03"
+      ],
+      "tags": [
+        "MAGG",
+        "Personal"
+      ],
+      "activity": 24,
+      "content": "# Memory — Viernes 20 marzo 2026\n\n## Completado hoy ✅\n- Brief 006 Rossio reescrito (9 secciones canónicas) — GO a €11M ✅\n- Recordatorios enviados: báscula (07:00), vitaminas (07:15), check mediodía (14:00)\n- Conferencia fiscal (mañana/tarde): apuntes clave guardados\n  - FILPE: coeficiente 55% + carry + sin empleado por sociedad\n  - FCR Europeo: CNMV aperturista desde jun 2025 (fondos alquiler asequible aprobados)\n  - Sentencia Supremo 2026: empleado puede estar en holding si hay gestión integrada documentada\n  - Consultas a Tributos pendientes sobre FILPE+inmobiliario\n  - Eduardo tiene pendiente: ¿quiere memo IC con estas 4 conclusiones?\n\n## Pendientes arrastrados al lunes 23/03 🔴\n1. **Casón NBO** — 5 días post-deadline. Definir si sigue activo o archivar.\n2. **GV48** — sin OM ni feedback Eastdil tras llamada 11/03. Presionar.\n3. **009 Sevilla** — awaiting full OM Tatyana Moyal (tmoyal@gypconsultores.es)\n4. **HIST-092 Don Cristian** — IC Brief pendiente\n5. **Báscula** — sin datos de peso/cintura esta semana\n\n## Bloqueos\n- Casón: sin respuesta Eduardo sobre estado del deal\n- GV48: sin OM ni respuesta Eastdil\n- Sevilla: sin OM completo\n\n## Top 3 lunes 23/03\n1. 🔴 Casón NBO — ¿sigue activo o archivamos?\n2. 🏗️ GV48 — presionar Eastdil + siguiente paso concreto\n3. 📋 Memo fiscal FILPE/FCR para IC (si Eduardo lo aprueba)\n"
+    },
+    {
+      "date": "2026-03-19",
+      "weekday": "Thursday",
+      "weekday_es": "Jueves",
+      "summary": "- Status actualizado en Notion MC",
+      "topics": [
+        "09:30 — Mission Control sync",
+        "Estado por vertical (19/03)",
+        "11:51 — Sesión de trabajo (flush pre-compactación)",
+        "00:46 (20/03) — Tarea nocturna: Brief 006 Rossio reescrito ✅"
+      ],
+      "tags": [
+        "MAGG",
+        "CRM",
+        "Gmail",
+        "Infra",
+        "Notion",
+        "Dubai"
+      ],
+      "activity": 68,
+      "content": "# Daily Notes — 2026-03-19\n\n## 09:30 — Mission Control sync\n- Status actualizado en Notion MC\n- Sin emails nuevos últimas 12h\n- Pendientes MAGG sin movimiento desde 18/03\n\n## Estado por vertical (19/03)\n\n### MAGG / Deals\n- 🔴 NBO Casón del Tormes — deadline 15/03 expirado, estado desconocido (Eduardo no ha confirmado)\n- 🟡 GV48 (010A/010B) — OM completo pendiente + LOI/NBO condicionado\n- 🟡 009 Sevilla — awaiting OM completo Tatyana Moyal\n- 🟡 HIST-092 Don Cristian — IC Brief pendiente\n- ✅ 006 Rossio Lisboa — GO confirmado €11M\n- ✅ Casón Brief 007 — publicado\n\n### Growth Projects\n- Dubai / Vacation Marbella — sin movimiento\n\n### Personal Ops\n- ⏰ Seguro mutua — recordatorio enviado a Eduardo 09:01\n\n---\n\n## 11:51 — Sesión de trabajo (flush pre-compactación)\n\n### CRM Control Tab — Deals activos\n- Expandida tabla \"Deals activos\" en tab Control: ahora usa `dealTableRow()` idéntico al Pipeline\n- Mismo grid, mismo expandable, mismo IC Brief link, mismo dot de veredicto\n- Commit: `32b057a` — \"feat: Control tab — Deals activos usa dealTableRow() igual que Pipeline\"\n\n### Staging environment creado\n- URL staging: https://edmartin8n.github.io/magg-dashboard/staging/\n- Carpeta `/tmp/magg-dashboard/staging/index.html` — copia exacta del oficial con banner amarillo\n- Flujo: trabajar en staging → cuando ok → cp staging/index.html index.html + push\n- Commit: `d7a7131` — \"chore: staging mirror creado en /staging/ para desarrollo\"\n\n### Market Data — Lisboa price/llave\n- Consultado `deals-portugal-2016-2026.json`\n- 7 deals con precio confirmado en Lisboa\n- **Prime Lisboa (Baixa / Av. Liberdade / Bairro Alto):**\n  - Rango: €155K–€583K/hab | Mediana: ~€234K/hab\n  - Deal 2022 Bairro Alto: €583K/hab (€42M, 72 hab)\n  - Deal 2024 Av. Liberdade: €281K/hab (€27M, 96 hab)\n- Rossio (006) a €11M / 42 habs → **€262K/hab** — dentro de rango prime, razonable\n\n### Drive — Carpetas GV48 creadas\n- `Madrid — Gran Vía 48 (97 uds) — Reforma Ligera — 12.03.2026` → ID: `1QbvvpNpjLlaVynMj_mcPP1ewoIHuptFU`\n- `Madrid — Gran Vía 48 (124 uds) — Reforma Integral — 12.03.2026` → ID: `15O41gapulmwQiMTjisr3JR3LOtLej9By`\n- IC Brief PDF subido a ambas carpetas (mismo doc, cubre ambas estrategias)\n\n### PPT GV48 Estrategia A (97 uds) — Generado y subido\n- 9 slides, 16:9, python-pptx\n- Subido a Drive carpeta 010A: ID `1e0nbYAOX_4JGGZm_hTGg6yyklSGa008z`\n- Link: https://drive.google.com/file/d/1e0nbYAOX_4JGGZm_hTGg6yyklSGa008z/view\n- Slides: Cover → Ficha → CapEx → Ops → Exit → Sensibilidad → Cronograma → Ubicación → Riesgos/Pasos\n\n### Estado Drive IDs (confirmados)\n- 010A folder: `1QbvvpNpjLlaVynMj_mcPP1ewoIHuptFU`\n- 010B folder: `15O41gapulmwQiMTjisr3JR3LOtLej9By`\n- GV48 PPT (010A): `1e0nbYAOX_4JGGZm_hTGg6yyklSGa008z`\n\n---\n\n## 00:46 (20/03) — Tarea nocturna: Brief 006 Rossio reescrito ✅\n\n**Subagente completado**: Brief 006 Rossio reescrito en formato canónico 9 secciones\n**Veredicto:** ✅ GO confirmado por Eduardo el 12/03 @ €11M (negociado desde €13M asking)\n**URL:** https://edmartin8n.github.io/magg-dashboard/briefs/006-rossio.html ✅ HTTP 200\n\n### Números del modelo (UW v2 — HMA 8%):\n- Revenue rooms: €2.345.490\n- NOI estab.: €1.102.380 (~€1.10M)\n- CapEx total: €6.255.000 (hard €4.863k + soft €486k + FF&E €420k + contingencia €486k)\n- Coste total proyecto: €17.255.000\n- YoC: **6.39%**\n- Spread vs exit 5.75%: **+64 bps** ⚠️ (< umbral GO +150 bps — pero Eduardo confirmó GO)\n- Exit value: €19.17M @ 5.75%\n- IRR levered: ~**4.8%** ⚠️ (bajo — hold largo 4.25 años + carry negativo desarrollo)\n- Equity múltiple: **1.22x** ⚠️\n\n### Nota importante:\nLos retornos del modelo UW son bajos (spread +64 bps, IRR ~5%) y no alcanzan umbral GO según scoring MAGG.\nEduardo confirmó GO a pesar de esto — posiblemente por supuestos diferentes (SQM real, ADR más alto, deal terms especiales) o razones estratégicas. El brief refleja el GO confirmado con warning visible en IRR.\n→ **Preguntar a Eduardo en la mañana**: ¿confirma supuestos SQM ~1.945m² y ADR €180? ¿Por qué GO dado el IRR bajo?\n"
+    },
+    {
+      "date": "2026-03-18",
+      "weekday": "Wednesday",
+      "weekday_es": "Miércoles",
+      "summary": "- Status actualizado en Notion MC",
+      "topics": [
+        "09:30 — Mission Control sync",
+        "Estado por vertical (18/03)",
+        "14:00 — Check mediodía"
+      ],
+      "tags": [
+        "MAGG",
+        "Gmail",
+        "Notion",
+        "Dubai"
+      ],
+      "activity": 22,
+      "content": "# Daily Notes — 2026-03-18\n\n## 09:30 — Mission Control sync\n- Status actualizado en Notion MC\n- Foco: NBO Casón (deadline 15/03 pasado) · GV48 OM+LOI · Sevilla OM Tatyana · HIST-092 Brief\n- Sin emails nuevos últimas 12h\n- Pendientes sin mover desde 15/03\n\n## Estado por vertical (18/03)\n\n### MAGG / Deals\n- 🔴 NBO Casón del Tormes — deadline era 15/03, sin confirmación. Status desconocido.\n- 🟡 GV48 (010A/010B) — OM completo pendiente + LOI/NBO condicionado. Sin feedback llamada Eastdil 11/03.\n- 🟡 009 Sevilla — awaiting OM completo Tatyana Moyal (tmoyal@gypconsultores.es)\n- 🟡 HIST-092 Don Cristian — IC Brief pendiente\n- ✅ 006 Rossio Lisboa — GO confirmado Eduardo 12/03 · precio entrada €11M\n- ✅ 007 Casón Brief — publicado\n\n### Growth Projects\n- Dubai / Vacation Marbella — sin movimiento reciente\n\n### Personal Ops\n- Sin items activos\n\n## 14:00 — Check mediodía\n- Sin emails nuevos últimas 6h\n- Todos los pendientes MAGG sin movimiento\n- Blocker principal: Eduardo necesita confirmar estado NBO Casón (deadline 15/03 ya pasado)\n"
+    },
+    {
+      "date": "2026-03-16",
+      "weekday": "Monday",
+      "weekday_es": "Lunes",
+      "summary": "- Gmail: sin emails nuevos (últimas 12h)",
+      "topics": [
+        "09:30 — Morning sync",
+        "Estado deals al inicio de jornada (16/03)",
+        "14:00 — Check mediodía",
+        "18:43 — Check tarde",
+        "Cierre del día (20:15)",
+        "Pendientes arrastrados → 17/03"
+      ],
+      "tags": [
+        "MAGG",
+        "Gmail",
+        "Personal",
+        "Notion"
+      ],
+      "activity": 33,
+      "content": "# Memory — 16 marzo 2026\n\n## 09:30 — Morning sync\n\n- Gmail: sin emails nuevos (últimas 12h)\n- Recordatorio báscula + vitaminas enviados por WhatsApp ✅\n- Notion MC actualizado ✅\n\n## Estado deals al inicio de jornada (16/03)\n\n| Ref | Deal | Estado | Urgencia |\n|---|---|---|---|\n| 007 Casón | Madrid Plaza España | GO · NBO deadline 15/03 PASADO — pend respuesta Eduardo | 🔴 |\n| 010 GV48 | Gran Vía 48 Madrid | GO · Pend feedback Eastdil (llamada 11/03) | 🟡 |\n| 008 Cabestreros | Lavapiés Madrid | PEND precio | ⏳ |\n| 009 Sevilla | Guzmán el Bueno | PEND OM Tatyana Moyal | 🟡 |\n| 006 Rossio | Lisboa GO @€11M | Brief reescritura 9 secciones pendiente | 🟢 |\n| HIST-092 | Don Cristian | IC Brief pendiente | 🟢 |\n\n## 14:00 — Check mediodía\n\n- Gmail: sin emails nuevos (últimas 6h)\n- Sin movimiento en ningún vertical\n- Casón NBO: sigue bloqueado en Eduardo\n\n## 18:43 — Check tarde\n\n- Gmail: sin emails nuevos (últimas 6h)\n- Sin movimiento en ningún vertical\n- Casón NBO: sigue bloqueado en Eduardo (2 días sin respuesta)\n\n## Cierre del día (20:15)\n\n- Gmail: sin emails nuevos en todo el día\n- Sin movimiento en ningún vertical — día tranquilo/bloqueado en Eduardo\n- Notion MC actualizado con cierre + top 3 mañana ✅\n\n## Pendientes arrastrados → 17/03\n\n- 🔴 **Casón NBO** — 2 días sin respuesta de Eduardo. Deadline 15/03 PASADO. Acción urgente mañana.\n- 🟡 **GV48** — pend feedback Eastdil (llamada fue el 11/03 — ya 5 días)\n- ⏳ **009 Sevilla** — pend OM Tatyana Moyal\n- 🟢 **Rossio brief** — reescritura 9 secciones (GO @€11M)\n- 🟢 **HIST-092 Don Cristian** — IC Brief\n- 📏 Báscula: recordatorio enviado AM, pend datos Eduardo (no respondió)\n"
+    },
+    {
+      "date": "2026-03-15",
+      "weekday": "Sunday",
+      "weekday_es": "Domingo",
+      "summary": "- MC actualizado + Notion MC sync ✅",
+      "topics": [
+        "09:30 — Morning sync + MC Update",
+        "Estado deals al inicio de jornada (15/03)",
+        "14:00 — Check mediodía",
+        "15:08 — Heartbeat tarde",
+        "18:03 — Heartbeat cierre tarde",
+        "20:15 — Cierre del día",
+        "Pendientes del día"
+      ],
+      "tags": [
+        "MAGG",
+        "Gmail",
+        "Infra",
+        "Notion"
+      ],
+      "activity": 37,
+      "content": "# Memory — 15 marzo 2026\n\n## 09:30 — Morning sync + MC Update\n\n- MC actualizado + Notion MC sync ✅\n- Foco único del día: **🚨 NBO Casón del Tormes — HOY es el deadline**\n\n## Estado deals al inicio de jornada (15/03)\n\n| Ref | Deal | Estado | Urgencia |\n|---|---|---|---|\n| 007 Casón | Madrid Plaza España | GO · NBO deadline HOY 15/03 | 🔴🔴 |\n| 010 GV48 | Gran Vía 48 Madrid | GO · Pend Eastdil feedback | 🟡 |\n| 008 Cabestreros | Lavapiés Madrid | PEND precio | ⏳ |\n| 009 Sevilla | Guzmán el Bueno | PEND OM Tatyana Moyal | 🟡 |\n| 006 Rossio | Lisboa GO @€11M | Brief reescritura pendiente | 🟢 |\n| HIST-092 | Don Cristian | IC Brief pendiente | 🟢 |\n\n## 14:00 — Check mediodía\n\n- Gmail: sin emails nuevos (últimas 6h)\n- **Casón NBO**: borrador v1 enviado el 13/03, sin respuesta de Eduardo. HOY = deadline. BLOQUEADO en Eduardo.\n- Resto de deals: sin movimiento\n- Notion MC log ✅\n\n## 15:08 — Heartbeat tarde\n\n- Gmail: sin emails nuevos (últimas 4h)\n- **Casón NBO**: sigue sin respuesta de Eduardo. Ping enviado por WhatsApp a las 15:08 con los 5 puntos pendientes.\n- Resto: sin movimiento\n\n## 18:03 — Heartbeat cierre tarde\n\n- Gmail: sin emails nuevos (últimas 4h)\n- **Casón NBO**: deadline hoy — sin respuesta de Eduardo al ping de las 15:08. Deal potencialmente perdido o prorrogado. Pendiente feedback mañana.\n- Resto: sin movimiento\n\n## 20:15 — Cierre del día\n\n- Gmail: sin emails nuevos en todo el día\n- **Casón NBO**: deadline 15/03 pasado. Borrador listo, Eduardo no respondió al ping de las 15:08. Pendiente mañana.\n- MC actualizado con top 3 lunes ✅\n\n## Pendientes del día\n- 🔴 **Casón NBO** — deadline 15/03 pasado sin acción. Bloqueado en Eduardo. Mañana: confirmar si hay prórroga o se perdió la ventana.\n  - Borrador v1 en `knowledge/nbo_cason_tormes_borrador_v1.md`\n- ⏳ 009 Sevilla — pend OM Tatyana Moyal\n- ⏳ GV48 — pend feedback Eastdil (llamada 11/03)\n- ⏳ Rossio brief — reescritura 9 secciones (GO @€11M)\n- ⏳ HIST-092 Don Cristian — IC Brief\n"
+    },
+    {
+      "date": "2026-03-13",
+      "weekday": "Friday",
+      "weekday_es": "Viernes",
+      "summary": "- Brief enviado a WhatsApp Eduardo (09:30) ✅",
+      "topics": [
+        "09:30 — Brief matutino + MC Update",
+        "Estado deals al inicio de jornada (13/03)",
+        "12:35 — Check mediodía + NBO Casón",
+        "14:00 — Check tarde",
+        "Pendientes del día",
+        "20:15 — Cierre del día",
+        "23:34 — Tarea nocturna ✅"
+      ],
+      "tags": [
+        "MAGG",
+        "CRM",
+        "Gmail",
+        "Infra",
+        "Notion"
+      ],
+      "activity": 53,
+      "content": "# Memory — 13 marzo 2026\n\n## 09:30 — Brief matutino + MC Update\n\n- Brief enviado a WhatsApp Eduardo (09:30) ✅\n- Sin emails nuevos últimas 12h\n- Mission Control actualizado: foco = 🔴 Casón NBO antes 15/03 (2 días)\n- Notion MC status + log_activity + set_focus ✅\n\n## Estado deals al inicio de jornada (13/03)\n\n| Ref | Deal | Estado | Urgencia |\n|---|---|---|---|\n| 007 Casón | Madrid Plaza España | GO · NBO URGENTE | 🔴 15/03 (2 días) |\n| 008 Cabestreros | Lavapiés Madrid | PEND precio | ⏳ |\n| 009 Sevilla | Guzmán el Bueno | PEND IC Brief (OM recibido) | 🟡 |\n| 010 GV48 | Gran Vía 48 Madrid | GO · Eastdil feedback pendiente | 🟡 |\n| 006 Rossio | Lisboa GO @€11M | Reescritura brief pendiente | 🟢 |\n| HIST-092 | Don Cristian | IC Brief pendiente | 🟢 |\n\n## 12:35 — Check mediodía + NBO Casón\n\n- Gmail: sin emails nuevos (últimas 4h)\n- Mission Control actualizado ✅\n- **✍️ NBO Casón del Tormes borrador v1 redactado autónomamente**\n  - Archivo: `knowledge/nbo_cason_tormes_borrador_v1.md`\n  - Precio: €22M, share deal TANOS S.A., condicionado a visita DT + DD fiscal\n  - Enviado a Eduardo para revisión por WhatsApp\n  - Pendiente: nombre contacto Eastdil, abogado, DT, tel Eduardo, confirmación validez\n\n## 14:00 — Check tarde\n\n- Gmail: sin emails nuevos (últimas 2h)\n- MC actualizado ✅\n- NBO Casón: enviado 12:37, sin respuesta aún. Deadline 15/03. Bloqueo en Eduardo.\n- Brief 14:00 enviado a WhatsApp\n\n## Pendientes del día\n- 🔴 Casón NBO — borrador v1 listo, esperando confirmación Eduardo (5 puntos) — URGENTE\n- ⏳ 009 Sevilla — IC Brief cuando Eduardo dé go-ahead\n- ⏳ GV48 — esperando feedback Eastdil\n- ⏳ Rossio reescritura — sin priorizar aún\n\n## 20:15 — Cierre del día\n\n### Hecho hoy (viernes 13/03)\n- ✅ Brief matutino 09:30 + mediodía 12:35 + recordatorio 18:36 enviados\n- ✅ Gmail 3x — sin emails relevantes\n- ✅ MC actualizado 3x\n- ✅ NBO Casón v1 redactado autónomamente + enviado a Eduardo (sin respuesta)\n- ✅ Skills del día enviadas (cron skill-scout)\n\n### Top 3 sábado 14/03\n1. 🔴 Casón NBO — LAST CALL. Confirmar 5 puntos con Eduardo → enviar hoy mismo\n2. 📧 009 Sevilla — IC Brief completo (OM Tatyana Moyal en mano)\n3. 📄 Rossio — Reescritura 9 secciones (GO @€11M confirmado)\n\n\n## 23:34 — Tarea nocturna ✅\n🎯 **IC Brief 009 Sevilla — reescrito y publicado**\n- Sustituido brief erróneo del scanner (había alucinado +715bps e IRR 59%)\n- Nuevo brief correcto: análisis MAGG UW v2 completo (9 secciones canónicas)\n- Veredicto: NO GO a €13.5M (asking) · Base -14bps · MID +74bps · BULL +209bps\n- Bid rec ★ €9.3M (−33%) · Límite GO €10.8M (−20%) · NOI MID €1.347M\n- Exit yield 5.00% (5★ prime Sevilla) · Cronograma: exit Q1 2031\n- Tabla sensibilidad ADR ×Occ @ asking price — solo BULL alcanza GO\n- Link: https://edmartin8n.github.io/magg-dashboard/briefs/009-sevilla.html\n"
+    },
+    {
+      "date": "2026-03-12",
+      "weekday": "Thursday",
+      "weekday_es": "Jueves",
+      "summary": "- Brief enviado a WhatsApp Eduardo (09:30)",
+      "topics": [
+        "09:30 — Brief matutino + MC Update",
+        "Estado deals al inicio de jornada (12/03)",
+        "Pendientes arrastrados de ayer (11/03)",
+        "Sesión CRM — tarde 12/03 (aprox 11:00-12:00)",
+        "14:00 — Check mediodía",
+        "20:15 — Cierre del día"
+      ],
+      "tags": [
+        "MAGG",
+        "CRM",
+        "Gmail",
+        "Infra",
+        "Notion",
+        "Fundraising"
+      ],
+      "activity": 97,
+      "content": "# Memory — 12 marzo 2026\n\n## 09:30 — Brief matutino + MC Update\n\n- Brief enviado a WhatsApp Eduardo (09:30)\n- Sin emails nuevos últimas 12h\n- Mission Control actualizado: top 3 del día definido\n- Notion MC sync ✅\n\n## Estado deals al inicio de jornada (12/03)\n\n| Ref | Deal | Estado | Urgencia |\n|---|---|---|---|\n| 007 Casón | Madrid Plaza España | GO · NBO URGENTE | 🔴 15/03 (3 días) |\n| 008 Cabestreros | Lavapiés Madrid | PEND precio | ⏳ |\n| 009 Sevilla | Guzmán el Bueno | PEND IC Brief (OM recibido 10/03) | 🟡 |\n| 010 GV48 | Gran Vía 48 Madrid | GO Estrat. B · OM + LOI pendiente | 🟡 |\n| 006 Rossio | Lisboa | BORDERLINE · Brief reescritura pendiente | 🟡 |\n\n## Pendientes arrastrados de ayer (11/03)\n- Casón NBO sin avance (bloqueado en Eduardo — llamada Eastdil 11/03 10:00, sin feedback aún)\n- 009 Sevilla IC Brief — análisis completo con OM Tatyana Moyal pendiente\n- Brief 006 Rossio — reescritura 9 secciones completa pendiente\n\n---\n\n## Sesión CRM — tarde 12/03 (aprox 11:00-12:00)\n\n### Fixes aplicados al CRM (magg-dashboard GitHub Pages)\n\n**Pipeline fixes:**\n- MAGG-2026-006 Rossio → GO ✅, precio €11M (Eduardo confirmó)\n- MAGG-2026-010B GV48 124 uds → GO ✅ confirmado en verde\n- Duplicados eliminados: MAGG-2026-006 (doble) + MAGG-2026-009 (doble) → 276 deals\n- Chat asistente 💬 restaurado (bug: `renderShortlist()` crasheaba por `#shortlist-items` eliminado al quitar Watchlist)\n- Icono 📄 IC Brief en primera columna de cada fila Pipeline (dot de veredicto + icono directo, sin expandir)\n- Columna primera ensanchada 36px → 54px para alojar dot + icono\n- Tabs reordenados: ⚡ Transacción antes que 👥 Intermediarios\n- TX sidebar: HIST-092 Don Cristian (is_magg→true) aparece ahora\n- Control activos: muestra GO + Borderline + En Análisis\n\n**IC Briefs actualizados (formato 9 secciones completo):**\n- 006-rossio.html: BORDERLINE → GO ✅, €11M\n- 007-cason.html: rebuild completo (NOI €2.020M, YoC 7.87%, +262bps, NBO 15/03)\n- 008-cabestreros.html: rebuild completo (bid rec €10.8M, +196bps, PEND precio)\n- link_ic asignado a todos los activos GO/En Análisis en DEALS array\n\n**Intermediarios tab — rediseño completo:**\n- Eliminados Tiers inventados\n- Agrupado por firma (1 fila por empresa, no por contacto)\n- #Deals calculado en runtime desde DEALS.fuente (real, no inventado)\n- Ordenado por #deals DESC\n- Último contacto visible en fila, rojo si sin contacto\n- Expandible: deals del pipeline + contactos con email/tel\n- **270 → 269 brokers** (post-limpieza): todos los que enviaron deals al pipeline cubiertos\n- 83 fuentes del pipeline sin cobertura → 71 entradas nuevas (limpias)\n- Dedup solo por reglas explícitas (nunca por primera palabra de nombre)\n- Sin \"Autónomo\" ni \"Gmail\" como firma — nombre propio en su lugar\n- Felipe Ivars/MAGG Capital + Fuente directa → eliminados (no son intermediarios externos)\n\n### Estado deals al cierre sesión mañana 12/03\n\n| Ref | Veredicto | Cambio |\n|---|---|---|\n| 006 Rossio | GO ✅ | Subido de BORDERLINE por Eduardo |\n| 007 Casón | GO ✅ | Sin cambio — NBO urgente 15/03 |\n| 008 Cabestreros | GO ✅ PEND precio | Sin cambio |\n| 010A GV48 97uds | GO ✅ | Sin cambio |\n| 010B GV48 124uds | GO ✅ | Confirmado verde |\n| HIST-092 Don Cristian | GO ✅ | Ahora aparece en TX sidebar |\n\n### Commits del día (magg-dashboard)\n- `3e9895b` dedup Rossio+Sevilla, tabs, TX GO filter, activos\n- `a52a1e8` guard renderShortlist null\n- `e94776c` Rossio→GO €11M, GV48 010B→GO, link_ic\n- `64291a6` IC Briefs 006/007/008 nuevo formato\n- `a6e5df9` icono 📄 IC Brief por fila pipeline\n- `01f58cf` dot+icono juntos, col 54px\n- `44aaea7` dot como link IC Brief\n- `bb3737f` Intermediarios rediseño completo\n- `ba72811` +83 brokers desde pipeline\n- `dd9ea20` brokers limpios 260\n- `e2a9fa9` 270 brokers sin pérdida de nombres\n- `6557a4d` 269 brokers definitivos (último duplicado)\n\n### Nota técnica importante\n- BROKERS array: 269 entradas — todos los que han enviado deals cubiertos\n- DEALS array: 276 deals (tras eliminar 2 duplicados)\n- Dedup brokers: solo por (contacto.lower, firma.lower) exacto, nunca por primera palabra\n- `buildFirmaGroups()` en JS: agrupa por `b.firma`, cuenta deals de DEALS donde fuente hace substring match con keys del grupo\n\n## 14:00 — Check mediodía\n\n- Gmail: sin emails nuevos (últimas 6h)\n- CRM: \"Deals activos\" tab actualizado (mismo render que Pipeline)\n- Staging live: /magg-dashboard/staging/\n- Brief 14:00 enviado a WhatsApp con 3 opciones para Eduardo\n\n### Pendientes bloqueados en Eduardo\n- Casón NBO — 3 días para el 15/03, sin respuesta aún\n- 009 Sevilla — OM recibido, análisis pendiente de go\n- GV48 — feedback Eastdil pendiente\n- Rossio — reescritura pendiente de priorización\n\n## 20:15 — Cierre del día\n\n### Hecho hoy\n- ✅ CRM \"Deals activos\" tab: mismos datos que Pipeline, live\n- ✅ CRM Staging: /magg-dashboard/staging/ con banner STAGING\n- ✅ Comparables Lisboa prime: €155K–€583K/hab, mediana €234K, Rossio €262K ✅ rango prime\n- ✅ Mission Control actualizado 3x\n\n### Pendientes a mañana\n- 🔴 Casón NBO — borrador a las 09:00 sin esperar Eduardo (2 días para 15/03)\n- ⏳ 009 Sevilla IC Brief — esperando go-ahead\n- ⏳ 006 Rossio reescritura — sin priorizar\n- ⏳ GV48 — sin feedback Eastdil\n\n### Cierre de día enviado a WhatsApp 20:15\n"
+    },
+    {
+      "date": "2026-03-11",
+      "weekday": "Wednesday",
+      "weekday_es": "Miércoles",
+      "summary": "- **Canal ID:** `1476186153500807169` (renombrado desde #public-markets)",
+      "topics": [
+        "Canal #stock_market_personal",
+        "Crons activos en el canal",
+        "Situación geopolítica (activa al 11 Mar 2026)",
+        "Posiciones conocidas de los miembros",
+        "Portfolio recomendado para Álvaro ($50k, horizonte 3-6 meses)",
+        "Sectores de guerra de desgaste (1-2 años)",
+        "Análisis histórico petróleo en conflictos",
+        "Performance semana 2-6 Mar 2026"
+      ],
+      "tags": [
+        "MAGG",
+        "Discord",
+        "Infra",
+        "Bolsa"
+      ],
+      "activity": 61,
+      "content": "# Memory — 11 marzo 2026\n\n## Canal #stock_market_personal\n\n- **Canal ID:** `1476186153500807169` (renombrado desde #public-markets)\n- **Miembros activos:** Eduardo (TatoMMS), Juanjo (jjgm0245, ID: `1476266952661012532`), Álvaro Vaca (alvarovaca., ID: `1476321087074861056`)\n- **requireMention:** desactivado solo para este canal (guild: requireMention: true, canal override: false) — todos pueden escribir sin mencionar a Tenacitas\n- **Vibe:** canal de research y value investing. Juanjo y Vaca son activos e inteligentes. Álvaro hace preguntas macro muy elaboradas. Juanjo tiene posiciones propias y criterio sólido.\n\n## Crons activos en el canal\n\n| Cron | ID | Schedule | Estado |\n|---|---|---|---|\n| AI Buildout Stock Research | `c1bc4f2e` | L-V 13:00 | no-deliver; yo relay manualmente |\n| Weekly Macro Briefing | `013ddad8` | Lunes 08:00 | activo |\n| Insider Buying Radar | `d582628f` | Viernes 13:00 | activo desde 6 Mar |\n| Daily check-in JJ y Vaca | `d4e7ede5` | L-V 12:00 | activo; mensajes variados por día |\n\n**Nota cron AI Buildout:** delivery en modo `none`. Cuando llega el system message, yo formateo y mando UNA VEZ al canal con `message tool`. No auto-publica.\n\n## Situación geopolítica (activa al 11 Mar 2026)\n\n- **US-Israel atacaron Irán** el 28 Feb 2026\n- **Estrecho de Ormuz:** efectivamente cerrado (Guardia Revolucionaria prohibió paso, >150 buques anclados)\n- **Qatar LNG:** producción paralizada en Ras Laffan tras drones iraníes (20% del LNG global en riesgo)\n- **Petróleo:** WTI llegó a $82/barril (+19% en la semana del 2-6 Mar); Barclays: $80 en disrupción material; RBC: $100 posible\n- **Gas europeo TTF:** +41% en un día → €45/MWh\n- **Oro:** ~$5,400/oz (Goldman target $5,400 a fin 2026)\n- **Irán:** lanzó misiles sobre Israel; \"secret outreach\" diplomático circulando (Guardian, 4 Mar)\n\n## Posiciones conocidas de los miembros\n\n**Juanjo (JJGM):**\n- **iShares Physical Gold ETC** — hedge Iran (en profit esta semana)\n- **VanEck Defense UCITS ETF** — hedge Iran (en profit, mantener)\n- **BFSA (Befesa)** — compró en pullback post-earnings Q4 2025 (resultados buenos: record FCF operativo, desapalancamiento). Tesis: sell-the-news, fundamentales sólidos\n- **EWY (Korea ETF)** — esperando entrada. Trigger: petróleo por debajo de $75 + reapertura Ormuz. KOSPI cayó 7.2% por shock geopolítico\n\n**Álvaro Vaca:**\n- Tiene posiciones existentes en oro y defensa\n- Recibió recomendación de cartera $50k (ver abajo)\n\n## Portfolio recomendado para Álvaro ($50k, horizonte 3-6 meses)\n\n**Versión ajustada (post-geopolítica, recomendada):**\n- AI Core (NVDA+AMD+MU+AVGO): 35%\n- GDX (mineras oro): 18%\n- Defense ETF: 12%\n- Energía (XLE): 10%\n- RKLB: 5%\n- Cash: 15%\n- COIN/FIG: fuera\n\n**Versión original (27 Feb, pre-geopolítica):** era 60% AI tech + 10% crypto — hubiera tenido semana negativa.\n\n## Sectores de guerra de desgaste (1-2 años)\n\n**Comprar:** Defensa (LMT/RTX/ITA) · Energía US (XLE/Cheniere) · Oro/Mineras (GDX) · Ciberseguridad (CRWD/PANW/CIBR) · Fertilizantes/Agri (MOS/NTR/MOO) · Nuclear (CCJ/CEG/NLR) · Shipping alternativo (ZIM/STNG)\n\n**Evitar:** Consumer discretionary · Airlines · Tech growth múltiplos altos · Manufacturas Asia (Korea, Japan, Taiwan)\n\n## Análisis histórico petróleo en conflictos\n\n- Gulf War I (1990): +89.3% (único outlier con spike sostenido — disrupción real)\n- Soleimani (2020): -25% a los 2 meses (respuesta limitada, panic reversal)\n- Patrón: si Ormuz reabre en <2 semanas → crudo devuelve; si >3 semanas → $90-100\n- Gas: Qatar offline = precedente nuevo sin histórico claro. Referencia más cercana: crisis energética Europa 2022 (+400% TTF en meses)\n\n## Performance semana 2-6 Mar 2026\n\n- ✅ GDX: +7-10% (correctamente sobreponderado)\n- ✅ Defense ETF: outperformando\n- ✅ Energía: mejor sector de la semana\n- ❌ AMD/MU/AVGO: -3 a -6% (risk-off tech)\n- ❌ COIN: -8 a -12% (risk-off crypto)\n- 📊 NVDA: plana (~$183, 52-week range: $86-212)\n\n## Notas operativas\n\n- **Juanjo reacción 👎** en mensaje con broma sobre él (\"no estoy tan lejos del nivel de un chiste de Juanjo\") — evitar bromas a su costa\n- **Eduardo**: dice que hay que trabajar las bromas. Últimas que funcionaron: \"stop loss más drástico de la semana\" y \"progreso 📈 la semana pasada me decían que tenía que mejorar\"\n- **Estilo canal:** Eduardo prefiere respuestas cortas y directas en este canal (hay terceros). No monopolizar con texto largo salvo análisis explícitamente pedido.\n- **BFSA**: Befesa S.A., empresa reciclaje acero/aluminio, cotiza en Deutsche Börse (ETR:BFSA). Q4 2025: record FCF, desapalancamiento, negocio resiliente.\n"
+    },
+    {
+      "date": "2026-03-10",
+      "weekday": "Tuesday",
+      "weekday_es": "Martes",
+      "summary": "- **Propuesta Specialized Agents**: `knowledge/specialized-agents-proposal.md` ya existía (creada en la sesión del 09/03). Contenido completo con arquitectura 3 agentes (Scout → UW → CRM), flujo canónico, comparativa de costes y plan de implementación por semanas.",
+      "topics": [
+        "04:32 — Heartbeat nocturno",
+        "14:00 — Check mediodía",
+        "22:34 — Tarea nocturna",
+        "22:43 — Heartbeat nocturno",
+        "17:15 — Heartbeat + Gmail check",
+        "11:00 — Heartbeat + Gmail check",
+        "09:30 — Brief matutino enviado (WhatsApp)",
+        "11:04 — Pre-compaction flush"
+      ],
+      "tags": [
+        "MAGG",
+        "CRM",
+        "Gmail",
+        "Infra"
+      ],
+      "activity": 100,
+      "content": "# 2026-03-10 — Daily Notes\n\n## 04:32 — Heartbeat nocturno\n\n- **Propuesta Specialized Agents**: `knowledge/specialized-agents-proposal.md` ya existía (creada en la sesión del 09/03). Contenido completo con arquitectura 3 agentes (Scout → UW → CRM), flujo canónico, comparativa de costes y plan de implementación por semanas.\n- **Cron WhatsApp 12:00**: programado (ID: `0ef0ca90-1eed-4421-8edd-194c8dcb7fd2`) para enviar resumen ejecutivo de 3 puntos a Eduardo antes de la sesión de las 12:00.\n- HEARTBEAT.md actualizado — tareas martes 10/03 marcadas como ✅\n\n## 14:00 — Check mediodía\n- Gmail: sin emails nuevos relevantes\n- Brief enviado: estado Casón/GV48/Rossio + 2 deals pendientes (Puntazo + Tembo) + recordatorio sesión 16:30\n\n## 22:34 — Tarea nocturna\n- **Fix cron 07:30**: timeout 120s→180s + modelo gpt-5.3-codex→gpt-5.1-codex-mini (más rápido). Errors consecutivos reseteados mañana.\n- **Brief 006 Rossio**: sub-agente lanzado (ID: 006ffe8d-df72-4ab7-84b5-c0a6424e7dee) — reescritura formato canónico 9 secciones. Supuestos base: SQM ~800, 25 hab, ADR €180, Occ 85%, exit yield 5.75%. Pendiente resultado.\n\n## 22:43 — Heartbeat nocturno\n- WhatsApp reconectado (desconexión breve 22:42)\n- Fix cron `MC Global refresh 07:30` (ID: 9f89172f): timeout 120s→180s + modelo gpt-5.1-codex-mini (tenía 5 errores consecutivos)\n- Sub-agente lanzado para reescritura Brief 006 Rossio (9 secciones canónicas) — ID: 4fd39cd5 ✅ COMPLETADO 22:52\n  - Veredicto: BORDERLINE → GO CONDICIONADO · solo viable ≤€10.2M · asking €13M = NO GO\n  - Bid rec: €9.1M (+200bps) · Límite GO: €10.2M (+150bps) · NOI: €1.22M · Exit: €21.2M @ 5.75%\n  - Brief: https://edmartin8n.github.io/magg-dashboard/briefs/006-rossio.html ✅\n  - Supuestos pendientes confirmar: SQM (~1.945m²), nº hab (~42), precio compra exacto\n\n## 17:15 — Heartbeat + Gmail check\n- WhatsApp reconectado (desconexión breve 16:54:49–16:54:52)\n- Email de **Tatyana Moyal** (tmoyal@gypconsultores.es): respuesta solicitud OM 009 Sevilla Hotel 5★ — adjunta \"Propuesta de Encaje\" del arquitecto + datos estructura operación. ID: 19cd875fdb1df97c\n- Eduardo avisado por WhatsApp — pendiente su OK para procesar\n\n## 11:00 — Heartbeat + Gmail check\n- 2 deals nuevos detectados: **Hotel El Puntazo** (dossier) + **Hotel Tembo Barcelona** — de Mari Luz Muñoz Coso, forwarded por Eduardo 09:12-09:13\n- Preguntado a Eduardo si procesar ahora o después de sesión 12:00 — pendiente respuesta\n\n## 09:30 — Brief matutino enviado (WhatsApp)\n- 🐾 Jaula Esbi recordado\n- Brief 09:30: Top 3 (Casón NBO · GV48 OM · Rossio Brief) + estado por vertical + recordatorio sesión 12:00\n\n## 11:04 — Pre-compaction flush\n\n### Estado pipeline al 10/03 (276 deals)\n- nogo: 238 · borderline: 7 · go: 6 · pend: 1 · analisis: 24\n- CRM: https://edmartin8n.github.io/magg-dashboard/ · last commit: `c3dfc0e`\n- Pipeline Excel local: `pipeline_magg.xlsx` · Drive ID: `1jhK7aL7W9VkAs_Gudv8Lt38UJkhgQ4DN`\n\n### GV48 (MAGG-2026-010) — decisiones fijadas\n- 010A (97 uds, reforma ligera): GO por IRR ~28% > 15% en todos los escenarios (Eduardo confirmó: IRR overrides spread/múltiple)\n- 010B (124 uds, reforma integral): GO — spread +185bps, IRR ~23%, múltiple 1.87x\n- IC Brief: https://edmartin8n.github.io/magg-dashboard/briefs/010-gran-via-48.html\n- Pendiente: OM completo + LOI/NBO condicionado + añadir Excel/CRM completo\n- Excel rows: 010A = row 105 · 010B = row 106\n\n### Decisiones de formato y estándar (confirmadas)\n- Email IC Brief multi-estrategia: SECUENCIAL (A completo → B completo), NUNCA side-by-side\n- Sensitivity table: cada celda = `+XXX bps / ~YY% IRR` — dual metric obligatorio\n- CapEx soft: 10% hard (NO 7%)\n- Exit yield hostel: hotel base +100bps (NO +200bps)\n- NOI v2: NOI = GOP − 8% Revenue (HMA all-in)\n\n### DD system — decisión tomada (09/03)\n- Opción 2 aprobada: cada carpeta Drive por deal tiene un `dd_index.md`\n- Tenacitas lee docs DD bajo demanda (PDF/Excel) y actualiza el índice\n- Sin Supabase por ahora — static HTML + inline DEALS array\n- Sesión implementación: 10/03 10:00\n\n### Deals activos — estado al 10/03\n- 007 Casón: GO — NBO URGENTE antes 15/03/2026\n- 008 Cabestreros: GO — awaiting price/structure\n- 009 Sevilla: PEND OM — awaiting full OM de Tatyana Moyal (tmoyal@gypconsultores.es)\n- 010A/B GV48: GO — awaiting OM + LOI/NBO\n- HIST-092 Don Cristian: GO en negociación — brief pendiente\n- 006 Rossio: BORDERLINE — brief rewrite pendiente (old format)\n\n### Incidente formato — Eduardo reportó cambio de formato\n- Eduardo dijo \"has cambiado por completo el formato. No está igual que la anterior.\"\n- Contexto de qué documento/mensaje fue cambiado NO visible en conversación — necesita contexto previo\n- Pendiente: identificar qué formato fue alterado y revertirlo\n\n### Nuevo deals detectados (mañana 10/03)\n- **Hotel El Puntazo** — dossier de Mari Luz Muñoz Coso (forwarded por Eduardo 09:12)\n- **Hotel Tembo Barcelona** — mismo origen (forwarded 09:13)\n- Estado: pendiente procesar (Eduardo consultado si hacerlo antes o después sesión 12:00)\n\n### CRM IC Briefs en GitHub Pages\n- 007 Casón: /briefs/007-cason.html ✅\n- 008 Cabestreros: /briefs/008-cabestreros.html ✅\n- 009 Sevilla: /briefs/009-sevilla.html ✅\n- 010 GV48: /briefs/010-gran-via-48.html ✅\n- 006 Rossio: /briefs/006-rossio.html ⚠️ formato antiguo — pendiente reescritura completa 9 secciones\n\n## 11:10 — Deals procesados 011 + 012\n\n### MAGG-2026-011 — Hotel El Puntazo, Mojácar\n- 160 hab, 4* resort, primera línea playa Almería\n- Ocupación: 184 días/año (dato dossier), sin precio, sin P&L\n- ADR asumida: €90 efectivo anual; NOI: €1.69M; exit yield 7.0%\n- Bid rec MAGG: €6.4M → a precio mercado (€10-15M+) spread NEGATIVO\n- Veredicto: NO GO — precio incompatible + resort estacional fuera mandato urbano\n- Brief: https://edmartin8n.github.io/magg-dashboard/briefs/011-el-puntazo.html\n- Email enviado: 19cd73fd916375db\n\n### MAGG-2026-012 — Hotel Tembo, Barcelona\n- 280 uds, 4* upper upscale serviced apt, Ramón Llull, 22@/Sant Martí\n- SQM sobre rasante: 21,704; 17 plantas; 3 F&B outlets; 13 salas MICE; rooftop pool\n- ADR asumida: €175, Occ 82%; NOI: €9.15M; exit yield 5.0%\n- Bid rec MAGG: €127.4M (límite GO: €137.4M)\n- Veredicto: GO — sólido en base/bull, bear extremo ~14% IRR\n- Brief: https://edmartin8n.github.io/magg-dashboard/briefs/012-hotel-tembo.html\n- Email enviado: 19cd73fdbd8183e0\n\n### Pipeline actualizado\n- Excel rows: 107 (011) + 108 (012)\n- Drive sync: OK\n- CRM: 278 deals (nogo:239 / go:7 / borderline:7 / pend:1 / analisis:24)\n- GitHub commit: 9a9fa0e + ecf33ff\n- Broker ambos: Mari Luz Muñoz Coso (munozcosom@gmail.com) / INMOAL\n\n## Tarea nocturna (22:35) — Brief 006 Rossio reescrito\n\n- **Supuestos usados:** SQM ~1.945 (OM pendiente confirmar), hab ~42 (OM), ADR €180, Occ 85%, exit yield 5.75% (Lisboa hotel boutique prime conservador)\n- **CapEx:** hard €4.863k + soft €486k + FF&E €420k + contingencia 10% €577k = **€6.346M total**\n- **NOI Year 3:** €1.220M (Revenue €2.345M × GOP 60% − HMA 8%)\n- **Exit (5.75%):** €21.2M\n- **YoC @ asking €13M:** 6.18% → Spread **+43 bps** (⚠️ BORDERLINE)\n- **Bid rec ★:** €9.1M (+200bps, YoC 7.76%) | **Límite GO:** €10.2M (+150bps)\n- **IRR @ bid rec:** ~14% (⚠️ BORDERLINE) | **@ asking €13M:** ~5% (NO GO)\n- **Veredicto:** ⚠️ BORDERLINE → GO CONDICIONADO (viable solo con precio ≤€10.2M)\n- **Formato:** 9 secciones canónicas, pure `<table>`, inline styles, colores BORDERLINE #FFF3CD/#856404\n- **Link:** https://edmartin8n.github.io/magg-dashboard/briefs/006-rossio.html\n- **Commit:** 9c548e7\n- **HTTP check:** 200 ✅\n\n## 15:xx — Foco deals + Eastdil\n\n- **Foco MAGG**: Casón del Tormes (007) + GV48 (010A/B) — prioridad máxima\n- **Eastdil**: llamadas mañana 11/03 a las 10:00 — ambos deals\n- Reminder programado: cron `c269edd0-7a1c-4b80-8480-e7bcc2d86468`\n- Comps Madrid prime compartidos: Upper UU media €477K/hab; Casón entry €137K/hab (value-add upside real); GV48 asking €726-928K/hab (franja alta vs mercado)\n"
+    },
+    {
+      "date": "2026-03-09",
+      "weekday": "Monday",
+      "weekday_es": "Lunes",
+      "summary": "- CRM GitHub Pages: https://edmartin8n.github.io/magg-dashboard/",
+      "topics": [
+        "Sesión CRM + IC Briefs — tarde",
+        "MAGG-2026-010 — GV48 Gran Vía 48 Madrid (09/03/2026, tarde)"
+      ],
+      "tags": [
+        "MAGG",
+        "CRM",
+        "Gmail",
+        "Infra",
+        "Fundraising"
+      ],
+      "activity": 98,
+      "content": "# Daily Notes — 2026-03-09 (Lunes)\n\n## Sesión CRM + IC Briefs — tarde\n\n### CRM Estado al cierre de sesión\n- CRM GitHub Pages: https://edmartin8n.github.io/magg-dashboard/\n- Repo local: `/tmp/magg-dashboard/` | 273 deals inline en `index.html`\n- Últimos commits: `54326fb` (mobile header compact), `c8ec3bd` (header/tabs blanco), `82c4ee6` (TX MAGG filter), `e5247e0` (IC Briefs GitHub Pages), `b4251a6` (Transaction Copilot), `6d8a729` (visual redesign v2)\n- Password CRM: `magg2026`\n- **Supabase**: diferido para \"otra ruta esta semana\" — mantener static HTML + inline DEALS por ahora\n\n### IC Briefs — trabajo en curso al finalizar sesión\n- **`006-rossio.html`**: rediseño completo pendiente — archivo existente es formato antiguo (168 líneas, ref MAGG-2026-005, cifras distintas). Necesita reescritura full 9 secciones.\n  - Veredicto: BORDERLINE CONDICIONADO — spread ~+84 bps a CapEx agresivo; ask €13M da spread negativo → dar bid rec\n  - Datos: 42 hab, 1.945 sqm, Reforma Integral, Rua 1º de Dezembro 40/42/44, Baixa Lisboa\n  - Total inv est: ~€18.77M | NOI ~€1.144M | YoC ~6.1% | Exit yield 5.25% → €21.8M exit\n- **`010-don-cristian.html`** (o ref a confirmar): nuevo brief HIST-092 → Deal GO bajo negociación\n  - Datos: 84 hab, 2.640 sqm, Málaga España | Ask: €5.48M | CapEx: €7.037M | Total inv: €12.517M\n  - ADR €140, Occ 80%, NOI ~€1.785M → YoC ~14.3% | Exit yield 6.25% → €28.6M | Spread ~+802 bps → GO\n  - Timeline: cierre Q2 2026, apertura ~Q4 2027, exit 2030-2031\n  - ⚠️ Discrepancia: DEALS array tiene 9.78% YoC — usar metodología v2 (14.3%) en el brief\n  - ⚠️ Ref: no tiene MAGG-2026-0XX aún → usar HIST-092 o asignar próximo número\n\n### Deals MAGG activos al 09/03/2026\n| Ref | Deal | Veredicto | Next |\n|---|---|---|---|\n| 006 | Rossio Lisboa | BORDERLINE CONDICIONADO | Modelo base/bear/bull + kill-switches |\n| 007 | Casón del Tormes Madrid | GO | NBO antes 15/03/2026 — URGENTE |\n| 008 | Malacuna Hostel Cabestreros | GO | Awaiting price/structure |\n| 009 | Hotel 5★ Sevilla Guzmán el Bueno | PEND OM | Awaiting full OM de Tatyana Moyal |\n| HIST-092 | Don Cristian Málaga | GO | En negociación — brief pendiente |\n\n### Pipeline Excel\n- Local: `/Users/tenacitas/.openclaw/workspace/pipeline_magg.xlsx`\n- Drive: `MAGG Pipeline — 03.2026.xlsx` | ID: `1jhK7aL7W9VkAs_Gudv8Lt38UJkhgQ4DN`\n- 273 deals: 8 MAGG + 263 HIST + 2 otros\n- Scoring: `{'nogo': 238, 'go': 6, 'analisis': 24, 'borderline': 5}`\n\n### TX Tab (Transaction Copilot)\n- Sidebar filtra solo deals MAGG con `verdict: 'go'|'pass'|'borderline'` + `is_magg: true`\n- Activos en TX: 006 Rossio · 007 Casón · 008 Malacuna\n- 009 Sevilla excluido (no es GO/borderline aún)\n- State: localStorage key `magg_tx`\n\n### 📅 SESIÓN MAÑANA — 10/03 10:00\n- Tema: **Fases del proceso de Due Diligence** (estructura, checklist, workflow MAGG)\n- Preparar antes: propuesta de fases DD con hitos, owners y documentación por stream\n\n### Pendientes inmediatos\n1. **URGENTE**: NBO Casón del Tormes → Eduardo antes 15/03\n2. Escribir `006-rossio.html` (9 secciones, formato MAGG definitivo)\n3. Escribir brief Don Cristian (HIST-092) — confirmar ref number\n4. Awaiting full OM Sevilla de Tatyana Moyal (tmoyal@gypconsultores.es)\n5. CRM redesign con Eduardo — sesión pendiente (pedida para hoy lunes)\n6. Nightly CRM review (1 mejora → anunciar en morning brief)\n\n### IC Briefs en GitHub Pages\n- `briefs/006-rossio.html` — PENDIENTE reescritura\n- `briefs/007-cason.html` — OK (NOI €2.020M, YoC 7.87%, +262bps)\n- `briefs/008-cabestreros.html` — OK (bid rec €10.8M, NOI €1.50M)\n- `briefs/009-sevilla.html` — OK (PEND OM)\n- Patrón URL: `https://edmartin8n.github.io/magg-dashboard/briefs/NNN-name.html`\n\n### Tokens / modelos\n- Modelo principal: `anthropic/claude-sonnet-4-6`\n- Push token GitHub: `[REDACTED_GITHUB_TOKEN]`\n- Gamma: ~5.270 créditos restantes | solo bajo demanda\n\n### Standards UW recordatorio\n- CapEx soft: 10% hard (NO 7%)\n- Exit yield hostel Madrid: 6.25% (hotel 5.25% + 100 bps)\n- Exit yield 5★ luxury: 4.75%\n- NOI = GOP − 8% Revenue (HMA all-in)\n- Occ base: siempre ≥85%\n- Sensibilidad: ADR ±€10 (2 tramos) + Occ ±5% (2 tramos)\n\n### Lecciones / alertas\n- Scanner automático usa parámetros genéricos 4★ → siempre revisar manualmente deals 5★\n- HTML IC Briefs en GitHub Pages (no PDF) — imprimir desde browser si hace falta PDF\n- Excel es ÚNICA fuente de verdad — Google Sheet obsoleto\n- ⚠️ Gamma: verificar script antes de enviar. No regenerar sin confirmar script limpio\n\n---\n## MAGG-2026-010 — GV48 Gran Vía 48 Madrid (09/03/2026, tarde)\n\n### Datos deal\n- **Ref**: MAGG-2026-010\n- **Activo**: Gran Vía 48, Madrid Centro — Aparthotel Premium (SmartRental Collection)\n- **Precio asking**: €90M (edificio completo)\n- **Gestor propuesto**: SmartRental (alineado — relación accionarial)\n- **Brief**: https://edmartin8n.github.io/magg-dashboard/briefs/010-gv48.html\n- **Fuente**: email e.martin@maggcapital.com, 09/03/2026\n\n### Estrategia A — 97 uds (lavado de cara, flip rápido)\n- CapEx: €1.164M (€10k/hab hard + soft 10% + contingencia)\n- Total inv: €91.164M | NOI: €5.91M | YoC: 6.48%\n- Exit 5.00%: €118.2M | Spread: +148bps → **BORDERLINE**\n- IRR: ~33% (hold 2 años) | Múltiple: ~1.75x\n\n### Estrategia B — 124 uds (reforma integral + ampliación, recomendada)\n- CapEx: €8.44M (hard €6M + FF&E €1.24M + soft €600k + contingencia €600k)\n- Total inv: €98.44M | NOI: €6.89M | YoC: 7.00%\n- Exit 5.00%: €137.8M | Spread: +200bps → **GO ✅**\n- IRR: ~15% (hold 4 años) | Múltiple: ~1.8x\n- Timeline: close Q3 2026 → licencia 12m → reforma 18m → apertura Q1 2029 → exit Q2-Q3 2031\n\n### Risk principal\n- Licencia ampliación 97→124 uds: incierta. Kill-switch = si licencia no OK en 18m → Estrategia A\n\n### Pendientes\n- [ ] OM completo (SQM real, planos, licencias, titularidad)\n- [ ] Validar licencia urbanismo con técnico\n- [ ] Definir HMA SmartRental (% base/incentive)\n- [ ] Term sheet bancario (coste deuda real)\n- [ ] LOI/NBO a precio €90M condicionado a DD + licencia B\n- [ ] Añadir al Excel pipeline y CRM\n"
+    },
+    {
+      "date": "2026-03-08",
+      "weekday": "Sunday",
+      "weekday_es": "Domingo",
+      "summary": "- Brief dominical, punto de situación completo por vertical",
+      "topics": [
+        "Cierre domingo 08/03 — 20:15",
+        "Cron Improvement Scout — idea (08/03)",
+        "Dubai — nueva dirección (08/03)",
+        "Sesión mañana — CRM visión (08/03 mañana)",
+        "Sesión tarde Discord/WhatsApp (08/03 17:00–22:00)",
+        "Heartbeat nocturno — 00:49 AM",
+        "Sesión 11:00-11:31 AM — IC Briefs GitHub Pages",
+        "Cierre domingo 08/03 — 22:30 (sesión final)"
+      ],
+      "tags": [
+        "MAGG",
+        "CRM",
+        "Gmail",
+        "Discord",
+        "Personal",
+        "Infra",
+        "Notion",
+        "Fundraising",
+        "Dubai"
+      ],
+      "activity": 100,
+      "content": "# Memory — 2026-03-08 (domingo)\n\n## Cierre domingo 08/03 — 20:15\n### Completado hoy\n- Brief dominical, punto de situación completo por vertical\n- Supabase MAGG en roadmap\n- CRM visión: hitos + BD + capa interactiva (sesión lunes 10:00)\n- Dubai: eje captación propietarios + pitch pendiente sesión Growth\n- Báscula cron L+V 07:00 activado · fitness dashboard eliminado\n- Status dashboard actualizado (9 deals, 27 crons, skills nuevas)\n- Skill scout: corregido para usar solo fuentes reales (ClaWHub/GitHub)\n- YouTube OpenClaw scout: activado 20:30 diario con reporte tokens\n- IC Briefs 006-009 publicados en GitHub Pages (/briefs/)\n- \"The McDeals\" canal YouTube mencionado por Eduardo → no tengo info en memoria, pendiente preguntar qué vídeos/canales exactos quiere seguir\n- nano-pdf skill → candidata a instalar (automatizar lectura OMs en Deal Scanner)\n\n### Top 3 lunes\n1. CRM rediseño sesión 10:00 (hitos + BD + interactivo)\n2. Casón NBO antes 15/03 · visita DT · ¿BP recibido?\n3. Rossio modelo stress base/bear/bull\n\n## Cron Improvement Scout — idea (08/03)\nEduardo quiere un cron que analice mejoras usando vídeos de YouTube:\n- Fuentes: canales YouTube relevantes (hospitality, Dubai real estate, revenue mgmt, etc.)\n- Proceso: detectar vídeos nuevos → transcript 0 tokens → resumen bullets insights accionables\n- Output: digest semanal con 3-5 mejores insights → WhatsApp o Discord\n- Pendiente definir: canales/temáticas prioritarias, frecuencia, canal output\n- Agrupar en sesión \"Growth\" junto con pitch Dubai\n\n## Dubai — nueva dirección (08/03)\nEduardo confirma que el eje principal del proyecto Dubai es captación de propietarios.\n- Valor aportado: no es capital, es deal flow de propietarios\n- Entregable clave: elevator pitch para propietarios (por qué confiarle su activo a Vacation Marbella/Eduardo)\n- Pendiente: sesión para desarrollar pitch + perfil de propietario objetivo + canales de captación\n- Esto puede ser el nuevo slide/sección de la presentación v7 o un documento independiente\n\n## Sesión mañana — CRM visión (08/03 mañana)\nEduardo definió la visión para el CRM rediseño del lunes:\n1. Hitos por deal: ordenar juntos con su input (flujo lógico por tipología)\n2. Base de datos vinculada: CRM conectado a Excel + Drive (ficha completa por deal)\n3. Capa interactiva: desde el CRM → ver info deal, hacer preguntas a Tenacitas, marcar próximos pasos\n→ Objetivo: pasar de dashboard visual a herramienta de trabajo activa\n→ Tenacitas prepara boceto + propuesta de hitos antes 10:00 lunes\n\n## Sesión tarde Discord/WhatsApp (08/03 17:00–22:00)\n\n### Resumen de lo trabajado\n- **Iniciativas en marcha**: inventario completo compilado. Eduardo preocupado por no perder temas en mente.\n- **\"The McDeals\"**: canal mencionado por Eduardo — no tengo info. Pendiente que me explique qué es.\n- **Skill Scout cron (10:00)**: primer run → alucinó skills (IC Brief, ByteRover, etc.). Prompt corregido con lista de lo que ya tenemos + regla \"solo fuentes verificables\". Segundo run → 5 skills reales con URLs GitHub.\n- **YouTube OpenClaw Scout (20:30)**: cron activado, primer run esta noche ✅ (3.800 tokens, 5 vídeos seleccionados — Liam Ottley, Brian Casel, X-Ray Automation, Agentic Labs)\n- **Evaluación skills**: n8n ❌ · Hospitality Lead Qualifier ❌ · Portfolio Monitor ❌ · nano-pdf ❌ · airadar ❌ (no existe) · lobster ❌ · **blogwatcher ✅ · (airadar descartado)**\n- **blogwatcher instalado**: skill real (steipete/openclaw/skills). CLI Go. 4 feeds: Brainsre, Hosteltur, Property Monitor Dubai, CoStar. Integrado en cron noticias 08:00 como fuente primaria.\n- **Seguridad skills**: Eduardo alerta — riesgo malware con skills externas. Regla nueva: leer SKILL.md completo + verificar autor antes de instalar cualquier skill externa.\n- **Dashboards GitHub Pages limpiados**: eliminados fitness (borrado) y control (duplicado). Quedan 4: CRM · MC visual · Status · Web Ana.\n- **Status dashboard**: actualizado a 08/03 — 9 deals, 27 crons, skills nuevas, todos actualizados.\n\n### Pendiente sin resolver\n- **\"The McDeals\"**: canal YouTube que Eduardo mencionó — qué iniciativa tiene asociada. PREGUNTAR.\n- **Supabase MAGG**: en roadmap. Eduardo confirmó: en paralelo al Excel mientras crecemos.\n\n## Heartbeat nocturno — 00:49 AM\n\n### Tarea autónoma\n- Revisión de estado post-sábado — todo correcto\n- Daily 07/03 completo y commitado ✅\n\n### Estado al inicio del domingo\n- Crons lunes: 10:00 CRM+Ana colegio · 10:30 Manitas Casa · 11:00 xAI · 12:00 Rossio+Casón\n- Cron domingo 14:30: n8n + OpenClaw integración review\n- Skills instaladas: smart-search ✅ · twitter ✅ · n8n ✅ · youtube-intel ✅\n- MC Global refresh crons mostrando \"error\" en 07:30/13:00/20:00 → revisar con Eduardo (modelo dev/gpt-5.3-codex)\n- Todo lo demás: stand-by hasta el lunes\n\n---\n\n## Sesión 11:00-11:31 AM — IC Briefs GitHub Pages\n\n### Cambio principal\n- **IC Briefs hospedados en GitHub Pages** (`/briefs/`) — no había PDF tools disponibles (sin wkhtmltopdf/puppeteer/pandoc)\n- Solución: HTML idéntico al email, abre en browser, Cmd+P → PDF nativo\n- Commit: `e5247e0` — 4 nuevos archivos\n\n### Briefs publicados\n| Deal | URL |\n|------|-----|\n| 006 Rossio | `briefs/006-rossio.html` |\n| 007 Casón | `briefs/007-cason.html` (NOI €2.020M, YoC 7.87%, spread +262bps) |\n| 008 Cabestreros | `briefs/008-cabestreros.html` (bid rec €10.8M, NOI €1.50M) |\n| 009 Sevilla | `briefs/009-sevilla.html` (PEND OM) |\n\n### CRM\n- ic_link actualizado a GitHub Pages para deals 006-009\n- Botón renombrado: \"📄 IC Brief\" → \"📄 Brief\"\n- Deals 001-005 (descartados): vacío o sin cambio\n\n### Eduardo pregunta\n- \"¿Cómo vas con la nueva tab de control y due?\" → pendiente respuesta\nVacation Marbella Estrategia 2026 PDF: https://drive.google.com/file/d/1uhfyd8VUFQlaryMKMoQutG-8mJ6S0uBI/view (Drive ID: 1uhfyd8VUFQlaryMKMoQutG-8mJ6S0uBI, subido a Growth Projects/Dubai folder)\nVacation Marbella Estrategia 2026 v2 PDF (+ sección 10 apoyo estratégico): https://drive.google.com/file/d/1YOd1sKw3AV8Q1UUh9CXwaIFm6T7x61Kj/view\n\n## Cierre domingo 08/03 — 22:30 (sesión final)\n### Mission Control unificado — COMPLETADO\n- Fusionados Status dashboard + MC Visual en un único HTML con 2 pestañas:\n  - **🗺️ Operaciones**: top 3, verticals, blockers, flags, pipeline MAGG, log, links\n  - **⚙️ Sistema**: misión, snapshot stats, cupo Claude Max, jerarquía modelos, crons, skills, roadmap\n- URL: https://edmartin8n.github.io/magg-dashboard/docs/mission-control-global/index.html · pass: ctrl2026\n- Status dashboard (docs/status/index.html) eliminado — ya no existe como URL separada\n- Dashboard README actualizado: solo 3 URLs (CRM, MC, Web Ana)\n- Eduardo detectó que faltaban secciones → añadidas misión + snapshot + cupo + jerarquía\n- Pendiente confirmar si añadir también mapa routing de modelos (tabla detallada + fallback 1→2→3)\n\n### Estado WhatsApp\n- Eduardo reportó que no respondía por WhatsApp → respondió por Discord\n- Causa: probablemente sesión compactándose. Funcional desde Discord sin problemas.\n\n### Compromisos para mañana lunes 09/03\n- 07:00 báscula reminder\n- 08:00 noticias (primer test blogwatcher)\n- 09:00 SEUR 35€ reminder\n- 10:00 CRM rediseño sesión con Eduardo\n- 11:00 decisión xAI API key\n\n## Tarea nocturna autónoma — 09/03 02:16 AM\n### Cambios finales de la sesión (resumen para MEMORY.md)\n- GPT-5.4 probado — NO funciona: `model not allowed: openai-codex/gpt-5.4`. Revertido a 5.3-codex. Pendiente update OpenClaw para que el proveedor lo soporte.\n- Skill Scout (10:00) y YouTube Scout (20:30) → movidos a GPT 5.3-codex (ahorro Sonnet)\n- YouTube Scout timeout subido a 240s\n- Mission Control unificado: 2 pestañas (Ops warm + Sistema dark). Status dashboard eliminado.\n- Sistema tab: misión, snapshot, cupo, jerarquía, árbol decisión, tabla routing completa\n- gpt-5.4 y gpt-5.4-pro registrados en config models (para cuando el proveedor lo soporte)\n- YouTube Scout y Video Scout: dos scripts distintos — Scout (IA/OpenClaw) vs video_scout.py (MAGG/hospitality)\n"
+    },
+    {
+      "date": "2026-03-07",
+      "weekday": "Saturday",
+      "weekday_es": "Sábado",
+      "summary": "- Memory maintenance: MEMORY.md actualizado con learnings del 06/03 (deal 009, CRM feedback, exit yield 5★)",
+      "topics": [
+        "Heartbeat nocturno — 04:06 AM",
+        "Sesión WhatsApp — mañana/tarde",
+        "Skills instaladas — 16:49 PM",
+        "Tarde autónoma + cierre del día"
+      ],
+      "tags": [
+        "MAGG",
+        "CRM",
+        "Gmail",
+        "Discord",
+        "Infra",
+        "Notion"
+      ],
+      "activity": 65,
+      "content": "# Memory — 2026-03-07 (sábado)\n\n## Heartbeat nocturno — 04:06 AM\n- Memory maintenance: MEMORY.md actualizado con learnings del 06/03 (deal 009, CRM feedback, exit yield 5★)\n- CRM rediseño reservado para lunes — NO tocar hasta entonces\n\n---\n\n## Sesión WhatsApp — mañana/tarde\n\n### Pipeline MAGG — correcciones aplicadas\n- **009 Sevilla**: scoring corregido \"Go ✅\" → \"PEND OM ⚠️\", spread 715 limpiado (era del scanner, incorrecto). Excel + Drive + CRM actualizados.\n- **006 Rossio**: confirmado que YA ESTABA en el Excel (había pasado desapercibido). BORDERLINE ⚠️, spread -104 bps.\n- CRM regenerado: 274 deals · borderline=6 · go=5 · pend=1\n\n### Crons creados (lunes 09/03)\n- **10:00** — Sesión CRM con Eduardo (revisión progresiva)\n- **12:00** — Follow up combinado: Rossio (modelo stress) + Casón (BP recibido? + email visita DT). NBO antes 15/03.\n- **Domingo 14:30** — Revisar integración n8n + OpenClaw\n\n### Skills nuevas — pendiente instalar\nEduardo quiere: **smart-search**, **twitter**, **n8n**\n- Son skills custom de Greg (Coach) — NO están en clawhub con esos nombres\n- Necesito que Greg pase las carpetas de las 3 skills directamente\n- Clawhub CLI instalado: `npm install -g clawhub` ✅\n- Pendiente: Greg manda archivos → instalo\n\n### Acuerdos canal WhatsApp/Discord\n- Eduardo usa Discord también para conversaciones generales (no solo broadcasts)\n- Regla acordada: WhatsApp = todo lo accionable para mí · Discord = broadcasts crons + general Eduardo\n- Problema: dos \"chats generales\" en paralelo = confuso. Eduardo lo entiende.\n- Mi parte: priorizar WhatsApp para accionables, leer Discord en syncs AM/PM\n\n### Superpoderes explorados hoy\n- **QMD**: ya activo en config (`\"backend\": \"qmd\"`). Motor semántico local Rust. Actualiza índice cada 5min. Cuando hago memory_search, es QMD bajo el capó.\n- **Agent Browser**: puedo usar navegador aislado (OpenClaw) yo solo, sin que Eduardo haga nada. Para Chrome de Eduardo necesita extensión Browser Relay. Casos de uso: scraping OTAs, comps de mercado, portales de datos.\n\n### Estado deals al cierre del sábado\n- **007 Casón**: GO · NBO antes 15/03 · BP esperado el lunes · email visita DT pendiente Eduardo\n- **008 Cabestreros**: PEND precio vendedor\n- **009 Sevilla**: PEND OM · pendiente respuesta G&P (Tatyana Moyal)\n- **006 Rossio**: BORDERLINE · modelo stress pendiente · follow up lunes 12:00\n\n---\n\n## Skills instaladas — 16:49 PM\n\nGreg mandó ZIP por email (greg@badgie.com, 07:31 PST):\n- **smart-search** ✅ instalada — Gemini grounding + Grok/X\n- **twitter** ✅ instalada — necesita credenciales propias API X (las de Greg son @badgie_com)\n- **n8n** ✅ ya estaba en workspace, confirmado ready\n- Ruta: `~/.openclaw/workspace/skills/`\n- Email marcado como leído\n\nVideo YouTube procesado (0 tokens transcript):\n- https://youtu.be/RhLpV6QDBFE — OpenClaw Mission Control guide\n- Tools mostradas: Task Board (kanban) · Calendar crons · Projects · Memory viewer · Docs · Team · Office (pixel art)\n- Aprendizaje: task board heartbeat-driven es lo que nos falta\n- Eduardo interesado en implementar algo el lunes post-CRM\n\n---\n\n## Tarde autónoma + cierre del día\n\n### Skill youtube-intel creada (17:xx)\n- Script: `skills/youtube-intel/scripts/yt_intel.py`\n- Estrategia Greg implementada: 0 tokens (transcript nativo) → yt-dlp+Whisper (fallback) → LLM summary (opcional)\n- yt-dlp instalado via brew ✅\n- Probado OK con video RhLpV6QDBFE: 3.621 palabras, ~28 min, 0 tokens\n- Commitado al repo\n\n### Crons lunes 09/03 — estado final (verificados)\n| Hora | Cron |\n|------|------|\n| 10:00 | Ana llame al colegio + CRM review con Eduardo |\n| 10:30 | Llamar Manitas Casa |\n| 11:00 | Smart-search xAI decisión |\n| 12:00 | Follow up Rossio + Casón del Tormes |\n| 14:30 (dom) | Revisar n8n + OpenClaw integración |\n\n### Recordatorios añadidos (tarde)\n- Lunes 10:00 — Ana llame al colegio\n- Lunes 10:30 — Llamar Manitas Casa\n"
+    },
+    {
+      "date": "2026-03-06",
+      "weekday": "Friday",
+      "weekday_es": "Viernes",
+      "summary": "Actualizar el CRM GitHub Pages (`/tmp/magg-dashboard/index.html`) para mostrar los 271 deals del Excel pipeline en lugar de solo los 8 MAGG-2026-XXX activos.",
+      "topics": [
+        "Sesión tarde — CRM Dashboard expansion (271 deals)",
+        "Estado global MAGG al 06/03/2026",
+        "Actualización tarde (sesión CRM + Pipeline)",
+        "Tarde — sesión CRM Pipeline + Control tab (14:00-15:00)"
+      ],
+      "tags": [
+        "MAGG",
+        "CRM",
+        "Gmail",
+        "Infra",
+        "Fundraising"
+      ],
+      "activity": 100,
+      "content": "# Memory — 2026-03-06 (viernes)\n\n## Sesión tarde — CRM Dashboard expansion (271 deals)\n\n### Objetivo\nActualizar el CRM GitHub Pages (`/tmp/magg-dashboard/index.html`) para mostrar los 271 deals del Excel pipeline en lugar de solo los 8 MAGG-2026-XXX activos.\n\n### Estado al momento del compacto\n- **En progreso**: generación del JSON completo de 271 deals desde `pipeline_magg.xlsx`\n- Script de extracción Python ya diseñado (lee openpyxl, mapea columnas, genera array JS)\n- Distribución confirmada: GO=2, BORDERLINE=43, PEND=35, NO GO=191\n- Decisión: mantener `DEALS` array inline en `index.html` (no JSON externo)\n- `DEALS` array en línea 218 del index.html, comienza con `const DEALS   = [`\n- Próximo paso: reemplazar bloque `DEALS` con los 271 items + actualizar badges de conteo de tabs + git push\n\n### Columnas pipeline Excel (fuente de verdad)\n`Ref #`, `Deal / Activo`, `Ubicación`, `Tipología`, `Estado Obras`, `Fuente / Broker`, `Fecha Entrada`, `Scoring`, `Estado`, `Precio Asking (€)`, `SQM Total`, `Llaves / Unidades`, `YoC HMA`, `Exit Yield Range`, `Spread (bps)`, `Motivo Descarte / Condición`, `Próximo Paso`, `Owner`, `Notas`, `Link IC Brief`\n\n### Verdict mapping (JS)\n- \"Go ✅\" (sin \"no\") → `'go'`\n- \"Borderline\" → `'borderline'`\n- \"Pend\" → `'pend'`\n- Todo lo demás → `'nogo'`\n\n### Rutas clave\n- Excel: `/Users/tenacitas/.openclaw/workspace/pipeline_magg.xlsx`\n- CRM repo: `/tmp/magg-dashboard/`\n- CRM URL: https://edmartin8n.github.io/magg-dashboard/\n- GitHub token: `[REDACTED_GITHUB_TOKEN]`\n\n---\n\n## Estado global MAGG al 06/03/2026\n\n### Pipeline activo (8 deals)\n| Ref | Deal | Veredicto | Spread |\n|---|---|---|---|\n| 001 | Solar AT Málaga | ❌ NO GO | -180/-250 bps |\n| 002 | Hotel Algarve | ❌ NO GO | -120/-210 bps |\n| 003 | Mediterráneo 1 Marbella | ❌ DESCARTADO | +100/+150 bps |\n| 004 | Colegio St Michael's Boadilla | ❌ NO GO | -200/-250 bps |\n| 005 | Hotel Boutique Praça Figueira Lisboa | ❌ NO GO | -82/-339 bps |\n| 006 | Rossio Lisboa | ⚠️ BORDERLINE GO CONDICIONADO | pendiente modelo |\n| 007 | Casón del Tormes Madrid | ✅ GO | +262 bps, IRR ~25%, NBO antes 15/03 |\n| 008 | Malacuna Hostel Cabestreros | ⏳ PEND precio | Bid rec €10.8M, límite €11.9M |\n\n### Pending críticos\n- **NBO Casón del Tormes** → Eduardo debe enviar antes del 15 de marzo 2026\n- **Precio Cabestreros (008)** → en espera de confirmación del vendedor\n- **SQM deals 001, 002, 003, 005** → Eduardo llena manualmente en Excel\n\n### Infrastructure completada (sesión 05/03/2026)\n- Excel pipeline: 271 deals (8 MAGG + 263 HIST), 30 columnas\n- Drive folders: todos los 8 deals tienen carpeta\n- Drive structure: Deals/ · Investor List/ · Market Data & Research/ · Pipeline & CRM/\n- Merge script: `scripts/merge_pipeline.py`\n- UW process v2: `knowledge/magg_uw_process_v2.md`\n- Google Sheet: OBSOLETO → archivado en Old/\n\n### Standards confirmados (no cambiar sin aprobación Eduardo)\n- CapEx soft: **10% hard** (antes 7%)\n- Exit yield hostel: hotel base **+100 bps** (NO +200 bps)\n- NOI: GOP − **8% Revenue** (HMA all-in)\n- CapEx/sqm: Greenfield €2.300 · Reforma integral €2.500 · Reforma ligera €1.000\n- FF&E: €10k/hab hotel · €2k/cama hostel\n- Email IC Brief: HTML `<table>` puro, 9 secciones en orden fijo, estilos inline\n- Gamma: solo bajo demanda\n\n---\n\n## Notas técnicas aprendidas\n- Gmail strips CSS grid/flexbox → siempre `<table>` HTML para columnas en emails\n- Gamma `externalAccess` va DENTRO de `sharingOptions` (no top-level) → 400 si fuera\n- Gamma header: `X-API-KEY` (no `x-gamma-api-key` → 401)\n- openpyxl puede leer xlsx pero no evalúa fórmulas → valores deben estar pre-calculados o leer .value directamente\n\n---\n\n## Actualización tarde (sesión CRM + Pipeline)\n\n### Flujo deal canónico — confirmado por Eduardo (06/03/2026)\n**8 pasos obligatorios** al procesar cualquier deal desde Gmail:\n1. Detectar email \"MAGG Deal\" → extraer PDF\n2. Análisis UW completo (ADR, CapEx, NOI, IRR, Spread)\n3. Crear carpeta Drive `Deals/Ciudad — Activo — TipoObra — DD.MM.YYYY`\n4. Producir IC Brief → Google Doc + PDF en Drive\n5. Actualizar `pipeline_magg.xlsx` → re-subir a Drive\n6. **Regenerar CRM** → `python3 scripts/regenerate_crm.py` → GitHub Pages\n7. Enviar email HTML formato 9 secciones → e.martin@smartrental.com\n8. Marcar Gmail como leído\n\n### Deal MAGG-2026-009 Hotel Sevilla\n- Email de Tatyana Moyal (G&P Consultores) recibido 06/03/2026 12:12\n- Scanner detectó y creó fila en pipeline como PEND OM\n- **Pendiente**: análisis UW completo + IC Brief + email resumen\n- PDF: `26_Ficha Hotel 5E Sevilla_IHO18C.pdf` en Gmail\n\n### CRM GitHub Pages — estado final\n- 272 deals (8 MAGG + 263 HIST + 1 PEND Sevilla)\n- Filtros corregidos (GO/MAGG/PEND)\n- Tab Control con KPIs + charts + shortlist\n- URL: https://edmartin8n.github.io/magg-dashboard/\n\n### Excel pipeline — cambios sesión\n- Formato aplicado (headers navy, % formats, color coding)\n- Vacías eliminadas (PIPELINE 48→30 cols, Intermediarios 26→19 cols)\n- Dashboard rangos corregidos (2:44 → 2:1000)\n- Intermediarios: Días sin contacto completado (filas 582-780)\n- Actividad Intermediarios: reconstruida con datos reales del PIPELINE\n  - Matching 92/98 fuentes → 157/161 deals con broker identificado\n  - Top broker: Miroslav (T10 Capital) 10 deals\n\n### Script creado\n- `scripts/regenerate_crm.py` — standalone, regenera DEALS array + git push GitHub Pages\n\n---\n\n## Tarde — sesión CRM Pipeline + Control tab (14:00-15:00)\n\n### Cambios CRM implementados (commits 0cc5794 → cedbe12)\n\n**Pipeline tab — rediseño completo:**\n- Formato tabla con columnas fijas: ● | Ref | Nombre+Ciudad | Fecha | SQM | Precio | Spread | YoC | Estado | Motivo (8 palabras)\n- Filtros multi-selección (GO/Análisis/Borderline/NO GO independientes, combinables)\n- Filtro fecha: Todo / 1A / 6M / 3M / 30D\n- Orden por columna (click en cabecera)\n- Default: GO arriba, luego Análisis, Borderline, NO GO\n- PEND = En Análisis (unificados visual y funcionalmente)\n- Filtro MAGG eliminado (no tenía sentido como criterio)\n- \"Motivo\" como snippet de 8 palabras visible sin hacer click\n\n**Control tab — rediseño completo:**\n- 5 KPI cards: Total deals, GO activos, En análisis, Volumen €pipeline, Mejor spread\n- Bar chart mejorado (gradiente navy, altura proporcional, labels)\n- Donut chart distribución (GO/Análisis/Borderline/NO GO con % y total en centro)\n- Deals activos (GO+Borderline) ordenados por spread con ★ para watchlist\n- Watchlist personal ★ persistente en sesión\n\n**Excel normalizado:**\n- 24 deals: PEND ⏳ en Scoring → limpiado\n- Estado PEND → \"En Análisis\" para todos\n- Re-subido a Drive + CRM regenerado\n\n### Flujo canónico MAGG (confirmado por Eduardo, 06/03)\n8 pasos obligatorios al procesar deal desde Gmail:\n① Email → ② Análisis UW → ③ Drive folder → ④ IC Brief → ⑤ Excel → ⑥ CRM regen → ⑦ Email HTML → ⑧ Gmail leído\nScript: `scripts/regenerate_crm.py` (standalone, push automático a GitHub Pages)\n\n### MAGG-2026-009 Hotel Boutique 5★ Sevilla\n- Teaser recibido: Calle Guzmán el Bueno, Barrio Santa Cruz (2 min Catedral) · 55 hab · €13.5M + 3%\n- Scanner envió primer análisis (NO GO, ADR conservador)\n- Mi re-análisis: YoC 11.9%, Spread +715bps, IRR ~59%, 4.0x — condicionado a full OM\n- Eduardo: \"con el teaser no sabemos mucho\" → solicitar full OM antes de veredicto\n- Estado en pipeline: En Análisis · Email enviado a smartrental ✅\n- Pendiente: solicitar full OM a Tatyana Moyal (G&P Consultores, tmoyal@gypconsultores.es)\n- Diferencia scanner vs manual: exit yield 5.25% (4★ standard) vs 4.75% (5★ prime) + F&B incluido\n\n### Heartbeat nocturno CRM (añadido a HEARTBEAT.md)\n- 1x/noche revisar CRM y proponer mejora\n- Anunciar en morning brief 9:30 AM: \"🎨 CRM update de anoche: [qué] — [por qué] — [link]\"\n\n### Lecciones del día\n- Eduardo se marea si cambio el veredicto sin validar supuestos clave primero\n- Para tipología 5★ luxury: exit yield 4.75% (no 5.25%), incluir F&B (20% rooms), ADR requiere investigación real\n- Scanner usa parámetros genéricos → siempre revisar manualmente para activos premium\n- CRM: table format >> card format para Eduardo (más denso, más datos visibles)\n- GitHub Pages puede tardar 2-5 min en actualizarse — avisar siempre \"Ctrl+Shift+R\"\n- Commits importantes sesión: 5b0a84c (proceso canónico), cedbe12 (Control tab v2)\n"
+    },
+    {
+      "date": "2026-03-05",
+      "weekday": "Thursday",
+      "weekday_es": "Jueves",
+      "summary": "- Casón del Tormes (MAGG-007): GO confirmado. Pendiente visita DT + oferta €22M",
+      "topics": [
+        "Morning Brief (09:00)",
+        "Seguimiento 09:30",
+        "Tarea nocturna (22:30)",
+        "Pendientes personales capturados (12:05)",
+        "Sesión tarde — Casón del Tormes MAGG-007 (13:00–14:00)",
+        "Check 14:00",
+        "Tarde — Drive reorganización completa (11:00–11:30)",
+        "BACKLOG — Próximas sesiones (Eduardo, 05/03)"
+      ],
+      "tags": [
+        "MAGG",
+        "CRM",
+        "Gmail",
+        "Infra",
+        "Notion",
+        "Fundraising",
+        "Dubai"
+      ],
+      "activity": 88,
+      "content": "# Daily Notes — 2026-03-05\n\n## Morning Brief (09:00)\n- Casón del Tormes (MAGG-007): GO confirmado. Pendiente visita DT + oferta €22M\n- Rossio Lisboa: freeze terminó 02/03, pendiente arrancar modelo\n- Creatina: iniciada 04/03 noche ✅\n- Sin emails relevantes\n\n## Seguimiento 09:30\n- MC Notion actualizado ✅\n- Brief WhatsApp enviado ✅\n- Accionables: visita DT Casón / Rossio modelo / Dubai deck validación\n\n## Tarea nocturna (22:30)\n- MISSION_CONTROL.md actualizado: añadido MAGG-008 Cabestreros al pipeline table ✅\n- Insider Buying Radar cron reactivado por trigger (22:00) ✅\n\n## Pendientes personales capturados (12:05)\nEduardo señala que hay 3 frentes con 0 avance por exceso de foco en MAGG:\n1. **Project Ana** — darle cariño, definir qué necesita\n2. **Mission Control** — rediseño / mejora pendiente\n3. **Estructura agentes/subagentes** — nunca definida formalmente\n→ Añadidos a HEARTBEAT.md para no perderlos\n\n---\n\n## Sesión tarde — Casón del Tormes MAGG-007 (13:00–14:00)\n\n### Trabajo completado\n- **IC Brief** producido y enviado: `knowledge/ic_memo_cason_tormes_madrid_2026-03-04.md`\n  - Google Doc: https://docs.google.com/document/d/1qvJUHmIp739GLQFTJw_Ka8CQ4Rc00_nw4vCIOSrI7Ck/edit\n- **Pipeline Sheet** actualizado (fila 8, tab PIPELINE). Fila errada en Dashboard limpiada.\n- **Email enviado** a e.martin@smartrental.com (resend ID: `19cb9f5423341f63`)\n- **GitHub CRM** actualizado: MAGG-2026-007 añadido, pipeline total €136.7M, botón Gamma v5\n\n### Gamma decks producidos\n- v2 (formato referencia Eduardo): https://gamma.app/docs/g0y65t1iks5k5pj\n- v5 (formato v2 + slide 1 mejorada con NBO/timeline/next steps): https://gamma.app/docs/tpwpqr68c3bfk10\n- **v6 (pendiente generación)**: slide 2 tabla derecha actualizada — sensibilidad Entry Price (€18M–€25M) × CapEx (€2.0M–€4.0M) → BPS spread\n\n### UW Process v2 — estándares fijados en esta sesión\n- **NOI**: GOP − 8% Revenue (HMA all-in). Sin estructura compleja OM.\n- **CapEx**: hard + soft (7% hard) + FF&E (€10k/llave) + contingencia 10% sin visita DT\n- **Gamma cover slide**: ciudad+mapa+fachada+KPIs+assumptions (A.Compra/B.Ops/C.Exit)\n- **Slide 2**: dos tablas sensibilidad (NOI: ADR×Occ; Exit value: NOI×Exit Yield) + 4 scenario cards\n- **Regla iteración**: solo tocar slides explícitamente solicitadas por Eduardo\n- **Conservador por defecto**: ADR = mediana comp set, Occ base 86–87%\n\n### Números clave Casón del Tormes\n- Precio objetivo: €22M (asking €25M) | CapEx: €3M | Total: €25.66M (€377k/llave)\n- ADR conservador: €182 (vs OM €189.7) | Occ: 86% | NOI: €2.020M\n- Exit 5.25% → €38.5M | YoC 7.87% | Spread +262 bps | IRR lev ~25% | Múltiple ~2.2x\n- Exit timing: cierre Q2'26 → reforma 9m → apertura Q1'27 → estabilización Q1'28 → exit Q4'28\n\n### Tabla sensibilidad v6 — slide 2 derecha (BPS spread)\n- Formula: `(NOI / (entry×1.03 + capex) − 0.0525) × 10000`\n- NOI fijo €2.020M, Exit Yield fijo 5.25%, TxCosts 3%\n- Base case €22M/€3.0M = **+262 bps ✅★** | Asking €25M/€4.0M = +153 bps ✅ (peor escenario)\n- Todos los escenarios de la tabla son ✅ GO (≥+150 bps)\n\n### Pendientes de esta sesión\n- [x] Gamma v8 generado (sin tablas slides 3/4/5): https://gamma.app/docs/oao5ecpq52mcwzj ✅\n- [x] HTML IC Brief publicado GitHub Pages: https://edmartin8n.github.io/magg-dashboard/deals/cason-tormes/ ✅\n- [ ] **LUNES**: mejorar formato presentaciones HTML\n- [ ] Investor List consolidation — on hold\n- [ ] CRM / Pipeline Sheet review — próxima sesión\n- [ ] Excel modelo financiero — próxima sesión\n\n### Bugs Gamma corregidos (05/03)\n- externalAccess debe ir en `sharingOptions` (no top-level) → causa 403\n- python-pptx descartado: calidad visual insuficiente vs Gamma\n- Gamma slides 3/4/5: no tablas grandes → bullets\n\n### Prioridad acordada para próximas sesiones\nEduardo: \"vamos a lo que realmente aporta valor: Análisis · CRM · Excel\"\nPresentaciones → lunes (mejorar HTML template)\n\n## Check 14:00\n- MC Notion actualizado ✅\n- Brief WhatsApp enviado ✅ (urgente: NBO <15 Mar + Gamma v5 feedback)\n\n### Comparables Madrid Centro (CoStar Feb 2026)\n- Room Mate (Ago-24, 80k, Upper Upscale): €406k/llave\n- Radisson Blu (Mar-23, 58k, Upper Upscale): €448k/llave\n- Iberostar Waves (Oct-22, 109k, Upscale): €642k/llave\n- Casón all-in €377k/llave → descuento 6–15% vs comps\n\n## Tarde — Drive reorganización completa (11:00–11:30)\n- Estructura final: Tenacitas Docs / 1.MAGG / 2.Growth / 3.Public / 4.Ana / 5.Personal Ops\n- 7 docs de contexto creados (qué es / objetivos / corto / largo / log actividad)\n- Rossio: carpeta creada en MAGG/Deals con su IC Brief\n- Investor Tracker movido a MAGG/Fundraising\n\n## BACKLOG — Próximas sesiones (Eduardo, 05/03)\n1. **Project Ana** — darle cariño: definir qué es, objetivos, contenido útil para Ana\n2. **Mission Control** — trabajar el dashboard, estructura, automatizaciones pendientes\n3. **Estructura agentes/subagentes** — no hemos trabajado nada en esto aún; definir quién hace qué, cuándo, cómo se coordinan\n\n### Riesgos principales\n1. ADR +22% vs hoy (€149.7→€182) — validar con DT que €3M justifica reposicionamiento 3★→4★\n2. TANOS S.A. (share deal) — pasivos fiscales latentes; exigir garantía fiscal\n3. 63% dependencia OTA — plan distribución directa desde apertura\n4. NBO deadline: antes del 15 de marzo 2026\n\n\n## Cierre día (20:15)\n- MC Notion actualizado ✅\n- EOD WhatsApp enviado ✅\n- TOP3 mañana: Visita DT Casón / Rossio modelo / 1 pendiente personal\n"
+    },
+    {
+      "date": "2026-03-04",
+      "weekday": "Wednesday",
+      "weekday_es": "Miércoles",
+      "summary": "- 04:28 — Eduardo confirma: todo tomado ✅ (suplementos mañana)",
+      "topics": [
+        "Suplementos",
+        "Alimentación",
+        "Báscula RENPHO — 04/03/2026 @ 7:15",
+        "Tarde — Dubai Gamma deck (17:00–18:00)",
+        "Tarde — MAGG Deal Analysis: Casón del Tormes (17:00–18:42)"
+      ],
+      "tags": [
+        "MAGG",
+        "CRM",
+        "Gmail",
+        "Personal",
+        "Infra",
+        "Dubai"
+      ],
+      "activity": 100,
+      "content": "# Daily Notes — 2026-03-04\n\n## Suplementos\n- 04:28 — Eduardo confirma: todo tomado ✅ (suplementos mañana)\n- Creatina: empieza esta noche con la cena 💊\n\n## Alimentación\n### Desayuno (~8:00)\n- Café\n- Tostada de centeno con pavo y mantequilla\n\n## Báscula RENPHO — 04/03/2026 @ 7:15\n- Peso: 71.2 kg (+0.2 vs 26/02)\n- Cintura: 86.5 cm (+0.5 cm vs 86 cm del 25/02)\n- BMI: 21.0\n- Grasa corporal: 18.5% (+0.1% vs 26/02)\n- Grasa subcutánea: 16.9%\n- Grasa visceral: 4 (igual)\n- Peso sin grasa: 58 kg\n- Masa muscular: 55.1 kg (+0.1 kg vs 26/02)\n- Músculo esquelético: 52.6%\n- Agua corporal: 58.8%\n- Masa ósea: 2.9 kg\n- Proteína: 18.6%\n- BMR: 1623 kcal\n- Edad metabólica: 35\n\n\n---\n\n## Tarde — Dubai Gamma deck (17:00–18:00)\n\n### Fix Gamma API\n- Bug descubierto: el header correcto es `X-API-Key` (no `x-gamma-api-key` como usábamos antes)\n- Con `x-gamma-api-key` siempre devolvía 401 aunque la key fuera válida\n- Con `X-API-Key` → funciona correctamente\n- **Actualizar todos los scripts que usen Gamma API** con el header correcto\n- La key activa: `[REDACTED_GAMMA_KEY]` (en `.credentials/gamma_api_key.txt`)\n- Credits restantes: 5,822\n\n### Dubai Expansion — Gamma deck v3 (geopolítica + expansión)\n- **URL pública:** https://gamma.app/docs/n5v4mvcn896m613\n- generationId: `7Sm8y2q6PmqZMhtUiU5XN`\n- 10 slides, español, acceso público view\n- **Estructura:**\n  - Parte I (5 slides): situación actual → impacto hoy → medidas → impacto MP → estrategia 3 fases\n  - Parte II (5 slides): oportunidad → modelo asset-light + zonas → propietarios + P&L → regulación + equipo → plan de acción\n- Eduardo pidió: sin rollos, sin mensajes motivacionales, objetivo, slides compactos\n- Google Slides alternativo también disponible: https://docs.google.com/presentation/d/1KBABb3Upwcy9I-tpqAF4Y7w8L3Wtha6Sk7DVs669MOU/edit\n- Google Doc actualizado con Secciones 9 y 10 (geopolítica + plan adaptado): https://docs.google.com/document/d/14-hEwyJ55QNf-Sm_u9o6dYAHIRrmMgCyk8eCVOgXxSQ/edit\n- Script generación: `/tmp/gamma_dubai.py`\n\n\n### Dubai Gamma v4 (definitivo, ~18:00)\n- Reemplaza v3 por contenido flojo (textMode: generate)\n- v4 usa textMode: preserve con 14 slides completos\n- URL: https://gamma.app/docs/qsb6qamcvm0jqce\n- Incluye: regulación, casos éxito (Frank Porter, Deluxe, Aliva, Houst), P&L, geopolítica 3 horizontes, propuesta socio\nDubai Gamma v5 (datos concretos, sin banalidades): https://gamma.app/docs/7wc6d7c95t8mw8f\nDubai Gamma v6 (fases recuperación histórica + estimación mes a mes): https://gamma.app/docs/oczmotgjso5yzto\n\n---\n\n## Tarde — MAGG Deal Analysis: Casón del Tormes (17:00–18:42)\n\n### UW Process v2 (confirmado en esta sesión)\n- Scoring v2 guardado en MEMORY.md y knowledge/magg_uw_process_v2.md\n- IRR floor levered ≥15%, equity multiple ≥1.8x, LTC siempre 50% @ 5%\n- Ocupación base siempre +85%, licencia default 12m si no hay info\n- Exit = año 1 de estabilización, sensibilidad obligatoria ADR ±€10, Occ ±5%\n\n### MAGG-2026-007 — Casón del Tormes Hotel | Madrid\n- **Fuente:** OM Eastdil Secured (Project Solea, 69 páginas). Email ID: 19cb9cd230ff841a\n- **Activo:** 7 Calle de Río, 28013 Madrid — entre Plaza España y Gran Vía\n- **Hotel 3*, Freehold, Vacant possession.** Share deal vía TANOS S.A. (CH1 Espagne S.L. → TANOS S.A.)\n- **63 keys + planning permission +5 = 68 keys post-CapEx**\n- **2.392 m²** + 10 plazas parking (Calle Leganitos 15-17, 4 min)\n- **2025RF:** Occ 86.8%, ADR €149.7, RevPAR €129.9, Revenue €3.095M, NOI €1.357M\n- **Year 3 proyectado (OM):** Occ 88.5%, ADR €189.7, Revenue €4.419M, NOI €2.242M\n- **CapEx total:** €3M (€1M L&F + €500k 5 habs nuevas + €1.5M contingencia/FF&E) — Eduardo confirmó\n\n#### Modelo UW final\n- Total inversión: €25.66M (€22M precio + €3M CapEx + €660k costes)\n- €/key: €377k (all-in) | €/sqm: €10.730\n- Exit yield: 5.25% → Valor exit: €42.7M\n- YoC: 8.7% | Spread: +349 bps ✅\n- IRR Unlevered: ~19-20% ✅ | IRR Levered (50% LTC @ 5%): ~29-30% ✅\n- Equity múltiple: ~2.5x ✅\n\n#### Comparables deal database Madrid Centre (CoStar Feb 2026)\n- Room Mate (Ago-24, 80 keys, Upper Upscale): €406k/key — más comparable\n- Radisson Blu (Mar-23, 58 keys, Upper Upscale): €448k/key\n- Iberostar Waves (Oct-22, 109 keys, Upscale): €642k/key\n- Casón @ precio adquisición: €324k/key → descuento 6-21% vs comps\n\n#### Nota histórica\n- Honotel Group + Extendam compraron este mismo activo en Sep-2021 (63 rooms, Madrid Centre, no price registered)\n- CapEx invertido 2022-2024: €873.4k (AC, solar, model room, building permit)\n- Ahora lo venden a €25M asking (~4-5 años hold)\n\n#### Riesgos clave\n1. ADR Year 3 +27% (€149→€190) — validar con DT que €3M CapEx lo justifica\n2. Share deal → DD fiscal crítica (TANOS S.A.) — tax warranty & indemnity\n3. OTA dependency 63% — plan distribución directa imprescindible\n\n#### Timeline modelo\n- Mes 0: Cierre | Mes 0-9: Reforma (permiso aprobado) | Mes 9: Apertura\n- Mes 9-45: 3 años operativos | Mes 45: Exit (~3.75 años)\n\n#### Entregables producidos\n- IC Brief: `knowledge/ic_memo_cason_tormes_madrid_2026-03-04.md`\n- Gamma deck (público): https://gamma.app/docs/zld6h8nr1uwr33x\n- Google Doc: https://docs.google.com/document/d/1qvJUHmIp739GLQFTJw_Ka8CQ4Rc00_nw4vCIOSrI7Ck/edit\n- Drive folder ID: `1gwQZdmN5EtaVp-Fvw2m3Bo_7ILXCO7fn`\n- Pipeline Sheet: fila añadida (row 26) ✅\n- Email enviado a e.martin@smartrental.com (ID: 19cb9efbc42372dd) ✅\n\n#### Gamma API — endpoint correcto (descubierto hoy)\n- POST: `https://public-api.gamma.app/v1.0/generations`\n- GET: `https://public-api.gamma.app/v1.0/generations/{generationId}`\n- Header: `X-API-KEY` (mayúsculas) — no `X-Api-Key`\n- textMode válidos: `generate`, `condense`, `preserve`\n- imageOptions.source válidos: `noImages`, `aiGenerated`, `pexels`, etc. (no `none`)\n- Returns 201 on success (not 200)\n\n#### Próximo paso\n- Visita activo con Director Técnico → confirmar CapEx €3M → si OK, ofertar €22M\nDubai Gamma v7 (+ 4 slides: consecuencias conflicto, competidores, wait&see, mercado 12m): https://gamma.app/docs/uwi2w3a0dq7rf8s\n"
+    },
+    {
+      "date": "2026-03-03",
+      "weekday": "Tuesday",
+      "weekday_es": "Martes",
+      "summary": "- **Deal Scanner (f548f968):** timeout aumentado de 480s a 900s. Tenía 5 errores consecutivos por timeout — el job tardaba ~11min en completar pero cortaba a los 8. Fix aplicado.",
+      "topics": [
+        "[01:16] Tarea nocturna autónoma — fix crons"
+      ],
+      "tags": [
+        "MAGG",
+        "Personal",
+        "Infra"
+      ],
+      "activity": 5,
+      "content": "# 2026-03-03\n\n## [01:16] Tarea nocturna autónoma — fix crons\n- **Deal Scanner (f548f968):** timeout aumentado de 480s a 900s. Tenía 5 errores consecutivos por timeout — el job tardaba ~11min en completar pero cortaba a los 8. Fix aplicado.\n- **Backup (83c9c3b0):** delivery cambiado a mode=none. El backup git push funciona bien, pero el announce a WhatsApp fallaba (WA desconectado a las 7am). Sin impacto en el backup real.\n- Eduardo citó mañana 08:55 para retomar: elegir A) Governance B) Rossio modelo C) Fitness tracking\n"
+    },
+    {
+      "date": "2026-03-02",
+      "weekday": "Monday",
+      "weekday_es": "Lunes",
+      "summary": "- Sesión actual: 22% (resetea en ~3h)",
+      "topics": [
+        "[13:49] Claude Max — uso semanal",
+        "[01:21] Tarea nocturna autónoma — Tab Junio 2025 Advisors",
+        "[12:16] Deal Scanner — Rossio Lisboa (MAGG-2026-006)",
+        "[09:30] Seguimiento matutino",
+        "[22:16] Tarea nocturna autónoma — Fix Deal Scanner + Backup",
+        "[20:15] Cierre del día"
+      ],
+      "tags": [
+        "MAGG",
+        "CRM",
+        "Gmail",
+        "Discord",
+        "Personal",
+        "Infra",
+        "Notion",
+        "Dubai"
+      ],
+      "activity": 44,
+      "content": "# 2026-03-02\n\n## [13:49] Claude Max — uso semanal\n- Sesión actual: 22% (resetea en ~3h)\n- Todos los modelos semanal: 13% (resetea viernes 4:00)\n- Sonnet semanal: 21% (resetea viernes 4:00)\n- Estado: holgado, margen suficiente para esta semana\n\n## [01:21] Tarea nocturna autónoma — Tab Junio 2025 Advisors\n- Creado nuevo tab \"Junio 2025 — Advisors\" en MAGG_Investor_Screening_2026.xlsx\n- 12 firmas: Eastdil, CBRE Hotels, BNP Paribas RE, Cushman & Wakefield, Savills, JLL Hotels, Knight Frank, Colliers, Azora, Hipoges, Deloitte RE, PwC RE\n- Columnas: Firma / Tipo / Especialidad RE / Contacto conocido / Rol / Notas\n- Contactos = TBD (pendiente que Eduardo confirme sus contactos de cada firma)\n- MISSION_CONTROL.md actualizado (tarea marcada ✅)\n- Commit: ec52d62\n\n## [12:16] Deal Scanner — Rossio Lisboa (MAGG-2026-006)\n- Email procesado: \"Rossio - Lisboa\" (25/02/2026, edmartin8n@gmail.com)\n- Broker: Jorge Laclaustra Vacas (jl@laclaustrainmuebles.com)\n- Precio asking: €13M (€309k/llave) · CapEx brochure: €4M · Coste total: ~€18.4M\n- Veredicto: ⚠️ BORDERLINE — NO GO al precio actual\n- Spread YoC 4.42% vs Exit Yield 5.5% = -104 a -150 bps (FAIL)\n- Licencia CML aprobada 14/01/2026 ✅ — punto positivo clave\n- Estudio fundaciones 2019 sugiere CapEx real €6-7M\n- PASS solo si precio baja a €9.5-10M o CapEx ≤€4M + ADR >€190\n- IC Brief: https://docs.google.com/document/d/1fhIkTqLVq81M05wGLeZgjyhbU2FbDINJMnkCqNTeGU8/edit\n- Pipeline Sheet fila 7 actualizada · Email enviado a e.martin@smartrental.com\n- Próximo paso (Eduardo, antes 09/03): contactar Laclaustra → desglose CapEx + sondear €10M\n\n## [09:30] Seguimiento matutino\n- Mission Control actualizado con snapshot lunes 02/03\n- Gmail: sin emails relevantes (últimas 4h)\n- Accionables del día marcados: Rossio 10:00, cintura AM, Dubai deck, Deal Scanner 12:00\n- Flag activo: discrepancia precio Praça Figueira (032M€ vs 14M€)\n\n## [22:16] Tarea nocturna autónoma — Fix Deal Scanner + Backup\n- Deal Scanner: timeout aumentado de 480s a 900s (el job completaba en 11m39s=699s, superando el límite anterior)\n- Backup diario: delivery cambiado a mode=none (el backup funciona, el error era solo entrega WA cuando está desconectado a las 07:00)\n- MISSION_CONTROL.md actualizado: Infra/Crons 🟢 OK\n- Commit: pendiente\n\n## [20:15] Cierre del día\n- Eduardo dio feedback importante: demasiada infra, pocos entregables reales\n- Propuesta acordada: stop infra, 1 entrega concreta/semana, sesión fija, Tenacitas empuja más\n- Eduardo pendiente de elegir: A) MAGG Governance B) Rossio modelo C) Fitness tracking\n- Sin respuesta aún — retomar mañana AM\n- MC y Status dashboards rediseñados (responsive, mobile+desktop)\n- Discord sync AM/PM: crons activos (fix modelo corregido)\n- Deal Scanner: 5 timeouts → fix pendiente mañana\n- Backup: 3 errores entrega → fix pendiente mañana\n"
+    },
+    {
+      "date": "2026-03-01",
+      "weekday": "Sunday",
+      "weekday_es": "Domingo",
+      "summary": "- Sesión actual: 2% usado (reset en 2h31)",
+      "topics": [
+        "[13:35] Screenshot Claude Max — uso semanal",
+        "[01:28] Tarea nocturna — mantenimiento de memoria",
+        "[09:28] Brief matinal",
+        "[09:30] Mission Control actualizado",
+        "[12:28] Check mediodía — pipeline + bug fix crítico",
+        "[13:28] CRM/Pipeline check autónomo",
+        "[22:21] Tarea nocturna autónoma",
+        "[20:15] Cierre del día"
+      ],
+      "tags": [
+        "MAGG",
+        "CRM",
+        "Gmail",
+        "Discord",
+        "Notion",
+        "Fundraising",
+        "Dubai"
+      ],
+      "activity": 39,
+      "content": "# 2026-03-01\n\n## [13:35] Screenshot Claude Max — uso semanal\n- Sesión actual: 2% usado (reset en 2h31)\n- Semanal todos modelos: 14% usado (reset viernes 4:00)\n- Sonnet semanal: 23% usado (reset viernes 4:00)\n- Estado: holgado, ritmo sano para la semana\n\n## [01:28] Tarea nocturna — mantenimiento de memoria\n- Revisados daily notes 28/02\n- MEMORY.md actualizado: sección Project Dubai, infra fixes, URLs deck + doc\n- Discord requireMention=false confirmado en config\n- Sin emails urgentes ni alertas activas. Eduardo duerme.\n\n## [09:28] Brief matinal\n- Gmail: sin emails relevantes (últimas 4h)\n- Brief enviado a WhatsApp: Rossio/Cintura/Deal Scanner mañana lunes\n\n## [09:30] Mission Control actualizado\n- Snapshot ejecutivo renovado (domingo 01/03)\n- Tabla estado por vertical añadida\n- Accionables lunes 02/03 marcados (Next/Waiting)\n\n## [12:28] Check mediodía — pipeline + bug fix crítico\n- **Bug token OAuth corregido permanentemente**: gmail_check.py tenía SCOPES=['gmail.readonly'] hardcoded → al refrescar y guardar token, sobreescribía con solo 1 scope (perdía send/modify/drive/sheets/calendar). Fix: añadidos los 6 scopes al array. Commit 196a34b.\n- Pipeline Sheet: 5 deals (todos Descartados), Rossio (006) no añadido aún (pendiente modelo). 3 deals con campos menores vacíos (no urgente).\n- Gmail: sin emails relevantes\n\n## [13:28] CRM/Pipeline check autónomo\n- Gmail: sin novedades (últimas 4h)\n- **Pipeline Sheet**: detectado gap — Rossio (MAGG-2026-006) no estaba en la hoja. Añadido en fila 7 con todos los datos disponibles (estado En DD, scoring BORDERLINE→GO, próxima acción 02/03, notas modelo). 25 celdas actualizadas.\n- Mejora obvia → implementada directamente sin preguntar a Eduardo.\n\n## [22:21] Tarea nocturna autónoma\n- Creado `knowledge/magg_flow_operativo_diario.md` — flow operativo completo MAGG Capital\n- Cubre: 5 fases (originación→cierre), filtros duros, scoring, cadencia semanal, KPIs, gestión brokers, nexo fundraising\n- MISSION_CONTROL.md actualizado (✅ marcado)\n- Pendiente: revisión Eduardo mañana en sesión Rossio\n\n## [20:15] Cierre del día\n- Mission Control actualizado: completados, flags y top 3 lunes\n- Ver sección \"Snapshot ejecutivo 01/03\" en MISSION_CONTROL.md\n\n## [14:28] CRM/Pipeline check (2ª pasada)\n- Gmail: sin novedades\n- **Intermediarios >90 días sin contacto**: Jan De Groot (11Fth, 177d), Iñigo Corres (Addmeet, 172d), Alejandro Gordo + Alfredo Mota (Afflux, 177d), Angela Alvarez (Aglaia Capital, 174d) → 5 contactos que merecen sweep. Guardar para brief lunes.\n- **MAGG-2026-005 (Praça Figueira)**: columnas YoC RF/YoC RV/Exit Yield desalineadas en sheet. Precio sheet (32M€) vs MEMORY (14M€) — posible discrepancia. No tocar sin datos originales. Flagear a Eduardo lunes.\n- Domingo: nada urgente, Eduardo tranquilo. Sin acción inmediata.\n"
+    },
+    {
+      "date": "2026-02-28",
+      "weekday": "Saturday",
+      "weekday_es": "Sábado",
+      "summary": "- Deal Scanner tenía 4 errores consecutivos por timeout (300s). Aumentado a 480s.",
+      "topics": [
+        "[02:22] Tarea nocturna autónoma",
+        "[09:30] Seguimiento matinal",
+        "[20:15] Cierre del día"
+      ],
+      "tags": [
+        "MAGG",
+        "Gmail",
+        "Notion",
+        "Dubai"
+      ],
+      "activity": 16,
+      "content": "# 2026-02-28\n\n## [02:22] Tarea nocturna autónoma\n- Deal Scanner tenía 4 errores consecutivos por timeout (300s). Aumentado a 480s.\n- Check-in JJ+Vaca: solo 1 error, no sistémico. Se deja.\n- Sin emails urgentes. Eduardo duerme. Sin alertas.\n\n## [09:30] Seguimiento matinal\n- Dubai Expansion Plan completado: Gamma + Google Doc + Drive folder\n- Token Gmail restaurado (backup → main, 6 scopes OK)\n- Deal Scanner timeout corregido (480s)\n- MISSION_CONTROL.md actualizado\n\n## [20:15] Cierre del día\n- Dubai plan: entregado completo (Gamma + Doc + Drive)\n- Token Gmail: restaurado desde backup\n- Deal Scanner: corregido (480s)\n- Mission Control: actualizado con cierre del día\n- Screenshot Claude: Eduardo no respondió — hay reminder 01/03 y 02/03\n"
+    },
+    {
+      "date": "2026-02-27",
+      "weekday": "Friday",
+      "weekday_es": "Viernes",
+      "summary": "- [02:54] Tarea nocturna autónoma: limpieza de MEMORY.md y MISSION_CONTROL.md.",
+      "topics": [
+        "[14:30] Pendientes inversores añadidos por Eduardo",
+        "[15:30] Investor Tracker Google Sheet creado",
+        "[20:15] Cierre del día — resumen"
+      ],
+      "tags": [
+        "MAGG",
+        "Gmail",
+        "Discord",
+        "Infra",
+        "Fundraising",
+        "Bolsa"
+      ],
+      "activity": 24,
+      "content": "# 2026-02-27\n\n- [02:54] Tarea nocturna autónoma: limpieza de MEMORY.md y MISSION_CONTROL.md.\n  - Corregida descripción scope Gmail (era \"8 scopes completos\", en realidad solo gmail.readonly)\n  - Sección 5 MC actualizada con estado real de crons post-cleanup del 26/02\n  - Secciones 6-8 MC actualizadas (eliminadas agendas obsoletas, añadidos pendientes reales)\n  - MEMORY.md: fix scope OAuth anotado correctamente\n\n## [14:30] Pendientes inversores añadidos por Eduardo\n- Revisar carpeta Google Drive inversores → poner orden\n- Revisar/priorizar lista Tier 1 antes de contactar  \n- Preparar narrativa del vehículo MAGG (1-pager)\n- Redactar outreach Tier 1\n\n## [15:30] Investor Tracker Google Sheet creado\n- URL: https://docs.google.com/spreadsheets/d/1ym0o6ZnUowxBvmp3FKd_cwS2i-IpBlSXgqKz-JO388o/edit\n- 30 inversores volcados con columnas: Inversor | Tier | Nombre Contacto | Email | Todos los contactos | Cargo | LinkedIn | Último Contacto | Estado | Comentarios\n- Pendiente: añadir cargos manualmente, actualizar LinkedIn, mover a carpeta MAGG Drive\n\n## [20:15] Cierre del día — resumen\n- Arquitectura multiagente completamente desplegada: Scout, Dev, Stocks (GPT 5.3)\n- Canal #ana creado en Discord + job alerts cron (L/M/V 10:00, Scout)\n- CC tracker creado en knowledge/job_search/cc_tracker.md (pendiente Eduardo añada nombres)\n- Investor Tracker Sheet formateado (30 inversores Tier 1/2/3)\n- Archivos ZIP inversores analizados: 20 contactos MiPIM 2025 preparados para tab nueva\n- **Bloqueante:** token gmail_token.json solo tiene gmail.readonly — Eduardo debe re-auth\n- **Pendiente Eduardo:** nombres CCs + token re-auth + Reddit API setup (20:30 reminder)\n- MISSION_CONTROL.md actualizado con top 3 para el lunes\n"
+    },
+    {
+      "date": "2026-02-26",
+      "weekday": "Thursday",
+      "weekday_es": "Jueves",
+      "summary": "- [02:57] Tarea nocturna autónoma: creado borrador de modelo escenarios Rossio base/bear/bull en `knowledge/rossio_modelo_escenarios_2026-02-26.md`. Incluye sensibilidades de licencia (10/12/18m) y CapEx (base/+10%/+20%), kill switches y preguntas pendientes para cerrar el modelo real.",
+      "topics": [],
+      "tags": [
+        "MAGG",
+        "CRM",
+        "Gmail",
+        "Discord",
+        "Personal",
+        "Infra",
+        "Notion",
+        "Fundraising",
+        "Bolsa"
+      ],
+      "activity": 33,
+      "content": "# 2026-02-26\n\n- [02:57] Tarea nocturna autónoma: creado borrador de modelo escenarios Rossio base/bear/bull en `knowledge/rossio_modelo_escenarios_2026-02-26.md`. Incluye sensibilidades de licencia (10/12/18m) y CapEx (base/+10%/+20%), kill switches y preguntas pendientes para cerrar el modelo real.\n- [09:30] Mission Control actualizado: snapshot, top 3 del día, estado de accionables por vertical, log al día. Rossio en \"Waiting Eduardo\" para cerrar supuestos del modelo.\n- [09:55] Báscula RENPHO: 71.0 kg / GC 18.4% / MM 55 kg / GV 4 / BMR 1621 / edad metabólica 35. Sin cambios vs 25/02. Próxima medición: lunes 02/03.\n\n--- SESIÓN MAÑANA (10:00-14:00) ---\n- [10:15] Mission Control Global (GitHub Pages) publicado y actualizado: https://edmartin8n.github.io/magg-dashboard/docs/mission-control-global/index.html (pass: ctrl2026)\n- [10:20] Status Dashboard creado y publicado: https://edmartin8n.github.io/magg-dashboard/docs/status/index.html — incluye crons, modelos, tokens, cupo semanal, jerarquía, todos, deals, mapa de modelos.\n- [10:30] Crons MC Global refresh ×3 (07:30/13:00/20:00) creados con GPT 5.3-codex.\n- [10:45] Billing clarificado: Claude Max ($90/mo) cubre Sonnet 4.6 vía setup-token. OpenAI Plus ($20/mo) cubre openai-codex vía OAuth. Google Antigravity (Gmail OAuth) = fallback gratuito. Coste API extra real: $0.\n- [10:50] Cupo semanal analizado desde imagen Claude app: Sonnet 11% usado / Todos modelos 7% usado desde reset miérc. 19:00. Límites son SEMANALES (no 5h). Cupo Sonnet es el cuello de botella.\n- [11:00] Jerarquía de modelos establecida y aplicada a crons:\n  - ⚪ System events: seguimientos, suplementos (sin LLM)\n  - 🔵 gpt-5.1-codex-mini: FIT idea, Backup, Check-in JJ+Vaca\n  - 🟢 gpt-5.3-codex: FIT research, MC Global refresh ×3\n  - 🟡 Sonnet 4.6: conversación, deals, stocks Stage 2\n- [11:10] Duplicado cron AI stocks 13:00 eliminado (conservado el sofisticado con 2 etapas).\n- [11:15] Backup 07:00 reparado: delivery redirigido de grupo incorrecto a +34667927208 directo.\n- [11:20] 6 recordatorios creados (18:00 del 27/02 al 04/03) para screenshot uso Claude semanal.\n- [11:30] Mission statement actualizado en SOUL.md, MEMORY.md y dashboard: \"Copiloto de vida de Eduardo\" (no solo inmobiliaria). 4 verticales: inversión, desarrollo profesional, mercados, personal+bienestar.\n- [11:35] Discord #personal-ops configurado con requireMention: false (Eduardo escribió sobre objetivos FIT: vitaminas, proteína, creatina, reminder deporte, monitorizar alimentación para bajar grasa).\n- [11:40] FIT research 04:00 y FIT idea 07:00 eliminados a petición de Eduardo.\n- [12:00] Governance MAGG Capital: Eduardo quiere hablar. Reminder movido a 16:30.\n- [12:15] Discord DM arreglado (roto brevemente por mis propios cambios de config, revertido al estado original).\n- [12:30] Check-in JJ+Vaca (L-V 12:00, gpt-5.1-codex-mini) conservado. Daily check-in creado automáticamente por el one-shot de esta mañana.\n\n--- SESIÓN TARDE (14:00-20:15) ---\n- [14:30] Status dashboard To-dos actualizado: Rossio on hold, canal stock ✅, Deal Scanner pendiente. HEARTBEAT.md con morning brief. Reminder lunes 10:00 Rossio creado.\n- [15:00] Crons revisados: 9 eliminados (Telegram, Dashboard Refresh, IC Insight, Literatura, CRM Ideas ×2, Follow-up Ana, Build CRM, Revisión verticales). Noticias reactivadas 08:00 GPT 5.3. Deal Scanner reactivado L-V 12:00. Telegram desactivado (plugin + canal + identityLink).\n- [15:30] Video Scout reactivado L/M/V 20:00 GPT 5.3 → WhatsApp. last30 skills reactivado L/J/S 02:00 GPT 5.3 → Discord #mc-infra-crons.\n- [16:30-17:00] Governance MAGG Capital: Eduardo quería hablar, dejamos el tema abierto por Discord.\n- [17:30] Investor screening: 30 fondos analizados para hotel development España (Aberdeen→Zurich). Tier 1: Aermont, Lone Star, KSL Capital, Henderson Park, Kajima, Tristan Capital. Excel generado y enviado por WhatsApp (Gmail sin scope de envío → fix pendiente).\n- [18:00] Arquitectura multiagente propuesta: Tenacitas (orquestador) + Scout (GPT 5.3) + Dev (GPT 5.3) + MAGG (Sonnet) + Markets opcional. Fase 1 pendiente OK de Eduardo.\n- [20:15] Cierre del día. Top 3 mañana: Google OAuth, Agentes Fase 1, Rossio on hold hasta lunes.\n\n- [01:54] Tarea nocturna: MEMORY.md actualizado — crons finales, investor screening completo (30 fondos + contactos), arquitectura multiagente, OAuth pendiente 27/02.\n"
+    },
+    {
+      "date": "2026-02-25",
+      "weekday": "Wednesday",
+      "weekday_es": "Miércoles",
+      "summary": "- [00:53] Heartbeat nocturno: ejecutada 1 tarea no bloqueante de Mission Control.",
+      "topics": [],
+      "tags": [
+        "MAGG",
+        "Gmail",
+        "Discord",
+        "Personal",
+        "Infra",
+        "Notion",
+        "Bolsa"
+      ],
+      "activity": 21,
+      "content": "# 2026-02-25\n\n- [00:53] Heartbeat nocturno: ejecutada 1 tarea no bloqueante de Mission Control.\n- Se creó plantilla `templates/public_markets_ficha_tesis.md` para seguimiento disciplinado de cartera.\n- Actualizado `MISSION_CONTROL.md`: marcada como completada la tarea de plantilla de tesis por valor.\n- [01:53] Heartbeat nocturno: creada checklist `knowledge/magg_dd_red_flags_checklist.md` y marcado completado en Mission Control el pendiente de DD temprana.\n- [02:53] Heartbeat nocturno: cerrado sistema de topics por conversaciones con plantilla `templates/topics_system_by_conversation.md` y pendiente marcado como completado en Mission Control.\n- [03:53] Heartbeat nocturno: fijada cadencia de revisión de Public Markets (`templates/public_markets_review_cadence.md`) y tarea marcada como completada en Mission Control.\n- [04:53] Heartbeat nocturno: definido mandato mínimo de cartera en `templates/public_markets_mandato_minimo.md` y pendiente marcado como completado en Mission Control.\n- [09:45] Diagnóstico Gamma API: la key previa en `.credentials/gamma_api_key.txt` devolvía `401 Invalid API key` en `POST /v1.0/generations`.\n- [09:48] Greg compartió nueva key Gamma; se actualizó `.credentials/gamma_api_key.txt` y autenticación quedó validada (ya no 401; primer test devolvió 400 de payload, confirmando key válida).\n- [09:50] Se generó presentación Gamma de Rossio vía API (generationId `wIGabH5336rQR1Of29uRq`) con URL `https://gamma.app/docs/hdurxmvp37tvep1`.\n- [09:56] Se regeneró Rossio en Gamma con `sharingOptions.externalAccess=view` para asegurar acceso público (generationId `LxrA81J3bTGRMt9MEVsUp`), URL `https://gamma.app/docs/z2q31dn1ikor94w`.\n- [09:58] Regla operativa acordada en grupo: incluir siempre el link público de Gamma en las entregas.\n- [10:00] Rossio: enviado correo a `e.martin@smartrental.com` con resumen ejecutivo + link Gamma público.\n- [~08:00-09:00] Para reducir consumo/token y evitar bloqueos OAuth, se dejaron pausados los cron pesados/automatismos no esenciales; activos solo recordatorios puntuales de main session.\n- [18:30] Preferencia de Eduardo en Discord `#public-markets`: usar OpenAI (suscripción) por defecto; escalar a Sonnet 4.6 solo para decisiones relevantes.\n- [18:31] Regla acordada: para peticiones potencialmente intensivas en coste/tokens, pedir confirmación previa por privado.\n- [18:33] YouTube workflow acordado: extracción de datos/transcripts con stack OpenAI/OAuth cuando aplique y Sonnet 4.6 para conclusiones del texto.\n- [23:57] Heartbeat nocturno: creada plantilla Mini IC Memo 1-pager estándar MAGG (`templates/magg_mini_ic_memo_1pager.md`) y marcada como completada en Mission Control.\n- [22:57] Cierre de día: Mission Control actualizado con top 3 mañana. Pendiente: IDs Discord de vaca y Juanjo para canal privado #stock-market-personal.\n\n- [03:57] Heartbeat nocturno: actualizada MEMORY.md con events clave de 25/02 (Discord, Rossio, modelo/coste, Gamma key, fitness, crons).\n"
+    },
+    {
+      "date": "2026-02-24",
+      "weekday": "Tuesday",
+      "weekday_es": "Martes",
+      "summary": "- [00:28] Heartbeat nocturno: ejecutada tarea no bloqueante en Mission Control.",
+      "topics": [],
+      "tags": [
+        "MAGG",
+        "Infra",
+        "Notion"
+      ],
+      "activity": 6,
+      "content": "# 2026-02-24\n\n- [00:28] Heartbeat nocturno: ejecutada tarea no bloqueante en Mission Control.\n- Definido plan de reactivación mínima de crons (Fase 1: Deal Scanner cada 4h + backup diario; Fase 2: Notion Sync cada 8h; reglas anti-solape y auto-pausa por errores consecutivos).\n- Marcado como completado el to-do \"plan de reactivación mínima\".\n- [22:55] Heartbeat nocturno: reactivado cron `daily-workspace-backup` (07:00 diario) y marcado pendiente como completado en Mission Control.\n- [23:54] Heartbeat nocturno: creada checklist operativa \"Mandato de Originación MAGG 2026\" en `knowledge/magg_mandato_originacion_2026_checklist.md` y marcado como completado en Mission Control.\n"
+    },
+    {
+      "date": "2026-02-23",
+      "weekday": "Monday",
+      "weekday_es": "Lunes",
+      "summary": "- 22:00 (heartbeat nocturno): ejecutada tarea autónoma no bloqueante de Mission Control.",
+      "topics": [],
+      "tags": [
+        "Infra",
+        "Notion"
+      ],
+      "activity": 5,
+      "content": "# 2026-02-23\n\n- 22:00 (heartbeat nocturno): ejecutada tarea autónoma no bloqueante de Mission Control.\n- Acción: eliminado cron duplicado de Notion MC Sync (`2433e596-f66a-4fce-ac0e-a7dd19c76f3f`).\n- Resultado: se reduce ruido operativo y riesgo de consumo innecesario de modelo/OAuth.\n- MISSION_CONTROL.md actualizado (to-do marcado + sección de completados + recuento de crons pausados ajustado a 12).\n"
+    },
+    {
+      "date": "2026-02-21",
+      "weekday": "Saturday",
+      "weekday_es": "Sábado",
+      "summary": "Trabajé como subagente autónomo durante la noche para mejorar el dashboard CRM, Google Sheets y el sistema de intermediarios de MAGG Capital.",
+      "topics": [
+        "Trabajo nocturno autónomo: Mejoras Dashboard/CRM MAGG Capital",
+        "Tarea nocturna autónoma (00:23h) — Limpieza MISSION_CONTROL.md",
+        "04:53h — Tarea nocturna autónoma: CRM v3.0",
+        "09:30h — Dashboard v2.1 con Chart.js (fix cron overwrite)",
+        "10:30h — Mission Control GitHub Pages terminal UI",
+        "~11:00h — Alex Finn: resumen 3 vídeos + Mission Control backlog",
+        "~13:00h — Mission Statement aprobado y Mediterráneo 1 descartado",
+        "~13:30h — Notion Mission Control creado"
+      ],
+      "tags": [
+        "MAGG",
+        "CRM",
+        "Gmail",
+        "Infra",
+        "Notion",
+        "Fundraising",
+        "Dubai",
+        "Bolsa"
+      ],
+      "activity": 100,
+      "content": "# Memoria — 21 febrero 2026\n\n## Trabajo nocturno autónomo: Mejoras Dashboard/CRM MAGG Capital\n\n### Resumen de lo hecho (00:00 – 00:25h aprox.)\n\nTrabajé como subagente autónomo durante la noche para mejorar el dashboard CRM, Google Sheets y el sistema de intermediarios de MAGG Capital.\n\n### Investigación (PARTE 1)\n- Busqué best practices de real estate CRM/dashboard 2024-2025\n- Principales hallazgos: Chart.js para visualizaciones, dark navy+gold = paleta profesional para fondos, KPI cards con subtítulos, filtros por tipología/geografía, vista tabla alternativa, pipeline funnel visual\n\n### Implementación GitHub Pages (PARTE 2)\n\n**Dashboard v2.0 desplegado en https://edmartin8n.github.io/magg-dashboard/**\n\nMejoras implementadas:\n\n1. **Rediseño visual completo** — Paleta profesional dark navy (#0f1f3d) + gold (#c8a84b), pensada para mostrar a inversores. Gradientes, sombras, border-radius consistentes.\n\n2. **Chart.js — 5 gráficos nuevos:**\n   - Donut: distribución por estado (PASS/Borderline/NO GO)\n   - Barras horizontales: distribución geográfica de deals\n   - Donut: intermediarios por tier (T1/T2/T3)\n   - Barras: top regiones intermediarios\n   - Barras: YoC Base por deal con colores por verdict\n\n3. **Pipeline Funnel visual** — Barra de progreso visual: Recibidos → Analizados → En consideración → PASS → Cerrado\n\n4. **KPI strip mejorado** — 8 KPIs con subtítulos informativos, border-top color-coded, hover effect\n\n5. **Filtros adicionales en Deals** — Por tipología (AT/Hotel), por país (España/Portugal), además de los filtros de estado existentes\n\n6. **Filtros adicionales en Brokers** — Por región (Madrid/Barcelona/Málaga/Portugal) + toggle chip\n\n7. **Vista dual Intermediarios: Cards + Tabla** — Toggle entre vista cards (existente) y nueva vista de tabla con sorting clickable (firma/score/deals/tier). Tabla con rayas alternadas y color hover.\n\n8. **Score bar visual** — Barra de progreso por cada broker card mostrando su score (0-100)\n\n9. **Métricas inline en deal cards** — YoC Base, Spread bps, Unidades siempre visibles sin expandir\n\n10. **Botón \"Ver Broker\"** — En el detalle de cada deal, botón que lleva al tab de intermediarios y filtra por el broker del deal\n\n11. **Keyboard shortcuts** — Teclas 1/2/3 para cambiar de tab\n\n12. **Responsive mejorado** — Mejor adaptación móvil (nav scrollable, filtros adaptados, grid a 1 columna)\n\n13. **Footer con estadísticas** — Fecha actualización, conteo deals/intermediarios\n\n14. **Login UI premium** — Nuevo diseño del login con version, timestamp, feedback de error\n\n### Google Sheets (PARTE 2 continuación)\n\n15. **Dashboard tab reformateado** — Nuevo diseño con header navy/gold, secciones coloreadas, KPI en grande, tabla pipeline con colores por verdict (verde/naranja/rojo)\n\n16. **RESUMEN tab CREADO** — Nuevo tab con resumen ejecutivo: pipeline KPIs, métricas retorno (YoC, spread objetivo, IRR), deals en análisis, red intermediarios, links. Formato profesional con secciones.\n\n### Datos técnicos\n- Repo: edmartin8n/magg-dashboard (branch main)\n- Commit: `d16ab16` — \"feat: Dashboard v2.0\"\n- Google Sheet: Dashboard + nuevo tab RESUMEN actualizados\n- HTML: 241,701 bytes (vs ~218,095 antes, +11%)\n\n### Estado deals al momento de trabajo\n- MAGG-2026-001 Solar AT Málaga — ❌ NO GO\n- MAGG-2026-002 Hotel Monte Gordo — ❌ NO GO\n- MAGG-2026-003 Mediterráneo 1 Marbella — ✅ PASS (único activo!)\n- MAGG-2026-004 St. Michael's Boadilla — ❌ NO GO\n- MAGG-2026-005 Hotel Boutique Praça Figueira — ❌ NO GO (análisis en curso)\n\n---\n\n## Tarea nocturna autónoma (00:23h) — Limpieza MISSION_CONTROL.md\n\n- Verificado que \"Proactividad nocturna explícita\" ya estaba implementada en HEARTBEAT.md (sección \"Tarea Nocturna Autónoma\")\n- Marcada como [x] completada en MISSION_CONTROL.md\n- \"Anti-duplicación MAGG Deal Scanner\" confirmada como ya implementada en magg_pipeline.py (msg_id tracking)\n- MISSION_CONTROL.md actualizado con estado real de tareas\n- Email Gmail: solo marketing Notion, nada relevante (revisión 20:33h)\n- Deal Lisboa Hotel Boutique Praça da Figueira recibido 13:43h — pendiente confirmar si MAGG Scanner lo procesó\n\n## 04:53h — Tarea nocturna autónoma: CRM v3.0\n\n**Completado:** GitHub Pages CRM rebuild con cross-linking bidireccional\n\n### Qué se hizo\n- Reescrito `generate_crm.py` (v3.0): auto-linker deals↔brokers\n- 3 funciones de cross-nav nuevas:\n  - `goToBroker(idx)`: Deal → Finders tab, expande broker con pulse animation\n  - `goToDeal(ref)`: Broker chip → Pipeline tab, expande deal con pulse animation\n  - `showDealsForBroker(idx)`: Broker → Pipeline filtrado por ese broker\n- Auto-linked: MAGG-001 ↔ Focus Investment (Sergio Díaz); MAGG-005 ↔ KW Portugal (Helder Mota)\n- Publicado en https://edmartin8n.github.io/magg-dashboard/\n- Commit: 38429ab\n\n### Estado MISSION_CONTROL\n- GitHub Pages CRM rebuild: ✅ cerrado\n- Pendientes no bloqueantes: Mission Control panel Next.js, Brains & Muscles architecture\n\n---\n\n## 09:30h — Dashboard v2.1 con Chart.js (fix cron overwrite)\n\n**Problema detectado:** El subagente nocturno mejoró el `index.html` directamente pero no actualizó `generate_dashboard.py`. El cron de las 8:00h regeneró el HTML básico y borró todas las mejoras.\n\n**Fix:** Actualizado `generate_dashboard.py` con Chart.js integrado permanentemente:\n- Donut: pipeline por veredicto\n- Barras: YoC Base por deal\n- Funnel: recibidos → analizados → consideración → PASS → cerrado\n- Donut: intermediarios por tier\n- Commit: `9dcb208`\n\n---\n\n## 10:30h — Mission Control GitHub Pages terminal UI\n\nCreado `/control/index.html` en el repo `edmartin8n/magg-dashboard`:\n- URL: https://edmartin8n.github.io/magg-dashboard/control/ · Password: `ctrl2026`\n- Estética terminal (dark/monospace/amber): STATUS, CRONS, SKILLS, BACKLOG, ACTIVIDAD\n- Separado del MAGG Dashboard (que es para inversores)\n- Commit: `1031948`\n\n---\n\n## ~11:00h — Alex Finn: resumen 3 vídeos + Mission Control backlog\n\nResumen de 3 vídeos de Alex Finn para Eduardo:\n1. \"Complete OpenClaw Guide\" (17 feb) — Brains & Muscles: Opus orquesta, modelos baratos ejecutan\n2. \"Sonnet 4.6 released\" (18 feb) — 1/5 coste Opus, mejor análisis financiero, last30 skill\n3. \"You NEED to do this\" (19 feb) — Brain dump, conectar herramientas, Mission Control, Mission Statement, proactividad nocturna\n\nMISSION_CONTROL.md creado con backlog priorizado 🔴/🟡/🟢. HEARTBEAT.md actualizado con tarea nocturna autónoma.\n\n---\n\n## ~13:00h — Mission Statement aprobado y Mediterráneo 1 descartado\n\n**Mission Statement aprobado por Eduardo:**\n> \"Copiloto de inversión inmobiliaria de Eduardo: MAGG Capital, financiación, mercados y orden personal.\"\nGrabado en SOUL.md y MISSION_CONTROL.md.\n\n**MAGG-2026-003 Mediterráneo 1 Marbella → ❌ DESCARTADO**\n- Eduardo: \"un pass\" = descartar, no invertir\n- Pipeline actualizado en Sheet (Estado: Descartado, Scoring: ❌ NO GO)\n- crm_data.json actualizado, dashboard regenerado y publicado\n- Pipeline: 5 deals, TODOS NO GO. 0 activos.\n\n---\n\n## ~13:30h — Notion Mission Control creado\n\n**Notion conectado:**\n- API key guardada en `.credentials/notion_api_key.txt`: `ntn_20849351745a...`\n- Workspace: \"Espacio de Eduardo M.\" (ID: 1f74dab7-dc41-8110-a20c-0003eb32a1cd)\n- Mission Control page ID: `30e4dab7-dc41-81c8-aac7-e510718c2f69`\n- URL: https://www.notion.so/Mission-Control-Tenacitas-30e4dab7dc4181c8aac7e510718c2f69\n\n**Estructura final (comprimida, con toggles):**\n- 🦀 Status line del sistema (una línea)\n- 🚨 Blockers (toggle)\n- 💼 Proyectos activos: MAGG Capital, SmartRental/SPV, Dubai, Cartera Personal, Ana/Personal\n- 📋 Backlog Tenacitas (toggle)\n- ⚙️ Crons (toggle)\n\n---\n\n## ~14:30h — Crons limpiados y arreglados\n\n1. **RE News 8:00 eliminado** (ID: 1e1d41ea) — fusionado con Noticias Inmobiliarias\n2. **Noticias Inmobiliarias** → cambiado de 09:00 L-V a **08:00 diario** (incluye finde)\n3. **Alex Finn Scout** → timeout arreglado: eliminado transcript fetching, instrucciones simplificadas, timeout 180→240s\n4. **Crons activos: 9/10** (Alex Finn pendiente de verificar esta noche a las 20:00)\n\n---\n\n## ~16:00h — Notion live updates implementados\n\n**Script creado:** `scripts/notion_mc_update.py`\n- Comandos: `status`, `deal_found`, `pipeline`, `cron_error`, `cron_ok`\n- Actualiza bloques específicos de Notion via API\n- Block IDs guardados en el script: status callout, MAGG toggle, crons toggle\n\n**Cron \"Notion MC Sync\"** creado (ID: e827ef0c):\n- Cada 4h, silencioso (delivery: none)\n- Lee Pipeline Sheet para conteo real de deals activos\n- Actualiza la línea de estado con timestamp\n- Primera sync: ~20:00h hoy\n\n**TOOLS.md actualizado** con Notion page ID y URL correctos.\n\n---\n\n## Estado del sistema al cierre de tarde (16:15h)\n\n- MAGG Pipeline: 5 deals, 0 activos\n- Crons: 10 jobs, 9 activos (Alex Finn Scout arreglado, pendiente verificar 20:00h)\n- Mission Control Notion: live, con sync cada 4h\n- GitHub Pages MAGG: https://edmartin8n.github.io/magg-dashboard/ (pass: magg2026)\n- GitHub Pages Control: https://edmartin8n.github.io/magg-dashboard/control/ (pass: ctrl2026)\n- Blockers pendientes: Gamma API key (Greg) + Brain dump Eduardo\n"
+    },
+    {
+      "date": "2026-02-20",
+      "weekday": "Friday",
+      "weekday_es": "Viernes",
+      "summary": "- España: 1er destino inversor inmobiliario de Europa por primera vez (CBRE European Investor Intentions Survey 2026)",
+      "topics": [
+        "MAGG RE IC Insight Scanner — 06:03 AM",
+        "MAGG RE IC Insight Scanner — 12:02 PM",
+        "MAGG RE IC Insight Scanner — 18:02 PM",
+        "MAGG RE IC Insight Scanner — 00:02 SAB 21/02",
+        "22:50 — Tarea nocturna autónoma"
+      ],
+      "tags": [
+        "MAGG",
+        "CRM",
+        "Gmail",
+        "Fundraising",
+        "Bolsa"
+      ],
+      "activity": 100,
+      "content": "# Memory — 2026-02-20\n\n## MAGG RE IC Insight Scanner — 06:03 AM\n\n### Macro España (Fuente: CBRE, BNP Paribas RE, Observatorio Inmobiliario, feb 2026)\n- España: 1er destino inversor inmobiliario de Europa por primera vez (CBRE European Investor Intentions Survey 2026)\n- PIB 2025: +2.8%; previsión 2026: +2.3% (encima media eurozona)\n- Inversión total España 2025: 18.400M€ (+31% YoY, máximo desde 2018)\n- Previsión 2026: 19.000-21.000M€ (CBRE Market Outlook)\n- Segmentos más demandados: Living (34%), Logístico (25%), Oficinas (13%), Retail (12%)\n- Yields: compresión ~25 bps en la mayoría de segmentos en 2025\n- Ciclo nuevo: \"la rentabilidad ya no vendrá de compresión de yields sino de generar ingresos\" (CBRE)\n- Estrategias dominantes: value-add y core-plus\n\n### Sector Hotelero España (Fuente: Colliers Informe 2025, JLL feb 2026)\n- Inversión hotelera 2025: 4.275M€ (segundo mejor histórico, tras solo 2018 y 2023)\n- 194 transacciones; 159 hoteles existentes (21.767 habs); +30% vs 2024\n- Inversores nacionales: 72% de operaciones, 63% del volumen (2.673M€)\n- Segmento vacacional: 55% del volumen (2.336M€), rebote vs 2024\n- Destino top: Canarias (1.039M€, 24%), Barcelona (712M€), Baleares (464M€), Madrid (376M€), Málaga (309M€)\n- JLL (feb 2026): nuevo ciclo inversor hotelero, dry powder récord, volúmenes crecientes globalmente (+22% desde trough 2023)\n- Llegadas turismo internacional superaron pre-pandemia en 2025; +4.9% esperado en pasajeros aéreos 2026\n- Clave IC Hotelero MAGG: compresión yields dificulta el spread; activos prime/vacacionales better positioned\n\n### Marbella Hotel específico (El Español, 19/02/2026)\n- Proyecto hotelero Milla de Oro Marbella: 250 habitaciones 5★, inversión estimada 47-87M€\n- Confirma mercado Marbella ultra-premium con ticketes altos → relevante para contexto Mediterráneo\n\n### Portugal/Algarve (Fuente: Portugal Buyers Agent, Readability, feb 2026)\n- Yields Algarve: 5.6-8% (bruto) - más atractivo que deals hoteleros analizados\n- Lisboa 5.2-6.8%, Porto 5.9-6.6%\n- Portugal: 8ª ciudad Lisboa en ranking ciudades CBRE\n- Italia y Portugal ganan posiciones en preferencia inversora sur Europa\n- Sectores Algarve: retail, oficinas y hoteles con demanda turística sostenida\n\n### Implicaciones para Underwriting MAGG\n1. El ciclo nuevo premia generación de ingresos, no compresión de yields → los spreads YoC vs Exit Yield son más difíciles de conseguir en activos prime\n2. Activos hoteleros vacacionales > urbanos en este ciclo (premiums más altos, pero tickets más grandes)\n3. Málaga: 309M€ de inversión hotelera en 2025, mercado activo y líquido para exits\n4. El scoring +150 bps de MAGG es exigente pero adecuado para entorno actual; deals no van a \"regalarse\"\n5. Value-add sigue siendo la estrategia dominante → confirma el foco de MAGG\n6. Algarve: yields brutos 5.6-8% confirman que el deal Hotel Algarve (MAGG-2026-002, NO GO) tenía exits yield demasiado comprimidos para el precio pedido\n\n---\n\n## MAGG RE IC Insight Scanner — 12:02 PM\n\n### Hipotecas y financiación España (Infobae, 20/02/2026)\n- Hipotecas firmadas 2025: 501.073 (+17.8% YoY), máximo en 15 años\n- Importe total prestado: 82.044M€ (+32.6% vs 2024) — máximo desde 2008\n- Importe medio hipoteca: 163.738€ (+12.6%); en dic-2025 llegó a 172.535€\n- Tipos hipotecas fijas estabilizadas <3% en 2025 reactivaron el mercado\n- ⚠️ CAMBIO 2026: bancos ya empezando a subir hipotecas fijas → puede enfriar demanda compradora y presionar alquiler al alza\n- Euribor feb 2026: ~2.23% (BCE tipos al 2.00%)\n\n### Marbella / Málaga — Datos frescos (The Agency Marbella, Andalucía Económica, 18/02/2026)\n- Precios provinciales Málaga: +120% desde mínimos de crisis financiera; casi en máximos pre-2008\n- Vivienda España 2025: +13.4% interanual; segunda mano +19% (máximos en 2 décadas)\n- Marbella: déficit estructural de suelo en zonas consolidadas → suelo natural de precios, sin riesgo de corrección brusca\n- Compradores extranjeros en Málaga: 31.8% de las transacciones (UK, Europa Norte, EEUU, Oriente Medio)\n- Triángulo de Oro: Marbella lidera en volumen, Benahavís en precio €/m², Estepona en crecimiento %\n- 5 capitales con \"estado crítico\" de accesibilidad: Málaga incluida → demanda de alquiler estructuralmente alta\n\n### SmartRental Flex Living — SUIO (Expansión, 19/02/2026)\n- SmartRental lanza marca SUIO para flex living (aptos flexibles entre alquiler y hotel)\n- 6 proyectos, 768 unidades, España + Alemania + Grecia, próximos 3 años\n- Partners: Ibervalles (family office), Bestinver (gestora), Aroundtown (internacional)\n- Timeline: Oct 2026 Alcobendas 178u, fin 2026 Tetuán Madrid 87u (industrial→aptos), 2027 Berlín 161u + Castellana 186 52u (oficinas→aptos), 2028 Málaga 129u\n- Relevante para MAGG: SmartRental como operador potencial en deals value-add residencial\n\n### Rentabilidad alquiler España 2026 (Euroval)\n- Numerosas provincias: rentabilidad bruta 7%-9%\n- Oportunidades óptimas: viviendas <200.000€ (mejor ratio renta/precio)\n- Relación precio/rentabilidad débil → hay yield en distintos rangos de precio\n\n### Tensión en mercado residencial\n- Rentas COVID-era expirando: algunos inquilinos +36% en renovación (ej. Málaga: 400€ → 800€/mes)\n- Málaga: alquiler 2 habs debería ser 845€ pero se oferta a 1.245€ (+47% sobre asequible)\n- Inversión pública en vivienda sube a máximos en 16 años (sin impacto inmediato a corto plazo)\n\n---\n\n## MAGG RE IC Insight Scanner — 18:02 PM\n\n### Solvia Market View H1 2026 (Idealista/INE, 20/02/2026)\n- INE dato fresco hoy: compraventas 2025 = 714.237 (+11.5% YoY)\n- Previsión Solvia H1 2026: precios +6-9%; compraventas +3-5%\n- Desequilibrio oferta/demanda persistirá \"gran parte del año\"\n- Rehabilitación = ~55% de licencias desde 2019 (palanca creciente)\n- Alquiler: precios mantenidos o repunte, especialmente costas y grandes ciudades\n- CLAVE: \"En 2026 veremos más competencia por el producto líquido: bien ubicado, buen estado o precio ajustado\"\n- Madrid: todos los barrios con incrementos €/m² vs trimestre anterior. Salamanca 7.141€/m², Chamberí 6.676€/m²\n\n### Plan 'España Crece' — Gobierno Sánchez (Sur in English, 20/02 12:50h)\n- Fondo soberano \"España Crece\": movilizar 23.000M€ (público+privado) para vivienda asequible\n- Objetivo: 15.000 viviendas/año en alquiler asequible\n- 13.300M€ fondos europeos (ICO) + 9.000M€ objetivo privado\n- Continuidad de fondos Next Generation más allá agosto 2026\n- Sánchez: \"alfombra roja para inversores, no para la especulación\"\n- Impacto MAGG: riesgo regulatorio de largo plazo en BTR residencial libre; no afecta activos prime/turísticos; señaliza presión política continuada sobre alquiler\n\n### Costa del Sol Property Trends 2026 (HiHomes, 17/02/2026)\n- Demanda más internacional que nunca: EEUU en alza, polacos sostenidos, alemanes emergentes como nueva fuerza\n- Branded residences: tendencia de lujo creciente en la Costa\n- Buy-to-rent developments: nuevo formato apareciendo en la Costa del Sol\n- Precios nacionales ~7% en 2026, Costa del Sol por encima del promedio\n- Suelo desarrollable escaso bajo planeamiento actual (confirma tesis Marbella)\n- Marbella y Estepona: zonas de mayor momentum en desarrollos nuevos\n\n### Student Housing España — JLL (Forbes, 17/02/2026)\n- 87% inversores mantendrá o aumentará inversión en residencias estudiantes 2026\n- Ocupación media >90% en 2025; ninguna residencia <75% → operativa sólida\n- Ciudades TOP España: Valencia y Madrid (79%), Barcelona y Málaga (63%), Bilbao (42%)\n- Málaga en el radar inversor de student housing → oportunidad living alternativo\n- España recibió 170.000 estudiantes internacionales 2024-2025 (64.000 Erasmus+)\n- Stock Valencia: 6.000 camas + 3.500 en pipeline → 9.500 en 2 cursos\n\n---\n\n## MAGG RE IC Insight Scanner — 00:02 SAB 21/02\n\n### Scan nocturno (18h-00h) — volumen bajo, 1 item relevante no reportado\n### Deal Retail España: Balkany / Santander / Merlin (Cinco Días, 18/02/2026)\n- Cartera de 9 CCs españoles de la familia Balkany en venta: 1.600M€ (La Vaguada, Gran Vía 2, Plaza Norte 2...)\n- Interesados: Santander (con capital propio + coinversión), Merlin Properties, Klépierre, Orion, Nepi, Norges Bank, Six Street\n- Proceso en fase inicial (sin ofertas vinculantes aún)\n- Santander dispuesto a invertir capital propio (via gestora alternativa) — inusual para una entidad financiera → señal de confianza alta en retail español\n- Relevante para MAGG: el retail prime español atrae capital institucional → soporte indirecto a yields en sectores adyacentes; confirma profundidad de mercado inversor en España\n\n## 22:50 — Tarea nocturna autónoma\n- Implementado guard anti-duplicación en magg_pipeline.py\n- Tracking por Gmail msg_id en .magg_processed_ids.json\n- Pre-cargados 3 deals ya procesados (magg_run.py IDs)\n- MISSION_CONTROL.md actualizado, commit 8c697f0\n\n"
+    },
+    {
+      "date": "2026-02-19",
+      "weekday": "Thursday",
+      "weekday_es": "Jueves",
+      "summary": "- Anthropic bloqueó API de OpenClaw en enero 2026 + cease-and-desist por nombre \"Clawdbot\"",
+      "topics": [
+        "Situación Anthropic / OpenClaw",
+        "Gamma API",
+        "MAGG Deal Pipeline — Estado",
+        "Deals analizados",
+        "Flujo MAGG Deal Scanner",
+        "Skill Scout (last30)",
+        "Crons activos",
+        "Pendientes para próximas sesiones"
+      ],
+      "tags": [
+        "MAGG",
+        "CRM",
+        "Gmail",
+        "Infra",
+        "Notion",
+        "Fundraising"
+      ],
+      "activity": 100,
+      "content": "# 2026-02-19 — Memoria del día\n\n## Situación Anthropic / OpenClaw\n- Anthropic bloqueó API de OpenClaw en enero 2026 + cease-and-desist por nombre \"Clawdbot\"\n- OpenAI contrató a Peter Steinberger (creador OpenClaw) → OpenClaw migra a optimizar GPT\n- El ban afecta a usuarios de Claude Pro/Max subscription (no API key) — nosotros usamos API key → OK por ahora\n- Estrategia: seguir con Sonnet 4.6, vigilar transición, fallback a GPT-4.1 ya configurado\n- Alternativas evaluadas: GPT-4.1, Gemini 2.5 Pro, DeepSeek V3, GPT-4.1 Mini para tareas simples\n\n## Gamma API\n- Key correcta de Greg: [REDACTED_GAMMA_KEY]\n- Guardada en .credentials/gamma_api_key.txt\n- Endpoint: POST https://public-api.gamma.app/v1.0/generations\n- sharingOptions: externalAccess: \"view\" para link público\n- Primer IC Brief generado: Hotel 4★ Monte Gordo → https://gamma.app/docs/s3aoo19d6pqzxos\n- Pendiente: integrar en flujo automático MAGG Deal Scanner\n\n## MAGG Deal Pipeline — Estado\n- Pipeline Sheet ID: 1Q2hD1XtrweS5vmCEONSCShjc_LsVJSFmk0qAuIoCpu8\n- Carpeta MAGG en Drive ID: 1nO3YQrr_Ii31nrMNf8gHn63vkyK-HuC0\n- Sub-carpetas creadas para 2 deals + Google Docs IC Brief\n- Pestaña BROKERS & FINDERS añadida con Sergio Díaz y Ângelo Silva\n\n## Deals analizados\n1. Solar AT Plaza Toros Vieja, Málaga — 26 AT, 4.15M€ → ❌ NO GO\n2. Hotel 4★ Monte Gordo, Algarve — 365 suites, 55M€ → ❌ NO GO (151k€/llave)\n3. Mediterráneo 1, Marbella Centro — 9 estudios, 2.05M€ → ✅ PASS (YoC 8%, spread +175 bps, IRR 21.7%) — pendiente IC Brief completo\n\n## Flujo MAGG Deal Scanner\n- Cron cada hora buscando emails con \"MAGG Deal\"\n- Gmail API OAuth con 4 scopes: readonly, send, modify, drive\n- Token: .credentials/gmail_token.json\n- Proceso manual funciona; script automático end-to-end pendiente\n- Pendiente: marcar emails como leídos automáticamente + Sheet update automático\n\n## Skill Scout (last30)\n- Cron lunes/jueves/sábado a las 2am\n- Primera ejecución exitosa (jueves 19 feb 2am)\n- 3 propuestas: Deal Analyzer 60s, Morning Brief mejorado, Document Intelligence\n- Recomendación: empezar por Morning Brief (ya casi todo montado)\n\n## Crons activos\n- MAGG Deal Scanner: cada hora\n- Morning Brief: 7:30am diario\n- daily-workspace-backup: 7:00am diario\n- real-estate-news-briefing: 8:00am diario (systemEvent)\n- Noticias Inmobiliarias: 9:00am L-V\n- Alex Finn YouTube Scout: 20:00 diario\n- last30 skill scout: L/J/S 2am\n- Recordatorio evaluar xAI/Grok API: 21 feb 9am\n\n## Pendientes para próximas sesiones\n- Script end-to-end MAGG Deal Scanner (leer→analizar→Gamma→Drive→email→marcar leído)\n- IC Brief completo del deal de Marbella (Mediterráneo 1 — PASS)\n- Convertir flujo en Skill formal\n- Notion API key (pendiente)\n- Morning Brief mejorado con datos pipeline + alertas\n- Mejorar formato presentación Gamma (resumen ejecutivo con foto al inicio)\n\n---\n\n## Tarde 19/02/2026 — Sesión continuada\n\n### Google APIs habilitadas definitivamente\n- Token OAuth re-autorizado múltiples veces hoy (problema: scopes se perdían)\n- Solución final: añadir prompt='consent' al InstalledAppFlow en gmail_auth.py\n- Scopes activos: gmail.readonly, gmail.send, gmail.modify, drive, spreadsheets, documents, calendar, cloud-platform\n- APIs habilitadas en GCloud (proyecto 598403353439): Docs, Sheets, Gmail, Drive, Calendar, Slides, People, Tasks\n- Token backup guardado en .credentials/gmail_token.backup.json (nunca subir a Drive)\n- REGLA: nunca subir credenciales a carpeta MAGG Drive (equipo tendrá acceso)\n\n### Plan B Modelos — Antigravity activado\n- Plugin google-antigravity-auth habilitado en OpenClaw\n- OAuth completado con cuenta edmartin8n@gmail.com\n- Modelo accesible: google-antigravity/claude-sonnet-4-6 (y claude-opus-4-6-thinking)\n- Fallbacks configurados: #1 google-antigravity/claude-sonnet-4-6, #2 openai/gpt-4.1-mini\n- Refresh token guardado → auto-renovación, no expira en práctica\n- Eduardo confirma que Claude Code le salía límite de tokens → Antigravity como alternativa sin esos límites\n- Sonnet 4.6 lanzado 17/02/2026: supera a Opus 4.6 en tareas agénticas/financial analysis a 1/5 del coste\n\n### Drive MAGG reorganizado\n- Estructura final: 📁 MAGG Capital / 📁 Deals / 📁 Market Data / 📄 Pipeline Sheet\n- Deals: 3 subcarpetas por deal con nombre formato \"Ciudad — Activo — Tipo — DD.MM.YYYY\"\n- Cada carpeta: IC Brief Google Doc + doc con link Gamma público\n- Duplicados eliminados (papelera)\n- NUNCA subir tokens/credenciales a MAGG Drive\n\n### Market Data indexado\n- 22 archivos subidos por Eduardo: 5 Excel deals + 16 PDFs CoStar hospitality submarkets (Feb 2026)\n- Excel: 848 deals España 2015-2026, 64 deals Madrid 2021-2026, 140 deals Portugal 2016-2026\n- CoStar Málaga: Occ 82.5%, ADR 159€, RevPAR 131€, pipeline 975 rooms\n- Índice maestro en knowledge/market-data/INDEX.md\n- Usar datos propios en underwriting → citar \"MAGG Deal Database / CoStar Feb 2026\"\n\n### Deals analizados hoy (nuevos)\n4. Mediterráneo 1, Marbella Centro — 9 estudios VUT, 2.05M€ → ⚠️ BORDERLINE\n   - YoC base 5.0% s/coste total (2.48M€ incluyendo CapEx + ITP 7%)\n   - Spread base +100 bps ⚠️, optimista +150 bps ✅\n   - IRR equity base 12%, optimista 15%\n   - CRÍTICO: estatutos comunidad (VUT puede estar prohibida)\n   - Negociar precio a 1.85-1.90M€ para mejorar spread\n   - ADR estudios 20m² Marbella: 100-140€/noche (Airbtics/AirROI)\n   - Gamma: https://gamma.app/docs/b7xzr0vg5l68f25\n   - IC Brief: https://docs.google.com/document/d/1IHFg9yE4MKurCckErLxIXVWK_o7-lNWNz_agdarcRH4\n\n5. Colegio St Michael's, Boadilla del Monte — Residencia/Coliving 100 camas, 8.5M€ → ❌ NO GO\n   - Email de David Hervás / Felipe Ivars. PDF TINSA adjunto analizado\n   - Superficie: 4.455m² + 1.600m² edificabilidad no consumida\n   - Coste total proyecto: 14M€ base / 17.4M€ stress\n   - Coste por cama: 140k€ (benchmark: 40-70k€/cama) → 2-3x fuera de rango\n   - YoC 2.8% s/coste total vs exit yield 5-5.5% → spread -200/-250 bps\n   - DSCR 0.8x → no cubre servicio de deuda\n   - Única palanca: consulta urbanística para cambio uso a residencial BTR\n   - Gamma: https://gamma.app/docs/947g6c5lmlv3xxa\n   - IC Brief: https://docs.google.com/document/d/1nfeojgBvGPK3iaCQ8R9vQJv3OUjHRqbF3MBwF_Bp7wM\n\n### Pipeline Sheet actualizado\n- Colegio St Michael añadido como MAGG-2026-004 con estado NO GO\n- Pendiente actualizar Mediterráneo 1 de \"En Análisis\" a \"BORDERLINE\" con links correctos\n\n### Formato IC Brief — Decisiones de Eduardo\n- Todo en castellano\n- Compresión: misma info pero más densa, menos texto largo\n- Añadir €/m² en costes representando % del total\n- Incluir timeline siempre\n- Gamma: 1-2 pager, 5-6 slides, sin fotos (o mínimas), conclusión arriba\n- Siempre externalAccess: \"view\" (link público)\n- Siempre actualizar Pipeline Sheet al finalizar IC Brief\n- Siempre enviar email a e.martin@smartrental.com al finalizar\n\n### Crons nuevos añadidos hoy\n- MAGG Real Estate IC Insight Scanner: cada 6h (analiza conversación + busca info IC fondos RE España)\n\n### Preferencia Eduardo — Respuesta en WhatsApp\n- Siempre confirmar arranque de tarea + ETA estimada cuando se empieza trabajo\n- No responder con NO_REPLY cuando hay trabajo activo en progreso\n- Mantener al día sobre estado de subagentes y procesos largos\n\n## CRM Dashboard MAGG Capital — MVP Construido (20:08)\n- Built interactive CRM dashboard at http://localhost:3333 (mission-control, port 3333)\n- 3 new pages: Dashboard, Pipeline (/deals, with clickable funnel), Intermediarios CRM (/intermediarios)\n- Sync script: scripts/sync_sheet_to_crm.py → pulls Google Sheets → deals.json + intermediaries.json\n- Real data: 4 deals (2 analysis PASS + 2 rejected FAIL), 199 intermediarios\n  - Active: Mediterráneo 1 Marbella (+175bps IRR 21.7%), Colegio St Michael's Boadilla\n  - Intermediarios: 60 Tier 1, 76 🔥 seguimiento alto\n- Proposal doc: docs/magg-crm-proposal.md\n- To start: cd mission-control && npm run dev -- -p 3333\n"
+    },
+    {
+      "date": "2026-02-18",
+      "weekday": "Wednesday",
+      "weekday_es": "Miércoles",
+      "summary": "- OAuth configurado con 4 scopes: gmail.readonly, gmail.send, gmail.modify, drive",
+      "topics": [
+        "Gmail + Google Drive",
+        "Flujo MAGG Deal Analysis",
+        "Deals analizados hoy",
+        "Herramientas instaladas",
+        "Pendiente para mañana",
+        "Personas y contexto"
+      ],
+      "tags": [
+        "MAGG",
+        "CRM",
+        "Gmail",
+        "Infra",
+        "Notion"
+      ],
+      "activity": 31,
+      "content": "# 2026-02-18 — Día de Setup Masivo\n\n## Gmail + Google Drive\n- OAuth configurado con 4 scopes: gmail.readonly, gmail.send, gmail.modify, drive\n- Token en `.credentials/gmail_token.json`\n- Scripts: gmail_check.py, gmail_send.py, gmail_auth.py\n- Drive API habilitada y funcionando\n- Pipeline MAGG Sheet ID: `1Q2hD1XtrweS5vmCEONSCShjc_LsVJSFmk0qAuIoCpu8`\n\n## Flujo MAGG Deal Analysis\n- Trigger: email entrante con texto \"MAGG Deal\" en el cuerpo\n- Proceso: leer email → descargar PDF (pdfplumber) → analizar con prompt RE → volcar en Sheet → enviar email HTML\n- Cron escaneo: cada hora (job ID: f548f968)\n- **Pendiente**: script automático completo (hoy funcionó de forma manual)\n- Email de análisis enviado a e.martin@smartrental.com\n\n## Deals analizados hoy\n1. **Solar AT Plaza Toros Vieja, Málaga** — 26 AT, 4.15M€ → ❌ NO GO (spread negativo)\n2. **Hotel 4★ Monte Gordo, Algarve** — 365 suites, 55M€ → ❌ NO GO (151k€/llave fuera rango, spread -120 a -210 bps)\n\n## Herramientas instaladas\n- himalaya (email CLI backup)\n- pdfplumber (extracción PDF)\n- last30days skill (workspace/skills/last30days) — usa Brave Search\n- Cron last30 semanal: lunes 2am, propone 3 nuevos skills para MAGG\n\n## Pendiente para mañana\n- Script automático end-to-end para MAGG Deal Scanner (leer → analizar → enviar → marcar leído)\n- Convertir el flujo en Skill formal\n- Gamma API key para PDFs bonitos (pendiente recibir de Greg)\n- Notion API key (pendiente configurar)\n- CRM de deals en Google Sheets/Notion\n\n## Personas y contexto\n- Greg (+34625091204): hermano de Eduardo, co-admin técnico, confianza total. Startup: Badgie + Coach (OpenClaw). 121K impresiones en 12 días.\n- Modelo: Sonnet 4.6 por defecto. Opus 4.6 solo si Eduardo lo autoriza explícitamente.\n- RSS EjePrime: https://www.ejeprime.com/rss.xml (funciona correctamente)\n"
+    },
+    {
+      "date": "2026-02-17",
+      "weekday": "Tuesday",
+      "weekday_es": "Martes",
+      "summary": "",
+      "topics": [
+        "Origen del nombre"
+      ],
+      "tags": [],
+      "activity": 3,
+      "content": "\n## Origen del nombre\n- **Tenacitas** viene de un capítulo de Los Simpson donde Homer adopta una langosta (Pinchy/Tenacitas) y le coge cariño\n- Eduardo (Tato) me puso ese nombre. Dice que soy \"uno más de la familia\" 🦀\n"
+    },
+    {
+      "date": "2026-02-12",
+      "weekday": "Thursday",
+      "weekday_es": "Jueves",
+      "summary": "",
+      "topics": [
+        "2026-02-12",
+        "Real-Estate-News skill"
+      ],
+      "tags": [
+        "MAGG",
+        "Infra"
+      ],
+      "activity": 5,
+      "content": "## 2026-02-12\n- Creé el primer skill de ejemplo (`skills/basic_example/SKILL.md`) que documenta el flujo estándar de respuesta (diagnóstico, plan, riesgos, peticiones) y añadí ejemplo de uso.\n- Documenté el skill en `knowledge/basic_skill_demo.md` con checklist para reutilización.\n\n\n## Real-Estate-News skill\n- Creado skill `real_estate_news` (RSS ejeprime + inmodiario). Script `scripts/real_estate_news.py` genera briefing, con cron diario 08:00 pendiente.`"
+    },
+    {
+      "date": "2026-02-11",
+      "weekday": "Wednesday",
+      "weekday_es": "Miércoles",
+      "summary": "",
+      "topics": [
+        "2026-02-11"
+      ],
+      "tags": [
+        "MAGG",
+        "Fundraising",
+        "Dubai",
+        "Bolsa"
+      ],
+      "activity": 4,
+      "content": "## 2026-02-11\n- Eduardo envió manifiesto detallando quién es (Managing Director MAGG Capital + estrategia deuda/M&A SmartRental) y cómo espera que opere Tenacitas.\n- Actualicé USER.md con su rol ampliado (value-add hospitality, fundraising vehículo hotelero, proyectos Dubai, cartera Alibaba) y preferencias (claridad estructural, pensamiento crítico).\n- Actualicé SOUL.md para reforzar que soy copiloto estratégico, con roles núcleo (analista inversión, arquitecto financiero, motor fundraising, estratega Dubái, radar mercado) y modo autónomo cuando no haya tareas.\n"
+    },
+    {
+      "date": "2026-02-10",
+      "weekday": "Tuesday",
+      "weekday_es": "Martes",
+      "summary": "",
+      "topics": [
+        "Prompt Real Estate Analyst"
+      ],
+      "tags": [
+        "MAGG",
+        "CRM"
+      ],
+      "activity": 3,
+      "content": "## Prompt Real Estate Analyst\n- Guardé el prompt completo del analista value-add en `knowledge/real_estate_value_add_prompt.md` para usarlo en el pipeline de deals (estructura de outputs, criterios YoC, spreads, riesgos, etc.).\n- Recordar usar este prompt cuando analice oportunidades de hospitality/living en España/Sur de Europa.\n"
+    }
+  ]
+}
