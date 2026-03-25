@@ -1,7 +1,30 @@
 {
-  "generated": "2026-03-25T01:08:08.683005",
-  "total": 35,
+  "generated": "2026-03-25T20:16:03.792808",
+  "total": 36,
   "entries": [
+    {
+      "date": "2026-03-25",
+      "weekday": "Wednesday",
+      "weekday_es": "Miércoles",
+      "summary": "- Pendiente más urgente con nuevo input de Eduardo: **Concurso Litexco** — Eduardo preguntó ayer a las 15:40 si tiene sentido €21M. Solo había SOTP informal en el daily note del 24/03.",
+      "topics": [
+        "02:00 — Tarea autónoma",
+        "09:30 — Mission Control sync",
+        "11:08 — Discord PM recap",
+        "20:15 — Cierre del día",
+        "Pendientes arrastrados al 26/03"
+      ],
+      "tags": [
+        "MAGG",
+        "CRM",
+        "Gmail",
+        "Discord",
+        "Infra",
+        "Notion"
+      ],
+      "activity": 54,
+      "content": "# Memory — 25 marzo 2026 (miércoles)\n\n## 02:00 — Tarea autónoma\n\n### Diagnóstico\n- Pendiente más urgente con nuevo input de Eduardo: **Concurso Litexco** — Eduardo preguntó ayer a las 15:40 si tiene sentido €21M. Solo había SOTP informal en el daily note del 24/03.\n- Otros pendientes arrastrando: Casón NBO (post-deadline, borrador listo 13/03), GV48 (>13 días sin Eastdil), 009 Sevilla (IC Brief ya publicado 13/03 — formato 9 secciones OK).\n- Seleccioné Litexco como tarea de mayor impacto: hay un deal concreto sobre la mesa, Eduardo necesita una respuesta antes de actuar.\n\n### Ejecutado: SOTP Brief completo Portfolio Litexco\n\n**Datos extraídos de PDFs:**\n- `boreal_litexco.pdf`: oferta vinculante €26M de Boreal Holding SÀRL (Luxemburgo) al Juzgado Mercantil nº 4 BCN, 18/03/2026. Desglose por activo incluido.\n- `wenbil_litexco.pdf`: fichas registrales de todos los inmuebles con superficies y descripciones.\n- Web research: historial turbio de Litexco / Beccaria (Crónica Global Nov-Dic 2025). Precios zona alta Barcelona 2024 (Sarrià-Sant Gervasi €5.165/m², fuente registros notariales).\n\n**Valoración MAGG:**\n| Escenario | NAV Total |\n|---|---|\n| Bear | €22.7M |\n| Mid MAGG | **€28.3M** |\n| Bull | €34.3M |\n\n**Veredicto:** BORDERLINE OPORTUNISTA a €21M. Descuento ~26% sobre NAV MID → upside ~€7.3M bruto. IRR orientativo 22-28% en 36 meses.\n\n**Red flags:**\n- Historial Beccaria: trust Argentina para evadir acreedores, múltiples acreedores institucionales (Marex/Pezzax/BoA)\n- Boreal hizo oferta preferente el 18/03 — ya puede estar adjudicada\n- Hungría: participaciones opacas (€350k en Boreal → MAGG MID €250k)\n- Fuera del mandato MAGG hotelero → vehicular como SPV separado\n\n**Activos con mayor upside vs Boreal:**\n1. Tibidabo 47A: +€1.1M\n2. Aiguablava Begur (villa CB): +€1.2M\n3. Bilbenyes 25 (Maresme): +€0.75M\n4. Via Augusta 32 (Maresme): +€0.68M\n\n**Entregable:** `briefs/litexco-portfolio.html` publicado en GitHub Pages\n- URL: https://edmartin8n.github.io/magg-dashboard/briefs/litexco-portfolio.html\n- Commit: `feat: SOTP Brief Litexco portfolio concursal — NAV MID €28.3M, bid target €21-22M`\n\n### Registros\n- Daily note: este archivo (2026-03-25.md)\n- WhatsApp enviado: sí (mensaje conciso a +34667927208)\n- Workspace git: pendiente commit final al cierre\n\n## 09:30 — Mission Control sync\n- Estado por vertical actualizado en Notion MC\n- Foco seteado: Casón NBO / GV48 / Litexco / Rossio DD\n\n## 11:08 — Discord PM recap\n- Litexco: SOTP refinado en sesión con Eduardo — valoración conservadora €21.5–26M. Precio objetivo MAGG €16–18M (sin margen a €21M asking). Pendiente OK para PDF actualizado.\n- Public markets: AI scan publicado (NVDA/VRT/ANET/MRVL). TSEM destacado.\n\n## 20:15 — Cierre del día\n- Gmail: solo newsletter Gamma (Imagine launch) — nada relevante\n- Notion MC actualizado: log actividad + Top 3 mañana seteado\n- Top 3 mañana (26/03):\n  1. Litexco — confirmación Eduardo bid €16-18M\n  2. Casón NBO — ¿relanzar o archivar? (11d post-deadline)\n  3. GV48 — ping Eastdil urgente\n\n## Pendientes arrastrados al 26/03\n- 🔴 Casón NBO — 11 días post-deadline, sin respuesta\n- 🏗️ GV48 — >14 días sin Eastdil\n- 📋 Litexco — decisión Eduardo bid target\n- 📄 HIST-092 Don Cristian — IC Brief pendiente\n- 📄 009 Sevilla — awaiting OM completo Tatyana Moyal\n"
+    },
     {
       "date": "2026-03-24",
       "weekday": "Tuesday",
