@@ -1,7 +1,24 @@
 {
-  "generated": "2026-03-25T20:16:03.792808",
-  "total": 36,
+  "generated": "2026-03-26T08:07:22.926975",
+  "total": 37,
   "entries": [
+    {
+      "date": "2026-03-26",
+      "weekday": "Thursday",
+      "weekday_es": "Jueves",
+      "summary": "**Tarea ejecutada:** Litexco/Boreal SOTP — Brief v2 conservador corregido",
+      "topics": [
+        "02:00 — Tarea autónoma"
+      ],
+      "tags": [
+        "MAGG",
+        "CRM",
+        "Discord",
+        "Infra"
+      ],
+      "activity": 29,
+      "content": "# Daily Note — 26/03/2026\n\n## 02:00 — Tarea autónoma\n\n**Tarea ejecutada:** Litexco/Boreal SOTP — Brief v2 conservador corregido\n\n**Diagnóstico:** En el MC y en flags activos había una deuda pendiente de 2 días: Eduardo pidió el PDF de valoración Litexco el 24/03 (16:20) y el 25/03 (16:56). En ambas ocasiones Tenacitas prometió subirlo y no lo hizo (\"Perdona, subo ahora\" / \"¿Genero el PDF actualizado?\"). La sesión del 25/03 refinó el análisis con Eduardo corrigiendo el SOTP a la baja (sótanos Roviralta 13, uso cultural 47B, comparable La Bonanova). El informe final nunca se publicó.\n\n**Tarea seleccionada:** 🔴 Prioridad 1 — Completar entregable prometido a Eduardo (mayor impacto + deuda explícita).\n\n**Ejecutado:**\n- Leídos todos los mensajes del canal #magg-deals (60 msgs) para recuperar el análisis completo del 24-25/03\n- Reconstruido el SOTP v2 conservador con las correcciones de Eduardo:\n  - Roviralta 13: solo 515m² sobre rasante (1.000m² sótanos) → mid €5.2M (vs €7.8M v1)\n  - Tibidabo 47A: solo 444m² SR (654m² sótanos) → mid €3.0M (vs €4.0M v1)\n  - Tibidabo 47B: uso cultural/enseñanza → pool compradores estrecho → mid €3.0M (vs €3.8M v1)\n  - Roviralta 9-11: criterio conservador → mid €2.3M (vs €3.3M v1)\n  - Comparable La Bonanova incorporado: €4.640/m² total con inquilino institucional ocupado\n- SOTP total v2: Bear €20.1M / Mid ~€25.8M / Bull ~€31.0M (vs v1: Bear €22.7M / Mid €28.3M)\n- **Conclusión cambió:** a €21M ya NO es bargain (mid - compra = €4.8M, en bear pérdida posible). Target real: **€16-18M**\n- Actualizado HTML `/tmp/magg-dashboard/briefs/litexco-portfolio.html` (274 líneas nuevas, diseño conservado, datos corregidos)\n- Git push a GitHub Pages: commit `f34becf` ✅\n- Link publicado y verificado HTTP 200\n\n**URL del informe:**\nhttps://edmartin8n.github.io/magg-dashboard/briefs/litexco-portfolio.html\n\n**Learnings:**\n- Nunca dejar un entregable prometido en Discord sin completar, aunque la sesión se corte\n- El SOTP v1 inflaba edificios de oficinas con alta proporción sótanos — error metodológico corregido\n- Comparable directo (edificio ocupado reformado) > método €/m² genérico para edificios singulares\n\n**Pending arrastrado (al 26/03):**\n- Casón NBO — 11 días post-deadline · estado desconocido\n- 009 Sevilla IC Brief — OM recibido 11/03, 15 días sin analizar\n- GV48 — Eastdil sin respuesta >14 días\n- HIST-092 Don Cristian — IC Brief pendiente\n"
+    },
     {
       "date": "2026-03-25",
       "weekday": "Wednesday",
