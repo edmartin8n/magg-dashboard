@@ -9,7 +9,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .hdr-ref{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;opacity:.7;margin-bottom:4px}
 .hdr-title{font-size:20px;font-weight:800;line-height:1.2}
 .hdr-sub{font-size:11px;opacity:.75;margin-top:6px}
-.verdict-banner{background:#fff3e0;color:#e65100;border-left:6px solid #e65100;padding:12px 20px;font-weight:700;font-size:13px;display:flex;align-items:center;gap:8px}
+.verdict-banner{background:#ffebee;color:#b71c1c;border-left:6px solid #b71c1c;padding:12px 20px;font-weight:700;font-size:13px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
 .ficha{display:grid;grid-template-columns:repeat(3,1fr);border-bottom:1px solid #eef1f8}
 .fc{padding:12px 16px;border-right:1px solid #eef1f8}
 .fc:last-child{border-right:none}
@@ -36,31 +36,38 @@ tr:last-child td{border-bottom:none}
 .badge-nogo{background:#b71c1c;color:#fff;padding:2px 8px;border-radius:10px;font-size:10px;font-weight:700}
 .badge-pend{background:#e65100;color:#fff;padding:2px 8px;border-radius:10px;font-size:10px;font-weight:700}
 .badge-bl{background:#f57f17;color:#fff;padding:2px 8px;border-radius:10px;font-size:10px;font-weight:700}
+.badge-ok{background:#1b5e20;color:#fff;padding:2px 8px;border-radius:10px;font-size:10px;font-weight:700}
 .data-warn{font-size:9px;color:#e65100;font-style:italic}
+.om-banner{background:#e8f5e9;border-left:4px solid #2e7d32;padding:8px 14px;font-size:11px;color:#1b5e20;margin:0;border-bottom:1px solid #eef1f8}
 </style></head><body>
 <div class="wrap">
 
+<!-- OM STATUS BANNER -->
+<div class="om-banner">
+  ✅ <strong>OM parcial recibido — 10/03/2026</strong> · Tatyana Moyal (G&amp;P Consultores) · Propuesta de Encaje adjunta (PB + P1). Pendiente: SQM planos, CapEx cerrado, estructura definitiva Asset/Share Deal.
+</div>
+
 <!-- ① HEADER -->
 <div class="hdr">
-  <div class="hdr-ref">MAGG-2026-009 · Sevilla · Hotel Boutique 5★</div>
+  <div class="hdr-ref">MAGG-2026-009 · Sevilla · Hotel Boutique 5★ · Rev. 27/03/2026</div>
   <div class="hdr-title">Hotel Boutique 5★ — C/ Guzmán el Bueno, Barrio Santa Cruz</div>
-  <div class="hdr-sub">Hotel Upper Upscale · 55 hab · ~3.000 sqm* · Reforma integral · Asking €13.5M + 3% fees | Fuente: Tatyana Moyal — G&amp;P Consultores (Ref. IHO18C)</div>
+  <div class="hdr-sub">Hotel Upper Upscale · 55 hab · ~3.000 m²* · Reforma integral · Asking €13.5M + 3% fees (€13.905M total) | Fuente: Tatyana Moyal — G&amp;P Consultores (Ref. IHO18C) · ⚠️ Dos fincas · Dos propietarios</div>
 </div>
 
 <!-- ② VERDICT BANNER -->
 <div class="verdict-banner">
   <span class="badge-nogo">NO GO ❌</span>
-  <span>A precio pedido <strong>(€13.9M)</strong> · <span class="spread-warn">+74 bps MID · -14 bps BASE</span> · Solo viable en BULL</span>
-  &nbsp;<span class="badge-pend">⏳ PEND OM completo</span>
+  <span>A precio pedido <strong>(€13.9M)</strong> · <span class="spread-warn">+74 bps MID · -14 bps BASE</span> · Solo viable en BULL (ADR €280+, Occ 80%+)</span>
+  &nbsp;<span style="background:#1a7a4a;color:#fff;padding:2px 8px;border-radius:10px;font-size:10px;font-weight:700">Bid rec: €9.3M (−33%)</span>
 </div>
 
 <!-- ③ FICHA -->
 <div class="ficha">
   <div class="fc"><div class="fc-l">Tipo</div><div class="fc-v">Hotel 5★ Boutique</div></div>
-  <div class="fc"><div class="fc-l">Habitaciones</div><div class="fc-v">55 habs</div></div>
+  <div class="fc"><div class="fc-l">Habitaciones</div><div class="fc-v">55 habs (±2)</div></div>
   <div class="fc"><div class="fc-l">SQM</div><div class="fc-v">~3.000 m²*</div></div>
   <div class="fc"><div class="fc-l">Estado obra</div><div class="fc-v">Reforma integral</div></div>
-  <div class="fc"><div class="fc-l">Bid rec ★</div><div class="fc-v" style="color:#e65100">€9.3M (−33%)</div></div>
+  <div class="fc"><div class="fc-l">Bid rec ★</div><div class="fc-v" style="color:#1a7a4a">€9.3M (−33%)</div></div>
   <div class="fc"><div class="fc-l">Límite GO</div><div class="fc-v" style="color:#f57f17">€10.8M (−20%)</div></div>
 </div>
 
@@ -77,7 +84,7 @@ tr:last-child td{border-bottom:none}
   <tr><td>€/hab CapEx</td><td>€173.6k</td></tr>
   <tr><td>Total inv. @ asking</td><td>€23.455k</td></tr>
   </table>
-  <p class="data-warn" style="margin-top:6px">* SQM estimado — pendiente confirmar con OM completo. ±500sqm = ±€1.25M en CapEx</p>
+  <p class="data-warn" style="margin-top:6px">⚠️ Vendedor sin CapEx estimado (confirmado OM). SQM aún por confirmar: ±500sqm = ±€1.25M CapEx.</p>
 </td>
 <td style="width:33%;vertical-align:top;padding:16px 14px;border-right:1px solid #eef1f8">
   <div class="sec-title">B. Ops Año 1 estab. (MID)</div>
@@ -89,7 +96,7 @@ tr:last-child td{border-bottom:none}
   <tr><td>HMA all-in (8% Rev)</td><td>(€317k)</td></tr>
   <tr><td><strong>NOI propietario</strong></td><td><strong style="color:#1a7a4a">€1.347M</strong></td></tr>
   </table>
-  <p style="margin-top:8px;font-size:10px;color:#7a8399">Comps 5★ Sevilla: Alfonso XIII €350+, EME Catedral €300+, Mercer €330+. ADR €260 = conservador (P40 comp set).</p>
+  <p style="margin-top:8px;font-size:10px;color:#7a8399">INE 5★ España 2025: ADR promedio anual ~€285, Occ ~73%. ADR €260 Sevilla = conservador P40 estacional. Comps: Alfonso XIII €350+, EME Catedral €300+, Mercer €330+.</p>
 </td>
 <td style="width:34%;vertical-align:top;padding:16px 14px">
   <div class="sec-title">C. Exit &amp; Retornos</div>
@@ -98,23 +105,23 @@ tr:last-child td{border-bottom:none}
   <tr style="background:#fff8e1"><td><strong>MID (€260 / 76%)</strong></td><td>5.7%</td><td><span class="spread-warn">+74 bps ⚠️</span></td></tr>
   <tr style="background:#e8f5e9"><td>BULL (€280 / 80%)</td><td>7.1%</td><td><span class="spread-pos">+209 bps ✅</span></td></tr>
   </table>
-  <p style="margin-top:8px;font-size:10px;color:#7a8399">Exit yield 5★ prime Sevilla: <strong>5.00%</strong>. Exit @ MID NOI: <strong>€27.0M</strong>. @ BULL: €33.3M. LTC 50% @ 5% → IRR ~18-20% si bid rec ★.</p>
+  <p style="margin-top:8px;font-size:10px;color:#7a8399">Exit yield 5★ prime Sevilla: <strong>5.00%</strong>. Exit @ MID NOI: <strong>€27.0M</strong>. @ BULL: €33.3M. <strong>A bid rec €9.3M → IRR ~18-22%</strong> si MID-BULL.</p>
 </td>
 </tr></table>
 
 <!-- ⑤ CRONOGRAMA -->
 <div class="sec">
-  <div class="sec-title">Cronograma (reforma integral + licencia asumida 12m)</div>
+  <div class="sec-title">Cronograma (reforma integral + sin licencia solicitada — +12m confirmado)</div>
   <div class="timeline">
-    <div class="tl-step"><div class="tl-dot">1</div><div class="tl-lbl">NBO</div><div class="tl-sub">Abr 2026</div></div>
-    <div class="tl-step"><div class="tl-dot">2</div><div class="tl-lbl">Cierre</div><div class="tl-sub">Jun 2026</div></div>
-    <div class="tl-step"><div class="tl-dot">3</div><div class="tl-lbl">Licencia</div><div class="tl-sub">Jun 2027</div></div>
-    <div class="tl-step"><div class="tl-dot">4</div><div class="tl-lbl">Inicio obra</div><div class="tl-sub">Jul 2027</div></div>
-    <div class="tl-step"><div class="tl-dot">5</div><div class="tl-lbl">Apertura</div><div class="tl-sub">Oct 2028</div></div>
-    <div class="tl-step"><div class="tl-dot">6</div><div class="tl-lbl">Estab.</div><div class="tl-sub">Oct 2030</div></div>
-    <div class="tl-step"><div class="tl-dot">7</div><div class="tl-lbl">Exit</div><div class="tl-sub">Q1 2031</div></div>
+    <div class="tl-step"><div class="tl-dot">1</div><div class="tl-lbl">NBO</div><div class="tl-sub">May 2026</div></div>
+    <div class="tl-step"><div class="tl-dot">2</div><div class="tl-lbl">Cierre</div><div class="tl-sub">Jul 2026</div></div>
+    <div class="tl-step"><div class="tl-dot">3</div><div class="tl-lbl">Licencia</div><div class="tl-sub">Jul 2027</div></div>
+    <div class="tl-step"><div class="tl-dot">4</div><div class="tl-lbl">Inicio obra</div><div class="tl-sub">Ago 2027</div></div>
+    <div class="tl-step"><div class="tl-dot">5</div><div class="tl-lbl">Apertura</div><div class="tl-sub">Feb 2029</div></div>
+    <div class="tl-step"><div class="tl-dot">6</div><div class="tl-lbl">Estab.</div><div class="tl-sub">Feb 2031</div></div>
+    <div class="tl-step"><div class="tl-dot">7</div><div class="tl-lbl">Exit</div><div class="tl-sub">Q2 2031</div></div>
   </div>
-  <p style="margin-top:8px;font-size:10px;color:#7a8399">Si RTB confirmado → eliminar 12m licencia → adelantar 1 año todo el cronograma (apertura Q4 2027).</p>
+  <p style="margin-top:8px;font-size:10px;color:#7a8399">⚠️ Sin licencia solicitada confirmado (OM). Hay proyecto redactado — esto puede acelerar licencia a 8-10m si arquitecto lo presenta inmediatamente. Dos fincas = coordinación compleja → posible delay adicional 3-6m.</p>
 </div>
 
 <!-- ⑥ UBICACIÓN + SENSIBILIDAD -->
@@ -129,7 +136,7 @@ tr:last-child td{border-bottom:none}
   <tr><td>Barrio Santa Cruz</td><td>mismo barrio</td></tr>
   <tr><td>Giralda</td><td>&lt;2 min</td></tr>
   </table>
-  <p style="margin-top:8px;font-size:10px;color:#7a8399">Valoración MAGG: <strong>A+</strong> · Ubicación excelente. El único fallo es el precio pedido. Si baja a €9-11M → deal muy interesante.</p>
+  <p style="margin-top:8px;font-size:10px;color:#7a8399">Valoración MAGG: <strong>A+</strong> · Ubicación excepcional. El único problema es el precio. Si baja a €9-11M → deal muy atractivo.</p>
 </td>
 <td style="width:62%;vertical-align:top;padding:16px 14px">
   <div class="sec-title">Sensibilidad ADR × Ocupación — @ asking €13.9M (Exit yield 5.00%)</div>
@@ -155,50 +162,56 @@ tr:last-child td{border-bottom:none}
     <td><span class="spread-pos">+209 bps ✅ GO</span></td>
   </tr>
   </table>
-  <p style="margin-top:6px;font-size:9px;color:#7a8399">Spread bps vs exit 5.00%. GO = ≥+150 bps. Base y MID: NO GO / BORDERLINE. Solo BULL (ADR €280+, Occ 80%+) alcanza GO a precio pedido.</p>
+  <p style="margin-top:6px;font-size:9px;color:#7a8399">INE 5★ Jul 2025: ADR €331.5 / RevPAR €244.5. INE 5★ Mar 2025: ADR €266.2 / RevPAR €170.4. ADR €260 MAGG = conservador (mediana anual Sevilla con descuento estacionalidad).</p>
 </td>
 </tr></table>
 
 <!-- ⑦ RIESGOS + PRÓXIMOS PASOS -->
 <table><tr>
 <td style="width:50%;vertical-align:top;padding:16px 14px;border-right:1px solid #eef1f8">
-  <div class="sec-title">Riesgos clave</div>
+  <div class="sec-title">Riesgos clave (actualizados OM 10/03)</div>
   <table class="risk-row"><tr><th>Riesgo</th><th>Mitigación</th></tr>
   <tr><td>🚨 Precio 33% sobre bid rec</td><td>Condición precio (&lt;€11M) en NBO</td></tr>
-  <tr><td>SQM sin confirmar (±500sqm)</td><td>Solicitar planos en OM completo</td></tr>
-  <tr><td>Licencia sin RTB (12m extra)</td><td>Confirmar tipo licencia → RTB reduce riesgo</td></tr>
-  <tr><td>Estacionalidad Sevilla</td><td>ADR €260 conservador (P40 comps), no peak</td></tr>
-  <tr><td>5★ requiere operador luxury</td><td>HMA con operador track record (Alfonso, EME)</td></tr>
-  <tr><td>GOP 42% sensible a segmento</td><td>Validar con operador antes de NBO</td></tr>
+  <tr><td>🚨 Doble titularidad (2 familias)</td><td>Contrato unificado obligatorio antes de firma · Kill-switch si una vende y otra no</td></tr>
+  <tr><td>🚨 Asset vs Share Deal pendiente</td><td>IVA 21% vs ITP 10% = €1.5M diferencia · Aclarar antes de NBO</td></tr>
+  <tr><td>⚠️ Sin licencia solicitada (confirmado)</td><td>12m extra en cronograma validados · Hay proyecto redactado (ventaja)</td></tr>
+  <tr><td>⚠️ Sin CapEx vendedor (confirmado)</td><td>MAGG debe asumir €9.55M estimado sin benchmark externo</td></tr>
+  <tr><td>⚠️ SQM sin confirmar</td><td>Solicitar planos completos · ±500sqm = ±€1.25M CapEx</td></tr>
+  <tr><td>Estacionalidad Sevilla</td><td>ADR €260 = P40 comp set · Conservador pero correcto</td></tr>
+  <tr><td>5★ requiere operador luxury</td><td>HMA con Alfonso XIII / EME / SH Hotels antes de NBO</td></tr>
   </table>
 </td>
 <td style="width:50%;vertical-align:top;padding:16px 14px">
   <div class="sec-title">Próximos pasos</div>
   <table><tr><th>Acción</th><th>Owner</th><th>Fecha</th></tr>
-  <tr><td><strong>📧 Solicitar OM completo</strong> (SQM, planos, licencia, titularidad)</td><td>Eduardo → Tatyana Moyal</td><td>ASAP</td></tr>
-  <tr><td>Confirmar tipo licencia (RTB o solicitud)</td><td>Tatyana / OM</td><td>Con OM</td></tr>
-  <tr><td>Validar condición precio (€10.8M límite)</td><td>Eduardo</td><td>Tras OM</td></tr>
+  <tr><td><strong>📧 Aclarar Asset vs Share Deal</strong> (IVA/ITP → €1.5M impacto)</td><td>Eduardo → Tatyana</td><td>ASAP</td></tr>
+  <tr><td>Confirmar SQM real (planos completos)</td><td>Tatyana / OM</td><td>ASAP</td></tr>
+  <tr><td>Contrato unificado 2 propietarios</td><td>Tatyana</td><td>Condición NBO</td></tr>
+  <tr><td>Validar condición precio (€10.8M límite)</td><td>Eduardo</td><td>Tras OM completo</td></tr>
+  <tr><td>HMA informal 5★ Sevilla (operador)</td><td>MAGG/Eduardo</td><td>En paralelo</td></tr>
   <tr><td>Si precio OK → NBO condicional</td><td>MAGG</td><td>3-4 semanas</td></tr>
-  <tr><td>HMA con operador 5★ Sevilla</td><td>Inversión</td><td>En paralelo</td></tr>
   </table>
 </td>
 </tr></table>
 
 <!-- ⑧ COMPS -->
 <div class="sec">
-  <div class="sec-title">Comparables hotel 5★ Sevilla (mercado)</div>
-  <table><tr><th>Hotel</th><th>Zona</th><th>Habs</th><th>ADR est.</th><th>Posicionamiento</th></tr>
+  <div class="sec-title">Comparables hotel 5★ Sevilla (mercado) + Benchmark INE 2025</div>
+  <table><tr><th>Referencia</th><th>Zona</th><th>Habs</th><th>ADR est.</th><th>Posicionamiento</th></tr>
   <tr><td>Alfonso XIII (SH Hotels)</td><td>Plaza de San Fernando</td><td>151</td><td>€350+</td><td>5★ GL / Lujo ultra</td></tr>
-  <tr><td>EME Catedral</td><td>Frente Catedral</td><td>60</td><td>€300+</td><td>5★ Boutique / Diseño</td></tr>
+  <tr><td>EME Catedral Mercer</td><td>Frente Catedral</td><td>60</td><td>€300+</td><td>5★ Boutique / Diseño</td></tr>
   <tr><td>Mercer Sevilla</td><td>Centro histórico</td><td>12</td><td>€330+</td><td>5★ Boutique / Palacete</td></tr>
   <tr><td>NH Collection Colón</td><td>Plaza Nueva</td><td>198</td><td>€180-220</td><td>4★ Superior</td></tr>
-  <tr style="background:#fff8e1"><td><strong>MAGG-009 base MID</strong></td><td>Barrio Santa Cruz</td><td>55</td><td><strong>€260 (P40)</strong></td><td><strong>5★ Boutique objetivo</strong></td></tr>
+  <tr style="background:#e3f2fd"><td><em>INE 5★ España Jul 2025</em></td><td>Nacional</td><td>—</td><td>€331.5</td><td>ADR promedio nacional verano</td></tr>
+  <tr style="background:#e3f2fd"><td><em>INE 5★ España Mar 2025</em></td><td>Nacional</td><td>—</td><td>€266.2</td><td>ADR promedio nacional temporada baja</td></tr>
+  <tr style="background:#fff8e1"><td><strong>MAGG-009 base MID</strong></td><td>Barrio Santa Cruz</td><td>55</td><td><strong>€260 (P40)</strong></td><td><strong>5★ Boutique objetivo — conservador</strong></td></tr>
   </table>
 </div>
 
 <!-- ⑨ FOOTER -->
 <div class="footer">
-  MAGG Capital · IC Brief MAGG-2026-009 · Generado 13/03/2026 (rev. 9 secciones MAGG v2) · Fuente: G&amp;P Consultores (IHO18C) / MAGG UW v2 / INE 2025 · ⚠️ SQM estimado — pendiente OM completo
+  MAGG Capital · IC Brief MAGG-2026-009 · Rev. 27/03/2026 (OM recibido 10/03 — riesgos actualizados) · v1: 06/03/2026 · v2: 13/03/2026 (corrección scanner) · v3: 27/03/2026 (datos OM + INE 2025 real)<br>
+  Fuente: G&amp;P Consultores (IHO18C) + OM parcial 10/03/2026 / MAGG UW v2 / INE EOH Jul 2025 · ⚠️ SQM estimado — pendiente planos completos · ⚠️ Estructura Asset/Share Deal pendiente confirmar
   &nbsp;|&nbsp; <a href="https://edmartin8n.github.io/magg-dashboard/" style="color:#0d1f3c">CRM Pipeline</a>
   &nbsp;|&nbsp; Veredicto: <strong>NO GO a €13.5M</strong> · Bid rec: <strong>€9.3M</strong> · Límite GO: <strong>€10.8M</strong>
 </div>
