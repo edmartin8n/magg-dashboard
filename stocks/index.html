@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>📈 Dashboard Acciones — MAGG</title>
+  <style>
+    :root {
+      --bg: #0d1117;
+      --bg2: #161b22;
+      --bg3: #21262d;
+      --border: #30363d;
+      --text: #e6edf3;
+      --text2: #8b949e;
+      --green: #3fb950;
+      --red: #f85149;
+      --yellow: #d29922;
+      --blue: #58a6ff;
+      --purple: #bc8cff;
+      --orange: #ffa657;
+      --accent: #238636;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+    /* LOCK */
+    #lock-screen {
+      position: fixed; inset: 0; background: var(--bg);
+      display: flex; align-items: center; justify-content: center; z-index: 1000;
+    }
+    .lock-box {
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: 12px; padding: 32px; text-align: center; width: 320px;
+    }
+    .lock-box h2 { font-size: 24px; margin-bottom: 8px; }
+    .lock-box p { color: var(--text2); font-size: 14px; margin-bottom: 20px; }
+    .lock-box input {
+      width: 100%; padding: 10px 14px; background: var(--bg3);
+      border: 1px solid var(--border); border-radius: 8px;
+      color: var(--text); font-size: 16px; margin-bottom: 12px;
+    }
+    .lock-box input:focus { outline: none; border-color: var(--blue); }
+    .lock-box button {
+      width: 100%; padding: 10px; background: var(--accent);
+      border: none; border-radius: 8px; color: var(--text);
+      font-size: 15px; font-weight: 600; cursor: pointer;
+    }
+    .lock-box button:hover { opacity: 0.85; }
+    #lock-error { color: var(--red); font-size: 13px; margin-top: 8px; display: none; }
+    /* MAIN */
+    #main { display: none; }
+    header {
+      background: var(--bg2); border-bottom: 1px solid var(--border);
+      padding: 14px 24px; display: flex; align-items: center; justify-content: space-between;
+      position: sticky; top: 0; z-index: 100;
+    }
+    header h1 { font-size: 18px; font-weight: 700; }
+    header h1 span { color: var(--blue); }
+    .header-meta { font-size: 12px; color: var(--text2); text-align: right; }
+    .macro-bar {
+      background: var(--bg3); border-bottom: 1px solid var(--border);
+      padding: 8px 24px; display: flex; gap: 24px; overflow-x: auto;
+      font-size: 12px; align-items: center;
+    }
+    .macro-item { white-space: nowrap; }
+    .macro-item .lbl { color: var(--text2); margin-right: 4px; }
+    .macro-item .val { font-weight: 600; }
+    .val.up { color: var(--green); }
+    .val.down { color: var(--red); }
+    .val.neutral { color: var(--yellow); }
+    main { padding: 20px 24px; max-width: 1200px; margin: 0 auto; }
+    /* TABS */
+    .tabs { display: flex; gap: 4px; margin-bottom: 20px; border-bottom: 1px solid var(--border); padding-bottom: 0; }
+    .tab-btn {
+      padding: 8px 16px; border: none; background: none; color: var(--text2);
+      font-size: 14px; cursor: pointer; border-bottom: 2px solid transparent;
+      margin-bottom: -1px;
+    }
+    .tab-btn.active { color: var(--text); border-bottom-color: var(--blue); font-weight: 600; }
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+    /* CARDS */
+    .section-title {
+      font-size: 13px; font-weight: 700; color: var(--text2);
+      text-transform: uppercase; letter-spacing: 0.5px;
+      margin-bottom: 12px; margin-top: 24px;
+    }
+    .section-title:first-child { margin-top: 0; }
+    .cards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; margin-bottom: 8px; }
+    .card {
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: 10px; padding: 16px; position: relative;
+      transition: border-color 0.15s;
+    }
+    .card:hover { border-color: var(--blue); }
+    .card-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 10px; }
+    .ticker { font-size: 20px; font-weight: 800; letter-spacing: 0.5px; }
+    .badge {
+      font-size: 10px; font-weight: 700; padding: 2px 8px;
+      border-radius: 12px; text-transform: uppercase; letter-spacing: 0.5px;
+    }
+    .badge.acumular { background: rgba(63,185,80,0.15); color: var(--green); border: 1px solid rgba(63,185,80,0.3); }
+    .badge.hold { background: rgba(210,153,34,0.15); color: var(--yellow); border: 1px solid rgba(210,153,34,0.3); }
+    .badge.watch { background: rgba(88,166,255,0.15); color: var(--blue); border: 1px solid rgba(88,166,255,0.3); }
+    .badge.pend { background: rgba(139,148,158,0.15); color: var(--text2); border: 1px solid var(--border); }
+    .badge.reducir { background: rgba(248,81,73,0.15); color: var(--red); border: 1px solid rgba(248,81,73,0.3); }
+    .card-name { font-size: 12px; color: var(--text2); margin-bottom: 10px; }
+    .card-price { display: flex; align-items: baseline; gap: 8px; margin-bottom: 8px; }
+    .price { font-size: 22px; font-weight: 700; }
+    .price-change { font-size: 13px; font-weight: 600; }
+    .price-change.up { color: var(--green); }
+    .price-change.down { color: var(--red); }
+    .card-row { display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 4px; }
+    .card-row .lbl { color: var(--text2); }
+    .card-row .val { font-weight: 500; }
+    .card-tesis {
+      font-size: 12px; color: var(--text2); border-top: 1px solid var(--border);
+      margin-top: 10px; padding-top: 10px; line-height: 1.5;
+    }
+    .card-tesis strong { color: var(--text); }
+    /* TABLE */
+    .table-wrap { overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    th {
+      text-align: left; padding: 8px 12px; color: var(--text2);
+      font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px;
+      border-bottom: 1px solid var(--border); white-space: nowrap;
+    }
+    td { padding: 10px 12px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background: var(--bg3); }
+    .ticker-cell { font-weight: 700; font-size: 14px; }
+    /* MACRO TABLE */
+    .macro-table { background: var(--bg2); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+    /* NOTES */
+    .insight-card {
+      background: var(--bg2); border: 1px solid var(--border);
+      border-left: 3px solid var(--blue);
+      border-radius: 10px; padding: 14px 16px; margin-bottom: 10px;
+    }
+    .insight-card.warn { border-left-color: var(--yellow); }
+    .insight-card.alert { border-left-color: var(--red); }
+    .insight-card.ok { border-left-color: var(--green); }
+    .insight-date { font-size: 11px; color: var(--text2); margin-bottom: 4px; }
+    .insight-text { font-size: 13px; line-height: 1.6; }
+    /* WATCHLIST */
+    .wl-tag {
+      display: inline-block; font-size: 11px; padding: 2px 8px;
+      border-radius: 4px; margin-right: 4px; margin-bottom: 4px;
+    }
+    .wl-tag.ai { background: rgba(88,166,255,0.15); color: var(--blue); }
+    .wl-tag.energy { background: rgba(255,166,87,0.15); color: var(--orange); }
+    .wl-tag.defense { background: rgba(248,81,73,0.15); color: var(--red); }
+    .wl-tag.china { background: rgba(210,153,34,0.15); color: var(--yellow); }
+    .wl-tag.semis { background: rgba(188,140,255,0.15); color: var(--purple); }
+    .wl-tag.infra { background: rgba(63,185,80,0.15); color: var(--green); }
+    /* FOOTER */
+    footer {
+      text-align: center; padding: 20px; color: var(--text2);
+      font-size: 12px; border-top: 1px solid var(--border); margin-top: 40px;
+    }
+    /* RESPONSIVE */
+    @media (max-width: 600px) {
+      header { padding: 12px 16px; }
+      main { padding: 16px; }
+      .cards-grid { grid-template-columns: 1fr; }
+      .macro-bar { gap: 16px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- LOCK -->
+<div id="lock-screen">
+  <div class="lock-box">
+    <h2>📈 Acciones</h2>
+    <p>Dashboard privado — Eduardo</p>
+    <input type="password" id="pwd-input" placeholder="Contraseña" onkeydown="if(event.key==='Enter')checkPwd()">
+    <button onclick="checkPwd()">Entrar</button>
+    <div id="lock-error">Contraseña incorrecta</div>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div id="main">
+  <header>
+    <h1>📈 <span>Acciones</span> — Dashboard</h1>
+    <div class="header-meta">
+      Actualizado: 29/03/2026<br>
+      <span style="color: var(--yellow);">⚠️ Precios orientativos — fuente: última sesión</span>
+    </div>
+  </header>
+
+  <!-- MACRO BAR -->
+  <div class="macro-bar">
+    <div class="macro-item"><span class="lbl">VIX</span><span class="val down">29.6 ▲</span></div>
+    <div class="macro-item"><span class="lbl">PCE Core</span><span class="val down">3.0% sticky</span></div>
+    <div class="macro-item"><span class="lbl">Fed</span><span class="val neutral">Hawkish pause</span></div>
+    <div class="macro-item"><span class="lbl">30Y UST</span><span class="val down">4.98%</span></div>
+    <div class="macro-item"><span class="lbl">Nasdaq</span><span class="val down">-1.25% (27/03)</span></div>
+    <div class="macro-item"><span class="lbl">Brent</span><span class="val down">$80+ (Ormuz risk)</span></div>
+    <div class="macro-item"><span class="lbl">Gold</span><span class="val up">$5,400</span></div>
+    <div class="macro-item"><span class="lbl">Sesión</span><span class="val neutral">Domingo — mercados cerrados</span></div>
+  </div>
+
+  <main>
+    <!-- TABS -->
+    <div class="tabs">
+      <button class="tab-btn active" onclick="showTab('watchlist')">🎯 Watchlist</button>
+      <button class="tab-btn" onclick="showTab('portfolio')">📊 Portfolio</button>
+      <button class="tab-btn" onclick="showTab('macro')">🌍 Macro</button>
+      <button class="tab-btn" onclick="showTab('insights')">💡 Insights</button>
+    </div>
+
+    <!-- TAB 1: WATCHLIST -->
+    <div id="tab-watchlist" class="tab-content active">
+      <p class="section-title">📌 Posiciones activas / tesis activa</p>
+      <div class="cards-grid" id="active-cards"></div>
+
+      <p class="section-title">🔭 En el radar — AI Buildout</p>
+      <div class="cards-grid" id="radar-cards"></div>
+
+      <p class="section-title">⚡ Energía & Infraestructura AI</p>
+      <div class="cards-grid" id="energy-cards"></div>
+    </div>
+
+    <!-- TAB 2: PORTFOLIO -->
+    <div id="tab-portfolio" class="tab-content">
+      <p class="section-title">📊 Cartera Eduardo (referencia)</p>
+      <div class="insight-card warn">
+        <div class="insight-date">Nota</div>
+        <div class="insight-text">
+          Pesos de referencia orientativos. Actualizar manualmente tras cada movimiento.
+          <strong>Peso principal conocido: Alibaba (BABA)</strong> — tesis deep value + catalizador reactivación China.
+        </div>
+      </div>
+      <div class="table-wrap macro-table">
+        <table>
+          <thead>
+            <tr>
+              <th>Ticker</th>
+              <th>Nombre</th>
+              <th>Sector</th>
+              <th>Tesis</th>
+              <th>Estado</th>
+            </tr>
+          </thead>
+          <tbody id="portfolio-rows"></tbody>
+        </table>
+      </div>
+
+      <p class="section-title" style="margin-top:24px">📊 Cartera Álvaro ($50k referencia)</p>
+      <div class="table-wrap macro-table">
+        <table>
+          <thead>
+            <tr><th>Bloque</th><th>Peso</th><th>Tickers ejemplo</th><th>Nota</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>AI & Tech</td><td style="color:var(--blue)">35%</td><td>NVDA, AVGO, ANET</td><td>Core position</td></tr>
+            <tr><td>Gold / GDX</td><td style="color:var(--yellow)">18%</td><td>GDX, Gold ETC</td><td>Hedge geopolítico ✅</td></tr>
+            <tr><td>Defensa</td><td style="color:var(--red)">12%</td><td>VanEck Defense</td><td>Hedge Irán ✅</td></tr>
+            <tr><td>Energía</td><td style="color:var(--orange)">10%</td><td>Brent 2x (JJ trade)</td><td>Táctica 2-3d</td></tr>
+            <tr><td>RKLB</td><td style="color:var(--purple)">5%</td><td>Rocket Lab</td><td>SpaceTech</td></tr>
+            <tr><td>Cash</td><td style="color:var(--text2)">15%</td><td>—</td><td>EWY entry <$75 oil</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- TAB 3: MACRO -->
+    <div id="tab-macro" class="tab-content">
+      <p class="section-title">📅 Calendario económico relevante</p>
+      <div class="macro-table">
+        <table>
+          <thead><tr><th>Fecha</th><th>Evento</th><th>Relevancia</th><th>Impacto esperado</th></tr></thead>
+          <tbody>
+            <tr><td style="color:var(--red)">27/03 ✅</td><td>PCE Core Feb</td><td>🔴 Alta</td><td>3.0% sticky → hawkish pause confirmada. Nasdaq -1.25%</td></tr>
+            <tr><td>Abr (TBD)</td><td>Fed Meeting</td><td>🔴 Alta</td><td>Sin recortes. Dot plot: debate 0 vs 2 recortes 2026</td></tr>
+            <tr><td>Abr (TBD)</td><td>Earnings Q1: NVDA, AVGO, META</td><td>🔴 Alta</td><td>Validar capex AI guidance. Clave para AI buildout tesis</td></tr>
+            <tr><td>Rolling</td><td>Ormuz / Irán</td><td>🟡 Media</td><td>Brent >$80. Oil spike →inflation→ más hawkish. Watch GDX/Defense</td></tr>
+            <tr><td>Rolling</td><td>China estímulo</td><td>🟡 Media</td><td>Catalizador BABA / PDD / EWY (Korea)</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="section-title" style="margin-top:20px">🗺️ Entorno macro actual</p>
+      <div class="insight-card warn">
+        <div class="insight-date">Resumen — 29/03/2026</div>
+        <div class="insight-text">
+          <strong>Fed hawkish pause:</strong> PCE Core 3.0% (target 2%). Sin recortes a la vista.<br>
+          <strong>Tipos reales altos</strong> → penalizan growth/tech sin FCF. Favorecen: value, dividend, energy.<br>
+          <strong>Geopolítica (Ormuz):</strong> US-Israel-Irán. Qatar LNG offline. Brent $80+. Oil = inflación adicional.<br>
+          <strong>Gold $5,400:</strong> hedge soberano activo. GDX como proxy apalancado.<br>
+          <strong>VIX 29.6:</strong> estrés moderado-alto. Oportunidades en pullbacks pero no capitulación aún.
+        </div>
+      </div>
+
+      <p class="section-title" style="margin-top:20px">🎯 Framework decisión actual</p>
+      <div class="insight-card ok">
+        <div class="insight-text">
+          ✅ <strong>Mantener/acumular en pullbacks:</strong> NVDA, AVGO, TSM, CEG, VRT — capex AI secular<br>
+          ✅ <strong>Mantener hedge:</strong> GDX, Gold, VanEck Defense — mientras Ormuz activo<br>
+          ⏳ <strong>BABA:</strong> esperar catalizador China concreto. Tipo real USD alto = viento en contra<br>
+          ⚠️ <strong>Evitar:</strong> leverage especulativo sin stop. Brent 2x trade = solo táctica corta
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 4: INSIGHTS -->
+    <div id="tab-insights" class="tab-content">
+      <p class="section-title">💡 Últimos insights del AI Buildout scanner</p>
+      <div id="insights-list"></div>
+    </div>
+
+  </main>
+  <footer>
+    📈 Dashboard Acciones — MAGG Private · Tenacitas 🦀 · Actualizado 29/03/2026<br>
+    Precios orientativos, no son recomendaciones de inversión. Datos para seguimiento personal.
+  </footer>
+</div>
+
+<script>
+const PWD = 'magg2026';
+
+function checkPwd() {
+  const v = document.getElementById('pwd-input').value;
+  if (v === PWD) {
+    document.getElementById('lock-screen').style.display = 'none';
+    document.getElementById('main').style.display = 'block';
+    sessionStorage.setItem('stocks_auth', '1');
+  } else {
+    document.getElementById('lock-error').style.display = 'block';
+    document.getElementById('pwd-input').value = '';
+  }
+}
+
+if (sessionStorage.getItem('stocks_auth') === '1') {
+  document.getElementById('lock-screen').style.display = 'none';
+  document.getElementById('main').style.display = 'block';
+}
+
+function showTab(id) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  event.target.classList.add('active');
+}
+
+// DATA
+const ACTIVE = [
+  {
+    ticker: 'BABA',
+    name: 'Alibaba Group',
+    badge: 'hold', badgeText: 'HOLD',
+    price: '~$115', change: null,
+    sector: 'China / e-Commerce / Cloud',
+    horizon: 'Largo plazo (12-18m)',
+    upside: '+60-80% si catalizador',
+    tags: ['china'],
+    tesis: '<strong>Deep value + reactivación China.</strong> P/E ~10x vs AMZN ~35x. FCF yield >10%. Catalizador: estímulo fiscal, reversión regulatoria, IA China. Riesgo: macro USD/RMB, geopolítica, Ormuz.',
+    note: 'Esperar catalizador concreto antes de añadir. Tipos reales USD altos = viento en contra corto plazo.'
+  }
+];
+
+const RADAR_AI = [
+  { ticker: 'NVDA', name: 'NVIDIA', badge: 'acumular', badgeText: 'ACUMULAR', price: '~$880', sector: 'Semis / AI', tags: ['semis','ai'], tesis: 'Monopolio datacenter AI. Blackwell ramping. Capex hyperscaler intacto. Acumular en pullbacks -10%.' },
+  { ticker: 'AVGO', name: 'Broadcom', badge: 'acumular', badgeText: 'ACUMULAR', price: '~$210', sector: 'Semis / Networking', tags: ['semis','ai'], tesis: 'Custom silicon (XPU) + VMware integración. FCF +40%. Acumular por debajo de $200.' },
+  { ticker: 'ANET', name: 'Arista Networks', badge: 'acumular', badgeText: 'ACUMULAR', price: '~$95', sector: 'Networking AI', tags: ['ai'], tesis: 'Backbone networking para datacenters AI. Backlog récord. Acumular.' },
+  { ticker: 'MRVL', name: 'Marvell Technology', badge: 'watch', badgeText: 'WATCH', price: '~$68', sector: 'Semis / Custom AI', tags: ['semis','ai'], tesis: 'Custom AI silicon + optical. Earnings próx = catalizador. Watchlist activo.' },
+  { ticker: 'TSM', name: 'TSMC', badge: 'acumular', badgeText: 'ACUMULAR', price: '~$180', sector: 'Semis / Foundry', tags: ['semis'], tesis: 'Único fabricante N3/N2. AI demand secular. Geopolítica Taiwan = descuento ≠ riesgo operacional.' },
+];
+
+const RADAR_ENERGY = [
+  { ticker: 'CEG', name: 'Constellation Energy', badge: 'acumular', badgeText: 'ACUMULAR', price: '~$275', sector: 'Nuclear / AI Power', tags: ['energy','infra'], tesis: 'Contratos PPA directo con hyperscalers (Microsoft). Nuclear = única fuente 24/7 para datacenters AI. Secular.' },
+  { ticker: 'VRT', name: 'Vertiv Holdings', badge: 'acumular', badgeText: 'ACUMULAR', price: '~$105', sector: 'Infraestructura DC', tags: ['infra','ai'], tesis: 'Cooling + power management datacenters. Backlog +80% YoY. Directo beneficiario capex AI.' },
+  { ticker: 'GDX', name: 'VanEck Gold Miners', badge: 'hold', badgeText: 'HEDGE', price: '~$45', sector: 'Gold / Hedge', tags: ['energy'], tesis: 'Hedge geopolítico. Gold $5,400. Proxy apalancado oro. Mantener mientras Ormuz/inflación activos.' },
+];
+
+const PORTFOLIO = [
+  { ticker: 'BABA', name: 'Alibaba', sector: 'China Tech', tesis: 'Deep value, reactivación China', estado: 'HOLD — esperar catalizador' },
+];
+
+const INSIGHTS = [
+  { date: '27/03/2026', type: 'warn', text: '<strong>PCE Core 3.0% (Feb):</strong> sticky. Fed hawkish pause confirmada. Sin recortes Q2. Nasdaq -1.25%. 30Y yield 4.98%.' },
+  { date: '26/03/2026', type: 'ok', text: '<strong>AI Buildout scan:</strong> NVDA/AVGO/ANET/MRVL/TSM — acumular. CEG/VRT — acumular por infraestructura power. Hyperscaler capex Q1 guidance intacto.' },
+  { date: '25/03/2026', type: 'ok', text: '<strong>AI scan:</strong> NVDA/VRT/ANET/MRVL/TSEM/COHR/AMD — perspectiva positiva. AMD ganando share en inferencia.' },
+  { date: '23/03/2026', type: 'neutral', text: '<strong>Macro briefing:</strong> PCE vie 27/03, earnings NKE/LULU/DLTR. Brent >$120 Hormuz. Riesgo oil spike → inflación adicional.' },
+  { date: '17/03/2026', type: 'neutral', text: '<strong>FOMC briefing:</strong> Dot plot debate 0 vs 2 recortes. PPI feb. Earnings MU (mié), BABA+FDX+ACN (jue).' },
+  { date: '12/03/2026', type: 'warn', text: '<strong>JJ — Brent 2x trade:</strong> WisdomTree Brent Crude 2x, target +25% en 2-3d. Sin stop explícito confirmado → riesgo elevado por volatilidad geopolítica.' },
+];
+
+function renderCard(d) {
+  const tagHtml = (d.tags||[]).map(t => `<span class="wl-tag ${t}">${t}</span>`).join('');
+  return `
+  <div class="card">
+    <div class="card-header">
+      <div class="ticker">${d.ticker}</div>
+      <span class="badge ${d.badge}">${d.badgeText}</span>
+    </div>
+    <div class="card-name">${d.name} · ${d.sector}</div>
+    <div class="card-price">
+      <span class="price">${d.price||'—'}</span>
+    </div>
+    ${d.horizon ? `<div class="card-row"><span class="lbl">Horizonte</span><span class="val">${d.horizon}</span></div>` : ''}
+    ${d.upside ? `<div class="card-row"><span class="lbl">Upside</span><span class="val" style="color:var(--green)">${d.upside}</span></div>` : ''}
+    <div style="margin-top:6px">${tagHtml}</div>
+    <div class="card-tesis">${d.tesis}</div>
+    ${d.note ? `<div class="card-tesis" style="margin-top:6px;color:var(--yellow)">⚠️ ${d.note}</div>` : ''}
+  </div>`;
+}
+
+document.getElementById('active-cards').innerHTML = ACTIVE.map(renderCard).join('');
+document.getElementById('radar-cards').innerHTML = RADAR_AI.map(renderCard).join('');
+document.getElementById('energy-cards').innerHTML = RADAR_ENERGY.map(renderCard).join('');
+
+document.getElementById('portfolio-rows').innerHTML = PORTFOLIO.map(p => `
+  <tr>
+    <td class="ticker-cell">${p.ticker}</td>
+    <td>${p.name}</td>
+    <td><span class="wl-tag china">${p.sector}</span></td>
+    <td style="font-size:12px">${p.tesis}</td>
+    <td><span class="badge hold">${p.estado}</span></td>
+  </tr>
+`).join('');
+
+const typeMap = { warn: 'warn', ok: 'ok', alert: 'alert', neutral: '' };
+document.getElementById('insights-list').innerHTML = INSIGHTS.map(i => `
+  <div class="insight-card ${typeMap[i.type]||''}">
+    <div class="insight-date">${i.date}</div>
+    <div class="insight-text">${i.text}</div>
+  </div>
+`).join('');
+</script>
+</body>
+</html>
