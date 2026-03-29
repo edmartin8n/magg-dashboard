@@ -1,5 +1,5 @@
 {
-  "generated": "2026-03-29T09:30:17.817665",
+  "generated": "2026-03-29T20:03:15.209502",
   "total": 40,
   "entries": [
     {
@@ -8,17 +8,19 @@
       "weekday_es": "Domingo",
       "summary": "**Tarea ejecutada:** Dashboard de Acciones — GitHub Pages",
       "topics": [
-        "02:00 — Tarea autónoma"
+        "02:00 — Tarea autónoma",
+        "15:52 — Canal #ana: Búsqueda activa de trabajo"
       ],
       "tags": [
         "MAGG",
         "CRM",
+        "Discord",
         "Personal",
         "Infra",
         "Bolsa"
       ],
-      "activity": 25,
-      "content": "# Daily Note — 29/03/2026\n\n## 02:00 — Tarea autónoma\n\n**Tarea ejecutada:** Dashboard de Acciones — GitHub Pages\n\n**Diagnóstico:**\n- HIST-092 ya hecho anoche (28/03 02:00) → no duplicar\n- Casón NBO / GV48 / Litexco: bloqueados en Eduardo, sin acción autónoma posible\n- Dashboard de acciones: Eduardo lo pidió el 26/03 explícitamente (#public-markets: \"¿arrancamos con TradingView o construimos dashboard propio?\") — decisión nunca tomada\n- Tarea elegida: construirlo yo, presentarlo hecho en el morning brief\n\n**Construido:**\n- `/stocks/index.html` — Dashboard privado completo (pass: magg2026)\n- Tabs: 🎯 Watchlist · 📊 Portfolio · 🌍 Macro · 💡 Insights\n- Watchlist activa: BABA (hold, tesis deep value)\n- Radar AI Buildout: NVDA/AVGO/ANET/MRVL/TSM (acumular)\n- Energía/Infra: CEG/VRT/GDX (acumular/hedge)\n- Portfolio: Eduardo (BABA) + Álvaro ($50k con distribución de pesos)\n- Macro: PCE, Fed, Ormuz, calendario económico, framework decisión actual\n- Insights: últimos 6 briefings AI Buildout scanner capturados\n\n**Commit:** 738f49b — feat: dashboard acciones publico markets [29/03/2026]\n- GitHub Pages: https://edmartin8n.github.io/magg-dashboard/stocks/index.html\n- Push main + gh-pages ✅ (live en ~1-2 min)\n\n**Pendientes al amanecer 29/03:**\n- Casón NBO — 14d post-deadline, sin respuesta Eduardo\n- GV48 — Eastdil >16d sin respuesta  \n- Litexco/Boreal PDF — Eduardo no confirmó (4d)\n- Decisión dashboard acciones → ¡presentado hecho!\n"
+      "activity": 40,
+      "content": "# Daily Note — 29/03/2026\n\n## 02:00 — Tarea autónoma\n\n**Tarea ejecutada:** Dashboard de Acciones — GitHub Pages\n\n**Diagnóstico:**\n- HIST-092 ya hecho anoche (28/03 02:00) → no duplicar\n- Casón NBO / GV48 / Litexco: bloqueados en Eduardo, sin acción autónoma posible\n- Dashboard de acciones: Eduardo lo pidió el 26/03 explícitamente (#public-markets: \"¿arrancamos con TradingView o construimos dashboard propio?\") — decisión nunca tomada\n- Tarea elegida: construirlo yo, presentarlo hecho en el morning brief\n\n**Construido:**\n- `/stocks/index.html` — Dashboard privado completo (pass: magg2026)\n- Tabs: 🎯 Watchlist · 📊 Portfolio · 🌍 Macro · 💡 Insights\n- Watchlist activa: BABA (hold, tesis deep value)\n- Radar AI Buildout: NVDA/AVGO/ANET/MRVL/TSM (acumular)\n- Energía/Infra: CEG/VRT/GDX (acumular/hedge)\n- Portfolio: Eduardo (BABA) + Álvaro ($50k con distribución de pesos)\n- Macro: PCE, Fed, Ormuz, calendario económico, framework decisión actual\n- Insights: últimos 6 briefings AI Buildout scanner capturados\n\n**Commit:** 738f49b — feat: dashboard acciones publico markets [29/03/2026]\n- GitHub Pages: https://edmartin8n.github.io/magg-dashboard/stocks/index.html\n- Push main + gh-pages ✅ (live en ~1-2 min)\n\n**Pendientes al amanecer 29/03:**\n- Casón NBO — 14d post-deadline, sin respuesta Eduardo\n- GV48 — Eastdil >16d sin respuesta  \n- Litexco/Boreal PDF — Eduardo no confirmó (4d)\n- Decisión dashboard acciones → ¡presentado hecho!\n\n## 15:52 — Canal #ana: Búsqueda activa de trabajo\n\nEduardo ha activado búsqueda activa de trabajo. Decisiones tomadas:\n\n### HH tracker\n- Jaime Sánchez Saralegui (LHH) → CONTACTADO (Eduardo le escribió hoy 29/03)\n- Eduardo Vélez (Talengo) → por contactar\n- Marcelo Scocco (Akens) → por contactar\n- Ana Reboiro Reviriego (Robert Walters) → por contactar\n- Marta Salgado Borchert → firma pendiente de confirmar\n\n### Candidaturas activas\n- Minor Hotels — Franchise Director Iberia (CV adaptado enviado)\n- HBX Group — Head of JV & M&A Development (pendiente aplicar)\n\n### Plan acordado\n1. Cron daily 20:30 → #ana — status contactos + todos + ideas nuevas\n2. Screening HH ampliado (Real Estate / PE / IB / Corporate Finance)\n3. CV actualización: reforzar experiencia MAGG actual + expertise IA para RE\n"
     },
     {
       "date": "2026-03-28",
