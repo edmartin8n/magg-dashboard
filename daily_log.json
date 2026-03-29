@@ -1,7 +1,45 @@
 {
-  "generated": "2026-03-27T22:31:22.245206",
-  "total": 38,
+  "generated": "2026-03-29T09:30:17.817665",
+  "total": 40,
   "entries": [
+    {
+      "date": "2026-03-29",
+      "weekday": "Sunday",
+      "weekday_es": "Domingo",
+      "summary": "**Tarea ejecutada:** Dashboard de Acciones — GitHub Pages",
+      "topics": [
+        "02:00 — Tarea autónoma"
+      ],
+      "tags": [
+        "MAGG",
+        "CRM",
+        "Personal",
+        "Infra",
+        "Bolsa"
+      ],
+      "activity": 25,
+      "content": "# Daily Note — 29/03/2026\n\n## 02:00 — Tarea autónoma\n\n**Tarea ejecutada:** Dashboard de Acciones — GitHub Pages\n\n**Diagnóstico:**\n- HIST-092 ya hecho anoche (28/03 02:00) → no duplicar\n- Casón NBO / GV48 / Litexco: bloqueados en Eduardo, sin acción autónoma posible\n- Dashboard de acciones: Eduardo lo pidió el 26/03 explícitamente (#public-markets: \"¿arrancamos con TradingView o construimos dashboard propio?\") — decisión nunca tomada\n- Tarea elegida: construirlo yo, presentarlo hecho en el morning brief\n\n**Construido:**\n- `/stocks/index.html` — Dashboard privado completo (pass: magg2026)\n- Tabs: 🎯 Watchlist · 📊 Portfolio · 🌍 Macro · 💡 Insights\n- Watchlist activa: BABA (hold, tesis deep value)\n- Radar AI Buildout: NVDA/AVGO/ANET/MRVL/TSM (acumular)\n- Energía/Infra: CEG/VRT/GDX (acumular/hedge)\n- Portfolio: Eduardo (BABA) + Álvaro ($50k con distribución de pesos)\n- Macro: PCE, Fed, Ormuz, calendario económico, framework decisión actual\n- Insights: últimos 6 briefings AI Buildout scanner capturados\n\n**Commit:** 738f49b — feat: dashboard acciones publico markets [29/03/2026]\n- GitHub Pages: https://edmartin8n.github.io/magg-dashboard/stocks/index.html\n- Push main + gh-pages ✅ (live en ~1-2 min)\n\n**Pendientes al amanecer 29/03:**\n- Casón NBO — 14d post-deadline, sin respuesta Eduardo\n- GV48 — Eastdil >16d sin respuesta  \n- Litexco/Boreal PDF — Eduardo no confirmó (4d)\n- Decisión dashboard acciones → ¡presentado hecho!\n"
+    },
+    {
+      "date": "2026-03-28",
+      "weekday": "Saturday",
+      "weekday_es": "Sábado",
+      "summary": "**Tarea ejecutada:** HIST-092 Don Cristian Málaga — CRM fix + activar en TX sidebar",
+      "topics": [
+        "02:00 — Tarea autónoma",
+        "20:15 — Cierre del día"
+      ],
+      "tags": [
+        "MAGG",
+        "CRM",
+        "Gmail",
+        "Infra",
+        "Notion",
+        "Bolsa"
+      ],
+      "activity": 44,
+      "content": "# Daily Note — 28/03/2026\n\n## 02:00 — Tarea autónoma\n\n**Tarea ejecutada:** HIST-092 Don Cristian Málaga — CRM fix + activar en TX sidebar\n\n**Diagnóstico:**\n- 009 Sevilla ya actualizado ayer (02:00 noche anterior) → no duplicar\n- HIST-092 Don Cristian: brief ya existía en GitHub Pages (092-don-cristian.html, HTTP 200) desde 08/03/2026\n- Problema: en el CRM `is_magg: false` + `ic_link: \"\"` → no aparecía en TX Copilot sidebar\n- Datos del deal en CRM eran los del Excel (YoC 9.78%) en vez de los de UW v2 (14.27%)\n- Brief no enlazado desde ningún sitio → Eduardo no podía acceder fácilmente\n\n**Tarea seleccionada:** 🔴 Prioridad 1 — HIST-092 Don Cristian: activar en CRM TX sidebar + corregir datos + linkar IC Brief\n\n**Ejecutado:**\n\n1. **CRM actualizado** — HIST-092 Don Cristian en `index.html`:\n   - `is_magg: true` → aparece en TX Copilot sidebar ✅\n   - `ic_link` → https://edmartin8n.github.io/magg-dashboard/briefs/092-don-cristian.html ✅\n   - Datos UW v2 correctos: `yoc: 0.1427`, `yield_exit: 0.0575`, `spread: 852` ✅\n   - Veredicto: \"STRONG GO ✅\" (no \"GO ✅\")\n   - Nombre: \"Hotel Don Cristian — Málaga Centro\" (más descriptivo)\n   - Estado: \"En Negociación\"\n   - Inversión total €12.5M (compra €5.48M + CapEx €7.04M) añadida a notas\n   - Próximo paso actualizado con acciones concretas\n\n2. **GitHub Pages** — commit `ebbdb56` + push main + gh-pages ✅\n\n**URLs:**\n- IC Brief: https://edmartin8n.github.io/magg-dashboard/briefs/092-don-cristian.html ✅\n- CRM (TX sidebar activo): https://edmartin8n.github.io/magg-dashboard/ (pass: magg2026)\n\n**Veredicto HIST-092:**\n- Precio: €5.48M · 84 keys · 2.640 sqm · Málaga Centro\n- Total inversión: €12.52M (€5.48M compra + €7.04M CapEx broker)\n- ADR €140 / Occ 80% / NOI €1.785M / YoC 14.27%\n- Exit 5.75% → €31.04M / Spread +852 bps / IRR lev ~55% / Múltiple ~4.0x\n- **STRONG GO** — mejor deal del portfolio por margen de seguridad\n\n**Pendientes al amanecer 28/03:**\n- Casón NBO — sigue sin respuesta Eduardo (13d post-deadline)\n- GV48 — Eastdil >15d sin respuesta\n- Litexco/Boreal PDF — Eduardo no ha respondido a \"¿Genero PDF?\"\n- Decisión dashboard acciones (TradingView vs GitHub Pages)\n\n---\n\n## 20:15 — Cierre del día\n\n- Sábado en silencio total. Eduardo sin actividad. Gmail 0 emails.\n- Pendientes arrastran íntegros a domingo.\n- Mission Control actualizado. Workspace commiteado.\n\n**Top 3 domingo 29/03:**\n1. 🔴 Casón NBO — 14d post-deadline · ¿push final o archivar?\n2. 🟡 Litexco/Boreal PDF — insistir si no responde (4d sin confirmar)\n3. 📈 Review tesis Alibaba — macro sticky, VIX 29.6, contexto hawkish\n"
+    },
     {
       "date": "2026-03-27",
       "weekday": "Friday",
