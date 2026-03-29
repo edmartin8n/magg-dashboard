@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🎯 ANA — Job Search Mission Control</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0f0f13; color: #e2e8f0; min-height: 100vh; }
+
+  /* Header */
+  .header { background: linear-gradient(135deg, #1e1b4b 0%, #312e81 100%); padding: 24px 32px; border-bottom: 1px solid #3730a3; }
+  .header h1 { font-size: 1.5rem; font-weight: 700; color: #fff; }
+  .header p { color: #a5b4fc; font-size: 0.85rem; margin-top: 4px; }
+  .header-row { display: flex; justify-content: space-between; align-items: center; }
+  .badge { background: #4f46e5; color: #fff; font-size: 0.7rem; padding: 3px 10px; border-radius: 20px; font-weight: 600; }
+
+  /* Tabs */
+  .tabs { display: flex; background: #16161e; border-bottom: 1px solid #27272a; padding: 0 32px; gap: 4px; }
+  .tab { padding: 12px 20px; cursor: pointer; font-size: 0.85rem; color: #71717a; border-bottom: 2px solid transparent; transition: all 0.2s; }
+  .tab:hover { color: #a5b4fc; }
+  .tab.active { color: #818cf8; border-bottom-color: #818cf8; font-weight: 600; }
+
+  /* Content */
+  .content { padding: 28px 32px; max-width: 1200px; }
+  .panel { display: none; }
+  .panel.active { display: block; }
+
+  /* Cards */
+  .card { background: #18181b; border: 1px solid #27272a; border-radius: 12px; padding: 20px; margin-bottom: 16px; }
+  .card-title { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: #71717a; margin-bottom: 12px; font-weight: 600; }
+
+  /* KPI row */
+  .kpi-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 24px; }
+  .kpi { background: #18181b; border: 1px solid #27272a; border-radius: 10px; padding: 16px 20px; }
+  .kpi-value { font-size: 2rem; font-weight: 700; color: #818cf8; }
+  .kpi-label { font-size: 0.75rem; color: #71717a; margin-top: 2px; }
+
+  /* Table */
+  table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+  th { text-align: left; padding: 10px 12px; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.05em; color: #71717a; border-bottom: 1px solid #27272a; }
+  td { padding: 12px 12px; border-bottom: 1px solid #1f1f23; vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #1f1f23; }
+
+  /* Status badges */
+  .status { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 0.7rem; font-weight: 600; white-space: nowrap; }
+  .s-contactado { background: #14532d; color: #86efac; }
+  .s-pending { background: #3f1515; color: #fca5a5; }
+  .s-applied { background: #1e3a5f; color: #93c5fd; }
+  .s-espera { background: #2d1b69; color: #c4b5fd; }
+  .s-go { background: #14532d; color: #86efac; }
+  .s-nogo { background: #3f1515; color: #fca5a5; }
+
+  /* Priority */
+  .prio-high { color: #f87171; font-weight: 600; }
+  .prio-med { color: #fbbf24; }
+  .prio-low { color: #71717a; }
+
+  /* Todo */
+  .todo-item { display: flex; align-items: flex-start; gap: 10px; padding: 10px 0; border-bottom: 1px solid #1f1f23; }
+  .todo-item:last-child { border-bottom: none; }
+  .todo-check { width: 18px; height: 18px; border: 2px solid #3730a3; border-radius: 4px; flex-shrink: 0; margin-top: 1px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s; }
+  .todo-check:hover { background: #3730a3; }
+  .todo-text { flex: 1; }
+  .todo-text strong { display: block; font-size: 0.88rem; color: #e2e8f0; }
+  .todo-text span { font-size: 0.78rem; color: #71717a; }
+  .todo-tag { font-size: 0.68rem; padding: 2px 8px; border-radius: 10px; background: #27272a; color: #a1a1aa; font-weight: 500; }
+  .todo-tag.urgent { background: #3f1515; color: #fca5a5; }
+  .todo-tag.cv { background: #1e3a5f; color: #93c5fd; }
+  .todo-tag.hh { background: #2d1b69; color: #c4b5fd; }
+
+  /* Tier labels */
+  .tier { font-size: 0.7rem; padding: 2px 8px; border-radius: 10px; background: #27272a; color: #a1a1aa; }
+  .tier-1 { background: #1e3a5f; color: #93c5fd; }
+  .tier-2 { background: #27272a; color: #a1a1aa; }
+  .tier-boutique { background: #2d1b69; color: #c4b5fd; }
+
+  /* LinkedIn link */
+  a.li { color: #818cf8; text-decoration: none; font-size: 0.8rem; }
+  a.li:hover { text-decoration: underline; }
+
+  /* Section header */
+  .section-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+  .section-title { font-size: 1rem; font-weight: 600; color: #e2e8f0; }
+  .section-date { font-size: 0.75rem; color: #71717a; }
+
+  /* Update banner */
+  .banner { background: #1e1b4b; border: 1px solid #3730a3; border-radius: 8px; padding: 10px 16px; margin-bottom: 20px; font-size: 0.82rem; color: #a5b4fc; }
+  .banner strong { color: #818cf8; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-row">
+    <div>
+      <h1>🎯 ANA — Job Search Mission Control</h1>
+      <p>Eduardo Martín-Montalvo · Búsqueda activa · MD / Director Investment &amp; Hospitality RE</p>
+    </div>
+    <span class="badge">ACTIVO</span>
+  </div>
+</div>
+
+<div class="tabs">
+  <div class="tab active" onclick="showTab('dashboard')">📊 Dashboard</div>
+  <div class="tab" onclick="showTab('hh')">👥 HH Tracker</div>
+  <div class="tab" onclick="showTab('candidaturas')">💼 Candidaturas</div>
+  <div class="tab" onclick="showTab('todos')">✅ Todos</div>
+  <div class="tab" onclick="showTab('cv')">📄 CV &amp; Pitch</div>
+</div>
+
+<div class="content">
+
+<!-- DASHBOARD -->
+<div id="tab-dashboard" class="panel active">
+  <div class="banner">
+    <strong>Última actualización:</strong> 29/03/2026 · 2 HH contactados hoy (Jaime Sánchez / LHH · Pedro Olmedo / Villarroel &amp; Hunter) · Cron diario 20:30 activo ✅
+  </div>
+
+  <div class="kpi-row">
+    <div class="kpi">
+      <div class="kpi-value">2</div>
+      <div class="kpi-label">HH contactados</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-value">5</div>
+      <div class="kpi-label">HH por contactar</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-value">2</div>
+      <div class="kpi-label">Candidaturas activas</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-value">0</div>
+      <div class="kpi-label">Respuestas recibidas</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🔥 Próximas acciones prioritarias</div>
+    <div class="todo-item">
+      <div class="todo-check" onclick="toggleCheck(this)"></div>
+      <div class="todo-text">
+        <strong>Aplicar a HBX Group — Head of JV &amp; M&amp;A</strong>
+        <span>Fit natural. Mayor prioridad. Job ID: 4374803592</span>
+      </div>
+      <span class="todo-tag urgent">URGENTE</span>
+    </div>
+    <div class="todo-item">
+      <div class="todo-check" onclick="toggleCheck(this)"></div>
+      <div class="todo-text">
+        <strong>Contactar Eduardo Vélez (Talengo)</strong>
+        <span>linkedin.com/in/eduardo-velez-2a54385/</span>
+      </div>
+      <span class="todo-tag hh">HH</span>
+    </div>
+    <div class="todo-item">
+      <div class="todo-check" onclick="toggleCheck(this)"></div>
+      <div class="todo-text">
+        <strong>Contactar Marcelo Scocco (Akens)</strong>
+        <span>linkedin.com/in/marceloscocco/</span>
+      </div>
+      <span class="todo-tag hh">HH</span>
+    </div>
+    <div class="todo-item">
+      <div class="todo-check" onclick="toggleCheck(this)"></div>
+      <div class="todo-text">
+        <strong>Actualizar CV: bloque MAGG actual + IA para RE</strong>
+        <span>Reforzar experiencia 2023-2025 con más detalle y ángulo tecnológico</span>
+      </div>
+      <span class="todo-tag cv">CV</span>
+    </div>
+    <div class="todo-item">
+      <div class="todo-check" onclick="toggleCheck(this)"></div>
+      <div class="todo-text">
+        <strong>Contactar Marta Fernández (Russell Reynolds) — RE Practice Madrid</strong>
+        <span>russellreynolds.com/en/people/consultant-directory/marta-fernandez · Banking, Insurance &amp; RE</span>
+      </div>
+      <span class="todo-tag hh">HH</span>
+    </div>
+    <div class="todo-item">
+      <div class="todo-check" onclick="toggleCheck(this)"></div>
+      <div class="todo-text">
+        <strong>Contactar Antonio Martínez Dalmau (Egon Zehnder) — RE + PE + Infra practice</strong>
+        <span>egonzehnder.com/office/madrid/consultant/antonio-martinez-dalmau</span>
+      </div>
+      <span class="todo-tag hh">HH</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📅 Timeline contactos</div>
+    <table>
+      <thead>
+        <tr><th>Fecha</th><th>Acción</th><th>Estado</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>29/03/2026</td><td>Jaime Sánchez Saralegui (LHH) — mensaje enviado</td><td><span class="status s-contactado">Enviado</span></td></tr>
+        <tr><td>29/03/2026</td><td>Pedro Olmedo de Cáceres (Villarroel &amp; Hunter) — mensaje enviado</td><td><span class="status s-contactado">Enviado</span></td></tr>
+        <tr><td>—</td><td>Eduardo Vélez (Talengo)</td><td><span class="status s-pending">Pendiente</span></td></tr>
+        <tr><td>—</td><td>Marcelo Scocco (Akens)</td><td><span class="status s-pending">Pendiente</span></td></tr>
+        <tr><td>—</td><td>Ana Reboiro (Robert Walters)</td><td><span class="status s-pending">Pendiente</span></td></tr>
+        <tr><td>—</td><td>Marta Salgado Borchert (firma ?)</td><td><span class="status s-pending">Pendiente</span></td></tr>
+        <tr><td>—</td><td>Marta Fernández (Russell Reynolds)</td><td><span class="status s-pending">Por añadir</span></td></tr>
+        <tr><td>—</td><td>Antonio Martínez Dalmau (Egon Zehnder)</td><td><span class="status s-pending">Por añadir</span></td></tr>
+        <tr><td>—</td><td>Stefano Salvatore (Heidrick &amp; Struggles Madrid)</td><td><span class="status s-pending">Por añadir</span></td></tr>
+        <tr><td>—</td><td>KiTalent Spain — contacto directo</td><td><span class="status s-pending">Por añadir</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- HH TRACKER -->
+<div id="tab-hh" class="panel">
+  <div class="section-header">
+    <div class="section-title">👥 Headhunter Tracker</div>
+    <div class="section-date">10 HH identificados · 2 contactados</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">✅ Contactados</div>
+    <table>
+      <thead>
+        <tr><th>Nombre</th><th>Firma</th><th>Especialidad RE/PE/IB</th><th>Estado</th><th>Fecha</th><th>Notas</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Jaime Sánchez Saralegui</strong><br><a class="li" href="https://www.linkedin.com/in/jaimesanchezsaralegui/" target="_blank">↗ LinkedIn</a></td>
+          <td><span class="tier tier-boutique">LHH Executive Search</span></td>
+          <td>RE · Infrastructure · Energy — Senior Principal</td>
+          <td><span class="status s-contactado">✅ Contactado</span></td>
+          <td>29/03/2026</td>
+          <td>Poster oferta Business Dev Director RE (LHH)</td>
+        </tr>
+        <tr>
+          <td><strong>Pedro Olmedo de Cáceres</strong><br><a class="li" href="https://www.linkedin.com/in/pedro-olmedo-de-c%C3%A1ceres-27947318/" target="_blank">↗ LinkedIn</a></td>
+          <td><span class="tier tier-boutique">Villarroel &amp; Hunter</span></td>
+          <td>Directivos generalista Madrid — ex Hays</td>
+          <td><span class="status s-contactado">✅ Contactado</span></td>
+          <td>29/03/2026</td>
+          <td>—</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🔴 Por contactar — Tier 1 (grandes firmas, RE/PE track)</div>
+    <table>
+      <thead>
+        <tr><th>Nombre</th><th>Firma</th><th>Especialidad</th><th>Contacto</th><th>Prioridad</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Marta Fernández</strong></td>
+          <td><span class="tier tier-1">Russell Reynolds</span></td>
+          <td>Banking · Insurance · Real Estate Practice — Madrid</td>
+          <td><a class="li" href="https://www.russellreynolds.com/en/people/consultant-directory/marta-fernandez" target="_blank">↗ Perfil RRA</a></td>
+          <td class="prio-high">⬆ Alta</td>
+        </tr>
+        <tr>
+          <td><strong>Antonio Martínez Dalmau</strong></td>
+          <td><span class="tier tier-1">Egon Zehnder</span></td>
+          <td>Industrial · Infrastructure · Real Estate · Private Capital — Madrid</td>
+          <td><a class="li" href="https://www.egonzehnder.com/office/madrid/consultant/antonio-martinez-dalmau" target="_blank">↗ Perfil EZ</a></td>
+          <td class="prio-high">⬆ Alta</td>
+        </tr>
+        <tr>
+          <td><strong>Stefano Salvatore</strong></td>
+          <td><span class="tier tier-1">Heidrick &amp; Struggles</span></td>
+          <td>Partner in Charge Madrid — Financial Services · RE · PE</td>
+          <td><a class="li" href="https://www.heidrick.com/en/offices/madrid" target="_blank">↗ Heidrick Madrid</a></td>
+          <td class="prio-med">→ Media</td>
+        </tr>
+        <tr>
+          <td><strong>Korn Ferry Madrid</strong></td>
+          <td><span class="tier tier-1">Korn Ferry</span></td>
+          <td>PE · RE · Asset Management</td>
+          <td><a class="li" href="https://www.kornferry.com/es" target="_blank">↗ Web</a></td>
+          <td class="prio-med">→ Media</td>
+        </tr>
+        <tr>
+          <td><strong>Spencer Stuart Madrid</strong></td>
+          <td><span class="tier tier-1">Spencer Stuart</span></td>
+          <td>Financial Services · Board · RE</td>
+          <td><a class="li" href="https://www.spencerstuart.com" target="_blank">↗ Web</a></td>
+          <td class="prio-med">→ Media</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🔴 Por contactar — Tier 2 (boutiques + mid-market)</div>
+    <table>
+      <thead>
+        <tr><th>Nombre</th><th>Firma</th><th>Especialidad</th><th>Contacto</th><th>Prioridad</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Eduardo Vélez</strong><br><a class="li" href="https://www.linkedin.com/in/eduardo-velez-2a54385/" target="_blank">↗ LinkedIn</a></td>
+          <td><span class="tier tier-2">Talengo</span></td>
+          <td>Alta dirección generalista</td>
+          <td>LinkedIn</td>
+          <td class="prio-high">⬆ Alta</td>
+        </tr>
+        <tr>
+          <td><strong>Marcelo Scocco</strong><br><a class="li" href="https://www.linkedin.com/in/marceloscocco/" target="_blank">↗ LinkedIn</a></td>
+          <td><span class="tier tier-2">Akens</span></td>
+          <td>Por confirmar</td>
+          <td>LinkedIn</td>
+          <td class="prio-high">⬆ Alta</td>
+        </tr>
+        <tr>
+          <td><strong>Ana Reboiro Reviriego</strong><br><a class="li" href="https://www.linkedin.com/in/ana-reboiro-reviriego-8a0ba681/" target="_blank">↗ LinkedIn</a></td>
+          <td><span class="tier tier-2">Robert Walters</span></td>
+          <td>Banking &amp; Financial Services — Manager</td>
+          <td>LinkedIn</td>
+          <td class="prio-med">→ Media</td>
+        </tr>
+        <tr>
+          <td><strong>Marta Salgado Borchert</strong><br><a class="li" href="https://www.linkedin.com/in/marta-salgado-borchert-679705107/" target="_blank">↗ LinkedIn</a></td>
+          <td><span class="tier tier-2">Firma pendiente</span></td>
+          <td>Por confirmar</td>
+          <td>LinkedIn</td>
+          <td class="prio-med">→ Media</td>
+        </tr>
+        <tr>
+          <td><strong>KiTalent Spain</strong></td>
+          <td><span class="tier tier-boutique">KiTalent</span></td>
+          <td>RE investment + development — especialista puro</td>
+          <td><a class="li" href="https://kitalent.com/es/real-estate-construction" target="_blank">↗ Web RE</a></td>
+          <td class="prio-high">⬆ Alta</td>
+        </tr>
+        <tr>
+          <td><strong>W Executive RE</strong></td>
+          <td><span class="tier tier-boutique">W Executive</span></td>
+          <td>Inmobiliario Madrid — especialista</td>
+          <td><a class="li" href="https://www.wexecutive.es/que-hacemos/sectores/headhunter-inmobiliario/" target="_blank">↗ Web</a></td>
+          <td class="prio-med">→ Media</td>
+        </tr>
+        <tr>
+          <td><strong>Luis Urbano</strong><br><a class="li" href="https://es.linkedin.com/in/luis-urbano-442285a" target="_blank">↗ LinkedIn</a></td>
+          <td><span class="tier tier-2">Heidrick &amp; Struggles</span></td>
+          <td>CEO &amp; Board — Madrid</td>
+          <td>LinkedIn</td>
+          <td class="prio-low">↓ Baja</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- CANDIDATURAS -->
+<div id="tab-candidaturas" class="panel">
+  <div class="section-header">
+    <div class="section-title">💼 Candidaturas activas</div>
+    <div class="section-date">2 activas · 0 respuestas</div>
+  </div>
+
+  <div class="card">
+    <table>
+      <thead>
+        <tr><th>Ref</th><th>Empresa</th><th>Rol</th><th>Encaje</th><th>Estado</th><th>Acción</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>J001</strong></td>
+          <td><strong>HBX Group</strong></td>
+          <td>Head of JV &amp; M&amp;A Development — Spain</td>
+          <td><span class="status s-go">⭐ Fit alto</span></td>
+          <td><span class="status s-pending">🔴 Pendiente aplicar</span></td>
+          <td>Aplicar ya · Job ID 4374803592</td>
+        </tr>
+        <tr>
+          <td><strong>J002</strong></td>
+          <td><strong>Minor Hotels</strong></td>
+          <td>Franchise Director Iberia</td>
+          <td><span class="status s-espera">→ Fit parcial</span></td>
+          <td><span class="status s-applied">📤 CV enviado</span></td>
+          <td>Esperar respuesta · tracción</td>
+        </tr>
+        <tr>
+          <td><strong>J003</strong></td>
+          <td><strong>LHH (cliente conf.)</strong></td>
+          <td>Business Development Director — Real Estate</td>
+          <td><span class="status s-go">⭐ Fit alto</span></td>
+          <td><span class="status s-pending">🔴 Pendiente</span></td>
+          <td>Preguntar a Jaime Sánchez (ya contactado)</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📝 Notas candidaturas</div>
+    <div style="font-size:0.85rem; line-height:1.7; color:#a1a1aa;">
+      <p><strong style="color:#e2e8f0;">HBX Group</strong> — Empresa travel/hospitality global. Rol M&amp;A + JV es fit directo con perfil MAGG + CBRE. Aplicar directamente en LinkedIn. Ver si hay contacto interno.</p>
+      <br>
+      <p><strong style="color:#e2e8f0;">Minor Hotels</strong> — Fit parcial (HMA/lease sí, franchise puro no). CV adaptado enviado. Sirve para tracción y práctica de entrevistas.</p>
+      <br>
+      <p><strong style="color:#e2e8f0;">LHH Business Dev RE</strong> — Oferta activa gestionada por Jaime Sánchez Saralegui. Mencionar en la respuesta de Jaime.</p>
+    </div>
+  </div>
+</div>
+
+<!-- TODOS -->
+<div id="tab-todos" class="panel">
+  <div class="section-header">
+    <div class="section-title">✅ Todos pendientes</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🔴 Urgente</div>
+    <div class="todo-item">
+      <div class="todo-check" onclick="toggleCheck(this)"></div>
+      <div class="todo-text">
+        <strong>Aplicar a HBX Group (Head of JV &amp; M&amp;A)</strong>
+        <span>Máxima prioridad. Fit directo. Job ID: 4374803592</span>
+      </div>
+      <span class="todo-tag urgent">URGENTE</span>
+    </div>
+    <div class="todo-item">
+      <div class="todo-check" onclick="toggleCheck(this)"></div>
+      <div class="todo-text">
+        <strong>Confirmar firma de Marta Salgado Borchert</strong>
+        <span>Falta dato para completar tracker</span>
+      </div>
+      <span class="todo-tag hh">HH</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🟡 Esta semana — HH outreach</div>
+    <div class="todo-item">
+      <div class="todo-check" onclick="toggleCheck(this)"></div>
+      <div class="todo-text">
+        <strong>Mensaje a Eduardo Vélez (Talengo)</strong>
+        <span>linkedin.com/in/eduardo-velez-2a54385/ · Usa el mensaje base que te paso</span>
+      </div>
+      <span class="todo-tag hh">HH</span>
+    </div>
+    <div class="todo-item">
+      <div class="todo-check" onclick="toggleCheck(this)"></div>
+      <div class="todo-text">
+        <strong>Mensaje a Marcelo Scocco (Akens)</strong>
+        <span>linkedin.com/in/marceloscocco/</span>
+      </div>
+      <span class="todo-tag hh">HH</span>
+    </div>
+    <div class="todo-item">
+      <div class="todo-check" onclick="toggleCheck(this)"></div>
+      <div class="todo-text">
+        <strong>Mensaje a Ana Reboiro (Robert Walters)</strong>
+        <span>linkedin.com/in/ana-reboiro-reviriego-8a0ba681/</span>
+      </div>
+      <span class="todo-tag hh">HH</span>
+    </div>
+    <div class="todo-item">
+      <div class="todo-check" onclick="toggleCheck(this)"></div>
+      <div class="todo-text">
+        <strong>Contactar Marta Fernández (Russell Reynolds) — RE Practice</strong>
+        <span>russellreynolds.com/en/people/consultant-directory/marta-fernandez · Top prioridad Tier 1</span>
+      </div>
+      <span class="todo-tag hh">HH</span>
+    </div>
+    <div class="todo-item">
+      <div class="todo-check" onclick="toggleCheck(this)"></div>
+      <div class="todo-text">
+        <strong>Contactar Antonio Martínez Dalmau (Egon Zehnder) — RE + PE</strong>
+        <span>egonzehnder.com/office/madrid/consultant/antonio-martinez-dalmau</span>
+      </div>
+      <span class="todo-tag hh">HH</span>
+    </div>
+    <div class="todo-item">
+      <div class="todo-check" onclick="toggleCheck(this)"></div>
+      <div class="todo-text">
+        <strong>Contactar KiTalent Spain — RE investment/development</strong>
+        <span>kitalent.com/es/real-estate-construction · Boutique especializada, muy relevante</span>
+      </div>
+      <span class="todo-tag hh">HH</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🔵 CV &amp; Posicionamiento</div>
+    <div class="todo-item">
+      <div class="todo-check" onclick="toggleCheck(this)"></div>
+      <div class="todo-text">
+        <strong>Actualizar CV — bloque MAGG detallado</strong>
+        <span>Más detalle en deals cerrados, volumen gestionado, fundraising logros 2023-2025</span>
+      </div>
+      <span class="todo-tag cv">CV</span>
+    </div>
+    <div class="todo-item">
+      <div class="todo-check" onclick="toggleCheck(this)"></div>
+      <div class="todo-text">
+        <strong>Añadir ángulo IA para RE al CV</strong>
+        <span>Deal screening automatizado, análisis financiero, reporting con IA</span>
+      </div>
+      <span class="todo-tag cv">CV</span>
+    </div>
+    <div class="todo-item">
+      <div class="todo-check" onclick="toggleCheck(this)"></div>
+      <div class="todo-text">
+        <strong>Actualizar LinkedIn headline + about section</strong>
+        <span>Alineado con nuevo CV. Tenacitas puede escribirlo.</span>
+      </div>
+      <span class="todo-tag cv">CV</span>
+    </div>
+  </div>
+</div>
+
+<!-- CV & PITCH -->
+<div id="tab-cv" class="panel">
+  <div class="section-header">
+    <div class="section-title">📄 CV &amp; Pitch</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📌 CV Versiones</div>
+    <table>
+      <thead>
+        <tr><th>Versión</th><th>Objetivo</th><th>Estado</th><th>Cambios vs base</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>cv_minor_hotels.pptx</strong></td>
+          <td>Minor Hotels — Franchise Director Iberia</td>
+          <td><span class="status s-go">✅ Listo</span></td>
+          <td>Headline Hospitality Dev Leader · bullet HMA/lease → franchise · AI line</td>
+        </tr>
+        <tr>
+          <td><strong>CV base (original)</strong></td>
+          <td>General</td>
+          <td><span class="status s-espera">→ Actualizar</span></td>
+          <td>Reforzar MAGG 2023-2025 + IA para RE</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">💬 Pitch de perfil (borrador)</div>
+    <div style="font-size:0.85rem; line-height:1.8; color:#a1a1aa; background:#0f0f13; padding:16px; border-radius:8px; border-left:3px solid #4f46e5;">
+      <em>"Llevo más de 15 años en investment banking e inversión inmobiliaria — desde Arcano y Mirabaud hasta CBRE y MAGG Capital. He liderado deals de M&amp;A, JV, financiación alternativa y expansión de plataformas hospitality en Iberia e Italia. En MAGG estructuro y ejecuto operaciones end-to-end: sourcing, underwriting, negociación y financiación. Busco el siguiente paso como MD o Director de Inversión/Desarrollo en una plataforma con ambición real."</em>
+    </div>
+    <div style="font-size:0.78rem; color:#71717a; margin-top:10px;">Para afinar: añadir 1-2 cifras concretas (volumen gestionado, deals cerrados, capital levantado)</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📝 Mensaje outreach HH (plantilla base)</div>
+    <div style="font-size:0.85rem; line-height:1.8; color:#a1a1aa; background:#0f0f13; padding:16px; border-radius:8px; border-left:3px solid #4f46e5;">
+      <p><em>Hola [nombre], espero que estés bien.</em></p><br>
+      <p><em>Me pongo en contacto porque estoy valorando activamente mi próximo paso profesional y creo que tu especialización en [RE / PE / IB] encaja bien con lo que busco.</em></p><br>
+      <p><em>Tengo más de 15 años de experiencia en inversión inmobiliaria y M&amp;A — actualmente como Managing Director en MAGG Capital, el vehículo de inversión de SmartRental, donde lidero deal origination, estructuración de operaciones y fundraising en hospitality/living en Iberia e Italia. Antes estuve en CBRE Investment Banking y Mirabaud.</em></p><br>
+      <p><em>¿Tendría sentido que habláramos 20-30 minutos para explorar si hay procesos activos donde pueda aportar valor?</em></p><br>
+      <p><em>Muchas gracias, Eduardo</em></p>
+    </div>
+    <div style="font-size:0.78rem; color:#71717a; margin-top:10px;">Personalizar: mencionar firma/especialidad específica del HH · añadir referencia a proceso concreto si lo hay</div>
+  </div>
+</div>
+
+</div><!-- /content -->
+
+<script>
+function showTab(tab) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('tab-' + tab).classList.add('active');
+  event.target.classList.add('active');
+}
+
+function toggleCheck(el) {
+  el.classList.toggle('checked');
+  if (el.classList.contains('checked')) {
+    el.innerHTML = '✓';
+    el.style.background = '#3730a3';
+    el.style.color = '#fff';
+    el.parentElement.style.opacity = '0.5';
+  } else {
+    el.innerHTML = '';
+    el.style.background = '';
+    el.style.color = '';
+    el.parentElement.style.opacity = '1';
+  }
+}
+</script>
+</body>
+</html>
