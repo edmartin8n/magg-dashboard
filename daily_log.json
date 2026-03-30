@@ -1,7 +1,24 @@
 {
-  "generated": "2026-03-29T20:15:08.411344",
-  "total": 40,
+  "generated": "2026-03-30T20:12:52.618276",
+  "total": 41,
   "entries": [
+    {
+      "date": "2026-03-30",
+      "weekday": "Monday",
+      "weekday_es": "Lunes",
+      "summary": "**Tarea ejecutada:** Research HH Tier 1 + actualización dashboard Job Search (ANA)",
+      "topics": [
+        "02:00 — Tarea autónoma"
+      ],
+      "tags": [
+        "MAGG",
+        "CRM",
+        "Infra",
+        "Fundraising"
+      ],
+      "activity": 29,
+      "content": "# Daily Note — 30/03/2026\n\n## 02:00 — Tarea autónoma\n\n**Tarea ejecutada:** Research HH Tier 1 + actualización dashboard Job Search (ANA)\n\n**Diagnóstico previo:**\n- MAGG deals bloqueados (Casón/GV48 esperan a Eduardo; Litexco PDF pendiente de OK)\n- Ana job search activa desde 29/03: dashboard creado ✅ pero HH Tier 1 sin investigar ni plantillas preparadas\n- Tarea de mayor impacto autónomo: completar el HH research de grandes firmas (Egon Zehnder / Spencer Stuart / Russell Reynolds) y preparar plantillas de contacto listas para enviar\n\n**Research realizado:**\n- **Egon Zehnder Madrid** → Antonio Martínez Dalmau (Partner, RE + Infrastructure + Private Capital) — activo, LinkedIn confirmado\n- **Spencer Stuart Madrid** → Jaime Gil-Casares (lidera oficinas Madrid/BCN/Lisboa, RE + Financial Services + PE) — confirmado\n- **Russell Reynolds** → Pablo Claver (Country Manager España) — LinkedIn + RRA profile confirmados\n- **Minor Hotels Franchise Director Iberia** → PUESTO ACTIVO confirmado (publicado hace ~1 mes por José Ángel Esteban, Development team)\n- **HBX Group** → Sin vacante publicada activamente, pero fit natural → aplicar directamente\n- **KiTalent Spain** → boutique RE investment/development, relevante\n- **W Executive** → headhunter inmobiliario Madrid confirmado (wexecutive.es)\n\n**Entregables producidos:**\n1. `memory/ana-job-tracker.md` — actualizado con 3 HH Tier 1 nuevos + plantillas de contacto (Egon Zehnder / Spencer Stuart / RRA) + todos actualizados\n2. `/tmp/magg-dashboard/ana/index.html` — dashboard actualizado:\n   - KPIs: 9 HH identificados (antes 5+pend)\n   - Nueva pestaña ✉️ Plantillas con 3 mensajes personalizados listos para enviar\n   - HH Tier 1 añadidos en tabla con links directos\n   - Minor Hotels banner verde ACTIVO + contacto hiring manager directo\n   - Candidaturas actualizadas\n3. Commit a GitHub Pages: 30/03/2026\n\n**Impacto:**\nEduardo puede ahora, en 30 min el lunes, enviar 3 mensajes de HH Tier 1 (Egon / Spencer Stuart / RRA) usando las plantillas — sin tener que investigar ni redactar nada. Además tiene confirmado que Minor Hotels sigue activa y sabe a quién pegar si no hay respuesta esta semana.\n\n**Estado heartbeat:**\n- MEMORY.md: sin cambios necesarios esta noche (events del día ya registrados en daily 29/03)\n- HEARTBEAT.md: sin tareas marcadas como pendientes para hoy\n"
+    },
     {
       "date": "2026-03-29",
       "weekday": "Sunday",
