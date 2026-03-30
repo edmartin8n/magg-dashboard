@@ -966,7 +966,20 @@ function dealTableRow(d) {
     <div class="pl-td ${spreadCls}">${spreadTxt}</div>
     <div class="pl-td muted">${fmtYoc(d.yoc)}</div>
     <div class="pl-td"><span style="font-size:10px;font-weight:700;padding:2px 7px;border-radius:4px;background:${ vkey==='go'?'#e8f5e9':vkey==='borderline'?'#fff8e1':vkey==='analisis'||vkey==='pend'?'#e8f0fe':'#fce4ec' };color:${ vkey==='go'?'#2e7d32':vkey==='borderline'?'#e65100':vkey==='analisis'||vkey==='pend'?'#1565c0':'#c62828' }">${d.estado||'—'}</span></div>
-    <div class="pl-td motivo" title="${d.prox_paso||''}">${d.prox_paso ? d.prox_paso.split(/\s+/).slice(0,8).join(' ')+(d.prox_paso.split(/\s+/).length>8?'…':'') : '—'}</div>
+    <div class="pl-td motivo" title="${d.prox_paso||''}" style="display:flex;align-items:center;gap:5px;overflow:hidden">${(()=>{
+      let badge='';
+      if(d.is_magg && (vkey==='go'||vkey==='borderline'||vkey==='analisis') && d.fecha_accion){
+        const ts=parseFecha(d.fecha_accion);
+        if(ts){
+          const days=Math.floor((Date.now()-ts)/86400000);
+          const bg=days<7?'#e8f5e9':days<14?'#fff3e0':'#fce4ec';
+          const fg=days<7?'#2e7d32':days<14?'#e65100':'#c62828';
+          badge=`<span style="flex-shrink:0;font-size:10px;font-weight:700;padding:1px 5px;border-radius:3px;background:${bg};color:${fg}">${days}d</span>`;
+        }
+      }
+      const txt=d.prox_paso ? d.prox_paso.split(/\s+/).slice(0,7).join(' ')+(d.prox_paso.split(/\s+/).length>7?'…':'') : '—';
+      return badge+`<span style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${txt}</span>`;
+    })()}</div>
   </div>
   <div class="pl-detail${isOpen||isEditing?' open':''}" id="pld-${sr}" onclick="event.stopPropagation()">
     <div class="pl-detail-grid">
