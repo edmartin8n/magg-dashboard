@@ -1,7 +1,23 @@
 {
-  "generated": "2026-03-30T20:15:34.660801",
-  "total": 41,
+  "generated": "2026-03-31T08:31:23.322752",
+  "total": 42,
   "entries": [
+    {
+      "date": "2026-03-31",
+      "weekday": "Tuesday",
+      "weekday_es": "Martes",
+      "summary": "**Tarea ejecutada:** Memo Estratégico MAGG — PEU NZ 9.3 (Suelo Industrial Madrid → Aparthotel/Flexliving)",
+      "topics": [
+        "02:00 — Tarea autónoma"
+      ],
+      "tags": [
+        "MAGG",
+        "CRM",
+        "Infra"
+      ],
+      "activity": 27,
+      "content": "# Daily Note — 31/03/2026\n\n## 02:00 — Tarea autónoma\n\n**Tarea ejecutada:** Memo Estratégico MAGG — PEU NZ 9.3 (Suelo Industrial Madrid → Aparthotel/Flexliving)\n\n**Por qué esta tarea:**\n- MAGG deals principales bloqueados en terceros (Casón: NBO sin respuesta; GV48: Eastdil 16d; Sevilla: OM Tatyana; Cabestreros: precio pendiente)\n- Ayer 30/03 sync PM capturó alerta EY sobre el **Plan Especial Urbanístico NZ 9.3** publicado por el Ayuntamiento de Madrid — 240+ parcelas industriales que podrán acoger aparthotels/flexliving\n- Impacto potencial para MAGG: nueva línea de deal sourcing con arbitraje regulatorio pre-aprobación definitiva (~2027)\n- Nadie ha hecho el análisis estructurado — ventana de oportunidad real en los próximos 3-6 meses\n\n**Investigación realizada:**\n- Contexto regulatorio completo: NZ 9.3, Plan RESIDE, PGOU 1997, modificación 2007, tramitación PEU\n- Distritos afectados y análisis por zona: Arganzuela y Chamartín = foco MAGG (mejor balance accesibilidad/precio)\n- Precios suelo industrial: ~€600-1.100/m² vs residencial zona €5.900/m² (Arganzuela) → descuento ~82%\n- Benchmark flexliving: CBRE €1.000/mes coliving; short-stay ADR €80-110 en periférico estimado\n- Landscape competidores: Grupo HIVE, Greystar, Azora, promotores nacionales\n- Benchmarks RevPAR Madrid: +6.9% H1 2025 → demanda creciente\n\n**Memo producido:**\n- **URL**: https://edmartin8n.github.io/magg-dashboard/briefs/peu-nz93.html\n- Modelo financiero indicativo (3 escenarios): conservador / base / bull para parcela 500 m² Arganzuela ~30 uds\n- Escenario BASE: YoC 9.27%, Spread +352 bps, Equity múltiple 1.61x → **GO en base, borderline en conservador**\n- Riesgos priorizados: regulatorio (main kill-switch) + ADR periférico sin historial\n- Plan acción 60 días: 5 pasos concretos + identificación brokers industriales target\n- Veredicto: **Explorar activamente** — gate = confirmar HMA SmartRental para este formato\n\n**Commit:** 4cd017c — GitHub Pages live ✅\n\n**Impacto esperado:**\n- Abre nueva vertical para MAGG en momento de pipeline bloqueado\n- Diferenciador competitivo: ticket pequeño + SmartRental como operador\n- Requiere OK de Eduardo para arrancar sourcing (threshold bajo: solo validar mandato + HMA SmartRental)\n"
+    },
     {
       "date": "2026-03-30",
       "weekday": "Monday",
