@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MAGG | Memo Estratégico — PEU NZ 9.3 | Suelo Industrial Madrid → Aparthotel/Flexliving</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:Arial,Helvetica,sans-serif;font-size:13px;color:#1a1a2e;background:#f4f6fa;padding:24px}
+  .wrap{max-width:900px;margin:auto;background:white;border-radius:8px;overflow:hidden;box-shadow:0 2px 20px rgba(0,0,0,.1)}
+  .hdr{background:linear-gradient(135deg,#0d1f3c,#1e3a5f);color:white;padding:24px 28px}
+  .hdr-badge{display:inline-block;background:rgba(255,220,100,.25);border:1px solid rgba(255,220,100,.5);color:#ffd764;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:3px 10px;border-radius:10px;margin-bottom:10px}
+  .hdr-title{font-size:22px;font-weight:900;line-height:1.2;margin-bottom:6px}
+  .hdr-sub{font-size:12px;opacity:.75;line-height:1.5}
+  .hdr-meta{margin-top:12px;display:flex;gap:12px;flex-wrap:wrap;font-size:11px}
+  .hdr-meta span{background:rgba(255,255,255,.12);padding:3px 10px;border-radius:12px}
+
+  .alert{padding:14px 28px;background:#fff3cd;border-left:5px solid #e6a817;font-size:12.5px;color:#5c3d00;line-height:1.6}
+  .alert strong{color:#9c5400}
+
+  .sec{padding:18px 28px;border-bottom:1px solid #edf0f8}
+  .sec-title{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:#c8a84b;margin-bottom:12px}
+
+  .kpi-row{display:table;width:100%}
+  .kpi-cell{display:table-cell;width:25%;background:#f8f9fc;border-right:1px solid #e5e9f4;padding:12px 16px;vertical-align:top}
+  .kpi-cell:last-child{border-right:none}
+  .kpi-lbl{font-size:9.5px;text-transform:uppercase;letter-spacing:.5px;color:#7a8399;margin-bottom:4px}
+  .kpi-val{font-size:16px;font-weight:900;color:#0d1f3c}
+  .kpi-sub{font-size:10px;color:#888;margin-top:2px}
+
+  table.cols2{width:100%;border-collapse:collapse}
+  table.cols2 td{width:50%;vertical-align:top;padding:0 14px 0 0;font-size:12px;line-height:1.6}
+  table.cols2 td:last-child{padding:0}
+
+  table.cols3{width:100%;border-collapse:collapse}
+  table.cols3 td{width:33.3%;vertical-align:top;padding:0 12px 0 0;font-size:12px;line-height:1.6}
+  table.cols3 td:last-child{padding:0}
+
+  .col-title{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:#4a5470;border-bottom:2px solid #c8a84b;padding-bottom:4px;margin-bottom:8px}
+
+  .tag{display:inline-block;padding:2px 8px;border-radius:10px;font-size:10px;font-weight:700;margin:2px 2px 2px 0}
+  .tag-go{background:#e8f5e9;color:#2e7d32;border:1px solid #a5d6a7}
+  .tag-warn{background:#fff8e1;color:#e65100;border:1px solid #ffcc80}
+  .tag-info{background:#e3f2fd;color:#1565c0;border:1px solid #90caf9}
+  .tag-gray{background:#f0f0f0;color:#555;border:1px solid #ccc}
+
+  ul.list{padding-left:16px;margin:0}
+  ul.list li{margin-bottom:5px;line-height:1.5}
+
+  .dist-grid{display:table;width:100%;border-collapse:collapse;margin-top:8px}
+  .dist-row{display:table-row}
+  .dist-row:nth-child(even) .dist-cell{background:#f8f9fc}
+  .dist-cell{display:table-cell;padding:7px 12px;border-bottom:1px solid #edf0f8;font-size:12px;vertical-align:middle}
+  .dist-cell:first-child{font-weight:700;width:28%}
+  .dist-cell:nth-child(2){width:22%;color:#555}
+  .dist-cell:nth-child(3){width:25%}
+  .dist-cell:last-child{width:25%}
+
+  .uw-table{width:100%;border-collapse:collapse;font-size:11.5px}
+  .uw-table th{background:#1a3a6a;color:white;padding:8px 12px;text-align:left;font-weight:700;font-size:10px;text-transform:uppercase;letter-spacing:.5px}
+  .uw-table td{padding:7px 12px;border-bottom:1px solid #edf0f8}
+  .uw-table tr:last-child td{border-bottom:none}
+  .uw-table .row-go td{background:#f0faf1}
+  .uw-table .row-warn td{background:#fffbf0}
+  .uw-table .row-no td{background:#faf0f0;color:#888}
+
+  .timeline{display:table;width:100%;margin-top:10px}
+  .tl-cell{display:table-cell;text-align:center;vertical-align:top;padding:0 8px;font-size:11px;width:25%}
+  .tl-dot{width:12px;height:12px;border-radius:50%;margin:0 auto 6px;border:2px solid}
+  .dot-green{background:#e8f5e9;border-color:#2e7d32}
+  .dot-yellow{background:#fff8e1;border-color:#f9a825}
+  .dot-red{background:#fdecea;border-color:#c62828}
+  .tl-label{font-weight:700;margin-bottom:3px}
+  .tl-sep{font-size:18px;color:#ccc;vertical-align:middle;text-align:center;width:4%}
+
+  .risk-row{padding:8px 0;border-bottom:1px solid #edf0f8;display:flex;align-items:flex-start;gap:10px;font-size:12px}
+  .risk-row:last-child{border-bottom:none}
+  .risk-lvl{min-width:60px;font-weight:700;font-size:10px;padding:3px 8px;border-radius:8px;text-align:center}
+  .lvl-hi{background:#fdecea;color:#c62828}
+  .lvl-mid{background:#fff8e1;color:#e65100}
+  .lvl-lo{background:#e8f5e9;color:#2e7d32}
+
+  .step{display:flex;gap:12px;align-items:flex-start;padding:8px 0;border-bottom:1px solid #edf0f8;font-size:12px;line-height:1.5}
+  .step:last-child{border-bottom:none}
+  .step-num{min-width:24px;height:24px;border-radius:50%;background:#1a3a6a;color:white;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+
+  .footer{padding:14px 28px;background:#f4f6fa;font-size:10.5px;color:#888;text-align:center}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- HEADER -->
+<div class="hdr">
+  <div class="hdr-badge">🏛️ Memo Estratégico MAGG Capital</div>
+  <div class="hdr-title">PEU NZ 9.3 — Suelo Industrial Madrid<br>Nueva Oportunidad: Aparthotel / Flexliving en Periférico</div>
+  <div class="hdr-sub">Plan Especial Urbanístico · Norma Zonal 9 grado 3 · 16 ámbitos · 240+ parcelas · 8 distritos</div>
+  <div class="hdr-meta">
+    <span>📅 Publicado 05/03/2026</span>
+    <span>🏙️ Madrid Capital</span>
+    <span>⏱️ Aprobación inicial: &lt;verano 2026</span>
+    <span>📋 Memo Tenacitas: 31/03/2026</span>
+  </div>
+</div>
+
+<!-- ALERT / RESUMEN EJECUTIVO -->
+<div class="alert">
+  <strong>⚡ Ventana de oportunidad:</strong> El Ayuntamiento de Madrid aprobará antes del verano el PEU NZ 9.3, que permite implantar apartahoteles, flexliving y pensiones en 240+ parcelas industriales (grado 3) hasta ahora limitadas a hoteles convencionales. El suelo industrial cotiza significativamente por debajo del suelo terciario-hotelero, creando un diferencial de valor materializable con management de SmartRental. <strong>MAGG debería identificar y reservar 2-3 parcelas antes de la aprobación definitiva (~2027) para entrar con precio de suelo industrial y upside regulatorio.</strong>
+</div>
+
+<!-- KPIs CLAVE -->
+<div class="sec" style="padding:0">
+  <div class="kpi-row">
+    <div class="kpi-cell">
+      <div class="kpi-lbl">Parcelas afectadas</div>
+      <div class="kpi-val">240+</div>
+      <div class="kpi-sub">16 ámbitos · 8 distritos</div>
+    </div>
+    <div class="kpi-cell">
+      <div class="kpi-lbl">Precio suelo industrial*</div>
+      <div class="kpi-val">~€600–1.100/m²</div>
+      <div class="kpi-sub">vs €2.500–4.000/m² terciario</div>
+    </div>
+    <div class="kpi-cell">
+      <div class="kpi-lbl">Descuento estimado</div>
+      <div class="kpi-val">−60% a −75%</div>
+      <div class="kpi-sub">vs suelo hotelero periférico</div>
+    </div>
+    <div class="kpi-cell">
+      <div class="kpi-lbl">Aprobación definitiva</div>
+      <div class="kpi-val">~2027</div>
+      <div class="kpi-sub">Inicial: &lt;verano 2026</div>
+    </div>
+  </div>
+</div>
+
+<!-- QUÉ ES EL PEU -->
+<div class="sec">
+  <div class="sec-title">📋 Qué es el PEU NZ 9.3 — Resumen del Plan</div>
+  <table class="cols2"><tr>
+    <td>
+      <div class="col-title">El cambio regulatorio</div>
+      <ul class="list">
+        <li><strong>Norma Zonal 9 grado 3</strong>: suelo industrial "terciarizado" donde hasta ahora solo se podía hotel convencional (sin apartahotel, flexliving, pensión, casa de hospedaje)</li>
+        <li><strong>Plan Especial</strong>: modifica compatibilidad del uso terciario hospedaje en NZ 9.3 — elimina la restricción de la modificación puntual del PGOU de 2007 (MPG 00/316)</li>
+        <li><strong>Tramitación</strong>: aprobación inicial Junta de Gobierno antes del verano 2026; aprobación definitiva estimada ~2027</li>
+        <li><strong>Scope</strong>: 3.000+ parcelas estudiadas → 240 parcelas en 16 ámbitos son las aptas para uso hospedaje amplio</li>
+        <li><strong>Contexto</strong>: da continuidad al <em>Plan RESIDE</em> (2025) que ya restringió pisos turísticos en centro — ahora redirige oferta a periférico</li>
+      </ul>
+    </td>
+    <td>
+      <div class="col-title">Por qué ahora es el momento</div>
+      <ul class="list">
+        <li><strong>Ventana pre-aprobación</strong>: antes de la aprobación definitiva (~2027), el suelo sigue cotizando como industrial → precio muy inferior al valor final</li>
+        <li><strong>Demanda estructural</strong>: restricciones en centro + crecimiento turístico (RevPAR Madrid +6.9% H1 2025) generan demanda no atendida en periférico</li>
+        <li><strong>SmartRental = ventaja</strong>: Eduardo tiene acceso directo al operador con know-how flexliving/aparthotel → bajo riesgo operativo</li>
+        <li><strong>Pionero advantage</strong>: los fondos grandes (Aermont, Henderson Park) no estarán en este segmento todavía — MAGG puede entrar primero</li>
+        <li><strong>Ticket pequeño</strong>: parcelas industriales 500-3.000 m² → ticket de entrada €500K–3.5M, asequible para club deal</li>
+      </ul>
+    </td>
+  </tr></table>
+</div>
+
+<!-- MAPA DE DISTRITOS -->
+<div class="sec">
+  <div class="sec-title">🗺️ Distritos Afectados — Mapa de Oportunidad MAGG</div>
+  <div class="dist-grid">
+    <div class="dist-row" style="background:#1a3a6a;color:white">
+      <div class="dist-cell" style="color:white;font-size:10px;text-transform:uppercase;letter-spacing:.5px">Distrito</div>
+      <div class="dist-cell" style="color:white;font-size:10px;text-transform:uppercase">Precio vivienda</div>
+      <div class="dist-cell" style="color:white;font-size:10px;text-transform:uppercase">Zonas clave NZ 9.3</div>
+      <div class="dist-cell" style="color:white;font-size:10px;text-transform:uppercase">Interés MAGG</div>
+    </div>
+    <div class="dist-row">
+      <div class="dist-cell">Arganzuela</div>
+      <div class="dist-cell">~€5.900/m²</div>
+      <div class="dist-cell">Avenida de Andalucía, Legazpi</div>
+      <div class="dist-cell"><span class="tag tag-go">⭐⭐⭐ ALTO</span></div>
+    </div>
+    <div class="dist-row">
+      <div class="dist-cell">Chamartín</div>
+      <div class="dist-cell">~€6.200/m²</div>
+      <div class="dist-cell">Costa Rica / M-30</div>
+      <div class="dist-cell"><span class="tag tag-go">⭐⭐⭐ ALTO</span></div>
+    </div>
+    <div class="dist-row">
+      <div class="dist-cell">Fuencarral-El Pardo</div>
+      <div class="dist-cell">~€3.800/m²</div>
+      <div class="dist-cell">Polígono Ctra. de Burgos</div>
+      <div class="dist-cell"><span class="tag tag-warn">⭐⭐ MEDIO</span></div>
+    </div>
+    <div class="dist-row">
+      <div class="dist-cell">Usera</div>
+      <div class="dist-cell">~€3.500/m²</div>
+      <div class="dist-cell">Avda. de Andalucía (sur)</div>
+      <div class="dist-cell"><span class="tag tag-warn">⭐⭐ MEDIO</span></div>
+    </div>
+    <div class="dist-row">
+      <div class="dist-cell">Ciudad Lineal</div>
+      <div class="dist-cell">~€4.200/m²</div>
+      <div class="dist-cell">Arturo Soria zona</div>
+      <div class="dist-cell"><span class="tag tag-warn">⭐⭐ MEDIO</span></div>
+    </div>
+    <div class="dist-row">
+      <div class="dist-cell">Hortaleza</div>
+      <div class="dist-cell">~€3.900/m²</div>
+      <div class="dist-cell">Parques empresariales norte</div>
+      <div class="dist-cell"><span class="tag tag-gray">⭐ BAJO</span></div>
+    </div>
+    <div class="dist-row">
+      <div class="dist-cell">San Blas-Canillejas</div>
+      <div class="dist-cell">~€3.100/m²</div>
+      <div class="dist-cell">Josefa Valcárcel</div>
+      <div class="dist-cell"><span class="tag tag-gray">⭐ BAJO</span></div>
+    </div>
+    <div class="dist-row">
+      <div class="dist-cell">Barajas</div>
+      <div class="dist-cell">~€3.200/m²</div>
+      <div class="dist-cell">Barrio del Aeropuerto</div>
+      <div class="dist-cell"><span class="tag tag-info">⭐⭐ AEROPUERTO</span></div>
+    </div>
+  </div>
+  <p style="font-size:11px;color:#888;margin-top:8px">* Precios vivienda: referencia mercado residencial — suelo industrial cotiza al 15–20% del precio residencial del distrito</p>
+</div>
+
+<!-- MODELO FINANCIERO INDICATIVO -->
+<div class="sec">
+  <div class="sec-title">📊 Modelo Financiero Indicativo — Caso Base Arganzuela (500 m² suelo · ~30 unidades flexliving)</div>
+
+  <table class="uw-table" style="margin-bottom:14px">
+    <thead>
+      <tr>
+        <th>Concepto</th>
+        <th>CONSERVADOR</th>
+        <th>BASE</th>
+        <th>BULL</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Superficie útil construida</strong></td>
+        <td>1.200 m²</td>
+        <td>1.500 m²</td>
+        <td>1.800 m²</td>
+      </tr>
+      <tr>
+        <td><strong>Precio suelo industrial</strong></td>
+        <td>€800/m² suelo</td>
+        <td>€900/m² suelo</td>
+        <td>€1.000/m² suelo</td>
+      </tr>
+      <tr>
+        <td><strong>Coste suelo total (500 m² suelo)</strong></td>
+        <td>€400K</td>
+        <td>€450K</td>
+        <td>€500K</td>
+      </tr>
+      <tr>
+        <td><strong>CapEx reforma integral (€2.500/m²)</strong></td>
+        <td>€3.000K</td>
+        <td>€3.750K</td>
+        <td>€4.500K</td>
+      </tr>
+      <tr>
+        <td><strong>Soft + FF&amp;E + Contingencia</strong></td>
+        <td>€550K</td>
+        <td>€700K</td>
+        <td>€850K</td>
+      </tr>
+      <tr style="font-weight:700;background:#f0f4fa">
+        <td><strong>INVERSIÓN TOTAL</strong></td>
+        <td>€3.95M</td>
+        <td>€4.90M</td>
+        <td>€5.85M</td>
+      </tr>
+      <tr>
+        <td><strong>Unidades flexliving (est.)</strong></td>
+        <td>22 uds</td>
+        <td>28 uds</td>
+        <td>34 uds</td>
+      </tr>
+      <tr>
+        <td><strong>ADR flexliving periférico</strong></td>
+        <td>€80/noche</td>
+        <td>€95/noche</td>
+        <td>€110/noche</td>
+      </tr>
+      <tr>
+        <td><strong>Ocupación estabilizada (Año 3)</strong></td>
+        <td>82%</td>
+        <td>85%</td>
+        <td>88%</td>
+      </tr>
+      <tr>
+        <td><strong>RevPAR</strong></td>
+        <td>€65.6</td>
+        <td>€80.8</td>
+        <td>€96.8</td>
+      </tr>
+      <tr>
+        <td><strong>Revenue bruto (Año 3)</strong></td>
+        <td>€527K</td>
+        <td>€825K</td>
+        <td>€1.200K</td>
+      </tr>
+      <tr>
+        <td><strong>NOI (GOP − 8% HMA)</strong></td>
+        <td>€263K</td>
+        <td>€454K</td>
+        <td>€720K</td>
+      </tr>
+      <tr>
+        <td><strong>YoC sobre inversión total</strong></td>
+        <td>6.66%</td>
+        <td>9.27%</td>
+        <td>12.31%</td>
+      </tr>
+      <tr>
+        <td><strong>Exit yield (flexliving periférico)</strong></td>
+        <td>6.00%</td>
+        <td>5.75%</td>
+        <td>5.50%</td>
+      </tr>
+      <tr>
+        <td><strong>Exit value (capitalización NOI)</strong></td>
+        <td>€4.38M</td>
+        <td>€7.90M</td>
+        <td>€13.09M</td>
+      </tr>
+      <tr style="font-weight:700;background:#f0faf1">
+        <td><strong>Equity múltiple (estimado)</strong></td>
+        <td>1.11x</td>
+        <td>1.61x</td>
+        <td>2.24x</td>
+      </tr>
+      <tr style="font-weight:700">
+        <td><strong>Spread YoC vs Exit yield</strong></td>
+        <td class="row-no">+66 bps ❌</td>
+        <td class="row-warn">+352 bps ✅</td>
+        <td class="row-go">+631 bps ✅✅</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p style="font-size:11px;color:#888">⚠️ Modelo indicativo solo: supone reforma integral de nave existente, 500 m² de suelo, zona Arganzuela. LTC 50% a coste deuda 5%. Flexliving periférico ADR vs Smart Living coliving CBRE ~€1.000/mes = €33/noche equivalente; el modelo usa short-stay (aparthotel) con mayor ADR. Sensibilidad principal: ADR y si el uso es <em>coliving</em> (menor ADR, mayor estancia) vs <em>aparthotel</em> (mayor ADR, menor estancia). Validar supuestos con Eduardo antes de hacer underwriting final.</p>
+</div>
+
+<!-- TESIS Y ESTRATEGIA -->
+<div class="sec">
+  <div class="sec-title">🎯 Tesis de Inversión MAGG</div>
+  <table class="cols3"><tr>
+    <td>
+      <div class="col-title">A. Por qué tiene sentido</div>
+      <ul class="list">
+        <li><strong>Arbitraje regulatorio</strong>: comprar suelo a precio industrial antes de aprobación definitiva → revalorización automática al convertirse en suelo hospedaje</li>
+        <li><strong>SmartRental</strong>: Eduardo tiene acceso al mejor operador para este tipo de activo → HMA directo, sin riesgo de poner en marcha operación</li>
+        <li><strong>Plan RESIDE</strong>: el centro ya no puede crecer → demand push estructural hacia distritos periféricos con nueva oferta reglada</li>
+        <li><strong>Ticket pequeño</strong>: permite diversificar en 2-3 parcelas con inversión total manejable (&lt;€15M)</li>
+      </ul>
+    </td>
+    <td>
+      <div class="col-title">B. Modelo operativo</div>
+      <ul class="list">
+        <li><strong>Formato preferido</strong>: Aparthotel / Smart Living (corto+medio plazo) sobre flexliving puro (muy bajo ADR)</li>
+        <li><strong>Operador</strong>: SmartRental Collection o marca Living de SmartRental</li>
+        <li><strong>HMA</strong>: fee del 8% sobre revenues (estándar MAGG)</li>
+        <li><strong>Estabilización</strong>: 12-18 meses post-apertura (nueva zona, necesita penetración mercado)</li>
+        <li><strong>Exit</strong>: capitalización NOI en año de estabilización; alternativa — vender suelo con permiso + proyecto</li>
+      </ul>
+    </td>
+    <td>
+      <div class="col-title">C. Diferenciadores deal</div>
+      <ul class="list">
+        <li><strong>Early mover</strong>: fondos grandes no actuarán hasta aprobación definitiva (2027); MAGG puede reservar parcelas en 2026 con opción de compra</li>
+        <li><strong>Precio suelo</strong>: referencia Arganzuela nave 1.886 m² a €2M = €1.060/m². Residencial zona €5.900/m². Descuento ~82%</li>
+        <li><strong>Upside dual</strong>: si el plan no se aprueba en esta parcela → la nave sigue teniendo valor como activo industrial terciarizado</li>
+        <li><strong>Sourcing</strong>: activar brokers industriales (Naveko, BGM, Savills Industrial) que no trabajan con fondos hospitalidad normalmente</li>
+      </ul>
+    </td>
+  </tr></table>
+</div>
+
+<!-- CRONOGRAMA -->
+<div class="sec">
+  <div class="sec-title">⏱️ Cronograma Estratégico</div>
+  <table style="width:100%;border-collapse:collapse">
+    <tr>
+      <td class="tl-cell">
+        <div class="tl-dot dot-green"></div>
+        <div class="tl-label">Ahora → Jun 2026</div>
+        <div>Sourcing parcelas NZ 9.3 · LOIs opcionales · DD urbanística · reserva precio industrial</div>
+      </td>
+      <td class="tl-sep">→</td>
+      <td class="tl-cell">
+        <div class="tl-dot dot-green"></div>
+        <div class="tl-label">Jun–Dic 2026</div>
+        <div>Aprobación inicial PEU · cierre compra parcelas · proyecto arquitectónico · solicitud licencia</div>
+      </td>
+      <td class="tl-sep">→</td>
+      <td class="tl-cell">
+        <div class="tl-dot dot-yellow"></div>
+        <div class="tl-label">2027</div>
+        <div>Aprobación definitiva PEU · inicio obras · licencia actividad</div>
+      </td>
+      <td class="tl-sep">→</td>
+      <td class="tl-cell">
+        <div class="tl-dot dot-yellow"></div>
+        <div class="tl-label">2028–2029</div>
+        <div>Apertura · ramp-up · estabilización · exit o hold</div>
+      </td>
+    </tr>
+  </table>
+</div>
+
+<!-- RIESGOS -->
+<div class="sec">
+  <div class="sec-title">⚠️ Riesgos y Mitigaciones</div>
+  <div class="risk-row">
+    <div class="risk-lvl lvl-hi">🔴 ALTO</div>
+    <div><strong>Riesgo regulatorio</strong>: El PEU no se aprueba, se modifica el scope, o la parcela específica queda excluida del ámbito. <em>Mitigación</em>: comprar solo bajo condición suspensiva de licencia; opción de compra (no compra) hasta aprobación definitiva. DD urbanística exhaustiva.</div>
+  </div>
+  <div class="risk-row">
+    <div class="risk-lvl lvl-hi">🔴 ALTO</div>
+    <div><strong>ADR periférico</strong>: el mercado flexliving periférico Madrid no tiene historial robusto de short-stay. El modelo puede ser demasiado optimista. <em>Mitigación</em>: usar CBRE benchmark (~€1.000/mes coliving = €33/día equivalente) como suelo; el deal debe funcionar incluso en ADR €65-70.</div>
+  </div>
+  <div class="risk-row">
+    <div class="risk-lvl lvl-mid">🟡 MEDIO</div>
+    <div><strong>CapEx sorpresa</strong>: naves industriales pueden esconder estructuras complejas o contaminación. <em>Mitigación</em>: contingencia 15-20% en vez de 10%; fase técnica obligatoria antes de cierre.</div>
+  </div>
+  <div class="risk-row">
+    <div class="risk-lvl lvl-mid">🟡 MEDIO</div>
+    <div><strong>Timing más largo</strong>: tramitación urbanística Madrid históricamente se retrasa 12-18 meses. <em>Mitigación</em>: modelar 24 meses de licencia, no 12. Afecta IRR pero no la tesis de fondo.</div>
+  </div>
+  <div class="risk-row">
+    <div class="risk-lvl lvl-lo">🟢 BAJO</div>
+    <div><strong>Competencia</strong>: otros fondos/promotores se anticipan. <em>Mitigación</em>: actuar en los próximos 3-6 meses; ventana real existe mientras el plan es "inicial".</div>
+  </div>
+</div>
+
+<!-- PRÓXIMOS PASOS -->
+<div class="sec">
+  <div class="sec-title">✅ Plan de Acción — Próximos 60 días</div>
+  <div class="step">
+    <div class="step-num">1</div>
+    <div><strong>Confirmación mandato (Eduardo → semana del 31/03)</strong>: ¿tiene sentido explorar 1-2 parcelas NZ 9.3 en Arganzuela/Chamartín como línea nueva de deal sourcing? Definir ticket máximo y si SmartRental estaría dispuesto a firmar HMA para este formato.</div>
+  </div>
+  <div class="step">
+    <div class="step-num">2</div>
+    <div><strong>DD urbanística rápida (~1 sem)</strong>: consultar con abogado urbanista si hay lista oficial de parcelas NZ 9.3 ya publicada por el Ayuntamiento o si hay que mapearlas manualmente con el PGOUM. Coste: €500-1.000 consulta inicial.</div>
+  </div>
+  <div class="step">
+    <div class="step-num">3</div>
+    <div><strong>Activar brokers industriales (paralelo)</strong>: contactar Naveko, BGM Naves Industriales, Savills Industrial Madrid. Brief: buscar naves/suelo NZ 9.3 en Arganzuela y Chamartín, entre 500-2.000 m² suelo, precio <€2.5M. Pedir off-market y en mercado.</div>
+  </div>
+  <div class="step">
+    <div class="step-num">4</div>
+    <div><strong>Benchmark ADR (antes de UW)</strong>: pedir a SmartRental datos reales de RevPAR en sus propiedades Living más alejadas del centro (≥3km). Contraste con data CBRE Flex Living Spain 2025.</div>
+  </div>
+  <div class="step">
+    <div class="step-num">5</div>
+    <div><strong>IC Brief completo</strong>: si aparece parcela concreta → producir underwriting estándar MAGG con datos reales de suelo, sqm y ADR confirmado. Go/No Go en <48h del teaser.</div>
+  </div>
+</div>
+
+<!-- COMPETIDORES Y REFERENTES -->
+<div class="sec">
+  <div class="sec-title">🔍 Landscape — Operadores Flexliving/Coliving Madrid Relevantes</div>
+  <table class="cols3"><tr>
+    <td>
+      <div class="col-title">Competencia directa</div>
+      <ul class="list">
+        <li><strong>Grupo HIVE</strong> — gestión integral flexliving Madrid/Málaga (ya operan NZ 9.3-like)</li>
+        <li><strong>Hapimag / Be Mate</strong> — apartamentos serviced periférico</li>
+        <li><strong>Roble (Meliá Living)</strong> — entrando al segmento corporativo</li>
+        <li><strong>Zoku Madrid</strong> — flexliving business travelers centro</li>
+      </ul>
+    </td>
+    <td>
+      <div class="col-title">Inversores en el segmento</div>
+      <ul class="list">
+        <li><strong>Greystar</strong> — entra coliving/BTR España 2025</li>
+        <li><strong>Brookfield</strong> — ha mirado residential/living</li>
+        <li><strong>Grupo Lar / Aedas</strong> — promotores explorando flexi</li>
+        <li><strong>Azora</strong> — fuerte en living alternativo</li>
+      </ul>
+    </td>
+    <td>
+      <div class="col-title">Ventaja MAGG vs peers</div>
+      <ul class="list">
+        <li>SmartRental como operador → no buscamos HMA externo</li>
+        <li>Ticket pequeño → más ágil que fondos grandes</li>
+        <li>Eduardo en SmartRental → acceso a datos ADR reales internos</li>
+        <li>Pipeline MAGG → brokers activos, deal flow existente</li>
+      </ul>
+    </td>
+  </tr></table>
+</div>
+
+<!-- VEREDICTO -->
+<div style="padding:16px 28px;background:#e8f5e9;border-left:5px solid #2e7d32">
+  <div class="sec-title" style="color:#2e7d32;margin-bottom:8px">🟢 VEREDICTO TENACITAS — EXPLORAR ACTIVAMENTE</div>
+  <p style="font-size:13px;line-height:1.7;color:#1a3a1e">
+    <strong>La tesis es sólida en el escenario BASE si se compra pre-aprobación definitiva.</strong> El diferencial suelo industrial vs suelo hotelero (−60 a −75%) es el motor de la operación, no los KPIs operativos. El riesgo regulatorio es real pero mitigable con opciones de compra condicionadas. SmartRental como operador elimina el riesgo de puesta en marcha.
+    <br><br>
+    <strong>Recomendación</strong>: arrancar sourcing inmediato en Arganzuela y Chamartín (mejores distritos por precio residencial de referencia y accesibilidad), con presupuesto DD de €1.000-1.500 para validación urbanística antes de cualquier oferta. Eduardo debería confirmar si SmartRental estaría dispuesto a HMA en formato coliving/aparthotel periférico — ese es el gate decisivo.
+  </p>
+</div>
+
+<div class="footer">
+  MAGG Capital · Memo Estratégico Tenacitas · 31/03/2026 · Producido de forma autónoma a las 02:00 · Solo para uso interno<br>
+  Fuentes: La Vanguardia, Idealista, Gacetin Madrid, CBRE Flex Living Spain, EY Alert 30/03/2026 · Modelo financiero es indicativo — requiere validación con datos reales
+</div>
+</div>
+</body>
+</html>
