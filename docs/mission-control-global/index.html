@@ -116,10 +116,55 @@ tbody tr:hover td{background:rgba(160,112,32,.03)}
 <body>
 <div id="login"><div class="login-box"><h2>🦀 Mission Control</h2><p>Panel privado · Tenacitas × Eduardo</p><input id="pwd" type="password" placeholder="Contraseña" onkeydown="if(event.key==='Enter')auth()"/><button onclick="auth()">Entrar</button><div class="err" id="err"></div></div></div>
 <div id="app">
-<div class="header"><div class="header-top"><span style="font-size:26px">🦀</span><h1>Mission Control</h1></div><div class="header-meta"><span class="pill"><span class="dot-live"></span>Sistema operativo</span><span class="pill">🕐 08 abr 2026 · 07:30</span><span class="pill">🔴 Foco operativo: Casón post-deadline (13d) · GV48 Eastdil >16d · Litexco/Boreal PDF pendiente · Dashboard acciones decisión abierta</span><span class="pill">GPT 5.3-codex (MC) · 16 crons activos · pass: ctrl2026</span></div></div>
+<div class="header"><div class="header-top"><span style="font-size:26px">🦀</span><h1>Mission Control</h1></div><div class="header-meta"><span class="pill"><span class="dot-live"></span>Sistema operativo</span><span class="pill">🕐 08 abr 2026 · 13:03</span><span class="pill">🔴 Foco operativo: Casón 13d post-deadline · GV48 Eastdil >16d · Litexco/Boreal PDF pendiente · Cron JJ/Vaca fallando por modelo/auth</span><span class="pill">GPT 5.3-codex (MC) · 16 crons activos · pass: ctrl2026</span></div></div>
 <div class="tabs"><div class="tab active" onclick="switchTab('ops')">🗺️ Operaciones</div><div class="tab" onclick="switchTab('sys')">⚙️ Sistema</div></div>
-<div id="tab-ops" class="tab-content active"><div class="section-title">🚦 Estado por vertical</div></div>
-<div id="tab-sys" class="tab-content"><div class="section-title">⏰ Crons activos (16)</div></div>
+<div id="tab-ops" class="tab-content active">
+  <div class="section-title">🚦 Estado por vertical</div>
+  <div class="grid2">
+    <div class="card"><div class="card-row"><div class="card-icon">🏨</div><div class="card-body"><div class="card-title">MAGG / SPV</div><div class="card-sub"><span class="badge yellow">🟡 Activo</span></div><div class="card-action"><span>Próximo:</span> Casón 13d sin respuesta, GV48 >16d Eastdil, HIST-092 STRONG GO activo, 009 Sevilla v3 live.</div></div></div></div>
+    <div class="card"><div class="card-row"><div class="card-icon">🏦</div><div class="card-body"><div class="card-title">SR Financing</div><div class="card-sub"><span class="badge red">🔴 Pendiente</span></div><div class="card-action"><span>Próximo:</span> Arrancar metodología corporativa y estructura de governance.</div></div></div></div>
+    <div class="card"><div class="card-row"><div class="card-icon">🌍</div><div class="card-body"><div class="card-title">Growth / Projects</div><div class="card-sub"><span class="badge yellow">🟡 En espera</span></div><div class="card-action"><span>Próximo:</span> Dubai v7 lista, pendiente validación final de Eduardo.</div></div></div></div>
+    <div class="card"><div class="card-row"><div class="card-icon">📈</div><div class="card-body"><div class="card-title">Public Markets</div><div class="card-sub"><span class="badge yellow">🟡 Monitor</span></div><div class="card-action"><span>Próximo:</span> PCE Core 3.0% sticky, VIX 29.6, hawkish pause; resolver cron check-in JJ/Vaca.</div></div></div></div>
+    <div class="card"><div class="card-row"><div class="card-icon">🏃</div><div class="card-body"><div class="card-title">Personal Ops</div><div class="card-sub"><span class="badge yellow">🟡 Pendiente</span></div><div class="card-action"><span>Próximo:</span> Báscula semanal sin datos nuevos (sábado).</div></div></div></div>
+    <div class="card"><div class="card-row"><div class="card-icon">⚙️</div><div class="card-body"><div class="card-title">Infra / Crons</div><div class="card-sub"><span class="badge green">🟢 OK</span></div><div class="card-action"><span>Próximo:</span> GitHub Pages live, Skills Radar activo, revisar job fallido JJ/Vaca.</div></div></div></div>
+  </div>
+
+  <div class="section-title">🎯 Top accionables</div>
+  <div class="card">
+    <div class="top3-item"><div class="top3-num">1</div><div class="top3-body"><div class="top3-title">Casón NBO</div><div class="top3-desc">13 días post-deadline. Decidir ya: empujar o archivar.</div></div></div>
+    <div class="top3-item"><div class="top3-num">2</div><div class="top3-body"><div class="top3-title">Dashboard acciones</div><div class="top3-desc">Decisión abierta: TradingView/Koyfin rápido vs dashboard propio.</div></div></div>
+    <div class="top3-item"><div class="top3-num">3</div><div class="top3-body"><div class="top3-title">GV48 + Litexco</div><div class="top3-desc">Eastdil sin respuesta &gt;16d y PDF valoración Litexco/Boreal aún sin envío.</div></div></div>
+  </div>
+
+  <div class="section-title">📊 Pipeline MAGG (snapshot)</div>
+  <div class="tbl-wrap"><table><thead><tr><th>Ref</th><th>Deal</th><th>Veredicto</th><th>Estado</th></tr></thead><tbody>
+    <tr><td>006</td><td>Rossio Lisboa</td><td><span class="badge yellow">⚠️ BORDERLINE</span></td><td>On hold</td></tr>
+    <tr><td>007</td><td>Casón del Tormes</td><td><span class="badge green">✅ GO</span></td><td>NBO bloqueado</td></tr>
+    <tr><td>008</td><td>Cabestreros</td><td><span class="badge yellow">⏳ PEND precio</span></td><td>Waiting</td></tr>
+    <tr><td>009</td><td>Sevilla 5★</td><td><span class="badge yellow">⚠️ PEND OM</span></td><td>v3 publicado</td></tr>
+    <tr><td>010B</td><td>GV48 Madrid</td><td><span class="badge green">✅ GO</span></td><td>Follow-up Eastdil</td></tr>
+    <tr><td>HIST-092</td><td>Don Cristian</td><td><span class="badge green">✅ STRONG GO</span></td><td>Activo en CRM</td></tr>
+  </tbody></table></div>
+
+  <div class="section-title">📋 Log reciente</div>
+  <div class="card">
+    <div class="log-item"><div class="log-date">08/04 09:00</div><div class="log-text">Discord sync AM: solo actividad relevante en #public-markets (AI Buildout Brief). Detectado fallo cron “Daily check-in JJ y Vaca” por modelo/auth.</div></div>
+    <div class="log-item"><div class="log-date">31/03 09:00</div><div class="log-text">Sin actividad nueva en canales en ventana 20h.</div></div>
+    <div class="log-item"><div class="log-date">30/03 18:00</div><div class="log-text">Nuevo Plan Especial Urbanístico Madrid (EY Alert): potencial bolsa de suelo industrial para aparthotel/flexliving.</div></div>
+  </div>
+</div>
+
+<div id="tab-sys" class="tab-content">
+  <div class="section-title">⏰ Crons activos (16)</div>
+  <div class="tbl-wrap"><table><thead><tr><th>Hora</th><th>Nombre</th><th>Modelo</th><th>Estado</th></tr></thead><tbody>
+    <tr><td>07:00</td><td>Backup workspace</td><td>gpt-5.1-codex-mini</td><td><span class="spill spill-green">OK</span></td></tr>
+    <tr><td>07:30/13:00/20:00</td><td>MC Global refresh</td><td>gpt-5.3-codex</td><td><span class="spill spill-green">OK</span></td></tr>
+    <tr><td>09:00 / 18:00</td><td>Discord sync AM/PM</td><td>gpt-5.3-codex</td><td><span class="spill spill-green">OK</span></td></tr>
+    <tr><td>12:00 L-V</td><td>Check-in JJ + Vaca</td><td>gpt-5.1-codex-mini</td><td><span class="spill spill-red">Fallo 07/04</span></td></tr>
+    <tr><td>13:00 L-V</td><td>AI Buildout stocks</td><td>Sonnet 4.6</td><td><span class="spill spill-green">OK</span></td></tr>
+  </tbody></table></div>
+  <div class="warn-box">⚠️ Incidencia activa: cron “Daily check-in JJ y Vaca (L-V)” falló por model_not_found + refresh OAuth OpenAI Codex. Requiere ajuste de modelo/credenciales.</div>
+</div>
 </div>
 <script>
 function auth(){const v=document.getElementById('pwd').value;if(v==='ctrl2026'){document.getElementById('login').style.display='none';document.getElementById('app').style.display='block';sessionStorage.setItem('mc_auth','1');}else{document.getElementById('err').textContent='Contraseña incorrecta';}}
