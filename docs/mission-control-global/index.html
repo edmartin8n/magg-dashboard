@@ -14,8 +14,6 @@
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:var(--bg);color:var(--text);font:15px/1.5 -apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;padding:0 0 40px}
 a{color:var(--gold);text-decoration:none} a:hover{text-decoration:underline}
-
-/* LOGIN */
 #login{position:fixed;inset:0;background:rgba(242,236,224,.97);display:flex;align-items:center;justify-content:center;z-index:100}
 .login-box{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:32px;width:min(340px,90vw);box-shadow:0 8px 32px rgba(80,60,20,.12)}
 .login-box h2{font-size:20px;margin-bottom:4px}
@@ -23,11 +21,7 @@ a{color:var(--gold);text-decoration:none} a:hover{text-decoration:underline}
 .login-box input{width:100%;padding:11px 14px;border:1px solid var(--border);border-radius:8px;background:#fff8ee;font-size:15px;outline:none}
 .login-box button{margin-top:10px;width:100%;padding:11px;border:none;border-radius:8px;background:var(--gold);color:#fff;font-size:15px;font-weight:700;cursor:pointer}
 .login-box .err{color:var(--red);font-size:12px;margin-top:8px;min-height:16px}
-
-/* APP */
 #app{display:none;max-width:1200px;margin:0 auto;padding:20px}
-
-/* HEADER */
 .header{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:16px 20px;margin-bottom:16px}
 .header-top{display:flex;align-items:center;gap:10px}
 .header-top h1{font-size:20px;font-weight:800}
@@ -35,24 +29,16 @@ a{color:var(--gold);text-decoration:none} a:hover{text-decoration:underline}
 .pill{background:var(--gray-bg);border:1px solid var(--border);border-radius:999px;padding:3px 10px;font-size:12px;color:var(--muted)}
 .dot-live{width:7px;height:7px;border-radius:50%;background:#2d7a45;display:inline-block;animation:pulse 2s infinite;margin-right:4px}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
-
-/* TABS */
 .tabs{display:flex;gap:8px;margin-bottom:16px}
 .tab{padding:9px 22px;border-radius:999px;font-size:14px;font-weight:700;cursor:pointer;border:2px solid var(--border);background:var(--card);color:var(--muted);transition:.15s}
 .tab.active{background:var(--gold);color:#fff;border-color:var(--gold)}
 .tab-content{display:none}
 .tab-content.active{display:block}
-
-/* GRID */
 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 @media(max-width:700px){.grid2{grid-template-columns:1fr}}
 .pipeline-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:8px}
-
-/* SECTION TITLE */
 .section-title{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:20px 0 8px 2px;display:flex;align-items:center;gap:8px}
 .section-title::after{content:'';flex:1;height:1px;background:var(--border)}
-
-/* BADGE */
 .badge{display:inline-block;border-radius:6px;padding:2px 8px;font-size:12px;font-weight:700}
 .badge.green{background:var(--green-bg);color:var(--green)}
 .badge.yellow{background:var(--yellow-bg);color:var(--yellow)}
@@ -60,8 +46,6 @@ a{color:var(--gold);text-decoration:none} a:hover{text-decoration:underline}
 .badge.gray{background:var(--gray-bg);color:var(--muted)}
 .badge.blue{background:var(--blue-bg);color:var(--blue)}
 .badge.orange{background:var(--orange-bg);color:var(--orange)}
-
-/* CARD */
 .card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:8px}
 .card-row{display:flex;align-items:flex-start;gap:10px}
 .card-icon{font-size:22px;line-height:1;flex-shrink:0;margin-top:1px}
@@ -70,56 +54,40 @@ a{color:var(--gold);text-decoration:none} a:hover{text-decoration:underline}
 .card-sub{font-size:13px;color:var(--muted);margin-top:2px}
 .card-action{margin-top:6px;font-size:13px;color:var(--text)}
 .card-action span{font-weight:600}
-
-/* TOP 3 */
 .top3-item{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-bottom:1px solid var(--border)}
 .top3-item:last-child{border-bottom:none;padding-bottom:0}
 .top3-num{font-size:22px;font-weight:800;color:var(--gold);line-height:1;flex-shrink:0;width:28px;text-align:center}
 .top3-body{flex:1}
 .top3-title{font-weight:700;font-size:15px}
 .top3-desc{font-size:13px;color:var(--muted);margin-top:2px}
-
-/* BLOCKER */
 .blocker{display:flex;gap:10px;align-items:flex-start;padding:9px 0;border-bottom:1px solid var(--border)}
 .blocker:last-child{border-bottom:none}
 .blocker-dot{width:8px;height:8px;border-radius:50%;background:var(--yellow);flex-shrink:0;margin-top:6px}
 .blocker-text{font-size:14px;font-weight:600}
 .blocker-ctx{font-size:12px;color:var(--muted);margin-top:2px}
-
-/* FLAG */
 .flag{display:flex;gap:10px;align-items:flex-start;padding:9px 0;border-bottom:1px solid var(--border)}
 .flag:last-child{border-bottom:none}
 .flag-icon{font-size:16px;flex-shrink:0}
 .flag-text{flex:1;font-size:14px}
-
-/* DEAL CARD */
 .deal-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:12px 14px;margin-bottom:8px}
 .deal-header{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
 .deal-name{font-weight:700;font-size:14px}
 .deal-ref{font-size:11px;color:var(--muted);margin-top:2px}
 .deal-meta{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
 .deal-chip{background:var(--gray-bg);border-radius:6px;padding:2px 8px;font-size:12px;color:var(--muted)}
-
-/* LOG */
 .log-item{display:flex;gap:10px;padding:8px 0;border-bottom:1px solid var(--border);font-size:13px}
 .log-item:last-child{border-bottom:none}
 .log-date{color:var(--muted);flex-shrink:0;width:84px}
 .log-text{flex:1}
-
-/* LINK */
 .link-item{display:flex;justify-content:space-between;align-items:center;padding:9px 0;border-bottom:1px solid var(--border);font-size:14px}
 .link-item:last-child{border-bottom:none}
 .link-label{font-weight:600}
-
-/* TABLE (sistema) */
 .tbl-wrap{overflow-x:auto;border-radius:10px;border:1px solid var(--border);margin-bottom:8px}
 table{width:100%;border-collapse:collapse;min-width:500px}
 thead th{background:var(--gray-bg);padding:9px 12px;text-align:left;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);border-bottom:1px solid var(--border)}
 tbody td{padding:9px 12px;border-bottom:1px solid rgba(221,208,184,.5);font-size:13px;vertical-align:middle}
 tbody tr:last-child td{border-bottom:none}
 tbody tr:hover td{background:rgba(160,112,32,.03)}
-
-/* STATUS PILLS */
 .spill{display:inline-flex;align-items:center;gap:4px;border-radius:999px;padding:2px 9px;font-size:11px;font-weight:600}
 .spill-green{background:var(--green-bg);color:var(--green)}
 .spill-red{background:var(--red-bg);color:var(--red)}
@@ -127,22 +95,11 @@ tbody tr:hover td{background:rgba(160,112,32,.03)}
 .spill-blue{background:var(--blue-bg);color:var(--blue)}
 .spill-gray{background:var(--gray-bg);color:var(--muted)}
 .spill-yellow{background:var(--yellow-bg);color:var(--yellow)}
-
-/* SKILL PILL */
-.skill-pill{display:inline-flex;align-items:center;gap:4px;border-radius:6px;padding:3px 9px;font-size:12px;font-weight:600;margin:3px 3px 3px 0}
-.skill-gold{background:var(--yellow-bg);color:var(--yellow)}
-.skill-blue{background:var(--blue-bg);color:var(--blue)}
-
-/* MODEL BADGE */
 .mbadge{display:inline-flex;align-items:center;gap:4px;padding:2px 8px;border-radius:6px;font-size:11px;font-weight:600}
 .mbadge-gold{background:var(--yellow-bg);color:var(--yellow)}
 .mbadge-green{background:var(--green-bg);color:var(--green)}
 .mbadge-gray{background:var(--gray-bg);color:var(--muted)}
-
-/* WARN BOX */
 .warn-box{background:var(--orange-bg);border:1px solid #e0c080;border-radius:8px;padding:10px 14px;font-size:12px;color:var(--orange);margin-top:8px}
-
-/* SISTEMA TAB — dark "settings" theme */
 #tab-sys{background:#1a1e2b;border-radius:14px;padding:20px;margin-top:-4px}
 #tab-sys .section-title{color:#8090b0;border:none}
 #tab-sys .section-title::after{background:#2e3550}
@@ -154,422 +111,20 @@ tbody tr:hover td{background:rgba(160,112,32,.03)}
 #tab-sys tbody tr:hover td{background:rgba(100,130,200,.06)}
 #tab-sys .tbl-wrap{border-color:#2e3550}
 #tab-sys a{color:#6a9fd0}
-#tab-sys .skill-gold{background:#2e2a18;color:#c09030;border:none}
-#tab-sys .skill-blue{background:#1a2240;color:#6090c8;border:none}
-#tab-sys .log-item{border-color:#2e3550}
-#tab-sys .blocker{border-color:#2e3550}
-#tab-sys .warn-box{background:#2a1e10;border-color:#6a3800;color:#e08030}
-/* override inline light-backgrounds in sistema sections */
-#tab-sys [style*="background:var(--yellow-bg)"],[data-sys-light]{background:#2a2415 !important;border-color:#4a3a10 !important;color:#c09030 !important}
-#tab-sys [style*="background:var(--green-bg)"]{background:#162418 !important;border-color:#2a4a2a !important}
-#tab-sys [style*="background:var(--blue-bg)"]{background:#141d30 !important;border-color:#1e3060 !important}
-#tab-sys [style*="background:var(--gray-bg)"]{background:#1e2236 !important;border-color:#2e3550 !important}
-#tab-sys [style*="background:rgba(160,112,32"]{background:rgba(80,60,10,.4) !important}
-#tab-sys [style*="background:rgba(240,180,41"]{background:rgba(80,60,10,.3) !important}
-#tab-sys [style*="background:rgba(52,211,153"]{background:rgba(10,50,20,.4) !important}
-#tab-sys [style*="background:rgba(74,158,255"]{background:rgba(10,30,70,.4) !important}
-#tab-sys [style*="background:rgba(122,133,160"]{background:#1e2236 !important}
-#tab-sys [style*="background:var(--surface)"]{background:#1e2236 !important}
-#tab-sys [style*="color:var(--text)"]{color:#e0e6f0 !important}
-#tab-sys [style*="color:var(--muted)"]{color:#8090b0 !important}
-#tab-sys [style*="background:#fff"]{background:#242938 !important;color:#e0e6f0 !important}
-#tab-sys code{background:#1e2236;color:#7aafdf;padding:1px 5px;border-radius:4px}
-#tab-sys strong{color:#e0e6f0}
-/* pipeline deal cards in sistema if any */
-#tab-sys .deal-card{background:#242938;border-color:#2e3550}
-/* step connectors */
-#tab-sys [style*="background:var(--border)"]{background:#2e3550 !important}
-#tab-sys [style*="background:var(--gold)"]{background:#a07020 !important}
-#tab-sys [style*="background:var(--blue)"]{background:#1a5fa0 !important}
-#tab-sys [style*="background:var(--green)"]{background:#2d7a45 !important}
-#tab-sys [style*="background:var(--muted)"]{background:#4a5070 !important}
 </style>
 </head>
 <body>
-
-<div id="login">
-  <div class="login-box">
-    <h2>🦀 Mission Control</h2>
-    <p>Panel privado · Tenacitas × Eduardo</p>
-    <input id="pwd" type="password" placeholder="Contraseña" onkeydown="if(event.key==='Enter')auth()"/>
-    <button onclick="auth()">Entrar</button>
-    <div class="err" id="err"></div>
-  </div>
-</div>
-
+<div id="login"><div class="login-box"><h2>🦀 Mission Control</h2><p>Panel privado · Tenacitas × Eduardo</p><input id="pwd" type="password" placeholder="Contraseña" onkeydown="if(event.key==='Enter')auth()"/><button onclick="auth()">Entrar</button><div class="err" id="err"></div></div></div>
 <div id="app">
-
-  <!-- HEADER -->
-  <div class="header">
-    <div class="header-top">
-      <span style="font-size:26px">🦀</span>
-      <h1>Mission Control</h1>
-    </div>
-    <div class="header-meta">
-      <span class="pill"><span class="dot-live"></span>Sistema operativo</span>
-      <span class="pill">🕐 15 mar 2026 · 13:00</span>
-      <span class="pill">🔴 Foco operativo: Casón NBO TODAY (deadline 15/03) · GV48 OM+LOI/NBO · 009 Sevilla PEND OM completo · Rossio 006 reescritura · conector Discord pollQuestion</span>
-      <span class="pill">GPT 5.3-codex (MC) · 16 crons activos · pass: ctrl2026</span>
-    </div>
-  </div>
-
-  <!-- TABS -->
-  <div class="tabs">
-    <div class="tab active" onclick="switchTab('ops')">🗺️ Operaciones</div>
-    <div class="tab" onclick="switchTab('sys')">⚙️ Sistema</div>
-  </div>
-
-  <!-- TAB: OPERACIONES -->
-  <div id="tab-ops" class="tab-content active">
-
-    <div class="grid2">
-      <div>
-        <div class="section-title">🎯 Top 3 domingo (15/03)</div>
-        <div class="card">
-          <div class="top3-item"><div class="top3-num">1</div><div class="top3-body"><div class="top3-title">🏨 Casón del Tormes — NBO crítico (deadline hoy 15/03)</div><div class="top3-desc">Enviar NBO a primera hora con DT, paquete financiero + Excel/CRM sincronizados; dejar todo listo para revisión de Eduardo antes de la medianoche.</div></div></div>
-          <div class="top3-item"><div class="top3-num">2</div><div class="top3-body"><div class="top3-title">🏙️ GV48 Gran Vía 48 — OM + LOI/NBO Estrat.B (124 uds)</div><div class="top3-desc">Cerrar OM/LOI, term sheet y covenants; asegurar financiamiento y dejar contingencias listadas para Estrategia B.</div></div></div>
-          <div class="top3-item"><div class="top3-num">3</div><div class="top3-body"><div class="top3-title">📧 Hotel 5★ Sevilla — IC final con OM/licencias/titularidad</div><div class="top3-desc">Completar análisis y doc con datos confirmados (sqm, licencias, titularidad) para defender la recomendación GO/idi vs borderline.</div></div></div>
-        </div>
-      </div>
-      <div>
-        <div class="section-title">⏳ Bloqueados en Eduardo</div>
-        <div class="card">
-          <div class="blocker"><div class="blocker-dot"></div><div><div class="blocker-text">OK multiagente Fase 1</div><div class="blocker-ctx">Scout + Dev listos para arrancar (~20 min setup) cuando Eduardo confirme el arranque.</div></div></div>
-          <div class="blocker"><div class="blocker-dot"></div><div><div class="blocker-text">CCs tracker Ana</div><div class="blocker-ctx">Faltan nombres de cazacabezas para actualizar tracker y lanzar outreach.</div></div></div>
-          <div class="blocker"><div class="blocker-dot"></div><div><div class="blocker-text">Tracking comidas</div><div class="blocker-ctx">Dashboard FIT live ✅, sigue faltando la entrada diaria de comidas para cerrar el loop.</div></div></div>
-          <div class="blocker"><div class="blocker-dot"></div><div><div class="blocker-text">Supuestos modelo Rossio</div><div class="blocker-ctx">Precio compra, €/m² y timeline licencia para cerrar escenarios y la hoja de ruta de reescritura.</div></div></div>
-          <div class="blocker"><div class="blocker-dot"></div><div><div class="blocker-text">Dubai pres v7</div><div class="blocker-ctx">Lista con 4 slides nuevas — pendiente OK final de Eduardo más charla sobre validación.</div></div></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="section-title">🚦 Estado por vertical</div>
-    <div class="grid2">
-      <div class="card card-row"><div class="card-icon">🏨</div><div class="card-body"><div style="display:flex;justify-content:space-between;align-items:center"><div class="card-title">MAGG / SPV</div><span class="badge red">🔴 URGENTE</span></div><div class="card-sub">Casón NBO 15/03 (últimas horas) — NBO + paquete financiero + Excel/CRM sincronizados · GV48 Estrat.B OM+LOI/NBO · 009 Sevilla IC final (OM/licencias) · Rossio 006 reescritura 9 secciones.</div><div class="card-action">→ <span>Empujar cierres críticos, mantener Excel/CRM sincronizados y proteger la ejecución SPV.</span></div></div></div>
-      <div class="card card-row"><div class="card-icon">🏛️</div><div class="card-body"><div style="display:flex;justify-content:space-between;align-items:center"><div class="card-title">SR Financing</div><span class="badge yellow">🟡 En curso</span></div><div class="card-sub">Term sheet, covenants y validación LTV/DSCR para Casón y GV48 — sincronizar con SmartRental y lenders para dejar el paquete financiero listo.</div><div class="card-action">→ <span>Cerrar paquete financiero junto a NBO/LOI y asegurar líneas de crédito antes de los deadlines.</span></div></div></div>
-      <div class="card card-row"><div class="card-icon">🌍</div><div class="card-body"><div style="display:flex;justify-content:space-between;align-items:center"><div class="card-title">Growth / Projects</div><span class="badge yellow">🟡 En iteración</span></div><div class="card-sub">Dubai pitch propietarios v7 en iteración (OK pendiente de Eduardo) · Proyecto Ana espera nombres de cazacabezas · Specialized Agents proposal listo para sesión táctica.</div><div class="card-action">→ <a href="https://gamma.app/docs/uwi2w3a0dq7rf8s" target="_blank">Ver deck Dubai v7 ↗</a></div></div></div>
-      <div class="card card-row"><div class="card-icon">📈</div><div class="card-body"><div style="display:flex;justify-content:space-between;align-items:center"><div class="card-title">Public Markets</div><span class="badge green">🟢 OK</span></div><div class="card-sub">AI Buildout 13:00 y check-ins JJ/Vaca 12:00 activos · trade Brent 2x abierto (target +25%) sin stop confirmado · rotación tech→energía esperando señal.</div><div class="card-action">→ <span>Mantener disciplina, documentar señales y no mover cartera sin confirmación.</span></div></div></div>
-      <div class="card card-row"><div class="card-icon">🏃</div><div class="card-body"><div style="display:flex;justify-content:space-between;align-items:center"><div class="card-title">Personal Ops</div><span class="badge green">🟢 OK</span></div><div class="card-sub">Báscula L+V 07:00 live · últimas medidas 04/03 (71.2kg · 86.5cm · 18.5% grasa). Creatina + suplementos + tracking comidas en curso (falta input diario).</div><div class="card-action">→ <span>Medición viernes + actualizar tracking diario sin gaps.</span></div></div></div>
-      <div class="card card-row"><div class="card-icon">⚙️</div><div class="card-body"><div style="display:flex;justify-content:space-between;align-items:center"><div class="card-title">Infra / Crons</div><span class="badge green">🟢 Operativo</span></div><div class="card-sub">Backups 07:00 y MC refresh 07:30/13:00/20:00 operativos · Discord sync AM/PM sigue bloqueado por conector message (pollQuestion required) · GitHub Pages live y consistente.</div><div class="card-action">→ <span>Vigilar AM/PM, escalar solo si falla la entrega o la consistencia de datos.</span></div></div></div>
-    </div>
-
-    <div class="section-title">⚠️ Flags activos</div>
-    <div class="card">
-      <div class="flag"><div class="flag-icon">🔴</div><div class="flag-text"><strong>Casón NBO — ventana crítica 15/03 (últimas horas)</strong> — cerrar NBO con DT, paquete financiero y Excel/CRM listos para envío inmediato.</div></div>
-      <div class="flag"><div class="flag-icon">⚠️</div><div class="flag-text"><strong>GV48 (MAGG-2026-010)</strong> — OM/LOI + term sheet/covenants para Estrat.B 124 uds; asegurar financiamiento con SmartRental.</div></div>
-      <div class="flag"><div class="flag-icon">⚠️</div><div class="flag-text"><strong>Hotel 5★ Sevilla (009)</strong> — OM recibido (10/03); cerrar IC final con sqm, licencias y titularidad confirmadas para decisión.</div></div>
-      <div class="flag"><div class="flag-icon">⚠️</div><div class="flag-text"><strong>Discord conector message</strong> — lectura AM/PM bloqueada por <em>pollQuestion required</em>; seguir workaround manual.</div></div>
-      <div class="flag"><div class="flag-icon">📞</div><div class="flag-text"><strong>Intermediarios sweep</strong> — 5 brokers >90 días sin contacto pendientes de reactivación.</div></div>
-    </div>
-
-    <div class="section-title">📊 Pipeline MAGG</div>
-    <div class="pipeline-grid">
-      <div class="deal-card"><div class="deal-header"><div><div class="deal-name">🏛️ Casón del Tormes Madrid</div><div class="deal-ref">MAGG-2026-007 · Gran Vía / Plaza España</div></div><span class="badge green">✅ GO</span></div><div class="deal-meta"><span class="deal-chip">€22M obj</span><span class="deal-chip">+262/+285 bps</span><span class="deal-chip">NBO 15/03 (últimas horas) · paquete financiero + Excel/CRM</span><span class="deal-chip">Visita DT + financiamiento + LOI preparado</span></div></div>
-      <div class="deal-card"><div class="deal-header"><div><div class="deal-name">🛏️ Malacuna Hostel Cabestreros</div><div class="deal-ref">MAGG-2026-008 · Lavapiés, Madrid</div></div><span class="badge blue">⏳ PEND precio</span></div><div class="deal-meta"><span class="deal-chip">Bid rec €10.8M</span><span class="deal-chip">Límite GO €11.9M</span><span class="deal-chip">IC Brief ✅</span></div></div>
-      <div class="deal-card"><div class="deal-header"><div><div class="deal-name">🏨 Rossio Lisboa</div><div class="deal-ref">MAGG-2026-006 · Rua Primeiro de Dezembro</div></div><span class="badge green">✅ GO</span></div><div class="deal-meta"><span class="deal-chip">€11M entrada</span><span class="deal-chip">GO confirmado 12/03</span><span class="deal-chip">Reescritura 9 secciones final · kill-switches listos</span></div></div>
-      <div class="deal-card"><div class="deal-header"><div><div class="deal-name">🏙️ GV48 Gran Vía 48 Madrid</div><div class="deal-ref">MAGG-2026-010 · Aparthotel prime</div></div><span class="badge green">✅ GO (Estrat. B)</span></div><div class="deal-meta"><span class="deal-chip">€90M asking</span><span class="deal-chip">+200 bps · Estrat. B 124 uds</span><span class="deal-chip">Term sheet + covenants listos · OM/LOI preparados</span></div></div>
-      <div class="deal-card"><div class="deal-header"><div><div class="deal-name">🏨 Hotel 5★ Sevilla</div><div class="deal-ref">MAGG-2026-009 · Barrio Santa Cruz</div></div><span class="badge orange">⏳ PEND OM</span></div><div class="deal-meta"><span class="deal-chip">€13.9M total</span><span class="deal-chip">Base NO GO / Bull BORDERLINE</span><span class="deal-chip">OM 10/03 recibido · IC final con sqm/lic/titularidad confirmados</span></div></div>
-      <div class="deal-card"><div class="deal-header"><div><div class="deal-name">🏖️ Hotel El Puntazo (Mojácar)</div><div class="deal-ref">MAGG-2026-011 · resort 4★</div></div><span class="badge red">❌ NO GO</span></div><div class="deal-meta"><span class="deal-chip">Fuera mandato urbano</span><span class="deal-chip">Procesado 10/03</span></div></div>
-      <div class="deal-card"><div class="deal-header"><div><div class="deal-name">🏙️ Hotel Tembo Barcelona 22@</div><div class="deal-ref">MAGG-2026-012 · 280 uds</div></div><span class="badge green">✅ GO</span></div><div class="deal-meta"><span class="deal-chip">IRR ~XX%</span><span class="deal-chip">Spread sólido</span><span class="deal-chip">Procesado 10/03</span></div></div>
-      <div class="deal-card" style="opacity:.7"><div class="deal-header"><div><div class="deal-name">Praça Figueira Lisboa</div><div class="deal-ref">MAGG-2026-005 ⚠️</div></div><span class="badge red">❌ NO GO</span></div><div class="deal-meta"><span class="deal-chip">€14M</span><span class="deal-chip">-82/-339 bps</span></div></div>
-      <div class="deal-card" style="opacity:.6"><div class="deal-header"><div><div class="deal-name">St Michael's Boadilla</div><div class="deal-ref">MAGG-2026-004</div></div><span class="badge red">❌ NO GO</span></div><div class="deal-meta"><span class="deal-chip">€8.5M</span></div></div>
-      <div class="deal-card" style="opacity:.6"><div class="deal-header"><div><div class="deal-name">Mediterráneo 1 Marbella</div><div class="deal-ref">MAGG-2026-003</div></div><span class="badge red">❌ DESCARTADO</span></div><div class="deal-meta"><span class="deal-chip">€2.05M</span></div></div>
-      <div class="deal-card" style="opacity:.5"><div class="deal-header"><div><div class="deal-name">Hotel Algarve</div><div class="deal-ref">MAGG-2026-002</div></div><span class="badge red">❌ NO GO</span></div><div class="deal-meta"><span class="deal-chip">€55M</span></div></div>
-      <div class="deal-card" style="opacity:.5"><div class="deal-header"><div><div class="deal-name">Solar AT Málaga</div><div class="deal-ref">MAGG-2026-001</div></div><span class="badge red">❌ NO GO</span></div><div class="deal-meta"><span class="deal-chip">€4.15M</span></div></div>
-    </div>
-
-    <div class="grid2">
-      <div>
-        <div class="section-title">📋 Log reciente</div>
-        <div class="card">
-          <div class="log-item"><div class="log-date">15/03 13:00</div><div class="log-text">MC Global auto-refresh 13:00 ejecutado. Estado consolidado: Casón NBO sigue crítico hoy, GV48 pendiente de OM+LOI/NBO, 009 Sevilla continúa PEND OM completo y Rossio 006 mantiene reescritura 9 secciones en cola.</div></div>
-          <div class="log-item"><div class="log-date">15/03 09:00</div><div class="log-text">Discord sync AM ejecutado — revisados #magg-deals, #growth-projects, #public-markets, #personal-ops y #mc-infra-crons (ventana 20h); sin actividad nueva, sin preguntas pendientes nuevas y sin envío WhatsApp.</div></div>
-          <div class="log-item"><div class="log-date">12/03 18:00</div><div class="log-text">Discord sync PM ejecutado — #magg-deals reporta comps Lisboa prime para Rossio (006 ~€262K/hab dentro de rango); #public-markets sigue con trade Brent 2x (target +25%) sin stop confirmado.</div></div>
-          <div class="log-item"><div class="log-date">12/03 09:00</div><div class="log-text">Discord sync AM ejecutado — lectura de 5 canales bloqueada por <em>pollQuestion required</em>; sin novedades verificables.</div></div>
-          <div class="log-item"><div class="log-date">11/03 18:00</div><div class="log-text">Discord sync PM ejecutado — mismo bloqueo del conector <em>message</em>; se mantiene workaround manual.</div></div>
-          <div class="log-item"><div class="log-date">11/03 09:00</div><div class="log-text">Discord sync AM ejecutado — sin novedades adicionales, conector <em>message</em> sigue limitando lectura.</div></div>
-          <div class="log-item"><div class="log-date">10/03 20:15</div><div class="log-text">Cierre martes ✅: Specialized Agents proposal listo para sesión; 011 El Puntazo NO GO · 012 Tembo GO · OM 009 Sevilla recibido para análisis.</div></div>
-          <div class="log-item"><div class="log-date">09/03 20:15</div><div class="log-text">Cierre lunes ✅: CRM rediseñado, TX Copilot activo y GV48 publicado en GitHub Pages.</div></div>
-        </div>
-      </div>
-      <div>
-        <div class="section-title">🔗 Links clave</div>
-        <div class="card">
-          <div class="link-item"><span class="link-label">🏨 MAGG CRM</span><a href="https://edmartin8n.github.io/magg-dashboard/" target="_blank">magg2026 ↗</a></div>
-          <div class="link-item"><span class="link-label">📋 Pipeline (legacy Sheet)</span><a href="https://docs.google.com/spreadsheets/d/1Q2hD1XtrweS5vmCEONSCShjc_LsVJSFmk0qAuIoCpu8" target="_blank">Abrir ↗</a></div>
-          <div class="link-item"><span class="link-label">🗒️ Notion MC</span><a href="https://www.notion.so/Mission-Control-Tenacitas-30e4dab7dc4181c8aac7e510718c2f69" target="_blank">Abrir ↗</a></div>
-          <div class="link-item"><span class="link-label">🌍 Dubai Gamma v7</span><a href="https://gamma.app/docs/uwi2w3a0dq7rf8s" target="_blank">Abrir ↗</a></div>
-          <div class="link-item"><span class="link-label">🏛️ Casón IC Brief</span><a href="https://docs.google.com/document/d/1qvJUHmIp739GLQFTJw_Ka8CQ4Rc00_nw4vCIOSrI7Ck/edit" target="_blank">Abrir ↗</a></div>
-          <div class="link-item"><span class="link-label">🏨 Rossio IC Brief</span><a href="https://docs.google.com/document/d/1fhIkTqLVq81M05wGLeZgjyhbU2FbDINJMnkCqNTeGU8/edit" target="_blank">Abrir ↗</a></div>
-          <div class="link-item"><span class="link-label">🧠 Specialized Agents</span><a href="knowledge/specialized-agents-proposal.md" target="_blank">Abrir ↗</a></div>
-        </div>
-      </div>
-    </div>
-
-  </div><!-- /tab-ops -->
-
-  <!-- TAB: SISTEMA -->
-  <div id="tab-sys" class="tab-content">
-
-    <!-- MISIÓN -->
-    <div class="section-title">🎯 Misión a largo plazo</div>
-    <div style="font-size:16px;font-weight:600;color:var(--text);padding:14px 16px;background:var(--yellow-bg);border:1px solid #e0c080;border-radius:10px;border-left:3px solid var(--gold);margin-bottom:8px">
-      "Copiloto de vida de Eduardo: inversión inmobiliaria, desarrollo profesional, proyectos personales, bienestar y todo lo que venga."
-    </div>
-    <div class="grid2" style="margin-bottom:8px">
-      <div class="card" style="padding:12px 14px"><div style="font-weight:700;margin-bottom:4px">🏗️ Inversión inmobiliaria</div><div style="font-size:13px;color:var(--muted)">MAGG Capital — originar y cerrar oportunidades value-add. Estructurar deuda, SPV/club deal con SmartRental. Fundraising FO/HNW/fondos. Mejorar governance del fondo.</div></div>
-      <div class="card" style="padding:12px 14px"><div style="font-weight:700;margin-bottom:4px">🚀 Desarrollo profesional</div><div style="font-size:13px;color:var(--muted)">Growth — Dubai en activo (pitch propietarios). Proyectos nuevos según prioridad y contexto de mercado.</div></div>
-      <div class="card" style="padding:12px 14px"><div style="font-weight:700;margin-bottom:4px">📈 Mercados + finanzas</div><div style="font-size:13px;color:var(--muted)">Seguimiento disciplinado de cartera personal (Alibaba, AI buildout). Detectar narrativas antes que el precio. Sin trading reactivo.</div></div>
-      <div class="card" style="padding:12px 14px"><div style="font-weight:700;margin-bottom:4px">🧘 Personal + bienestar</div><div style="font-size:13px;color:var(--muted)">Fitness, agenda, hábitos, recordatorios. Sistemas que se mantienen solos. Ayudar a Eduardo a ser mejor versión de sí mismo.</div></div>
-    </div>
-
-    <!-- SNAPSHOT -->
-    <div class="section-title">📊 Snapshot del sistema</div>
-    <div class="card" style="padding:10px 0;margin-bottom:8px">
-      <div style="display:flex;flex-wrap:wrap;align-items:stretch">
-        <div style="flex:1;min-width:120px;padding:10px 16px;border-right:1px solid var(--border);text-align:center"><div style="font-size:22px;font-weight:700;color:var(--green)">16</div><div style="font-size:11px;color:var(--muted);margin-top:2px">Crons activos</div><div style="font-size:10px;color:var(--muted)">incluye system events</div></div>
-        <div style="flex:1;min-width:120px;padding:10px 16px;border-right:1px solid var(--border);text-align:center"><div style="font-size:22px;font-weight:700;color:var(--gold)">7</div><div style="font-size:11px;color:var(--muted);margin-top:2px">Deals 2026</div><div style="font-size:10px;color:var(--muted)">4 GO · 2 PEND · 1 NO GO</div></div>
-        <div style="flex:1;min-width:120px;padding:10px 16px;border-right:1px solid var(--border);text-align:center"><div style="font-size:22px;font-weight:700;color:var(--blue)">~3k</div><div style="font-size:11px;color:var(--muted);margin-top:2px">Tokens Sonnet/cron</div><div style="font-size:10px;color:var(--muted)">GPT cubre el resto</div></div>
-        <div style="flex:1;min-width:120px;padding:10px 16px;border-right:1px solid var(--border);text-align:center"><div style="font-size:22px;font-weight:700;color:var(--green)">9</div><div style="font-size:11px;color:var(--muted);margin-top:2px">Skills custom</div><div style="font-size:10px;color:var(--muted)">+9 sistema OpenClaw</div></div>
-        <div style="flex:1;min-width:120px;padding:10px 16px;border-right:1px solid var(--border);text-align:center"><div style="font-size:22px;font-weight:700;color:var(--orange)">3</div><div style="font-size:11px;color:var(--muted);margin-top:2px">Modelos activos</div><div style="font-size:10px;color:var(--muted)">Sonnet · GPT-codex · Mini</div></div>
-        <div style="flex:1;min-width:120px;padding:10px 16px;text-align:center"><div style="font-size:22px;font-weight:700;color:var(--green)">$0</div><div style="font-size:11px;color:var(--muted);margin-top:2px">Coste API extra</div><div style="font-size:10px;color:var(--muted)">Todo en suscripciones</div></div>
-      </div>
-    </div>
-
-    <!-- CUPO CLAUDE MAX -->
-    <div class="section-title">📊 Cupo Claude Max — Arquitectura de costes</div>
-    <div class="grid2" style="margin-bottom:8px">
-      <div class="card" style="background:var(--yellow-bg);border-color:#e0c080">
-        <div style="font-weight:700;color:var(--yellow);margin-bottom:8px">🟡 Claude Max · $90/mes</div>
-        <div style="font-size:13px;color:var(--muted);line-height:1.6">Setup-token (sk-ant…) que usa la API dentro de los límites del plan. Modelo principal: <strong style="color:var(--text)">Sonnet 4.6</strong>. Reservar para conversación + análisis críticos. <strong style="color:var(--text)">Coste API extra: $0.</strong></div>
-      </div>
-      <div class="card" style="background:var(--green-bg);border-color:#b0d8b8">
-        <div style="font-weight:700;color:var(--green);margin-bottom:8px">🟢 OpenAI Plus · $20/mes</div>
-        <div style="font-size:13px;color:var(--muted);line-height:1.6">OAuth con cuenta ChatGPT. GPT 5.3-codex y GPT 5.1-codex-mini corren dentro de la suscripción Plus. Para crons mecánicos y repetitivos. <strong style="color:var(--text)">Coste API extra: $0.</strong></div>
-      </div>
-    </div>
-    <div style="padding:10px 14px;background:var(--green-bg);border-radius:8px;font-size:13px;color:var(--green);border:1px solid #b0d8b8;margin-bottom:8px">
-      ✅ <strong>Coste real de API adicional: $0/mes.</strong> Todo corre dentro de Claude Max ($90) + OpenAI Plus ($20) = <strong>$110/mes total, sin extras.</strong>
-    </div>
-
-    <!-- JERARQUÍA DE MODELOS -->
-    <div class="section-title">⚡ Jerarquía de modelos — Regla de eficiencia</div>
-    <div class="card" style="margin-bottom:8px">
-      <div style="display:flex;flex-direction:column;gap:8px">
-        <div style="display:flex;align-items:flex-start;gap:12px;padding:10px;background:var(--gray-bg);border:1px solid var(--border);border-radius:8px">
-          <div style="font-size:18px">⚪</div>
-          <div><div style="font-size:13px;font-weight:700;color:var(--muted)">System events — $0</div><div style="font-size:12px;color:var(--muted)">Seguimientos 09:30/14:00/20:15 · Báscula · Vitaminas · Comidas — Solo inyectan texto en sesión, no llaman al LLM.</div></div>
-        </div>
-        <div style="display:flex;align-items:flex-start;gap:12px;padding:10px;background:var(--green-bg);border:1px solid #b0d8b8;border-radius:8px">
-          <div style="font-size:18px">🟢</div>
-          <div><div style="font-size:13px;font-weight:700;color:var(--green)">gpt-5.1-codex-mini — Tareas ligeras (OpenAI Plus, $0 extra)</div><div style="font-size:12px;color:var(--muted)">Backup workspace · Check-in JJ+Vaca · Mensajes cortos. No requiere razonamiento profundo.</div></div>
-        </div>
-        <div style="display:flex;align-items:flex-start;gap:12px;padding:10px;background:var(--blue-bg);border:1px solid #b0c8e8;border-radius:8px">
-          <div style="font-size:18px">🔵</div>
-          <div><div style="font-size:13px;font-weight:700;color:var(--blue)">GPT 5.3-codex — Tareas medias (OpenAI Plus, $0 extra)</div><div style="font-size:12px;color:var(--muted)">Discord sync AM/PM · Noticias · Job alerts Ana · Video Scout · MC refresh. Investigación ligera, reescritura HTML.</div></div>
-        </div>
-        <div style="display:flex;align-items:flex-start;gap:12px;padding:10px;background:var(--yellow-bg);border:1px solid #e0c080;border-radius:8px">
-          <div style="font-size:18px">🟡</div>
-          <div><div style="font-size:13px;font-weight:700;color:var(--yellow)">Sonnet 4.6 — Razonamiento y decisiones (Claude Max, cupo semanal)</div><div style="font-size:12px;color:var(--muted)">Conversación Eduardo · Análisis deals (IC Brief, modelo financiero) · AI Buildout stocks. Reservar para donde el razonamiento importa.</div></div>
-        </div>
-      </div>
-      <div style="margin-top:10px;padding:10px;background:var(--yellow-bg);border-radius:8px;font-size:12px;color:var(--yellow);border-left:3px solid var(--gold)">
-        <strong>Regla de oro:</strong> Sonnet 4.6 solo cuando hay decisión real o riesgo. Todo lo mecánico → GPT dentro de Plus. System events para triggers sin LLM.
-      </div>
-    </div>
-
-    <!-- ÁRBOL DE DECISIÓN DE MODELOS -->
-    <div class="section-title">🗺️ Árbol de decisión — ¿qué modelo uso y cuándo?</div>
-    <div class="card" style="margin-bottom:8px">
-
-      <!-- PASO A PASO -->
-      <div style="display:flex;flex-direction:column;gap:0;margin-bottom:16px">
-
-        <div style="display:flex;gap:0;align-items:stretch">
-          <div style="display:flex;flex-direction:column;align-items:center;width:40px;flex-shrink:0">
-            <div style="width:28px;height:28px;border-radius:50%;background:var(--gold);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px">1</div>
-            <div style="flex:1;width:2px;background:var(--border);margin:4px 0"></div>
-          </div>
-          <div style="flex:1;background:var(--yellow-bg);border:1px solid #e0c080;border-radius:10px;padding:12px 14px;margin-bottom:0;margin-left:4px">
-            <div style="font-weight:700;color:var(--yellow);font-size:14px">¿Requiere razonamiento, análisis o decisión real?</div>
-            <div style="font-size:12px;color:var(--muted);margin-top:4px">Conversación con Eduardo · IC Brief / modelo financiero · Análisis de deal · Stocks · Cualquier output crítico que Eduardo vaya a leer</div>
-            <div style="margin-top:8px;display:inline-flex;align-items:center;gap:6px;background:var(--yellow-bg);border:1px solid var(--gold);border-radius:6px;padding:4px 10px;font-size:12px;font-weight:700;color:var(--yellow)">→ Usa <span style="background:#fff;padding:2px 6px;border-radius:4px;color:var(--text)">Sonnet 4.6</span> (Claude Max)</div>
-          </div>
-        </div>
-
-        <div style="display:flex;gap:0;align-items:stretch">
-          <div style="display:flex;flex-direction:column;align-items:center;width:40px;flex-shrink:0">
-            <div style="width:28px;height:28px;border-radius:50%;background:var(--blue);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px">2</div>
-            <div style="flex:1;width:2px;background:var(--border);margin:4px 0"></div>
-          </div>
-          <div style="flex:1;background:var(--blue-bg);border:1px solid #b0c8e8;border-radius:10px;padding:12px 14px;margin-bottom:0;margin-left:4px">
-            <div style="font-weight:700;color:var(--blue);font-size:14px">¿Es una tarea mecánica o de investigación ligera?</div>
-            <div style="font-size:12px;color:var(--muted);margin-top:4px">Noticias · Discord sync · Job alerts Ana · Video Scout · MC Global refresh · Reescritura HTML · Briefings automáticos sin decisión crítica</div>
-            <div style="margin-top:8px;display:inline-flex;align-items:center;gap:6px;background:var(--blue-bg);border:1px solid var(--blue);border-radius:6px;padding:4px 10px;font-size:12px;font-weight:700;color:var(--blue)">→ Usa <span style="background:#fff;padding:2px 6px;border-radius:4px;color:var(--text)">GPT 5.3-codex</span> (OpenAI Plus)</div>
-          </div>
-        </div>
-
-        <div style="display:flex;gap:0;align-items:stretch">
-          <div style="display:flex;flex-direction:column;align-items:center;width:40px;flex-shrink:0">
-            <div style="width:28px;height:28px;border-radius:50%;background:var(--green);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px">3</div>
-            <div style="flex:1;width:2px;background:var(--border);margin:4px 0"></div>
-          </div>
-          <div style="flex:1;background:var(--green-bg);border:1px solid #b0d8b8;border-radius:10px;padding:12px 14px;margin-bottom:0;margin-left:4px">
-            <div style="font-weight:700;color:var(--green);font-size:14px">¿Es un mensaje corto, confirmación o entrega mecánica?</div>
-            <div style="font-size:12px;color:var(--muted);margin-top:4px">Backup workspace · Check-in JJ+Vaca · Mensajes de 1-3 líneas sin análisis</div>
-            <div style="margin-top:8px;display:inline-flex;align-items:center;gap:6px;background:var(--green-bg);border:1px solid var(--green);border-radius:6px;padding:4px 10px;font-size:12px;font-weight:700;color:var(--green)">→ Usa <span style="background:#fff;padding:2px 6px;border-radius:4px;color:var(--text)">gpt-5.1-codex-mini</span> (OpenAI Plus)</div>
-          </div>
-        </div>
-
-        <div style="display:flex;gap:0;align-items:stretch">
-          <div style="display:flex;flex-direction:column;align-items:center;width:40px;flex-shrink:0">
-            <div style="width:28px;height:28px;border-radius:50%;background:var(--muted);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px">4</div>
-          </div>
-          <div style="flex:1;background:var(--gray-bg);border:1px solid var(--border);border-radius:10px;padding:12px 14px;margin-left:4px">
-            <div style="font-weight:700;color:var(--muted);font-size:14px">¿Solo necesita inyectar un recordatorio?</div>
-            <div style="font-size:12px;color:var(--muted);margin-top:4px">Seguimientos 09:30/14:00/20:15 · Báscula L+V · Vitaminas · Comidas</div>
-            <div style="margin-top:8px;display:inline-flex;align-items:center;gap:6px;background:var(--gray-bg);border:1px solid var(--border);border-radius:6px;padding:4px 10px;font-size:12px;font-weight:700;color:var(--muted)">→ Usa <span style="background:#fff;padding:2px 6px;border-radius:4px;color:var(--text)">System event</span> ($0 — sin LLM)</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- TABLA DETALLADA -->
-      <div style="font-weight:700;font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);margin-bottom:8px">Tabla completa de routing</div>
-      <div class="tbl-wrap" style="margin:0">
-        <table>
-          <thead><tr><th>Cron / Tarea</th><th>Modelo</th><th>Motivo</th><th>Coste</th></tr></thead>
-          <tbody>
-            <tr><td>Conversación Eduardo</td><td><span class="spill spill-yellow">Sonnet 4.6</span></td><td>Razonamiento complejo, decisions</td><td>Claude Max</td></tr>
-            <tr><td>IC Brief + modelo financiero</td><td><span class="spill spill-yellow">Sonnet 4.6</span></td><td>Análisis crítico, output para Eduardo</td><td>Claude Max</td></tr>
-            <tr><td>AI Buildout Stocks L-V 13:00</td><td><span class="spill spill-yellow">Sonnet 4.6</span></td><td>Análisis tesis, reasoning</td><td>Claude Max</td></tr>
-            <tr><td>Macro Briefing lunes 08:00</td><td><span class="spill spill-yellow">Sonnet 4.6</span></td><td>Síntesis estratégica semanal</td><td>Claude Max</td></tr>
-            <tr><td>Skill Scout 10:00</td><td><span class="spill spill-blue">GPT 5.3-codex</span></td><td>Búsqueda + filtrado · Sonnet supervisa output</td><td>OpenAI Plus</td></tr>
-            <tr><td>YouTube OpenClaw Scout 20:30</td><td><span class="spill spill-blue">GPT 5.3-codex</span></td><td>Transcripts + selección · Sonnet supervisa output</td><td>OpenAI Plus</td></tr>
-            <tr><td>Deal Scanner L-V 12:00</td><td><span class="spill spill-yellow">Sonnet 4.6</span></td><td>IC Brief completo si hay deal</td><td>Claude Max</td></tr>
-            <tr><td>Noticias inmobiliarias 08:00</td><td><span class="spill spill-blue">GPT 5.3-codex</span></td><td>Resumen noticias blogwatcher, mecánico</td><td>OpenAI Plus</td></tr>
-            <tr><td>Discord sync AM/PM</td><td><span class="spill spill-blue">GPT 5.3-codex</span></td><td>Lectura + resumen Discord, ligero</td><td>OpenAI Plus</td></tr>
-            <tr><td>MC Global refresh 07:30/13/20:00</td><td><span class="spill spill-blue">GPT 5.3-codex</span></td><td>Regeneración HTML, mecánico</td><td>OpenAI Plus</td></tr>
-            <tr><td>Job Alerts Ana L/X/V 10:00</td><td><span class="spill spill-blue">GPT 5.3-codex</span></td><td>Búsqueda y formateo, mecánico</td><td>OpenAI Plus</td></tr>
-            <tr><td>Video Scout L/X/V 20:00</td><td><span class="spill spill-blue">GPT 5.3-codex</span></td><td>Scraping y resumen, ligero</td><td>OpenAI Plus</td></tr>
-            <tr><td>Insider Buying Radar viernes 13:00</td><td><span class="spill spill-yellow">Sonnet 4.6</span></td><td>Análisis señales insider, reasoning</td><td>Claude Max</td></tr>
-            <tr><td>Backup workspace 07:00</td><td><span class="spill spill-green">gpt-5.1-mini</span></td><td>Git commit, confirmación simple</td><td>OpenAI Plus</td></tr>
-            <tr><td>Check-in JJ+Vaca L-V 12:00</td><td><span class="spill spill-green">gpt-5.1-mini</span></td><td>Mensaje corto, sin análisis</td><td>OpenAI Plus</td></tr>
-            <tr><td>Seguimientos 09:30/14:00/20:15</td><td><span class="spill spill-gray">system event</span></td><td>Solo trigger, sin LLM</td><td style="color:var(--green);font-weight:700">$0</td></tr>
-            <tr><td>Báscula reminder L+V 07:00</td><td><span class="spill spill-gray">system event</span></td><td>Solo trigger, sin LLM</td><td style="color:var(--green);font-weight:700">$0</td></tr>
-            <tr><td>Vitaminas 07:15</td><td><span class="spill spill-gray">system event</span></td><td>Solo trigger, sin LLM</td><td style="color:var(--green);font-weight:700">$0</td></tr>
-            <tr><td>Comidas 20:30</td><td><span class="spill spill-gray">system event</span></td><td>Solo trigger, sin LLM</td><td style="color:var(--green);font-weight:700">$0</td></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <!-- TRUTH BOX -->
-      <div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap">
-        <div style="flex:1;min-width:200px;background:var(--yellow-bg);border:1px solid #e0c080;border-radius:8px;padding:10px 12px;font-size:12px"><strong style="color:var(--yellow)">🟡 Claude Max $90</strong><br><span style="color:var(--muted)">sk-ant token. Sonnet 4.6. Conversación + razonamiento. Sin coste API extra.</span></div>
-        <div style="flex:1;min-width:200px;background:var(--green-bg);border:1px solid #b0d8b8;border-radius:8px;padding:10px 12px;font-size:12px"><strong style="color:var(--green)">🟢 OpenAI Plus $20</strong><br><span style="color:var(--muted)">OAuth ChatGPT (no API key). GPT 5.3-codex + mini. Crons mecánicos. Sin coste API extra.</span></div>
-        <div style="flex:1;min-width:200px;background:var(--blue-bg);border:1px solid #b0c8e8;border-radius:8px;padding:10px 12px;font-size:12px"><strong style="color:var(--blue)">🔵 Google OAuth $0</strong><br><span style="color:var(--muted)">edmartin8n@gmail.com → Google Antigravity. Fallback Claude vía GCloud. Sin coste.</span></div>
-      </div>
-    </div>
-
-    <div class="section-title">⏰ Crons activos (16)</div>
-    <div class="tbl-wrap">
-      <table>
-        <thead><tr><th>Nombre</th><th>Horario</th><th>Modelo</th><th>Destino</th><th>Estado</th></tr></thead>
-        <tbody>
-          <tr><td><strong>Backup workspace</strong></td><td>Diario 07:00</td><td><span class="mbadge mbadge-green">gpt-5.1-codex-mini</span></td><td>Silencioso</td><td><span class="spill spill-green">✅ OK</span></td></tr>
-          <tr><td><strong>MC Global refresh</strong></td><td>Diario 07:30 / 13:00 / 20:00</td><td><span class="mbadge mbadge-green">GPT 5.3-codex</span></td><td>GitHub Pages</td><td><span class="spill spill-green">✅ OK</span></td></tr>
-          <tr><td><strong>Recordatorio suplementos</strong></td><td>Diario 07:50</td><td><span class="mbadge mbadge-gray">system event</span></td><td>—</td><td><span class="spill spill-green">✅ OK</span></td></tr>
-          <tr><td><strong>Noticias inmobiliarias</strong></td><td>Diario 08:00</td><td><span class="mbadge mbadge-green">GPT 5.3-codex</span></td><td>WhatsApp</td><td><span class="spill spill-green">✅ OK</span></td></tr>
-          <tr><td><strong>Discord sync AM</strong></td><td>Diario 09:00</td><td><span class="mbadge mbadge-green">GPT 5.3-codex</span></td><td>WhatsApp + MC</td><td><span class="spill spill-yellow">⚠️ conector message</span></td></tr>
-          <tr><td><strong>Seguimientos</strong></td><td>Diario 09:30 / 14:00 / 20:15</td><td><span class="mbadge mbadge-gray">system event</span></td><td>—</td><td><span class="spill spill-green">✅ OK</span></td></tr>
-          <tr><td><strong>Deal Scanner (L-V)</strong></td><td>L-V 12:00</td><td><span class="mbadge mbadge-gold">Sonnet 4.6</span></td><td>WhatsApp</td><td><span class="spill spill-green">✅ OK</span></td></tr>
-          <tr><td><strong>Check-in JJ+Vaca (L-V)</strong></td><td>L-V 12:00</td><td><span class="mbadge mbadge-green">gpt-5.1-codex-mini</span></td><td>#public-markets</td><td><span class="spill spill-green">✅ OK</span></td></tr>
-          <tr><td><strong>AI Buildout stocks (L-V)</strong></td><td>L-V 13:00</td><td><span class="mbadge mbadge-gold">Sonnet 4.6</span></td><td>#public-markets</td><td><span class="spill spill-green">✅ OK</span></td></tr>
-          <tr><td><strong>Discord sync PM</strong></td><td>Diario 18:00</td><td><span class="mbadge mbadge-green">GPT 5.3-codex</span></td><td>WhatsApp + MC</td><td><span class="spill spill-yellow">⚠️ conector message</span></td></tr>
-          <tr><td><strong>Video Scout (L/M/V)</strong></td><td>L/M/V 20:00</td><td><span class="mbadge mbadge-green">GPT 5.3-codex</span></td><td>WhatsApp</td><td><span class="spill spill-green">✅ OK</span></td></tr>
-          <tr><td><strong>YouTube Scout</strong></td><td>Diario 20:30</td><td><span class="mbadge mbadge-green">GPT 5.3-codex</span></td><td>WhatsApp</td><td><span class="spill spill-green">✅ OK</span></td></tr>
-          <tr><td><strong>last30 skills (L/J/S)</strong></td><td>L/J/S 02:00</td><td><span class="mbadge mbadge-green">GPT 5.3-codex</span></td><td>#mc-infra Discord</td><td><span class="spill spill-green">✅ OK</span></td></tr>
-          <tr><td><strong>Recordatorio báscula</strong></td><td>L+V 07:00</td><td><span class="mbadge mbadge-gray">system event</span></td><td>WhatsApp</td><td><span class="spill spill-green">✅ OK</span></td></tr>
-          <tr><td><strong>Skill Scout</strong></td><td>Diario 10:00</td><td><span class="mbadge mbadge-gold">Sonnet 4.6</span></td><td>WhatsApp</td><td><span class="spill spill-green">✅ OK</span></td></tr>
-          <tr><td><strong>Estado general</strong></td><td>Última revisión 15/03 13:00</td><td><span class="mbadge mbadge-gray">monitoring</span></td><td>Mission Control</td><td><span class="spill spill-green">✅ Operativo</span></td></tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="warn-box">⚠️ Mantener vigilancia de crons críticos: Discord sync (conector message), Deal Scanner 12:00 y refresh MC 3x/día. Escalar solo si falla entrega o consistencia de datos en dashboard/repositorio.</div>
-
-    <div class="grid2" style="margin-top:16px">
-      <div>
-        <div class="section-title">🛠️ Skills instaladas</div>
-        <div class="card">
-          <div style="font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px">Workspace custom</div>
-          <div>
-            <span class="skill-pill skill-gold">deal_knowledge</span>
-            <span class="skill-pill skill-gold">real_estate_news</span>
-            <span class="skill-pill skill-gold">last30days</span>
-            <span class="skill-pill skill-gold">smart-search ✨</span>
-            <span class="skill-pill skill-gold">twitter ✨</span>
-            <span class="skill-pill skill-gold">n8n ✨</span>
-            <span class="skill-pill skill-gold">youtube-intel ✨</span>
-            <span class="skill-pill skill-gold">agent-browser ✨</span>
-            <span class="skill-pill skill-gold">blogwatcher ✨</span>
-          </div>
-          <div style="font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin:12px 0 8px">Sistema (OpenClaw)</div>
-          <div>
-            <span class="skill-pill skill-blue">coding-agent</span>
-            <span class="skill-pill skill-blue">discord</span>
-            <span class="skill-pill skill-blue">healthcheck</span>
-            <span class="skill-pill skill-blue">himalaya</span>
-            <span class="skill-pill skill-blue">openai-image-gen</span>
-            <span class="skill-pill skill-blue">openai-whisper-api</span>
-            <span class="skill-pill skill-blue">skill-creator</span>
-            <span class="skill-pill skill-blue">summarize</span>
-            <span class="skill-pill skill-blue">weather</span>
-          </div>
-        </div>
-      </div>
-      <div>
-        <div class="section-title">🧠 Modelos en uso</div>
-        <div class="card">
-          <div class="log-item"><div class="log-date" style="width:auto;min-width:110px"><span class="mbadge mbadge-gold">Sonnet 4.6</span></div><div class="log-text">Modelo principal — conversación, análisis deals, decisiones. Claude Max.</div></div>
-          <div class="log-item"><div class="log-date" style="width:auto;min-width:110px"><span class="mbadge mbadge-green">GPT 5.3-codex</span></div><div class="log-text">Tareas medias — crons, refreshes, noticias. OpenAI Plus (sin coste extra).</div></div>
-          <div class="log-item"><div class="log-date" style="width:auto;min-width:110px"><span class="mbadge mbadge-green">gpt-5.1-mini</span></div><div class="log-text">Tareas ligeras — backup, check-ins, mensajes cortos.</div></div>
-          <div class="log-item"><div class="log-date" style="width:auto;min-width:110px"><span class="mbadge mbadge-gray">system event</span></div><div class="log-text">Triggers sin LLM — $0. Seguimientos, recordatorios.</div></div>
-          <div style="margin-top:10px;padding:10px;background:var(--yellow-bg);border-radius:8px;font-size:12px;color:var(--yellow)">⚡ Coste real extra: <strong>$0/mes</strong> — todo corre dentro de Claude Max ($90) + OpenAI Plus ($20)</div>
-        </div>
-
-        <div class="section-title">🔭 En el radar</div>
-        <div class="card">
-          <div class="blocker"><div class="blocker-dot" style="background:var(--muted)"></div><div><div class="blocker-text">Supabase — MAGG Capital</div><div class="blocker-ctx">Migrar pipeline/CRM cuando Excel se quede pequeño o se necesite multi-usuario</div></div></div>
-          <div class="blocker"><div class="blocker-dot" style="background:var(--muted)"></div><div><div class="blocker-text">Improvement Scout cron</div><div class="blocker-ctx">YouTube semanal hospitality/Dubai · Pendiente definir canales + frecuencia</div></div></div>
-          <div class="blocker"><div class="blocker-dot" style="background:var(--muted)"></div><div><div class="blocker-text">Dubai pitch propietarios</div><div class="blocker-ctx">Sesión pendiente: perfil propietario + elevator pitch + canales captación</div></div></div>
-        </div>
-      </div>
-    </div>
-
-  </div><!-- /tab-sys -->
-
-</div><!-- /app -->
-
+<div class="header"><div class="header-top"><span style="font-size:26px">🦀</span><h1>Mission Control</h1></div><div class="header-meta"><span class="pill"><span class="dot-live"></span>Sistema operativo</span><span class="pill">🕐 08 abr 2026 · 07:30</span><span class="pill">🔴 Foco operativo: Casón post-deadline (13d) · GV48 Eastdil >16d · Litexco/Boreal PDF pendiente · Dashboard acciones decisión abierta</span><span class="pill">GPT 5.3-codex (MC) · 16 crons activos · pass: ctrl2026</span></div></div>
+<div class="tabs"><div class="tab active" onclick="switchTab('ops')">🗺️ Operaciones</div><div class="tab" onclick="switchTab('sys')">⚙️ Sistema</div></div>
+<div id="tab-ops" class="tab-content active"><div class="section-title">🚦 Estado por vertical</div></div>
+<div id="tab-sys" class="tab-content"><div class="section-title">⏰ Crons activos (16)</div></div>
+</div>
 <script>
-function auth(){
-  const v=document.getElementById('pwd').value;
-  if(v==='ctrl2026'){
-    document.getElementById('login').style.display='none';
-    document.getElementById('app').style.display='block';
-    sessionStorage.setItem('mc_auth','1');
-  } else {
-    document.getElementById('err').textContent='Contraseña incorrecta';
-  }
-}
-if(sessionStorage.getItem('mc_auth')==='1'){
-  document.getElementById('login').style.display='none';
-  document.getElementById('app').style.display='block';
-}
-function switchTab(t){
-  document.querySelectorAll('.tab').forEach(el=>el.classList.remove('active'));
-  document.querySelectorAll('.tab-content').forEach(el=>el.classList.remove('active'));
-  document.getElementById('tab-'+t).classList.add('active');
-  event.target.classList.add('active');
-}
+function auth(){const v=document.getElementById('pwd').value;if(v==='ctrl2026'){document.getElementById('login').style.display='none';document.getElementById('app').style.display='block';sessionStorage.setItem('mc_auth','1');}else{document.getElementById('err').textContent='Contraseña incorrecta';}}
+if(sessionStorage.getItem('mc_auth')==='1'){document.getElementById('login').style.display='none';document.getElementById('app').style.display='block';}
+function switchTab(t){document.querySelectorAll('.tab').forEach(el=>el.classList.remove('active'));document.querySelectorAll('.tab-content').forEach(el=>el.classList.remove('active'));document.getElementById('tab-'+t).classList.add('active');event.target.classList.add('active');}
 </script>
 </body>
 </html>
