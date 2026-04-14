@@ -1,7 +1,72 @@
 {
-  "generated": "2026-03-30T20:15:34.660801",
-  "total": 41,
+  "generated": "2026-04-14T02:02:46.350709",
+  "total": 45,
   "entries": [
+    {
+      "date": "2026-04-14",
+      "weekday": "Tuesday",
+      "weekday_es": "Martes",
+      "summary": "- **Tarea seleccionada:** cerrar el pendiente operativo de deal **Amil Pro / Calle Albasanz** con un entregable verificable.",
+      "topics": [
+        "02:00 — Tarea autónoma"
+      ],
+      "tags": [
+        "MAGG",
+        "Infra",
+        "Notion"
+      ],
+      "activity": 15,
+      "content": "# 2026-04-14\n\n## 02:00 — Tarea autónoma\n- **Tarea seleccionada:** cerrar el pendiente operativo de deal **Amil Pro / Calle Albasanz** con un entregable verificable.\n- **Motivo de prioridad:** era el único deal reciente con petición explícita de Eduardo y sin cierre objetivo en Mission Control, así que tenía más impacto que mejoras de infra o documentación.\n- **Ejecución completada:**\n  - Publicado IC Brief del deal **MAGG-2026-013 | Albasanz 21** en:\n    - `docs/briefs/013-albasanz-21.html`\n    - `briefs/013-albasanz-21.html`\n  - Veredicto fijado: **⚠️ BORDERLINE** a precio ask **€12,5M**.\n  - Recomendación operativa fijada: **bid objetivo €11,0-11,2M**, con estructura fuertemente condicionada a concesión de licencia.\n  - Mensaje clave del análisis: la tesis de demanda aguanta, pero el precio actual no deja colchón suficiente para el mandato MAGG.\n- **Gestión de sistema:**\n  - `HEARTBEAT.md` actualizado con ✅ de la tarea nocturna.\n  - `MISSION_CONTROL.md` actualizado con entrada Done + log reciente.\n- **Impacto:** queda resuelto el hueco de ejecución sobre Albasanz con link público y postura de inversión clara, evitando que el deal siga “abierto” sin deliverable.\n"
+    },
+    {
+      "date": "2026-04-11",
+      "weekday": "Saturday",
+      "weekday_es": "Sábado",
+      "summary": "",
+      "topics": [
+        "02:00 — Tarea autónoma"
+      ],
+      "tags": [
+        "MAGG",
+        "Gmail",
+        "Infra"
+      ],
+      "activity": 7,
+      "content": "## 02:00 — Tarea autónoma\n- Diagnóstico completado: revisión de `MEMORY.md`, `MISSION_CONTROL.md` y `HEARTBEAT.md`.\n- Tarea seleccionada (máximo impacto esta noche): **control operativo de riesgo en comunicaciones** mediante chequeo Gmail nocturno para detectar urgencias de deals/financiación.\n- Ejecución: `python3 scripts/gmail_check.py --count 10 --query 'is:unread newer_than:4h'`.\n- Resultado: **0 emails no leídos relevantes** en las últimas 4h (`📭 No hay mensajes...`).\n- Acción de cierre: `HEARTBEAT.md` actualizado con tarea marcada como ✅.\n- Impacto: se reduce riesgo de perder un trigger crítico nocturno sin generar ruido innecesario a Eduardo.\n"
+    },
+    {
+      "date": "2026-04-07",
+      "weekday": "Tuesday",
+      "weekday_es": "Martes",
+      "summary": "**Tarea ejecutada:** HIST-092 Don Cristian (Málaga) — IC Brief v2 + LP One-Pager",
+      "topics": [
+        "02:00 — Tarea autónoma nocturna"
+      ],
+      "tags": [
+        "MAGG",
+        "CRM",
+        "Infra",
+        "Fundraising"
+      ],
+      "activity": 33,
+      "content": "# Daily Note — 07/04/2026\n\n## 02:00 — Tarea autónoma nocturna\n\n**Tarea ejecutada:** HIST-092 Don Cristian (Málaga) — IC Brief v2 + LP One-Pager\n\n**Por qué esta tarea:**\n- HIST-092 es el mejor deal del portfolio MAGG (STRONG GO, YoC 14.27%, spread +852bps, IRR ~55%, múltiple ~4x)\n- Brief existente era de 08/03/2026 — 30 días sin actualizar, sin datos de mercado 2025 finales, sin sección LP\n- Link IC Brief en Excel estaba vacío (null) → deal invisible en CRM TX sidebar como \"sin documento\"\n- Deal lleva 10+ meses en negociación activa sin NBO formal — riesgo real de perder el deal\n\n**Trabajo realizado:**\n1. **Rebuild completo IC Brief 092-don-cristian.html** — 209 líneas nuevas vs 115 anteriores\n   - Datos mercado 2025 actualizados: Málaga #1 ocupación España (82.4%), ADR nacional €166.1 (+4.8%), transacciones hoteleras Málaga €309M en 2025\n   - Precio medio transacciones 2024: €164.800/llave → entrada a €65k/llave = descuento ~60%\n   - Timeline actualizado a Q2 2026 con horizonte exit Q2 2030\n   - Sensibilidad completa: todas las celdas ≥ +666bps — incluso bear case extremo\n   - Callout de compresión de yield (5.75%→5.50% = múltiple ~4.3x)\n\n2. **LP One-Pager añadido** (sección nueva) — primer documento de fundraising formal para este deal:\n   - 6 métricas clave destacadas (4x múltiple, 55% IRR, €31M exit, 4 años, +852bps, €65k/llave)\n   - Tesis de inversión 5 líneas para LPs\n   - Estructura propuesta SPV/Club Deal: ticket mínimo LP €500k–€1M, 3–6 LPs objetivo\n   - Urgencia / por qué ahora: 5 bullets\n   - Contactos Tier 1 sugeridos: Aermont, Lone Star, Tristan, A&G Banca Privada\n\n3. **Excel pipeline_magg.xlsx actualizado:**\n   - HIST-092: Link IC Brief añadido ✅\n   - Estado: \"En Negociación Activa\"\n   - Próximo Paso: \"Enviar NBO · Visita técnica DT · Confirmar operador HMA\"\n   - Fecha próxima acción: 14/04/2026\n\n4. **GitHub Pages pusheado** — commit 1941a14 ✅\n\n**URL del brief:** https://edmartin8n.github.io/magg-dashboard/briefs/092-don-cristian.html\n\n**Impacto:**\n- Deal ancla del portfolio MAGG ahora tiene documento formal actualizado + one-pager LP listo\n- Elimina el \"¿tienes algo escrito?\" en conversaciones con potenciales co-inversores\n- Urgencia NBO claramente señalizada: 10+ meses sin firma, riesgo de pérdida del deal\n- Excel/CRM ahora tiene link activo → visible en Transaction Copilot sidebar\n"
+    },
+    {
+      "date": "2026-03-31",
+      "weekday": "Tuesday",
+      "weekday_es": "Martes",
+      "summary": "**Tarea ejecutada:** Memo Estratégico MAGG — PEU NZ 9.3 (Suelo Industrial Madrid → Aparthotel/Flexliving)",
+      "topics": [
+        "02:00 — Tarea autónoma"
+      ],
+      "tags": [
+        "MAGG",
+        "CRM",
+        "Infra"
+      ],
+      "activity": 27,
+      "content": "# Daily Note — 31/03/2026\n\n## 02:00 — Tarea autónoma\n\n**Tarea ejecutada:** Memo Estratégico MAGG — PEU NZ 9.3 (Suelo Industrial Madrid → Aparthotel/Flexliving)\n\n**Por qué esta tarea:**\n- MAGG deals principales bloqueados en terceros (Casón: NBO sin respuesta; GV48: Eastdil 16d; Sevilla: OM Tatyana; Cabestreros: precio pendiente)\n- Ayer 30/03 sync PM capturó alerta EY sobre el **Plan Especial Urbanístico NZ 9.3** publicado por el Ayuntamiento de Madrid — 240+ parcelas industriales que podrán acoger aparthotels/flexliving\n- Impacto potencial para MAGG: nueva línea de deal sourcing con arbitraje regulatorio pre-aprobación definitiva (~2027)\n- Nadie ha hecho el análisis estructurado — ventana de oportunidad real en los próximos 3-6 meses\n\n**Investigación realizada:**\n- Contexto regulatorio completo: NZ 9.3, Plan RESIDE, PGOU 1997, modificación 2007, tramitación PEU\n- Distritos afectados y análisis por zona: Arganzuela y Chamartín = foco MAGG (mejor balance accesibilidad/precio)\n- Precios suelo industrial: ~€600-1.100/m² vs residencial zona €5.900/m² (Arganzuela) → descuento ~82%\n- Benchmark flexliving: CBRE €1.000/mes coliving; short-stay ADR €80-110 en periférico estimado\n- Landscape competidores: Grupo HIVE, Greystar, Azora, promotores nacionales\n- Benchmarks RevPAR Madrid: +6.9% H1 2025 → demanda creciente\n\n**Memo producido:**\n- **URL**: https://edmartin8n.github.io/magg-dashboard/briefs/peu-nz93.html\n- Modelo financiero indicativo (3 escenarios): conservador / base / bull para parcela 500 m² Arganzuela ~30 uds\n- Escenario BASE: YoC 9.27%, Spread +352 bps, Equity múltiple 1.61x → **GO en base, borderline en conservador**\n- Riesgos priorizados: regulatorio (main kill-switch) + ADR periférico sin historial\n- Plan acción 60 días: 5 pasos concretos + identificación brokers industriales target\n- Veredicto: **Explorar activamente** — gate = confirmar HMA SmartRental para este formato\n\n**Commit:** 4cd017c — GitHub Pages live ✅\n\n**Impacto esperado:**\n- Abre nueva vertical para MAGG en momento de pipeline bloqueado\n- Diferenciador competitivo: ticket pequeño + SmartRental como operador\n- Requiere OK de Eduardo para arrancar sourcing (threshold bajo: solo validar mandato + HMA SmartRental)\n"
+    },
     {
       "date": "2026-03-30",
       "weekday": "Monday",
