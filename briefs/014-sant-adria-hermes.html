@@ -15,14 +15,14 @@
   <div class="hdr-title">Sant Adrià Flex Barcelona · Hermes</div>
   <div class="hdr-sub">Av. de la Catalana 106, Sant Adrià de Besòs · Suelo / flex living · 7.200 m² SR · 200 uds</div>
 </div>
-<div class="verdict">⚠️ <span class="tag">BORDERLINE · HERMES</span> — el ask de €16.8M entra en rango de viabilidad, pero no en precio cómodo MAGG: bid recomendado ~€15.5M, bid límite GO ~€18.0M, IRR proxy ~12.8%.</div>
+<div class="verdict">⚠️ <span class="tag">BORDERLINE · HERMES</span> — el ask de €16.8M entra en rango de viabilidad, pero no en precio cómodo MAGG: bid recomendado ~€15.5M, bid límite GO ~€18.0M, IRR apalancada ~14.8% con 60% LTC al 5%.</div>
 
 <div class="sec">
   <div class="sec-title">Tesis en un vistazo</div>
   <div class="thesis-grid">
     <div class="thesis-card inv">
       <h3>Inversión</h3>
-      <div class="thesis-big">€39.8M</div>
+      <div class="thesis-big">€39.3M</div>
       <div class="thesis-sub">Coste total proyecto Hermes</div>
       <ul class="thesis-list">
         <li>Compra ask: <b>€16.8M</b></li>
@@ -172,7 +172,7 @@
 <div class="sec">
   <div class="sec-title">C. Retornos & precio objetivo</div>
   <div class="kpi-row">
-    <div class="kpi"><div class="v">~12.8%</div><div class="l">IRR levered proxy</div></div>
+    <div class="kpi"><div class="v">~14.8%</div><div class="l">IRR apalancada</div></div>
     <div class="kpi"><div class="v">€15.5M</div><div class="l">Bid recomendado</div></div>
     <div class="kpi"><div class="v">€18.0M</div><div class="l">Bid límite GO</div></div>
     <div class="kpi"><div class="v">€50.2M</div><div class="l">Exit value post fees</div></div>
@@ -180,7 +180,7 @@
   <table>
     <tr><th>Chequeo MAGG</th><th>Resultado</th><th>Lectura</th></tr>
     <tr><td>Spread YoC vs exit</td><td class="pos">+173 bps</td><td>Pasa umbral GO</td></tr>
-    <tr><td>IRR levered</td><td class="warn">~12.8%</td><td>No llega al 15% con hipótesis conservadoras</td></tr>
+    <tr><td>IRR apalancada</td><td class="warn">~14.8%</td><td>Casi en umbral, pero todavía por debajo del 15% con hipótesis conservadoras y 60% LTC al 5%</td></tr>
     <tr><td>Precio actual</td><td class="warn">€16.8M ask</td><td>Dentro del límite GO, por encima del bid recomendado</td></tr>
     <tr><td>Lectura final</td><td class="warn">BORDERLINE</td><td>Hay tesis, pero falta disciplina de precio / DD</td></tr>
   </table>
@@ -206,15 +206,17 @@
     <tr><td>IRR sin apalancar</td><td><b>~10.1%</b></td><td>Flujo de proyecto sin deuda</td></tr>
     <tr><td>IRR apalancada</td><td><b>~14.8%</b></td><td>Asumiendo financiación 60% LTC al 5%</td></tr>
   </table>
-  <p class="note">A partir de aquí, Hermes mostrará siempre una tabla simple de cash flows estimados en vez de volver loco el memo con sensibilidades.</p>
+  <p class="note">A partir de aquí, Hermes mostrará siempre una tabla simple de cash flows estimados en columnas por año en vez de volver loco el memo con sensibilidades.</p>
   <table>
-    <tr><th>Año</th><th>Coste proyecto</th><th>NOI</th><th>Venta</th><th>Disposición deuda</th><th>Intereses</th><th>Amortización</th><th>CF sin apalancar</th><th>CF apalancado</th></tr>
-    <tr><td>0</td><td>€19.02M</td><td>—</td><td>—</td><td>€11.41M</td><td>—</td><td>—</td><td>(€19.02M)</td><td>(€7.61M)</td></tr>
-    <tr><td>1</td><td>€6.68M</td><td>—</td><td>—</td><td>€4.01M</td><td>(€0.77M)</td><td>—</td><td>(€6.68M)</td><td>(€3.44M)</td></tr>
-    <tr><td>2</td><td>€8.56M</td><td>—</td><td>—</td><td>€5.13M</td><td>(€1.03M)</td><td>—</td><td>(€8.56M)</td><td>(€4.45M)</td></tr>
-    <tr><td>3</td><td>€5.02M</td><td>€1.67M</td><td>—</td><td>€3.01M</td><td>(€1.18M)</td><td>—</td><td>(€3.36M)</td><td>(€1.52M)</td></tr>
-    <tr><td>4</td><td>—</td><td>€2.57M</td><td>—</td><td>—</td><td>(€1.18M)</td><td>(€2.36M)</td><td>€2.57M</td><td>(€0.96M)</td></tr>
-    <tr><td>5</td><td>—</td><td>€3.03M</td><td>€50.23M</td><td>—</td><td>(€1.06M)</td><td>(€2.36M)</td><td>€53.26M</td><td>€30.99M</td></tr>
+    <tr><th>Concepto</th><th>Año 0</th><th>Año 1</th><th>Año 2</th><th>Año 3</th><th>Año 4</th><th>Año 5</th></tr>
+    <tr><td>Coste proyecto</td><td>€19.02M</td><td>€6.68M</td><td>€8.56M</td><td>€5.02M</td><td>—</td><td>—</td></tr>
+    <tr><td>NOI</td><td>—</td><td>—</td><td>—</td><td>€1.67M</td><td>€2.57M</td><td>€3.03M</td></tr>
+    <tr><td>Venta</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>€50.23M</td></tr>
+    <tr><td>Disposición deuda</td><td>€11.41M</td><td>€4.01M</td><td>€5.13M</td><td>€3.01M</td><td>—</td><td>—</td></tr>
+    <tr><td>Intereses</td><td>—</td><td>(€0.77M)</td><td>(€1.03M)</td><td>(€1.18M)</td><td>(€1.18M)</td><td>(€1.06M)</td></tr>
+    <tr><td>Amortización</td><td>—</td><td>—</td><td>—</td><td>—</td><td>(€2.36M)</td><td>(€2.36M)</td></tr>
+    <tr><td>CF sin apalancar</td><td>(€19.02M)</td><td>(€6.68M)</td><td>(€8.56M)</td><td>(€3.36M)</td><td>€2.57M</td><td>€53.26M</td></tr>
+    <tr><td>CF apalancado</td><td>(€7.61M)</td><td>(€3.44M)</td><td>(€4.45M)</td><td>(€1.52M)</td><td>(€0.96M)</td><td>€30.99M</td></tr>
   </table>
 </div>
 
@@ -226,7 +228,7 @@
     <tr><td>Kill-switch 2</td><td>Encaje/licencia no defendible para 200 uds flex o timing real &gt;12m licencias</td></tr>
     <tr><td>Kill-switch 3</td><td>Geotécnico/topográfico / DT empujan CapEx total por encima de ~€22.5–23.0M</td></tr>
     <tr><td>Siguiente paso</td><td>Re-cut inmediato de bid a €15.5M recomendado (límite GO ~€18.0M) + confirmar si los estudios geotécnico/topográfico son reutilizables y bajo qué alcance</td></tr>
-    <tr><td>Capital path</td><td>Club deal / coinversor value-add + deuda senior 50% LTC; encaje flojo para balance puro al ask actual</td></tr>
+    <tr><td>Capital path</td><td>Club deal / coinversor value-add + deuda senior 60% LTC al 5%; encaje flojo para balance puro al ask actual</td></tr>
   </table>
 </div>
 
