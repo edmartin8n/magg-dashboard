@@ -50,9 +50,10 @@
       <div class="thesis-big">€50.2M</div>
       <div class="thesis-sub">Valor de salida post fees @ 6.0%</div>
       <ul class="thesis-list">
-        <li>IRR sin apalancar: <b>~9.7%</b></li>
-        <li>IRR apalancada: <b>~12.8%</b></li>
+        <li>IRR sin apalancar: <b>~10.1%</b></li>
+        <li>IRR apalancada: <b>~14.8%</b></li>
         <li>Spread YoC vs exit: <b>+173 bps</b></li>
+        <li>Deuda asumida: <b>60% LTC @ 5%</b></li>
         <li>Veredicto: <b>BORDERLINE</b></li>
       </ul>
     </div>
@@ -194,6 +195,27 @@
     <div class="step"><div class="dot">4</div><div class="lbl">Ramp-up</div><div class="sub">Y1–Y2</div></div>
     <div class="step"><div class="dot">5</div><div class="lbl">Exit</div><div class="sub">2031e</div></div>
   </div>
+</div>
+
+<div class="sec">
+  <div class="sec-title">Salida / IRRs — hipótesis y cash flows estimados</div>
+  <table>
+    <tr><th>Métrica</th><th>Valor</th><th>Comentario</th></tr>
+    <tr><td>Exit yield</td><td><b>6.0%</b></td><td>Sobre NOI estabilizado Hermes</td></tr>
+    <tr><td>Valor de salida post fees</td><td><b>~€50.2M</b></td><td>Asumiendo 0.5% costes de salida</td></tr>
+    <tr><td>IRR sin apalancar</td><td><b>~10.1%</b></td><td>Flujo de proyecto sin deuda</td></tr>
+    <tr><td>IRR apalancada</td><td><b>~14.8%</b></td><td>Asumiendo financiación 60% LTC al 5%</td></tr>
+  </table>
+  <p class="note">A partir de aquí, Hermes mostrará siempre una tabla simple de cash flows estimados en vez de volver loco el memo con sensibilidades.</p>
+  <table>
+    <tr><th>Año</th><th>Coste proyecto</th><th>NOI</th><th>Venta</th><th>Disposición deuda</th><th>Intereses</th><th>Amortización</th><th>CF sin apalancar</th><th>CF apalancado</th></tr>
+    <tr><td>0</td><td>€19.02M</td><td>—</td><td>—</td><td>€11.41M</td><td>—</td><td>—</td><td>(€19.02M)</td><td>(€7.61M)</td></tr>
+    <tr><td>1</td><td>€6.68M</td><td>—</td><td>—</td><td>€4.01M</td><td>(€0.77M)</td><td>—</td><td>(€6.68M)</td><td>(€3.44M)</td></tr>
+    <tr><td>2</td><td>€8.56M</td><td>—</td><td>—</td><td>€5.13M</td><td>(€1.03M)</td><td>—</td><td>(€8.56M)</td><td>(€4.45M)</td></tr>
+    <tr><td>3</td><td>€5.02M</td><td>€1.67M</td><td>—</td><td>€3.01M</td><td>(€1.18M)</td><td>—</td><td>(€3.36M)</td><td>(€1.52M)</td></tr>
+    <tr><td>4</td><td>—</td><td>€2.57M</td><td>—</td><td>—</td><td>(€1.18M)</td><td>(€2.36M)</td><td>€2.57M</td><td>(€0.96M)</td></tr>
+    <tr><td>5</td><td>—</td><td>€3.03M</td><td>€50.23M</td><td>—</td><td>(€1.06M)</td><td>(€2.36M)</td><td>€53.26M</td><td>€30.99M</td></tr>
+  </table>
 </div>
 
 <div class="sec">
