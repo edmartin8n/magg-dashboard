@@ -3,74 +3,59 @@
 <title>MAGG-2026-014 — Sant Adrià Flex Barcelona · Hermes</title>
 <style>
 *{box-sizing:border-box} body{margin:0;padding:16px;background:#eef1f7;font-family:Arial,Helvetica,sans-serif;font-size:14px;color:#1a1a2e}
-.wrap{max-width:700px;margin:0 auto}.hdr{background:#0d1f3c;padding:22px 24px;border-radius:12px 12px 0 0}.hdr-ref{font-size:10px;color:rgba(255,255,255,.55);letter-spacing:1px;text-transform:uppercase}.hdr-title{font-size:22px;font-weight:800;color:#fff;margin:4px 0}.hdr-sub{font-size:12px;color:rgba(255,255,255,.65)}
-.verdict{padding:14px 24px;font-weight:700;font-size:14px;border-bottom:2px solid rgba(0,0,0,.08);background:#fff8e1;color:#e65100}.tag{display:inline-block;padding:3px 9px;border-radius:11px;background:#fff3cd;color:#9a6700;font-size:11px;font-weight:800}
-.sec{background:#fff;padding:16px 24px;border-bottom:1px solid #e8ecf2}.sec-title{font-size:10px;font-weight:700;color:#7a8399;text-transform:uppercase;letter-spacing:.7px;margin-bottom:12px}.kpi-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}.kpi{background:#f4f6fb;border-radius:8px;padding:10px 12px;flex:1;min-width:100px;text-align:center}.kpi .v{font-size:17px;font-weight:800;color:#0d1f3c;line-height:1}.kpi .l{font-size:10px;color:#7a8399;margin-top:4px} table{width:100%;border-collapse:collapse;font-size:12px} th{background:#0d1f3c;color:rgba(255,255,255,.8);padding:7px 10px;text-align:left;font-weight:600} td{padding:7px 10px;border-bottom:1px solid #f0f4fa;vertical-align:top} tr:last-child td{border-bottom:none}
-.note{font-size:11px;color:#667085;margin-top:8px}.pos{color:#1b5e20;font-weight:700}.warn{color:#e65100;font-weight:700}.neg{color:#b42318;font-weight:700}.footer{background:#0d1f3c;padding:12px 24px;border-radius:0 0 12px 12px;font-size:10px;color:rgba(255,255,255,.45);text-align:center}.timeline{display:flex;gap:0;overflow-x:auto;padding-top:6px}.step{flex:1;min-width:84px;text-align:center;position:relative}.step:after{content:'';position:absolute;top:9px;left:50%;right:-50%;height:2px;background:#e5e7eb;z-index:0}.step:last-child:after{display:none}.dot{width:20px;height:20px;border-radius:50%;background:#0d1f3c;color:#fff;font-size:9px;font-weight:700;display:flex;align-items:center;justify-content:center;margin:0 auto 6px;position:relative;z-index:1}.lbl{font-size:10px;color:#667085}.sub{font-size:8px;color:#98a2b3}
-.thesis-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.thesis-card{background:#f8fafc;border:1px solid #e5e7eb;border-radius:10px;padding:14px}.thesis-card h3{margin:0 0 10px;font-size:13px;color:#0d1f3c}.thesis-big{font-size:24px;font-weight:800;color:#0d1f3c;line-height:1}.thesis-sub{font-size:11px;color:#667085;margin-top:4px}.thesis-list{margin:10px 0 0;padding-left:16px;font-size:12px;color:#344054}.thesis-list li{margin:5px 0}.thesis-card.inv h3{color:#7a5a00}.thesis-card.op h3{color:#1565c0}.thesis-card.exit h3{color:#1b5e20}
+.wrap{max-width:760px;margin:0 auto}.hdr{background:#0d1f3c;padding:22px 24px;border-radius:12px 12px 0 0}.hdr-ref{font-size:10px;color:rgba(255,255,255,.55);letter-spacing:1px;text-transform:uppercase}.hdr-title{font-size:22px;font-weight:800;color:#fff;margin:4px 0}.hdr-sub{font-size:12px;color:rgba(255,255,255,.68)}
+.verdict{padding:14px 24px;font-weight:700;font-size:14px;border-bottom:2px solid rgba(0,0,0,.08);background:#fff8e1;color:#8a4b00}.tag{display:inline-block;padding:3px 9px;border-radius:11px;background:#fff3cd;color:#9a6700;font-size:11px;font-weight:800}
+.sec{background:#fff;padding:16px 24px;border-bottom:1px solid #e8ecf2}.sec-title{font-size:10px;font-weight:700;color:#7a8399;text-transform:uppercase;letter-spacing:.7px;margin-bottom:12px}.note{font-size:11px;color:#667085;margin-top:8px;line-height:1.45}.muted{color:#667085}.pos{color:#1b5e20;font-weight:700}.warn{color:#e65100;font-weight:700}.neg{color:#b42318;font-weight:700}
+.thesis-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.thesis-card{background:#f8fafc;border:1px solid #e5e7eb;border-radius:10px;padding:14px}.thesis-card h3{margin:0 0 10px;font-size:13px;color:#0d1f3c}.thesis-big{font-size:24px;font-weight:800;color:#0d1f3c;line-height:1}.thesis-sub{font-size:11px;color:#667085;margin-top:4px}.thesis-list{margin:10px 0 0;padding-left:16px;font-size:12px;color:#344054}.thesis-list li{margin:5px 0}.inv h3{color:#7a5a00}.op h3{color:#1565c0}.exit h3{color:#1b5e20}
+.kpi-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}.kpi{background:#f4f6fb;border-radius:8px;padding:10px 12px;flex:1;min-width:110px;text-align:center}.kpi .v{font-size:17px;font-weight:800;color:#0d1f3c;line-height:1}.kpi .l{font-size:10px;color:#7a8399;margin-top:4px}
+table{width:100%;border-collapse:collapse;font-size:12px} th{background:#0d1f3c;color:rgba(255,255,255,.85);padding:7px 10px;text-align:left;font-weight:600} td{padding:7px 10px;border-bottom:1px solid #f0f4fa;vertical-align:top;line-height:1.42} tr:last-child td{border-bottom:none}
+.sens td{text-align:center}.sens td:first-child,.sens th:first-child{text-align:left}.g{background:#e8f5e9}.w{background:#fff4e5}.r{background:#fdecec}.base{outline:2px solid #0d1f3c;font-weight:800}
+.timeline{display:flex;gap:0;overflow-x:auto;padding-top:6px}.step{flex:1;min-width:84px;text-align:center;position:relative}.step:after{content:'';position:absolute;top:9px;left:50%;right:-50%;height:2px;background:#e5e7eb;z-index:0}.step:last-child:after{display:none}.dot{width:20px;height:20px;border-radius:50%;background:#0d1f3c;color:#fff;font-size:9px;font-weight:700;display:flex;align-items:center;justify-content:center;margin:0 auto 6px;position:relative;z-index:1}.lbl{font-size:10px;color:#667085}.sub{font-size:8px;color:#98a2b3}
+.footer{background:#0d1f3c;padding:12px 24px;border-radius:0 0 12px 12px;font-size:10px;color:rgba(255,255,255,.5);text-align:center}
 @media (max-width:640px){.thesis-grid{grid-template-columns:1fr}}
 @page { size: A4; margin: 12mm; }
-@media print {
-  body{background:#fff;padding:0;font-size:11px;-webkit-print-color-adjust:exact;print-color-adjust:exact}
-  .wrap{max-width:none;margin:0}
-  .sec{padding:12px 16px;break-inside:avoid;page-break-inside:avoid}
-  .thesis-grid{gap:8px}
-  .thesis-card{padding:10px}
-  .thesis-big{font-size:20px}
-  .hdr{padding:16px 18px}
-  .hdr-title{font-size:20px}
-  .kpi .v{font-size:15px}
-  table{font-size:10.5px}
-  th,td{padding:5px 7px}
-  img{max-height:230mm;object-fit:contain;break-inside:avoid;page-break-inside:avoid}
-  .timeline{overflow:visible}
-  .footer{padding:10px 16px}
-}
+@media print { body{background:#fff;padding:0;font-size:11px;-webkit-print-color-adjust:exact;print-color-adjust:exact}.wrap{max-width:none;margin:0}.sec{padding:12px 16px;break-inside:avoid;page-break-inside:avoid}.thesis-grid{gap:8px}.thesis-card{padding:10px}.thesis-big{font-size:20px}.hdr{padding:16px 18px}.hdr-title{font-size:20px}.kpi .v{font-size:15px}table{font-size:10.5px}th,td{padding:5px 7px}.timeline{overflow:visible}.footer{padding:10px 16px}}
 </style></head><body><div class="wrap">
 <div class="hdr">
-  <div class="hdr-ref">MAGG Capital · MAGG-2026-014 · Hermes test · 15 Apr 2026</div>
+  <div class="hdr-ref">MAGG Capital · MAGG-2026-014 · Hermes prompt v2 · 15 Apr 2026</div>
   <div class="hdr-title">Sant Adrià Flex Barcelona · Hermes</div>
-  <div class="hdr-sub">Av. de la Catalana 106, Sant Adrià de Besòs · Suelo / flex living · 7.200 m² SR · 200 uds</div>
+  <div class="hdr-sub">Av. de la Catalana 106, 08930 Sant Adrià de Besòs · Suelo / flex living · 7.200 m² SR · 200 uds</div>
 </div>
-<div class="verdict">⚠️ <span class="tag">BORDERLINE · HERMES</span> — el ask de €16.8M entra en rango de viabilidad, pero no en precio cómodo MAGG: bid recomendado ~€15.5M, bid límite GO ~€18.0M, IRR apalancada ~14.8% con 60% LTC al 5%.</div>
+<div class="verdict">⚠️ <span class="tag">BORDERLINE · HERMES</span> — el spread pasa, pero el ask de <b>€16.8M</b> deja la <b>IRR apalancada en ~14.7%</b>, por debajo del umbral GO del 15%. <b>Bid recomendado: ~€15.5M</b>. <b>Bid límite GO base: ~€16.5M</b> con 60% LTC al 5% y exit yield 6.0%.</div>
 
 <div class="sec">
-  <div class="sec-title">Tesis en un vistazo</div>
+  <div class="sec-title">1. Tesis en un vistazo</div>
   <div class="thesis-grid">
     <div class="thesis-card inv">
       <h3>Inversión</h3>
       <div class="thesis-big">€39.3M</div>
-      <div class="thesis-sub">Coste total proyecto Hermes</div>
+      <div class="thesis-sub">Coste total proyecto Hermes @ ask</div>
       <ul class="thesis-list">
         <li>Compra ask: <b>€16.8M</b></li>
-        <li>Costes de transacción (3%): <b>€0.5M</b></li>
-        <li>Compra + costes de transacción: <b>€17.3M</b></li>
-        <li>CapEx total: <b>~€21.9M</b></li>
-        <li>Bid recomendado: <b>~€15.5M</b></li>
-        <li>Bid límite GO: <b>~€18.0M</b></li>
+        <li>Compra recomendada: <b>~€15.5M</b></li>
+        <li>CapEx total + soft + FF&amp;E + contingencia: <b>€21.97M</b></li>
+        <li>Coste total / ud: <b>~€196k</b></li>
       </ul>
     </div>
     <div class="thesis-card op">
       <h3>Operación</h3>
       <div class="thesis-big">€3.03M</div>
-      <div class="thesis-sub">NOI MAGG / Hermes</div>
+      <div class="thesis-sub">NOI MAGG (post fee operador)</div>
       <ul class="thesis-list">
-        <li>Mix operativo de referencia: <b>100 ST + 100 MT</b></li>
         <li>Revenue estabilizado: <b>€5.83M</b></li>
-        <li>GOP margin asumido: <b>60%</b></li>
-        <li>Fee operador / HMA: <b>8% revenue</b></li>
+        <li>GOP margin Hermes: <b>60.0%</b></li>
+        <li>Fee operador: <b>8% revenue</b></li>
         <li>YoC: <b>7.7%</b></li>
       </ul>
     </div>
     <div class="thesis-card exit">
       <h3>Salida</h3>
       <div class="thesis-big">€50.2M</div>
-      <div class="thesis-sub">Valor de salida post fees @ 6.0%</div>
+      <div class="thesis-sub">Valor salida post fees @ 6.0%</div>
       <ul class="thesis-list">
         <li>IRR sin apalancar: <b>~10.1%</b></li>
-        <li>IRR apalancada: <b>~14.8%</b></li>
-        <li>Spread YoC vs exit: <b>+173 bps</b></li>
-        <li>Deuda asumida: <b>60% LTC @ 5%</b></li>
+        <li>IRR apalancada: <b>~14.7%</b></li>
+        <li>Spread YoC vs exit yield: <b>+173 bps</b></li>
         <li>Veredicto: <b>BORDERLINE</b></li>
       </ul>
     </div>
@@ -78,121 +63,177 @@
 </div>
 
 <div class="sec">
-  <div class="sec-title">Ficha del activo</div>
+  <div class="sec-title">2. Ficha del activo</div>
   <table>
-    <tr><th>Campo</th><th>Dato</th></tr>
-    <tr><td>Activo</td><td>Suelo / proyecto flex living en Sant Adrià de Besòs</td></tr>
-    <tr><td>Fuente real broker</td><td>Laia Hernandez (Palm Investments) · reenviado por Oliver Fletcher / SmartRental</td></tr>
-    <tr><td>Propiedad</td><td>Family office catalán</td></tr>
+    <tr><th>Campo</th><th>Dato factual</th></tr>
+    <tr><td>Referencia MAGG</td><td>MAGG-2026-014</td></tr>
+    <tr><td>Proyecto</td><td>Sant Adrià Flex Barcelona · Hermes</td></tr>
+    <tr><td>Dirección</td><td>Av. de la Catalana, 106, 08930 Sant Adrià de Besòs, Barcelona, España</td></tr>
+    <tr><td>Tipo de activo</td><td>Suelo / proyecto para flex living</td></tr>
+    <tr><td>Fuente</td><td>Oliver Fletcher (SmartRental) reenviando documentación + broker original Laia Hernandez Soler (Palm Investments)</td></tr>
+    <tr><td>Documentación revisada</td><td>Email broker, BP operador (<i>BP Flex - Sant Adria de Besos, Barcelona v2.xlsx</i>) y encaje de 200 uds (<i>2602 BESOS encaje v2.pdf</i>)</td></tr>
     <tr><td>Superficie</td><td>7.200 m² SR + 2.600 m² BR</td></tr>
-    <tr><td>Programa</td><td>Encaje SmartRental para <b>200 estudios</b> · mix operativo de referencia 100 corta estancia / 100 media estancia</td></tr>
-    <tr><td>Amenities / zonas comunes</td><td>En el encaje aparecen <b>coworking</b>, <b>sala comunitaria</b>, <b>gym</b>, recepción / BOH y <b>solárium con piscina</b> en planta 5</td></tr>
-    <tr><td>Oferta existente</td><td>€16.8M as is + depósito reembolsable €500k</td></tr>
-    <tr><td>Licencias / estado</td><td>Anteproyecto hotelero avanzado, no presentado todavía. Referencia comercial de licencias: <b>8–10 meses</b></td></tr>
-    <tr><td>Otros relevantes</td><td>La propiedad valora el perfil comprador; Oliver comenta LOI histórica de operador a ~€15k/ud en renta fija, aunque hoy el escenario es venta de suelo / proyecto</td></tr>
+    <tr><td>Programa</td><td>200 estudios (100 ST + 100 MT en el caso base del BP)</td></tr>
+    <tr><td>Propiedad</td><td>Family office catalán</td></tr>
+    <tr><td>Oferta existente</td><td>€16.8M as is + depósito reembolsable de €500k para exclusividad</td></tr>
+    <tr><td>Estado urbanístico/comercial</td><td>Anteproyecto hotelero avanzado, no presentado todavía</td></tr>
+    <tr><td>Plazo licencias indicado por broker</td><td>8–10 meses</td></tr>
+    <tr><td>Coordenadas de referencia</td><td>~41.4257, 2.2192 <span class="muted">(geocodificación aproximada del eje Avinguda de la Catalana; pendiente validación exacta de portal/parcela)</span></td></tr>
   </table>
 </div>
 
 <div class="sec">
-  <div class="sec-title">Operación — cómo llegamos al NOI de ~€3.03M</div>
+  <div class="sec-title">3. Bridge BP → Hermes</div>
   <table>
-    <tr><th>Bloque</th><th>Hermes / MAGG</th><th>Comentario</th></tr>
-    <tr><td>Mix operativo</td><td>100 uds ST + 100 uds MT</td><td>Referencia tomada del BP recibido</td></tr>
-    <tr><td>Corta estancia</td><td>Occ estabilizada ~75.8% · ADR ~€159</td><td>Supuesto operativo Year 3 del pack</td></tr>
-    <tr><td>Media estancia</td><td>Occ estabilizada ~95% · renta mensual ~€1,249</td><td>Supuesto operativo Year 3 del pack</td></tr>
-    <tr><td>Revenue total estabilizado</td><td><b>€5.83M</b></td><td>Suma ST + MT en estabilización</td></tr>
-    <tr><td>GOP margin</td><td><b>60%</b></td><td>Hermes baja un punto frente al BP para meter prudencia</td></tr>
-    <tr><td>GOP</td><td><b>~€3.50M</b></td><td>€5.83M × 60%</td></tr>
-    <tr><td>Fee operador / HMA</td><td><b>8% revenue</b> = ~€0.47M</td><td>Regla MAGG v2: fee plana sobre revenue</td></tr>
-    <tr><td>NOI propietario</td><td><b>~€3.03M</b></td><td>GOP − HMA</td></tr>
-    <tr><td>YoC</td><td><b>7.7%</b></td><td>NOI / coste total proyecto Hermes</td></tr>
+    <tr><th>Concepto</th><th>BP operador</th><th>Hermes / MAGG</th><th>Delta</th><th>Motivo del ajuste</th></tr>
+    <tr><td>Revenue estabilizado</td><td>€5.83M</td><td>€5.83M</td><td>0%</td><td>Alineado, sin ajuste de revenue base</td></tr>
+    <tr><td>GOP margin</td><td>65.3%</td><td>60.0%</td><td>-5.3 pp</td><td>Haircut prudente MAGG para no comprar el caso upside operativo del BP</td></tr>
+    <tr><td>Fee operador</td><td>€0.31M <span class="muted">(~5.3% revenue, base+incentive fee BP)</span></td><td>€0.47M <span class="muted">(8.0% revenue)</span></td><td>+51.3%</td><td>Regla MAGG v2: fee plana 8% sobre revenue total salvo HMA firmado en otra estructura</td></tr>
+    <tr><td>CapEx hard</td><td>€15.09M</td><td>€16.56M</td><td>+9.7%</td><td>Hermes sube a €2,300/m² sobre 7,200 m² SR como base greenfield MAGG</td></tr>
+    <tr><td>Contingencia</td><td>€0.75M</td><td>€1.66M</td><td>+119.5%</td><td>Se aplica 10% sobre hard cost por ausencia de DT cerrada/presupuesto cerrado</td></tr>
+    <tr><td>Soft cost</td><td>€2.00M</td><td>€1.66M</td><td>-17.3%</td><td>Hermes normaliza al 10% sobre hard; el BP lleva una bolsa más alta/agregada</td></tr>
+    <tr><td>NOI propietario</td><td>€3.41M</td><td>€3.03M</td><td>-11.1%</td><td>Menor GOP margin + fee operador más exigente</td></tr>
   </table>
-  <p class="note">El BP SmartRental da un NOI superior (~€3.41M) porque viene algo más apretado en costes / fees. Hermes lo recorta para no comprar el caso upside.</p>
+  <p class="note">Lectura: el cambio clave no está en el revenue sino en la capa de prudencia aplicada a margen operativo, fee operador y contingencia. Ahí es donde se pierde la IRR que en el BP promotor sale por encima del 15%.</p>
 </div>
 
 <div class="sec">
-  <div class="sec-title">Macro & micro location — lectura resumida</div>
-  <table>
-    <tr><th>Bloque</th><th>Lectura Hermes</th></tr>
-    <tr><td>Macro</td><td>Sant Adrià funciona como prolongación del eje Barcelona Besòs / Fòrum: acceso al overflow de Barcelona sin pagar prime puro de centro.</td></tr>
-    <tr><td>Demanda</td><td>Encaja mejor como producto flex / media estancia que como hotel clásico: corporate relocations, estancias técnicas y demanda metropolitana vinculada a actividad y servicios.</td></tr>
-    <tr><td>Micro</td><td>La conectividad inmediata (tram + bus) y la cercanía a equipamientos de barrio ayudan a bajar fricción de uso y a sostener una propuesta más vivible / flexible.</td></tr>
-    <tr><td>Validación zona</td><td>El eje Fòrum / Diagonal Mar ya está validado por oferta hotelera y proyectos relevantes, lo que ayuda a justificar comparables operativos y narrativa de salida.</td></tr>
-  </table>
-</div>
-
-<div class="sec">
-  <div class="sec-title">Validación externa — noticias e inversión en la zona</div>
-  <table>
-    <tr><th>Señal</th><th>Qué valida</th></tr>
-    <tr><td><b>SLS Barcelona</b> (apertura 2025, Port Fòrum · El Periódico / elEconomista / Hosteltur)</td><td>Refuerza que el eje Sant Adrià / Fòrum sí está captando inversión hotelera institucional y marcas internacionales de alto perfil.</td></tr>
-    <tr><td><b>33.000+ candidatos</b> a empleo para el SLS Barcelona (El Periódico, abr-2025)</td><td>Señal de escala real del proyecto y de visibilidad pública del nodo Sant Adrià - Port Fòrum como nuevo polo hospitality.</td></tr>
-    <tr><td><b>Nuevos proyectos hoteleros en La Catalana</b> y aumento fuerte de plazas (El Periódico / La Vanguardia, dic-2025)</td><td>Confirma que el barrio está entrando en fase de transformación y que no estamos solos viendo la tesis de alojamiento / mixed-use en la zona.</td></tr>
-    <tr><td><b>Clúster Fòrum / Diagonal Mar</b> (SLS, Diagonal Zero, Princess, Vincci Bit, Condal Mar)</td><td>Da comparables operativos y, sobre todo, valida salida y percepción de submercado más allá del municipio puro de Sant Adrià.</td></tr>
-  </table>
-  <p class="note">Conclusión Hermes: la validación externa existe y es útil. No convierte automáticamente el deal en GO, pero sí reduce el riesgo de estar apostando por una micro sin tracción inversora.</p>
-</div>
-
-<div class="sec">
-  <div class="sec-title">A. Inversión & CapEx — MAGG conservador</div>
+  <div class="sec-title">4. Inversión &amp; CapEx</div>
   <div class="kpi-row">
-    <div class="kpi"><div class="v">€16.8M</div><div class="l">Precio ask</div></div>
-    <div class="kpi"><div class="v">€17.3M</div><div class="l">Compra + 3% tx</div></div>
-    <div class="kpi"><div class="v">€21.9M</div><div class="l">CapEx total</div></div>
-    <div class="kpi"><div class="v">€39.2M</div><div class="l">Coste total proyecto</div></div>
+    <div class="kpi"><div class="v">€16.8M</div><div class="l">Compra ask</div></div>
+    <div class="kpi"><div class="v">€15.5M</div><div class="l">Bid recomendado</div></div>
+    <div class="kpi"><div class="v">€39.28M</div><div class="l">Coste total @ ask</div></div>
+    <div class="kpi"><div class="v">~€196k</div><div class="l">Coste total / ud</div></div>
   </div>
   <table>
     <tr><th>Partida</th><th>Importe</th><th>Supuesto</th></tr>
-    <tr><td>Compra</td><td>€16.80M</td><td>Oferta existente / precio de referencia</td></tr>
-    <tr><td>Transacción</td><td>€0.50M</td><td>3% sobre bid</td></tr>
-    <tr><td>Hard cost</td><td>€16.56M</td><td>€2.300/m² · greenfield</td></tr>
-    <tr><td>Soft cost</td><td>€1.66M</td><td>10% hard</td></tr>
-    <tr><td>FF&amp;E</td><td>€2.00M</td><td>€10k / unidad</td></tr>
-    <tr><td>Contingencia</td><td>€1.66M</td><td>10% hard · sin DT cerrada</td></tr>
-  </table>
-  <p class="note">El BP SmartRental está algo por debajo en CapEx (~€20.0M obra+soft+FF&amp;E+contingencias). Hermes mete algo más de colchón.</p>
-</div>
-
-<div class="sec">
-  <div class="sec-title">B. Operativa estabilizada</div>
-  <div class="kpi-row">
-    <div class="kpi"><div class="v">€5.83M</div><div class="l">Revenue estabilizado</div></div>
-    <div class="kpi"><div class="v">60%</div><div class="l">GOP margin</div></div>
-    <div class="kpi"><div class="v">€3.03M</div><div class="l">NOI MAGG</div></div>
-    <div class="kpi"><div class="v">7.73%</div><div class="l">YoC HMA</div></div>
-  </div>
-  <table>
-    <tr><th>Métrica</th><th>Hermes / MAGG</th><th>Referencia pack</th></tr>
-    <tr><td>Revenue estabilizado</td><td>€5.83M</td><td>BP Year 3</td></tr>
-    <tr><td>Metodología NOI</td><td>GOP 60% − HMA 8% revenue</td><td>Doctrina MAGG v2</td></tr>
-    <tr><td>NOI</td><td>€3.03M</td><td>vs pack SmartRental ~€3.41M</td></tr>
-    <tr><td>YoC</td><td class="pos">7.73%</td><td>Conservador por contingencia + fee plana HMA</td></tr>
-    <tr><td>Exit yield base</td><td>6.00%</td><td>Flex living urbano 5.5–6.5%</td></tr>
-    <tr><td>Spread</td><td class="pos">+173 bps</td><td>Pasa spread GO</td></tr>
+    <tr><td>Compra ask</td><td>€16.80M</td><td>Oferta existente</td></tr>
+    <tr><td>Compra recomendada</td><td>~€15.50M</td><td>Nivel con colchón razonable de IRR</td></tr>
+    <tr><td>Costes de transacción</td><td>€0.50M</td><td>3% sobre compra ask <span class="muted">[pendiente validar IVA/AJD vs ITP por tipología de suelo]</span></td></tr>
+    <tr><td>Hard cost</td><td>€16.56M</td><td>€2,300/m² × 7,200 m² SR</td></tr>
+    <tr><td>Soft cost</td><td>€1.66M</td><td>10% sobre hard</td></tr>
+    <tr><td>FF&amp;E</td><td>€2.00M</td><td>€10k / unidad × 200 uds</td></tr>
+    <tr><td>Contingencia</td><td>€1.66M</td><td>10% sobre hard cost</td></tr>
+    <tr><td>Lanzamiento / pre-opening</td><td>€0.10M</td><td>Hipótesis Hermes</td></tr>
+    <tr><td><b>Coste total proyecto @ ask</b></td><td><b>€39.28M</b></td><td><b>Todo lo anterior</b></td></tr>
+    <tr><td><b>Coste total proyecto / ud</b></td><td><b>~€196k</b></td><td><b>€39.28M / 200 uds</b></td></tr>
   </table>
 </div>
 
 <div class="sec">
-  <div class="sec-title">C. Retornos & precio objetivo</div>
-  <div class="kpi-row">
-    <div class="kpi"><div class="v">~14.8%</div><div class="l">IRR apalancada</div></div>
-    <div class="kpi"><div class="v">€15.5M</div><div class="l">Bid recomendado</div></div>
-    <div class="kpi"><div class="v">€18.0M</div><div class="l">Bid límite GO</div></div>
-    <div class="kpi"><div class="v">€50.2M</div><div class="l">Exit value post fees</div></div>
-  </div>
+  <div class="sec-title">5. Operación estabilizada</div>
   <table>
-    <tr><th>Chequeo MAGG</th><th>Resultado</th><th>Lectura</th></tr>
-    <tr><td>Spread YoC vs exit</td><td class="pos">+173 bps</td><td>Pasa umbral GO</td></tr>
-    <tr><td>IRR apalancada</td><td class="warn">~14.8%</td><td>Casi en umbral, pero todavía por debajo del 15% con hipótesis conservadoras y 60% LTC al 5%</td></tr>
-    <tr><td>Precio actual</td><td class="warn">€16.8M ask</td><td>Dentro del límite GO, por encima del bid recomendado</td></tr>
-    <tr><td>Lectura final</td><td class="warn">BORDERLINE</td><td>Hay tesis, pero falta disciplina de precio / DD</td></tr>
+    <tr><th>Bloque</th><th>Aritmética</th><th>Resultado</th></tr>
+    <tr><td>Short stay (ST)</td><td>100 uds × 365 días × 75.8% occ × ADR €159.2</td><td>€4.40M revenue</td></tr>
+    <tr><td>Medium stay (MT)</td><td>100 uds × 12 meses × 95.0% occ × renta mensual ~€1,249</td><td>€1.42M revenue</td></tr>
+    <tr><td>Total revenue</td><td>ST + MT</td><td><b>€5.83M</b></td></tr>
+    <tr><td>GOP Hermes</td><td>€5.83M × 60.0%</td><td><b>€3.50M</b></td></tr>
+    <tr><td>Fee operador</td><td>€5.83M × 8.0%</td><td><b>€0.47M</b></td></tr>
+    <tr><td>NOI propietario</td><td>GOP − fee operador</td><td><b>€3.03M</b></td></tr>
+    <tr><td>YoC</td><td>€3.03M / €39.28M</td><td><b>7.7%</b></td></tr>
+  </table>
+  <p class="note">Referencia BP: con el revenue intacto, el BP operador aterriza en NOI ~€3.41M. Hermes lo baja a ~€3.03M por prudencia en margen operativo y fee.</p>
+</div>
+
+<div class="sec">
+  <div class="sec-title">6a. Retornos — cash flows estimados</div>
+  <table>
+    <tr><th>Concepto</th><th>Año 0</th><th>Año 1</th><th>Año 2</th><th>Año 3</th><th>Año 4</th><th>Año 5 (exit)</th></tr>
+    <tr><td>Inversión / CapEx</td><td>(€19.02M)</td><td>(€6.68M)</td><td>(€8.56M)</td><td>(€5.03M)</td><td>—</td><td>—</td></tr>
+    <tr><td>NOI</td><td>—</td><td>—</td><td>—</td><td>€1.67M</td><td>€2.58M</td><td>€3.03M</td></tr>
+    <tr><td>Venta</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>€50.23M</td></tr>
+    <tr><td>CF sin apalancar</td><td>(€19.02M)</td><td>(€6.68M)</td><td>(€8.56M)</td><td>(€3.36M)</td><td>€2.58M</td><td>€53.26M</td></tr>
+    <tr><td>Servicio deuda <span class="muted">(intereses + amort.)</span></td><td>—</td><td>(€0.77M)</td><td>(€1.03M)</td><td>(€1.18M)</td><td>(€3.54M)</td><td>(€3.42M) + repago final</td></tr>
+    <tr><td>CF apalancado</td><td>(€7.61M)</td><td>(€3.44M)</td><td>(€4.45M)</td><td>(€1.52M)</td><td>(€0.96M)</td><td>€30.88M</td></tr>
+  </table>
+  <p class="note">Hipótesis de deuda: 60% LTC al 5%, draw pari passu con la inversión, amortización ligera en años 4 y 5 y repago final en salida. Resultado: <b>IRR sin apalancar ~10.1%</b> y <b>IRR apalancada ~14.7%</b>.</p>
+</div>
+
+<div class="sec">
+  <div class="sec-title">6b. Sensibilidad — IRR apalancada</div>
+  <table class="sens">
+    <tr><th>Exit yield \ Precio compra</th><th>€15.5M</th><th>€16.0M</th><th>€16.8M</th><th>€17.5M</th><th>€18.0M</th></tr>
+    <tr><td>5.50%</td><td class="g">20.1%</td><td class="g">19.5%</td><td class="g">18.7%</td><td class="g">17.9%</td><td class="g">17.4%</td></tr>
+    <tr><td>5.75%</td><td class="g">18.1%</td><td class="g">17.6%</td><td class="g">16.7%</td><td class="g">15.9%</td><td class="g">15.3%</td></tr>
+    <tr><td>6.00%</td><td class="g">16.2%</td><td class="g">15.6%</td><td class="w base">14.7% BASE</td><td class="r">13.9%</td><td class="r">13.3%</td></tr>
+    <tr><td>6.25%</td><td class="w">14.4%</td><td class="r">13.8%</td><td class="r">12.8%</td><td class="r">11.9%</td><td class="r">11.3%</td></tr>
+    <tr><td>6.50%</td><td class="r">12.6%</td><td class="r">12.0%</td><td class="r">10.9%</td><td class="r">10.0%</td><td class="r">9.4%</td></tr>
+  </table>
+  <p class="note"><span class="pos">Verde</span> = ≥15% IRR (umbral GO). <span class="warn">Ámbar</span> = 14–15%. <span class="neg">Rojo</span> = &lt;14%. Con la base Hermes, el corte de 15% cae en torno a <b>€16.5M</b> de compra si mantenemos exit yield 6.0%.</p>
+</div>
+
+<div class="sec">
+  <div class="sec-title">7a. Location — macro</div>
+  <table>
+    <tr><th>Lectura</th><th>Comentario</th></tr>
+    <tr><td>Submercado</td><td>Sant Adrià se lee como periferia inmediata del eje Barcelona Besòs / Fòrum: capta demanda metropolitana y overflow de Barcelona sin pagar prime de centro.</td></tr>
+    <tr><td>Tesis</td><td>La propuesta encaja mejor como flex living que como hotel clásico puro: combina estancia corta y media estancia y depende de una operación eficiente más que de tarifa prime turística.</td></tr>
+    <tr><td>Qué falta</td><td><b>[PENDIENTE]</b> ADR/occ comparables de la micro, pipeline competitivo y evidencia dura de absorción flex en el submercado.</td></tr>
+  </table>
+</div>
+
+<div class="sec">
+  <div class="sec-title">7b. Location — micro / POIs relevantes</div>
+  <table>
+    <tr><th>POI</th><th>Distancia</th><th>Por qué importa</th></tr>
+    <tr><td>Eje de transporte público de La Catalana / Sant Adrià</td><td><b>[PENDIENTE]</b></td><td>Clave para staff, clientes ST y fricción de acceso diario en MT</td></tr>
+    <tr><td>Nodo Fòrum / Diagonal Mar</td><td><b>[PENDIENTE]</b></td><td>Sirve como referencia de mercado, comps hoteleros y validación de salida</td></tr>
+    <tr><td>Servicios de proximidad / retail de barrio</td><td><b>[PENDIENTE]</b></td><td>Importan más en flex living que en hotel puro para sostener la propuesta MT</td></tr>
+    <tr><td>Parcela exacta / accesos peatonales y rodados</td><td>Validar en visita</td><td>Puede mover percepción de producto, timing y fricción operativa</td></tr>
+  </table>
+  <p class="note">No incluyo mapas ni imágenes. Esta sección queda conscientemente textual hasta validar POIs y distancias con una revisión de localización bien hecha.</p>
+</div>
+
+<div class="sec">
+  <div class="sec-title">8. Riesgos y kill-switches</div>
+  <table>
+    <tr><th>Riesgo</th><th>Impacto si se materializa</th><th>Prob.</th><th>Qué verificar / siguiente paso</th></tr>
+    <tr><td>Encaje licencias / producto real para 200 uds flex</td><td>Puede tumbar capacidad, retrasar plazos y reabrir toda la tesis de ingresos</td><td>Alta</td><td>Confirmación urbanística + licencias + criterio municipal sobre producto y mix</td></tr>
+    <tr><td>CapEx real superior al estándar Hermes</td><td>Cada sobrecoste erosiona fuerte la IRR y puede convertir el deal en KILL</td><td>Alta</td><td>Validar geotécnico, topográfico, acometidas, demolición y presupuesto de constructora</td></tr>
+    <tr><td>Demanda real de flex living en esta micro</td><td>Menor ocupación / tarifa → caída directa de NOI y salida</td><td>Media</td><td>Pedir comps, pipeline y evidencia comercial real del submercado</td></tr>
+    <tr><td>Tratamiento fiscal de compra</td><td>Si el 3% no captura bien IVA/AJD, el equity real sube y la IRR baja</td><td>Media</td><td>Validación legal/fiscal específica del activo</td></tr>
+    <tr><td>Disciplina de precio</td><td>Por encima de ~€16.5M se pierde el umbral GO base</td><td>Alta</td><td>No entrar en DD larga sin alineación de rango económico</td></tr>
+  </table>
+  <table style="margin-top:12px">
+    <tr><th>Kill-switch</th><th>Definición binaria</th></tr>
+    <tr><td>KS-1</td><td>La licencia / encaje real no soporta 200 uds flex en timing razonable</td></tr>
+    <tr><td>KS-2</td><td>La DD técnica empuja el coste total a un nivel que deja la IRR &lt;13% incluso a precio negociado</td></tr>
+    <tr><td>KS-3</td><td>El vendedor se ancla cerca de €16.8M sin estructura ni upside adicional que compense</td></tr>
+  </table>
+</div>
+
+<div class="sec">
+  <div class="sec-title">9. Siguiente paso</div>
+  <table>
+    <tr><th>Bloque</th><th>Recomendación Hermes</th></tr>
+    <tr><td>Bid recomendado</td><td><b>~€15.5M</b></td></tr>
+    <tr><td>Bid límite GO base</td><td><b>~€16.5M</b> <span class="muted">(a 6.0% exit y estructura 60% LTC / 5%)</span></td></tr>
+    <tr><td>DD inmediata 1</td><td>Confirmar encaje/licencias y criterio municipal sobre el producto</td></tr>
+    <tr><td>DD inmediata 2</td><td>Revisar si geotécnico y topográfico encargados por la propiedad serían reutilizables</td></tr>
+    <tr><td>DD inmediata 3</td><td>Pedir breakdown de CapEx / cronograma constructivo y contrastarlo con tercer técnico</td></tr>
+    <tr><td>DD inmediata 4</td><td>Armar evidencia de demanda/comps/pipeline del submercado flex</td></tr>
+    <tr><td>Capital path tentativo</td><td>Club deal / coinversor value-add + deuda senior 60% LTC; flojo para balance puro al ask actual</td></tr>
+    <tr><td>Timing hasta siguiente decisión</td><td>1–2 semanas para decidir si merece DD profunda o cierre del expediente</td></tr>
+  </table>
+</div>
+
+<div class="sec">
+  <div class="sec-title">10. Gaps de información</div>
+  <table>
+    <tr><th>Gap</th><th>Fuente probable / cómo resolverlo</th></tr>
+    <tr><td>Parcela exacta, coordenadas exactas y condición de accesos</td><td>Broker + visita + documentación urbanística</td></tr>
+    <tr><td>Pipeline competitivo y comparables reales de la micro</td><td>Research de mercado / broker / operador</td></tr>
+    <tr><td>Tratamiento fiscal exacto de la compra</td><td>Asesor legal/fiscal del deal</td></tr>
+    <tr><td>Presupuesto de obra contrastado / DT cerrada</td><td>Constructora + técnico independiente</td></tr>
+    <tr><td>Estructura HMA real si existiera</td><td>Operador / borrador HMA / términos comerciales</td></tr>
+    <tr><td>Evidencia de absorción MT y pricing real en la zona</td><td>Comercialización operador + comps específicos</td></tr>
   </table>
 </div>
 
 <div class="sec">
   <div class="sec-title">Cronograma</div>
   <div class="timeline">
-    <div class="step"><div class="dot">1</div><div class="lbl">Compra</div><div class="sub">Q2 2026</div></div>
+    <div class="step"><div class="dot">1</div><div class="lbl">Oferta</div><div class="sub">Q2 2026</div></div>
     <div class="step"><div class="dot">2</div><div class="lbl">Licencias</div><div class="sub">8–10m</div></div>
     <div class="step"><div class="dot">3</div><div class="lbl">Obra</div><div class="sub">18–24m</div></div>
     <div class="step"><div class="dot">4</div><div class="lbl">Ramp-up</div><div class="sub">Y1–Y2</div></div>
@@ -200,40 +241,5 @@
   </div>
 </div>
 
-<div class="sec">
-  <div class="sec-title">Salida / IRRs — hipótesis y cash flows estimados</div>
-  <table>
-    <tr><th>Métrica</th><th>Valor</th><th>Comentario</th></tr>
-    <tr><td>Exit yield</td><td><b>6.0%</b></td><td>Sobre NOI estabilizado Hermes</td></tr>
-    <tr><td>Valor de salida post fees</td><td><b>~€50.2M</b></td><td>Asumiendo 0.5% costes de salida</td></tr>
-    <tr><td>IRR sin apalancar</td><td><b>~10.1%</b></td><td>Flujo de proyecto sin deuda</td></tr>
-    <tr><td>IRR apalancada</td><td><b>~14.8%</b></td><td>Asumiendo financiación 60% LTC al 5%</td></tr>
-  </table>
-  <p class="note">A partir de aquí, Hermes mostrará siempre una tabla simple de cash flows estimados en columnas por año en vez de volver loco el memo con sensibilidades.</p>
-  <table>
-    <tr><th>Concepto</th><th>Año 0</th><th>Año 1</th><th>Año 2</th><th>Año 3</th><th>Año 4</th><th>Año 5</th></tr>
-    <tr><td>Coste proyecto</td><td>€19.02M</td><td>€6.68M</td><td>€8.56M</td><td>€5.02M</td><td>—</td><td>—</td></tr>
-    <tr><td>NOI</td><td>—</td><td>—</td><td>—</td><td>€1.67M</td><td>€2.57M</td><td>€3.03M</td></tr>
-    <tr><td>Venta</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>€50.23M</td></tr>
-    <tr><td>Disposición deuda</td><td>€11.41M</td><td>€4.01M</td><td>€5.13M</td><td>€3.01M</td><td>—</td><td>—</td></tr>
-    <tr><td>Intereses</td><td>—</td><td>(€0.77M)</td><td>(€1.03M)</td><td>(€1.18M)</td><td>(€1.18M)</td><td>(€1.06M)</td></tr>
-    <tr><td>Amortización</td><td>—</td><td>—</td><td>—</td><td>—</td><td>(€2.36M)</td><td>(€2.36M)</td></tr>
-    <tr><td>CF sin apalancar</td><td>(€19.02M)</td><td>(€6.68M)</td><td>(€8.56M)</td><td>(€3.36M)</td><td>€2.57M</td><td>€53.26M</td></tr>
-    <tr><td>CF apalancado</td><td>(€7.61M)</td><td>(€3.44M)</td><td>(€4.45M)</td><td>(€1.52M)</td><td>(€0.96M)</td><td>€30.99M</td></tr>
-  </table>
-</div>
-
-<div class="sec">
-  <div class="sec-title">Riesgos, kill-switches y siguiente paso</div>
-  <table>
-    <tr><th>Bloque</th><th>Comentario</th></tr>
-    <tr><td>Kill-switch 1</td><td>Precio no baja a ~€15.5–16.0M o vendor se ancla en €16.8M sin upside adicional claro</td></tr>
-    <tr><td>Kill-switch 2</td><td>Encaje/licencia no defendible para 200 uds flex o timing real &gt;12m licencias</td></tr>
-    <tr><td>Kill-switch 3</td><td>Geotécnico/topográfico / DT empujan CapEx total por encima de ~€22.5–23.0M</td></tr>
-    <tr><td>Siguiente paso</td><td>Re-cut inmediato de bid a €15.5M recomendado (límite GO ~€18.0M) + confirmar si los estudios geotécnico/topográfico son reutilizables y bajo qué alcance</td></tr>
-    <tr><td>Capital path</td><td>Club deal / coinversor value-add + deuda senior 60% LTC al 5%; encaje flojo para balance puro al ask actual</td></tr>
-  </table>
-</div>
-
-<div class="footer">Hermes test brief · Método MAGG conservador · pack SmartRental + email broker · comparación vs OpenClaw</div>
+<div class="footer">Hermes prompt v2 · memo de screening MAGG · sin mapas · cifras reconciliadas con sensibilidad obligatoria</div>
 </div></body></html>
