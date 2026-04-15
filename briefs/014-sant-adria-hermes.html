@@ -7,6 +7,8 @@
 .verdict{padding:14px 24px;font-weight:700;font-size:14px;border-bottom:2px solid rgba(0,0,0,.08);background:#fff8e1;color:#e65100}.tag{display:inline-block;padding:3px 9px;border-radius:11px;background:#fff3cd;color:#9a6700;font-size:11px;font-weight:800}
 .sec{background:#fff;padding:16px 24px;border-bottom:1px solid #e8ecf2}.sec-title{font-size:10px;font-weight:700;color:#7a8399;text-transform:uppercase;letter-spacing:.7px;margin-bottom:12px}.kpi-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}.kpi{background:#f4f6fb;border-radius:8px;padding:10px 12px;flex:1;min-width:100px;text-align:center}.kpi .v{font-size:17px;font-weight:800;color:#0d1f3c;line-height:1}.kpi .l{font-size:10px;color:#7a8399;margin-top:4px} table{width:100%;border-collapse:collapse;font-size:12px} th{background:#0d1f3c;color:rgba(255,255,255,.8);padding:7px 10px;text-align:left;font-weight:600} td{padding:7px 10px;border-bottom:1px solid #f0f4fa;vertical-align:top} tr:last-child td{border-bottom:none}
 .note{font-size:11px;color:#667085;margin-top:8px}.pos{color:#1b5e20;font-weight:700}.warn{color:#e65100;font-weight:700}.neg{color:#b42318;font-weight:700}.footer{background:#0d1f3c;padding:12px 24px;border-radius:0 0 12px 12px;font-size:10px;color:rgba(255,255,255,.45);text-align:center}.timeline{display:flex;gap:0;overflow-x:auto;padding-top:6px}.step{flex:1;min-width:84px;text-align:center;position:relative}.step:after{content:'';position:absolute;top:9px;left:50%;right:-50%;height:2px;background:#e5e7eb;z-index:0}.step:last-child:after{display:none}.dot{width:20px;height:20px;border-radius:50%;background:#0d1f3c;color:#fff;font-size:9px;font-weight:700;display:flex;align-items:center;justify-content:center;margin:0 auto 6px;position:relative;z-index:1}.lbl{font-size:10px;color:#667085}.sub{font-size:8px;color:#98a2b3}
+.thesis-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.thesis-card{background:#f8fafc;border:1px solid #e5e7eb;border-radius:10px;padding:14px}.thesis-card h3{margin:0 0 10px;font-size:13px;color:#0d1f3c}.thesis-big{font-size:24px;font-weight:800;color:#0d1f3c;line-height:1}.thesis-sub{font-size:11px;color:#667085;margin-top:4px}.thesis-list{margin:10px 0 0;padding-left:16px;font-size:12px;color:#344054}.thesis-list li{margin:5px 0}.thesis-card.inv h3{color:#7a5a00}.thesis-card.op h3{color:#1565c0}.thesis-card.exit h3{color:#1b5e20}
+@media (max-width:640px){.thesis-grid{grid-template-columns:1fr}}
 </style></head><body><div class="wrap">
 <div class="hdr">
   <div class="hdr-ref">MAGG Capital · MAGG-2026-014 · Hermes test · 15 Apr 2026</div>
@@ -14,6 +16,45 @@
   <div class="hdr-sub">Av. de la Catalana 106, Sant Adrià de Besòs · Suelo / flex living · 7.200 m² SR · 200 uds</div>
 </div>
 <div class="verdict">⚠️ <span class="tag">BORDERLINE · HERMES</span> — el ask de €16.8M entra en rango de viabilidad, pero no en precio cómodo MAGG: bid recomendado ~€15.5M, bid límite GO ~€18.0M, IRR proxy ~12.8%.</div>
+
+<div class="sec">
+  <div class="sec-title">Tesis en un vistazo</div>
+  <div class="thesis-grid">
+    <div class="thesis-card inv">
+      <h3>Inversión</h3>
+      <div class="thesis-big">€39.2M</div>
+      <div class="thesis-sub">Coste total proyecto Hermes</div>
+      <ul class="thesis-list">
+        <li>Compra ask: <b>€16.8M</b> (+3% tx = €17.3M)</li>
+        <li>CapEx total: <b>~€21.9M</b></li>
+        <li>Bid recomendado: <b>~€15.5M</b></li>
+        <li>Bid límite GO: <b>~€18.0M</b></li>
+      </ul>
+    </div>
+    <div class="thesis-card op">
+      <h3>Operación</h3>
+      <div class="thesis-big">€3.03M</div>
+      <div class="thesis-sub">NOI MAGG / Hermes</div>
+      <ul class="thesis-list">
+        <li>7.200 m² SR · <b>200 uds</b></li>
+        <li>Revenue estabilizado: <b>€5.83M</b></li>
+        <li>YoC: <b>7.7%</b></li>
+        <li>Licencias orientativas: <b>8–10m</b></li>
+      </ul>
+    </div>
+    <div class="thesis-card exit">
+      <h3>Salida</h3>
+      <div class="thesis-big">+173 bps</div>
+      <div class="thesis-sub">Spread vs exit 6.0%</div>
+      <ul class="thesis-list">
+        <li>Exit yield base: <b>6.0%</b></li>
+        <li>Exit value post fees: <b>~€50.2M</b></li>
+        <li>IRR proxy: <b>~12.8%</b></li>
+        <li>Veredicto: <b>BORDERLINE</b></li>
+      </ul>
+    </div>
+  </div>
+</div>
 
 <div class="sec">
   <div class="sec-title">Ficha rápida</div>
