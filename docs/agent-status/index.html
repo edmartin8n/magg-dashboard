@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Centro de Control — Agentes</title>
+<style>
+:root{--bg:#0f1117;--card:#181b23;--border:#2a2d38;--text:#e0e0e0;--muted:#8a8f9d;--accent:#4f8cff;--green:#22c55e;--yellow:#eab308;--red:#ef4444;--orange:#f97316}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);line-height:1.5;padding:20px;max-width:1200px;margin:0 auto}
+h1{font-size:1.8rem;margin-bottom:4px}
+h2{font-size:1.2rem;color:var(--accent);margin:32px 0 12px;padding-bottom:6px;border-bottom:1px solid var(--border)}
+h3{font-size:1rem;color:var(--muted);margin:16px 0 8px}
+.subtitle{color:var(--muted);font-size:.85rem;margin-bottom:24px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:16px;margin:16px 0}
+.card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:18px}
+.card-title{font-weight:700;font-size:1rem;margin-bottom:8px;display:flex;align-items:center;gap:8px}
+.badge{display:inline-block;padding:2px 10px;border-radius:12px;font-size:.75rem;font-weight:700}
+.badge-green{background:rgba(34,197,94,.15);color:var(--green)}
+.badge-yellow{background:rgba(234,179,8,.15);color:var(--yellow)}
+.badge-red{background:rgba(239,68,68,.15);color:var(--red)}
+.badge-blue{background:rgba(79,140,255,.15);color:var(--accent)}
+.badge-off{background:rgba(138,143,157,.15);color:var(--muted)}
+table{width:100%;border-collapse:collapse;font-size:.82rem;margin:8px 0}
+th{text-align:left;padding:8px 10px;background:var(--card);color:var(--muted);font-weight:600;border-bottom:1px solid var(--border);position:sticky;top:0}
+td{padding:7px 10px;border-bottom:1px solid var(--border);vertical-align:top}
+tr:hover td{background:rgba(79,140,255,.04)}
+.status-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px}
+.dot-green{background:var(--green)}.dot-yellow{background:var(--yellow)}.dot-red{background:var(--red)}.dot-off{background:var(--muted)}
+.flow{display:flex;flex-wrap:wrap;gap:4px;align-items:center;margin:12px 0;font-size:.82rem}
+.flow-step{background:var(--card);border:1px solid var(--border);padding:6px 12px;border-radius:6px}
+.flow-arrow{color:var(--muted)}
+.section-intro{color:var(--muted);font-size:.85rem;margin-bottom:12px}
+.highlight{background:rgba(79,140,255,.1);border-left:3px solid var(--accent);padding:12px 16px;border-radius:0 8px 8px 0;margin:12px 0;font-size:.85rem}
+.compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:12px 0}
+@media(max-width:700px){.compare-grid{grid-template-columns:1fr}.cards{grid-template-columns:1fr}}
+.tag{display:inline-block;padding:1px 8px;border-radius:4px;font-size:.72rem;font-weight:600;margin:1px 2px}
+.tag-wa{background:rgba(37,211,102,.15);color:#25d366}.tag-dc{background:rgba(88,101,242,.15);color:#7289da}.tag-tg{background:rgba(42,171,238,.15);color:#2aabee}
+ul{padding-left:20px;margin:6px 0}
+li{margin:3px 0;font-size:.85rem}
+.footer{margin-top:40px;padding-top:16px;border-top:1px solid var(--border);color:var(--muted);font-size:.75rem;text-align:center}
+</style>
+</head>
+<body>
+
+<h1>Centro de Control — Agentes</h1>
+<div class="subtitle">Mac Mini de Eduardo &middot; Actualizado: 17 abril 2026 &middot; Generado por Claude Code</div>
+
+<!-- ============ SECCION 1: ESTADO GENERAL ============ -->
+<div class="cards">
+  <div class="card">
+    <div class="card-title">OpenClaw (Tenacitas) <span class="badge badge-green">ACTIVO</span></div>
+    <div style="font-size:.85rem;color:var(--muted)">Agente principal &middot; Automatizacion y WhatsApp</div>
+    <div style="margin-top:8px;font-size:.85rem">
+      <span class="tag tag-wa">WhatsApp</span>
+      <span class="badge badge-off">Discord OFF</span>
+    </div>
+    <div style="margin-top:6px;font-size:.82rem">Modelo: <strong>gpt-5.4</strong> (OpenAI Codex OAuth)</div>
+    <div style="font-size:.82rem">Gateway: puerto <strong>18789</strong> &middot; Home: <code>~/.openclaw/</code></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Hermes (Driver) <span class="badge badge-green">ACTIVO</span></div>
+    <div style="font-size:.85rem;color:var(--muted)">Agente conversacional &middot; Discord</div>
+    <div style="margin-top:8px;font-size:.85rem">
+      <span class="tag tag-dc">Discord (7 canales)</span>
+      <span class="badge badge-off">Telegram OFF</span>
+    </div>
+    <div style="margin-top:6px;font-size:.82rem">Modelo: <strong>gpt-5.4</strong> (OpenAI Codex OAuth)</div>
+    <div style="font-size:.82rem">Gateway: LaunchAgent &middot; Home: <code>~/.hermes/</code></div>
+  </div>
+</div>
+
+<!-- ============ SECCION 2: PARA DUMMIES ============ -->
+<h2>Quien es quien (para dummies)</h2>
+<p class="section-intro">Dos agentes de IA corren 24/7 en tu Mac Mini. Cada uno tiene su trabajo:</p>
+
+<div class="compare-grid">
+  <div class="card">
+    <div class="card-title">OpenClaw = Tu empleado automatico</div>
+    <ul>
+      <li>Escanea Gmail buscando deals nuevos</li>
+      <li>Analiza deals automaticamente (IC Briefs)</li>
+      <li>Actualiza el Excel pipeline y el CRM</li>
+      <li>Envia emails de analisis a e.martin@smartrental.com</li>
+      <li>Hace backup diario del workspace</li>
+      <li>Busca noticias inmobiliarias cada manana</li>
+      <li>Ejecuta 18 tareas programadas (crons)</li>
+      <li>Responde por <strong>WhatsApp</strong></li>
+      <li><strong>NO</strong> responde en Discord (desactivado 17/04)</li>
+    </ul>
+  </div>
+  <div class="card">
+    <div class="card-title">Hermes = Tu asistente en Discord</div>
+    <ul>
+      <li>Responde en <strong>todos los canales de Discord</strong></li>
+      <li>Habla con Eduardo, Juanjo y Alvaro Vaca</li>
+      <li>Puede ejecutar scripts, leer archivos, buscar en web</li>
+      <li>Tiene acceso al mismo workspace que OpenClaw</li>
+      <li>Puede analizar deals si se le pide</li>
+      <li>No tiene crons propios (los crons son de OpenClaw)</li>
+      <li>Bot Discord propio (separado de Tenacitas)</li>
+      <li>178+ skills disponibles</li>
+    </ul>
+  </div>
+</div>
+
+<div class="highlight">
+  <strong>Regla clave:</strong> OpenClaw y Hermes comparten el mismo workspace (<code>~/.openclaw/workspace/</code>), el mismo Excel pipeline, el mismo CRM y la misma memoria Obsidian. Pero cada uno tiene su propio canal de comunicacion y su propio bot de Discord.
+</div>
+
+<!-- ============ SECCION 3: MAPA DE CANALES ============ -->
+<h2>Mapa de canales</h2>
+<table>
+  <tr><th>Canal</th><th>Quien responde</th><th>Para que</th></tr>
+  <tr><td><span class="tag tag-wa">WhatsApp</span> Eduardo (+34667927208)</td><td>OpenClaw</td><td>Alertas urgentes, cron deliveries, conversacion general</td></tr>
+  <tr><td><span class="tag tag-wa">WhatsApp</span> Grupo familia</td><td>OpenClaw</td><td>3 grupos WhatsApp configurados</td></tr>
+  <tr><td><span class="tag tag-dc">Discord</span> #hermes</td><td>Hermes</td><td>Canal principal de Hermes</td></tr>
+  <tr><td><span class="tag tag-dc">Discord</span> #magg-deals</td><td>Hermes</td><td>Deals inmobiliarios MAGG</td></tr>
+  <tr><td><span class="tag tag-dc">Discord</span> #public-markets</td><td>Hermes</td><td>Bolsa — Eduardo + Juanjo + Vaca</td></tr>
+  <tr><td><span class="tag tag-dc">Discord</span> #growth-projects</td><td>Hermes</td><td>Expansion, Dubai</td></tr>
+  <tr><td><span class="tag tag-dc">Discord</span> #personal-ops</td><td>Hermes</td><td>Fitness, personal</td></tr>
+  <tr><td><span class="tag tag-dc">Discord</span> #mc-infra-crons</td><td>Hermes</td><td>Infraestructura, crons</td></tr>
+  <tr><td><span class="tag tag-dc">Discord</span> #ana</td><td>Hermes</td><td>Proyecto Ana</td></tr>
+</table>
+
+<!-- ============ SECCION 4: CRONS ============ -->
+<h2>Crons activos (tareas automaticas de OpenClaw)</h2>
+<p class="section-intro">Estas tareas se ejecutan solas, sin intervencion. Todas corren en OpenClaw con modelo gpt-5.4.</p>
+
+<table>
+  <tr><th>Estado</th><th>Nombre</th><th>Horario</th><th>Agente</th><th>Entrega</th><th>Que hace</th></tr>
+  <tr><td><span class="status-dot dot-green"></span>OK</td><td>MAGG Deal Scanner</td><td>L-V 12:00</td><td>main</td><td>WhatsApp</td><td>Escanea Gmail, analiza deals, genera IC Brief, actualiza Excel/CRM, envia email</td></tr>
+  <tr><td><span class="status-dot dot-green"></span>OK</td><td>Noticias Inmobiliarias</td><td>Diario 08:00</td><td>scout</td><td>Ninguna</td><td>Blogwatcher + Brave Search: noticias hospitality/RE ultimas 24h</td></tr>
+  <tr><td><span class="status-dot dot-green"></span>OK</td><td>Daily workspace backup</td><td>Diario 07:00</td><td>dev</td><td>Ninguna</td><td>Git backup del workspace</td></tr>
+  <tr><td><span class="status-dot dot-green"></span>OK</td><td>Seguimiento 09:30</td><td>Diario 09:30</td><td>main</td><td>WA grupo</td><td>Sync Discord AM + resumen actividad</td></tr>
+  <tr><td><span class="status-dot dot-green"></span>OK</td><td>Seguimiento 14:00</td><td>Diario 14:00</td><td>main</td><td>WA grupo</td><td>Sync Discord PM + progreso</td></tr>
+  <tr><td><span class="status-dot dot-green"></span>OK</td><td>Seguimiento 20:15</td><td>Diario 20:15</td><td>main</td><td>WA grupo</td><td>Cierre del dia + pendientes manana</td></tr>
+  <tr><td><span class="status-dot dot-green"></span>OK</td><td>Empleado autonomo 02:00</td><td>Diario 02:00</td><td>main</td><td>WhatsApp</td><td>Tarea nocturna autonoma (deal prioritario o mejora)</td></tr>
+  <tr><td><span class="status-dot dot-green"></span>OK</td><td>Revision Nocturna</td><td>Diario (noche)</td><td>main</td><td>Ninguna</td><td>Revision estrategica nocturna</td></tr>
+  <tr><td><span class="status-dot dot-green"></span>OK</td><td>Weekly Macro Briefing</td><td>Lunes 08:00</td><td>stocks</td><td>WhatsApp</td><td>Briefing macro semanal (eventos, earnings, capital flows)</td></tr>
+  <tr><td><span class="status-dot dot-green"></span>OK</td><td>AI Buildout Stocks</td><td>L-V 13:00</td><td>stocks</td><td>Ninguna</td><td>Research acciones AI/chipmakers</td></tr>
+  <tr><td><span class="status-dot dot-green"></span>OK</td><td>Insider Buying Radar</td><td>Viernes 13:00</td><td>stocks</td><td>Ninguna</td><td>6 acciones con compras insider >100K USD</td></tr>
+  <tr><td><span class="status-dot dot-green"></span>OK</td><td>last30 skill scout</td><td>L/J/S 02:00</td><td>scout</td><td>WhatsApp</td><td>Busca casos de uso IA+RE en Reddit/X</td></tr>
+  <tr><td><span class="status-dot dot-green"></span>OK</td><td>skill-scout-daily</td><td>Diario</td><td>scout</td><td>WhatsApp</td><td>Recomendaciones de skills diarias</td></tr>
+  <tr><td><span class="status-dot dot-green"></span>OK</td><td>scout-youtube</td><td>Diario</td><td>scout</td><td>Ninguna</td><td>Busqueda videos YouTube OpenClaw/IA</td></tr>
+  <tr><td><span class="status-dot dot-green"></span>OK</td><td>Content Radar</td><td>Periodico</td><td>scout</td><td>Ninguna</td><td>Radar contenido Claude Code / OpenClaw / IA</td></tr>
+  <tr><td><span class="status-dot dot-green"></span>OK</td><td>R&D Team semanal</td><td>Lunes 03:00</td><td>dev</td><td>Ninguna</td><td>Research semanal de herramientas/infra</td></tr>
+  <tr><td><span class="status-dot dot-green"></span>OK</td><td>fit-vits-reminder</td><td>Diario</td><td>-</td><td>WA</td><td>Recordatorio suplementos/vitaminas</td></tr>
+  <tr><td><span class="status-dot dot-green"></span>OK</td><td>bascula-reminder</td><td>Semanal</td><td>-</td><td>WA</td><td>Recordatorio pesarse</td></tr>
+  <tr><td><span class="status-dot dot-red"></span>ERR</td><td>MC Global refresh x3</td><td>07:30/13:00/20:00</td><td>dev</td><td>Ninguna</td><td>Actualizar Mission Control HTML. <em>Falla: timeout 120s insuficiente</em></td></tr>
+</table>
+
+<h3>Crons desactivados (y por que)</h3>
+<table>
+  <tr><th>Nombre</th><th>Motivo</th><th>Fecha</th></tr>
+  <tr><td>Discord sync AM/PM</td><td>Discord desactivado en OpenClaw. Hermes gestiona Discord ahora</td><td>17/04/2026</td></tr>
+  <tr><td>Daily check-in JJ y Vaca</td><td>Eliminado por Eduardo (control tokens)</td><td>17/04/2026</td></tr>
+  <tr><td>job-alerts-ana</td><td>Eliminado por Eduardo</td><td>17/04/2026</td></tr>
+  <tr><td>ana-job-search-daily</td><td>Eliminado por Eduardo</td><td>17/04/2026</td></tr>
+  <tr><td>Morning Brief Tenacitas</td><td>Rate limit errors persistentes</td><td>Anterior</td></tr>
+  <tr><td>Notion MC Sync</td><td>No bloqueante, desactivado para ahorrar tokens</td><td>Anterior</td></tr>
+</table>
+
+<!-- ============ SECCION 5: PIPELINE ============ -->
+<h2>Pipeline MAGG Capital</h2>
+<p class="section-intro">280 deals en total (16 MAGG activos + 264 historicos). Excel = fuente de verdad.</p>
+
+<h3>Deals activos</h3>
+<table>
+  <tr><th>Ref</th><th>Deal</th><th>Veredicto</th><th>Spread</th><th>Siguiente paso</th></tr>
+  <tr><td>006</td><td>Rossio Lisboa</td><td><span class="badge badge-green">GO</span></td><td>-</td><td>DD marzo-abril</td></tr>
+  <tr><td>007</td><td>Cason del Tormes, Madrid</td><td><span class="badge badge-green">GO</span></td><td>+262 bps</td><td>NBO pendiente respuesta</td></tr>
+  <tr><td>010B</td><td>Gran Via 48, Madrid (124 uds)</td><td><span class="badge badge-green">GO</span></td><td>+200 bps</td><td>OM completo + LOI</td></tr>
+  <tr><td>013</td><td>Albasanz 21, Madrid</td><td><span class="badge badge-yellow">BORDERLINE</span></td><td>+75 bps</td><td>Negociar a 11.0-11.2M</td></tr>
+  <tr><td>014</td><td>Sant Adria Flex, Barcelona</td><td><span class="badge badge-yellow">BORDERLINE</span></td><td>~+75 bps</td><td>Bid recomendado ~15.5M</td></tr>
+  <tr><td>015</td><td>Hostal Miami, Barcelona</td><td><span class="badge badge-red">NO GO</span></td><td>-</td><td>Cerrado @ 8.0M</td></tr>
+</table>
+
+<h3>Flujo canonico de un deal (OpenClaw automatico)</h3>
+<div class="flow">
+  <span class="flow-step">1. Gmail detecta "MAGG Deal"</span><span class="flow-arrow">&rarr;</span>
+  <span class="flow-step">2. Analisis UW completo</span><span class="flow-arrow">&rarr;</span>
+  <span class="flow-step">3. Carpeta Drive</span><span class="flow-arrow">&rarr;</span>
+  <span class="flow-step">4. Subir OM + IC Brief PDF</span><span class="flow-arrow">&rarr;</span>
+  <span class="flow-step">5. IC Brief Google Doc</span><span class="flow-arrow">&rarr;</span>
+  <span class="flow-step">6. Actualizar Excel</span><span class="flow-arrow">&rarr;</span>
+  <span class="flow-step">7. Regenerar CRM</span><span class="flow-arrow">&rarr;</span>
+  <span class="flow-step">8. Email a Eduardo</span><span class="flow-arrow">&rarr;</span>
+  <span class="flow-step">9. Marcar leido</span>
+</div>
+
+<div class="highlight">
+  <strong>Safeguard:</strong> El script regenerate_crm.py aborta si el Excel tiene menos de 50 deals (protege contra corrupcion). Anadido 14/04 despues de un incidente donde el CRM paso de 280 a 10 deals.
+</div>
+
+<!-- ============ SECCION 6: SERVICIOS ============ -->
+<h2>Servicios en ejecucion (LaunchAgents)</h2>
+<p class="section-intro">Estos 3 servicios arrancan automaticamente con el Mac Mini y se reinician si caen.</p>
+
+<table>
+  <tr><th>Servicio</th><th>Puerto</th><th>Auto-start</th><th>Auto-restart</th><th>Que hace</th></tr>
+  <tr><td><span class="status-dot dot-green"></span>OpenClaw Gateway</td><td>18789</td><td>Si</td><td>Si</td><td>Motor principal: crons, WhatsApp, herramientas, memoria</td></tr>
+  <tr><td><span class="status-dot dot-green"></span>Hermes Gateway</td><td>-</td><td>Si</td><td>Si (on error)</td><td>Discord bot, conversacion, skills</td></tr>
+  <tr><td><span class="status-dot dot-green"></span>CRM API (FastAPI)</td><td>8765</td><td>Si</td><td>Si</td><td>Editar deals desde localhost, sirve pipeline_magg.xlsx</td></tr>
+</table>
+
+<!-- ============ SECCION 7: RECURSOS COMPARTIDOS ============ -->
+<h2>Recursos compartidos</h2>
+<table>
+  <tr><th>Recurso</th><th>Path</th><th>Quien lo usa</th></tr>
+  <tr><td>Workspace</td><td><code>~/.openclaw/workspace/</code></td><td>Ambos (OC escribe, Hermes lee + escribe)</td></tr>
+  <tr><td>Pipeline Excel</td><td><code>pipeline_magg.xlsx</code></td><td>Ambos (OC auto-update via crons, Hermes puede editar)</td></tr>
+  <tr><td>CRM HTML</td><td><code>.magg-dashboard-repo/index.html</code></td><td>OC regenera, Hermes puede leer</td></tr>
+  <tr><td>Obsidian vault</td><td><code>~/Obsidian/Tenacitas/</code></td><td>Ambos (Agent-Shared compartido, Agent-OC y Agent-Hermes privados)</td></tr>
+  <tr><td>Scripts</td><td><code>scripts/*.py</code></td><td>Ambos pueden ejecutar (28 scripts)</td></tr>
+  <tr><td>IC Briefs</td><td><code>docs/briefs/*.html</code></td><td>OC genera, Hermes puede leer</td></tr>
+  <tr><td>Gmail OAuth</td><td><code>.credentials/gmail_token.json</code></td><td>Ambos (6 scopes)</td></tr>
+</table>
+
+<!-- ============ SECCION 8: HISTORIAL ============ -->
+<h2>Cambios recientes (14-17 abril 2026)</h2>
+<table>
+  <tr><th>Fecha</th><th>Cambio</th><th>Impacto</th></tr>
+  <tr><td>17/04</td><td><strong>Discord desactivado en OpenClaw</strong> (<code>enabled: false</code>)</td><td>OpenClaw ya no responde en ningun canal de Discord</td></tr>
+  <tr><td>17/04</td><td>Crons Discord sync AM/PM desactivados</td><td>OpenClaw no lee canales Discord</td></tr>
+  <tr><td>17/04</td><td>Crons eliminados: check-in JJ+Vaca, job-alerts-ana, ana-job-search</td><td>Ahorro tokens, limpieza</td></tr>
+  <tr><td>17/04</td><td>SOUL.md: regla email solo a e.martin (nunca CC)</td><td>Evita reenvio a terceros (incidente Fletcher)</td></tr>
+  <tr><td>16/04</td><td><strong>Hermes toma control total de Discord</strong></td><td>Hermes = conversacion Discord, OC = automatizacion + WhatsApp</td></tr>
+  <tr><td>15/04</td><td>Bot Discord separado para Hermes (ID: 1493736332218994799)</td><td>Sin conflictos de WebSocket entre bots</td></tr>
+  <tr><td>15/04</td><td>Canal #hermes creado</td><td>Canal principal de Hermes en Discord</td></tr>
+  <tr><td>14/04</td><td>CRM restaurado (10 &rarr; 280 deals)</td><td>Excel corrupto por sesion Discord, restaurado de git</td></tr>
+  <tr><td>14/04</td><td>19 crons migrados a gpt-5.4</td><td>Modelo unificado (antes mix de 4 modelos distintos)</td></tr>
+  <tr><td>14/04</td><td>Sesion #magg-deals reseteada (15.8MB)</td><td>OpenClaw no usaba tools desde abril por overflow</td></tr>
+  <tr><td>14/04</td><td>MEMORY.md comprimido (43KB &rarr; 7KB)</td><td>Se truncaba cada sesion, ahora cabe sin problema</td></tr>
+  <tr><td>14/04</td><td>Compaction: safeguard &rarr; default</td><td>Sesiones se comprimen proactivamente, no solo al explotar</td></tr>
+  <tr><td>14/04</td><td>Safeguard regenerate_crm.py (&lt;50 deals = abort)</td><td>Protege contra publicar datos corruptos</td></tr>
+  <tr><td>14/04</td><td>SOUL.md: regla execute-first</td><td>Agente ejecuta herramientas antes de responder texto</td></tr>
+  <tr><td>14/04</td><td>Discord: commands.native=false, streaming=progress</td><td>Evita quemar 200 slash commands/dia en reconexiones</td></tr>
+</table>
+
+<!-- ============ SECCION 9: QUE MIGRAMOS ============ -->
+<h2>Que se migro de OpenClaw a Hermes</h2>
+<div class="compare-grid">
+  <div class="card">
+    <div class="card-title" style="color:var(--red)">OpenClaw ya NO hace</div>
+    <ul>
+      <li>Responder en Discord (desactivado)</li>
+      <li>Discord sync AM/PM (desactivado)</li>
+      <li>Check-in diario JJ + Vaca (eliminado)</li>
+      <li>Job alerts Ana (eliminado)</li>
+      <li>Ana job search diario (eliminado)</li>
+    </ul>
+  </div>
+  <div class="card">
+    <div class="card-title" style="color:var(--green)">Hermes ahora hace</div>
+    <ul>
+      <li>Toda la conversacion en Discord (7 canales)</li>
+      <li>Interaccion con Eduardo, Juanjo, Alvaro Vaca</li>
+      <li>Puede analizar deals bajo demanda</li>
+      <li>Acceso completo al workspace y scripts</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ============ SECCION 10: PROBLEMAS ============ -->
+<h2>Problemas conocidos</h2>
+<table>
+  <tr><th>Problema</th><th>Severidad</th><th>Componente</th><th>Estado</th></tr>
+  <tr><td>MC Global refresh timeout (120s insuficiente)</td><td><span class="badge badge-yellow">Media</span></td><td>OpenClaw</td><td>3 crons fallando. Pendiente aumentar timeout</td></tr>
+  <tr><td>subagent-registry.runtime.js missing</td><td><span class="badge badge-off">Baja</span></td><td>OpenClaw</td><td>Bug v2026.4.12. Sin impacto funcional</td></tr>
+  <tr><td>Discord slash command limit (100)</td><td><span class="badge badge-off">Baja</span></td><td>Hermes</td><td>20 skills no registradas. Funcionalidad no afectada</td></tr>
+  <tr><td>Auth Codex caduca cada ~10 dias</td><td><span class="badge badge-yellow">Media</span></td><td>Hermes</td><td>Requiere <code>hermes auth add</code> manual. No hay auto-refresh</td></tr>
+  <tr><td>Hermes no tiene crons propios</td><td><span class="badge badge-blue">Info</span></td><td>Hermes</td><td>Por diseno: los crons corren en OpenClaw</td></tr>
+</table>
+
+<!-- ============ SECCION 11: COSTES ============ -->
+<h2>Consumo de tokens</h2>
+<p class="section-intro">Ambos agentes usan el mismo proveedor: OpenAI Codex OAuth (ChatGPT Plus, $20/mes). Comparten cupo.</p>
+<div class="highlight">
+  <strong>Cupo compartido:</strong> OpenClaw (18 crons + WhatsApp) y Hermes (Discord conversacion) consumen del mismo pool de ChatGPT Plus. Si un agente agota el cupo, el otro tambien se bloquea (HTTP 429).<br><br>
+  <strong>Principales consumidores:</strong><br>
+  - Empleado autonomo 02:00 (tarea larga, tools + analysis)<br>
+  - MAGG Deal Scanner (900s timeout, pipeline completo)<br>
+  - Seguimientos x3 (3 sesiones/dia)<br>
+  - Discord conversacion (Hermes, variable segun uso)
+</div>
+
+<div class="footer">
+  Centro de Control — Agentes &middot; Mac Mini Eduardo &middot; Generado por Claude Code &middot; 17/04/2026
+</div>
+
+</body>
+</html>
