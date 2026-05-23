@@ -1,7 +1,185 @@
 {
-  "generated": "2026-04-14T02:02:46.350709",
-  "total": 45,
+  "generated": "2026-05-03T04:07:18.168016",
+  "total": 56,
   "entries": [
+    {
+      "date": "2026-04-29",
+      "weekday": "Wednesday",
+      "weekday_es": "Miércoles",
+      "summary": "- Hotel Colors Barcelona procesado como `MAGG-2026-017`.",
+      "topics": [],
+      "tags": [
+        "MAGG",
+        "CRM",
+        "Gmail",
+        "Infra"
+      ],
+      "activity": 5,
+      "content": "# 2026-04-29\n\n- Hotel Colors Barcelona procesado como `MAGG-2026-017`.\n- Veredicto final: **NO GO** a €6,18M + honorarios; bid recomendado €4,0-4,2M y límite GO €4,4-4,6M.\n- Ejecutado flujo operativo: IC Brief publicado en `https://edmartin8n.github.io/magg-dashboard/briefs/017-hotel-colors-barcelona.html`, fila añadida a `pipeline_magg.xlsx`, CRM regenerado/pusheado, email HTML enviado a `e.martin@smartrental.com`, Gmail marcado como leído y msg id guardado en `.magg_processed_ids.json`.\n- Nueva preferencia explícita de Eduardo: cuando entre un deal por Gmail con keyword `MAGG Deal`, cerrar el flujo completo sin esperar OK final suyo.\n"
+    },
+    {
+      "date": "2026-04-25",
+      "weekday": "Saturday",
+      "weekday_es": "Sábado",
+      "summary": "",
+      "topics": [
+        "2026-04-25 — durable notes (append)"
+      ],
+      "tags": [
+        "Infra",
+        "Notion"
+      ],
+      "activity": 8,
+      "content": "## 2026-04-25 — durable notes (append)\n- Heartbeat handling today stayed strict to `HEARTBEAT.md`: repeated heartbeat polls generally resolved to `HEARTBEAT_OK` when no concrete action was required.\n- Scheduled reminders relayed to Eduardo today:\n  - 09:30 Mission Control quick status by vertical + short-term actions (Next/Waiting/Done)\n  - 14:00 midday check by vertical (progress, blockers, next action)\n  - 20:15 end-of-day closeout (mark completed, carry pending, leave top 3 for tomorrow)\n- WhatsApp gateway remained unstable/intermittent throughout the day with repeated disconnect/reconnect cycles, mostly status `499`, plus one `408`, but it kept reconnecting as `+34619372570`.\n- No additional durable work was executed from heartbeat instructions beyond reminder relays and strict quiet handling.\n"
+    },
+    {
+      "date": "2026-04-23",
+      "weekday": "Thursday",
+      "weekday_es": "Jueves",
+      "summary": "",
+      "topics": [
+        "02:00 — Tarea autónoma"
+      ],
+      "tags": [
+        "MAGG",
+        "CRM",
+        "Gmail",
+        "Discord",
+        "Infra",
+        "Notion",
+        "Fundraising"
+      ],
+      "activity": 18,
+      "content": "## 02:00 — Tarea autónoma\n- No había un deal MAGG nuevo realmente pendiente de IC/análisis cerrado esta noche; la mejor palanca disponible era una mejora de **CRM/pipeline con datos reales** sobre intermediarios.\n- Se actualiza `/.magg-dashboard-repo/index.html` para que la vista **Intermediarios** deje de tratar “sin contacto” como vacío y pase a mostrar **stale 90d+** calculado desde la última interacción real.\n- Mejora concreta: nuevo filtro `⚠️ Stale 90d+`, KPI superior renombrado a `Stale 90d+`, chip de fecha con **dd/mm/yyyy + días desde último contacto**, y ordenación priorizando firmas con más deals y luego más días sin tocar.\n- Verificación mínima hecha por lectura directa del HTML: `TODAY` fijo al 23/04/2026, filtro `g.isStale90`, y labels nuevos presentes.\n- Impacto: el CRM ahora hace visible el backlog real de intermediarios fríos (34 contactos >=90 días), incluyendo casos que ya estaban marcados en Mission Control como Jan De Groot, Iñigo Corres, Afflux y Angela Alvarez.\n- Sesión de estabilización de crons OpenClaw: se mantuvo `openai-codex/gpt-5.4` como modelo por defecto por instrucción expresa de Eduardo; no cambiar default model durante el trabajo.\n- Se creó backup de config antes de tocar crons: `~/.openclaw/openclaw.json.bak-2026-04-23-1904`.\n- Poda de crons ejecutada para reducir ruido: desactivados `fit-vits-reminder`, `bascula-reminder`, `R&D Team semanal (Lunes 03:00)`, `MC Global refresh 20:00`, `last30-3x-skill-scout`, `skill-scout-daily`, `Content Radar (Claude Code / OpenClaw / AI)`, `MC Global refresh 13:00`, `MC Global refresh 07:30`, `Empleado autónomo 02:00`.\n- `MAGG Deal Scanner` quedó ACTIVO con `timeoutSeconds: 1800`; no se lanzó run manual por riesgo real de escribir CRM/Excel/email. Validación diferida a ejecución automática del día siguiente.\n- `Noticias Inmobiliarias` quedó verificado en verde con run manual OK (~93s), entregando correctamente.\n- `Revisión Nocturna Estratégica` mostró runs OK con delivery correcto por WhatsApp.\n- `Weekly Macro Briefing` se reorientó a WhatsApp por decisión de Eduardo; quedaba pendiente confirmar completamente el run nuevo, pero había evidencia de run `ok`/`delivered` a las 21:32 en chequeos posteriores.\n- Estado real de canales durante la sesión: WhatsApp conectado/linked y funcional; Discord configurado pero deshabilitado (`channels.discord.enabled=false`).\n- Evidencia de estructura histórica de Discord: `#magg-deals` (deals/fundraising), `#growth-projects`, `#public-markets`, `#personal-ops`, `#mc-infra-crons`; evidencia fuerte de uso previo en `#magg-deals` y `#public-markets`.\n- Evidencia histórica del bot de Discord: bot `Tenacitas` id `1476161375385419868`, guild `1476160936262893672`; el token sigue presente en config, pero no se verificaron permisos live porque Discord estaba apagado administrativamente.\n- Decisión táctica final antes del flush: próximo frente será Fase 1 de reactivación de Discord como canal principal y WhatsApp como backup/failover, empezando por descubrimiento sin tocar nada. Falta GO explícito para Fase 2 (activar Discord y probar escritura en canales).\n- Bootstrap sigue PENDIENTE: no fingir que está completado; `BOOTSTRAP.md` aún no se ha completado ni eliminado.\n"
+    },
+    {
+      "date": "2026-04-22",
+      "weekday": "Wednesday",
+      "weekday_es": "Miércoles",
+      "summary": "- **Tarea seleccionada:** saneamiento estructural del **pipeline/CRM MAGG** en la fuente (`pipeline_magg.xlsx`), no solo en la capa de publicación.",
+      "topics": [
+        "02:00 — Tarea autónoma"
+      ],
+      "tags": [
+        "MAGG",
+        "CRM",
+        "Infra"
+      ],
+      "activity": 11,
+      "content": "# 2026-04-22\n\n## 02:00 — Tarea autónoma\n- **Tarea seleccionada:** saneamiento estructural del **pipeline/CRM MAGG** en la fuente (`pipeline_magg.xlsx`), no solo en la capa de publicación.\n- **Motivo de prioridad:** no había un IC Brief nuevo claramente más valioso que cerrar esta noche sin riesgo de duplicar trabajo, y el mayor riesgo operativo seguía siendo tomar decisiones sobre un pipeline con refs duplicadas, filas legacy activas por error y colisión de identificadores.\n- **Ejecución completada:**\n  - eliminadas las filas duplicadas legacy de **MAGG-2026-006 Rossio** y **MAGG-2026-009 Sevilla** en el Excel maestro\n  - corregida la fila corrupta **HIST-138 Fuencarral 121**, que aparecía erróneamente como `En Análisis / GO` pese a tener motivo de `Declined`; queda archivada como **Descartado / NO GO**\n  - resuelta la colisión real de referencia **MAGG-2026-011** entre **El Puntazo** y **Ciudad Jardín**: **Ciudad Jardín pasa a `MAGG-2026-016`** y se crea su brief espejo `016-ciudad-jardin.html`\n  - regenerado el CRM: pasa a **280 deals** publicados, ya sin duplicados por Rossio/Sevilla y sin conflicto por ref 011\n  - rebase + push completado en el repo de GitHub Pages (`f2970d7` en `.magg-dashboard-repo`)\n- **Impacto:** el master Excel vuelve a estar más alineado con la realidad operativa y el CRM live deja de depender de “parches” de deduplicación para tres errores distintos (duplicados legacy, fila histórica corrupta y ref duplicada)."
+    },
+    {
+      "date": "2026-04-21",
+      "weekday": "Tuesday",
+      "weekday_es": "Martes",
+      "summary": "- **Tarea seleccionada:** blindaje del **CRM MAGG** frente a duplicados de pipeline, porque seguía habiendo refs repetidas que podían distorsionar el dashboard live y la priorización de deals.",
+      "topics": [
+        "02:00 — Tarea autónoma"
+      ],
+      "tags": [
+        "MAGG",
+        "CRM",
+        "Infra"
+      ],
+      "activity": 11,
+      "content": "# 2026-04-21\n\n## 02:00 — Tarea autónoma\n- **Tarea seleccionada:** blindaje del **CRM MAGG** frente a duplicados de pipeline, porque seguía habiendo refs repetidas que podían distorsionar el dashboard live y la priorización de deals.\n- **Motivo de prioridad:** esta noche no había un IC Brief nuevo claramente más impactante que ejecutar de cero sin riesgo de duplicar trabajo, y el CRM es la superficie operativa que Eduardo usa para decidir rápido. Si esa capa se contamina con duplicados, baja la calidad de todo lo demás.\n- **Ejecución completada:**\n  - revisados `MEMORY.md`, `MISSION_CONTROL.md`, `HEARTBEAT.md` y el estado actual del pipeline/CRM\n  - detectadas refs duplicadas en `pipeline_magg.xlsx`: **MAGG-2026-006**, **MAGG-2026-009** y **MAGG-2026-011**\n  - modificado `scripts/regenerate_crm.py` para **deduplicar por `Ref #`** y conservar la **última fila válida** del Excel antes de regenerar el dashboard\n  - regenerado el CRM, que pasa a publicar **279 deals únicos** en vez de inflar el conteo con filas repetidas\n  - resuelto el rechazo inicial de push en `.magg-dashboard-repo` con `pull --rebase` y publicado el fix en GitHub Pages\n- **Impacto:** el CRM live deja de mezclar o duplicar deals por errores de hygiene del Excel y pasa a reflejar una vista más fiable para priorización nocturna y seguimiento comercial.\n"
+    },
+    {
+      "date": "2026-04-20",
+      "weekday": "Monday",
+      "weekday_es": "Lunes",
+      "summary": "- **Tarea seleccionada:** desbloqueo de **GV48** con un paquete de seguimiento ejecutable, porque seguía siendo el deal MAGG de mayor impacto económico todavía vivo sin un cierre operativo del siguiente paso.",
+      "topics": [
+        "02:00 — Tarea autónoma"
+      ],
+      "tags": [
+        "MAGG",
+        "Gmail"
+      ],
+      "activity": 10,
+      "content": "# 2026-04-20\n\n## 02:00 — Tarea autónoma\n- **Tarea seleccionada:** desbloqueo de **GV48** con un paquete de seguimiento ejecutable, porque seguía siendo el deal MAGG de mayor impacto económico todavía vivo sin un cierre operativo del siguiente paso.\n- **Motivo de prioridad:** el underwriting ya estaba hecho y la tesis económica seguía siendo fuerte, pero el proceso llevaba demasiado tiempo en espera de Eastdil sin convertir el análisis en una decisión binaria.\n- **Ejecución completada:**\n  - revisado el estado en `MISSION_CONTROL.md`, `MEMORY.md` y el IC Brief existente de **MAGG-2026-010 / GV48**\n  - preparado y dejado publicado el entregable `docs/briefs/010-gv48-follow-up-2026-04-20.html`\n  - condensada la tesis para ejecución rápida: **Estrategia B sigue siendo GO** a nivel económico (YoC ~7.0%, spread +200bps, IRR ~15%, múltiple ~1.8x)\n  - redactados **guion de llamada**, **email listo para enviar a Eastdil** y **kill rule 72h** para que Eduardo pueda empujar el proceso o archivarlo sin reabrir todo el análisis\n- **Impacto:** GV48 deja de ser un pendiente difuso. A partir de hoy queda convertido en una acción clara de seguimiento con criterio de archivo si el broker no reactiva el proceso con materiales y calendario reales.\n"
+    },
+    {
+      "date": "2026-04-19",
+      "weekday": "Sunday",
+      "weekday_es": "Domingo",
+      "summary": "- **Tarea seleccionada:** mejora de **CRM/pipeline con datos reales** en lugar de abrir otro frente de análisis, porque esta noche el mayor cuello de botella no era falta de research sino la calidad operativa del pipeline activo que Eduardo va a usar para decidir el lunes.",
+      "topics": [
+        "02:00 — Tarea autónoma"
+      ],
+      "tags": [
+        "MAGG",
+        "CRM",
+        "Infra"
+      ],
+      "activity": 11,
+      "content": "# 2026-04-19\n\n## 02:00 — Tarea autónoma\n- **Tarea seleccionada:** mejora de **CRM/pipeline con datos reales** en lugar de abrir otro frente de análisis, porque esta noche el mayor cuello de botella no era falta de research sino la calidad operativa del pipeline activo que Eduardo va a usar para decidir el lunes.\n- **Motivo de prioridad:** había incoherencias de estado/scoring y fechas vencidas en varios deals vivos, lo que degradaba filtros, foco y lectura rápida del CRM pese a tener los análisis ya hechos.\n- **Ejecución completada:**\n  - normalizados en `pipeline_magg.xlsx` los registros activos de **MAGG-2026-006 Rossio, MAGG-2026-009 Sevilla, MAGG-2026-010A/010B GV48, HIST-092 Don Cristian, MAGG-2026-013 Albasanz 21 y MAGG-2026-014 Sant Adrià Flex**\n  - corregidos `Estado`, `Scoring`, `Prioridad`, `Right Now (1-5)` y `Fecha Próxima Acción` para que el pipeline refleje el estado real del trabajo y no etiquetas mezcladas\n  - limpiado **MAGG-2026-011 El Puntazo** a `Descartado / NO GO ❌` para evitar ruido en activos\n  - regenerado el CRM con `python3 scripts/regenerate_crm.py`\n  - publicado el CRM actualizado en GitHub Pages tras resolver un rechazo remoto con rebase limpio (`d564384` en `magg-dashboard`)\n- **Impacto:** Eduardo se encuentra el lunes un CRM más fiable para priorizar, con menos falsos activos y con los deals realmente vivos ordenados por urgencia y siguiente paso.\n"
+    },
+    {
+      "date": "2026-04-18",
+      "weekday": "Saturday",
+      "weekday_es": "Sábado",
+      "summary": "- **Tarea seleccionada:** cerrar el pendiente de **Litexco/Boreal** porque seguía arrastrando desde 24-26/03 con impacto económico claro y entregable ya casi listo pero nunca enviado.",
+      "topics": [
+        "02:00 — Tarea autónoma"
+      ],
+      "tags": [
+        "MAGG",
+        "CRM",
+        "Gmail",
+        "Infra"
+      ],
+      "activity": 11,
+      "content": "# 2026-04-18\n\n## 02:00 — Tarea autónoma\n- **Tarea seleccionada:** cerrar el pendiente de **Litexco/Boreal** porque seguía arrastrando desde 24-26/03 con impacto económico claro y entregable ya casi listo pero nunca enviado.\n- **Motivo de prioridad:** era el mejor uso de la noche dentro de MAGG, ya que convertía un análisis estancado en una conclusión accionable para precio/bid sin depender de terceros.\n- **Ejecución completada:**\n  - publicado el entregable en `docs/briefs/litexco-portfolio.html`\n  - publicado también el PDF en `docs/briefs/litexco-portfolio.pdf`\n  - verificados links live: `https://edmartin8n.github.io/magg-dashboard/briefs/litexco-portfolio.html` y `https://edmartin8n.github.io/magg-dashboard/briefs/litexco-portfolio.pdf`\n  - enviado por Gmail **solo a `e.martin@smartrental.com`** con ID `19d9de5e3dc85688`, cumpliendo la regla de destinatario único\n  - conclusión consolidada: **a €21M no hay margen real**; SOTP conservador mid ~€25.8M, pero tras costes/riesgo el rango de entrada defensible queda en **€16-18M**\n- **Impacto:** se desbloquea un pendiente viejo de valoración y queda convertida una intuición difusa en una referencia de precio concreta para negociar o descartar.\n"
+    },
+    {
+      "date": "2026-04-17",
+      "weekday": "Friday",
+      "weekday_es": "Viernes",
+      "summary": "- **Tarea seleccionada:** cerrar el pendiente crítico de **Hostal Miami Barcelona**, porque era el único bloqueo con petición explícita de Eduardo y fricción visible por falta de envío.",
+      "topics": [
+        "02:00 — Tarea autónoma"
+      ],
+      "tags": [
+        "MAGG",
+        "Gmail",
+        "Infra"
+      ],
+      "activity": 15,
+      "content": "# 2026-04-17\n\n## 02:00 — Tarea autónoma\n- **Tarea seleccionada:** cerrar el pendiente crítico de **Hostal Miami Barcelona**, porque era el único bloqueo con petición explícita de Eduardo y fricción visible por falta de envío.\n- **Motivo de prioridad:** mayor impacto económico-operativo esta noche. No era solo research, sino una ejecución fallida ya expuesta en canal y pendiente de cierre con evidencia.\n- **Diagnóstico completado:**\n  - revisado el hilo original del broker Jan de Groot: activo en **Passatge Sant Bernat 2-4, Barcelona**, licencia histórica de **38 habitaciones**, cerrado desde Covid.\n  - revisado el análisis existente en `tmp_deals/hostal_miami_driver/hostal_miami_driver_email.html`.\n  - tesis confirmada: a **€8,0M** asking, con **share deal** de sociedad en liquidación, **CapEx ~€1,25M** y **deuda societaria provisional ~€1,51M**, el deal queda fuera de mandato MAGG.\n- **Ejecución completada:**\n  - persistido el entregable en `docs/briefs/hostal-miami-barcelona-2026-04-17.html`\n  - enviado el análisis por Gmail a **e.martin@smartrental.com** con copia a **o.fletcher@smartrental.com**\n  - confirmación de envío: **Gmail message ID `19d98bdd297e4ef6`**\n  - actualizado `MISSION_CONTROL.md` y `HEARTBEAT.md` con el cierre\n- **Conclusión enviada:** **NO GO** a €8,0M. Solo tendría sentido reabrir si el precio económico total baja a aprox. **€4,3-5,8M** según tratamiento real de deuda, o si pivota a **lease / management** sin asumir balance.\n- **Impacto:** se cierra un pendiente sensible con evidencia objetiva y se elimina un foco de fricción/credibilidad en MAGG deals.\n"
+    },
+    {
+      "date": "2026-04-16",
+      "weekday": "Thursday",
+      "weekday_es": "Jueves",
+      "summary": "- **Tarea seleccionada:** cerrar el posible desajuste entre CRM y pipeline master, porque estaba generando ruido sobre si el negocio visible eran 10 deals o el universo completo.",
+      "topics": [
+        "02:00 — Tarea autónoma"
+      ],
+      "tags": [
+        "MAGG",
+        "CRM",
+        "Infra"
+      ],
+      "activity": 14,
+      "content": "# 2026-04-16\n\n## 02:00 — Tarea autónoma\n- **Tarea seleccionada:** cerrar el posible desajuste entre CRM y pipeline master, porque estaba generando ruido sobre si el negocio visible eran 10 deals o el universo completo.\n- **Motivo de prioridad:** no había un IC Brief rojo más urgente y este punto afectaba directamente la confianza operativa sobre el pipeline, que es la fuente de verdad para Eduardo.\n- **Diagnóstico completado:**\n  - `pipeline_magg.xlsx` contiene **281 deals no vacíos** en la pestaña `PIPELINE`.\n  - `scripts/regenerate_crm.py` confirma **281 deals** y el repo canónico `.magg-dashboard-repo/index.html` ya estaba correcto.\n  - **GitHub Pages live** también sirve **281 deals** (verificación por fetch directo del HTML).\n  - La causa real del ruido era un `docs/index.html` local desactualizado con solo **6 deals**, distinto del repo canónico.\n- **Ejecución completada:**\n  - sincronizado `docs/index.html` con `.magg-dashboard-repo/index.html`\n  - reejecutado `scripts/regenerate_crm.py` para confirmar que no había corrupción ni divergencia\n  - actualizado `MISSION_CONTROL.md` y `HEARTBEAT.md` con el cierre técnico\n- **Impacto:** queda eliminada la doble fuente local que podía hacer pensar que el CRM se había “caído”. Estado verificado: **master Excel = repo CRM = web live**.\n"
+    },
+    {
+      "date": "2026-04-15",
+      "weekday": "Wednesday",
+      "weekday_es": "Miércoles",
+      "summary": "- **Tarea seleccionada:** resolver el bloqueo más caro del tablero MAGG, **Casón del Tormes**, convirtiéndolo en una decisión ejecutable en vez de otro “waiting”.",
+      "topics": [
+        "02:00 — Tarea autónoma"
+      ],
+      "tags": [
+        "MAGG",
+        "Gmail",
+        "Infra"
+      ],
+      "activity": 16,
+      "content": "# 2026-04-15\n\n## 02:00 — Tarea autónoma\n- **Tarea seleccionada:** resolver el bloqueo más caro del tablero MAGG, **Casón del Tormes**, convirtiéndolo en una decisión ejecutable en vez de otro “waiting”.\n- **Motivo de prioridad:** seguía siendo el deal GO más arrastrado y con mayor coste de atención improductiva. Ya no faltaba underwriting, faltaba un cierre de proceso.\n- **Ejecución completada:**\n  - Preparado **last-call pack** de Casón con recomendación clara: **hacer un push final con deadline real de 72h o archivar**.\n  - Entregable publicado en: `docs/briefs/007-cason-last-call-2026-04-15.html`\n  - El pack incluye:\n    - decisión recomendada (seguir esperando vs last call vs archivar)\n    - **guion de llamada de 30 segundos**\n    - **email listo para enviar** al broker\n    - **regla de kill** para sacar el deal del tablero si no hay respuesta útil\n- **Gestión de sistema:**\n  - `MISSION_CONTROL.md` actualizado para reflejar que Casón ya no está en limbo, sino con acción binaria preparada.\n  - `HEARTBEAT.md` actualizado marcando la tarea nocturna como ✅.\n- **Impacto:** se elimina ambigüedad operativa. Eduardo ya no necesita repensar el deal desde cero: solo ejecutar llamada final o archivarlo.\n"
+    },
     {
       "date": "2026-04-14",
       "weekday": "Tuesday",
