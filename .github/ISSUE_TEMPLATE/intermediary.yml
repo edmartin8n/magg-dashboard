@@ -1,0 +1,85 @@
+name: "INTERMEDIARY — broker/originador/advisor"
+description: "Registrar intermediarios, brokers, advisors, originadores y relación/calidad de dealflow."
+title: "INTERMEDIARY | <Persona> | <Firma> | <especialidad>"
+labels: ["crm:intermediary", "status:triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Uso
+        Ficha de calidad relacional. El objetivo no es coleccionar contactos: es saber **quién tiene acceso real**, quién manda ruido y quién merece seguimiento sistemático.
+  - type: textarea
+    id: structured_yaml
+    attributes:
+      label: Structured YAML
+      render: yaml
+      value: |
+        type: INTERMEDIARY
+        intermediary_id: INT-YYYY-XXX
+        person:
+          name: ""
+          title: ""
+          firm: ""
+          email: "n/d"
+          phone: "n/d"
+          linkedin: "n/d"
+        firm_profile:
+          firm_type: broker | investment_bank | boutique | advisor | operator | lawyer | debt_advisor | consultant | private_originator | n/d
+          website: ""
+          markets: []
+          sectors: []
+          specialties: []
+        relationship:
+          owner: Eduardo
+          status: cold | warm | active | trusted | inactive | avoid | n/d
+          relationship_strength: 1 | 2 | 3 | 4 | 5 | n/d
+          last_contact: YYYY-MM-DD | n/d
+          next_touchpoint: YYYY-MM-DD | n/d
+          preferred_channel: email | whatsapp | call | linkedin | n/d
+        access_quality:
+          access_to_seller: direct | controls_process | partial | generic_teaser | no_access | n/d
+          price_transparency: high | medium | low | n/d
+          process_control: high | medium | low | n/d
+          off_market_credibility: high | medium | low | n/d
+        dealflow_scorecard:
+          deals_sent_count: n/d
+          go_borderline_count: n/d
+          go_rate: n/d
+          om_complete_rate: n/d
+          response_speed: fast | normal | slow | poor | n/d
+          pricing_quality: attractive | fair | inflated | unrealistic | n/d
+          average_quality_score: A | B | C | D | n/d
+        known_deals:
+          sent_to_magg: []
+          market_ops_linked: []
+          closed_transactions: []
+        ask_strategy:
+          what_to_ask_next: ""
+          target_deal_types: []
+          cadence: weekly | monthly | quarterly | opportunistic | n/d
+          notes: ""
+        sources:
+          - name: ""
+            url: ""
+            date: YYYY-MM-DD
+    validations:
+      required: true
+  - type: textarea
+    id: broker_read
+    attributes:
+      label: Lectura operativa
+      value: |
+        **Calidad del contacto:** A / B / C / D
+
+        **Por qué merece/no merece tiempo:**
+        -
+
+        **Qué pedirle:**
+        -
+
+        **Cadencia recomendada:** semanal / mensual / trimestral / oportunista
+
+        **Próxima acción:**
+        - [ ] Acción — owner — fecha
+    validations:
+      required: true

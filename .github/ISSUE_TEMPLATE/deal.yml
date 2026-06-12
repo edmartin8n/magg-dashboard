@@ -1,0 +1,125 @@
+name: "DEAL — oportunidad MAGG"
+description: "Crear o actualizar un deal activo del pipeline MAGG."
+title: "DEAL | <Activo / ciudad> | <status>"
+labels: ["crm:deal", "status:triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Uso
+        Un DEAL es una oportunidad que MAGG puede analizar, ofertar, financiar, operar o descartar. Si solo es una noticia/comparable, usa `MARKET-OP`.
+
+        **Regla:** no crear deals sin owner, next action y fecha. Si falta algo, marcar `status:triage`.
+  - type: textarea
+    id: structured_yaml
+    attributes:
+      label: Structured YAML
+      description: "Mantener este bloque arriba y actualizado; Hermes lo puede parsear para dashboards/scoring. Usa `n/d` cuando no conste."
+      render: yaml
+      value: |
+        type: DEAL
+        deal_id: MAGG-YYYY-XXX
+        asset_name: ""
+        location:
+          city: ""
+          micro_location: ""
+          region: ""
+          country: Spain
+        sector: hotel | serviced_apartments | flex_living | coliving | pbsa | aparthotel | tourist_residential | office_conversion | land | mixed_use
+        strategy: value_add | opportunistic | conversion | development | repositioning | income | distressed
+        status: rumor | teaser_received | nda | om_received | screening | mini_ic | nbo | dd | loi | negotiation | paused | lost | killed | closed
+        scoring: GO | BORDERLINE | PEND_OM | NO_GO | WATCHLIST
+        source:
+          source_type: broker | fund | operator | owner | bank | advisor | inbound | press | off_market | other
+          person: ""
+          company: ""
+          email: ""
+          phone: ""
+          relationship_strength: cold | warm | active | trusted | n/d
+          source_quality: A | B | C | D | n/d
+        process:
+          process_type: bilateral | limited_process | broad_auction | off_market | n/d
+          broker_control: direct_to_seller | controls_process | partial | no_access | n/d
+          bid_deadline: YYYY-MM-DD | n/d
+          nda_signed: true | false | n/d
+          data_room: true | false | n/d
+        seller:
+          seller_name: ""
+          seller_type: family_office | fund | developer | bank | operator | private_owner | socimi | distressed_owner | n/d
+          motivation: liquidity | rotation | distress | capex_need | strategic_exit | n/d
+        asset_metrics:
+          keys_units: n/d
+          sqm: n/d
+          current_operator: "n/d"
+          target_operator: "SmartRental / n/d"
+          current_adr: n/d
+          current_occupancy: n/d
+          stabilized_adr: n/d
+          stabilized_occupancy: n/d
+        economics:
+          asking_price_eur: n/d
+          price_per_key_eur: n/d
+          capex_eur: n/d
+          total_project_cost_eur: n/d
+          stabilized_noi_eur: n/d
+          yoc: n/d
+          target_irr: n/d
+          target_moic: n/d
+          recommended_bid_eur: n/d
+          walkaway_price_eur: n/d
+        capital:
+          capital_path: MAGG_equity | club_deal | external_lp | senior_debt | alternative_debt | JV | n/d
+          debt_path: senior_bank | debt_fund | seller_financing | bridge | n/d
+          target_ltc: 60% | n/d
+          lender_fit: []
+          lp_fit: []
+          exit_buyer_hypothesis: []
+        competition:
+          likely_buyer_universe: []
+          expected_competition: low | medium | high | n/d
+          known_competitors: []
+        underwriting:
+          thesis: ""
+          top_red_flags: []
+          key_diligence_questions: []
+          missing_info: []
+          market_comp_links: []
+        ownership:
+          owner: Eduardo
+          next_action: ""
+          next_action_date: YYYY-MM-DD
+          weekly_action: ""
+        outcome:
+          reason_killed: price | product | location | capex | operator | debt | seller | legal | competition | timing | n/d
+          reason_lost: price | speed | relationship | capital | competitor | process | n/d
+          lesson_learned: ""
+    validations:
+      required: true
+  - type: textarea
+    id: investment_view
+    attributes:
+      label: Tesis MAGG / lectura IC
+      description: "Moja la opinión: por qué sí/no, bid recomendado y qué tendría que cambiar."
+      value: |
+        **Veredicto:** GO / BORDERLINE / PEND OM / NO GO
+
+        **Tesis en 5 líneas:**
+        -
+
+        **Qué tendría que ser verdad para ofertar:**
+        -
+
+        **Red flags no negociables:**
+        -
+    validations:
+      required: true
+  - type: textarea
+    id: actions
+    attributes:
+      label: Próximas acciones
+      value: |
+        - [ ] Acción — owner — fecha
+        - [ ] Solicitar / verificar:
+        - [ ] Decisión pendiente:
+    validations:
+      required: true

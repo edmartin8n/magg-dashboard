@@ -1,0 +1,52 @@
+# MAGG CRM v2 labels. Apply manually with gh/curl if needed.
+- name: crm:deal
+  color: "0E8A16"
+  description: "MAGG deal / pipeline opportunity"
+- name: crm:market-op
+  color: "1D76DB"
+  description: "Market operation, comparable, transaction or rumor"
+- name: crm:fund
+  color: "5319E7"
+  description: "Fund, LP, lender, buyer, FO or capital source"
+- name: crm:intermediary
+  color: "FBCA04"
+  description: "Broker, advisor, originator or intermediary"
+- name: status:triage
+  color: "D4C5F9"
+  description: "Needs completion / validation"
+- name: status:active
+  color: "0E8A16"
+  description: "Active record requiring action"
+- name: status:watchlist
+  color: "BFDADC"
+  description: "Track but no immediate action"
+- name: status:paused
+  color: "C5DEF5"
+  description: "Paused intentionally"
+- name: status:killed
+  color: "B60205"
+  description: "Killed / no-go"
+- name: score:go
+  color: "0E8A16"
+  description: "GO investment score"
+- name: score:borderline
+  color: "FBCA04"
+  description: "Borderline investment score"
+- name: score:pend-om
+  color: "C5DEF5"
+  description: "Pending OM / insufficient info"
+- name: score:no-go
+  color: "B60205"
+  description: "No-go investment score"
+- name: fit:lp
+  color: "5319E7"
+  description: "LP prospect fit"
+- name: fit:lender
+  color: "0052CC"
+  description: "Debt / lender fit"
+- name: fit:exit-buyer
+  color: "006B75"
+  description: "Potential exit buyer"
+- name: fit:pricing-comp
+  color: "1D76DB"
+  description: "Useful pricing comparable"

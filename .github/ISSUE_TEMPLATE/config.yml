@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: MAGG CRM v2 — guía operativa
+    url: https://github.com/edmartin8n/magg-dashboard/blob/main/docs/CRM_V2.md
+    about: Leer antes de crear registros nuevos.

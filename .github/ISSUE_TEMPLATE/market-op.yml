@@ -1,0 +1,89 @@
+name: "MARKET-OP — operación/comparable de mercado"
+description: "Registrar operaciones en prensa, rumores, procesos activos o comparables cerrados."
+title: "MARKET-OP | <Activo/portfolio> | <ciudad> | <estado>"
+labels: ["crm:market-op", "status:triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Uso
+        Una MARKET-OP no es necesariamente un deal MAGG. Es inteligencia de mercado: operaciones activas, cerradas, rumores, comparables, procesos de venta, rotaciones de fondos, entradas de operadores o señales de pricing.
+
+        **Objetivo:** construir memoria propia de mercado y detectar a quién llamar antes de que llegue el teaser.
+  - type: textarea
+    id: structured_yaml
+    attributes:
+      label: Structured YAML
+      render: yaml
+      value: |
+        type: MARKET_OP
+        op_id: MKT-YYYY-XXX
+        title: ""
+        asset_or_portfolio: ""
+        location:
+          city: ""
+          micro_location: ""
+          region: ""
+          country: Spain
+        sector: hotel | serviced_apartments | flex_living | coliving | pbsa | aparthotel | tourist_residential | office_conversion | land | mixed_use | platform | debt
+        operation_type: acquisition | sale_process | refinancing | development | conversion | lease | management_contract | platform_expansion | fundraise | JV | debt | rumor
+        status: rumor | in_market | binding_process | closed | failed | retrade | watchlist
+        dates:
+          detected_date: YYYY-MM-DD
+          announced_date: YYYY-MM-DD | n/d
+          closing_date: YYYY-MM-DD | n/d
+        parties:
+          buyer: "n/d"
+          seller: "n/d"
+          operator: "n/d"
+          broker: "n/d"
+          lender: "n/d"
+          legal_advisor: "n/d"
+          financial_advisor: "n/d"
+        metrics:
+          price_eur: n/d
+          keys_units: n/d
+          sqm: n/d
+          price_per_key_eur: n/d
+          price_per_sqm_eur: n/d
+          yield: n/d
+          cap_rate: n/d
+          rent_eur_pa: n/d
+          capex_eur: n/d
+        source:
+          source_name: ""
+          source_url: ""
+          source_quality: official | reputable_press | broker | rumor | n/d
+          confidence: high | medium | low
+        magg_read:
+          relevance: comp_pricing | buyer_signal | seller_signal | broker_signal | operator_signal | debt_signal | regulatory_signal | opportunity_future | competitive_risk
+          why_it_matters: ""
+          implied_pricing_read: ""
+          contacts_to_activate: []
+          related_deals: []
+          related_funds: []
+          related_intermediaries: []
+        follow_up:
+          owner: Hermes
+          next_action: ""
+          next_action_date: YYYY-MM-DD | n/d
+    validations:
+      required: true
+  - type: textarea
+    id: magg_relevance
+    attributes:
+      label: Lectura MAGG
+      value: |
+        **Qué ha pasado:**
+        -
+
+        **Por qué importa para MAGG:**
+        -
+
+        **A quién deberíamos tocar:**
+        -
+
+        **Cómo afecta pricing/tesis:**
+        -
+    validations:
+      required: true

@@ -1,0 +1,92 @@
+name: "FUND — fondo/inversor/comprador/lender"
+description: "Registrar fondos, family offices, HNWI, compradores estratégicos y financiadores relevantes."
+title: "FUND | <Nombre> | <fit principal>"
+labels: ["crm:fund", "status:triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Uso
+        Un FUND puede ser LP, co-inversor, comprador de salida, lender, fondo competidor o plataforma con capital. La ficha debe responder: **qué compra, con qué ticket, con quién se relaciona y qué deberíamos pedirle**.
+  - type: textarea
+    id: structured_yaml
+    attributes:
+      label: Structured YAML
+      render: yaml
+      value: |
+        type: FUND
+        fund_id: FUND-YYYY-XXX
+        name: ""
+        legal_name: "n/d"
+        website: ""
+        category: institutional_fund | family_office | hnwi | asset_manager | operator_capital | socimi | strategic_buyer | bank | debt_fund | private_equity | developer | n/d
+        role_fit:
+          lp_prospect: true | false | n/d
+          co_investor: true | false | n/d
+          exit_buyer: true | false | n/d
+          lender: true | false | n/d
+          competitor: true | false | n/d
+          jv_partner: true | false | n/d
+        strategy:
+          risk_profile: core | core_plus | value_add | opportunistic | distressed | development | debt | n/d
+          sectors: []
+          geographies: []
+          city_focus: []
+          preferred_asset_size_eur: "n/d"
+          equity_ticket_eur: "n/d"
+          target_irr: "n/d"
+          target_moic: "n/d"
+          leverage_appetite: low | medium | high | n/d
+          hold_period: "n/d"
+        known_activity:
+          known_transactions: []
+          active_mandates: []
+          fundraising_status: raising | dry_powder | deploying | harvesting | unknown
+          brokers_used: []
+          operators_used: []
+          lenders_used: []
+        people:
+          key_contacts:
+            - name: ""
+              title: ""
+              email: "n/d"
+              linkedin: "n/d"
+              relationship_owner: Eduardo | Hermes | n/d
+        relationship:
+          status: cold | warm | met | active | inactive | do_not_contact | n/d
+          relationship_strength: 1 | 2 | 3 | 4 | 5 | n/d
+          last_contact: YYYY-MM-DD | n/d
+          next_touchpoint: YYYY-MM-DD | n/d
+          intro_path: "n/d"
+          notes: ""
+        magg_fit:
+          best_use: LP_vehicle | club_deal | buyer_exit | lender | JV | competitive_intel | n/d
+          matching_deal_criteria: ""
+          red_flags: []
+          recommended_ask: ""
+        sources:
+          - name: ""
+            url: ""
+            date: YYYY-MM-DD
+    validations:
+      required: true
+  - type: textarea
+    id: relationship_plan
+    attributes:
+      label: Plan relacional / comercial
+      value: |
+        **Fit MAGG:** LP / co-investor / lender / exit buyer / competidor / inteligencia
+
+        **Hipótesis de interés:**
+        -
+
+        **Deals MAGG que podrían encajar:**
+        -
+
+        **Ask recomendado:**
+        -
+
+        **Próximo paso:**
+        - [ ] Acción — owner — fecha
+    validations:
+      required: true
