@@ -1,11 +1,25 @@
-# MAGG Dashboard — Tenacitas
+# MAGG Dashboard
 
-Dashboards de Eduardo · Actualizado 08/03/2026
+Repositorio del CRM MAGG. La versión pública de GitHub Pages queda limitada a una página neutra sin datos privados.
 
-## 🔗 Links
+## Arquitectura activa
 
-| Dashboard | URL | Password |
-|---|---|---|
-| 🏨 MAGG CRM | https://edmartin8n.github.io/magg-dashboard/ | `magg2026` |
-| 🦀 Mission Control | https://edmartin8n.github.io/magg-dashboard/docs/mission-control-global/index.html | `ctrl2026` |
-| 📚 Web Ana | https://edmartin8n.github.io/magg-dashboard/bookbadge/ | — |
+- `src/domain/` — schemas y migración canónica.
+- `src/data/` — carga de base privada generada localmente.
+- `src/services/` — selectores comunes para Pipeline, Control y herramientas.
+- `src/views/` — frontend sin datos embebidos.
+- `server/` — API autenticada, CORS allowlist, herramientas Hermes y auditoría.
+- `scripts/` — migración, auditoría, build, escaneo y email diario.
+- `private/` — input legacy y base generada; no se versiona.
+
+## Comandos
+
+```bash
+npm install
+npm run migrate
+npm run build
+MAGG_CRM_PASSWORD="<server-secret>" npm start
+npm test
+npm run scan:bundle
+npm run verify:reconstruction
+```

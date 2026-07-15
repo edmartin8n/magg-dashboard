@@ -1,0 +1,14 @@
+import { z } from 'zod';
+export const DealStage = z.enum(['unclassified','incoming','screening','underwriting','ic_preparation','nbo','due_diligence','exclusivity','closing','closed_won','closed_lost','archived']);
+export const InvestmentDecision = z.enum(['unreviewed','go','conditional_go','borderline','no_go']);
+export const MigrationStatus = z.enum(['clean','needs_review']);
+const n = z.number().finite().nullable(); const s = z.string().nullable();
+export const DealSchema = z.object({id:z.string(),reference:z.string(),name:z.string(),stage:DealStage,investment_decision:InvestmentDecision,asking_price_eur:n,acquisition_price_eur:n,total_project_cost_eur:n,capex_eur:n,noi_eur:n,ebitda_eur:n,units:n,sqm:n,yoc:n,exit_yield:n,spread_bps:n,levered_irr:n,unlevered_irr:n,equity_multiple:n,assumption_notes:s,investment_thesis:s,owner_user_id:s,originator_company_id:s,originator_contact_id:s,next_action:s,next_action_due_date:s,source:s,source_updated_at:s,created_at:z.string(),updated_at:z.string(),migration_status:MigrationStatus,data_quality_issues:z.array(z.string()).default([]),legacy_raw:z.record(z.string(),z.unknown()).optional()});
+export const CompanySchema=z.object({id:z.string(),name:z.string(),legacy_raw:z.record(z.string(),z.unknown()).optional()});
+export const ContactSchema=z.object({id:z.string(),company_id:z.string().nullable(),name:z.string(),email:z.string().email().nullable(),phone:z.string().nullable(),legacy_raw:z.record(z.string(),z.unknown()).optional()});
+export const DealContactSchema=z.object({deal_id:z.string(),contact_id:z.string(),role:z.enum(['originator','owner','advisor','lender','other'])});
+export const DealDocumentSchema=z.object({id:z.string(),deal_id:z.string(),document_type:z.enum(['ic_memo','investment_brief','financial_model','nda','offer','due_diligence','other']),title:z.string(),url:z.string().url(),created_at:z.string()});
+export const TaskSchema=z.object({id:z.string(),deal_id:z.string().nullable(),title:z.string(),due_date:z.string().nullable(),status:z.enum(['open','done','cancelled']),owner_user_id:z.string().nullable(),created_at:z.string(),updated_at:z.string()});
+export const InteractionSchema=z.object({id:z.string(),deal_id:z.string().nullable(),contact_id:z.string().nullable(),note:z.string(),created_at:z.string(),created_by:z.string().nullable()});
+export const CrmDatabaseSchema=z.object({generated_at:z.string(),manifest:z.record(z.string(),z.unknown()).default({}),deals:z.array(DealSchema),companies:z.array(CompanySchema),contacts:z.array(ContactSchema),deal_contacts:z.array(DealContactSchema),documents:z.array(DealDocumentSchema),tasks:z.array(TaskSchema),interactions:z.array(InteractionSchema),migration_report:z.record(z.string(),z.unknown()).default({})});
+export function publicDeal(deal){const {legacy_raw,...safe}=deal; return safe;}

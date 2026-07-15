@@ -1,0 +1,1 @@
+import fs from 'node:fs'; import path from 'node:path'; const out=path.resolve('dist/public'); fs.rmSync(out,{recursive:true,force:true}); fs.mkdirSync(out,{recursive:true}); for(const f of ['index.html','styles.css','app.js'])fs.copyFileSync(path.resolve('src/views',f),path.join(out,f)); console.log(JSON.stringify({status:'ok',out}));
