@@ -484,7 +484,7 @@ header h1{font-size:16px;font-weight:800;letter-spacing:-.3px;color:var(--navy)}
     <input type="password" id="pwd" placeholder="Contraseña" onkeydown="if(event.key==='Enter')auth()">
     <button onclick="auth()">Entrar →</button>
     <div class="err" id="err"></div>
-    <div class="ver">v3.0 · 03/03/2026 18:29</div>
+    <div class="ver">v3.1 · 15/07/2026 18:15</div>
   </div>
 </div>
 
@@ -494,7 +494,7 @@ header h1{font-size:16px;font-weight:800;letter-spacing:-.3px;color:var(--navy)}
       <h1>🦀 MAGG Capital — Deal CRM</h1>
       <div class="header-sub">Pipeline · Intermediarios · Cross-navigation activo</div>
     </div>
-    <div class="upd">📅 03/03/2026 18:29</div>
+    <div class="upd">📅 15/07/2026 18:15</div>
   </header>
 
   <div class="tabs">
@@ -731,6 +731,21 @@ function showView(id) {
 
 // ── DEALS ─────────────────────────────────────────────────────────
 const VERDICT_ORDER = {go:0,pass:0,analisis:1,pend:1,borderline:2,nogo:3};
+function normTxt(v){ return String(v||'').toLowerCase(); }
+function isDiscardedDeal(d){
+  const s = normTxt([d.estado,d.scoring,d.motivo].join(' '));
+  return s.includes('descart') || s.includes('no go') || s.includes('nogo');
+}
+function getVerdictKey(d){
+  const s = normTxt([d.estado,d.scoring,d.verdict].join(' '));
+  if (isDiscardedDeal(d)) return 'nogo';
+  if (s.includes('borderline') || s.includes('hold')) return 'borderline';
+  if (s.includes('go') && !s.includes('no go')) return 'go';
+  if (s.includes('análisis') || s.includes('analisis') || s.includes('pend')) return 'analisis';
+  return d.verdict==='pass' ? 'go' : (d.verdict || 'nogo');
+}
+function isLiveDeal(d){ return getVerdictKey(d) !== 'nogo'; }
+function getIcLink(d){ return d.ic_link || d.link_ic || ''; }
 function fmtYoc(v) {
   if (!v) return '—';
   const n = parseFloat(String(v).replace('%',''));
@@ -800,7 +815,7 @@ function renderDeals() {
 
   // ── Verdict multi-filter
   list = list.filter(d=>{
-    const v = d.verdict==='pass'?'go':d.verdict;
+    const v = getVerdictKey(d);
     return plActiveVerdicts.has(v);
   });
 
@@ -820,7 +835,7 @@ function renderDeals() {
   // ── Sort
   const col = plSortCol;
   if (col==='default') {
-    list.sort((a,b)=>(VERDICT_ORDER[a.verdict]??3)-(VERDICT_ORDER[b.verdict]??3)||parseFecha(b.fecha)-parseFecha(a.fecha));
+    list.sort((a,b)=>(VERDICT_ORDER[getVerdictKey(a)]??3)-(VERDICT_ORDER[getVerdictKey(b)]??3)||parseFecha(b.fecha)-parseFecha(a.fecha));
   } else {
     list.sort((a,b)=>{
       let va=0,vb=0;
@@ -899,7 +914,7 @@ function dealTableRow(d) {
   const sr        = safeR(d.ref);
   const isOpen    = open['d_'+d.ref];
   const isEditing = IS_LOCAL && editingRef===d.ref;
-  const vkey      = (d.verdict==='pass')?'go':d.verdict;
+  const vkey      = getVerdictKey(d);
   const motivoRaw = displayMotivo(d);
   const motivo    = motivoRaw ? motivoRaw.split(/\s+/).slice(0,10).join(' ')+(motivoRaw.split(/\s+/).length>10?'…':'') : '';
   const precFmt   = d.precio ? '€'+(d.precio/1e6).toFixed(1)+'M' : '—';
@@ -963,8 +978,8 @@ function dealTableRow(d) {
   <div class="pl-tr v-${vkey}${isOpen||isEditing?' expanded':''}" id="plr-${sr}" onclick="toggleD('${d.ref}')">
     <div class="pl-td" style="padding:0 4px;justify-content:center;align-items:center;gap:4px">
       <div class="pl-dot ${vkey}"></div>
-      ${d.link_ic
-        ? `<a href="${d.link_ic}" target="_blank" onclick="event.stopPropagation()" title="Ver IC Brief — ${d.nombre}" class="ic-doc-link">📄</a>`
+      ${getIcLink(d)
+        ? `<a href="${getIcLink(d)}" target="_blank" onclick="event.stopPropagation()" title="Ver IC Brief — ${d.nombre}" class="ic-doc-link">📄</a>`
         : `<span class="ic-doc-none">—</span>`
       }
     </div>
@@ -996,7 +1011,7 @@ function dealTableRow(d) {
       ${detailItems.map(r=>`<div class="pl-dg"><div class="pl-dg-l">${r[0]}</div><div class="pl-dg-v">${r[1]}</div></div>`).join('')}
     </div>
     <div class="deal-actions" style="margin-top:6px">
-      ${d.link_ic?`<a href="${d.link_ic}" target="_blank" class="btn btn-nav">📄 Brief</a>`:''}
+      ${getIcLink(d)?`<a href="${getIcLink(d)}" target="_blank" class="btn btn-nav">📄 Brief</a>`:''}
       ${d.gamma_link?`<a href="${d.gamma_link}" target="_blank" class="btn btn-nav">📊 Presentación</a>`:''}
       ${brokerBtn}${editBtn}
     </div>
@@ -1222,7 +1237,7 @@ function firmaRow(g, gIdx) {
     ? g.deals.map(d => {
         const sp = parseInt(String(d.spread||'').replace(/[^-\d]/g,''))||0;
         const spCls = sp>0?'spread-pos':sp<0?'spread-neg':'muted';
-        const vkey = (d.verdict==='pass')?'go':d.verdict;
+        const vkey = getVerdictKey(d);
         return `<div style="display:flex;align-items:center;gap:10px;padding:6px 0;border-bottom:1px solid #f0f4fa;cursor:pointer" onclick="goToDeal('${d.ref}')">
           <div class="pl-dot ${vkey}" style="flex-shrink:0"></div>
           <div style="font-size:11px;color:#8a9bb5;font-weight:600;min-width:100px">${d.ref}</div>
@@ -1338,11 +1353,11 @@ const PIE_PALETTES = {
 
 function renderControl() {
   const total = DEALS.length;
-  const go    = DEALS.filter(d=>d.verdict==='go'||d.verdict==='pass');
-  const an    = DEALS.filter(d=>d.verdict==='analisis'||d.verdict==='pend');
-  const bord  = DEALS.filter(d=>d.verdict==='borderline');
-  const nogo  = DEALS.filter(d=>d.verdict==='nogo');
-  const activos = [...go,...bord,...an].sort((a,b)=>{
+  const go    = DEALS.filter(d=>getVerdictKey(d)==='go');
+  const an    = DEALS.filter(d=>getVerdictKey(d)==='analisis');
+  const bord  = DEALS.filter(d=>getVerdictKey(d)==='borderline');
+  const nogo  = DEALS.filter(d=>getVerdictKey(d)==='nogo');
+  const activos = DEALS.filter(isLiveDeal).sort((a,b)=>{
     const sa=parseInt(String(a.spread).replace(/[^-\d]/g,''))||0;
     const sb=parseInt(String(b.spread).replace(/[^-\d]/g,''))||0;
     return sb-sa;
@@ -1373,7 +1388,7 @@ function renderControl() {
   document.getElementById('kpi-vol-sub').textContent= `${DEALS.filter(d=>d.precio).length} con precio`;
   document.getElementById('kpi-spread').textContent = bestSpread>-9999 ? '+'+bestSpread+' bps' : '—';
   document.getElementById('kpi-spread-sub').textContent = bestSpread>-9999
-    ? (go.concat(bord).find(d=>parseInt(String(d.spread).replace(/[^-\d]/g,''))||0===bestSpread)||{ref:''}).ref : '';
+    ? (go.concat(bord).find(d=>(parseInt(String(d.spread).replace(/[^-\d]/g,''))||0)===bestSpread)||{ref:''}).ref : '';
 
   // Activos list — misma estructura visual que Pipeline
   const acEl = document.getElementById('ctrl-activos-list');
@@ -1652,7 +1667,7 @@ function txSelectDeal(ref) {
 }
 
 function renderTxSidebar() {
-  const goDeals = DEALS.filter(d=>(d.verdict==='go'||d.verdict==='pass') || (d.is_magg && d.verdict==='borderline'));
+  const goDeals = DEALS.filter(d=>['go','borderline'].includes(getVerdictKey(d)));
   if (!goDeals.length) return '<div style="padding:20px;font-size:12px;color:rgba(255,255,255,.35)">Sin deals GO activos</div>';
   return goDeals.map(d=>{
     const pg = txProgress(d.ref);
@@ -1829,7 +1844,7 @@ function renderTx() {
   if (!sideEl || !mainEl) return;
 
   // Sidebar
-  const goDeals = DEALS.filter(d=>(d.verdict==='go'||d.verdict==='pass') || (d.is_magg && d.verdict==='borderline'));
+  const goDeals = DEALS.filter(d=>['go','borderline'].includes(getVerdictKey(d)));
   sideEl.innerHTML = '<div class="tx-sidebar-title">Deals activos</div>' + renderTxSidebar();
 
   // Auto-select first deal if none
