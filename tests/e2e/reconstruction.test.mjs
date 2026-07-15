@@ -1,0 +1,2 @@
+import { it, expect } from 'vitest'; import { execFileSync } from 'node:child_process';
+it('verification scripts pass on built public bundle',()=>{execFileSync('npm run build',{stdio:'pipe',shell:true}); const scan=execFileSync('npm run scan:bundle',{encoding:'utf8',shell:true}); expect(scan).toContain('"status":"ok"'); const verify=execFileSync('npm run verify:reconstruction',{encoding:'utf8',shell:true}); expect(verify).toContain('"status":"ok"')});
