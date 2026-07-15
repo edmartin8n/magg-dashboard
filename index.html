@@ -746,6 +746,12 @@ function getVerdictKey(d){
 }
 function isLiveDeal(d){ return getVerdictKey(d) !== 'nogo'; }
 function getIcLink(d){ return d.ic_link || d.link_ic || ''; }
+function parseSpreadBps(v){
+  if (v === '' || v === null || v === undefined) return NaN;
+  if (typeof v === 'number') return v;
+  const m = String(v).replace(',', '.').match(/[-+]?\d+(?:\.\d+)?/);
+  return m ? Number(m[0]) : NaN;
+}
 function fmtYoc(v) {
   if (!v) return '—';
   const n = parseFloat(String(v).replace('%',''));
@@ -841,7 +847,7 @@ function renderDeals() {
       let va=0,vb=0;
       if (col==='fecha')  { va=parseFecha(a.fecha);  vb=parseFecha(b.fecha); }
       else if (col==='precio')  { va=a.precio||0;    vb=b.precio||0; }
-      else if (col==='spread')  { va=parseInt(String(a.spread).replace(/[^-\d]/g,''))||0; vb=parseInt(String(b.spread).replace(/[^-\d]/g,''))||0; }
+      else if (col==='spread')  { va=parseSpreadBps(a.spread)||0; vb=parseSpreadBps(b.spread)||0; }
       else if (col==='yoc')     { va=parseFloat(String(a.yoc).replace('%',''))||0; vb=parseFloat(String(b.yoc).replace('%',''))||0; }
       else if (col==='sqm')     { va=a.sqm||0;       vb=b.sqm||0; }
       else if (col==='nombre')  { return plSortDir*a.nombre.localeCompare(b.nombre,'es'); }
@@ -879,7 +885,7 @@ function displayMotivo(d) {
   if (m && !isGeneric) return m; // ya cualitativo → usarlo tal cual
 
   const parts = [];
-  const sp = d.spread !== '' && d.spread !== null && d.spread !== undefined ? parseInt(String(d.spread).replace(/[^-\d]/g,'')) : NaN;
+  const sp = d.spread !== '' && d.spread !== null && d.spread !== undefined ? parseSpreadBps(d.spread) : NaN;
   const yoc = d.yoc !== '' && d.yoc !== null && d.yoc !== undefined ? parseFloat(String(d.yoc)) : NaN;
   const yocPct = !isNaN(yoc) && yoc > 0 ? (yoc < 1 ? (yoc*100).toFixed(1) : yoc.toFixed(1)) : null;
 
@@ -919,7 +925,7 @@ function dealTableRow(d) {
   const motivo    = motivoRaw ? motivoRaw.split(/\s+/).slice(0,10).join(' ')+(motivoRaw.split(/\s+/).length>10?'…':'') : '';
   const precFmt   = d.precio ? '€'+(d.precio/1e6).toFixed(1)+'M' : '—';
   const sqmFmt    = d.sqm    ? Number(d.sqm).toLocaleString('es')+'m²' : '—';
-  const spreadNum = parseInt(String(d.spread).replace(/[^-\d]/g,''))||0;
+  const spreadNum = parseSpreadBps(d.spread)||0;
   const spreadCls = spreadNum>0?'spread-pos':spreadNum<0?'spread-neg':'muted';
   const spreadTxt = d.spread||'—';
   const yocRaw    = parseFloat(String(d.yoc||'').replace('%',''));
@@ -1235,7 +1241,7 @@ function firmaRow(g, gIdx) {
   // Deals list for expand
   const dealsHtml = g.deals.length
     ? g.deals.map(d => {
-        const sp = parseInt(String(d.spread||'').replace(/[^-\d]/g,''))||0;
+        const sp = parseSpreadBps(d.spread)||0;
         const spCls = sp>0?'spread-pos':sp<0?'spread-neg':'muted';
         const vkey = getVerdictKey(d);
         return `<div style="display:flex;align-items:center;gap:10px;padding:6px 0;border-bottom:1px solid #f0f4fa;cursor:pointer" onclick="goToDeal('${d.ref}')">
@@ -1358,13 +1364,13 @@ function renderControl() {
   const bord  = DEALS.filter(d=>getVerdictKey(d)==='borderline');
   const nogo  = DEALS.filter(d=>getVerdictKey(d)==='nogo');
   const activos = DEALS.filter(isLiveDeal).sort((a,b)=>{
-    const sa=parseInt(String(a.spread).replace(/[^-\d]/g,''))||0;
-    const sb=parseInt(String(b.spread).replace(/[^-\d]/g,''))||0;
+    const sa=parseSpreadBps(a.spread)||0;
+    const sb=parseSpreadBps(b.spread)||0;
     return sb-sa;
   });
   const totalVol = DEALS.reduce((s,d)=>s+(d.precio||0),0);
   const bestSpread = go.concat(bord).reduce((best,d)=>{
-    const v=parseInt(String(d.spread).replace(/[^-\d]/g,''))||0;
+    const v=parseSpreadBps(d.spread)||0;
     return v>best?v:best;
   },-9999);
   const recent = DEALS.filter(d=>{
@@ -1388,7 +1394,7 @@ function renderControl() {
   document.getElementById('kpi-vol-sub').textContent= `${DEALS.filter(d=>d.precio).length} con precio`;
   document.getElementById('kpi-spread').textContent = bestSpread>-9999 ? '+'+bestSpread+' bps' : '—';
   document.getElementById('kpi-spread-sub').textContent = bestSpread>-9999
-    ? (go.concat(bord).find(d=>(parseInt(String(d.spread).replace(/[^-\d]/g,''))||0)===bestSpread)||{ref:''}).ref : '';
+    ? (go.concat(bord).find(d=>(parseSpreadBps(d.spread)||0)===bestSpread)||{ref:''}).ref : '';
 
   // Activos list — misma estructura visual que Pipeline
   const acEl = document.getElementById('ctrl-activos-list');
@@ -1505,7 +1511,7 @@ function renderShortlist() {
   const rows = shortlist.map(ref => {
     const d = DEALS.find(x=>x.ref===ref);
     if (!d) return '';
-    const sp  = parseInt(String(d.spread||'').replace(/[^-\d]/g,''))||0;
+    const sp  = parseSpreadBps(d.spread)||0;
     const cls = sp>0?'sp-pos':sp<0?'sp-neg':'sp-neu';
     return `<div class="sl-row">
       <div class="act-ref">${d.ref}</div>
