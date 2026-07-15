@@ -1,5 +1,0 @@
-import fs from 'node:fs'; import path from 'node:path'; import { CrmDatabaseSchema, publicDeal } from '../domain/schema.mjs';
-export const DEFAULT_DB_PATH=process.env.MAGG_CRM_DB||path.resolve('private/data/crm.json'); let cached=null;
-export function loadDb(dbPath=DEFAULT_DB_PATH){if(!fs.existsSync(dbPath))throw new Error(`CRM database not found: ${dbPath}. Run npm run migrate first.`); cached=CrmDatabaseSchema.parse(JSON.parse(fs.readFileSync(dbPath,'utf8'))); return cached}
-export function getDb(){return cached||loadDb()} export function saveDb(db,dbPath=DEFAULT_DB_PATH){CrmDatabaseSchema.parse(db); fs.mkdirSync(path.dirname(dbPath),{recursive:true}); fs.writeFileSync(dbPath,JSON.stringify(db,null,2)); cached=db}
-export function publicDb(db=getDb()){return {generated_at:db.generated_at,deals:db.deals.map(publicDeal),companies:db.companies.map(({legacy_raw,...x})=>x),contacts:db.contacts.map(({legacy_raw,...x})=>x),deal_contacts:db.deal_contacts,documents:db.documents,tasks:db.tasks,interactions:db.interactions}}

@@ -1,3 +1,0 @@
-import { it, expect } from 'vitest'; import { isActiveDeal, getWeightedPipelineValue, getTaskUrgency } from '../../src/services/selectors.mjs';
-it('keeps unknown values out of numeric totals',()=>{const deals=[{stage:'underwriting',investment_decision:'go',asking_price_eur:null},{stage:'underwriting',investment_decision:'borderline',asking_price_eur:100}]; expect(getWeightedPipelineValue(deals)).toBe(25)});
-it('classifies active and overdue consistently',()=>{expect(isActiveDeal({stage:'closed_lost'})).toBe(false); expect(getTaskUrgency({status:'open',due_date:'2026-01-01'},new Date('2026-01-02T00:00:00Z'))).toBe('overdue')});
