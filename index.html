@@ -473,37 +473,46 @@ header h1{font-size:16px;font-weight:800;letter-spacing:-.3px;color:var(--navy)}
 .cp-input:focus{border-color:var(--navy)}
 .cp-send{background:var(--navy);color:#fff;border:none;border-radius:6px;padding:0 14px;font-size:16px;font-weight:700;cursor:pointer;height:36px;transition:.12s}.cp-send:disabled{background:#aab2c8}
 </style>
+<link rel="stylesheet" href="styles/magg-professional.css?v=20260718">
 </head>
 <body>
 
 <div id="login">
   <div class="lbox">
-    <div class="logo">🦀</div>
-    <h1>MAGG Capital</h1>
-    <p>Deal CRM · Acceso restringido</p>
-    <input type="password" id="pwd" placeholder="Contraseña" onkeydown="if(event.key==='Enter')auth()">
-    <button onclick="auth()">Entrar →</button>
+    <div class="login-brand">
+      <span class="brand-mark">M</span>
+      <div><h1>MAGG Capital</h1><p>Deal intelligence workspace</p></div>
+    </div>
+    <input type="password" id="pwd" placeholder="Contraseña" onkeydown="if(event.key==='Enter')auth()" autofocus>
+    <button onclick="auth()">Acceder</button>
     <div class="err" id="err"></div>
-    <div class="ver">v3.2 · 16/07/2026 · Comité 20/07</div>
+    <div class="ver">Private workspace · CRM / underwriting / execution</div>
   </div>
 </div>
 
 <div id="app">
   <header>
-    <div>
-      <h1>🦀 MAGG Capital — Deal CRM</h1>
-      <div class="header-sub">Pipeline · Intermediarios · Cross-navigation activo</div>
+    <div class="brand">
+      <span class="brand-mark">M</span>
+      <div>
+        <div class="eyebrow">MAGG CAPITAL</div>
+        <h1>Deal Intelligence</h1>
+        <div class="header-sub">Pipeline, underwriting &amp; execution</div>
+      </div>
     </div>
-    <div class="upd">📅 16/07/2026 19:17</div>
+    <div class="header-actions">
+      <span class="sync-state">CRM synced</span>
+      <div class="upd">16/07/2026 · 19:17</div>
+    </div>
   </header>
 
-  <div class="tabs">
-    <div class="tab active" id="tab-control" onclick="showView('control')">📊 Control</div>
-    <div class="tab" id="tab-deals" onclick="showView('deals')">📋 Pipeline</div>
-    <div class="tab" id="tab-tx" onclick="showView('tx')">⚡ Transacción</div>
-    <div class="tab" id="tab-finders" onclick="showView('finders')">👥 Intermediarios</div>
-    <div class="tab" onclick="window.location.href='committee-2026-07-20.html'">🗂 Comité 20/07</div>
-    <div class="tab" id="tab-ask" onclick="showView('ask')">💬 Asistente</div>
+  <div class="tabs" role="navigation" aria-label="Secciones CRM">
+    <div class="tab active" id="tab-control" onclick="showView('control')">Overview</div>
+    <div class="tab" id="tab-deals" onclick="showView('deals')">Pipeline</div>
+    <div class="tab" id="tab-tx" onclick="showView('tx')">Execution</div>
+    <div class="tab" id="tab-finders" onclick="showView('finders')">Network</div>
+    <div class="tab" onclick="window.location.href='committee-2026-07-20.html'">Committee</div>
+    <div class="tab" id="tab-ask" onclick="showView('ask')">Research</div>
   </div>
 
   <div class="main">
@@ -658,11 +667,11 @@ header h1{font-size:16px;font-weight:800;letter-spacing:-.3px;color:var(--navy)}
       <!-- Chart + Donut -->
       <div class="ctrl-chart-row">
         <div class="ctrl-card">
-          <div class="ctrl-card-hdr">📅 Deals MAGG recibidos por mes <span class="sub">últimos 14 meses</span></div>
+          <div class="ctrl-card-hdr">Intake mensual <span class="sub">últimos 14 meses</span></div>
           <div class="bar-wrap" id="ctrl-chart"></div>
         </div>
         <div class="ctrl-card">
-          <div class="ctrl-card-hdr">📊 Distribución del pipeline</div>
+          <div class="ctrl-card-hdr">Distribución del pipeline</div>
           <div class="donut-wrap" id="ctrl-donut"></div>
         </div>
       </div>
@@ -670,7 +679,7 @@ header h1{font-size:16px;font-weight:800;letter-spacing:-.3px;color:var(--navy)}
       <!-- Activos + Shortlist -->
       <div class="ctrl-bottom">
         <div class="ctrl-card">
-          <div class="ctrl-card-hdr">🏆 Deals activos <span class="sub" id="ctrl-activos-n"></span></div>
+          <div class="ctrl-card-hdr">Deals activos <span class="sub" id="ctrl-activos-n"></span></div>
           <div id="ctrl-activos-list"></div>
         </div>
       </div>
