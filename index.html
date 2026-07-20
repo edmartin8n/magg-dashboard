@@ -263,13 +263,13 @@ header h1{font-size:16px;font-weight:800;letter-spacing:-.3px;color:var(--navy)}
 /* Table */
 .pl-table{background:white;border-radius:var(--radius);box-shadow:0 2px 16px rgba(0,0,0,.09);overflow-x:auto;border:1px solid #dde4f0}
 /* Pipeline is deliberately wide: it prioritises the investment facts over a compressed, unreadable table. */
-.pl-thead,.pl-tr{min-width:1623px;display:grid;grid-template-columns:54px 64px minmax(210px,1.4fr) 105px 88px 52px 78px 64px 75px 80px 82px 92px 82px 62px 78px 96px minmax(190px,1fr)}
+.pl-thead,.pl-tr{min-width:1663px;display:grid;grid-template-columns:54px 64px minmax(210px,1.4fr) 105px 88px 52px 78px 64px 75px 80px 82px 92px 82px 62px 78px 96px minmax(230px,1fr)}
 .pl-thead{background:#f0f4fa;border-bottom:2px solid #dde4f0;border-radius:var(--radius) var(--radius) 0 0}
 .pl-th{padding:8px 10px;font-size:9px;font-weight:700;color:#6b7a99;text-transform:uppercase;letter-spacing:.6px;cursor:pointer;user-select:none;display:flex;align-items:center;gap:3px;white-space:nowrap}
 .pl-th:hover{color:var(--navy)}
 .pl-th .sort-arrow{opacity:.4;font-size:9px}
 .pl-th.sorted .sort-arrow{opacity:1;color:var(--navy)}
-.pl-tbody{min-width:1623px}
+.pl-tbody{min-width:1663px}
 .pl-tr{border-bottom:1px solid #edf0f8;border-left:3px solid transparent;cursor:pointer;transition:background .1s,box-shadow .1s}
 .pl-tr:last-of-type{border-bottom:none}
 .pl-tr:hover{background:#f0f5ff}
@@ -519,10 +519,9 @@ header h1{font-size:16px;font-weight:800;letter-spacing:-.3px;color:var(--navy)}
     <div id="view-deals">
       <!-- Status filter chips (multi-select) -->
       <div class="pl-filters" id="pl-filters">
-        <div class="pl-chip pl-chip-go on" data-v="go" onclick="toggleChip(this)">✅ GO</div>
         <div class="pl-chip pl-chip-an on" data-v="analisis" onclick="toggleChip(this)">🔍 En Análisis</div>
-        <div class="pl-chip pl-chip-bo on" data-v="borderline" onclick="toggleChip(this)">⚠️ Borderline</div>
-        <div class="pl-chip pl-chip-no on" data-v="nogo" onclick="toggleChip(this)">❌ NO GO</div>
+        <div class="pl-chip pl-chip-bo on" data-v="pend" onclick="toggleChip(this)">⏸ On Hold</div>
+        <div class="pl-chip pl-chip-no on" data-v="nogo" onclick="toggleChip(this)">🗄️ Descartado</div>
         <div class="pl-sep"></div>
         <div class="pl-date-chip on" data-d="all"  onclick="setDate(this)">Todo</div>
         <div class="pl-date-chip"    data-d="365"  onclick="setDate(this)">1A</div>
@@ -572,7 +571,7 @@ header h1{font-size:16px;font-weight:800;letter-spacing:-.3px;color:var(--navy)}
           <div class="pl-th" onclick="setSortCol('yoc')">YoC <span class="sort-arrow">↕</span></div>
           <div class="pl-th" onclick="setSortCol('spread')">Spread <span class="sort-arrow">↕</span></div>
           <div class="pl-th">Estado</div>
-          <div class="pl-th">Próx. paso</div>
+          <div class="pl-th">Prox. Pasos / comentarios</div>
         </div>
         <div id="pl-tbody"></div>
       </div>
@@ -718,12 +717,9 @@ let highlightDeal  = null; // deal ref to highlight
 const IS_LOCAL   = window.location.hostname==='localhost'||window.location.hostname==='127.0.0.1';
 const API_BASE   = 'http://localhost:8765';
 const ESTADO_MAP = [
-  {label:'🔍 En Análisis', value:'En Análisis',  scoring:'',             verdict:'analisis'},
-  {label:'✅ GO',          value:'GO ✅',          scoring:'GO ✅',        verdict:'go'},
-  {label:'⚠️ Borderline',  value:'Borderline',    scoring:'BORDERLINE ⚠️',verdict:'borderline'},
-  {label:'⏳ PEND',        value:'PEND',           scoring:'PEND ⏳',      verdict:'pend'},
-  {label:'❌ NO GO',       value:'No Go',          scoring:'NO GO ❌',     verdict:'nogo'},
-  {label:'🗑️ Descartado',  value:'Descartado',    scoring:'NO GO ❌',     verdict:'nogo'},
+  {label:'🔍 En Análisis', value:'En Análisis', scoring:'', verdict:'analisis'},
+  {label:'⏸ On Hold',     value:'On Hold',     scoring:'', verdict:'pend'},
+  {label:'🗄️ Descartado', value:'Descartado',  scoring:'', verdict:'nogo'},
 ];
 let editingRef = null;
 
@@ -755,19 +751,15 @@ function showView(id) {
 }
 
 // ── DEALS ─────────────────────────────────────────────────────────
-const VERDICT_ORDER = {go:0,pass:0,analisis:1,pend:1,borderline:2,nogo:3};
+const VERDICT_ORDER = {analisis:0,pend:1,nogo:2,go:0,pass:0,borderline:0};
 function normTxt(v){ return String(v||'').toLowerCase(); }
-function isDiscardedDeal(d){
-  const s = normTxt([d.estado,d.scoring,d.motivo].join(' '));
-  return s.includes('descart') || s.includes('no go') || s.includes('nogo');
-}
+function isDiscardedDeal(d){ return normTxt(d.estado).includes('descartado'); }
 function getVerdictKey(d){
-  const s = normTxt([d.estado,d.scoring,d.verdict].join(' '));
-  if (isDiscardedDeal(d)) return 'nogo';
-  if (s.includes('borderline') || s.includes('hold')) return 'borderline';
-  if (s.includes('go') && !s.includes('no go')) return 'go';
-  if (s.includes('análisis') || s.includes('analisis') || s.includes('pend')) return 'analisis';
-  return d.verdict==='pass' ? 'go' : (d.verdict || 'nogo');
+  const estado=normTxt(d.estado);
+  if (estado.includes('descartado')) return 'nogo';
+  if (estado.includes('on hold')) return 'pend';
+  if (estado.includes('en análisis') || estado.includes('en analisis')) return 'analisis';
+  return d.verdict==='pend' ? 'pend' : d.verdict==='analisis' ? 'analisis' : 'nogo';
 }
 function isLiveDeal(d){ return getVerdictKey(d) !== 'nogo'; }
 function getIcLink(d){ return d.ic_link || d.link_ic || ''; }
@@ -791,7 +783,7 @@ function fmtFechaShort(s) {
   const m = parseInt(p[1], 10);
   return `${p[0]}/${mths[m]||p[1]}`;
 }
-let plActiveVerdicts = new Set(['go','analisis','pend','borderline','nogo']);
+let plActiveVerdicts = new Set(['analisis','pend','nogo']);
 let plDateDays = 0; // 0 = all
 let plZona = 'all';
 let plLlaves30 = false;
@@ -805,13 +797,8 @@ function filterD(type, el) {} // deprecated — using toggleChip now
 function toggleChip(el) {
   const v = el.dataset.v;
   el.classList.toggle('on');
-  if (el.classList.contains('on')) {
-    if (v==='analisis') { plActiveVerdicts.add('analisis'); plActiveVerdicts.add('pend'); }
-    else plActiveVerdicts.add(v);
-  } else {
-    if (v==='analisis') { plActiveVerdicts.delete('analisis'); plActiveVerdicts.delete('pend'); }
-    else plActiveVerdicts.delete(v);
-  }
+  if (el.classList.contains('on')) plActiveVerdicts.add(v);
+  else plActiveVerdicts.delete(v);
   renderDeals();
 }
 
@@ -1154,10 +1141,10 @@ function dealTableRow(d) {
     <div class="pl-td num">${noiFmt}</div>
     <div class="pl-td muted">${fmtYoc(d.yoc)}</div>
     <div class="pl-td ${spreadCls}">${spreadTxt}</div>
-    <div class="pl-td"><span style="font-size:10px;font-weight:700;padding:2px 7px;border-radius:4px;background:${ vkey==='go'?'#e8f5e9':vkey==='borderline'?'#fff8e1':vkey==='analisis'||vkey==='pend'?'#e8f0fe':'#fce4ec' };color:${ vkey==='go'?'#2e7d32':vkey==='borderline'?'#e65100':vkey==='analisis'||vkey==='pend'?'#1565c0':'#c62828' }">${d.estado||'—'}</span></div>
-    <div class="pl-td motivo" title="${d.prox_paso||''}" style="display:flex;align-items:center;gap:5px;overflow:hidden">${(()=>{
+    <div class="pl-td"><span style="font-size:10px;font-weight:700;padding:2px 7px;border-radius:4px;background:${ vkey==='analisis'?'#e8f0fe':vkey==='pend'?'#fff8e1':'#fce4ec' };color:${ vkey==='analisis'?'#1565c0':vkey==='pend'?'#e65100':'#c62828' }">${d.estado||'—'}</span></div>
+    <div class="pl-td motivo" title="${[d.prox_paso,d.motivo].filter(Boolean).join(' · ')}" style="display:flex;align-items:center;gap:5px;overflow:hidden">${(()=>{
       let badge='';
-      if(d.is_magg && (vkey==='go'||vkey==='borderline'||vkey==='analisis') && d.fecha_accion){
+      if(d.is_magg && (vkey==='analisis'||vkey==='pend') && d.fecha_accion){
         const ts=parseFecha(d.fecha_accion);
         if(ts){
           const days=Math.floor((Date.now()-ts)/86400000);
@@ -1166,8 +1153,10 @@ function dealTableRow(d) {
           badge=`<span style="flex-shrink:0;font-size:10px;font-weight:700;padding:1px 5px;border-radius:3px;background:${bg};color:${fg}">${days}d</span>`;
         }
       }
-      const txt=d.prox_paso ? d.prox_paso.split(/\s+/).slice(0,7).join(' ')+(d.prox_paso.split(/\s+/).length>7?'…':'') : '—';
-      return badge+`<span style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${txt}</span>`;
+      const shorten=(value,max)=>{ const w=String(value||'').trim().split(/\s+/).filter(Boolean); return w.length>max?w.slice(0,max).join(' ')+'…':w.join(' '); };
+      const prox=shorten(d.prox_paso,7) || '—';
+      const comentario=shorten(d.motivo,9);
+      return badge+`<span style="min-width:0;overflow:hidden;display:flex;flex-direction:column;gap:1px"><span style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${prox}</span>${comentario?`<small style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#8a9bb5;font-size:9px">↳ ${comentario}</small>`:''}</span>`;
     })()}</div>
   </div>
   <div class="pl-detail${isOpen||isEditing?' open':''}" id="pld-${sr}" onclick="event.stopPropagation()">
@@ -1465,7 +1454,7 @@ function goToBroker(brokerIdx) {
 
 /** Broker deal chip → "↗" click: go to Pipeline tab, expand that deal */
 function resetPipelineFilters() {
-  plActiveVerdicts = new Set(['go','analisis','pend','borderline','nogo']);
+  plActiveVerdicts = new Set(['analisis','pend','nogo']);
   document.querySelectorAll('.pl-chip').forEach(c=>c.classList.add('on'));
   plDateDays = 0;
   document.querySelectorAll('.pl-date-chip').forEach(c=>c.classList.toggle('on', c.dataset.d==='all'));
