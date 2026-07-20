@@ -126,6 +126,60 @@ header h1{font-size:16px;font-weight:800;letter-spacing:-.3px;color:var(--navy)}
 .contact-btn:hover{background:var(--navy2);color:white}
 .empty{text-align:center;padding:60px;color:var(--muted)}
 
+/* ===== NETWORK TAB — SECTIONS & ANALYTICS ===== */
+.net-section{margin-bottom:8px}
+.net-section+.net-section{margin-top:12px;padding-top:26px;border-top:2px solid var(--border)}
+.net-section-hdr{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:16px;gap:12px;flex-wrap:wrap}
+.net-section-title{font-size:17px;font-weight:800;color:var(--navy);letter-spacing:-.2px}
+.net-section-sub{font-size:12px;color:var(--muted);margin-top:2px}
+
+/* Horizontal ranking bars (locations, sources, leaderboard) */
+.hbar-list{padding:8px 0 12px}
+.hbar-row{display:flex;align-items:center;gap:10px;padding:7px 20px;cursor:default}
+.hbar-row.clickable{cursor:pointer;transition:.15s}
+.hbar-row.clickable:hover{background:#f8fafc}
+.hbar-rank{width:16px;font-size:10px;font-weight:800;color:var(--muted);flex-shrink:0}
+.hbar-label{width:160px;font-size:12px;font-weight:600;color:var(--navy);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex-shrink:0}
+.hbar-track{flex:1;height:9px;background:#eef1f8;border-radius:5px;overflow:hidden}
+.hbar-fill{height:100%;border-radius:5px;background:linear-gradient(90deg,var(--navy3),var(--navy))}
+.hbar-fill.gold{background:linear-gradient(90deg,#e0c477,var(--gold))}
+.hbar-val{width:30px;text-align:right;font-size:12px;font-weight:800;color:var(--navy);flex-shrink:0}
+.hbar-sub{width:78px;text-align:right;font-size:10px;color:var(--muted);flex-shrink:0}
+
+/* Stacked monthly bars (verdict mix) */
+.b-col-stack{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px}
+.b-stack{width:100%;display:flex;flex-direction:column-reverse;border-radius:4px 4px 0 0;overflow:hidden;min-height:3px}
+.b-seg{width:100%}
+.chart-legend{display:flex;gap:14px;padding:2px 20px 16px;flex-wrap:wrap}
+.cl-item{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--muted);font-weight:600}
+.cl-dot{width:8px;height:8px;border-radius:2px;flex-shrink:0}
+
+/* Recent-opportunities compact table */
+.net-recent-row{display:grid;grid-template-columns:14px 90px 1.6fr 1fr 1fr 78px 64px;gap:10px;align-items:center;padding:9px 20px;border-bottom:1px solid #f0f4fa;cursor:pointer;transition:.1s}
+.net-recent-row:last-child{border-bottom:none}
+.net-recent-row:hover{background:#f8fafc}
+.net-recent-row.hdr{cursor:default;background:#f8fafc;padding:8px 20px}
+.net-recent-row.hdr>div{font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}
+.nr-ref{font-size:10px;font-weight:700;color:var(--muted)}
+.nr-name{font-size:12px;font-weight:600;color:var(--navy);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.nr-loc{font-size:11px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.nr-src{font-size:11px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.nr-spread{font-size:11px;font-weight:700;text-align:right}
+.nr-date{font-size:10px;color:var(--muted);text-align:right}
+
+/* Attention-required panel (top-tier brokers gone stale) */
+.attn-row{display:flex;align-items:center;gap:12px;padding:11px 20px;border-bottom:1px solid #f7f9fc;cursor:pointer;transition:.1s}
+.attn-row:last-child{border-bottom:none}
+.attn-row:hover{background:#fff8f6}
+.attn-name{font-weight:700;font-size:13px;color:var(--navy)}
+.attn-meta{font-size:11px;color:var(--muted)}
+.attn-days{margin-left:auto;font-size:12px;font-weight:800;color:#c62828;flex-shrink:0}
+.attn-empty{padding:20px;text-align:center;color:var(--muted);font-size:12px}
+
+@media(max-width:900px){.net-recent-row{grid-template-columns:14px 1.6fr 64px}
+  .net-recent-row .nr-ref,.net-recent-row .nr-loc,.net-recent-row .nr-src,.net-recent-row .nr-date{display:none}
+  .net-recent-row.hdr>div:nth-child(2),.net-recent-row.hdr>div:nth-child(4),.net-recent-row.hdr>div:nth-child(5),.net-recent-row.hdr>div:nth-child(7){display:none}}
+
 
 
 /* ===== CONTROL TAB v2 ===== */
@@ -580,29 +634,93 @@ header h1{font-size:16px;font-weight:800;letter-spacing:-.3px;color:var(--navy)}
 
     <!-- FINDERS VIEW -->
     <div id="view-finders" style="display:none">
-      <div class="finder-header">
-        <div class="fh-stat"><div class="v" id="fstat-firmas">—</div><div class="l">Firmas</div></div>
-        <div class="fh-stat" style="border-color:var(--green)"><div class="v" id="fstat-con-deals">—</div><div class="l">Con deals enviados</div></div>
-        <div class="fh-stat" style="border-color:#f57c00"><div class="v" id="fstat-sin-contacto">—</div><div class="l">Stale 90d+</div></div>
-        <div class="fh-stat" style="border-color:var(--navy)"><div class="v" id="fstat-total-deals">—</div><div class="l">Deals totales recibidos</div></div>
-      </div>
-      <div class="finder-filters">
-        <div class="ff-chip active" onclick="filterF('all',this)">Todos</div>
-        <div class="ff-chip" onclick="filterF('deals',this)">📋 Con deals</div>
-        <div class="ff-chip" onclick="filterF('nocontact',this)">⚠️ Stale 90d+</div>
-        <input class="finder-search" id="fsearch" type="text" placeholder="Buscar firma, contacto o región..." oninput="renderFinders()">
-      </div>
-      <div class="finder-table">
-        <div class="ft-header" style="grid-template-columns:44px 1.8fr 1fr 120px 1fr">
-          <div class="ft-cell" style="justify-content:center">#</div>
-          <div class="ft-cell">Firma · Contactos</div>
-          <div class="ft-cell">Región</div>
-          <div class="ft-cell">Último contacto</div>
-          <div class="ft-cell">Estado / Nota</div>
+
+      <!-- ===== BLOCK A — OPORTUNIDADES ÚLTIMOS 6 MESES ===== -->
+      <div class="net-section">
+        <div class="net-section-hdr">
+          <div>
+            <div class="net-section-title">📈 Oportunidades · últimos 6 meses</div>
+            <div class="net-section-sub" id="net6-sub">—</div>
+          </div>
         </div>
-        <div id="finders-list"></div>
+
+        <div class="kpi-row" id="net6-kpis" style="grid-template-columns:repeat(4,1fr)"></div>
+
+        <div class="ctrl-chart-row" style="grid-template-columns:1.5fr 1fr">
+          <div class="ctrl-card">
+            <div class="ctrl-card-hdr">Volumen mensual por veredicto<span class="sub">últimos 6 meses</span></div>
+            <div class="bar-wrap"><div class="bars" id="net6-chart"></div><div class="bars-baseline"></div></div>
+            <div class="chart-legend" id="net6-chart-leg"></div>
+          </div>
+          <div class="ctrl-card">
+            <div class="ctrl-card-hdr">Top ubicaciones<span class="sub">6 meses</span></div>
+            <div class="hbar-list" id="net6-locations"></div>
+          </div>
+        </div>
+
+        <div class="ctrl-card" style="margin-bottom:16px">
+          <div class="ctrl-card-hdr">Top fuentes<span class="sub">clic para ver la ficha completa abajo</span></div>
+          <div class="hbar-list" id="net6-sources"></div>
+        </div>
+
+        <div class="ctrl-card" style="margin-bottom:28px">
+          <div class="ctrl-card-hdr">Últimas oportunidades recibidas<span class="sub" id="net6-recent-count"></span></div>
+          <div id="net6-recent"></div>
+        </div>
       </div>
-      <div class="empty" id="finders-empty" style="display:none">Sin resultados</div>
+
+      <!-- ===== BLOCK B — RED DE BROKERS · ANÁLISIS GENERAL ===== -->
+      <div class="net-section">
+        <div class="net-section-hdr">
+          <div>
+            <div class="net-section-title">🕸️ Red de brokers · análisis general</div>
+            <div class="net-section-sub">Histórico completo — todas las firmas y contactos</div>
+          </div>
+        </div>
+
+        <div class="finder-header" style="grid-template-columns:repeat(5,1fr)">
+          <div class="fh-stat"><div class="v" id="fstat-firmas">—</div><div class="l">Firmas</div></div>
+          <div class="fh-stat" style="border-color:var(--green)"><div class="v" id="fstat-con-deals">—</div><div class="l">Con deals enviados</div></div>
+          <div class="fh-stat" style="border-color:var(--gold)"><div class="v" id="fstat-tier1">—</div><div class="l">Tier 1 (top relación)</div></div>
+          <div class="fh-stat" style="border-color:#f57c00"><div class="v" id="fstat-sin-contacto">—</div><div class="l">Stale 90d+</div></div>
+          <div class="fh-stat" style="border-color:var(--navy)"><div class="v" id="fstat-total-deals">—</div><div class="l">Deals totales recibidos</div></div>
+        </div>
+
+        <div class="ctrl-chart-row" style="grid-template-columns:1fr 1.4fr">
+          <div class="ctrl-card">
+            <div class="ctrl-card-hdr">Composición por tier<span class="sub">269 contactos</span></div>
+            <div class="donut-wrap" id="net-tier-donut"></div>
+          </div>
+          <div class="ctrl-card">
+            <div class="ctrl-card-hdr">Top 10 brokers · histórico<span class="sub">por deals enviados</span></div>
+            <div class="hbar-list" id="net-leaderboard"></div>
+          </div>
+        </div>
+
+        <div class="ctrl-card" id="net-attention-card" style="margin-bottom:16px;display:none">
+          <div class="ctrl-card-hdr" style="background:var(--red)">⚠️ Atención requerida<span class="sub">tier 1-2 sin contacto 90 días+</span></div>
+          <div id="net-attention"></div>
+        </div>
+
+        <div class="finder-filters">
+          <div class="ff-chip active" onclick="filterF('all',this)">Todos</div>
+          <div class="ff-chip" onclick="filterF('deals',this)">📋 Con deals</div>
+          <div class="ff-chip" onclick="filterF('tier1',this)">🏆 Tier 1</div>
+          <div class="ff-chip" onclick="filterF('nocontact',this)">⚠️ Stale 90d+</div>
+          <input class="finder-search" id="fsearch" type="text" placeholder="Buscar firma, contacto o región..." oninput="renderFinders()">
+        </div>
+        <div class="finder-table">
+          <div class="ft-header" style="grid-template-columns:44px 1.8fr 1fr 120px 1fr">
+            <div class="ft-cell" style="justify-content:center">#</div>
+            <div class="ft-cell">Firma · Contactos</div>
+            <div class="ft-cell">Región</div>
+            <div class="ft-cell">Último contacto</div>
+            <div class="ft-cell">Estado / Nota</div>
+          </div>
+          <div id="finders-list"></div>
+        </div>
+        <div class="empty" id="finders-empty" style="display:none">Sin resultados</div>
+      </div>
     </div>
 
 
@@ -1289,12 +1407,14 @@ function filterF(type, el) {
 
 let highlightBroker = -1;
 
-/* Build firma-level groups from flat BROKERS list, counting actual deals */
-function buildFirmaGroups() {
+/* Build firma-level groups from flat BROKERS list, counting actual deals.
+   dealsUniverse defaults to the full DEALS array; pass a filtered subset
+   (e.g. last-6-months) to get firm-level counts scoped to that window. */
+function buildFirmaGroups(dealsUniverse = DEALS) {
   const groups = {};
   BROKERS.forEach((b,i) => {
     const firma = (b.firma||'Sin firma').trim();
-    if (!groups[firma]) groups[firma] = {firma, contacts:[], region:'', perfil:'', dealCount:0, ultimaInteraccion:'', estado:'', notas:''};
+    if (!groups[firma]) groups[firma] = {firma, contacts:[], region:'', perfil:'', dealCount:0, ultimaInteraccion:'', estado:'', notas:'', tier:null, score:null};
     const g = groups[firma];
     g.contacts.push({...b, _idx:i});
     if (b.region && !g.region)  g.region = b.region;
@@ -1307,12 +1427,12 @@ function buildFirmaGroups() {
       if (!g.ultimaInteraccion || d > g.ultimaInteraccion) g.ultimaInteraccion = d;
     }
   });
-  // Count real deals from DEALS array matching fuente (firma name or any contact name/email)
+  // Count real deals from the given universe matching fuente (firma name or any contact name/email)
   Object.values(groups).forEach(g => {
     const keys = [g.firma.toLowerCase(), ...g.contacts.flatMap(c=>[
       (c.contacto||'').toLowerCase(), (c.email||'').toLowerCase()
     ])].filter(Boolean);
-    g.deals = DEALS.filter(d => {
+    g.deals = dealsUniverse.filter(d => {
       const fuente = (d.fuente||'').toLowerCase();
       return keys.some(k => k.length>3 && fuente.includes(k));
     });
@@ -1322,6 +1442,11 @@ function buildFirmaGroups() {
     g.lastContactDate = parseDMY(g.ultimaInteraccion);
     g.daysSinceContact = g.lastContactDate ? Math.floor((TODAY - g.lastContactDate) / 86400000) : null;
     g.isStale90 = g.daysSinceContact !== null && g.daysSinceContact >= 90;
+    // Firm-level tier = best (lowest number = highest priority) tier among its contacts.
+    const tiers = g.contacts.map(c=>parseInt(c.tier,10)).filter(n=>!isNaN(n));
+    g.tier = tiers.length ? Math.min(...tiers) : null;
+    const scores = g.contacts.map(c=>c.score).filter(n=>typeof n==='number');
+    g.score = scores.length ? Math.max(...scores) : null;
   });
   return Object.values(groups);
 }
@@ -1335,11 +1460,13 @@ function parseDMY(s) {
 }
 
 function renderFinders() {
+  renderNetworkOverview();
   const q = (document.getElementById('fsearch').value||'').toLowerCase();
   let groups = buildFirmaGroups();
 
   // Filters
   if (fFilter==='deals')     groups = groups.filter(g=>g.dealCount>0);
+  if (fFilter==='tier1')     groups = groups.filter(g=>g.tier===1);
   if (fFilter==='nocontact') groups = groups.filter(g=>g.isStale90);
   if (q) groups = groups.filter(g=>
     g.firma.toLowerCase().includes(q) ||
@@ -1385,11 +1512,17 @@ function firmaRow(g, gIdx) {
     ? `<span style="font-size:11px;font-weight:600;color:${g.isStale90 ? '#e65100' : 'var(--navy)'}">${g.ultimaInteraccion} · ${g.daysSinceContact}d</span>`
     : `<span style="font-size:11px;color:#e53935;font-weight:600">⚠️ Sin fecha</span>`;
 
+  // Tier / score badge (best tier among the firm's contacts)
+  const tierCls = g.tier===2?'t2':g.tier===3?'t3':(g.tier>=4?'t4':'');
+  const tierBadge = g.tier
+    ? `<div class="tier-b ${tierCls}" title="Tier ${g.tier}${g.score?' · score '+g.score:''}">T${g.tier}</div>`
+    : '';
+
   // Deals list for expand
   const dealsHtml = g.deals.length
     ? g.deals.map(d => {
         const sp = parseSpreadBps(d.spread)||0;
-        const spCls = sp>0?'spread-pos':sp<0?'spread-neg':'muted';
+        const spCls = sp>0?'sp-pos':sp<0?'sp-neg':'sp-neu';
         const vkey = getVerdictKey(d);
         return `<div style="display:flex;align-items:center;gap:10px;padding:6px 0;border-bottom:1px solid #f0f4fa;cursor:pointer" onclick="goToDeal('${d.ref}')">
           <div class="pl-dot ${vkey}" style="flex-shrink:0"></div>
@@ -1414,7 +1547,7 @@ function firmaRow(g, gIdx) {
     <div class="finder-row" onclick="open['fg_${gIdx}']=!open['fg_${gIdx}'];const e=document.getElementById('${uid}-exp');if(e)e.classList.toggle('open',!!open['fg_${gIdx}'])">
       <div class="ft-cell" style="justify-content:center">${dealBadge}</div>
       <div class="ft-cell" style="flex-direction:column;align-items:flex-start;gap:2px">
-        <div style="font-weight:700;font-size:13px">${g.firma}</div>
+        <div style="display:flex;align-items:center;gap:6px">${tierBadge}<span style="font-weight:700;font-size:13px">${g.firma}</span></div>
         <div style="font-size:11px;color:var(--muted)">${contactNames}</div>
       </div>
       <div class="ft-cell" style="font-size:11px;color:var(--muted)">${g.region||'—'}</div>
@@ -1430,6 +1563,251 @@ function firmaRow(g, gIdx) {
 }
 
 function finderRow(b, realIdx) { return ''; } // legacy alias — not used
+
+// ── NETWORK OVERVIEW — 6m opportunities block + broker analytics ───
+const VERDICT_COLORS = {go:'#2e7d32', analisis:'#1565c0', borderline:'#e65100', nogo:'#c62828'};
+const VERDICT_LABELS = {go:'GO', analisis:'Análisis', borderline:'Borderline', nogo:'NO GO'};
+const TIER_COLORS = {1:'var(--gold)', 2:'var(--navy)', 3:'var(--navy3)', 4:'#9ab', 5:'#c8ccd6', 0:'#e2e8f0'};
+const TIER_LABELS = {1:'Tier 1', 2:'Tier 2', 3:'Tier 3', 4:'Tier 4', 5:'Tier 5', 0:'Sin tier'};
+
+function monthsAgo(n) {
+  return new Date(TODAY.getFullYear(), TODAY.getMonth() - n, TODAY.getDate());
+}
+function foldAccents(s) { return String(s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+function escJs(s) { return String(s||'').replace(/'/g, "\\'"); }
+function fmtShortDate(d) {
+  const months = ['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
+  return d.getDate()+' '+months[d.getMonth()]+' '+d.getFullYear();
+}
+function topLocations(deals, n) {
+  const counts = {};
+  deals.forEach(d => {
+    const raw = (d.ubicacion||'').split(/[,—–]/)[0].trim();
+    if (!raw) return;
+    const key = foldAccents(raw).toLowerCase();
+    if (!counts[key]) counts[key] = {label: raw, count: 0};
+    counts[key].count++;
+  });
+  return Object.values(counts).sort((a,b)=>b.count-a.count).slice(0,n);
+}
+function hbarRow(rank, label, count, max, opts={}) {
+  const cls = opts.clickable ? 'hbar-row clickable' : 'hbar-row';
+  const click = opts.onclick ? ` onclick="${opts.onclick}"` : '';
+  const fillCls = opts.gold ? 'hbar-fill gold' : 'hbar-fill';
+  const sub = opts.sub ? `<div class="hbar-sub">${opts.sub}</div>` : '';
+  return `<div class="${cls}"${click}>
+    <div class="hbar-rank">${rank}</div>
+    <div class="hbar-label">${label}</div>
+    <div class="hbar-track"><div class="${fillCls}" style="width:${max>0?Math.round(count/max*100):0}%"></div></div>
+    <div class="hbar-val">${count}</div>
+    ${sub}
+  </div>`;
+}
+
+/** Jump to the broker directory (Block B), search for a firm, and scroll to it. */
+function jumpToBrokerSearch(firma) {
+  document.querySelectorAll('.ff-chip').forEach(c=>c.classList.remove('active'));
+  const firstChip = document.querySelector('.ff-chip');
+  if (firstChip) firstChip.classList.add('active');
+  fFilter = 'all';
+  const search = document.getElementById('fsearch');
+  if (search) search.value = firma;
+  renderFinders();
+  const table = document.querySelector('.finder-table');
+  if (table) table.scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+function renderNetworkOverview() {
+  // ---------------- BLOCK A: last 6 months ----------------
+  const cutoff6 = monthsAgo(6);
+  const last6 = DEALS.filter(d => { const dt = parseDMY(d.fecha); return dt && dt >= cutoff6; });
+
+  const vcount = {go:0, analisis:0, borderline:0, nogo:0};
+  last6.forEach(d => { const k = getVerdictKey(d); vcount[k in vcount ? k : 'nogo']++; });
+  const progresan = vcount.go + vcount.analisis + vcount.borderline;
+  const pctProgresan = last6.length ? Math.round(progresan/last6.length*100) : 0;
+
+  const groups6 = buildFirmaGroups(last6).filter(g=>g.dealCount>0);
+  const locs6 = topLocations(last6, 6);
+  const topLoc = locs6[0];
+
+  const sub6 = document.getElementById('net6-sub');
+  if (sub6) sub6.textContent = `${last6.length} oportunidades recibidas desde ${fmtShortDate(cutoff6)} · ${groups6.length} fuentes distintas`;
+
+  const kpis6 = document.getElementById('net6-kpis');
+  if (kpis6) kpis6.innerHTML = `
+    <div class="kpi-card">
+      <div class="kpi-icon">📥</div>
+      <div class="kpi-num">${last6.length}</div>
+      <div class="kpi-lbl">Deals recibidos</div>
+      <div class="kpi-sub">últimos 6 meses</div>
+    </div>
+    <div class="kpi-card c-go">
+      <div class="kpi-icon">✅</div>
+      <div class="kpi-num">${pctProgresan}%</div>
+      <div class="kpi-lbl">Progresan</div>
+      <div class="kpi-sub">${progresan} de ${last6.length} · GO + Análisis + Borderline</div>
+    </div>
+    <div class="kpi-card c-an">
+      <div class="kpi-icon">🤝</div>
+      <div class="kpi-num">${groups6.length}</div>
+      <div class="kpi-lbl">Fuentes activas</div>
+      <div class="kpi-sub">firmas con ≥1 deal en el periodo</div>
+    </div>
+    <div class="kpi-card c-gold">
+      <div class="kpi-icon">📍</div>
+      <div class="kpi-num" style="font-size:19px">${topLoc ? topLoc.label : '—'}</div>
+      <div class="kpi-lbl">Ubicación líder</div>
+      <div class="kpi-sub">${topLoc ? topLoc.count+' oportunidades' : 'Sin datos'}</div>
+    </div>`;
+
+  // Monthly stacked bars by verdict (6 columns, bottom→top: NO GO, Borderline, Análisis, GO)
+  const order = ['nogo','borderline','analisis','go'];
+  const monthKeys = [];
+  const monthCounts = {};
+  for (let i=5; i>=0; i--) {
+    const d = monthsAgo(i);
+    const key = d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0');
+    monthKeys.push(key);
+    monthCounts[key] = {go:0, analisis:0, borderline:0, nogo:0};
+  }
+  last6.forEach(d => {
+    const dt = parseDMY(d.fecha); if (!dt) return;
+    const key = dt.getFullYear()+'-'+String(dt.getMonth()+1).padStart(2,'0');
+    if (!monthCounts[key]) return;
+    const k = getVerdictKey(d);
+    monthCounts[key][k in monthCounts[key] ? k : 'nogo']++;
+  });
+  const monthNames = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
+  const maxMonthTotal = Math.max(...monthKeys.map(k => order.reduce((s,o)=>s+monthCounts[k][o],0)), 1);
+  const chart6 = document.getElementById('net6-chart');
+  if (chart6) chart6.innerHTML = monthKeys.map(k => {
+    const c = monthCounts[k];
+    const total = order.reduce((s,o)=>s+c[o],0);
+    const segs = order.map(o => {
+      if (!c[o]) return '';
+      const h = Math.max(Math.round((c[o]/maxMonthTotal)*108), 3);
+      return `<div class="b-seg" style="height:${h}px;background:${VERDICT_COLORS[o]}" title="${VERDICT_LABELS[o]}: ${c[o]}"></div>`;
+    }).join('');
+    const [y,m] = k.split('-');
+    const lbl = monthNames[parseInt(m,10)-1] + "'" + y.slice(2);
+    return `<div class="b-col-stack">
+      <div class="b-val">${total}</div>
+      <div class="b-stack">${segs}</div>
+      <div class="b-lbl">${lbl}</div>
+    </div>`;
+  }).join('');
+  const leg6 = document.getElementById('net6-chart-leg');
+  if (leg6) leg6.innerHTML = order.map(o=>
+    `<div class="cl-item"><span class="cl-dot" style="background:${VERDICT_COLORS[o]}"></span>${VERDICT_LABELS[o]}</div>`
+  ).join('');
+
+  // Top locations (6m)
+  const maxLoc = locs6.length ? locs6[0].count : 1;
+  const locEl = document.getElementById('net6-locations');
+  if (locEl) locEl.innerHTML = locs6.length
+    ? locs6.map((l,i)=>hbarRow(i+1, l.label, l.count, maxLoc)).join('')
+    : '<div class="attn-empty">Sin datos en el periodo</div>';
+
+  // Top sources (6m) — firm-level, clickable → jump to broker table below
+  const topSources = [...groups6].sort((a,b)=>b.dealCount-a.dealCount).slice(0,10);
+  const maxSrc = topSources.length ? topSources[0].dealCount : 1;
+  const srcEl = document.getElementById('net6-sources');
+  if (srcEl) srcEl.innerHTML = topSources.length
+    ? topSources.map((g,i)=>hbarRow(i+1, g.firma, g.dealCount, maxSrc, {clickable:true, gold:true, onclick:`jumpToBrokerSearch('${escJs(g.firma)}')`})).join('')
+    : '<div class="attn-empty">Sin datos en el periodo</div>';
+
+  // Recent opportunities (most recent 12)
+  const recent = [...last6].sort((a,b)=>{
+    const da = parseDMY(a.fecha), db = parseDMY(b.fecha);
+    return (db?db.getTime():0) - (da?da.getTime():0);
+  }).slice(0,12);
+  const recentCountEl = document.getElementById('net6-recent-count');
+  if (recentCountEl) recentCountEl.textContent = `${recent.length} de ${last6.length}`;
+  const recentEl = document.getElementById('net6-recent');
+  if (recentEl) {
+    const hdr = `<div class="net-recent-row hdr">
+      <div></div><div>Ref</div><div>Deal</div><div>Ubicación</div><div>Fuente</div><div style="text-align:right">Spread</div><div style="text-align:right">Fecha</div>
+    </div>`;
+    const rows = recent.map(d => {
+      const vk = getVerdictKey(d);
+      const sp = parseSpreadBps(d.spread);
+      const spCls = sp>0?'sp-pos':sp<0?'sp-neg':'sp-neu';
+      return `<div class="net-recent-row" onclick="goToDeal('${d.ref}')">
+        <div class="pl-dot ${vk}"></div>
+        <div class="nr-ref">${d.ref}</div>
+        <div class="nr-name">${d.nombre}</div>
+        <div class="nr-loc">📍 ${d.ubicacion||'—'}</div>
+        <div class="nr-src">${d.fuente||'—'}</div>
+        <div class="nr-spread ${spCls}">${d.spread||'—'}</div>
+        <div class="nr-date">${d.fecha||'—'}</div>
+      </div>`;
+    }).join('');
+    recentEl.innerHTML = hdr + (rows || '<div class="attn-empty">Sin oportunidades en el periodo</div>');
+  }
+
+  // ---------------- BLOCK B: broker network analytics ----------------
+  const allGroups = buildFirmaGroups();
+  const tier1Groups = allGroups.filter(g=>g.tier===1);
+  const elT1 = document.getElementById('fstat-tier1');
+  if (elT1) elT1.textContent = tier1Groups.length;
+
+  // Tier composition donut
+  const tierCounts = {};
+  allGroups.forEach(g => { const t = g.tier || 0; tierCounts[t] = (tierCounts[t]||0)+1; });
+  const tierKeys = Object.keys(tierCounts).map(Number).sort((a,b)=>a-b);
+  const totalFirms = allGroups.length;
+  let angle = 0;
+  const stops = tierKeys.map(t => {
+    const pct = totalFirms>0 ? (tierCounts[t]/totalFirms)*100 : 0;
+    const end = angle+pct;
+    const s = `${TIER_COLORS[t]||'#ccc'} ${angle.toFixed(1)}% ${end.toFixed(1)}%`;
+    angle = end;
+    return s;
+  });
+  const tierLeg = tierKeys.map(t=>`
+    <div class="dl-item">
+      <div class="dl-dot" style="background:${TIER_COLORS[t]||'#ccc'}"></div>
+      <span class="dl-lbl">${TIER_LABELS[t]||('Tier '+t)}</span>
+      <span class="dl-val">${tierCounts[t]}</span>
+    </div>`).join('');
+  const donutEl = document.getElementById('net-tier-donut');
+  if (donutEl) donutEl.innerHTML = `
+    <div class="donut" style="background:conic-gradient(${stops.join(', ')})">
+      <div class="donut-inner"><div class="donut-total">${totalFirms}</div><div class="donut-sub">firmas</div></div>
+    </div>
+    <div class="donut-leg">${tierLeg}</div>`;
+
+  // Leaderboard — top 10 all-time by deal volume
+  const leaderboard = allGroups.filter(g=>g.dealCount>0).sort((a,b)=>b.dealCount-a.dealCount).slice(0,10);
+  const maxLead = leaderboard.length ? leaderboard[0].dealCount : 1;
+  const leadEl = document.getElementById('net-leaderboard');
+  if (leadEl) leadEl.innerHTML = leaderboard.length
+    ? leaderboard.map((g,i)=>hbarRow(i+1, g.firma, g.dealCount, maxLead, {clickable:true, onclick:`jumpToBrokerSearch('${escJs(g.firma)}')`, sub: g.tier?('Tier '+g.tier):''})).join('')
+    : '<div class="attn-empty">Sin datos</div>';
+
+  // Attention panel — tier 1-2 relationships gone stale 90d+
+  const attention = allGroups.filter(g=>g.tier && g.tier<=2 && g.isStale90)
+    .sort((a,b)=>(b.daysSinceContact||0)-(a.daysSinceContact||0));
+  const attnCard = document.getElementById('net-attention-card');
+  if (attnCard) {
+    if (attention.length) {
+      attnCard.style.display = 'block';
+      const attnEl = document.getElementById('net-attention');
+      if (attnEl) attnEl.innerHTML = attention.map(g=>`
+        <div class="attn-row" onclick="jumpToBrokerSearch('${escJs(g.firma)}')">
+          <div class="tier-b${g.tier===2?' t2':''}">T${g.tier}</div>
+          <div>
+            <div class="attn-name">${g.firma}</div>
+            <div class="attn-meta">${g.contacts.slice(0,2).map(c=>c.contacto||'').filter(Boolean).join(', ')||'Sin contacto nombrado'} · ${g.region||'Sin región'}</div>
+          </div>
+          <div class="attn-days">${g.daysSinceContact}d sin contacto</div>
+        </div>`).join('');
+    } else {
+      attnCard.style.display = 'none';
+    }
+  }
+}
 
 
 function toggleF(idx) {
