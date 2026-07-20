@@ -532,6 +532,20 @@ header h1{font-size:16px;font-weight:800;letter-spacing:-.3px;color:var(--navy)}
 .cp-msg-user{background:var(--navy);color:#fff;align-self:flex-end;border-radius:8px 8px 2px 8px}
 .cp-msg-ai{background:#fff;color:#222;align-self:flex-start;border:1px solid #dde4f0;border-radius:2px 8px 8px 8px}
 .cp-msg-loading{background:#f0f4fa;color:#888;align-self:flex-start;font-style:italic;font-size:12px}
+.cp-edit-card{background:#fffaf0;border:1.5px solid var(--gold);border-radius:8px;align-self:flex-start;max-width:96%;padding:10px 12px;font-size:12px}
+.cp-edit-title{font-weight:800;color:#7a5a00;font-size:11px;text-transform:uppercase;letter-spacing:.4px;margin-bottom:6px}
+.cp-edit-deal{font-weight:700;color:var(--navy);margin-bottom:6px}
+.cp-edit-summary{color:#444;margin-bottom:8px;line-height:1.5}
+.cp-edit-diff{background:#fff;border-radius:6px;padding:6px 8px;margin-bottom:8px}
+.cp-edit-diff-row{display:flex;gap:6px;padding:2px 0;font-size:11.5px}
+.cp-edit-diff-field{color:var(--muted);min-width:90px;flex-shrink:0}
+.cp-edit-diff-val{font-weight:600;color:var(--navy)}
+.cp-edit-actions{display:flex;gap:6px}
+.cp-edit-btn{flex:1;border:none;border-radius:6px;padding:7px 0;font-size:11.5px;font-weight:700;cursor:pointer;transition:.12s}
+.cp-edit-confirm{background:var(--green);color:#fff}.cp-edit-confirm:hover{opacity:.88}
+.cp-edit-cancel{background:#eee;color:#555}.cp-edit-cancel:hover{background:#e0e0e0}
+.cp-edit-done{color:var(--green);font-weight:700;font-size:11.5px;padding:4px 0}
+.cp-edit-error{color:var(--red);font-weight:700;font-size:11.5px;padding:4px 0}
 .cp-input-row{display:flex;gap:8px;padding:10px 12px;border-top:1px solid #eef0f7;align-items:flex-end;flex-shrink:0}
 .cp-input{flex:1;border:1px solid #dde4f0;border-radius:6px;padding:8px 10px;font-size:12.5px;resize:none;font-family:inherit;outline:none;transition:.12s;max-height:80px}
 .cp-input:focus{border-color:var(--navy)}
@@ -1491,10 +1505,20 @@ function saveDeal(ref) {
   renderDeals();
   renderControl();
 
-  const apiBase = getApiBase();
-  if (!apiBase) { showToast('⚠️ Configura el acceso a la API (⚙️) para guardar', 'error'); return; }
+  applyDealChanges(ref, body)
+    .catch(err => showToast(`❌ Error: ${err}`, 'error'));
+}
 
-  fetch(`${apiBase}/api/deals/${encodeURIComponent(ref)}`, {
+/** Shared write path: PATCH a deal on crm_api.py then trigger a republish.
+ * Used by the manual edit panel (saveDeal) and by the AI chat's confirmed
+ * edit proposals. Returns a Promise so callers can react to success/failure. */
+function applyDealChanges(ref, body) {
+  const apiBase = getApiBase();
+  if (!apiBase) {
+    showToast('⚠️ Configura el acceso a la API (⚙️) para guardar', 'error');
+    return Promise.reject('API no configurada (⚙️)');
+  }
+  return fetch(`${apiBase}/api/deals/${encodeURIComponent(ref)}`, {
     method: 'PATCH',
     headers: {'Content-Type':'application/json', ...getApiAuthHeader()},
     body: JSON.stringify(body),
@@ -1506,10 +1530,10 @@ function saveDeal(ref) {
   })
   .then(r => r.ok ? r.json() : Promise.reject('regenerate failed'))
   .then(data => {
-    if (data.ok) showToast('🌐 GitHub Pages actualizado (1-2 min)', 'success');
-    else showToast(`⚠️ Excel OK · error web: ${data.error}`, 'error');
-  })
-  .catch(err => showToast(`❌ Error: ${err}`, 'error'));
+    if (data.ok) { showToast('🌐 GitHub Pages actualizado (1-2 min)', 'success'); return data; }
+    showToast(`⚠️ Excel OK · error web: ${data.error}`, 'error');
+    return Promise.reject(data.error || 'regenerate failed');
+  });
 }
 
 function showToast(msg, type='success') {
@@ -2588,6 +2612,55 @@ function saveWorkerUrl(){
 
 function chatQuick(q){ document.getElementById('cp-input').value=q; sendChat(); }
 
+const CHAT_FIELD_LABELS = {
+  estado:'Estado', scoring:'Veredicto', precio:'Precio', prox_paso:'Próximo paso',
+  owner:'Owner', fecha_accion:'Fecha acción', notas:'Notas', motivo:'Motivo',
+  exit_yield:'Exit Yield', spread:'Spread', yoc_hma:'YoC', prioridad:'Prioridad',
+  right_now:'Right Now', accion_semanal:'Acción semanal', kill_switches:'Kill-switches',
+  lp_fit:'LP Fit',
+};
+function escapeHtml(s){
+  return String(s??'').replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+/** Render an AI-proposed deal edit as a confirm/cancel card in the chat. */
+function renderChatEditCard(payload, msgs){
+  const d = DEALS.find(x=>x.ref===payload.ref);
+  const dealName = d ? d.nombre : '(deal no encontrado en el pipeline actual)';
+  const changes = payload.changes || {};
+  const diffRows = Object.keys(changes).map(k =>
+    `<div class="cp-edit-diff-row"><div class="cp-edit-diff-field">${escapeHtml(CHAT_FIELD_LABELS[k]||k)}</div><div class="cp-edit-diff-val">${escapeHtml(changes[k])}</div></div>`
+  ).join('');
+  const uid = 'chatedit'+Date.now()+Math.floor(Math.random()*1000);
+  const eDiv=document.createElement('div');
+  eDiv.className='cp-msg cp-edit-card';
+  eDiv.id=uid;
+  eDiv.innerHTML = `
+    <div class="cp-edit-title">✏️ Propuesta de cambio</div>
+    <div class="cp-edit-deal">${escapeHtml(payload.ref)} — ${escapeHtml(dealName)}</div>
+    <div class="cp-edit-summary">${escapeHtml(payload.summary||'')}</div>
+    <div class="cp-edit-diff">${diffRows || '<span style="color:#999">Sin cambios detectados</span>'}</div>
+    <div class="cp-edit-actions">
+      <button class="cp-edit-btn cp-edit-confirm" onclick="confirmChatEdit('${uid}')" ${Object.keys(changes).length?'':'disabled'}>✅ Confirmar y guardar</button>
+      <button class="cp-edit-btn cp-edit-cancel" onclick="cancelChatEdit('${uid}')">✕ Cancelar</button>
+    </div>`;
+  eDiv._payload = payload;
+  msgs.appendChild(eDiv);
+}
+function cancelChatEdit(uid){
+  const el=document.getElementById(uid); if(!el) return;
+  const actions=el.querySelector('.cp-edit-actions'); if(actions) actions.innerHTML='<span style="color:#888;font-size:11.5px">Cancelado — no se ha guardado nada</span>';
+}
+function confirmChatEdit(uid){
+  const el=document.getElementById(uid); if(!el||!el._payload) return;
+  const {ref, changes} = el._payload;
+  const actions=el.querySelector('.cp-edit-actions');
+  actions.innerHTML='<span class="cp-edit-loading" style="color:#888;font-size:11.5px">Guardando…</span>';
+  applyDealChanges(ref, changes)
+    .then(()=>{ actions.innerHTML='<span class="cp-edit-done">✅ Guardado</span>'; })
+    .catch(err=>{ actions.innerHTML=`<span class="cp-edit-error">❌ ${escapeHtml(err)}</span>`; });
+}
+
 async function sendChat(){
   const inp=document.getElementById('cp-input');
   const btn=document.getElementById('cp-send');
@@ -2604,9 +2677,14 @@ async function sendChat(){
     const res=await fetch(wUrl,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({query:q,deals_context:ctx})});
     lDiv.remove();
     const data=await res.json();
-    const aDiv=document.createElement('div'); aDiv.className='cp-msg cp-msg-ai';
-    aDiv.innerHTML=(data.answer||'Sin respuesta').replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>');
-    msgs.appendChild(aDiv);
+    if (data.type === 'edit' && data.ref) {
+      renderChatEditCard(data, msgs);
+    } else {
+      const text = data.type === 'answer' ? data.text : (data.answer || 'Sin respuesta'); // fallback: old worker shape
+      const aDiv=document.createElement('div'); aDiv.className='cp-msg cp-msg-ai';
+      aDiv.innerHTML=(text||'Sin respuesta').replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>');
+      msgs.appendChild(aDiv);
+    }
   } catch(e){
     lDiv.remove();
     const eDiv=document.createElement('div'); eDiv.className='cp-msg cp-msg-sys'; eDiv.textContent='Error conectando con el asistente.'; msgs.appendChild(eDiv);
