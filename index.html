@@ -249,6 +249,11 @@ header h1{font-size:16px;font-weight:800;letter-spacing:-.3px;color:var(--navy)}
 .pl-sep{width:1px;height:24px;background:var(--border);margin:0 2px}
 .pl-date-chip{padding:5px 12px;border-radius:20px;font-size:11px;font-weight:600;cursor:pointer;border:1.5px solid var(--border);background:white;color:var(--muted);transition:all .18s;user-select:none}
 .pl-date-chip.on{background:var(--navy);color:white;border-color:var(--navy)}
+.pl-filter-select{height:30px;padding:0 10px;border:1.5px solid var(--border);border-radius:20px;background:white;color:var(--navy);font:600 11px inherit;cursor:pointer;outline:none}
+.pl-filter-select:focus{border-color:var(--navy2)}
+.pl-keys-chip{padding:5px 12px;border-radius:20px;font-size:11px;font-weight:600;cursor:pointer;border:1.5px solid var(--border);background:white;color:var(--muted);transition:all .18s;user-select:none}
+.pl-keys-chip.on{background:var(--gold);color:white;border-color:var(--gold)}
+.pl-econ-note{margin:-4px 0 10px;font-size:10px;color:var(--muted)}
 .pl-search-row{display:flex;gap:8px;margin-bottom:12px;align-items:center}
 .pl-search{flex:1;padding:8px 16px;border:1.5px solid var(--border);border-radius:20px;font-size:13px;outline:none;background:white;transition:.2s;font-family:inherit}
 .pl-search:focus{border-color:var(--navy2);box-shadow:0 0 0 3px rgba(45,74,122,.08)}
@@ -258,20 +263,20 @@ header h1{font-size:16px;font-weight:800;letter-spacing:-.3px;color:var(--navy)}
 /* Table */
 .pl-table{background:white;border-radius:var(--radius);box-shadow:0 2px 16px rgba(0,0,0,.09);overflow-x:auto;border:1px solid #dde4f0}
 /* Pipeline is deliberately wide: it prioritises the investment facts over a compressed, unreadable table. */
-.pl-thead,.pl-tr{min-width:1634px;display:grid;grid-template-columns:54px 90px minmax(210px,1.4fr) 105px 88px 52px 78px 64px 64px 76px 82px 92px 82px 62px 78px 96px minmax(190px,1fr)}
+.pl-thead,.pl-tr{min-width:1623px;display:grid;grid-template-columns:54px 64px minmax(210px,1.4fr) 105px 88px 52px 78px 64px 75px 80px 82px 92px 82px 62px 78px 96px minmax(190px,1fr)}
 .pl-thead{background:#f0f4fa;border-bottom:2px solid #dde4f0;border-radius:var(--radius) var(--radius) 0 0}
 .pl-th{padding:8px 10px;font-size:9px;font-weight:700;color:#6b7a99;text-transform:uppercase;letter-spacing:.6px;cursor:pointer;user-select:none;display:flex;align-items:center;gap:3px;white-space:nowrap}
 .pl-th:hover{color:var(--navy)}
 .pl-th .sort-arrow{opacity:.4;font-size:9px}
 .pl-th.sorted .sort-arrow{opacity:1;color:var(--navy)}
-.pl-tbody{min-width:1634px}
+.pl-tbody{min-width:1623px}
 .pl-tr{border-bottom:1px solid #edf0f8;border-left:3px solid transparent;cursor:pointer;transition:background .1s,box-shadow .1s}
 .pl-tr:last-of-type{border-bottom:none}
 .pl-tr:hover{background:#f0f5ff}
 .pl-tr.expanded{background:#f0f5ff;border-bottom:none}
 .pl-td{padding:9px 10px;font-size:12px;color:var(--text);display:flex;align-items:center;overflow:hidden;min-width:0}
-.pl-td.name{font-weight:600;color:var(--navy);overflow:hidden;display:flex;flex-direction:column;justify-content:center;padding:6px 10px}
-.pl-td.ref{font-size:10px;font-weight:600;color:#8a9bb5;letter-spacing:.3px;white-space:nowrap}
+.pl-td.name{font-weight:600;color:var(--navy);overflow:hidden;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;text-align:left;padding:6px 10px}
+.pl-td.ref{font-size:9px;font-weight:600;color:#8a9bb5;letter-spacing:0;white-space:nowrap;padding-left:6px;padding-right:6px}
 .pl-td.muted{color:var(--muted);font-size:11px}
 .pl-td.num{font-weight:600;color:var(--navy);font-variant-numeric:tabular-nums;justify-content:flex-end}
 .pl-td.spread-pos{font-weight:700;color:var(--green);font-variant-numeric:tabular-nums;justify-content:flex-end}
@@ -524,7 +529,17 @@ header h1{font-size:16px;font-weight:800;letter-spacing:-.3px;color:var(--navy)}
         <div class="pl-date-chip"    data-d="180"  onclick="setDate(this)">6M</div>
         <div class="pl-date-chip"    data-d="90"   onclick="setDate(this)">3M</div>
         <div class="pl-date-chip"    data-d="30"   onclick="setDate(this)">30D</div>
+        <div class="pl-sep"></div>
+        <select class="pl-filter-select" id="pl-zone-filter" aria-label="Filtrar por zona" onchange="setZona(this.value)">
+          <option value="all">Zona: todas</option>
+          <option value="Centro">Centro</option>
+          <option value="Periferia">Periferia</option>
+          <option value="Vacacional">Vacacional</option>
+          <option value="Otros">Otros</option>
+        </select>
+        <div class="pl-keys-chip" id="pl-keys-30" onclick="toggleLlaves30(this)">🔑 +30 llaves</div>
       </div>
+      <div class="pl-econ-note">* Est.: NOI = YoC × coste total. Si no existe Capex/TPC en la fuente, el coste total usa Precio como proxy y queda marcado.</div>
       <!-- Search + sort + count -->
       <div class="pl-search-row">
         <input class="pl-search" id="pl-search" type="text" placeholder="🔍 Nombre, ciudad, broker, ref..." oninput="renderDeals()">
@@ -778,6 +793,8 @@ function fmtFechaShort(s) {
 }
 let plActiveVerdicts = new Set(['go','analisis','pend','borderline','nogo']);
 let plDateDays = 0; // 0 = all
+let plZona = 'all';
+let plLlaves30 = false;
 let plSortCol  = 'default';
 let plSortDir  = 1;
 
@@ -805,15 +822,25 @@ function setDate(el) {
   renderDeals();
 }
 
+function setZona(value) {
+  plZona = value || 'all';
+  renderDeals();
+}
+function toggleLlaves30(el) {
+  plLlaves30 = !plLlaves30;
+  el.classList.toggle('on', plLlaves30);
+  renderDeals();
+}
+
 function setSortCol(col) {
   if (plSortCol===col) plSortDir *= -1;
   else { plSortCol=col; plSortDir=1; }
   // Update arrow indicators
   document.querySelectorAll('.pl-th').forEach(th=>th.classList.remove('sorted'));
   document.querySelectorAll('.pl-th .sort-arrow').forEach(a=>a.textContent='↕');
-  const idx = {ref:1,nombre:2,fecha:3,sqm:4,precio:5,spread:6,yoc:7}[col];
+  const idx = {ref:1,nombre:2,ciudad:3,zona:4,fecha:6,sqm:7,llaves:8,precio:9,capex:10,coste_total:11,noi:12,yoc:13,spread:14}[col];
   if (idx!==undefined) {
-    const ths = document.querySelectorAll('.pl-th');
+    const ths = document.querySelectorAll('#view-deals .pl-th');
     if (ths[idx]) { ths[idx].classList.add('sorted'); ths[idx].querySelector('.sort-arrow').textContent = plSortDir>0?'↑':'↓'; }
   }
   renderDeals();
@@ -864,6 +891,12 @@ function zonaDe(d) {
   if (/(centro|casco antiguo|casco hist[oó]rico|gran v[ií]a|salamanca|chueca|lavapi[eé]s|castellana|azca|ciutat vella|eixample|plaza)/.test(t)) return 'Centro';
   return 'Otros';
 }
+function llavesDe(d) {
+  const raw=String(d.unidades??'').trim();
+  if (!raw || /^(n\/?a|nan|—|-)$/i.test(raw)) return 0;
+  const digits=raw.replace(/[^0-9]/g,'');
+  return digits ? Number(digits) : 0;
+}
 function moneyValue(value) {
   if (typeof value==='number' && isFinite(value)) return value;
   const s=String(value??'').replace(/\s/g,'');
@@ -878,17 +911,35 @@ function moneyValue(value) {
 }
 function labeledMoney(text,label) {
   const s=String(text||'');
-  const a=s.match(new RegExp(`${label}[\\s\\S]{0,35}?€\\s*([0-9][0-9.,]*)(?:\\s*(m|mn|millones|k|mil))?`,'i'));
-  const b=s.match(new RegExp(`€\\s*([0-9][0-9.,]*)(?:\\s*(m|mn|millones|k|mil))?[\\s\\S]{0,18}?${label}`,'i'));
-  const hit=a||b;
-  return hit ? moneyValue(`${hit[1]}${hit[2]||''}`) : null;
+  const after=s.match(new RegExp(`${label}[\\s\\S]{0,40}?(?:€\\s*([0-9][0-9.,]*)(?:\\s*(m|mn|millones|k|mil))?|([0-9][0-9.,]*)(?:\\s*(m|mn|millones|k|mil))?\\s*€)`,'i'));
+  const before=s.match(new RegExp(`€\\s*([0-9][0-9.,]*)(?:\\s*(m|mn|millones|k|mil))?[\\s\\S]{0,18}?${label}`,'i'));
+  const hit=after||before;
+  if (!hit) return null;
+  return moneyValue(`${hit[1]||hit[3]}${hit[2]||hit[4]||''}`);
+}
+function yocDe(d) {
+  const m=String(d.yoc??'').replace(',','.').match(/[-+]?\d+(?:\.\d+)?/);
+  if (!m) return null;
+  const n=Number(m[0]);
+  if (!isFinite(n) || n<=0) return null;
+  return n>1 ? n/100 : n;
 }
 function economicsDe(d) {
   const text=[d.notas,d.motivo,d.prox_paso].filter(Boolean).join(' · ');
-  const capex=moneyValue(d.capex) ?? labeledMoney(text,'cap\\.?ex');
-  const noi=moneyValue(d.noi) ?? labeledMoney(text,'\\bnoi\\b');
   const precio=moneyValue(d.precio);
-  return {capex, noi, coste_total:(precio!==null && capex!==null ? precio+capex : null)};
+  let capex=moneyValue(d.capex) ?? labeledMoney(text,'cap\\.?ex');
+  let coste_total=moneyValue(d.coste_total) ?? moneyValue(d.total_coste) ?? labeledMoney(text,'(?:coste\\s*(?:total|all[- ]?in)?|tpc)');
+  const yoc=yocDe(d);
+  if (coste_total===null && precio!==null && capex!==null) coste_total=precio+capex;
+  if (capex===null && coste_total!==null && precio!==null && coste_total>=precio) capex=coste_total-precio;
+  /* If YoC and price exist but the source has no Capex/TPC, expose a price-only
+     proxy rather than hiding an otherwise usable NOI. It is explicitly labelled. */
+  const costePrecioProxy=coste_total===null && precio!==null && yoc!==null;
+  if (costePrecioProxy) coste_total=precio;
+  let noi=moneyValue(d.noi) ?? labeledMoney(text,'\\bnoi\\b');
+  const noiEstimado=noi===null && coste_total!==null && yoc!==null;
+  if (noiEstimado) noi=coste_total*yoc;
+  return {capex, noi, coste_total, costePrecioProxy, noiEstimado};
 }
 function fmtMoney(value) {
   return value===null || value===undefined ? 'n/d' : '€'+(value/1e6).toLocaleString('es-ES',{maximumFractionDigits:2})+'M';
@@ -915,6 +966,10 @@ function renderDeals() {
     list = list.filter(d=>parseFecha(d.fecha) >= cutoff);
   }
 
+  // ── Location and size filters
+  if (plZona !== 'all') list = list.filter(d=>zonaDe(d)===plZona);
+  if (plLlaves30) list = list.filter(d=>llavesDe(d)>30);
+
   // ── Search
   const q = (document.getElementById('pl-search')?.value||'').toLowerCase().trim();
   if (q) list = list.filter(d=>[d.nombre,d.ubicacion,d.fuente,d.ref,d.tipo].join(' ').toLowerCase().includes(q));
@@ -934,7 +989,7 @@ function renderDeals() {
       else if (col==='spread')  { va=parseSpreadBps(a.spread)||0; vb=parseSpreadBps(b.spread)||0; }
       else if (col==='yoc')     { va=parseFloat(String(a.yoc).replace('%',''))||0; vb=parseFloat(String(b.yoc).replace('%',''))||0; }
       else if (col==='sqm')     { va=a.sqm||0;       vb=b.sqm||0; }
-      else if (col==='llaves')  { va=a.unidades||0;  vb=b.unidades||0; }
+      else if (col==='llaves')  { va=llavesDe(a);    vb=llavesDe(b); }
       else if (col==='ciudad')  { return plSortDir*ciudadDe(a).localeCompare(ciudadDe(b),'es'); }
       else if (col==='zona')    { return plSortDir*zonaDe(a).localeCompare(zonaDe(b),'es'); }
       else if (col==='nombre')  { return plSortDir*a.nombre.localeCompare(b.nombre,'es'); }
@@ -1016,8 +1071,8 @@ function dealTableRow(d) {
   const zona      = zonaDe(d);
   const eco       = economicsDe(d);
   const capexFmt  = fmtMoney(eco.capex);
-  const costeFmt  = fmtMoney(eco.coste_total);
-  const noiFmt    = fmtMoney(eco.noi);
+  const costeFmt  = fmtMoney(eco.coste_total)+(eco.costePrecioProxy?'*':'');
+  const noiFmt    = fmtMoney(eco.noi)+(eco.noiEstimado?'*':'');
   const llavesRaw = String(d.unidades??'').trim();
   const llavesFmt = llavesRaw && !/^(n\/?a|nan|—|-)$/i.test(llavesRaw) ? llavesRaw : 'n/d';
   const mapHref   = mapsUrl(d);
@@ -1414,6 +1469,11 @@ function resetPipelineFilters() {
   document.querySelectorAll('.pl-chip').forEach(c=>c.classList.add('on'));
   plDateDays = 0;
   document.querySelectorAll('.pl-date-chip').forEach(c=>c.classList.toggle('on', c.dataset.d==='all'));
+  plZona = 'all';
+  const zona = document.getElementById('pl-zone-filter');
+  if (zona) zona.value = 'all';
+  plLlaves30 = false;
+  document.getElementById('pl-keys-30')?.classList.remove('on');
   const search = document.getElementById('pl-search');
   if (search) search.value = '';
   const sort = document.getElementById('pl-sort');
