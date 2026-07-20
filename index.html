@@ -567,6 +567,7 @@ header h1{font-size:16px;font-weight:800;letter-spacing:-.3px;color:var(--navy)}
     <div class="header-actions">
       <span class="sync-state">CRM synced</span>
       <div class="upd">16/07/2026 · 19:17</div>
+      <span id="api-gear" onclick="configureApiAccess()" title="Configurar acceso remoto al CRM (URL del túnel + usuario/contraseña)" style="cursor:pointer;font-size:15px;margin-left:10px;opacity:.6" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=.6">⚙️</span>
     </div>
   </header>
 
@@ -879,8 +880,42 @@ let filterByBroker = -1; // broker index for cross-filter
 let highlightDeal  = null; // deal ref to highlight
 
 // ── API Config ───────────────────────────────────────────────────
-const IS_LOCAL   = window.location.hostname==='localhost'||window.location.hostname==='127.0.0.1';
-const API_BASE   = 'http://localhost:8765';
+// Editing works two ways: (1) opened locally on the Mac mini, hitting
+// crm_api.py directly on localhost — no setup needed; (2) opened remotely
+// (e.g. GitHub Pages from a work laptop), pointed at the Cloudflare Tunnel
+// URL for crm_api.py via the ⚙️ button, with Basic Auth credentials.
+const IS_LOCAL = window.location.hostname==='localhost'||window.location.hostname==='127.0.0.1';
+function getApiBase(){
+  return localStorage.getItem('magg_api_base') || (IS_LOCAL ? 'http://localhost:8765' : '');
+}
+function getApiAuthHeader(){
+  const u = localStorage.getItem('magg_api_user');
+  const p = localStorage.getItem('magg_api_pass');
+  if (!u || !p) return {};
+  return { 'Authorization': 'Basic ' + btoa(unescape(encodeURIComponent(u+':'+p))) };
+}
+const CAN_EDIT = IS_LOCAL || !!localStorage.getItem('magg_api_base');
+
+function configureApiAccess(){
+  const current = localStorage.getItem('magg_api_base') || '';
+  const url = prompt('URL de la API del CRM (túnel de Cloudflare)\nEj: https://xxxx.trycloudflare.com\nDéjalo en blanco para quitar la configuración remota.', current);
+  if (url === null) return;
+  if (!url.trim()) {
+    localStorage.removeItem('magg_api_base');
+    localStorage.removeItem('magg_api_user');
+    localStorage.removeItem('magg_api_pass');
+    alert('Configuración remota eliminada. Recarga la página.');
+    return;
+  }
+  const user = prompt('Usuario', localStorage.getItem('magg_api_user')||'');
+  if (user === null) return;
+  const pass = prompt('Contraseña', '');
+  if (pass === null) return;
+  localStorage.setItem('magg_api_base', url.trim().replace(/\/$/, ''));
+  localStorage.setItem('magg_api_user', user.trim());
+  localStorage.setItem('magg_api_pass', pass);
+  alert('✅ Acceso a la API configurado. Recarga la página para activar la edición.');
+}
 const ESTADO_MAP = [
   {label:'🔍 En Análisis', value:'En Análisis', scoring:'', verdict:'analisis'},
   {label:'⏸ On Hold',     value:'On Hold',     scoring:'', verdict:'pend'},
@@ -1252,7 +1287,7 @@ function displayMotivo(d) {
 function dealTableRow(d) {
   const sr        = safeR(d.ref);
   const isOpen    = open['d_'+d.ref];
-  const isEditing = IS_LOCAL && editingRef===d.ref;
+  const isEditing = CAN_EDIT && editingRef===d.ref;
   const vkey      = getVerdictKey(d);
   const motivoRaw = displayMotivo(d);
   const motivo    = motivoRaw ? motivoRaw.split(/\s+/).slice(0,10).join(' ')+(motivoRaw.split(/\s+/).length>10?'…':'') : '';
@@ -1286,7 +1321,7 @@ function dealTableRow(d) {
 
   const brokerBtn = d.broker_idx>=0
     ? `<button class="btn btn-gold" onclick="event.stopPropagation();goToBroker(${d.broker_idx})">👤 Broker →</button>` : '';
-  const editBtn = IS_LOCAL
+  const editBtn = CAN_EDIT
     ? `<button class="btn-edit" onclick="event.stopPropagation();toggleEdit('${d.ref}')">${isEditing?'✕':'✏️ Editar'}</button>` : '';
 
   const estadoOpts = ESTADO_MAP.map(o=>`<option value="${o.value}"${d.estado===o.value?' selected':''}>${o.label}</option>`).join('');
@@ -1456,15 +1491,18 @@ function saveDeal(ref) {
   renderDeals();
   renderControl();
 
-  fetch(`${API_BASE}/api/deals/${encodeURIComponent(ref)}`, {
+  const apiBase = getApiBase();
+  if (!apiBase) { showToast('⚠️ Configura el acceso a la API (⚙️) para guardar', 'error'); return; }
+
+  fetch(`${apiBase}/api/deals/${encodeURIComponent(ref)}`, {
     method: 'PATCH',
-    headers: {'Content-Type':'application/json'},
+    headers: {'Content-Type':'application/json', ...getApiAuthHeader()},
     body: JSON.stringify(body),
   })
-  .then(r => r.ok ? r.json() : Promise.reject(r.status))
+  .then(r => r.ok ? r.json() : Promise.reject(r.status===401?'credenciales inválidas (⚙️ para reconfigurar)':r.status))
   .then(data => {
     showToast(`✅ ${ref} guardado · actualizando web pública…`, 'success');
-    return fetch(`${API_BASE}/api/regenerate`, {method:'POST'});
+    return fetch(`${apiBase}/api/regenerate`, {method:'POST', headers: getApiAuthHeader()});
   })
   .then(r => r.ok ? r.json() : Promise.reject('regenerate failed'))
   .then(data => {
