@@ -881,16 +881,22 @@ let highlightDeal  = null; // deal ref to highlight
 // Editing is available when crm_api.py answers /api/health: either because
 // this page is open locally on the Mac mini, or because the viewer is on
 // the same Tailscale network (private mesh — only devices added to this
-// tailnet can route to that IP; not reachable from the public internet).
+// tailnet can reach this hostname; not resolvable from the public internet).
 // No credentials, no manual setup — checked automatically after login.
+//
+// The remote case goes through Tailscale Serve (HTTPS, real Let's Encrypt
+// cert, tailnet-only) rather than the bare Tailscale IP over plain HTTP —
+// the public dashboard is HTTPS (GitHub Pages), and browsers silently block
+// a plain-HTTP fetch from an HTTPS page ("mixed content"), which is why the
+// edit button didn't appear at first. Set up via `tailscale serve --bg 8765`.
 const IS_LOCAL = window.location.hostname==='localhost'||window.location.hostname==='127.0.0.1';
-const TAILSCALE_IP = '100.107.18.53'; // Mac mini (mac-mini-de-e) on the tailnet
+const TAILNET_HOST = 'mac-mini-de-e.tail668fc9.ts.net'; // crm_api.py via `tailscale serve`
 function getApiBase(){
-  return IS_LOCAL ? 'http://localhost:8765' : `http://${TAILSCALE_IP}:8765`;
+  return IS_LOCAL ? 'http://localhost:8765' : `https://${TAILNET_HOST}`;
 }
 let CAN_EDIT = false;
 function checkApiReachable(){
-  return fetch(`${getApiBase()}/api/health`, {signal: AbortSignal.timeout(1500)})
+  return fetch(`${getApiBase()}/api/health`, {signal: AbortSignal.timeout(3000)})
     .then(r => { CAN_EDIT = r.ok; })
     .catch(() => { CAN_EDIT = false; })
     .finally(() => { renderDeals(); });
