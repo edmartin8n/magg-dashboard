@@ -536,6 +536,64 @@ header h1{font-size:16px;font-weight:800;letter-spacing:-.3px;color:var(--navy)}
 .cp-input{flex:1;border:1px solid #dde4f0;border-radius:6px;padding:8px 10px;font-size:12.5px;resize:none;font-family:inherit;outline:none;transition:.12s;max-height:80px}
 .cp-input:focus{border-color:var(--navy)}
 .cp-send{background:var(--navy);color:#fff;border:none;border-radius:6px;padding:0 14px;font-size:16px;font-weight:700;cursor:pointer;height:36px;transition:.12s}.cp-send:disabled{background:#aab2c8}
+
+/* ===== SLIDE VIEWER (puntos clave por deal) ===== */
+.sv-overlay{position:fixed;inset:0;background:rgba(9,17,34,.62);backdrop-filter:blur(3px);display:none;align-items:center;justify-content:center;z-index:9998;padding:20px}
+.sv-overlay.open{display:flex}
+.sv-modal{background:var(--white);border-radius:16px;width:min(760px,96vw);max-height:92vh;display:flex;flex-direction:column;box-shadow:0 30px 90px rgba(0,0,0,.45);overflow:hidden;animation:svIn .22s ease}
+@keyframes svIn{from{opacity:0;transform:translateY(14px) scale(.98)}to{opacity:1;transform:none}}
+.sv-head{display:flex;align-items:flex-start;gap:12px;padding:16px 20px;border-bottom:1px solid var(--border);background:linear-gradient(135deg,var(--navy),var(--navy2))}
+.sv-head-main{flex:1;min-width:0}
+.sv-head-name{color:#fff;font-size:15px;font-weight:800;line-height:1.25;margin-bottom:3px}
+.sv-head-sub{color:#b9c6de;font-size:11px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.sv-vpill{font-size:10px;font-weight:800;padding:2px 8px;border-radius:20px;letter-spacing:.3px}
+.sv-vpill.go{background:#e8f5e9;color:var(--green)}.sv-vpill.pend{background:#fff8e1;color:var(--orange)}.sv-vpill.nogo{background:#fce4ec;color:var(--red)}.sv-vpill.analisis{background:#e8f0fe;color:var(--blue)}
+.sv-close{background:rgba(255,255,255,.15);color:#fff;border:none;width:30px;height:30px;border-radius:8px;font-size:16px;cursor:pointer;flex-shrink:0;transition:.15s;line-height:1}
+.sv-close:hover{background:rgba(255,255,255,.28)}
+.sv-tabs{display:flex;gap:0;border-bottom:1px solid var(--border);background:#f8fafc;flex-shrink:0}
+.sv-tab{flex:1;padding:11px 8px;font-size:11.5px;font-weight:700;color:var(--muted);background:none;border:none;border-bottom:3px solid transparent;cursor:pointer;transition:.15s;display:flex;align-items:center;justify-content:center;gap:5px}
+.sv-tab:hover{color:var(--navy2);background:#eef3fb}
+.sv-tab.active{color:var(--navy);border-bottom-color:var(--gold);background:var(--white)}
+.sv-tab-ico{font-size:14px}
+.sv-body{padding:20px 22px;overflow-y:auto;flex:1}
+.sv-slide{display:none;animation:svFade .2s ease}
+.sv-slide.active{display:block}
+@keyframes svFade{from{opacity:0}to{opacity:1}}
+.sv-sem{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;padding:4px 10px;border-radius:20px;margin-bottom:12px}
+.sv-sem.verde{background:#e8f5e9;color:var(--green)}.sv-sem.ambar{background:#fff8e1;color:var(--orange)}.sv-sem.rojo{background:#fce4ec;color:var(--red)}.sv-sem.nd{background:#eef1f6;color:var(--muted)}
+.sv-block{margin-bottom:15px}
+.sv-block:last-child{margin-bottom:0}
+.sv-label{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.7px;color:var(--navy3);margin-bottom:4px}
+.sv-text{font-size:13px;line-height:1.5;color:var(--text)}
+.sv-list{margin:2px 0 0;padding-left:18px}
+.sv-list li{font-size:12.5px;line-height:1.45;color:var(--text);margin:3px 0}
+.sv-list.yes li::marker{color:var(--green)}.sv-list.no li::marker{color:var(--red)}
+.sv-metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-bottom:14px}
+.sv-metric{background:#f8fafc;border:1px solid var(--border);border-radius:10px;padding:10px 12px}
+.sv-metric.hero{border-top:3px solid var(--gold)}
+.sv-metric-l{font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;color:var(--muted);margin-bottom:3px}
+.sv-metric-v{font-size:16px;font-weight:800;color:var(--navy);font-variant-numeric:tabular-nums}
+.sv-metric-v.pos{color:var(--green)}.sv-metric-v.neg{color:var(--red)}
+.sv-cf{width:100%;border-collapse:collapse;font-size:11px;margin-top:6px}
+.sv-cf th{background:#f0f4fa;padding:5px 7px;text-align:left;color:var(--navy2);font-weight:700;border-bottom:1px solid var(--border)}
+.sv-cf td{padding:5px 7px;border-bottom:1px solid #eef2f7;font-variant-numeric:tabular-nums}
+.sv-cf td.num{text-align:right}
+.sv-cf td.neg{color:var(--red)}.sv-cf td.pos{color:var(--green)}
+.sv-note{font-size:11px;color:#6b5a22;background:#fff8e9;border-left:3px solid var(--gold);padding:8px 11px;border-radius:0 6px 6px 0;margin-top:10px;line-height:1.45}
+.sv-empty{font-size:12.5px;color:var(--muted);font-style:italic;padding:8px 0}
+.sv-foot{display:flex;align-items:center;justify-content:space-between;padding:12px 20px;border-top:1px solid var(--border);background:#f8fafc;flex-shrink:0}
+.sv-dots{display:flex;gap:7px}
+.sv-dot{width:8px;height:8px;border-radius:50%;background:#cfd8e6;cursor:pointer;transition:.15s;border:none;padding:0}
+.sv-dot.active{background:var(--gold);transform:scale(1.25)}
+.sv-nav{display:flex;gap:8px}
+.sv-nav-btn{background:var(--white);border:1px solid var(--border);color:var(--navy);border-radius:8px;padding:7px 14px;font-size:12px;font-weight:700;cursor:pointer;transition:.15s}
+.sv-nav-btn:hover:not(:disabled){background:var(--navy);color:#fff;border-color:var(--navy)}
+.sv-nav-btn:disabled{opacity:.4;cursor:default}
+.sv-open-brief{font-size:11px;color:var(--navy2);text-decoration:none;font-weight:700}
+.sv-open-brief:hover{text-decoration:underline}
+.btn-slides{background:#fff;border:1px solid var(--gold);color:#7a5a00;padding:0 14px;border-radius:var(--radius-sm);font-size:12px;font-weight:700;cursor:pointer;height:34px;display:inline-flex;align-items:center;gap:5px;transition:.15s}
+.btn-slides:hover{background:var(--gold);color:#fff}
+@media(max-width:560px){.sv-metrics{grid-template-columns:repeat(2,1fr)}.sv-tab{font-size:10.5px;padding:10px 4px}.sv-tab-ico{display:none}}
 </style>
 <link rel="stylesheet" href="styles/magg-professional.css?v=20260718">
 </head>
@@ -1383,6 +1441,7 @@ function dealTableRow(d) {
       ${detailItems.map(r=>`<div class="pl-dg"><div class="pl-dg-l">${r[0]}</div><div class="pl-dg-v">${r[1]}</div></div>`).join('')}
     </div>
     <div class="deal-actions" style="margin-top:6px">
+      <button class="btn-slides" onclick="event.stopPropagation();openSlides('${d.ref}')" title="Ver puntos clave por slides — ${d.nombre}">🎞️ Puntos clave</button>
       ${getIcLink(d)?`<a href="${getIcLink(d)}" target="_blank" class="btn btn-nav">📄 Brief</a>`:''}
       ${d.gamma_link?`<a href="${d.gamma_link}" target="_blank" class="btn btn-nav">📊 Presentación</a>`:''}
       ${brokerBtn}${editBtn}
@@ -2634,6 +2693,236 @@ async function sendChat(){
     </div>
   </div>
 </div>
+
+<!-- ===== SLIDE VIEWER (puntos clave por deal) ===== -->
+<div class="sv-overlay" id="sv-overlay" onclick="if(event.target===this)closeSlides()">
+  <div class="sv-modal" role="dialog" aria-modal="true" aria-label="Puntos clave del deal">
+    <div class="sv-head">
+      <div class="sv-head-main">
+        <div class="sv-head-name" id="sv-name">—</div>
+        <div class="sv-head-sub" id="sv-sub"></div>
+      </div>
+      <button class="sv-close" onclick="closeSlides()" aria-label="Cerrar">✕</button>
+    </div>
+    <div class="sv-tabs" id="sv-tabs">
+      <button class="sv-tab active" data-i="0" onclick="slideGo(0)"><span class="sv-tab-ico">📍</span>Zona</button>
+      <button class="sv-tab" data-i="1" onclick="slideGo(1)"><span class="sv-tab-ico">🏗️</span>Proyecto</button>
+      <button class="sv-tab" data-i="2" onclick="slideGo(2)"><span class="sv-tab-ico">📈</span>Business Plan</button>
+    </div>
+    <div class="sv-body">
+      <div class="sv-slide active" id="sv-slide-0"></div>
+      <div class="sv-slide" id="sv-slide-1"></div>
+      <div class="sv-slide" id="sv-slide-2"></div>
+    </div>
+    <div class="sv-foot">
+      <div class="sv-dots">
+        <button class="sv-dot active" data-i="0" onclick="slideGo(0)" aria-label="Slide 1"></button>
+        <button class="sv-dot" data-i="1" onclick="slideGo(1)" aria-label="Slide 2"></button>
+        <button class="sv-dot" data-i="2" onclick="slideGo(2)" aria-label="Slide 3"></button>
+      </div>
+      <div class="sv-nav">
+        <button class="sv-nav-btn" id="sv-prev" onclick="slideStep(-1)">← Anterior</button>
+        <button class="sv-nav-btn" id="sv-next" onclick="slideStep(1)">Siguiente →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ===== Slide viewer: puntos clave por deal =====
+   Fuente de datos: briefs/data/<slug>.json (emitido por el orquestador,
+   misma fuente que el IC Brief). Si el deal no tiene card (deals antiguos
+   del Excel), se construye una card de respaldo con los campos del CRM. */
+const SV = { idx:0, ref:null, cardCache:{} };
+
+function svFmtMoney(v){ return (v===null||v===undefined||isNaN(v)) ? 'n/d' : '€'+(v/1e6).toLocaleString('es-ES',{maximumFractionDigits:2})+'M'; }
+function svFmtEur(v){ return (v===null||v===undefined||isNaN(v)) ? 'n/d' : Math.round(v).toLocaleString('es-ES')+' €'; }
+function svFmtPct(v){ if(v===null||v===undefined||v==='') return 'n/d'; const n=parseFloat(String(v).replace('%','').replace(',','.')); if(isNaN(n)) return String(v); return (n<1?(n*100):n).toLocaleString('es-ES',{minimumFractionDigits:1,maximumFractionDigits:1})+'%'; }
+function svEsc(s){ return String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+function svSemPill(sem){
+  if(!sem||!sem.estado) return '';
+  const lbl={verde:'🟢 Favorable',ambar:'🟡 Con reservas',rojo:'🔴 Bloqueante'}[sem.estado]||sem.estado;
+  return `<div class="sv-sem ${svEsc(sem.estado)}">${lbl}</div>`;
+}
+function svListBlock(label,items,cls){
+  if(!items||!items.length) return '';
+  return `<div class="sv-block"><div class="sv-label">${svEsc(label)}</div><ul class="sv-list ${cls||''}">${items.map(x=>`<li>${svEsc(x)}</li>`).join('')}</ul></div>`;
+}
+
+// URL de la card a partir del ic_link (solo para briefs propios del dashboard)
+function svCardUrl(d){
+  const link=getIcLink(d);
+  const m=link&&link.match(/\/briefs\/([^\/]+)\.html?$/i);
+  return m ? ('briefs/data/'+m[1]+'.json') : null;
+}
+
+// Card de respaldo a partir de los campos del Excel/CRM
+function svFallbackCard(d){
+  const eco=economicsDe(d);
+  const vkey=getVerdictKey(d);
+  return {
+    ref:d.ref, nombre:d.nombre, veredicto:(vkey==='nogo'?'NO GO':vkey==='pend'?'PEND INFO':vkey==='analisis'?'EN ANÁLISIS':'—'),
+    veredicto_detalle:displayMotivo(d), fecha:d.fecha, _fallback:true,
+    slides:{
+      zona:{ macro:null, micro:null, score:null, overview:null,
+             ubicacion_texto:d.ubicacion, ciudad:ciudadDe(d), zona:zonaDe(d),
+             maps:mapsUrl(d), semaforo:null },
+      proyecto:{ producto:d.tipo, superficie_m2:d.sqm, unidades:d.unidades,
+                 estado_obras:d.estado_obras, notas:d.notas, hechos:[], por_que_si:[], por_que_no:[], semaforo:null },
+      bp_retornos:{ precio:d.precio, capex:eco.capex, coste_total_proyecto:eco.coste_total,
+                    noi:eco.noi, noi_estimado:eco.noiEstimado, coste_proxy:eco.costePrecioProxy,
+                    yoc:yocDe(d), exit_yield:d.yield_exit, spread_bps:parseSpreadBps(d.spread),
+                    adr_display:null, gop_margin:null, exit_value:null,
+                    irr_unlevered:null, irr_levered:null, moic:null, cash_flows:[],
+                    motivo:displayMotivo(d), semaforo:null, gaps:[] }
+    }
+  };
+}
+
+async function svGetCard(d){
+  const url=svCardUrl(d);
+  if(!url) return svFallbackCard(d);
+  if(SV.cardCache[url]) return SV.cardCache[url];
+  try{
+    const r=await fetch(url,{cache:'no-cache'});
+    if(!r.ok) throw new Error('no card');
+    const card=await r.json();
+    SV.cardCache[url]=card;
+    return card;
+  }catch(e){
+    return svFallbackCard(d);
+  }
+}
+
+function svRenderZona(z){
+  let h=svSemPill(z.semaforo);
+  if(z.macro||z.micro){
+    if(z.macro) h+=`<div class="sv-block"><div class="sv-label">Macro</div><div class="sv-text">${svEsc(z.macro)}</div></div>`;
+    if(z.micro) h+=`<div class="sv-block"><div class="sv-label">Micro</div><div class="sv-text">${svEsc(z.micro)}</div></div>`;
+    if(z.score!=null) h+=`<div class="sv-block"><div class="sv-label">Puntuación de ubicación</div><div class="sv-text">${svEsc(z.score)}/5</div></div>`;
+    if(z.overview) h+=`<div class="sv-block"><div class="sv-label">Overview de zona</div><div class="sv-text">${svEsc(z.overview)}</div></div>`;
+  }else{
+    // fallback
+    h+=`<div class="sv-block"><div class="sv-label">Ubicación</div><div class="sv-text">${svEsc(z.ubicacion_texto)||'n/d'}</div></div>`;
+    if(z.ciudad||z.zona) h+=`<div class="sv-block"><div class="sv-label">Ciudad · Zona</div><div class="sv-text">${svEsc(z.ciudad)||'n/d'} · ${svEsc(z.zona)||'n/d'}</div></div>`;
+    h+=`<div class="sv-note">Sin análisis macro/micro estructurado para este deal todavía — se muestra la ubicación registrada en el CRM. Al procesar el deal con el motor de underwriting, aquí aparecerá el desglose completo.</div>`;
+  }
+  if(z.maps) h+=`<div class="sv-block"><a class="sv-open-brief" href="${z.maps}" target="_blank">📍 Abrir en Google Maps →</a></div>`;
+  return h;
+}
+
+function svRenderProyecto(p){
+  let h=svSemPill(p.semaforo);
+  const rows=[];
+  if(p.producto) rows.push(['Producto',svEsc(p.producto)]);
+  if(p.unidades!=null&&p.unidades!=='') rows.push(['Llaves / unidades',svEsc(p.unidades)]);
+  if(p.superficie_m2!=null&&p.superficie_m2!=='') rows.push(['Superficie',Number(p.superficie_m2).toLocaleString('es-ES')+' m²']);
+  if(p.estado_obras) rows.push(['Estado obras',svEsc(p.estado_obras)]);
+  if(rows.length){
+    h+=`<div class="sv-metrics" style="grid-template-columns:repeat(2,1fr)">${rows.map(r=>`<div class="sv-metric"><div class="sv-metric-l">${r[0]}</div><div class="sv-metric-v" style="font-size:13px">${r[1]}</div></div>`).join('')}</div>`;
+  }
+  h+=svListBlock('Hechos de fuente',p.hechos);
+  h+=svListBlock('Por qué sí interesa',p.por_que_si,'yes');
+  h+=svListBlock('Por qué no es GO hoy',p.por_que_no,'no');
+  if(p.cronograma) h+=`<div class="sv-block"><div class="sv-label">Cronograma</div><div class="sv-text">${svEsc(p.cronograma)}</div></div>`;
+  if(p.notas&&!p.hechos.length) h+=`<div class="sv-block"><div class="sv-label">Notas</div><div class="sv-text">${svEsc(p.notas)}</div></div>`;
+  if(!rows.length&&!p.hechos.length&&!p.notas) h+=`<div class="sv-empty">Sin datos de proyecto registrados.</div>`;
+  return h;
+}
+
+function svRenderBP(b){
+  let h=svSemPill(b.semaforo);
+  const spread=b.spread_bps;
+  const metrics=[
+    ['Precio entrada',svFmtMoney(b.precio),''],
+    ['CapEx',svFmtMoney(b.capex_total??b.capex),''],
+    ['Coste total',svFmtMoney(b.coste_total_proyecto),''],
+    ['NOI estabilizado',svFmtEur(b.noi),'hero'],
+    ['YoC',svFmtPct(b.yoc),'hero'],
+    ['Exit yield',svFmtPct(b.exit_yield),''],
+  ];
+  h+=`<div class="sv-metrics">${metrics.map(m=>`<div class="sv-metric ${m[2]}"><div class="sv-metric-l">${m[0]}</div><div class="sv-metric-v">${m[1]}</div></div>`).join('')}</div>`;
+  // Retornos
+  const ret=[];
+  if(b.irr_unlevered!=null) ret.push(['IRR sin apalancar',svFmtPct(b.irr_unlevered),'']);
+  if(b.irr_levered!=null) ret.push(['IRR apalancada',svFmtPct(b.irr_levered),'hero']);
+  if(b.moic!=null) ret.push(['MOIC',Number(b.moic).toLocaleString('es-ES',{minimumFractionDigits:2,maximumFractionDigits:2})+'x','']);
+  if(b.exit_value!=null) ret.push(['Valor de salida',svFmtMoney(b.exit_value),'']);
+  if(spread!=null&&!isNaN(spread)) ret.push(['Spread vs deuda',spread+' bps',spread>0?'pos':spread<0?'neg':'']);
+  if(b.adr_display) h+=`<div class="sv-block"><div class="sv-label">ADR / renta · operativa</div><div class="sv-text">${svEsc(b.adr_display)}${b.gop_margin!=null?` · GOP margin ${svFmtPct(b.gop_margin)}`:''}</div></div>`;
+  if(ret.length){
+    h+=`<div class="sv-block"><div class="sv-label">Retornos</div><div class="sv-metrics">${ret.map(m=>`<div class="sv-metric ${m[2]==='hero'?'hero':''}"><div class="sv-metric-l">${m[0]}</div><div class="sv-metric-v ${m[2]==='pos'?'pos':m[2]==='neg'?'neg':''}">${m[1]}</div></div>`).join('')}</div></div>`;
+  }
+  // Cash flows
+  if(b.cash_flows&&b.cash_flows.length){
+    h+=`<div class="sv-block"><div class="sv-label">Cash flows</div><table class="sv-cf"><thead><tr><th>Año</th><th>Fase</th><th class="num">NOI</th><th class="num">CF sin apal.</th><th class="num">CF apalancado</th></tr></thead><tbody>`+
+      b.cash_flows.map(y=>`<tr><td>${svEsc(y.year)}</td><td>${svEsc(y.fase)}</td><td class="num">${y.noi?svFmtEur(y.noi):'—'}</td><td class="num ${y.cf_sin_apalancar<0?'neg':'pos'}">${svFmtEur(y.cf_sin_apalancar)}</td><td class="num ${y.cf_apalancado<0?'neg':'pos'}">${svFmtEur(y.cf_apalancado)}</td></tr>`).join('')+
+      `</tbody></table></div>`;
+  }
+  if(b.gaps&&b.gaps.length){
+    h+=`<div class="sv-note"><b>Supuestos / gaps de información:</b><ul class="sv-list" style="margin-top:4px">${b.gaps.map(g=>`<li>${svEsc(g)}</li>`).join('')}</ul></div>`;
+  }
+  if(b._fallbackNote||b.noi_estimado||b.coste_proxy){
+    const notes=[];
+    if(b.noi_estimado) notes.push('NOI estimado = YoC × coste total');
+    if(b.coste_proxy) notes.push('coste total usa el precio como proxy (sin CapEx en la fuente)');
+    if(notes.length) h+=`<div class="sv-note">* ${notes.join(' · ')}. Al procesar el deal con el motor de underwriting, estos números salen del modelo completo.</div>`;
+  }
+  if(b.motivo&&b.irr_levered==null&&b.noi==null) h+=`<div class="sv-block"><div class="sv-label">Lectura</div><div class="sv-text">${svEsc(b.motivo)}</div></div>`;
+  return h;
+}
+
+async function openSlides(ref){
+  const d=DEALS.find(x=>x.ref===ref);
+  if(!d) return;
+  SV.ref=ref; SV.idx=0;
+  const vkey=getVerdictKey(d);
+  document.getElementById('sv-name').textContent=d.nombre;
+  const ov=document.getElementById('sv-overlay');
+  // Loading state
+  document.getElementById('sv-slide-0').innerHTML='<div class="sv-empty">Cargando…</div>';
+  document.getElementById('sv-slide-1').innerHTML='';
+  document.getElementById('sv-slide-2').innerHTML='';
+  slideGo(0);
+  ov.classList.add('open');
+  document.addEventListener('keydown',svKey);
+
+  const card=await svGetCard(d);
+  if(SV.ref!==ref) return; // otro deal se abrió mientras cargaba
+  const vlabel=svEsc(card.veredicto||'');
+  document.getElementById('sv-sub').innerHTML=
+    `<span class="sv-vpill ${vkey}">${vlabel}</span>`+
+    (card.fecha?`<span>${svEsc(card.fecha)}</span>`:'')+
+    (getIcLink(d)?`<a class="sv-open-brief" href="${getIcLink(d)}" target="_blank">📄 Ver IC Brief completo →</a>`:'')+
+    (card._fallback?`<span style="color:#c8a84b">· datos base del CRM</span>`:'');
+  document.getElementById('sv-slide-0').innerHTML=svRenderZona(card.slides.zona||{});
+  document.getElementById('sv-slide-1').innerHTML=svRenderProyecto(card.slides.proyecto||{});
+  document.getElementById('sv-slide-2').innerHTML=svRenderBP(card.slides.bp_retornos||{});
+}
+
+function closeSlides(){
+  document.getElementById('sv-overlay').classList.remove('open');
+  document.removeEventListener('keydown',svKey);
+  SV.ref=null;
+}
+function slideGo(i){
+  SV.idx=Math.max(0,Math.min(2,i));
+  for(let k=0;k<3;k++){
+    document.getElementById('sv-slide-'+k).classList.toggle('active',k===SV.idx);
+    document.querySelectorAll(`.sv-tab[data-i="${k}"]`).forEach(t=>t.classList.toggle('active',k===SV.idx));
+    document.querySelectorAll(`.sv-dot[data-i="${k}"]`).forEach(t=>t.classList.toggle('active',k===SV.idx));
+  }
+  document.getElementById('sv-prev').disabled=SV.idx===0;
+  document.getElementById('sv-next').disabled=SV.idx===2;
+  const body=document.querySelector('.sv-body'); if(body) body.scrollTop=0;
+}
+function slideStep(dir){ slideGo(SV.idx+dir); }
+function svKey(e){
+  if(e.key==='Escape') closeSlides();
+  else if(e.key==='ArrowRight') slideStep(1);
+  else if(e.key==='ArrowLeft') slideStep(-1);
+}
+</script>
 
 </body>
 </html>

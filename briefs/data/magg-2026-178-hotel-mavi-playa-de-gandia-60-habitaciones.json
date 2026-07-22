@@ -1,0 +1,126 @@
+{
+  "ref": "MAGG-2026-178",
+  "nombre": "Hotel Mavi — Playa de Gandía, 60 habitaciones",
+  "veredicto": "BORDERLINE",
+  "veredicto_detalle": "PEND INFO ⚠️ — base case indicativo (con supuestos, no confirmado) apunta a retorno atractivo a precio asking (IRR apalancada ≈28%, MOIC ≈2,3x); pendiente P&L/NOI real, licencia, CapEx y título antes de comprometer capital de análisis.",
+  "fecha": "21/07/2026",
+  "slug": "magg-2026-178-hotel-mavi-playa-de-gandia-60-habitaciones",
+  "slides": {
+    "zona": {
+      "macro": "Gandía, Comunidad Valenciana — destino vacacional consolidado de playa.",
+      "micro": "150 m de la Playa de Gandía; entorno turístico-residencial.",
+      "score": 3,
+      "overview": null,
+      "ubicacion_texto": "Playa de Gandía, Valencia — 150 m de la playa",
+      "semaforo": {
+        "estado": "verde",
+        "resumen": "Ubicación de playa consolidada, a 150m de la costa."
+      }
+    },
+    "proyecto": {
+      "producto": "Hotel vacacional",
+      "superficie_m2": 1900,
+      "unidades": 60,
+      "hechos": [
+        "Hotel operativo a 150 m de la Playa de Gandía; parcela 1.092 m² / construidos 1.900 m² (PB+5).",
+        "60 habitaciones: 53 dobles, 5 individuales, 2 familiares.",
+        "Libre de gestión (sin operador vinculante).",
+        "Asking €2,7M (€45k/llave).",
+        "Fuente mantiene confidencialidad; sin información adicional previa a reunión."
+      ],
+      "por_que_si": [
+        "Base case (supuestos, no confirmado) da IRR apalancada ≈28% y MOIC ≈2,3x a precio asking.",
+        "Ubicación de playa consolidada a 150 m de costa, destino vacacional maduro.",
+        "Libre de gestión: sin operador vinculante que complique el reposicionamiento."
+      ],
+      "por_que_no": [
+        "Sin P&L ni KPIs operativos verificables — el NOI de arriba es un supuesto, no un dato real.",
+        "Sin CapEx de reforma real ni estado de licencia/título confirmado.",
+        "Broker confidencial: no aporta más información sin reunión previa."
+      ],
+      "cronograma": null,
+      "semaforo": {
+        "estado": "ambar",
+        "resumen": "Operativo y libre de gestión, pero sin licencia/título confirmado."
+      }
+    },
+    "bp_retornos": {
+      "precio": 2700000,
+      "costes_transaccion": 81000.0,
+      "capex_total": 1527000.0,
+      "coste_total_proyecto": 4308000.0,
+      "bid_recomendado": null,
+      "bid_verificado": false,
+      "adr_display": "80€/noche · 55% ocupación (asunción — comps públicos Gandía, no confirmado por bróker)",
+      "gop_margin": 0.5,
+      "noi": 414348.0,
+      "yoc": 0.09618105849582173,
+      "exit_value": 6905800.0,
+      "exit_yield": 0.06,
+      "irr_unlevered": 0.17203994318398544,
+      "irr_levered": 0.27712367883792405,
+      "moic": 2.299981976768611,
+      "spread_bps": 1220,
+      "cash_flows": [
+        {
+          "year": 0,
+          "fase": "Entrada",
+          "coste_proyecto": 2781000.0,
+          "noi": 0.0,
+          "venta": 0.0,
+          "cf_sin_apalancar": -2781000.0,
+          "cf_apalancado": -1251449.9999999998
+        },
+        {
+          "year": 1,
+          "fase": "Construcción",
+          "coste_proyecto": 763500.0,
+          "noi": 0.0,
+          "venta": 0.0,
+          "cf_sin_apalancar": -763500.0,
+          "cf_apalancado": -420052.49999999994
+        },
+        {
+          "year": 2,
+          "fase": "Construcción",
+          "coste_proyecto": 763500.0,
+          "noi": 0.0,
+          "venta": 0.0,
+          "cf_sin_apalancar": -763500.0,
+          "cf_apalancado": -441048.74999999994
+        },
+        {
+          "year": 3,
+          "fase": "Operación",
+          "coste_proyecto": 0.0,
+          "noi": 352195.8,
+          "venta": 0.0,
+          "cf_sin_apalancar": 352195.8,
+          "cf_apalancado": 233725.79999999996
+        },
+        {
+          "year": 4,
+          "fase": "Venta",
+          "coste_proyecto": 0.0,
+          "noi": 414348.0,
+          "venta": 6698626.0,
+          "cf_sin_apalancar": 7112974.0,
+          "cf_apalancado": 4625104.0
+        }
+      ],
+      "semaforo": {
+        "estado": "ambar",
+        "resumen": "Base case indicativo con supuestos (ADR 80€, ocupación 55%, GOP 50%, exit yield 6%, CapEx reforma 15k€/llave) — IRR apalancada ≈28%, MOIC ≈2,3x a precio asking. Sin P&L real confirmado todavía."
+      },
+      "gaps": [
+        "ADR asumido 80€/noche — comps públicos de hoteles de playa en Gandía, NO confirmado por el bróker.",
+        "Ocupación anual asumida 55% (blended, estacionalidad vacacional) — NO confirmado.",
+        "GOP margin asumido 50% — supuesto de partida, no hay P&L real.",
+        "Exit yield asumido 6% — supuesto de partida.",
+        "CapEx de reforma asumido 15.000€/habitación (900.000€ total) — sin presupuesto de obra real.",
+        "P&L / NOI histórico o proyectado real del activo.",
+        "Estado de licencia y título de propiedad."
+      ]
+    }
+  }
+}
