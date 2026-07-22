@@ -591,6 +591,30 @@ header h1{font-size:16px;font-weight:800;letter-spacing:-.3px;color:var(--navy)}
 .sv-nav-btn:disabled{opacity:.4;cursor:default}
 .sv-open-brief{font-size:11px;color:var(--navy2);text-decoration:none;font-weight:700}
 .sv-open-brief:hover{text-decoration:underline}
+.sv-map{width:100%;height:230px;border:1px solid var(--border);border-radius:10px;margin-bottom:14px;background:#eef1f6}
+.sv-map iframe{width:100%;height:100%;border:0;border-radius:10px;display:block}
+.sv-poi{display:flex;align-items:center;gap:9px;padding:7px 0;border-bottom:1px solid #eef2f7}
+.sv-poi:last-child{border-bottom:none}
+.sv-poi-ico{font-size:15px;width:22px;text-align:center;flex-shrink:0}
+.sv-poi-name{flex:1;font-size:12.5px;color:var(--text);min-width:0}
+.sv-poi-dist{font-size:12px;font-weight:700;color:var(--navy2);font-variant-numeric:tabular-nums;white-space:nowrap}
+.sv-drivers{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:4px}
+.sv-driver{background:#f8fafc;border:1px solid var(--border);border-radius:9px;padding:9px 11px}
+.sv-driver-l{font-size:9.5px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:var(--navy3);margin-bottom:3px;display:flex;align-items:center;gap:5px}
+.sv-driver-t{font-size:12px;line-height:1.45;color:var(--text)}
+@media(max-width:560px){.sv-drivers{grid-template-columns:1fr}}
+.sv-bridge{border:1px solid var(--border);border-radius:11px;overflow:hidden;margin-bottom:14px}
+.sv-bridge-row{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;font-size:13px;border-bottom:1px solid #eef2f7}
+.sv-bridge-row:last-child{border-bottom:none}
+.sv-bridge-row.rev{background:#f3f7fc}
+.sv-bridge-row.sub{background:#fff;color:var(--muted);font-size:12px;padding-left:26px}
+.sv-bridge-row.sub .sv-bridge-v{color:var(--red)}
+.sv-bridge-row.noi{background:linear-gradient(135deg,#eaf4ec,#f4faf5);font-weight:800}
+.sv-bridge-l{color:var(--text);font-weight:600;display:flex;align-items:center;gap:7px}
+.sv-bridge-row.noi .sv-bridge-l{color:var(--green)}
+.sv-bridge-v{font-weight:800;font-variant-numeric:tabular-nums;color:var(--navy)}
+.sv-bridge-row.noi .sv-bridge-v{color:var(--green)}
+.sv-bridge-pct{font-size:10.5px;color:var(--muted);font-weight:600;margin-left:6px}
 .btn-slides{background:#fff;border:1px solid var(--gold);color:#7a5a00;padding:0 14px;border-radius:var(--radius-sm);font-size:12px;font-weight:700;cursor:pointer;height:34px;display:inline-flex;align-items:center;gap:5px;transition:.15s}
 .btn-slides:hover{background:var(--gold);color:#fff}
 @media(max-width:560px){.sv-metrics{grid-template-columns:repeat(2,1fr)}.sv-tab{font-size:10.5px;padding:10px 4px}.sv-tab-ico{display:none}}
@@ -2707,18 +2731,21 @@ async function sendChat(){
     <div class="sv-tabs" id="sv-tabs">
       <button class="sv-tab active" data-i="0" onclick="slideGo(0)"><span class="sv-tab-ico">📍</span>Zona</button>
       <button class="sv-tab" data-i="1" onclick="slideGo(1)"><span class="sv-tab-ico">🏗️</span>Proyecto</button>
-      <button class="sv-tab" data-i="2" onclick="slideGo(2)"><span class="sv-tab-ico">📈</span>Business Plan</button>
+      <button class="sv-tab" data-i="2" onclick="slideGo(2)"><span class="sv-tab-ico">💶</span>P&amp;L operativa</button>
+      <button class="sv-tab" data-i="3" onclick="slideGo(3)"><span class="sv-tab-ico">📈</span>Business Plan</button>
     </div>
     <div class="sv-body">
       <div class="sv-slide active" id="sv-slide-0"></div>
       <div class="sv-slide" id="sv-slide-1"></div>
       <div class="sv-slide" id="sv-slide-2"></div>
+      <div class="sv-slide" id="sv-slide-3"></div>
     </div>
     <div class="sv-foot">
       <div class="sv-dots">
         <button class="sv-dot active" data-i="0" onclick="slideGo(0)" aria-label="Slide 1"></button>
         <button class="sv-dot" data-i="1" onclick="slideGo(1)" aria-label="Slide 2"></button>
         <button class="sv-dot" data-i="2" onclick="slideGo(2)" aria-label="Slide 3"></button>
+        <button class="sv-dot" data-i="3" onclick="slideGo(3)" aria-label="Slide 4"></button>
       </div>
       <div class="sv-nav">
         <button class="sv-nav-btn" id="sv-prev" onclick="slideStep(-1)">← Anterior</button>
@@ -2764,8 +2791,9 @@ function svFallbackCard(d){
     ref:d.ref, nombre:d.nombre, veredicto:(vkey==='nogo'?'NO GO':vkey==='pend'?'PEND INFO':vkey==='analisis'?'EN ANÁLISIS':'—'),
     veredicto_detalle:displayMotivo(d), fecha:d.fecha, _fallback:true,
     slides:{
-      zona:{ macro:null, micro:null, score:null, overview:null,
-             ubicacion_texto:d.ubicacion, ciudad:ciudadDe(d), zona:zonaDe(d),
+      zona:{ macro:null, micro:null, score:null, overview:null, pois:[],
+             demanda:null, estacionalidad:null, competencia:null, accesibilidad:null,
+             ubicacion_texto:d.ubicacion, map_query:d.ubicacion, ciudad:ciudadDe(d), zona:zonaDe(d),
              maps:mapsUrl(d), semaforo:null },
       proyecto:{ producto:d.tipo, superficie_m2:d.sqm, unidades:d.unidades,
                  estado_obras:d.estado_obras, notas:d.notas, hechos:[], por_que_si:[], por_que_no:[], semaforo:null },
@@ -2794,20 +2822,85 @@ async function svGetCard(d){
   }
 }
 
+const SV_POI_ICO={playa:'🏖️',mar:'🌊',costa:'🏖️',tren:'🚆',estacion:'🚆',renfe:'🚆',metro:'🚇',bus:'🚌',aeropuerto:'✈️',puerto:'⚓',comercial:'🛍️',centro:'🏙️',hospital:'🏥',universidad:'🎓',ocio:'🎡',restauracion:'🍽️',golf:'⛳',parque:'🌳'};
+function svPoiIco(tipo){ const t=String(tipo||'').toLowerCase(); for(const k in SV_POI_ICO){ if(t.includes(k)) return SV_POI_ICO[k]; } return '📌'; }
+function svMapEmbed(query){
+  if(!query) return '';
+  const q=encodeURIComponent(query);
+  return `<div class="sv-map"><iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?q=${q}&z=15&output=embed" title="Mapa de la zona"></iframe></div>`;
+}
+function svDriver(label,ico,txt){
+  if(!txt) return '';
+  return `<div class="sv-driver"><div class="sv-driver-l">${ico} ${svEsc(label)}</div><div class="sv-driver-t">${svEsc(txt)}</div></div>`;
+}
 function svRenderZona(z){
   let h=svSemPill(z.semaforo);
-  if(z.macro||z.micro){
-    if(z.macro) h+=`<div class="sv-block"><div class="sv-label">Macro</div><div class="sv-text">${svEsc(z.macro)}</div></div>`;
-    if(z.micro) h+=`<div class="sv-block"><div class="sv-label">Micro</div><div class="sv-text">${svEsc(z.micro)}</div></div>`;
-    if(z.score!=null) h+=`<div class="sv-block"><div class="sv-label">Puntuación de ubicación</div><div class="sv-text">${svEsc(z.score)}/5</div></div>`;
-    if(z.overview) h+=`<div class="sv-block"><div class="sv-label">Overview de zona</div><div class="sv-text">${svEsc(z.overview)}</div></div>`;
-  }else{
-    // fallback
-    h+=`<div class="sv-block"><div class="sv-label">Ubicación</div><div class="sv-text">${svEsc(z.ubicacion_texto)||'n/d'}</div></div>`;
+  // 1. Mapa de la zona (funciona para todos los deals a partir de la dirección)
+  const mapQ=z.map_query||z.ubicacion_texto||z.ciudad;
+  h+=svMapEmbed(mapQ);
+  // 2. POIs
+  if(z.pois&&z.pois.length){
+    h+=`<div class="sv-block"><div class="sv-label">Puntos de interés</div><div>`+
+      z.pois.map(p=>`<div class="sv-poi"><span class="sv-poi-ico">${svPoiIco(p.tipo)}</span><span class="sv-poi-name">${svEsc(p.nombre)}</span>${p.distancia?`<span class="sv-poi-dist">${svEsc(p.distancia)}</span>`:''}</div>`).join('')+
+      `</div></div>`;
+  }
+  // 3. Narrativa macro/micro
+  if(z.macro) h+=`<div class="sv-block"><div class="sv-label">Macro</div><div class="sv-text">${svEsc(z.macro)}</div></div>`;
+  if(z.micro) h+=`<div class="sv-block"><div class="sv-label">Micro</div><div class="sv-text">${svEsc(z.micro)}</div></div>`;
+  // 4. Drivers de decisión
+  const drivers=svDriver('Demanda','📊',z.demanda)+svDriver('Estacionalidad','📅',z.estacionalidad)+svDriver('Competencia','🏨',z.competencia)+svDriver('Accesibilidad','🚏',z.accesibilidad);
+  if(drivers) h+=`<div class="sv-block"><div class="sv-label">Drivers de decisión</div><div class="sv-drivers">${drivers}</div></div>`;
+  if(z.score!=null) h+=`<div class="sv-block"><div class="sv-label">Puntuación de ubicación</div><div class="sv-text">${svEsc(z.score)}/5</div></div>`;
+  if(z.overview) h+=`<div class="sv-block"><div class="sv-label">Overview de zona</div><div class="sv-text">${svEsc(z.overview)}</div></div>`;
+  // 5. Fallback: si no hay narrativa estructurada, avisar
+  if(!z.macro&&!z.micro&&!(z.pois&&z.pois.length)&&!drivers){
     if(z.ciudad||z.zona) h+=`<div class="sv-block"><div class="sv-label">Ciudad · Zona</div><div class="sv-text">${svEsc(z.ciudad)||'n/d'} · ${svEsc(z.zona)||'n/d'}</div></div>`;
-    h+=`<div class="sv-note">Sin análisis macro/micro estructurado para este deal todavía — se muestra la ubicación registrada en el CRM. Al procesar el deal con el motor de underwriting, aquí aparecerá el desglose completo.</div>`;
+    h+=`<div class="sv-note">Sin análisis de zona estructurado para este deal todavía — se muestra el mapa y la ubicación registrada en el CRM. Al procesar el deal con el motor de underwriting, aquí aparecerán POIs, demanda, estacionalidad y competencia.</div>`;
   }
   if(z.maps) h+=`<div class="sv-block"><a class="sv-open-brief" href="${z.maps}" target="_blank">📍 Abrir en Google Maps →</a></div>`;
+  return h;
+}
+function svRenderPnl(pnl,fallbackBP){
+  // Si el deal se procesó con el motor, pnl trae el puente completo.
+  if(pnl){
+    let h=svSemPill(pnl.semaforo);
+    // Supuestos operativos
+    const sup=[];
+    if(pnl.adr!=null) sup.push(['ADR',svFmtEur(pnl.adr).replace(' €','€')+'/noche']);
+    if(pnl.occupancy_pct!=null) sup.push(['Ocupación',svFmtPct(pnl.occupancy_pct)]);
+    if(pnl.dias_abierto!=null) sup.push(['Días abiertos',pnl.dias_abierto+'/año']);
+    if(pnl.revpar!=null) sup.push(['RevPAR',svFmtEur(pnl.revpar).replace(' €','€')]);
+    if(sup.length){
+      h+=`<div class="sv-metrics" style="grid-template-columns:repeat(${Math.min(sup.length,4)},1fr)">${sup.map(s=>`<div class="sv-metric"><div class="sv-metric-l">${s[0]}</div><div class="sv-metric-v" style="font-size:14px">${s[1]}</div></div>`).join('')}</div>`;
+    }
+    if(pnl.adr_display) h+=`<div class="sv-block" style="margin-top:-4px"><div class="sv-text" style="font-size:11.5px;color:var(--muted)">${svEsc(pnl.adr_display)}</div></div>`;
+    // Puente Ingresos -> NOI
+    h+=`<div class="sv-block"><div class="sv-label">Puente Ingresos → NOI (estabilizado)</div><div class="sv-bridge">`+
+      `<div class="sv-bridge-row rev"><span class="sv-bridge-l">💶 Ingresos</span><span class="sv-bridge-v">${svFmtEur(pnl.revenue)}</span></div>`+
+      `<div class="sv-bridge-row"><span class="sv-bridge-l">GOP<span class="sv-bridge-pct">margen ${svFmtPct(pnl.gop_margin)}</span></span><span class="sv-bridge-v">${svFmtEur(pnl.gop)}</span></div>`+
+      `<div class="sv-bridge-row sub"><span class="sv-bridge-l">− HMA / fees operador<span class="sv-bridge-pct">${svFmtPct(pnl.hma_pct)} ingresos</span></span><span class="sv-bridge-v">−${svFmtEur(pnl.hma)}</span></div>`+
+      `<div class="sv-bridge-row noi"><span class="sv-bridge-l">= NOI${pnl.noi_margin!=null?`<span class="sv-bridge-pct">margen ${svFmtPct(pnl.noi_margin)}</span>`:''}</span><span class="sv-bridge-v">${svFmtEur(pnl.noi)}</span></div>`+
+      `</div></div>`;
+    // Métricas por llave
+    const perkey=[];
+    if(pnl.revenue_per_key!=null) perkey.push(['Ingreso / llave',svFmtEur(pnl.revenue_per_key)]);
+    if(pnl.noi_per_key!=null) perkey.push(['NOI / llave',svFmtEur(pnl.noi_per_key)]);
+    if(pnl.unidades!=null) perkey.push(['Llaves',pnl.unidades]);
+    if(perkey.length) h+=`<div class="sv-metrics" style="grid-template-columns:repeat(${perkey.length},1fr)">${perkey.map(m=>`<div class="sv-metric"><div class="sv-metric-l">${m[0]}</div><div class="sv-metric-v" style="font-size:14px">${m[1]}</div></div>`).join('')}</div>`;
+    if(pnl.gaps&&pnl.gaps.length){
+      h+=`<div class="sv-note"><b>Supuestos / gaps:</b><ul class="sv-list" style="margin-top:4px">${pnl.gaps.map(g=>`<li>${svEsc(g)}</li>`).join('')}</ul></div>`;
+    }
+    return h;
+  }
+  // Fallback: sin P&L operativa modelada. Mostrar lo que haya (NOI estimado).
+  const b=fallbackBP||{};
+  let h='';
+  if(b.noi!=null){
+    h+=`<div class="sv-bridge"><div class="sv-bridge-row noi"><span class="sv-bridge-l">= NOI ${b.noi_estimado?'(estimado)':''}</span><span class="sv-bridge-v">${svFmtEur(b.noi)}</span></div></div>`;
+    h+=`<div class="sv-note">Sin P&L operativa modelada para este deal — el NOI mostrado ${b.noi_estimado?'es una estimación (YoC × coste total)':'proviene de la fuente'}. Al procesar el deal con el motor de underwriting, aquí aparece el puente completo Ingresos → GOP → HMA → NOI con ADR, ocupación y RevPAR.</div>`;
+  }else{
+    h+=`<div class="sv-empty">Sin P&L operativa disponible. Procesa el deal con el motor de underwriting para generar el puente Ingresos → NOI.</div>`;
+  }
   return h;
 }
 
@@ -2837,19 +2930,20 @@ function svRenderBP(b){
     ['Precio entrada',svFmtMoney(b.precio),''],
     ['CapEx',svFmtMoney(b.capex_total??b.capex),''],
     ['Coste total',svFmtMoney(b.coste_total_proyecto),''],
-    ['NOI estabilizado',svFmtEur(b.noi),'hero'],
-    ['YoC',svFmtPct(b.yoc),'hero'],
+    ['Valor de salida',svFmtMoney(b.exit_value),'hero'],
     ['Exit yield',svFmtPct(b.exit_yield),''],
+    ['YoC',svFmtPct(b.yoc),''],
   ];
   h+=`<div class="sv-metrics">${metrics.map(m=>`<div class="sv-metric ${m[2]}"><div class="sv-metric-l">${m[0]}</div><div class="sv-metric-v">${m[1]}</div></div>`).join('')}</div>`;
+  if(b.bid_recomendado!=null){
+    h+=`<div class="sv-block"><div class="sv-label">Bid recomendado${b.bid_verificado?' ✓ verificado':''}</div><div class="sv-text" style="font-size:15px;font-weight:800;color:var(--navy)">${svFmtMoney(b.bid_recomendado)}</div></div>`;
+  }
   // Retornos
   const ret=[];
   if(b.irr_unlevered!=null) ret.push(['IRR sin apalancar',svFmtPct(b.irr_unlevered),'']);
   if(b.irr_levered!=null) ret.push(['IRR apalancada',svFmtPct(b.irr_levered),'hero']);
   if(b.moic!=null) ret.push(['MOIC',Number(b.moic).toLocaleString('es-ES',{minimumFractionDigits:2,maximumFractionDigits:2})+'x','']);
-  if(b.exit_value!=null) ret.push(['Valor de salida',svFmtMoney(b.exit_value),'']);
   if(spread!=null&&!isNaN(spread)) ret.push(['Spread vs deuda',spread+' bps',spread>0?'pos':spread<0?'neg':'']);
-  if(b.adr_display) h+=`<div class="sv-block"><div class="sv-label">ADR / renta · operativa</div><div class="sv-text">${svEsc(b.adr_display)}${b.gop_margin!=null?` · GOP margin ${svFmtPct(b.gop_margin)}`:''}</div></div>`;
   if(ret.length){
     h+=`<div class="sv-block"><div class="sv-label">Retornos</div><div class="sv-metrics">${ret.map(m=>`<div class="sv-metric ${m[2]==='hero'?'hero':''}"><div class="sv-metric-l">${m[0]}</div><div class="sv-metric-v ${m[2]==='pos'?'pos':m[2]==='neg'?'neg':''}">${m[1]}</div></div>`).join('')}</div></div>`;
   }
@@ -2858,9 +2952,6 @@ function svRenderBP(b){
     h+=`<div class="sv-block"><div class="sv-label">Cash flows</div><table class="sv-cf"><thead><tr><th>Año</th><th>Fase</th><th class="num">NOI</th><th class="num">CF sin apal.</th><th class="num">CF apalancado</th></tr></thead><tbody>`+
       b.cash_flows.map(y=>`<tr><td>${svEsc(y.year)}</td><td>${svEsc(y.fase)}</td><td class="num">${y.noi?svFmtEur(y.noi):'—'}</td><td class="num ${y.cf_sin_apalancar<0?'neg':'pos'}">${svFmtEur(y.cf_sin_apalancar)}</td><td class="num ${y.cf_apalancado<0?'neg':'pos'}">${svFmtEur(y.cf_apalancado)}</td></tr>`).join('')+
       `</tbody></table></div>`;
-  }
-  if(b.gaps&&b.gaps.length){
-    h+=`<div class="sv-note"><b>Supuestos / gaps de información:</b><ul class="sv-list" style="margin-top:4px">${b.gaps.map(g=>`<li>${svEsc(g)}</li>`).join('')}</ul></div>`;
   }
   if(b._fallbackNote||b.noi_estimado||b.coste_proxy){
     const notes=[];
@@ -2883,6 +2974,7 @@ async function openSlides(ref){
   document.getElementById('sv-slide-0').innerHTML='<div class="sv-empty">Cargando…</div>';
   document.getElementById('sv-slide-1').innerHTML='';
   document.getElementById('sv-slide-2').innerHTML='';
+  document.getElementById('sv-slide-3').innerHTML='';
   slideGo(0);
   ov.classList.add('open');
   document.addEventListener('keydown',svKey);
@@ -2895,9 +2987,11 @@ async function openSlides(ref){
     (card.fecha?`<span>${svEsc(card.fecha)}</span>`:'')+
     (getIcLink(d)?`<a class="sv-open-brief" href="${getIcLink(d)}" target="_blank">📄 Ver IC Brief completo →</a>`:'')+
     (card._fallback?`<span style="color:#c8a84b">· datos base del CRM</span>`:'');
+  const bp=card.slides.bp_retornos||{};
   document.getElementById('sv-slide-0').innerHTML=svRenderZona(card.slides.zona||{});
   document.getElementById('sv-slide-1').innerHTML=svRenderProyecto(card.slides.proyecto||{});
-  document.getElementById('sv-slide-2').innerHTML=svRenderBP(card.slides.bp_retornos||{});
+  document.getElementById('sv-slide-2').innerHTML=svRenderPnl(card.slides.pnl, bp);
+  document.getElementById('sv-slide-3').innerHTML=svRenderBP(bp);
 }
 
 function closeSlides(){
@@ -2906,14 +3000,14 @@ function closeSlides(){
   SV.ref=null;
 }
 function slideGo(i){
-  SV.idx=Math.max(0,Math.min(2,i));
-  for(let k=0;k<3;k++){
+  SV.idx=Math.max(0,Math.min(3,i));
+  for(let k=0;k<4;k++){
     document.getElementById('sv-slide-'+k).classList.toggle('active',k===SV.idx);
     document.querySelectorAll(`.sv-tab[data-i="${k}"]`).forEach(t=>t.classList.toggle('active',k===SV.idx));
     document.querySelectorAll(`.sv-dot[data-i="${k}"]`).forEach(t=>t.classList.toggle('active',k===SV.idx));
   }
   document.getElementById('sv-prev').disabled=SV.idx===0;
-  document.getElementById('sv-next').disabled=SV.idx===2;
+  document.getElementById('sv-next').disabled=SV.idx===3;
   const body=document.querySelector('.sv-body'); if(body) body.scrollTop=0;
 }
 function slideStep(dir){ slideGo(SV.idx+dir); }

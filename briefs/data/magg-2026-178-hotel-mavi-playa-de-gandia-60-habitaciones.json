@@ -7,11 +7,43 @@
   "slug": "magg-2026-178-hotel-mavi-playa-de-gandia-60-habitaciones",
   "slides": {
     "zona": {
-      "macro": "Gandía, Comunidad Valenciana — destino vacacional consolidado de playa.",
-      "micro": "150 m de la Playa de Gandía; entorno turístico-residencial.",
+      "macro": "Gandía es uno de los destinos de sol y playa más consolidados de la Comunidad Valenciana, con demanda dominada por el turismo nacional (familias de Madrid y del área metropolitana de Valencia) y una playa urbana de gran capacidad. Mercado maduro con estacionalidad marcada.",
+      "micro": "Activo a 150 m de la Playa de Gandía (primera línea de servicios), en el Grao/zona de playa, entorno turístico-residencial con oferta hotelera y de restauración ya establecida a pie de calle.",
       "score": 3,
       "overview": null,
       "ubicacion_texto": "Playa de Gandía, Valencia — 150 m de la playa",
+      "map_query": "Hotel Playa de Gandía, Valencia, España",
+      "pois": [
+        {
+          "nombre": "Playa de Gandía (primera línea)",
+          "distancia": "150 m",
+          "tipo": "playa"
+        },
+        {
+          "nombre": "Puerto de Gandía / Grao",
+          "distancia": "~1 km",
+          "tipo": "puerto"
+        },
+        {
+          "nombre": "Estación Renfe Playa-Grao de Gandía (C-1)",
+          "distancia": "en el Grao",
+          "tipo": "tren"
+        },
+        {
+          "nombre": "Estación Renfe Gandía centro (C-1 a Valencia Nord)",
+          "distancia": "~4 km",
+          "tipo": "estacion"
+        },
+        {
+          "nombre": "Zona comercial / restauración de playa",
+          "distancia": "a pie",
+          "tipo": "comercial"
+        }
+      ],
+      "demanda": "Turismo nacional de sol y playa; familias de Madrid y Valencia. Playa urbana de alta capacidad y destino de segunda residencia.",
+      "estacionalidad": "Marcada — pico julio-agosto. Clave definir si opera todo el año o temporada; el base case asume 365 días (a validar con P&L real).",
+      "competencia": "Oferta hotelera de playa consolidada (3-4★) y fuerte parque de apartamentos turísticos. Reposicionar exige diferenciación de producto.",
+      "accesibilidad": "Renfe Cercanías C-1 conecta Valencia Nord con Gandía (~75 min); acceso por AP-7/A-38. Buena conexión con el área metropolitana de Valencia.",
       "semaforo": {
         "estado": "verde",
         "resumen": "Ubicación de playa consolidada, a 150m de la costa."
@@ -43,6 +75,36 @@
         "estado": "ambar",
         "resumen": "Operativo y libre de gestión, pero sin licencia/título confirmado."
       }
+    },
+    "pnl": {
+      "revenue": 963600.0,
+      "adr": 80.0,
+      "occupancy_pct": 0.55,
+      "dias_abierto": 365,
+      "adr_display": "80€/noche · 55% ocupación (asunción — comps públicos Gandía, no confirmado por bróker)",
+      "gop": 481800.0,
+      "gop_margin": 0.5,
+      "hma": 67452.0,
+      "hma_pct": 0.07,
+      "noi": 414348.0,
+      "noi_margin": 0.43,
+      "revpar": 44.0,
+      "revenue_per_key": 16060.0,
+      "noi_per_key": 6905.8,
+      "unidades": 60,
+      "semaforo": {
+        "estado": "ambar",
+        "resumen": "Base case indicativo con supuestos (ADR 80€, ocupación 55%, GOP 50%, exit yield 6%, CapEx reforma 15k€/llave) — IRR apalancada ≈28%, MOIC ≈2,3x a precio asking. Sin P&L real confirmado todavía."
+      },
+      "gaps": [
+        "ADR asumido 80€/noche — comps públicos de hoteles de playa en Gandía, NO confirmado por el bróker.",
+        "Ocupación anual asumida 55% (blended, estacionalidad vacacional) — NO confirmado.",
+        "GOP margin asumido 50% — supuesto de partida, no hay P&L real.",
+        "Exit yield asumido 6% — supuesto de partida.",
+        "CapEx de reforma asumido 15.000€/habitación (900.000€ total) — sin presupuesto de obra real.",
+        "P&L / NOI histórico o proyectado real del activo.",
+        "Estado de licencia y título de propiedad."
+      ]
     },
     "bp_retornos": {
       "precio": 2700000,
