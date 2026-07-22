@@ -1293,7 +1293,7 @@ function dealTableRow(d) {
     ['Ref',d.ref],['Tipo activo',d.tipo],['Ciudad',ciudad],['Zona',zona],['Fecha',d.fecha],
     ['Precio',precFmt],['Capex',capexFmt],['Coste total',costeFmt],['NOI',noiFmt],['Llaves estimadas',llavesFmt],['SQM',sqmFmt],
     ['Broker/Fuente',d.fuente],['Estado',d.estado],
-    ['YoC',d.yoc],['Exit Yield',d.yield_exit],['Spread',d.spread],
+    ['YoC',d.yoc?fmtYoc(d.yoc):d.yoc],['Exit Yield',d.yield_exit?fmtYoc(d.yield_exit):d.yield_exit],['Spread',d.spread?spreadTxt:d.spread],
     ['Prioridad',d.prioridad],['Right Now',d.right_now],['Acción semanal',d.accion_semanal],
     ['LP Fit / Capital Path',d.lp_fit],['Kill-switches',d.kill_switches],
     ['Motivo',displayMotivo(d)],['Próximo paso',d.prox_paso],['Owner',d.owner],['Notas',d.notas],
