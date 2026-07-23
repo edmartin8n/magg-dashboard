@@ -10,52 +10,52 @@
 <body>
 <div id="login"><div class="login-box"><h2>Mission Control</h2><p>Introduce contraseña.</p><input id="pwd" type="password" onkeydown="if(event.key==='Enter')auth()" autofocus><button onclick="auth()">Entrar</button><div id="err" style="color:#ad3030;margin-top:8px"></div></div></div>
 <div id="app">
-<div class="header"><div class="header-top"><span style="font-size:28px">🦀</span><h1>Mission Control</h1></div><div class="header-meta"><span class="pill"><span class="dot"></span>Cierre 20:15 completado</span><span class="pill">🕐 22 Jul 2026 · 20:30 Madrid</span><span class="pill">🎯 Top 3 mañana: gate v3+infra · MAGG+GV48 · DILS/Capital</span><span class="pill">Próxima sync: 23/07 09:30 · pass: ctrl2026</span></div></div>
+<div class="header"><div class="header-top"><span style="font-size:28px">🦀</span><h1>Mission Control</h1></div><div class="header-meta"><span class="pill"><span class="dot"></span>Seguimiento 09:30 ejecutado</span><span class="pill">🕐 23 Jul 2026 · 09:30 Madrid</span><span class="pill">🎯 Top 3 hoy: gate v3+infra · decisiones MAGG+GV48 · DILS/Capital</span><span class="pill">Próxima sync: 23/07 14:00 · pass: ctrl2026</span></div></div>
 <div class="tabs"><div class="tab active" onclick="switchTab('ops',this)">🗺️ Operaciones</div><div class="tab" onclick="switchTab('sys',this)">⚙️ Sistema</div></div>
 <div id="tab-ops" class="tab-content active">
 <div class="section-title">🚦 Estado por vertical</div><div class="grid2">
-<div class="card"><div class="card-title">🏨 MAGG / Deals</div><div class="card-sub"><span class="badge yellow">🟡 Intake cerrado · v3 con gate QC</span></div><p><strong>448 filas / 445 refs únicas / 182 MAGG</strong>, latest <strong>181</strong>; Gmail exacto <strong>0 unread</strong>. Orquestador v3 ampliado a <strong>62/62 tests OK</strong>; live test 178 corregido con base case y brief canónico. Antes de producción: idempotencia dura y publicar 200 antes de enviar.</p></div>
-<div class="card"><div class="card-title">🏛️ SR / GV48</div><div class="card-sub"><span class="badge red">🔴 Contradicción abierta</span></div><p>010A/B siguen descartados por tiempo pese a prioridad estratégica. Mañana: reopen/exempt o kill; si reabre, fijar escenario, deuda 50–60% LTC y lead equity.</p></div>
+<div class="card"><div class="card-title">🏨 MAGG / Deals</div><div class="card-sub"><span class="badge yellow">🟡 Sin nueva ref · execution debt alto</span></div><p><strong>448 filas / 445 refs únicas / 182 MAGG</strong>, latest <strong>181</strong>; Gmail exacto <strong>0 unread</strong>. Nocturna: <strong>12/13 acciones vencidas</strong>, 5 activos sin evidencia semanal y 017/022 GO &gt;7d sin NBO/DD/pausa. Hoy: cerrar gate v3 y decisiones, no añadir modelización.</p></div>
+<div class="card"><div class="card-title">🏛️ SR / GV48</div><div class="card-sub"><span class="badge red">🔴 Contradicción abierta</span></div><p>010A/B siguen descartados por tiempo pese a prioridad estratégica. Hoy: reopen/exempt o kill; si reabre, fijar escenario, deuda 50–60% LTC y lead equity.</p></div>
 <div class="card"><div class="card-title">💶 Capital Access</div><div class="card-sub"><span class="badge yellow">🟡 93 entidades · 15 Family Offices</span></div><p>Universo preparado; activación pendiente. Ordenar 15 relaciones verificables y priorizar las que puedan cubrir lead equity; ticket/capacidad siguen n/d.</p></div>
 <div class="card"><div class="card-title">🌍 Growth / Dubai</div><div class="card-sub"><span class="badge yellow">🟡 Waiting</span></div><p>Dubai v7 y Borja listos. Sin outreach ni intros sin OK explícito.</p></div>
-<div class="card"><div class="card-title">📈 Public Markets</div><div class="card-sub"><span class="badge green">🟢 Brief diario cerrado</span></div><p>AI Buildout validado con 7 picks y prioridad <strong>NVDA / AVGO / MU</strong>. Insider solo viernes; último 17/07 error 429.</p></div>
-<div class="card"><div class="card-title">👤 DILS / Ana</div><div class="card-sub"><span class="badge yellow">🟡 Scans OK · entregable pendiente</span></div><p><strong>22 jobs / 10 watchlist</strong>. Scan 19:05: 27 candidatos, 0 Tier 1–2 nuevos. Mañana: DILS 30-60-90, Scope/Revolut y 1–2 HH.</p></div>
+<div class="card"><div class="card-title">📈 Public Markets</div><div class="card-sub"><span class="badge yellow">🟡 Pendiente por horario</span></div><p>Último brief: <strong>NVDA / AVGO / MU</strong>. AI Buildout corre hoy 13:00. Insider solo viernes; último 17/07 error 429.</p></div>
+<div class="card"><div class="card-title">👤 DILS / Ana</div><div class="card-sub"><span class="badge yellow">🟡 09:15 OK · entregable pendiente</span></div><p><strong>22 jobs / 10 watchlist</strong>. Hoy: deck DILS para Carlos con mandato, 3 verticales, owners y 30-60-90; Scope/Revolut y 1–2 HH preparados, sin enviar. Scan 19:00 pendiente.</p></div>
 <div class="card"><div class="card-title">🏃 Personal Ops</div><div class="card-sub"><span class="badge yellow">🟡 Waiting</span></div><p>Vacaciones Ana preparadas; faltan formato/destino y báscula/cintura.</p></div>
-<div class="card"><div class="card-title">⚙️ Infra / Crons</div><div class="card-sub"><span class="badge yellow">🟠 Operación OK · publicación/delivery degradados</span></div><p>Hermes actualizado a <strong>v0.19.0 / 8967e73e6</strong>; #ana 19:05 y cierre 20:15 OK. WhatsApp 200/disconnected; Notion updater ausente. Workspace: <strong>879404a · 13 commits ahead</strong>; solo MC local, Excel y backup sin commit. Push retenido por QC.</p></div>
+<div class="card"><div class="card-title">⚙️ Infra / Crons</div><div class="card-sub"><span class="badge yellow">🟠 Jobs OK · delivery degradado</span></div><p>Scout post-cierre, Nocturna, backup <strong>78b4507</strong>, CRM email, Radar y #ana 09:15 OK; 09:30 ejecutado. WhatsApp 200/disconnected; Notion updater ausente. El backup dejó main=origin y limpio; antes del refresh solo Radar JSON estaba dirty.</p></div>
 </div>
-<div class="section-title">🎯 Top 3 de mañana — 23/07</div><div class="card top3">
-<div class="top3-item"><div class="top3-num">1</div><div><div class="top3-title">Gate v3 + infra</div><div class="top3-desc">Implementar idempotencia dura y public URL 200 → email → mark-read; repetir dry-run sin otro IC. Después commit/push del backlog v3 + Excel. Confirmar PAT y recuperar WhatsApp.</div></div></div>
-<div class="top3-item"><div class="top3-num">2</div><div><div class="top3-title">MAGG + GV48</div><div class="top3-desc">Decisión 178; gate 177; reopen/exempt o kill de 010A/B; evidencia o archivo para 017/018/020/022/028.</div></div></div>
-<div class="top3-item"><div class="top3-num">3</div><div><div class="top3-title">DILS / Capital</div><div class="top3-desc">Versión ejecutiva 30-60-90 + Scope/Revolut + 1–2 HH; ordenar 15 relaciones de capital verificables.</div></div></div>
+<div class="section-title">🎯 Top 3 de hoy — 23/07</div><div class="card top3">
+<div class="top3-item"><div class="top3-num">1</div><div><div class="top3-title">Gate v3 + infra</div><div class="top3-desc">Idempotencia dura y public URL 200 → email → mark-read; repetir dry-run sin otro IC. Publicar solo lo que pase QC. Confirmar PAT y recuperar WhatsApp.</div></div></div>
+<div class="top3-item"><div class="top3-num">2</div><div><div class="top3-title">Decisiones MAGG + GV48</div><div class="top3-desc">178/177; evidencia o archivo para 017/018/020/022/028; reopen/exempt o kill de 010A/B.</div></div></div>
+<div class="top3-item"><div class="top3-num">3</div><div><div class="top3-title">DILS / Capital</div><div class="top3-desc">Deck ejecutivo 30-60-90 + Scope/Revolut + 1–2 HH; ordenar 15 relaciones de capital verificables.</div></div></div>
 </div>
 <div class="section-title">📊 Snapshot cross-vertical</div><div class="grid3">
-<div class="card"><div class="card-title">MAGG</div><div class="card-sub">182 MAGG · latest 181</div><ul class="compact"><li>432 descartados / 11 análisis / 2 hold</li><li>Gmail exacto 0 unread</li><li>178 On Hold · YoC 9,6% / IRR L 27,7% bajo supuestos</li></ul></div>
-<div class="card"><div class="card-title">#ana / DILS</div><div class="card-sub">19:05 OK · deck pendiente</div><ul class="compact"><li>22 jobs / 10 watchlist</li><li>27 revisados / 0 altas</li><li>0 acciones externas</li></ul></div>
-<div class="card"><div class="card-title">Infra</div><div class="card-sub">Cierre 20:15 · delivery degradado</div><ul class="compact"><li>15 crons; Auto-Update y #ana OK</li><li>Workspace v3 aún no publicado</li><li>WA disconnected; Notion ausente</li></ul></div>
+<div class="card"><div class="card-title">MAGG</div><div class="card-sub">182 MAGG · latest 181 · 09:30</div><ul class="compact"><li>432 descartados / 11 análisis / 2 hold</li><li>Gmail exacto 0 unread; API 200</li><li>12/13 acciones vencidas · 5 sin evidencia semanal</li></ul></div>
+<div class="card"><div class="card-title">#ana / DILS</div><div class="card-sub">09:15 OK · deck pendiente</div><ul class="compact"><li>22 jobs / 10 watchlist</li><li>DILS 30-60-90 prioritario</li><li>0 acciones externas</li></ul></div>
+<div class="card"><div class="card-title">Infra</div><div class="card-sub">09:30 ejecutado · delivery degradado</div><ul class="compact"><li>15 crons; tempranos/post-cierre OK</li><li>Backup 78b4507 dejó main=origin</li><li>WA disconnected; Notion ausente</li></ul></div>
 </div>
-<div class="section-title">📝 Log corto reciente</div><div class="card"><ul class="compact"><li><strong>22/07 20:30</strong>: cierre; v3 MAGG ampliado a 62 tests, live test 178 corregido y brief canónico live; gate idempotencia abierto.</li><li><strong>22/07 20:29</strong>: segundo IC interno 178 con base case y PDF; doble envío de iteración registrado como defecto a bloquear.</li><li><strong>22/07 19:05</strong>: #ana; 27 candidatos, 0 Tier 1–2, repo 22/10.</li><li><strong>22/07 15:05</strong>: Hermes v0.19.0, actualización OK.</li><li><strong>22/07 14:00</strong>: 448/445/182/latest 181; 180/181 NO GO; AI NVDA/AVGO/MU.</li><li><strong>22/07 09:33</strong>: seguimiento de mañana; 13 activos y 11 fechas vencidas.</li></ul></div>
+<div class="section-title">📝 Log corto reciente</div><div class="card"><ul class="compact"><li><strong>23/07 09:30</strong>: seguimiento; 448/445/182/latest 181, Gmail 0; Nocturna eleva foco a 12 vencidas y 5 sin evidencia semanal.</li><li><strong>23/07 09:15</strong>: #ana; 22 jobs / 10 watchlist, DILS prioritario, 0 acciones externas.</li><li><strong>23/07 08:20</strong>: Radar interno; 4 top + 2 breves, 4 duplicados excluidos, feed limpio.</li><li><strong>23/07 07:01</strong>: backup 78b4507; remoto alineado.</li><li><strong>23/07 03:10</strong>: Nocturna; 13 activos, 12 vencidas y 1/5 capital path.</li><li><strong>22/07 20:54</strong>: Scout; 4 novedades, negocio OK y delivery WA fallido.</li></ul></div>
 </div>
 <div id="tab-sys" class="tab-content">
-<div class="section-title">⏰ Crons activos — foto real 22/07 20:30</div><div class="table-card"><table><thead><tr><th>Hora</th><th>Job</th><th>Destino</th><th>Estado</th></tr></thead><tbody>
-<tr><td>03:00</td><td>Revisión Nocturna Estratégica</td><td>WhatsApp</td><td>🟢 OK 03:14 · delivery WA fallido</td></tr>
-<tr><td>07:00</td><td>daily-workspace-backup</td><td>local</td><td>🟢 OK 07:01 · push 78db46c; no cubre trabajo posterior</td></tr>
+<div class="section-title">⏰ Crons activos — foto real 23/07 09:30</div><div class="table-card"><table><thead><tr><th>Hora</th><th>Job</th><th>Destino</th><th>Estado</th></tr></thead><tbody>
+<tr><td>03:00</td><td>Revisión Nocturna Estratégica</td><td>WhatsApp</td><td>🟢 OK 03:10 · delivery WA fallido</td></tr>
+<tr><td>07:00</td><td>daily-workspace-backup</td><td>local</td><td>🟢 OK 07:03 · push 78b4507; no cubre refresh 09:30</td></tr>
 <tr><td>08:00 L-V</td><td>MAGG CRM daily evolution email</td><td>local</td><td>🟢 OK 08:00</td></tr>
-<tr><td>08:00</td><td>Noticias Inmobiliarias</td><td>local + Gmail interno</td><td>🟢 OK 08:12 · 4 top + 1 secundaria</td></tr>
-<tr><td>08:00 L</td><td>Weekly Macro Briefing</td><td>WhatsApp</td><td>⚪ No corre miércoles · último 20/07 OK + delivery fallido</td></tr>
-<tr><td>09:15 L-V</td><td>#ana seguimiento DILS + LinkedIn + HH</td><td>origin</td><td>🟢 OK 09:16 · 22 jobs / 10 watchlist</td></tr>
-<tr><td>09:30</td><td>Seguimiento diario 09:30</td><td>local</td><td>🟢 OK 09:45 · snapshot 09:33</td></tr>
-<tr><td>12:00 L-V</td><td>MAGG Deal Scanner</td><td>Discord #magg-deals</td><td>🟢 OK 12:12 · 180/181 NO GO · Gmail 0</td></tr>
-<tr><td>13:00 L-V</td><td>AI Buildout Stock Research</td><td>Discord</td><td>🟢 OK 13:09 · NVDA/AVGO/MU</td></tr>
-<tr><td>13:00 V</td><td>Insider Buying Radar</td><td>Discord</td><td>⚪ No corre miércoles · último 17/07 error 429</td></tr>
-<tr><td>14:00</td><td>Seguimiento diario 14:00</td><td>local</td><td>🟢 OK 14:08</td></tr>
-<tr><td>15:00 X</td><td>Hermes Auto-Update</td><td>local</td><td>🟢 OK 15:05 · v0.19.0 / 8967e73e6</td></tr>
-<tr><td>19:00</td><td>#ana daily LinkedIn jobs scan</td><td>origin</td><td>🟢 OK 19:05 · 27 revisados / 0 altas</td></tr>
-<tr><td>20:15</td><td>Seguimiento diario 20:15</td><td>local</td><td>🟢 Ejecutado en esta pasada · cierre 20:30</td></tr>
-<tr><td>20:30</td><td>Scout YouTube</td><td>WhatsApp</td><td>⚪ Disparado; sin cierre registrado al corte · último 21/07 20:45 OK + delivery fallido</td></tr>
+<tr><td>08:00</td><td>Noticias Inmobiliarias</td><td>local + Gmail interno</td><td>🟢 OK 08:13 · 4 top + 2 breves</td></tr>
+<tr><td>08:00 L</td><td>Weekly Macro Briefing</td><td>WhatsApp</td><td>⚪ No corre jueves · último 20/07 OK + delivery fallido</td></tr>
+<tr><td>09:15 L-V</td><td>#ana seguimiento DILS + LinkedIn + HH</td><td>origin</td><td>🟢 OK 09:15 · 22 jobs / 10 watchlist</td></tr>
+<tr><td>09:30</td><td>Seguimiento diario 09:30</td><td>local</td><td>🟢 Ejecutado en esta pasada · snapshot 09:30</td></tr>
+<tr><td>12:00 L-V</td><td>MAGG Deal Scanner</td><td>Discord #magg-deals</td><td>⚪ Pendiente hoy 12:00 · último 22/07 OK</td></tr>
+<tr><td>13:00 L-V</td><td>AI Buildout Stock Research</td><td>Discord</td><td>⚪ Pendiente hoy 13:00 · último NVDA/AVGO/MU</td></tr>
+<tr><td>13:00 V</td><td>Insider Buying Radar</td><td>Discord</td><td>⚪ No corre jueves · último 17/07 error 429</td></tr>
+<tr><td>14:00</td><td>Seguimiento diario 14:00</td><td>local</td><td>⚪ Pendiente hoy 14:00</td></tr>
+<tr><td>15:00 X</td><td>Hermes Auto-Update</td><td>local</td><td>⚪ No corre jueves · último 22/07 OK v0.19.0</td></tr>
+<tr><td>19:00</td><td>#ana daily LinkedIn jobs scan</td><td>origin</td><td>⚪ Pendiente hoy 19:00</td></tr>
+<tr><td>20:15</td><td>Seguimiento diario 20:15</td><td>local</td><td>⚪ Pendiente hoy 20:15</td></tr>
+<tr><td>20:30</td><td>Scout YouTube</td><td>WhatsApp</td><td>🟢 Último 22/07 20:54 OK · 4 novedades · delivery WA fallido</td></tr>
 </tbody></table></div>
 <div class="section-title">⚠️ Flags activos</div><div class="grid2">
-<div class="card"><div class="card-title">Datos / pipeline</div><ul class="compact"><li>448 filas / 445 refs únicas / 182 MAGG; latest 181; mtime 22/07 20:29.</li><li>432 descartados, 11 análisis, 2 hold.</li><li>0 unread exactos; Sent confirma dos IC 178 iterativos con PDF.</li><li>3 duplicados físicos: 006/009/011; taxonomía válida.</li></ul></div>
-<div class="card"><div class="card-title">Infra / publicación</div><ul class="compact"><li>15 crons; cierre 20:15 ejecutado; Scout claimed sin cierre al corte.</li><li>Dashboard/brief 178 seguro publicado; workspace v3 no.</li><li>Workspace: 879404a · 13 ahead; MC local + Excel + backup pendientes.</li><li>WhatsApp disconnected; Notion updater ausente; revocación PAT por confirmar.</li></ul></div>
+<div class="card"><div class="card-title">Datos / pipeline</div><ul class="compact"><li>448 filas / 445 refs únicas / 182 MAGG; latest 181; mtime 22/07 23:24.</li><li>432 descartados, 11 análisis, 2 hold.</li><li>0 unread exactos; API health/deals 200.</li><li>3 duplicados físicos: 006/009/011; taxonomía válida.</li></ul></div>
+<div class="card"><div class="card-title">Infra / publicación</div><ul class="compact"><li>15 crons; tempranos y Scout post-cierre OK; 09:30 ejecutado.</li><li>Backup 78b4507 dejó workspace alineado; radar JSON era dirty antes del refresh.</li><li>MC/dashboard 09:30 modificados después del backup.</li><li>WhatsApp disconnected; Notion updater ausente; revocación PAT por confirmar.</li></ul></div>
 </div>
 </div>
 </div>
