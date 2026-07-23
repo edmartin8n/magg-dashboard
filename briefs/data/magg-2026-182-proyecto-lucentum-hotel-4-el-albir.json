@@ -1,0 +1,83 @@
+{
+  "ref": "MAGG-2026-182",
+  "nombre": "Proyecto Lucentum — Hotel 4★ El Albir",
+  "veredicto": "NO GO",
+  "veredicto_detalle": "NO GO estructural — 202 habitaciones y c. 15.600 m², muy por encima del mandato MAGG (<30 llaves y <1.000 m²).",
+  "fecha": "23/07/2026",
+  "slug": "magg-2026-182-proyecto-lucentum-hotel-4-el-albir",
+  "slides": {
+    "zona": {
+      "macro": "Costa Blanca / Alicante",
+      "micro": "El Albir, destino vacacional consolidado",
+      "score": 3,
+      "overview": null,
+      "ubicacion_texto": "El Albir, Alfaz del Pi (Alicante) — Costa Blanca",
+      "map_query": "El Albir, Alfaz del Pi (Alicante) — Costa Blanca",
+      "pois": [],
+      "demanda": "Fuente: destino turístico consolidado; no se ha validado demanda independiente por no pasar mandato.",
+      "estacionalidad": "Vacacional; no determinante tras el fallo de mandato.",
+      "competencia": null,
+      "accesibilidad": "Fuente: c.45 minutos del aeropuerto de Alicante.",
+      "semaforo": {
+        "estado": "ambar",
+        "resumen": "Ubicación turística descrita por PwC; no altera el fallo de escala."
+      }
+    },
+    "proyecto": {
+      "producto": "Hotel vacacional 4★",
+      "superficie_m2": 15600,
+      "unidades": 202,
+      "hechos": [
+        "Teaser PwC mayo 2026: hotel 4★ en El Albir, Alicante.",
+        "c.15.600 m² construidos sobre parcela c.6.100 m².",
+        "202 habitaciones / 406 plazas; 2 restaurantes, spa, gimnasio, piscina y >1.000 m² MICE.",
+        "Reformas citadas entre 2019 y 2025; libre de operador según email.",
+        "KPI broker 2025: ADR 90 €, RevPAR 70 € y ocupación media 78%; no verificados independientemente.",
+        "No se comunicó precio ni se entregó data room."
+      ],
+      "por_que_si": [
+        "Producto hotelero consolidado y amenidades completas según teaser.",
+        "PwC identifica flexibilidad por entrega libre de operador."
+      ],
+      "por_que_no": [
+        "202 habitaciones supera el límite MAGG de <30 llaves.",
+        "c.15.600 m² supera el límite MAGG de <1.000 m².",
+        "Sin precio ni data room; irrelevante tras el fallo de mandato."
+      ],
+      "cronograma": "23/07/2026: catalogación y archivo; sin acción comercial ni de DD.",
+      "semaforo": {
+        "estado": "rojo",
+        "resumen": "202 habitaciones y c.15.600 m²: excede los dos límites duros MAGG."
+      }
+    },
+    "pnl": null,
+    "bp_retornos": {
+      "precio": null,
+      "costes_transaccion": null,
+      "capex_total": null,
+      "coste_total_proyecto": null,
+      "bid_recomendado": null,
+      "bid_verificado": false,
+      "adr_display": "",
+      "gop_margin": null,
+      "noi": null,
+      "yoc": null,
+      "exit_value": null,
+      "exit_yield": null,
+      "irr_unlevered": null,
+      "irr_levered": null,
+      "moic": null,
+      "spread_bps": null,
+      "cash_flows": [],
+      "semaforo": {
+        "estado": "rojo",
+        "resumen": "Sin precio ni data room; modelización no procede tras el fallo estructural de mandato."
+      },
+      "gaps": [
+        "Precio y data room no facilitados.",
+        "KPIs 2025 son afirmaciones del bróker/PwC no verificadas.",
+        "No se ha realizado modelización porque el activo falla mandato por tamaño."
+      ]
+    }
+  }
+}
