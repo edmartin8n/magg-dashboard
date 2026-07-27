@@ -1,0 +1,186 @@
+{
+  "ref": "MAGG-2026-183",
+  "nombre": "San Vicente Mártir 315-317 — Valencia hotel 3★",
+  "veredicto": "BORDERLINE",
+  "veredicto_detalle": "BORDERLINE / On Hold — sí tiene sentido avanzar solo con control de precio y licencia: no comprar a 9,0M€; bid económico máximo verificado 8,68M€ para 15% IRR L y recomendación de negociación 7,0M€ condicionada.",
+  "fecha": "27/07/2026",
+  "slug": "magg-2026-183-san-vicente-martir-315-317-valencia-hotel-3",
+  "slides": {
+    "zona": {
+      "macro": "València mantiene demanda urbana diversificada. INE H1 2026: ADR total categorías 118,08€, RevPAR 96,62€ y ocupación media por habitaciones 80,27%; el base case usa 110€/75%.",
+      "micro": "Camí Real/Jesús, al sur del centro y junto al corredor ferroviario. Distancias lineales aproximadas: La Fe 0,93 km, Dr. Peset 0,99 km, Joaquín Sorolla 1,41 km y Roig Arena 1,85 km. No es una ubicación prime hoy.",
+      "score": 3,
+      "overview": null,
+      "ubicacion_texto": "Calle San Vicente Mártir 315-317, 46017 València",
+      "map_query": "39.4474468,-0.3858028",
+      "pois": [
+        {
+          "nombre": "Hospital La Fe",
+          "distancia": "0,93 km lineales",
+          "tipo": "hospital"
+        },
+        {
+          "nombre": "Hospital Dr. Peset",
+          "distancia": "0,99 km lineales",
+          "tipo": "hospital"
+        },
+        {
+          "nombre": "València Joaquín Sorolla",
+          "distancia": "1,41 km lineales",
+          "tipo": "tren"
+        },
+        {
+          "nombre": "Roig Arena",
+          "distancia": "1,85 km lineales",
+          "tipo": "estadio"
+        }
+      ],
+      "demanda": "Hospitales, viajeros AVE, eventos del Roig Arena y demanda urbana de València; drivers plausibles, sin estudio de captación específico del activo.",
+      "estacionalidad": "Urbana y relativamente diversificada; el H1 2026 muestra fuerte mejora de ocupación y ADR de invierno a primavera/verano.",
+      "competencia": "El broker cita un hotel 4★ de 64 habitaciones en San Vicente/Moncayo y diez licencias hoteleras en exposición pública; ambos extremos quedan por verificar parcelariamente.",
+      "accesibilidad": "Eje San Vicente Mártir, cercanía ferroviaria y acceso a dos hospitales; la mejora del Canal de Acceso está en obra, con final 2028 como previsión oficial, no como garantía.",
+      "semaforo": {
+        "estado": "ambar",
+        "resumen": "Buena conectividad y demanda médica/eventos, pero micro no prime y uplift del boulevard no se capitaliza hasta obra terminada."
+      }
+    },
+    "proyecto": {
+      "producto": "Hotel 3★ de nueva creación por conversión residencial",
+      "superficie_m2": 3607.0,
+      "unidades": 132,
+      "hechos": [
+        "Email interno: edificio residencial en San Vicente Mártir 315-317; propuesta de conversión a hotel 3★ de 132 habitaciones.",
+        "Asking 9,0M€; el análisis preliminar interno plantea 7,0M€ como nivel con sentido.",
+        "BOTE: 3.607 m², 132 llaves, ADR 110€, ocupación 75%, GOP 50%, hard cost 8,58M€ y CapEx visible 11,095M€.",
+        "El BOTE concluye “Rechazar” a 9,0M€ y muestra precio máximo 6,792M€, pero su all-in omite 1,17M€ de impuestos/broker y mezcla drivers €/m²/llave; no se adopta su output sin recalcular.",
+        "PD_01: proyecto refundido UE A.4/1 Parque Central, plano de urbanización Parque + Barrio Sur, aprobación definitiva 27/06/2014 y diligencia 01/02/2018; el PDF aportado contiene solo la hoja 01 de 14.",
+        "Ayuntamiento 28/11/2025: obras del Canal de Acceso iniciadas en febrero 2023, presupuesto 443M€ y finalización prevista en 2028."
+      ],
+      "por_que_si": [
+        "132 llaves: escala operativa suficiente y dentro del mandato de tamaño.",
+        "Base urbana con hospitales, AVE y eventos; ADR/ocupación del BOTE no son agresivos frente a datos INE H1 2026 de València.",
+        "A 7,0M€ el motor MAGG v2 arroja IRR U/L 13,7%/21,9% y MOIC 1,84x.",
+        "El Canal de Acceso está en ejecución y puede mejorar la conectividad/entorno, aunque no se paga hoy como certeza."
+      ],
+      "por_que_no": [
+        "A 9,0M€ la IRR apalancada es 13,8%, por debajo del 15% objetivo; el ask no compensa el riesgo de desarrollo/licencia.",
+        "No existe en el pack una licencia hotelera aprobada, compatibilidad parcelaria, expediente ECU completo ni edificabilidad certificada.",
+        "El plano de 2014 acredita urbanización superficial histórica, no el calendario contractual actual ni la inclusión de la parcela.",
+        "Faltan presupuesto vinculante, plazo de obra, P&L/operador, título/catastro, estructura fiscal y sensibilidad de retraso/coste."
+      ],
+      "cronograma": "DD/price discovery inmediata; no usar 2028 como fecha cierta de entrega del boulevard. La fuente municipal de 28/11/2025 mantiene 2028 como previsión de fin del Canal de Acceso.",
+      "semaforo": {
+        "estado": "rojo",
+        "resumen": "La conversión residencial→hotel y la ganancia de edificabilidad no están acreditadas. “En tramitación en ECU” es una afirmación del email, no licencia aprobada."
+      }
+    },
+    "pnl": {
+      "revenue": 3974850.0,
+      "adr": 110.0,
+      "occupancy_pct": 0.75,
+      "dias_abierto": 365,
+      "adr_display": "110€/noche · 75% ocupación · 365 días (BOTE interno, no P&L del activo)",
+      "gop": 1987425.0,
+      "gop_margin": 0.5,
+      "hma": 278239.5,
+      "hma_pct": 0.07,
+      "noi": 1709185.5,
+      "noi_margin": 0.43,
+      "revpar": 82.5,
+      "revenue_per_key": 30112.5,
+      "noi_per_key": 12948.375,
+      "unidades": 132,
+      "semaforo": {
+        "estado": "ambar",
+        "resumen": "Caso base determinista con inputs BOTE: ask 9,0M€, hard cost 8,58M€, ADR 110€, ocupación 75%, GOP 50%, exit yield 6%; falta presupuesto vinculante y P&L operador."
+      },
+      "gaps": [
+        "Expediente ECU completo, número/fecha, estado real y uso hotelero solicitado.",
+        "Informe parcelario de compatibilidad, barrio/distrito, saturación turística y accesos independientes conforme a reglas de València vigentes desde mayo 2026.",
+        "Proyecto completo y 14 hojas del PD_01; georreferenciación/catastro que pruebe impacto del Canal de Acceso sobre la parcela.",
+        "Licencia/compatibilidad, edificabilidad actual y ganada, layout y superficies de las 132 habitaciones.",
+        "Presupuesto hard/soft/FF&E/contingencia y plazo vinculantes; el hard cost 8,58M€ y la contingencia 5% son inputs no cerrados.",
+        "P&L de operador y comps del micro; ADR 110€, ocupación 75%, GOP 50%, HMA 7% y exit yield 6% son supuestos del caso base.",
+        "Fiscalidad y honorarios exactos: se usa 13% por la línea 1,17M€ del BOTE."
+      ]
+    },
+    "bp_retornos": {
+      "precio": 9000000.0,
+      "costes_transaccion": 1170000.0,
+      "capex_total": 10817400.0,
+      "coste_total_proyecto": 20987400.0,
+      "bid_recomendado": 8678437.261940002,
+      "bid_verificado": true,
+      "adr_display": "110€/noche · 75% ocupación · 365 días (BOTE interno, no P&L del activo)",
+      "gop_margin": 0.5,
+      "noi": 1709185.5,
+      "yoc": 0.0814386489036279,
+      "exit_value": 28486425.0,
+      "exit_yield": 0.06,
+      "irr_unlevered": 0.09350523184938166,
+      "irr_levered": 0.1377032604654859,
+      "moic": 1.5018889143097593,
+      "spread_bps": 435,
+      "cash_flows": [
+        {
+          "year": 0,
+          "fase": "Entrada",
+          "coste_proyecto": 10170000.0,
+          "noi": 0.0,
+          "venta": 0.0,
+          "cf_sin_apalancar": -10170000.0,
+          "cf_apalancado": -4576500.0
+        },
+        {
+          "year": 1,
+          "fase": "Construcción",
+          "coste_proyecto": 5408700.0,
+          "noi": 0.0,
+          "venta": 0.0,
+          "cf_sin_apalancar": -5408700.0,
+          "cf_apalancado": -2713589.9999999995
+        },
+        {
+          "year": 2,
+          "fase": "Construcción",
+          "coste_proyecto": 5408700.0,
+          "noi": 0.0,
+          "venta": 0.0,
+          "cf_sin_apalancar": -5408700.0,
+          "cf_apalancado": -2862329.2499999995
+        },
+        {
+          "year": 3,
+          "fase": "Operación",
+          "coste_proyecto": 0.0,
+          "noi": 1452807.675,
+          "venta": 0.0,
+          "cf_sin_apalancar": 1452807.675,
+          "cf_apalancado": 875654.175
+        },
+        {
+          "year": 4,
+          "fase": "Venta",
+          "coste_proyecto": 0.0,
+          "noi": 1709185.5,
+          "venta": 24783189.75,
+          "cf_sin_apalancar": 26492375.25,
+          "cf_apalancado": 14372151.75
+        }
+      ],
+      "semaforo": {
+        "estado": "ambar",
+        "resumen": "Caso base determinista con inputs BOTE: ask 9,0M€, hard cost 8,58M€, ADR 110€, ocupación 75%, GOP 50%, exit yield 6%; falta presupuesto vinculante y P&L operador."
+      },
+      "gaps": [
+        "Expediente ECU completo, número/fecha, estado real y uso hotelero solicitado.",
+        "Informe parcelario de compatibilidad, barrio/distrito, saturación turística y accesos independientes conforme a reglas de València vigentes desde mayo 2026.",
+        "Proyecto completo y 14 hojas del PD_01; georreferenciación/catastro que pruebe impacto del Canal de Acceso sobre la parcela.",
+        "Licencia/compatibilidad, edificabilidad actual y ganada, layout y superficies de las 132 habitaciones.",
+        "Presupuesto hard/soft/FF&E/contingencia y plazo vinculantes; el hard cost 8,58M€ y la contingencia 5% son inputs no cerrados.",
+        "P&L de operador y comps del micro; ADR 110€, ocupación 75%, GOP 50%, HMA 7% y exit yield 6% son supuestos del caso base.",
+        "Fiscalidad y honorarios exactos: se usa 13% por la línea 1,17M€ del BOTE."
+      ]
+    }
+  }
+}
