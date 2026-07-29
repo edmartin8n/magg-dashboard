@@ -1,0 +1,86 @@
+{
+  "ref": "MAGG-2026-184",
+  "nombre": "Avenida de Aragón 402 / Lola Flores — Madrid | 92 habitaciones",
+  "veredicto": "BORDERLINE",
+  "veredicto_detalle": "PEND DD — renta fija propuesta atractiva, pero estructura de lease, licencia, CapEx y superficie no verificadas.",
+  "fecha": "29/07/2026",
+  "slug": "magg-2026-184-avenida-de-aragon-402-lola-flores-madrid-92-habitaciones",
+  "slides": {
+    "zona": {
+      "macro": "Madrid",
+      "micro": "Avenida de Aragón / entorno Lola Flores",
+      "score": 3,
+      "overview": null,
+      "ubicacion_texto": "Avenida de Aragón 402 / entorno Lola Flores, Madrid",
+      "map_query": "Avenida de Aragón 402 / entorno Lola Flores, Madrid",
+      "pois": [],
+      "demanda": "No se aportaron comparables ni estudio de demanda.",
+      "estacionalidad": null,
+      "competencia": null,
+      "accesibilidad": "Ubicación indicada en el email; conectividad y micro-demanda por verificar.",
+      "semaforo": {
+        "estado": "ambar",
+        "resumen": "Madrid dentro de geografía MAGG; falta DD micro y evidencia de demanda/competencia."
+      }
+    },
+    "proyecto": {
+      "producto": "Hotel urbano en desarrollo con arrendamiento fijo propuesto",
+      "superficie_m2": 2794,
+      "unidades": 92,
+      "hechos": [
+        "Email ONIX: 92 habitaciones; renta por habitación 10.800 €/año; renta anual 993.600 €.",
+        "Email ONIX: IBI + comunidad 39.000 €; NOI triple-net estimado 954.600 €.",
+        "Email ONIX: inversión de suelo + gastos asociados 2,5 M€ y CapEx estimado 9,5 M€ incluyendo proyectos, tasas y FF&E; inversión total indicada 12,0 M€.",
+        "Email ONIX: yield de salida conservadora 6,5% y valor de salida indicado 14.686.153 €; participación MAGG propuesta 20%.",
+        "Email ONIX: se propone aumentar obligado cumplimiento de 12 a 15 años, sin aval y con comfort letter; no se adjuntó contrato."
+      ],
+      "por_que_si": [
+        "Renta fija indicada equivale a 10.800 €/habitación/año; NOI indicado de 954.600 € sobre inversión total de 12,0 M€ implica YoC fuente de 7,96%.",
+        "Tamaño declarado (92 llaves / 2.794 m²) y Madrid encajan formalmente en el mandato.",
+        "El promotor acepta estudiar una participación MAGG del 20%; potencial de estructura de coinversión si existe documentación sólida."
+      ],
+      "por_que_no": [
+        "No hay licencia, título/control de suelo, proyecto, data room, contrato de alquiler ni evidencia de la solvencia/garantías del obligado.",
+        "El email afirma 2.794 m² sobre rasante; la referencia EZAR archivada para hotel de 92 habitaciones en C/ Lola Flores 2 usa 3.422,64 m² sobre rasante más 1.602,85 m² bajo rasante: discrepancia material a reconciliar.",
+        "CapEx de 9,5 M€ incluye proyectos, tasas y FF&E según ONIX, pero no está desglosado ni respaldado por presupuesto vinculante; no se puede validar el TPC ni una IRR."
+      ],
+      "cronograma": "Semana 1: data room y validación legal/técnica. Semana 2: CapEx y lease underwriting. Semana 3: modelo completo, términos de coinversión y decisión IC.",
+      "semaforo": {
+        "estado": "ambar",
+        "resumen": "92 habitaciones y 2.794 m² indicados; no se aportó licencia, título, programa ni presupuesto vinculante."
+      }
+    },
+    "pnl": null,
+    "bp_retornos": {
+      "precio": null,
+      "costes_transaccion": null,
+      "capex_total": null,
+      "coste_total_proyecto": null,
+      "bid_recomendado": null,
+      "bid_verificado": false,
+      "adr_display": "",
+      "gop_margin": null,
+      "noi": null,
+      "yoc": null,
+      "exit_value": null,
+      "exit_yield": null,
+      "irr_unlevered": null,
+      "irr_levered": null,
+      "moic": null,
+      "spread_bps": null,
+      "cash_flows": [],
+      "semaforo": {
+        "estado": "ambar",
+        "resumen": "Renta/NOI/YoC proceden de ONIX; contrato, OC, avales y CapEx no verificados. No se publica IRR."
+      },
+      "gaps": [
+        "Licencia urbanística/hotelera y compatibilidad de uso.",
+        "Título, contrato de suelo y cargas.",
+        "Proyecto, programa de superficies y reconciliación 2.794 m² vs benchmark EZAR Lola Flores.",
+        "CapEx por partidas, contingencia, impuestos y calendario de obra.",
+        "Contrato de arrendamiento: renta, escalado, 15 años de OC, garantías, break rights, aval/comfort letter y solvencia del obligado.",
+        "Estructura del 20% MAGG: equity, deuda, waterfall, gobierno, derechos de salida y fiscalidad."
+      ]
+    }
+  }
+}
