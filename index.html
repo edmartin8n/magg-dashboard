@@ -989,12 +989,14 @@ const TAILNET_HOST = 'mac-mini-de-e.tail668fc9.ts.net'; // crm_api.py via `tails
 function getApiBase(){
   return IS_LOCAL ? 'http://localhost:8765' : `https://${TAILNET_HOST}`;
 }
+/* Editar ya no depende de alcanzar el Mac mini: se escribe directo en
+   Supabase con la sesión del usuario. Si hay sesión, se puede editar —
+   desde cualquier sitio y sin Tailscale. */
 let CAN_EDIT = false;
 function checkApiReachable(){
-  return fetch(`${getApiBase()}/api/health`, {signal: AbortSignal.timeout(3000)})
-    .then(r => { CAN_EDIT = r.ok; })
-    .catch(() => { CAN_EDIT = false; })
-    .finally(() => { renderDeals(); });
+  CAN_EDIT = !!SUPA_TOKEN;
+  renderDeals();
+  return Promise.resolve(CAN_EDIT);
 }
 const ESTADO_MAP = [
   {label:'🔍 En Análisis', value:'En Análisis', scoring:'', verdict:'analisis'},
@@ -1697,26 +1699,57 @@ function saveDeal(ref) {
     .catch(err => showToast(`❌ Error: ${err}`, 'error'));
 }
 
-/** Shared write path: PATCH a deal on crm_api.py then trigger a republish.
- * Used by the manual edit panel (saveDeal) and by the AI chat's confirmed
- * edit proposals. Returns a Promise so callers can react to success/failure. */
+/* Nombres del panel de edición -> columnas reales de Postgres. Debe cuadrar
+   con DEAL_FIELD_MAP de magg_supabase_writer.py: si divergen, se escribiría
+   en una columna que no existe y Supabase devolvería 400. */
+const EDIT_FIELD_MAP = {
+  precio: 'precio_asking', spread: 'spread_bps', fecha_accion: 'fecha_prox_accion',
+  fuente: 'fuente_broker', sqm: 'sqm_total',
+};
+function toIsoDate(v) {
+  const m = String(v || '').trim().match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/);
+  return m ? `${m[3]}-${m[2].padStart(2,'0')}-${m[1].padStart(2,'0')}` : v;
+}
+
+/** Escribe directamente en Supabase con la sesión del usuario.
+ *
+ * Antes esto hacía PATCH contra crm_api.py (que escribía el Excel) y luego
+ * republicaba GitHub Pages. Eso ya no vale: desde el 05/08/2026 el Excel se
+ * GENERA desde Supabase, así que una edición por esa vía se perdería en el
+ * siguiente export. Además obligaba a tener el Mac mini encendido.
+ *
+ * Ahora el cambio es inmediato y queda registrado en deal_history por el
+ * trigger de la base de datos. No hace falta republicar nada. */
 function applyDealChanges(ref, body) {
-  const apiBase = getApiBase();
-  return fetch(`${apiBase}/api/deals/${encodeURIComponent(ref)}`, {
+  if (!SUPA_TOKEN) {
+    showToast('❌ Sesión caducada — vuelve a entrar', 'error');
+    return Promise.reject('no session');
+  }
+  const payload = {};
+  for (const [k, v] of Object.entries(body)) {
+    const col = EDIT_FIELD_MAP[k] || k;
+    payload[col] = (col === 'fecha_prox_accion' || col === 'fecha_entrada') ? toIsoDate(v) : v;
+  }
+  return fetch(`${SUPA_URL}/rest/v1/deals?ref=eq.${encodeURIComponent(ref)}`, {
     method: 'PATCH',
-    headers: {'Content-Type':'application/json'},
-    body: JSON.stringify(body),
+    headers: { ...supaHeaders(SUPA_TOKEN), 'Prefer': 'return=representation' },
+    body: JSON.stringify(payload),
   })
-  .then(r => r.ok ? r.json() : Promise.reject(r.status))
-  .then(data => {
-    showToast(`✅ ${ref} guardado · actualizando web pública…`, 'success');
-    return fetch(`${apiBase}/api/regenerate`, {method:'POST'});
+  .then(async r => {
+    if (!r.ok) throw new Error(`HTTP ${r.status}: ${await r.text()}`);
+    return r.json();
   })
-  .then(r => r.ok ? r.json() : Promise.reject('regenerate failed'))
-  .then(data => {
-    if (data.ok) { showToast('🌐 GitHub Pages actualizado (1-2 min)', 'success'); return data; }
-    showToast(`⚠️ Excel OK · error web: ${data.error}`, 'error');
-    return Promise.reject(data.error || 'regenerate failed');
+  .then(rows => {
+    if (!rows.length) throw new Error(`${ref} no encontrado`);
+    // Refrescar el deal en memoria para que la tabla muestre ya lo guardado.
+    const i = DEALS.findIndex(x => x.ref === ref);
+    if (i >= 0) DEALS[i] = mapDeal(rows[0]);
+    showToast(`✅ ${ref} guardado`, 'success');
+    return rows[0];
+  })
+  .catch(e => {
+    showToast(`❌ Error al guardar: ${e.message}`, 'error');
+    return Promise.reject(e);
   });
 }
 
