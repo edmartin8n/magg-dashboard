@@ -2841,8 +2841,11 @@ async function sendChat(){
   const lDiv=document.createElement('div'); lDiv.className='cp-msg cp-msg-loading'; lDiv.textContent='Consultando pipeline…'; msgs.appendChild(lDiv);
   msgs.scrollTop=msgs.scrollHeight;
   try{
-    const ctx=buildDealsContext();
-    const res=await fetch(wUrl,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({query:q,deals_context:ctx})});
+    /* Ya no se manda el pipeline como texto: el asistente consulta Supabase
+       con ESTA sesión, así que solo ve lo que este usuario puede ver, y
+       alcanza también briefs, fondos, financieros y encaje con inversores. */
+    const res=await fetch(wUrl,{method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({query:q, token:SUPA_TOKEN, anon_key:SUPA_KEY})});
     lDiv.remove();
     const data=await res.json();
     const aDiv=document.createElement('div'); aDiv.className='cp-msg cp-msg-ai';
