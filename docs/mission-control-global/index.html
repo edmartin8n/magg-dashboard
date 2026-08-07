@@ -10,53 +10,53 @@
 <body>
 <div id="login"><div class="login-box"><h2>Mission Control</h2><p>Introduce contraseña.</p><input id="pwd" type="password" onkeydown="if(event.key==='Enter')auth()" autofocus><button onclick="auth()">Entrar</button><div id="err" style="color:#ad3030;margin-top:8px"></div></div></div>
 <div id="app">
-<div class="header"><div class="header-top"><span style="font-size:28px">🦀</span><h1>Mission Control</h1></div><div class="header-meta"><span class="pill"><span class="dot"></span>Seguimiento 09:30 ejecutado</span><span class="pill">🕐 05 Ago 2026 · 09:30 Madrid</span><span class="pill">🎯 Hoy: MAGG 184/183+Gate · DILS+carrera · GV48+Capital</span><span class="pill">Próxima sync: 05/08 14:00 · pass: ctrl2026</span></div></div>
+<div class="header"><div class="header-top"><span style="font-size:28px">🦀</span><h1>Mission Control</h1></div><div class="header-meta"><span class="pill"><span class="dot"></span>Cierre 20:15 ejecutado</span><span class="pill">🕐 07 Ago 2026 · 20:15 Madrid</span><span class="pill">🎯 Mañana: MAGG 184/183+Gate · Capital+CRM · DILS+GV48</span><span class="pill">Próxima sync: 08/08 09:30 · pass: ctrl2026</span></div></div>
 <div class="tabs"><div class="tab active" onclick="switchTab('ops',this)">🗺️ Operaciones</div><div class="tab" onclick="switchTab('sys',this)">⚙️ Sistema</div></div>
 <div id="tab-ops" class="tab-content active">
 <div class="section-title">🚦 Estado por vertical</div><div class="grid2">
-<div class="card"><div class="card-title">🏨 MAGG / Deals</div><div class="card-sub"><span class="badge red">🔴 Cola reducida · ejecución vencida</span></div><p><strong>451 filas / 448 refs / 185 MAGG</strong>, latest <strong>184</strong>. Estados dedup <strong>438/6/4</strong>. Nocturna: <strong>10 activos / 9 vencidos / 9 &gt;7d / 0 resultados</strong>; GO/BORDERLINE 183/184 y capital path sustantivo solo 183. Gmail live <strong>115 broad / 19 unread / 0 same-day / 0 gaps</strong>.</p></div>
-<div class="card"><div class="card-title">🏛️ SR / GV48</div><div class="card-sub"><span class="badge red">🔴 Contradicción abierta</span></div><p>010A/B siguen descartados por tiempo pese a prioridad estratégica. Hoy: reopen/exempt o kill; si reabre, escenario, deuda 50–60% LTC y lead equity.</p></div>
-<div class="card"><div class="card-title">💶 Capital Access</div><div class="card-sub"><span class="badge yellow">🟡 Base lista · activación pendiente</span></div><p>94 entidades / 15 FO / 56 fondos; control privado <strong>23 contactos</strong>. Hoy: elegir carril El Prat, owner, CPs y lead equity. Outreach solo con OK individual.</p></div>
+<div class="card"><div class="card-title">🏨 MAGG / Deals</div><div class="card-sub"><span class="badge red">🔴 Sin intake nuevo · decisión vencida</span></div><p><strong>448 refs / 185 MAGG</strong>, latest <strong>184</strong>; estados <strong>438/6/4</strong> y 10 activos. Gmail live <strong>115 broad / 19 unread / 0 same-day / 0 gaps</strong>. Mañana: decisión 184/183 y Weekly Gate v3.</p></div>
+<div class="card"><div class="card-title">🏛️ SR / GV48</div><div class="card-sub"><span class="badge red">🔴 Contradicción abierta</span></div><p>010A/B siguen descartados por tiempo pese a prioridad estratégica. Mañana: memo binario reopen/exempt o kill; si reabre, escenario, deuda 50–60% LTC y lead equity.</p></div>
+<div class="card"><div class="card-title">💶 Capital Access</div><div class="card-sub"><span class="badge yellow">🟠 Motor operativo · activación pendiente</span></div><p><strong>94 fondos / 51 análisis / 4 financieros / 190 matches</strong> para 10 activos; <strong>0 interacciones</strong>. Mañana: QA, shortlist y feedback loop. Outreach solo con OK individual.</p></div>
 <div class="card"><div class="card-title">🌍 Growth / Dubai</div><div class="card-sub"><span class="badge yellow">🟡 Waiting</span></div><p>Dubai v7 y Borja listos. Sin outreach ni intros sin OK explícito.</p></div>
-<div class="card"><div class="card-title">📈 Public Markets</div><div class="card-sub"><span class="badge yellow">🟡 Research vigente · falta cartera real</span></div><p>Última prioridad <strong>NVDA/TSM/VRT</strong>; job de hoy 13:00 pendiente. Falta cartera real para sizing/riesgo.</p></div>
-<div class="card"><div class="card-title">👤 DILS / carrera dual</div><div class="card-sub"><span class="badge yellow">🟠 DILS activo · seguimiento 09:16 cerrado</span></div><p><strong>40 históricas / 13 watchlist</strong>; Eduardo 10 y Ana 3; 13/13 activas abiertas. Trackers nominales desfasados. Hoy: bloque DILS 30 min, Plan de Acción, Madrid/Málaga y 1–2 HH top-fit.</p></div>
-<div class="card"><div class="card-title">🏃 Personal Ops</div><div class="card-sub"><span class="badge yellow">🟠 Biwenger parcialmente conciliado</span></div><p>Saldo <strong>€22,108M</strong>; una puja activa: Dani Olmo <strong>€12,20M</strong>. Nico Williams libre VM €8,30M/+€150k exige mínimo €8,80M, pero el modal quedó sin AX. <strong>Sin mutación insegura</strong>.</p></div>
-<div class="card"><div class="card-title">⚙️ Infra / Crons</div><div class="card-sub"><span class="badge red">🔴 Operación OK · delivery/seguridad degradados</span></div><p><strong>16 crons</strong>; Scout, Nocturna, backup, Biwenger, CRM email, Radar y #ana cerrados; esta 09:30 ejecutada. Scanner 12:00, AI 13:00 y Auto-Update 15:00 pendientes. API 200; WhatsApp disconnected; Notion sin updater. <strong>daily_log.json</strong> conserva patrón de token en worktree/HEAD/origin.</p></div>
+<div class="card"><div class="card-title">📈 Public Markets</div><div class="card-sub"><span class="badge yellow">🟡 Sin job fresco hoy</span></div><p>AI e Insider sin evidencia same-day; últimos runs 05/08 y 31/07. Falta cartera real para sizing/riesgo.</p></div>
+<div class="card"><div class="card-title">👤 DILS / carrera dual</div><div class="card-sub"><span class="badge yellow">🟠 Carrera avanzó · DILS sin outcome</span></div><p><strong>48 históricas / 14 watchlist</strong>; Eduardo 11 (T1 5/T2 6), Ana 3 (T1 1/T2 2). Altas: Santander VP y repost Tanddem VP, ambos Tier 2 Eduardo. Mañana: priorizar 14 activas y convertir DILS en Plan de Acción.</p></div>
+<div class="card"><div class="card-title">🏃 Personal Ops</div><div class="card-sub"><span class="badge yellow">🟠 Biwenger no conciliado</span></div><p>Sesión autenticada localizada, pero lienzo gris y AX 0 impidieron verificar liga, saldo, plantilla, pujas o mercado. <strong>Sin mutación financiera</strong>.</p></div>
+<div class="card"><div class="card-title">⚙️ Infra / Crons</div><div class="card-sub"><span class="badge red">🔴 Catch-up parcial · email CRM roto</span></div><p><strong>16 crons</strong>. Backup, #ana, Biwenger, 14:00 y carrera cerrados; Radar/09:30/scanner/AI/Insider sin evidencia same-day. CRM email falló por frontend Supabase sin <code>DEALS</code>. Este 20:15 ejecutado; Scout 20:30 pendiente. Workspace limpio y 2 commits ahead.</p></div>
 </div>
-<div class="section-title">🎯 Top 3 de hoy — 05/08</div><div class="card top3">
-<div class="top3-item"><div class="top3-num">1</div><div><div class="top3-title">MAGG 184/183 + Weekly Gate v3</div><div class="top3-desc">Cerrar DD de 184 hoy; decidir 183 — NBO €7M condicionada o kill; Gate v3 sobre 10 activos y validar scanner 12:00.</div></div></div>
-<div class="top3-item"><div class="top3-num">2</div><div><div class="top3-title">DILS + carrera · convertir evidencia en decisión</div><div class="top3-desc">Registrar outcome/acuerdos/gaps, adaptar deck v2 a Plan de Acción y priorizar 13 oportunidades abiertas. Contacto solo con OK.</div></div></div>
-<div class="top3-item"><div class="top3-num">3</div><div><div class="top3-title">GV48 + Capital</div><div class="top3-desc">Decidir reopen/exempt o kill de 010A/B; elegir carril El Prat, CPs y lead equity. Outreach/broker action solo con OK.</div></div></div>
+<div class="section-title">🎯 Top 3 de mañana — 08/08</div><div class="card top3">
+<div class="top3-item"><div class="top3-num">1</div><div><div class="top3-title">MAGG 184/183 + Weekly Gate v3</div><div class="top3-desc">Decisión binaria sobre DD/NBO/kill y gate con evidencia sobre los 10 activos; mantener Gmail con 0 gaps.</div></div></div>
+<div class="top3-item"><div class="top3-num">2</div><div><div class="top3-title">Capital + CRM Supabase</div><div class="top3-desc">Adaptar el email diario, cerrar QA de 190 matches y preparar shortlist/feedback loop sin outreach no aprobado.</div></div></div>
+<div class="top3-item"><div class="top3-num">3</div><div><div class="top3-title">DILS / carrera + GV48</div><div class="top3-desc">Plan de Acción DILS, priorizar 14 oportunidades y dejar memo binario 010A/B. Contacto externo solo con OK.</div></div></div>
 </div>
 <div class="section-title">📊 Snapshot cross-vertical</div><div class="grid3">
-<div class="card"><div class="card-title">MAGG</div><div class="card-sub">185 MAGG · latest 184 · 09:30 live</div><ul class="compact"><li>438 descartados / 6 análisis / 4 hold</li><li>API :8765 200 · workbook mtime 03/08 12:02</li><li>Gmail 115 / 19 / 0 · 0 gaps manifest</li></ul></div>
-<div class="card"><div class="card-title">Carrera / DILS</div><div class="card-sub">40 históricas · 13 watchlist</div><ul class="compact"><li>13/13 activas abiertas</li><li>Eduardo 10 · Ana 3</li><li>Plan de Acción y outcome DILS pendientes</li></ul></div>
-<div class="card"><div class="card-title">Infra</div><div class="card-sub">09:30 · seguimiento ejecutado</div><ul class="compact"><li>WA disconnected; Notion sin updater</li><li>Backup dfa3d2e no cubre Radar/refresh</li><li>Workspace source en hold por token tracked</li></ul></div>
+<div class="card"><div class="card-title">MAGG / Capital</div><div class="card-sub">185 MAGG · latest 184 · 20:15 live</div><ul class="compact"><li>448 refs · 438/6/4 · 0 duplicados</li><li>94 fondos · 190 matches · 0 interacciones</li><li>Gmail 115 / 19 / 0 · 0 gaps manifest</li></ul></div>
+<div class="card"><div class="card-title">Carrera / DILS</div><div class="card-sub">48 históricas · 14 watchlist</div><ul class="compact"><li>Eduardo 11 · Ana 3</li><li>2 Tier 2 nuevas para Eduardo</li><li>Plan de Acción y outcome DILS pendientes</li></ul></div>
+<div class="card"><div class="card-title">Infra</div><div class="card-sub">20:15 · cierre ejecutado</div><ul class="compact"><li>CRM email incompatible con Supabase</li><li>Workspace limpio · 2 commits ahead</li><li>Scout 20:30 pendiente; Notion sin updater</li></ul></div>
 </div>
-<div class="section-title">📝 Log corto reciente</div><div class="card"><ul class="compact"><li><strong>05/08 09:30</strong>: pipeline/Gmail sin intake nuevo; 10 activos/9 vencidos/0 resultados; DILS y seguridad P0 abiertos.</li><li><strong>05/08 09:16</strong>: #ana; DILS prioridad y bloque de 30 min.</li><li><strong>05/08 08:21</strong>: Radar; Gmail interno, 4 Top + 2 señales Madrid.</li><li><strong>05/08 07:17</strong>: Biwenger; Olmo activo, Nico no pujado por UI.</li><li><strong>05/08 03:19</strong>: Nocturna; 10 activos/9 vencidos/0 resultados.</li></ul></div>
+<div class="section-title">📝 Log corto reciente</div><div class="card"><ul class="compact"><li><strong>07/08 20:15</strong>: cierre; Gmail/Supabase/Excel sin intake nuevo, matching 190/0 y Top 3 rodado.</li><li><strong>07/08 19:10</strong>: carrera; 2 Tier 2 Eduardo, repo 48/14 y QA 14/14.</li><li><strong>07/08 14:00</strong>: catch-up; Gmail 115/19/0, 0 gaps y matching operativo.</li><li><strong>07/08 13:30</strong>: backup bbd3332; 2 commits posteriores locales.</li><li><strong>07/08 13:29</strong>: Biwenger sin mutación por lienzo gris/AX 0.</li></ul></div>
 </div>
 <div id="tab-sys" class="tab-content">
-<div class="section-title">⏰ Crons activos — foto real 05/08 09:30</div><div class="table-card"><table><thead><tr><th>Hora</th><th>Job</th><th>Destino</th><th>Estado</th></tr></thead><tbody>
-<tr><td>03:00</td><td>Revisión Nocturna Estratégica</td><td>WhatsApp</td><td>🟢 OK 03:19 · delivery WA fallido</td></tr>
-<tr><td>07:00</td><td>daily-workspace-backup</td><td>local</td><td>🟢 OK 07:01 · push dfa3d2e</td></tr>
-<tr><td>07:15</td><td>biwenger-market-0715</td><td>origin</td><td>🟢 OK 07:17 · Olmo activo / sin mutación insegura</td></tr>
-<tr><td>08:00 L-V</td><td>MAGG CRM daily evolution email</td><td>local</td><td>🟢 OK 08:00</td></tr>
-<tr><td>08:00</td><td>Noticias Inmobiliarias</td><td>local + Gmail interno</td><td>🟢 OK 08:12–08:21 · 4 Top + 2 señales</td></tr>
-<tr><td>08:00 L</td><td>Weekly Macro Briefing</td><td>WhatsApp</td><td>⚪ No corre miércoles · último OK lunes / delivery WA fallido</td></tr>
-<tr><td>09:15 L-V</td><td>#ana seguimiento DILS + LinkedIn + HH</td><td>origin</td><td>🟢 OK 09:16 · DILS prioridad</td></tr>
-<tr><td>09:30</td><td>Seguimiento diario 09:30</td><td>local</td><td>🟢 Ejecutado en esta pasada</td></tr>
-<tr><td>12:00 L-V</td><td>MAGG Deal Scanner</td><td>Discord #magg-deals</td><td>⚪ Pendiente por horario · Gmail read live OK</td></tr>
-<tr><td>13:00 L-V</td><td>AI Buildout Stock Research</td><td>Discord</td><td>⚪ Pendiente por horario</td></tr>
-<tr><td>13:00 V</td><td>Insider Buying Radar</td><td>Discord</td><td>⚪ No corre miércoles · último OK viernes 31/07</td></tr>
-<tr><td>14:00</td><td>Seguimiento diario 14:00</td><td>local</td><td>⚪ Pendiente por horario</td></tr>
-<tr><td>15:00 X</td><td>Hermes Auto-Update</td><td>local</td><td>⚪ Pendiente por horario</td></tr>
-<tr><td>19:00</td><td>Carrera dual LinkedIn</td><td>origin</td><td>⚪ Pendiente por horario · último OK 04/08 19:12</td></tr>
-<tr><td>20:15</td><td>Seguimiento diario 20:15</td><td>local</td><td>⚪ Pendiente por horario</td></tr>
-<tr><td>20:30</td><td>Scout YouTube</td><td>WhatsApp</td><td>🟢 Último OK 04/08 20:40 · delivery WA fallido</td></tr>
+<div class="section-title">⏰ Crons activos — foto real 07/08 20:15</div><div class="table-card"><table><thead><tr><th>Hora</th><th>Job</th><th>Destino</th><th>Estado</th></tr></thead><tbody>
+<tr><td>03:00</td><td>Revisión Nocturna Estratégica</td><td>WhatsApp</td><td>⚠️ Sin evidencia hoy · último OK 05/08</td></tr>
+<tr><td>07:00</td><td>daily-workspace-backup</td><td>local</td><td>🟢 OK catch-up 13:30 · push bbd3332</td></tr>
+<tr><td>07:15</td><td>biwenger-market-0715</td><td>origin</td><td>🟢 OK catch-up 13:29 · sin mutación</td></tr>
+<tr><td>08:00 L-V</td><td>MAGG CRM daily evolution email</td><td>local</td><td>🔴 Error 13:28 · No DEALS array / migrar a Supabase</td></tr>
+<tr><td>08:00</td><td>Noticias Inmobiliarias</td><td>local + Gmail interno</td><td>⚠️ Sin evidencia hoy · último OK 05/08</td></tr>
+<tr><td>08:00 L</td><td>Weekly Macro Briefing</td><td>WhatsApp</td><td>⚪ No corre viernes · último OK 03/08</td></tr>
+<tr><td>09:15 L-V</td><td>#ana seguimiento DILS + LinkedIn + HH</td><td>origin</td><td>🟢 OK catch-up 13:29</td></tr>
+<tr><td>09:30</td><td>Seguimiento diario 09:30</td><td>local</td><td>⚠️ Sin evidencia hoy · último OK 05/08</td></tr>
+<tr><td>12:00 L-V</td><td>MAGG Deal Scanner</td><td>Discord #magg-deals</td><td>⚠️ Sin evidencia hoy · fallback Gmail 20:15 OK</td></tr>
+<tr><td>13:00 L-V</td><td>AI Buildout Stock Research</td><td>Discord</td><td>⚠️ Sin evidencia hoy · último OK 05/08</td></tr>
+<tr><td>13:00 V</td><td>Insider Buying Radar</td><td>Discord</td><td>⚠️ Sin evidencia hoy · último OK 31/07</td></tr>
+<tr><td>14:00</td><td>Seguimiento diario 14:00</td><td>local</td><td>🟢 OK 14:05</td></tr>
+<tr><td>15:00 X</td><td>Hermes Auto-Update</td><td>local</td><td>⚪ No corre viernes · próximo 12/08</td></tr>
+<tr><td>19:00</td><td>Carrera dual LinkedIn</td><td>origin</td><td>🟢 OK 19:10 · 2 Tier 2 Eduardo</td></tr>
+<tr><td>20:15</td><td>Seguimiento diario 20:15</td><td>local</td><td>🟢 Ejecutado en esta pasada</td></tr>
+<tr><td>20:30</td><td>Scout YouTube</td><td>WhatsApp</td><td>⚪ Pendiente por horario · último OK 04/08</td></tr>
 </tbody></table></div>
 <div class="section-title">⚠️ Flags activos</div><div class="grid2">
-<div class="card"><div class="card-title">Datos / pipeline</div><ul class="compact"><li>451 filas / 448 refs / 185 MAGG; latest 184.</li><li>438 descartados, 6 análisis, 4 hold; 10 activos.</li><li>Gmail 09:30: 115 broad; 19 exact unread / 0 same-day / 0 gaps.</li><li>184 vence hoy; 183 vencido; 9/10 acciones vencidas.</li></ul></div>
-<div class="card"><div class="card-title">Infra / publicación</div><ul class="compact"><li>API :8765 health/deals 200; workbook mtime 03/08 12:02.</li><li>09:30 ejecutado; scanner/AI/14:00 pendientes.</li><li>Backup dfa3d2e no cubre Radar ni este refresh.</li><li>WhatsApp 200/disconnected; Notion updater ausente.</li><li>Source workspace en hold: token-shaped literal tracked en daily_log.json, HEAD y origin/main.</li></ul></div>
+<div class="card"><div class="card-title">Datos / pipeline</div><ul class="compact"><li>448 refs / 185 MAGG; latest 184; 0 duplicados.</li><li>438 descartados, 6 análisis, 4 hold; 10 activos.</li><li>Gmail 20:15: 115 broad; 19 unread / 0 same-day / 0 gaps.</li><li>94 fondos · 190 matches · 0 interacciones.</li></ul></div>
+<div class="card"><div class="card-title">Infra / publicación</div><ul class="compact"><li>Supabase/Excel convergentes; workbook 05/08 16:00.</li><li>CRM email falla hasta migrar de DEALS a Supabase.</li><li>Workspace limpio, HEAD 763972c, origin bbd3332, 2 ahead.</li><li>20:15 ejecutado; Scout 20:30 pendiente.</li><li>Notion updater ausente; source en hold por blocker histórico.</li></ul></div>
 </div>
 </div>
 </div>
